@@ -1,0 +1,32 @@
+---
+// Final CTA, "Pausa clara antes del verde" (approved 2026-09-22): a warm cream break so it doesn't
+// melt into the green footer. Copy left, big phone + buttons right. The wave divider lives at the top
+// of the Footer (cream over teal) so there's no seam. Always the last block in <main>, flush with the footer.
+import Icon from './Icon.astro';
+import SunMark from './SunMark.astro';
+import { SITE } from '../data/site.js';
+interface Props { title?: string; lead?: string }
+const {
+  // Tagline from the Client Wiki (2026-09-22), used on the hero subheading and the CTA sitewide.
+  title = 'Your Community. Your Recovery.',
+  lead = 'A true outpatient model for real life. Call or send a message: we listen first, check your insurance for free, and help you work out the right level of care. Free transportation is included.',
+} = Astro.props;
+---
+<section class="bg-cream pb-14 pt-14 sm:pt-20">
+  <div class="container-x grid items-end gap-10 lg:grid-cols-[1.3fr_1fr]">
+    <div>
+      <SunMark variant="sun" class="h-10 w-auto text-gold" />
+      <!-- The CTA block has no heading (review round 1, A4): the title is a paragraph styled as display type -->
+      <p class="mt-4 max-w-[20ch] font-display text-3xl font-extrabold leading-tight text-charcoal sm:text-[2.5rem]">{title}</p>
+      <p class="mt-4 max-w-[58ch] text-lg">{lead}</p>
+    </div>
+    <div>
+      <span class="eyebrow">Call admissions</span>
+      <a href={SITE.phoneHref} class="mt-1 block font-sans text-3xl font-extrabold text-teal hover:text-teal-light sm:text-[2.25rem]">{SITE.phone}</a>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/admissions/" class="btn-sun">Get help now <Icon name="arrow" /></a>
+        <a href="/admissions/insurance/" class="btn-ghost">Verify my insurance</a>
+      </div>
+    </div>
+  </div>
+</section>

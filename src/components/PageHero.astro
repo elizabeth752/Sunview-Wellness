@@ -1,0 +1,71 @@
+---
+// Hero: flat teal ground (brand book: no gradients), gold rings with the one-time light pulse,
+// eyebrow (<span>) above a keyword + geo H1, optional subheading <p> under it. Every CTA points to /admissions/.
+import Icon from './Icon.astro';
+import SunMark from './SunMark.astro';
+import AccreditationBadges from './AccreditationBadges.astro';
+
+interface Stat { value: string; label: string }
+interface Props {
+  eyebrow?: string;
+  title: string;
+  accent?: string; // optional second line of the H1, set in italic
+  subheading?: string;
+  supporting?: string; // plain line under the subheading (e.g. the tagline's supporting line) // emotional line under the H1 (<p class="subheading">), so the H1 can carry the keyword
+  lead?: string;
+  cta?: { label: string; href: string };
+  secondary?: { label: string; href: string } | null;
+  stats?: Stat[];
+  compact?: boolean;
+  ripple?: boolean;
+  badges?: boolean; // accreditation logos under the buttons
+}
+const {
+  eyebrow,
+  title,
+  accent,
+  subheading,
+  supporting,
+  lead,
+  cta = { label: 'Get help now', href: '/admissions/' },
+  secondary = { label: 'Verify my insurance', href: '/admissions/insurance/' },
+  stats = [],
+  compact = false,
+  ripple = true,
+  badges = true,
+} = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+<section class="sv-hero relative isolate overflow-hidden bg-teal text-white">
+  <SunMark variant="rays" ripple={ripple} class="pointer-events-none absolute -right-16 -top-16 -z-10 h-[520px] w-[520px] text-gold/60" />
+
+  <div class:list={['container-x grid items-center gap-12', compact ? 'py-12 sm:py-16' : 'py-12 sm:py-20', hasAside && 'lg:grid-cols-[1.15fr_0.85fr]']}>
+    <div class="max-w-3xl">
+      {eyebrow && <span class="eyebrow eyebrow-light">{eyebrow}</span>}
+      <h1 class:list={[eyebrow && 'mt-4', 'text-[2.5rem] text-white sm:text-[3.125rem]']}>
+        {title}
+        {accent && <><br /><em class="font-display italic">{accent}</em></>}
+      </h1>
+      {subheading && <p class="subheading mt-4 !text-white">{subheading}</p>}
+      {supporting && <p class="mt-1 text-lg font-bold text-white/90">{supporting}</p>}
+      {lead && <p class="mt-6 max-w-[62ch] text-lg text-white/90">{lead}</p>}
+      <slot />
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={cta.href} class="btn-sun">{cta.label} <Icon name="arrow" /></a>
+        {secondary && <a href={secondary.href} class="btn-ghost-light">{secondary.label}</a>}
+      </div>
+      {badges && <AccreditationBadges onDark class="mt-8" />}
+      {stats.length > 0 && (
+        <dl class="mt-12 grid grid-cols-2 gap-6 border-t border-white/25 pt-8 sm:grid-cols-4">
+          {stats.map((s) => (
+            <div class="flex flex-col-reverse">
+              <dt class="mt-1 text-sm text-white/85">{s.label}</dt>
+              <dd class="font-sans text-2xl font-extrabold text-white">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </div>
+    {hasAside && <div class="w-full"><slot name="aside" /></div>}
+  </div>
+</section>

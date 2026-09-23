@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import { SITE } from '../data/site.js';
+---
+<div class="fixed inset-x-0 bottom-0 z-[60] grid grid-cols-2 gap-2 border-t border-line bg-white p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] md:hidden">
+  <a href={SITE.phoneHref} class="btn-ghost whitespace-nowrap !gap-1.5 !px-2 !text-[14px]"><Icon name="phone" class="h-4 w-4 shrink-0" /> Call {SITE.phone}</a>
+  <a href="/admissions/" class="btn-sun whitespace-nowrap !px-2 !text-[14px]">Get Help Now</a>
+</div>

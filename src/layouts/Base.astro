@@ -1,0 +1,119 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileCallBar from '../components/MobileCallBar.astro';
+import { SITE } from '../data/site.js';
+
+interface Crumb { name: string; href: string }
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article';
+  breadcrumbs?: Crumb[];
+  schema?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  image = '/images/brand/og-default.jpg',
+  noindex = false,
+  type = 'website',
+  breadcrumbs = [],
+  schema = [],
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = image.startsWith('http') ? image : new URL(image, SITE.url).href;
+
+// MedicalOrganization with only what's visible site-wide (header/footer): name, address,
+// telephone ({{PHONE}}, injected by GTM/CTM), url and the social profiles in the footer.
+const clinic = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalOrganization',
+  '@id': `${SITE.url}/#organization`,
+  name: SITE.name,
+  url: `${SITE.url}/`,
+  telephone: SITE.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postal,
+    addressCountry: SITE.address.country,
+  },
+  sameAs: Object.values(SITE.social),
+};
+
+const crumbs =
+  breadcrumbs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [{ name: 'Home', href: '/' }, ...breadcrumbs].map((c, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: c.name,
+          item: new URL(c.href, SITE.url).href,
+        })),
+      }
+    : null;
+
+const jsonLd = [clinic, crumbs, ...schema].filter(Boolean);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NCTDLZMC');</script>
+    <!-- End Google Tag Manager -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+    <meta name="theme-color" content="#126e6e" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <!-- No other tag scripts here: CallTrackingMetrics (DNI) and analytics load through GTM. -->
+
+    {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NCTDLZMC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-sun focus:px-5 focus:py-3 focus:font-bold focus:text-charcoal">Skip to content</a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <MobileCallBar />
+  </body>
+</html>

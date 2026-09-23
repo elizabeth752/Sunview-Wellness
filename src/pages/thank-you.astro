@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SunMark from '../components/SunMark.astro';
+import { SITE } from '../data/site.js';
+---
+<Base title="Thank You | Sunview Wellness" description="We received your request. A member of the Sunview Wellness team will reach out shortly." noindex>
+  <section class="sv-hero relative isolate overflow-hidden bg-teal text-white">
+    <SunMark variant="rays" ripple class="pointer-events-none absolute -right-16 -top-16 -z-10 h-[520px] w-[520px] text-gold/20" />
+    <div class="container-x max-w-3xl py-24 text-center sm:py-32">
+      <SunMark variant="sun" class="mx-auto h-16 w-auto text-gold" />
+      <h1 class="mt-6 text-4xl text-white sm:text-5xl">Thank you for reaching out.</h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg text-white/85">That took courage. A member of our team will call you shortly to talk things through and share what your insurance covers.</p>
+      <p class="mt-8 text-white/80">Prefer to talk now?</p>
+      <a href={SITE.phoneHref} class="btn-sun mt-3"><Icon name="phone" /> Call {SITE.phone}</a>
+      <p class="mt-10 text-sm text-white/60">If you’re in crisis, call or text <a href="tel:988" class="font-bold text-white">988</a> or dial 911.</p>
+    </div>
+  </section>
+</Base>

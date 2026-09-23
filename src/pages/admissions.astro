@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import LeadForm from '../components/LeadForm.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../data/site.js';
+
+// Source: questionnaire Q1–Q7, Q13, Q23.
+const steps = [
+  { icon: 'phone', title: 'Reach out', text: 'Call, or send the form. We start by listening. You don’t need to have the right words or a plan.' },
+  { icon: 'message', title: 'Pre-screening', text: 'A confidential conversation about why you’re seeking help, your substance use and mental health history, where you live now, past treatment and current symptoms.' },
+  { icon: 'compass', title: 'Level-of-care recommendation', text: 'Our Clinical Director reviews your pre-screening and recommends PHP, IOP or OP using ASAM criteria and clinical judgment. Or, if it’s safer, a referral to a higher level of care first.' },
+  { icon: 'shield', title: 'Free insurance check', text: 'We verify your benefits before you start so you know what’s covered. No surprises.' },
+  { icon: 'calendar', title: 'Your first week', text: 'A biopsychosocial assessment at intake, weekly individual therapy with your primary therapist, Telemed Clinix scheduling if you need psychiatric care, and, with your consent, an introductory call to a loved one.' },
+];
+
+const faqs = [
+  { q: 'Is Sunview abstinence-based?', a: 'Yes. Marijuana, stimulants, opioids and benzodiazepines can’t be used while you’re in programming. Abstinence-based doesn’t mean medication-free: appropriately prescribed medications for mental health and recovery are supported.' },
+  { q: 'What if I’m prescribed a benzodiazepine, an opioid or Adderall, or have a medical marijuana card?', a: 'Tell us during pre-screening. It isn’t a disqualifier by itself, but having a prescription doesn’t automatically make a substance safe to continue in our program. We look at the medication, dose, how often and how long you’ve taken it. If stopping could cause dangerous withdrawal, we’ll help you get medically supervised detox first.' },
+  { q: 'Can I stay on Suboxone or Vivitrol?', a: 'Yes, when it’s prescribed and managed by a qualified outside provider. We coordinate with your current prescriber, or refer you to one if you’d like to start MAT.' },
+  { q: 'Do you accept clients on methadone?', a: 'Generally no. Clients maintained on methadone, or coming off it, usually need detox and medical stabilization at a higher level of care first. We’ll help you find the right place.' },
+  { q: 'I receive a long-acting injectable medication. Is that a problem?', a: 'Not necessarily. The injection and its monitoring need to be handled by an appropriate outside provider, and we’ll coordinate with them.' },
+  { q: 'Where do most clients come from?', a: 'Most step down to Sunview from a higher level of care like detox or residential treatment. Others come directly from the community, because they (or someone who loves them) have realized they need more help.' },
+];
+---
+<Base
+  title="Admissions: What to Expect | Sunview Wellness West Palm Beach"
+  description="How admission works at Sunview Wellness in West Palm Beach: confidential pre-screening, level-of-care recommendation, free insurance verification and what your first week looks like."
+  breadcrumbs={[{ name: 'Admissions', href: '/admissions/' }]}
+  schema={[{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]}
+>
+  <PageHero
+    eyebrow="Admissions"
+    title="Reaching out is the hardest part."
+    accent="We’ll take it from here."
+    lead="Help me understand what’s happening, tell me what to do, and give me some hope that things can be different. That’s what most people are asking for when they call. It’s where we start."
+    compact
+  >
+    <Fragment slot="aside"><LeadForm formId="admissions-hero" dark heading="Start with a confidential callback" /></Fragment>
+  </PageHero>
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <span class="eyebrow">How admission works</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Five steps, and we walk you through each one</h2>
+      </div>
+      <ol class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+        {steps.map((s, i) => (
+          <li class="card relative">
+            <span class="absolute right-5 top-5 font-sans text-3xl font-extrabold text-gold">{i + 1}</span>
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-mist text-teal"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <h3 class="mt-5 font-sans text-lg font-extrabold">{s.title}</h3>
+            <p class="mt-2 text-sm text-charcoal">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section bg-cream">
+    <div class="container-x grid gap-8 lg:grid-cols-2">
+      <div class="card !p-8 sm:!p-10">
+        <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-teal">Who tends to do well here</p>
+        <h3 class="mt-2 text-2xl">People who are ready to change how they live</h3>
+        <p class="mt-4 text-charcoal">The clients who do best have found their own motivation to make real changes, not just stop using. Sobriety removes the substance. Recovery means looking at every area of your life and understanding what enabled the addiction.</p>
+        <p class="mt-3 text-charcoal">Our clients come from all walks of life, with very different histories. That’s why we meet each person as an individual.</p>
+      </div>
+      <div class="card !p-8 sm:!p-10">
+        <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-teal">When we’ll recommend something else first</p>
+        <h3 class="mt-2 text-2xl">Your safety comes first</h3>
+        <ul class="mt-4 space-y-3 text-charcoal">
+          <li class="flex gap-3"><Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-teal" />Long-term, consistent benzodiazepine or opioid use that needs detox and residential stabilization</li>
+          <li class="flex gap-3"><Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-teal" />Current methadone maintenance, or coming off methadone</li>
+          <li class="flex gap-3"><Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-teal" />Significant withdrawal risk from any substance</li>
+          <li class="flex gap-3"><Icon name="check" class="mt-1 h-5 w-5 shrink-0 text-teal" />Psychiatric symptoms or risk that need a more intensive level of monitoring</li>
+        </ul>
+        <p class="mt-4 text-sm text-charcoal">In these cases we make a referral, and we’re glad to talk about Sunview as your next step afterwards.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <span class="eyebrow">Medications & admission</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Honest answers about medication</h2>
+        <p class="mt-5 text-lg text-charcoal">We don’t make assumptions about what should be continued. We look at your actual regimen and history, and make sure anything requiring specialized care stays with the right provider.</p>
+        <a href={SITE.phoneHref} class="btn-teal mt-8"><Icon name="phone" /> Ask us about your situation</a>
+      </div>
+      <FaqList faqs={faqs} />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { sortedPosts, formatDate, postImage } from '../../data/posts.js';
+
+const videos = sortedPosts.filter((p) => p.type === 'video');
+const writing = sortedPosts.filter((p) => p.type !== 'video');
+---
+<Base
+  title="Media & Podcasts | Frank Galimidi & Sunview Wellness"
+  description="Podcasts, videos and articles from Sunview Wellness CEO Frank Galimidi on extended care, In Vivo Treatment™ and the future of community-based addiction treatment."
+  breadcrumbs={[{ name: 'Media', href: '/media/' }]}
+>
+  <PageHero
+    eyebrow="Media & podcasts"
+    title="Leading the conversation."
+    lead="From redefining clinical outcomes to challenging the status quo in behavioral health, Frank Galimidi and the Sunview team are making their mark on the world of extended care."
+    cta={{ label: 'Watch on YouTube', href: 'https://www.youtube.com/@frankgalimidi' }}
+    showPhone={false}
+    compact
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Videos & podcasts</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl">Watch & listen</h2>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {videos.map((p) => (
+          <a href={`/media/${p.slug}/`} class="card group !p-0 overflow-hidden">
+            <div class="relative aspect-video overflow-hidden bg-teal">
+              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.03]" />
+              <span class="absolute inset-0 flex items-center justify-center"><span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-sun text-charcoal shadow-lg"><Icon name="play" class="ml-1 h-7 w-7" /></span></span>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-teal">{p.show} · {formatDate(p.date)}</p>
+              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
+              <p class="mt-2 text-charcoal">{p.dek}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">Articles & insights</span>
+      <h2 class="mt-3 text-3xl sm:text-4xl">Written by Frank Galimidi</h2>
+      <p class="mt-4 max-w-2xl text-lg text-charcoal">Frank writes on community-based care, extended care and the future of behavioral health.</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {writing.map((p) => (
+          <a href={`/media/${p.slug}/`} class="card group !p-0 overflow-hidden">
+            <div class="aspect-[1200/630] overflow-hidden bg-teal">
+              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-teal">Article · {formatDate(p.date)}</p>
+              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
+              <p class="mt-2 text-sm text-charcoal">{p.dek}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

@@ -1,0 +1,7 @@
+---
+// Review marker: a claim that hasn't been confirmed against the questionnaire or the live site.
+// Remove the flag (not just hide it) once the client confirms the claim, or remove the claim.
+interface Props { note: string }
+const { note } = Astro.props;
+---
+<mark class="ml-1 inline-block rounded-[4px] bg-error px-1 align-middle font-sans text-[10px] font-extrabold uppercase not-italic leading-4 tracking-normal text-white" title={note}>[SOURCE?]</mark>

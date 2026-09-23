@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { PROGRAMS } from '../data/site.js';
+interface Props { linkCards?: boolean }
+const { linkCards = true } = Astro.props;
+---
+<div class="grid gap-6 lg:grid-cols-3">
+  {PROGRAMS.map((p, i) => (
+    <article id={p.code.toLowerCase()} class="card relative flex scroll-mt-32 flex-col overflow-hidden !p-0">
+      <div class:list={['px-7 pb-6 pt-7', i === 0 ? 'bg-teal text-white' : i === 1 ? 'bg-teal-light text-white' : 'bg-cream text-charcoal']}>
+        <p class="font-display text-5xl font-extrabold leading-none">{p.code}</p>
+        <h3 class:list={['mt-2 font-sans text-lg font-extrabold', i < 2 ? 'text-white' : 'text-charcoal']}>{p.name}</h3>
+      </div>
+      <div class="flex flex-1 flex-col px-7 py-6">
+        <p class="flex items-start gap-3 font-bold text-charcoal">
+          <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-teal-light" />
+          <span class="whitespace-pre-line">{p.schedule}</span>
+        </p>
+        {p.hours && <p class="mt-2 flex items-center gap-3 text-sm font-bold text-charcoal"><Icon name="calendar" class="h-5 w-5 text-teal-light" />{p.hours}</p>}
+        <p class="mt-5 text-charcoal"><strong class="text-charcoal">Best for:</strong> {p.bestFor}</p>
+        {linkCards && (
+          <a href={p.href} class="mt-auto inline-flex items-center gap-2 pt-6 font-extrabold text-teal hover:text-teal-light">
+            {p.name} <Icon name="arrow" class="h-4 w-4" />
+          </a>
+        )}
+      </div>
+    </article>
+  ))}
+</div>

@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import Icon from '../components/Icon.astro';
+import SunMark from '../components/SunMark.astro';
+import { SITE } from '../data/site.js';
+---
+<Base
+  title={`Get Help Now | Drug Rehab Admissions West Palm Beach ${SITE.phone}`}
+  description={`Ready to start drug rehab in West Palm Beach? Call ${SITE.phone} or fill out our form. Free, confidential insurance verification. Sunview Wellness.`}
+  breadcrumbs={[{ name: 'Get Help Now', href: '/get-help-now/' }]}
+>
+  <section class="sv-hero relative isolate overflow-hidden bg-teal text-white">
+    <SunMark variant="rays" ripple class="pointer-events-none absolute -right-16 -top-16 -z-10 h-[520px] w-[520px] text-gold/20" />
+    <div class="container-x grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <span class="eyebrow eyebrow-light">Get help now</span>
+        <h1 class="mt-4 text-4xl text-white sm:text-5xl">Take the first step.<br /><span class="text-white">We’re ready when you are.</span></h1>
+        <p class="mt-6 max-w-xl text-lg text-white/85">Call us, or fill out the form and one of the kindest people you’ll ever talk to will be in touch. Everything you share is confidential and protected under HIPAA.</p>
+
+        <a href={SITE.phoneHref} class="mt-8 inline-flex items-center gap-4 rounded-2xl bg-white/10 px-6 py-5 hover:bg-white/15">
+          <span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-sun text-charcoal"><Icon name="phone" class="h-7 w-7" /></span>
+          <span>
+            <span class="block text-sm font-bold text-white/70">Call us directly</span>
+            <span class="block font-sans text-3xl font-extrabold text-white">{SITE.phone}</span>
+          </span>
+        </a>
+
+        <dl class="mt-10 grid gap-6 sm:grid-cols-2">
+          <div class="flex gap-3">
+            <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-white" />
+            <div><dt class="font-extrabold text-white">Address</dt><dd class="text-white/80"><a href={SITE.mapsUrl} target="_blank" rel="noopener" class="hover:text-white">{SITE.address.street}<br />{SITE.address.city}, {SITE.address.region} {SITE.address.postal}</a></dd></div>
+          </div>
+          <div class="flex gap-3">
+            <Icon name="mail" class="mt-1 h-5 w-5 shrink-0 text-white" />
+            <div><dt class="font-extrabold text-white">Email</dt><dd class="text-white/80"><a href={`mailto:${SITE.email}`} class="hover:text-white">{SITE.email}</a></dd></div>
+          </div>
+          <div class="flex gap-3">
+            <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-white" />
+            <div><dt class="font-extrabold text-white">Program hours</dt><dd class="text-white/80">PHP & day IOP: 9 AM – 1 PM<br />Evening IOP: Mon/Wed/Thu 6 – 9 PM</dd></div>
+          </div>
+          <div class="flex gap-3">
+            <Icon name="car" class="mt-1 h-5 w-5 shrink-0 text-white" />
+            <div><dt class="font-extrabold text-white">Transportation</dt><dd class="text-white/80">Free Uber Health rides if you can’t drive yourself</dd></div>
+          </div>
+        </dl>
+      </div>
+      <div>
+        <LeadForm formId="get-help-now" dark showMessage heading="Request a callback" sub="Free, confidential insurance check. No pressure." />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x">
+      <div class="overflow-hidden rounded-[var(--radius-card)] border border-line">
+        <iframe
+          src={SITE.mapsEmbed}
+          title="Map to Sunview Wellness, 4802 East Ave, West Palm Beach, FL"
+          class="h-[380px] w-full"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <p class="mt-6 text-center text-charcoal">If you or someone you love is in immediate danger, call <a href="tel:911" class="font-bold text-teal">911</a>. For a mental health or substance use crisis, call or text <a href="tel:988" class="font-bold text-teal">988</a>, 24/7.</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,213 @@
+---
+// "Talk to an Admissions Specialist" coverage card. Layout, copy and sizes mirror the approved
+// reference (breathe-website VerifyInsuranceForm.astro); colors come from the Sunview brand book.
+// Per Claude-Code-Tracking-Form-Phone.md (2026-09-22): submits FormData to /api/lead/ (server-side CTM
+// proxy), sends gclid from the URL or the _gcl_aw cookie, shows an inline confirmation and pushes
+// dataLayer {event:'lead_form_submit'}. A failed CTM call is never disguised as success.
+import { SITE } from '../data/site.js';
+
+interface Props {
+  heading?: string;
+  formId?: string;
+  showMessage?: boolean;
+  // Accepted for older call sites; the card has one look everywhere.
+  sub?: string;
+  dark?: boolean;
+}
+const { heading = 'Talk to an Admissions Specialist', formId = 'sunview-coverage', showMessage = false } = Astro.props;
+
+// 13px ink-muted labels · 45px fields and button (client request), 15px text, 8px radius · error-red asterisks (brand book state colors)
+const lbl = 'mb-1.5 block text-[13px] leading-snug text-muted';
+const field =
+  'h-[45px] w-full min-w-0 rounded-[8px] border border-muted/60 bg-white px-[13px] text-[15px] text-charcoal focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/25';
+---
+<form
+  class="sv-lead-form w-full rounded-[var(--radius-md)] bg-white p-5 text-charcoal shadow-[0_2px_6px_rgba(0,0,0,0.18),0_20px_44px_rgba(0,0,0,0.18)]"
+  novalidate
+  data-form-id={formId}
+  data-phone={SITE.phone}
+>
+  <div class="mb-4 flex items-center gap-3">
+    <img src="/images/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="block h-10 w-auto flex-none" />
+    <span class="text-lg font-bold tracking-[-0.015em]">{heading}</span>
+  </div>
+
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div>
+      <label class={lbl} for={`${formId}-name`}>What’s your name? <span aria-hidden="true" class="text-error">*</span></label>
+      <input id={`${formId}-name`} class={field} type="text" name="name" autocomplete="name" required maxlength="80" />
+    </div>
+    <div>
+      <label class={lbl} for={`${formId}-phone`}>What’s your number? <span aria-hidden="true" class="text-error">*</span></label>
+      <div class="flex gap-2">
+        <span aria-hidden="true" class="flex h-[45px] flex-none items-center gap-[5px] rounded-[8px] border border-muted/60 bg-mist px-2.5 text-sm text-charcoal">
+          <svg viewBox="0 0 19 10" width="19" height="10" class="block rounded-[2px]" aria-hidden="true">
+            <rect width="19" height="10" fill="#B22234" />
+            <path d="M0 1.15h19M0 2.7h19M0 4.23h19M0 5.77h19M0 7.3h19M0 8.85h19" stroke="#fff" stroke-width=".77" />
+            <rect width="7.6" height="5.38" fill="#3C3B6E" />
+          </svg>
+          US +1
+        </span>
+        <input id={`${formId}-phone`} class={field} type="tel" name="phone" autocomplete="tel-national" inputmode="tel" required />
+      </div>
+    </div>
+    <div>
+      <label class:list={[lbl, 'whitespace-nowrap']} for={`${formId}-policy`}>Membership Policy ID <span aria-hidden="true" class="text-error">*</span></label>
+      <input id={`${formId}-policy`} class={field} type="text" name="policy_id" required maxlength="40" autocomplete="off" data-member-id-input />
+    </div>
+    <div>
+      <label class={lbl} for={`${formId}-carrier`}>Insurance Carrier <span aria-hidden="true" class="text-error">*</span></label>
+      <input id={`${formId}-carrier`} class={field} type="text" name="insurance_carrier" required maxlength="60" autocomplete="off" />
+    </div>
+    {showMessage && (
+      <div class="sm:col-span-2">
+        <label class={lbl} for={`${formId}-message`}>How can we help? (optional)</label>
+        <textarea id={`${formId}-message`} class:list={[field, '!h-auto py-2']} name="message" rows="3" maxlength="1000"></textarea>
+      </div>
+    )}
+
+    <!-- SMS consent appears once there's a policy ID to text about -->
+    <label data-sms-consent hidden class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2">
+      <input type="checkbox" name="sms_opt_in" value="yes" class="mt-0.5 h-4 w-4 flex-none accent-teal" />
+      <span>Text me about my verification. Message and data rates may apply; reply STOP to opt out. Consent isn’t a condition of treatment.</span>
+    </label>
+
+    <!-- honeypot: hidden from people and from autofill -->
+    <div class="hidden" aria-hidden="true">
+      <label>Leave this empty <input type="text" name="hp_field" tabindex="-1" autocomplete="off" /></label>
+    </div>
+
+    <button
+      type="submit"
+      class="mt-1.5 inline-flex h-[45px] items-center justify-center rounded-[8px] bg-teal px-[30px] text-[15px] font-bold text-white transition hover:bg-teal-light disabled:cursor-wait disabled:opacity-60 sm:col-span-2"
+    >
+      <span data-label>Check Your Coverage</span>
+    </button>
+    <!-- Validation / status message, right under the button -->
+    <p class="sv-form-msg -mt-1 text-center text-sm font-bold text-error sm:col-span-2" role="alert" hidden></p>
+  </div>
+
+  <p class="mt-3.5 text-center text-[11px] leading-relaxed text-muted">
+    Or call us 24/7 at <a href={SITE.phoneHref} class="font-bold text-teal">{SITE.phone}</a>. Everything you share is confidential.
+  </p>
+  <p class="mt-2 text-center text-[10px] leading-normal text-muted">
+    By submitting, you agree to our <a href="/terms-of-use/" class="underline">Terms of Use</a> and <a href="/hipaa-notice/" class="underline">Notice of Privacy Practices</a>.
+  </p>
+</form>
+
+<script>
+  const MIN_FILL_MS = 1200; // lower values drop real mobile autofill submits
+  // Landing-URL params → the FormReactor's paid_attribution keys. Accepts CTM's own names and the
+  // Google Ads ValueTrack names ({campaignid}, {adgroupid}, {creative}).
+  const ATTR_MAP: Record<string, string> = {
+    gclid: 'gclid',
+    campaign_id: 'campaign_id', campaignid: 'campaign_id',
+    adgroup_id: 'adgroup_id', adgroupid: 'adgroup_id',
+    creative_id: 'creative_id', creative: 'creative_id',
+  };
+
+  // Persist ad attribution from the landing URL for the whole visit.
+  try {
+    const p = new URLSearchParams(location.search);
+    const found: Record<string, string> = {};
+    Object.entries(ATTR_MAP).forEach(([param, key]) => { const v = p.get(param); if (v && !found[key]) found[key] = v.slice(0, 200); });
+    if (Object.keys(found).length) sessionStorage.setItem('sv_attr', JSON.stringify(found));
+  } catch {}
+
+  const readAttr = (): Record<string, string> => {
+    let attr: Record<string, string> = {};
+    try { attr = JSON.parse(sessionStorage.getItem('sv_attr') || '{}'); } catch {}
+    // Google Ads' conversion linker stores the click ID as _gcl_aw = GCL.<timestamp>.<gclid>
+    if (!attr.gclid) {
+      const m = document.cookie.match(/(?:^|;\s*)_gcl_aw=([^;]+)/);
+      const gclid = m ? decodeURIComponent(m[1]).split('.').slice(2).join('.') : '';
+      if (gclid) attr.gclid = gclid;
+    }
+    return attr;
+  };
+
+  document.querySelectorAll<HTMLFormElement>('.sv-lead-form').forEach((form) => {
+    const started = Date.now();
+    const msg = form.querySelector<HTMLParagraphElement>('.sv-form-msg')!;
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const label = btn.querySelector<HTMLSpanElement>('[data-label]')!;
+    const show = (text: string, ok = false) => {
+      msg.hidden = false;
+      msg.textContent = text;
+      msg.classList.toggle('text-error', !ok);
+      msg.classList.toggle('text-teal', ok);
+    };
+
+    // SMS consent only makes sense once there's a policy ID to text about.
+    const memberId = form.querySelector<HTMLInputElement>('[data-member-id-input]')!;
+    const consent = form.querySelector<HTMLElement>('[data-sms-consent]')!;
+    const consentBox = consent.querySelector<HTMLInputElement>('input')!;
+    const syncConsent = () => {
+      const has = memberId.value.trim().length > 0;
+      consent.hidden = !has;
+      if (!has) consentBox.checked = false;
+    };
+    memberId.addEventListener('input', syncConsent);
+    form.querySelectorAll<HTMLInputElement>('input').forEach((el) =>
+      el.addEventListener('input', () => {
+        el.classList.remove('!border-error');
+        el.removeAttribute('aria-invalid');
+        if (!form.querySelector('[aria-invalid="true"]')) msg.hidden = true;
+      }),
+    );
+    syncConsent();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const name = String(fd.get('name') || '').trim();
+      const phone = String(fd.get('phone') || '').replace(/\D/g, '');
+      const policy = String(fd.get('policy_id') || '').trim();
+      const carrier = String(fd.get('insurance_carrier') || '').trim();
+      // Every field is required. Flag each missing one and show a single message under the button.
+      const required = ['name', 'phone', 'policy_id', 'insurance_carrier'];
+      const missing = required.filter((n) => !String(fd.get(n) || '').trim());
+      required.forEach((n) => {
+        const el = form.querySelector<HTMLInputElement>(`[name="${n}"]`)!;
+        const bad = missing.includes(n) || (n === 'phone' && !missing.includes('phone') && phone.length < 10);
+        el.setAttribute('aria-invalid', String(bad));
+        el.classList.toggle('!border-error', bad);
+      });
+      if (missing.length) return show('Please fill in all required fields to check your coverage.');
+      if (phone.length < 10) return show('Please enter a valid 10-digit phone number.');
+      if (Date.now() - started < MIN_FILL_MS) return show('One moment, then try again.');
+
+      const body = new FormData();
+      body.set('name', name);
+      body.set('country_code', '1');
+      body.set('phone', phone);
+      body.set('insurance_carrier', carrier);
+      body.set('policy_id', policy);
+      body.set('sms_opt_in', fd.get('sms_opt_in') === 'yes' ? 'yes' : 'no');
+      body.set('message', String(fd.get('message') || ''));
+      body.set('consent', 'true'); // submitting = agreeing to the Terms of Use / Notice of Privacy Practices stated on the card
+      body.set('hp_field', String(fd.get('hp_field') || ''));
+      body.set('visitor_sid', (window as any).__ctm?.config?.sid || '');
+      body.set('page', location.pathname);
+      for (const [k, v] of Object.entries(readAttr())) body.set(`attribution[${k}]`, v);
+
+      btn.disabled = true;
+      label.textContent = 'Sending…';
+      try {
+        const res = await fetch('/api/lead/', { method: 'POST', headers: { Accept: 'application/json' }, body });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong sending that.');
+        (window as any).dataLayer?.push({ event: 'lead_form_submit', form_id: form.dataset.formId });
+        form.reset();
+        syncConsent();
+        show('Thank you. We’ve got your information, and an admissions specialist will call you shortly.', true);
+        label.textContent = 'Check Your Coverage';
+        btn.disabled = false;
+      } catch (err) {
+        show(`${(err as Error).message} Please call us at ${form.dataset.phone} and we’ll verify your benefits right away.`);
+        btn.disabled = false;
+        label.textContent = 'Check Your Coverage';
+      }
+    });
+  });
+</script>

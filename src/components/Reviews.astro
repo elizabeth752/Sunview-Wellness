@@ -1,0 +1,113 @@
+---
+// Google reviews carousel (approved design, 2026-09-22): white section, centered H2, Google Reviews
+// wordmark, then a carousel showing 3.1 cards on desktop / 2.1 on tablet / 1.1 on mobile, arrows on
+// the sides, and "Read our reviews on Google" below. Cards mirror Google's review UI.
+// Text is verbatim, 5 stars only, first name + last initial; each card caps text at 6 lines and the
+// rest scrolls inside the card (touch/wheel/keyboard) or opens with "More". No reviewer photos,
+// no AggregateRating schema. Data: src/data/reviews.js.
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import { reviewsByDate, relativeDate, GBP_URL } from '../data/reviews.js';
+interface Props { title?: string; id?: string }
+const { title = 'What People Say About Sunview Wellness', id = 'reviews' } = Astro.props;
+
+// Google-style avatar colors, picked per initial
+const COLORS = ['#1a73e8', '#e8710a', '#188038', '#d93025', '#9334e6', '#12b5cb', '#c5221f', '#b06000'];
+const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
+---
+<section class="section bg-white" aria-labelledby={`${id}-title`}>
+  <div class="container-x">
+    <div class="text-center">
+      <h2 id={`${id}-title`} class="text-3xl sm:text-[2.1875rem]">{title}</h2>
+      <img src="/images/badges/google-reviews.svg" alt="Google Reviews" width="93" height="33" class="mx-auto mt-5 h-12 w-auto" />
+    </div>
+
+    <div class="sv-reviews relative mt-10" data-carousel>
+      <button type="button" class="sv-rv-arrow absolute -left-3 top-1/2 z-10 hidden -translate-y-1/2 md:inline-flex" data-dir="-1" aria-label="Previous reviews" aria-controls={`${id}-track`}>
+        <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      </button>
+      <ul id={`${id}-track`} class="sv-rv-track" aria-label="Google reviews">
+        {reviewsByDate.map((r, i) => (
+          <li class="sv-rv-card">
+            <article class="flex h-full flex-col gap-2.5 rounded-[12px] border border-[#dadce0] bg-white p-[18px] font-[Roboto,Arial,sans-serif] text-[#202124]" aria-label={`Review by ${r.author}`}>
+              <div class="flex items-center gap-3">
+                <span class="grid h-10 w-10 flex-none place-items-center rounded-full text-lg font-medium text-white" style={`background:${color(r.author)}`} aria-hidden="true">{r.author.charAt(0)}</span>
+                <div>
+                  <p class="text-[15px] font-medium leading-tight">{r.author}</p>
+                  <p class="text-[13px] text-[#70757a]">{relativeDate(r.date)}</p>
+                </div>
+                <svg viewBox="0 0 48 48" class="ml-auto h-5 w-5 flex-none" role="img" aria-label="Google">
+                  <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" />
+                  <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
+                  <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z" />
+                  <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z" />
+                </svg>
+              </div>
+              <p class="flex gap-px text-[#fbbc04]" aria-label={`${r.rating} out of 5 stars`}>
+                {Array.from({ length: 5 }).map(() => (
+                  <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                ))}
+              </p>
+              <p class="sv-rv-text" id={`${id}-t${i}`} tabindex="0">{r.text}</p>
+              <button type="button" class="sv-rv-more self-start text-sm font-medium text-[#1a73e8]" aria-controls={`${id}-t${i}`} aria-expanded="false" hidden>More</button>
+            </article>
+          </li>
+        ))}
+      </ul>
+      <button type="button" class="sv-rv-arrow absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 md:inline-flex" data-dir="1" aria-label="Next reviews" aria-controls={`${id}-track`}>
+        <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+
+    <div class="mt-8 text-center">
+      <a href={GBP_URL} target="_blank" rel="noopener" class="btn-ghost">Read our reviews on Google</a>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* 1.1 cards on mobile, 2.1 on tablet, 3.1 on desktop; swipe with scroll-snap */
+  .sv-rv-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 12px; scrollbar-width: none; overscroll-behavior-x: contain; list-style: none; margin: 0; }
+  .sv-rv-track::-webkit-scrollbar { display: none; }
+  .sv-rv-card { scroll-snap-align: start; flex: 0 0 calc((100% - 16px) / 1.1); }
+  @media (min-width: 768px) { .sv-rv-card { flex-basis: calc((100% - 2 * 16px) / 2.1); } }
+  @media (min-width: 1024px) { .sv-rv-card { flex-basis: calc((100% - 3 * 16px) / 3.1); } }
+  /* 6-line text box: the rest scrolls inside the card, or opens with "More" */
+  .sv-rv-text { font-size: 14px; line-height: 1.5; max-height: calc(1.5em * 6); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-right: 6px; scrollbar-width: thin; }
+  .sv-rv-text.is-long { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); }
+  .sv-rv-text.at-end, .sv-rv-text.expanded { -webkit-mask-image: none; mask-image: none; }
+  .sv-rv-text.expanded { max-height: none; overflow: visible; }
+  .sv-rv-text:focus-visible { outline: 2px solid #1a73e8; outline-offset: 2px; border-radius: 4px; }
+  .sv-rv-arrow { width: 44px; height: 44px; border-radius: 9999px; align-items: center; justify-content: center; background: #fff; border: 1px solid #dadce0; color: #202124; box-shadow: 0 1px 3px rgba(60, 64, 67, .2), 0 4px 10px rgba(60, 64, 67, .12); cursor: pointer; }
+  .sv-rv-arrow:hover { background: #f8f9fa; }
+  .sv-rv-arrow:disabled { opacity: .35; cursor: default; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('.sv-rv-track')!;
+    const arrows = root.querySelectorAll<HTMLButtonElement>('.sv-rv-arrow');
+    const step = () => (track.firstElementChild?.getBoundingClientRect().width ?? 320) + 16;
+    const sync = () => {
+      arrows[0].disabled = track.scrollLeft <= 2;
+      arrows[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    };
+    arrows.forEach((b) => b.addEventListener('click', () => track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: 'smooth' })));
+    track.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+
+    root.querySelectorAll<HTMLElement>('.sv-rv-text').forEach((t) => {
+      const more = root.querySelector<HTMLButtonElement>(`.sv-rv-more[aria-controls="${t.id}"]`)!;
+      const long = t.scrollHeight > t.clientHeight + 2;
+      t.classList.toggle('is-long', long);
+      more.hidden = !long;
+      t.addEventListener('scroll', () => t.classList.toggle('at-end', t.scrollTop + t.clientHeight >= t.scrollHeight - 2), { passive: true });
+      more.addEventListener('click', () => {
+        const open = t.classList.toggle('expanded');
+        more.textContent = open ? 'Less' : 'More';
+        more.setAttribute('aria-expanded', String(open));
+      });
+    });
+  });
+</script>

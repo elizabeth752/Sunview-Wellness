@@ -1,0 +1,35 @@
+---
+// FAQ accordion: each question is a <button> (not a heading) controlling its answer panel.
+// Each question is its own rounded card, 5px apart (client request 2026-09-22).
+import Icon from './Icon.astro';
+interface Faq { q: string; a: string }
+interface Props { faqs: Faq[]; id?: string }
+const { faqs, id = 'faq' } = Astro.props;
+---
+<div class="sv-faq flex flex-col gap-[5px]">
+  {faqs.map((f, i) => (
+    <div class="rounded-[var(--radius-card)] border border-line bg-white px-6">
+      <button
+        type="button"
+        class="group flex w-full items-center justify-between gap-6 py-5 text-left font-sans text-lg font-extrabold text-charcoal hover:text-teal"
+        aria-expanded="false"
+        aria-controls={`${id}-a${i}`}
+        id={`${id}-q${i}`}
+      >
+        {f.q}
+        <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mist text-teal transition group-aria-expanded:rotate-180"><Icon name="chevron" class="h-4 w-4" /></span>
+      </button>
+      <div id={`${id}-a${i}`} role="region" aria-labelledby={`${id}-q${i}`} class="pb-6 [&_a]:font-bold [&_a]:text-teal [&_a]:underline" hidden set:html={f.a} />
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.sv-faq button[aria-controls]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      document.getElementById(btn.getAttribute('aria-controls')!)!.hidden = open;
+    });
+  });
+</script>

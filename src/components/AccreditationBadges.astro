@@ -1,0 +1,26 @@
+---
+// Row of accreditation logos: under the hero buttons (onDark) and in the footer (light).
+import { ACCREDITATIONS } from '../data/site.js';
+interface Props { onDark?: boolean; class?: string }
+const { onDark = false, class: cls = '' } = Astro.props;
+// Joint Commission 56px · NAATP 51px · SAMHSA 40px (wordmark only) · Action Alliance 46px
+const heights: Record<string, string> = {
+  'National Association of Addiction Treatment Providers': 'h-[51px]',
+  SAMHSA: 'h-10',
+  'National Action Alliance for Suicide Prevention': 'h-[46px]',
+};
+---
+<ul class:list={['flex flex-wrap items-center gap-x-8 gap-y-4', cls]} aria-label="Accreditations and memberships">
+  {ACCREDITATIONS.map((a) => (
+    <li>
+      <img
+        src={onDark ? a.logoOnDark : a.logo}
+        alt={a.name}
+        width={a.w}
+        height={a.h}
+        loading="lazy"
+        class:list={['block w-auto', heights[a.name] ?? 'h-14']}
+      />
+    </li>
+  ))}
+</ul>

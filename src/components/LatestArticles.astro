@@ -1,0 +1,37 @@
+---
+// Home §14 "Recovery Resources From the Sunview Team": three most recent posts as featured-image
+// cards. Blog is phase 2; until it ships this reads the existing Media & Podcasts posts.
+// When /blog/ launches, point `href` and the posts source at the blog collection.
+import Icon from './Icon.astro';
+import { sortedPosts, formatDate, postImage } from '../data/posts.js';
+interface Props { title?: string; href?: string }
+const { title = 'Recovery Resources From the Sunview Team', href = '/media/' } = Astro.props;
+const latest = sortedPosts.slice(0, 3);
+---
+<section class="section">
+  <div class="container-x">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Articles & podcasts</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{title}</h2>
+      </div>
+      <a href={href} class="btn-ghost">All articles</a>
+    </div>
+    <ul class="mt-10 grid gap-6 md:grid-cols-3">
+      {latest.map((p) => (
+        <li>
+          <a href={`/media/${p.slug}/`} class="card group flex h-full flex-col overflow-hidden !p-0">
+            <div class="relative aspect-[1200/630] overflow-hidden bg-teal">
+              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+              {p.type === 'video' && <span class="absolute inset-0 flex items-center justify-center"><span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-teal"><Icon name="play" class="ml-1 h-6 w-6" /></span></span>}
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <span class="text-[13px] font-bold uppercase tracking-[0.08em] text-teal">{p.type === 'video' ? 'Video' : 'Article'} · {formatDate(p.date)}</span>
+              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

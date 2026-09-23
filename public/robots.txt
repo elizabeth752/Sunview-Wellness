@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /thank-you/
+
+Sitemap: https://sunviewwellness.com/sitemap-index.xml

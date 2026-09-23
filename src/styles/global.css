@@ -1,0 +1,166 @@
+@import "@fontsource-variable/nunito";
+@import "@fontsource-variable/playfair-display";
+@import "@fontsource-variable/playfair-display/wght-italic.css";
+@import "tailwindcss";
+
+/* Sunview Wellness Brand Book (2026), page 16 token reference.
+   Never hard-code a hex below this layer. */
+@theme {
+  --font-display: "Playfair Display Variable", Georgia, serif;
+  --font-sans: "Nunito Variable", "Segoe UI", Helvetica, sans-serif;
+
+  --color-teal: #126e6e;        /* primary: headers, footers, hero grounds, primary buttons */
+  --color-teal-deep: #0e5454;   /* teal 10% then 15% darker: footer bottom bar (client request 2026-09-22) */
+  --color-teal-light: #1f9e9e;  /* hover on teal buttons, links, icon fills */
+  --color-gold: #cf9034;        /* from the logo: a line, never a fill, never small text */
+  --color-charcoal: #545555;    /* all body and heading ink */
+  --color-sun: #f5c518;         /* sun-yellow: the one CTA per screen, charcoal text on it */
+  --color-mist: #f0fafa;        /* section tint alternating with white */
+  --color-cream: #fdf6e3;       /* warm tint: testimonial, family, insurance sections and the CTA (brand book .md) */
+  --color-muted: #6b6c6c;       /* ink-muted: captions and meta only */
+  --color-line: #d9e6e6;        /* hairline: borders and dividers */
+  --color-success: #1f7a4d;
+  --color-error: #b3261e;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-card: 12px;
+  --shadow-soft: 0 4px 16px rgba(18, 110, 110, 0.08); /* shadow-card: only for a card on mist */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-charcoal antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-charcoal;
+    text-wrap: balance;
+  }
+  /* display-h1 50/1.1/800 · display-h2 35/1.15/800 · display-h3 25/1.25/700 */
+  h1 { font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; }
+  h2 { font-weight: 800; line-height: 1.15; }
+  h3 { font-weight: 700; line-height: 1.25; }
+  p { text-wrap: pretty; }
+  a { @apply transition-colors; }
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  ::selection { background: var(--color-mist); }
+}
+
+@utility container-x {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-8;
+}
+/* label · 13 / 700 / 0.08em, teal, above the H1; the short gold line is a permitted "line" use of gold */
+@utility eyebrow {
+  @apply inline-flex items-center gap-2 font-sans text-[13px] font-bold uppercase tracking-[0.08em] text-teal;
+  &::before {
+    content: "";
+    @apply inline-block h-[2px] w-6 rounded-full bg-gold;
+  }
+}
+/* Subtitle directly under an H1/H2: carries the emotional line so headings can carry the keyword */
+@utility subheading {
+  @apply font-display text-xl italic leading-snug text-teal sm:text-2xl;
+}
+@utility eyebrow-light {
+  @apply text-white;
+}
+/* Buttons: 45px tall everywhere (client request 2026-09-22). Raised buttons (client request 2026-09-22): a soft shadow gives every button relief so it stands
+   out; it deepens and lifts slightly on hover. The coverage form's submit button is the exception. */
+@utility btn {
+  @apply inline-flex h-[45px] items-center justify-center gap-2 rounded-full px-6 py-0 text-base font-extrabold leading-none whitespace-nowrap transition;
+  /* Light grounds: a soft lift. On dark teal grounds a stronger shadow (see .bg-teal rule below). */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 3px 8px rgba(0, 0, 0, 0.08);
+  &:hover { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 6px 14px rgba(0, 0, 0, 0.12); transform: translateY(-1px); }
+  &:active { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); transform: translateY(0); }
+}
+/* Primary pill: sun-yellow fill, charcoal text. One per screen. */
+@utility btn-sun {
+  @apply btn bg-sun text-charcoal hover:brightness-105;
+}
+@utility btn-teal {
+  @apply btn bg-teal text-white hover:bg-teal-light;
+}
+/* Secondary: 2px teal outline */
+@utility btn-ghost {
+  @apply btn border-2 border-teal text-teal hover:bg-mist;
+}
+@utility btn-ghost-light {
+  @apply btn border-2 border-white text-white hover:bg-white/10;
+}
+/* Borders, not shadows: hairline, 12px radius. */
+@utility card {
+  @apply rounded-[var(--radius-card)] border border-line bg-white p-6;
+}
+/* 80px desktop / 48px mobile */
+@utility section {
+  @apply py-12 sm:py-20;
+}
+
+@layer components {
+  /* Long-form article / policy copy, 60–75ch measure */
+  .prose-sv {
+    @apply max-w-[70ch] text-lg leading-[1.6] text-charcoal;
+  }
+  .prose-sv > * + * { margin-top: 1.1em; }
+  .prose-sv h2 { @apply mt-12 text-3xl; }
+  .prose-sv h3 { @apply mt-8 text-2xl; }
+  .prose-sv ul { @apply list-disc space-y-2 pl-6 marker:text-teal; }
+  .prose-sv ol { @apply list-decimal space-y-2 pl-6 marker:font-bold marker:text-teal; }
+  .prose-sv a { @apply font-semibold text-teal underline decoration-teal-light decoration-2 underline-offset-4 hover:text-teal-light; }
+  .prose-sv blockquote {
+    @apply border-l-2 border-gold pl-6 font-display text-2xl text-charcoal;
+  }
+  .prose-sv strong { @apply font-extrabold text-charcoal; }
+}
+
+/* Unlayered on purpose: Tailwind's utilities layer would otherwise win over any layered rule.
+   Buttons on dark teal grounds (hero, In Vivo, CTA band) keep the stronger relief so they stand out. */
+.bg-teal :is(.btn-sun, .btn-teal, .btn-ghost, .btn-ghost-light) {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+.bg-teal :is(.btn-sun, .btn-teal, .btn-ghost, .btn-ghost-light):hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Outline buttons never sit transparent on a colored section: they get a white fill there
+   (client request 2026-09-22). The hero banner (.sv-hero) is the exception and keeps them transparent. */
+:is(.bg-mist, .bg-cream, .bg-teal) .btn-ghost {
+  background: #fff;
+}
+:is(.bg-mist, .bg-cream, .bg-teal) .btn-ghost:hover {
+  background: var(--color-mist);
+}
+.bg-teal .btn-ghost-light {
+  background: #fff;
+  color: var(--color-teal);
+  border-color: #fff;
+}
+.bg-teal .btn-ghost-light:hover {
+  background: var(--color-mist);
+}
+.sv-hero .btn-ghost-light {
+  background: transparent;
+  color: #fff;
+}
+.sv-hero .btn-ghost-light:hover {
+  background: rgb(255 255 255 / 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

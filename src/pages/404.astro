@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { SITE } from '../data/site.js';
+---
+<Base title="Page Not Found | Sunview Wellness" description="The page you were looking for couldn’t be found." noindex>
+  <section class="section">
+    <div class="container-x max-w-2xl text-center">
+      <p class="font-sans text-7xl font-extrabold text-teal">404</p>
+      <h1 class="mt-4 text-4xl">We couldn’t find that page.</h1>
+      <p class="mt-5 text-lg text-charcoal">It may have moved when we updated our site. Here are some places to start:</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn-teal">Home</a>
+        <a href="/drug-rehab-west-palm-beach/" class="btn-ghost">Programs</a>
+        <a href="/get-help-now/" class="btn-sun">Get help now</a>
+      </div>
+      <p class="mt-10 text-charcoal">Or call us at <a href={SITE.phoneHref} class="font-bold text-teal">{SITE.phone}</a>.</p>
+    </div>
+  </section>
+</Base>

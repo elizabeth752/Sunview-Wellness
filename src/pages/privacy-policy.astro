@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site.js';
+
+// Copied verbatim from the live sunviewwellness.com/privacy-policy/ (Sept 2026).
+// NEEDS LEGAL REVIEW before launch: it references the "UHS Compliance Hotline", hospital
+// procedures (lab tests, x-rays, surgery) and a 2013 effective date, and has no website/cookie
+// or online-form section. Don't edit the substance without the client's approval.
+---
+<Base
+  title="Privacy Policy & HIPAA Notice | Sunview Wellness"
+  description="Sunview Wellness Notice of Privacy Practices: how your protected health information may be used and disclosed, and your rights under HIPAA."
+  breadcrumbs={[{ name: 'Privacy Policy', href: '/privacy-policy/' }]}
+>
+  <PageHero eyebrow="Legal & compliance" title="Privacy Policy &" accent="HIPAA Notice" showPhone={false} cta={{ label: 'Contact us', href: '/get-help-now/' }} compact />
+
+  <section class="section">
+    <div class="container-x max-w-3xl">
+      <div class="prose-sv">
+        <p class="rounded-2xl bg-cream px-6 py-5 font-bold text-charcoal">This notice describes how medical information about you may be used and disclosed and how you can get access to this information. Please review it carefully.</p>
+        <p><strong>Effective Date:</strong> September 23, 2013. Version #1</p>
+        <p>This notice is available in English and Spanish / Este aviso está disponible en inglés y español.</p>
+
+        <h2>Protected Health Information</h2>
+        <p>Information about your health is private. And it should remain private. That is why this healthcare institution is required by federal and state law to protect and maintain the privacy of your health information. We call it “Protected Health Information” (PHI).</p>
+        <p>The basis for federal privacy protection is the Health Insurance Portability and Accountability Act (HIPAA) and its regulations, known as the “Privacy Rule” and “Security Rule” and other federal and state privacy laws.</p>
+
+        <h3>Who Will Follow This Notice</h3>
+        <p>This Notice describes the information privacy practices followed by our employees, volunteers, and related personnel. The practices described in this Notice may also be followed by health care providers who are members of our Medical Staff, if they have opted to abide by its contents.</p>
+
+        <h3>Using or Disclosing Your PHI</h3>
+        <p><strong>For Treatment.</strong> During the course of your treatment, we use and disclose your PHI. For example, if we test your blood in our laboratory, a technician will share the report with your doctor. Or, we will use your PHI to follow the doctor’s orders for an x-ray, surgical procedure or other types of treatment related procedures.</p>
+        <p><strong>For Payment.</strong> After providing treatment, we will ask your insurer to pay us. Some of your PHI may be entered into our computers in order to send a claim to your insurer. This may include a description of your health problem, the treatment we provided and your membership number in your employer’s health plan.</p>
+        <p><strong>For Healthcare Operations.</strong> Your medical record and PHI could be used in periodic assessments by physicians about the quality of care. Other uses of your PHI may include business planning or the resolution of a complaint.</p>
+        <p><strong>Special Uses.</strong> Your relationship to us as a patient might require using or disclosing your PHI in order to:</p>
+        <ul>
+          <li>Remind you of an appointment for treatment</li>
+          <li>Tell you about treatment alternatives and options</li>
+          <li>Tell you about our other health benefits and services</li>
+        </ul>
+
+        <h3>Your Authorization May Be Required</h3>
+        <p>In many cases, we may use or disclose your PHI for treatment, payment or healthcare operations or as required or permitted by law. In other cases, we must ask for your written authorization. This includes uses or disclosures of psychotherapy notes, uses or disclosures for marketing purposes, or for any disclosure which is a sale of your PHI. You may revoke your authorization if you change your mind later.</p>
+
+        <h3>Your Privacy Rights</h3>
+        <ul>
+          <li><strong>Right to Request Limited Use or Disclosure.</strong> You have the right to request that we do not use or disclose your PHI in a particular way.</li>
+          <li><strong>Right to Confidential Communication.</strong> You have the right to receive confidential communications of PHI at a location that you provide.</li>
+          <li><strong>Right to Revoke Your Authorization.</strong> You may revoke, in writing, the authorization you granted us for use or disclosure of your PHI.</li>
+          <li><strong>Right to Inspect and Copy.</strong> You have the right to inspect and copy your PHI, if requested in writing.</li>
+          <li><strong>Right to Amend Your PHI.</strong> If you disagree with your PHI within our records, you have the right to request that we amend it.</li>
+          <li><strong>Right to Know Who Else Sees Your PHI.</strong> You have the right to request an accounting of certain disclosures we have made of your PHI over the past six years.</li>
+          <li><strong>Right to Be Notified of a Breach.</strong> You have the right to be notified following a breach of unsecured PHI.</li>
+          <li><strong>Right to Obtain a Paper Copy.</strong> You have the right to obtain a paper copy of this notice upon request.</li>
+        </ul>
+
+        <h3>What If I Have a Complaint?</h3>
+        <p>If you believe that your privacy has been violated, you may file a complaint with us or with the Secretary of Health and Human Services in Washington, D.C. We will not retaliate or penalize you for filing a complaint.</p>
+        <p>To file a complaint with us, please contact our Risk Management Department or call the UHS Compliance Hotline at <a href="tel:18008523449">1-800-852-3449</a>.</p>
+        <p>To file a complaint with the Secretary of Health and Human Services, write to: 200 Independence Ave., S.E., Washington, D.C. 20201 or call <a href="tel:18776966775">1-877-696-6775</a>.</p>
+
+        <h3>Contact for Additional Information</h3>
+        <p>If you have questions about this Notice or need additional information, please contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or call <a href={SITE.phoneHref}>{SITE.phone}</a>.</p>
+
+        <hr class="my-12 border-line" />
+
+        <div lang="es">
+          <h2>Información Protegida de Salud</h2>
+          <p>La información acerca de su salud es privada y debe permanecer privada. Es por eso que esta institución de atención médica está obligada por ley federal y estatal a proteger y mantener la privacidad de su información de salud. Le llamamos “Información de salud protegida” (PHI, por sus siglas en inglés).</p>
+          <h3>¿Quiénes Seguirán Este Aviso?</h3>
+          <p>Este aviso describe las prácticas de privacidad de información seguidos por nuestros empleados, voluntarios y personal relacionado.</p>
+          <h3>El Uso o Divulgación de Su PHI</h3>
+          <p><strong>Para Tratamiento.</strong> En el transcurso de su tratamiento, utilizamos y divulgamos su PHI. Por ejemplo, si examinamos su sangre en el laboratorio, un técnico compartirá el informe a su médico.</p>
+          <p><strong>Para el Pago.</strong> Después de proporcionarle tratamiento, le solicitaremos a su aseguradora el pago. Parte de su PHI puede ser ingresada en nuestras computadoras con el propósito de enviar un reclamo a su compañía de seguros.</p>
+          <h3>Sus Derechos de Privacidad</h3>
+          <ul>
+            <li><strong>Derecho a solicitar el uso limitado.</strong> Usted tiene el derecho a solicitar que no utilicemos o divulguemos su PHI de un modo particular.</li>
+            <li><strong>Derecho de revocar su autorización.</strong> Usted puede revocar por escrito la autorización que nos otorga para el uso o divulgación de su PHI.</li>
+            <li><strong>Derecho a inspeccionar y copiar.</strong> Usted tiene el derecho de inspeccionar y copiar su PHI si así lo solicita por escrito.</li>
+            <li><strong>Derecho a modificar su PHI.</strong> Si usted está en desacuerdo con su PHI en nuestros registros, tiene el derecho de solicitar que la modifiquemos.</li>
+            <li><strong>Derecho a ser notificado de un incumplimiento.</strong> Usted tiene el derecho a ser notificado después de un incumplimiento a su PHI.</li>
+          </ul>
+          <h3>¿Qué Pasa Si Tengo Una Queja?</h3>
+          <p>Si usted cree que su privacidad ha sido violada, puede presentar una queja con nosotros o con el Secretario de Salud y Servicios Humanos en Washington, DC.</p>
+          <p>Llame a la línea directa de cumplimiento de UHS al <a href="tel:18008523449">1-800-852-3449</a>. O escriba a: 200 Independence Ave., S.E., Washington, D.C. 20201 o llame al <a href="tel:18776966775">1-877-696-6775</a>.</p>
+          <p><strong>Fecha de inicio:</strong> Este aviso entra en vigencia el Septiembre 23, 2013. Versión #1</p>
+        </div>
+
+        <p class="mt-12 rounded-2xl bg-mist px-6 py-5">Need a printed copy of this notice? <a href="/get-help-now/">Contact us to request a copy.</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

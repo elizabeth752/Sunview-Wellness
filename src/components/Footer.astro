@@ -1,0 +1,99 @@
+---
+// Footer: logo + contact column on the left, then Programs · What We Treat · Admissions & About.
+// Below: © + Powered by elev8.io, and Privacy Policy.
+import Icon from './Icon.astro';
+import SunMark from './SunMark.astro';
+import { SITE } from '../data/site.js';
+
+const cols = [
+  {
+    title: 'Programs',
+    links: [
+      ['Partial Hospitalization (PHP)', '/programs/php/'],
+      ['Intensive Outpatient (IOP)', '/programs/iop/'],
+      ['Outpatient Program (OP)', '/programs/outpatient/'],
+      ['Psychiatry & Medication', '/programs/psychiatry-medication-management/'],
+      ['Compare levels of care', '/programs/'],
+    ],
+  },
+  {
+    title: 'What We Treat',
+    links: [
+      ['Substance use', '/what-we-treat/substance-use/'],
+      ['Mental health', '/what-we-treat/mental-health/'],
+      ['Dual diagnosis', '/what-we-treat/dual-diagnosis/'],
+      ['Therapies', '/therapies/'],
+    ],
+  },
+  {
+    title: 'Admissions & About',
+    links: [
+      ['Get help now', '/admissions/'],
+      ['Insurance & payment', '/admissions/insurance/'],
+      ['What to expect', '/admissions/what-to-expect/'],
+      ['For families', '/admissions/for-families/'],
+      ['FAQ', '/admissions/faq/'],
+      ['About Sunview', '/about/'],
+      ['Our team', '/our-team/'],
+    ],
+  },
+];
+const year = new Date().getFullYear();
+---
+<footer class="pb-24 md:pb-0">
+  <!-- Gradient: brand teal at the top fading down to teal-deep, meeting the bottom bar (client request 2026-09-22) -->
+  <div class="relative overflow-hidden bg-linear-to-b from-teal to-teal-deep text-white">
+    <!-- Rings sit under the wave: the cream area above the curve hides their top, so they read as ripples
+         spreading out from under the water line. -->
+    <SunMark variant="rays" class="pointer-events-none absolute -right-6 top-0 h-[460px] w-[460px] text-gold/35" />
+    <!-- Wave divider (approved CTA "A"): cream above the curve continues the CTA; gold line on the edge. -->
+    <svg class="relative block h-[56px] w-full sm:h-[72px]" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 42 C 240 2 480 2 720 32 S 1200 72 1440 22 V0 H0 Z" fill="var(--color-cream)" />
+      <path d="M0 42 C 240 2 480 2 720 32 S 1200 72 1440 22" fill="none" stroke="var(--color-gold)" stroke-width="2" vector-effect="non-scaling-stroke" />
+    </svg>
+    <div class="container-x relative grid gap-10 pb-16 pt-8 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+      <div>
+        <img src="/images/brand/sunview-logo-horizontal-white.webp" alt="Sunview Wellness" width="880" height="174" loading="lazy" class="h-auto w-[220px]" />
+        <ul class="mt-6 space-y-3 text-white/90">
+          <li>
+            <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="inline-flex items-start gap-3 hover:text-white">
+              <Icon name="pin" class="mt-1 h-5 w-5 shrink-0" />
+              <span>{SITE.address.street}<br />{SITE.address.city}, {SITE.address.region} {SITE.address.postal}</span>
+            </a>
+          </li>
+          <li><a href={SITE.phoneHref} class="inline-flex items-center gap-3 text-lg font-extrabold text-white"><Icon name="phone" class="h-5 w-5" />{SITE.phone}</a></li>
+          <li><a href={`mailto:${SITE.email}`} class="inline-flex items-center gap-3 hover:text-white"><Icon name="mail" class="h-5 w-5" />{SITE.email}</a></li>
+          <li class="flex items-start gap-3">
+            <Icon name="clock" class="mt-1 h-5 w-5 shrink-0" />
+            <span>Mon–Fri 9am–1pm<br />Evening IOP Mon, Wed, Thu 6–9pm</span>
+          </li>
+        </ul>
+        <div class="mt-6 flex gap-2">
+          <a href={SITE.social.instagram} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="instagram" label="Instagram" /></a>
+          <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="linkedin" label="LinkedIn" /></a>
+          <a href={SITE.social.youtube} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="youtube" label="YouTube" /></a>
+          <a href={SITE.social.x} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="xsocial" label="X (Twitter)" /></a>
+        </div>
+      </div>
+      {cols.map((c) => (
+        <div>
+          <p class="font-sans text-lg font-extrabold text-white">{c.title}</p>
+          <ul class="mt-4 space-y-2.5 text-white/90">
+            {c.links.map(([label, href]) => <li><a href={href} class="hover:text-white hover:underline">{label}</a></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- 1px divider: green → gold → green (client request 2026-09-22) -->
+  <div class="h-px bg-linear-to-r from-teal-deep via-gold to-teal-deep" aria-hidden="true"></div>
+  <div class="bg-teal-deep">
+    <div class="container-x flex flex-col gap-2 py-[15px] text-sm text-white md:flex-row md:items-center md:justify-between">
+      <p>© {year} Sunview Wellness <span class="mx-2 text-white/40" aria-hidden="true">|</span> Powered by <a href="https://elev8.io" target="_blank" rel="noopener" class="font-bold hover:text-white/80">elev8.io</a></p>
+      <p class="flex flex-wrap gap-x-4 gap-y-1">
+        <a href="/privacy-policy/" class="hover:text-white/80">Privacy Policy</a>
+      </p>
+    </div>
+  </div>
+</footer>

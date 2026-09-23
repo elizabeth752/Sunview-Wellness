@@ -1,0 +1,102 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ProgramCards from '../components/ProgramCards.astro';
+import InsuranceStrip from '../components/InsuranceStrip.astro';
+import TelemedCard from '../components/TelemedCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import FaqList from '../components/FaqList.astro';
+import Icon from '../components/Icon.astro';
+import { SUBSTANCES } from '../data/site.js';
+
+const team = [
+  { icon: 'award', label: 'PhD Clinical Director' },
+  { icon: 'brain', label: 'Licensed Mental Health Counselors (LMHC)' },
+  { icon: 'users', label: 'Licensed Clinical Social Workers (LCSW)' },
+  { icon: 'shield', label: 'Certified Addiction Professionals (CAP)' },
+];
+
+const faqs = [
+  { q: 'I have a prescription or a medical marijuana card. Does that matter?', a: 'We’ll ask about it, openly and without judgment. Sunview is abstinence-based, so marijuana, stimulants, opioids and benzodiazepines can’t be used during programming, even with a prescription or card. What matters is the substance, dose, frequency and how long you’ve used it. Being honest in pre-screening helps us make sure you start safely, which sometimes means medical detox first.' },
+  { q: 'Can I take Suboxone, Vivitrol or naltrexone while in treatment?', a: 'Yes. Abstinence-based doesn’t mean medication-free. We support anti-craving medications like buprenorphine/Suboxone and naltrexone/Vivitrol when they’re prescribed and managed by a qualified outside provider. If you already have one, we coordinate with them. If you don’t, we’ll refer you.' },
+  { q: 'Do you accept clients on methadone?', a: 'Generally no. Clients maintained on methadone, or coming off it, usually need medically supervised detox and stabilization first. We’ll refer you to an appropriate higher level of care and can talk about Sunview as a next step afterwards.' },
+  { q: 'Is there drug testing?', a: 'Yes. Random drug testing is part of our ongoing monitoring and recovery support.' },
+];
+---
+<Base
+  title="Substance Use Disorder Treatment West Palm Beach | Sunview Wellness"
+  description="Outpatient substance use disorder treatment in West Palm Beach, FL. PHP, IOP & OP for alcohol, cocaine, opioid, benzodiazepine and other addictions. Free transportation. Insurance accepted."
+  breadcrumbs={[{ name: 'Substance Use Disorder', href: '/substance-use-disorder/' }]}
+  schema={[{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) }]}
+>
+  <PageHero
+    eyebrow="Substance use disorder treatment"
+    title="Live at home."
+    accent="Recover for real."
+    lead="No matter what you’ve already tried, or haven’t tried, we have a real plan for you. Outpatient treatment for substance use disorders in West Palm Beach, with the depth usually reserved for residential care."
+  />
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <span class="eyebrow">What we treat</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">All major substance use disorders</h2>
+        <p class="mt-5 text-lg text-charcoal">Alcohol and crack cocaine are the substances we see most often, but our team treats the full range, including polysubstance use.</p>
+      </div>
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {SUBSTANCES.map((s) => (
+          <div class="card">
+            <h3 class="font-sans text-lg font-extrabold">{s.name}</h3>
+            <p class="mt-2 text-charcoal">{s.blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-cream">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Beyond the “band-aid”</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Coping skills matter. So does knowing where the triggers came from.</h2>
+        <p class="mt-5 text-lg text-charcoal">CBT and relapse prevention are part of the work here: recognizing triggers and changing harmful thought patterns. But we don’t believe people can authentically use those tools without first exploring where the triggers and thoughts came from. Without that, skills can end up as a band-aid over a bullet hole.</p>
+        <p class="mt-4 text-lg text-charcoal">So we go deeper, with IFS, psychodynamic work, inner child work and psychodrama, at a pace that’s safe for you.</p>
+        <a href="/our-approach/" class="btn-teal mt-8">How our approach works <Icon name="arrow" /></a>
+      </div>
+      <div class="card !p-8">
+        <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-teal">Are you a fit?</p>
+        <p class="mt-2 font-display text-2xl font-bold text-charcoal">Over 50 years of combined clinical experience</p>
+        <p class="mt-3 text-charcoal">Our multidisciplinary team meets you where you are. The clients who tend to do best are the ones who are genuinely ready to change how they live, not just stop using.</p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+          {team.map((t) => (
+            <li class="flex items-center gap-3 rounded-xl bg-mist px-4 py-3 text-sm font-bold text-charcoal"><Icon name={t.icon} class="h-5 w-5 shrink-0 text-teal" />{t.label}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Levels of care</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Choose the structure that fits your life</h2>
+      </div>
+      <div class="mt-10"><ProgramCards /></div>
+    </div>
+  </section>
+
+  <section class="section bg-mist">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Medication & safety</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Abstinence-based, not medication-free</h2>
+        <div class="mt-8"><TelemedCard /></div>
+      </div>
+      <div class="lg:pt-16"><FaqList faqs={faqs} /></div>
+    </div>
+  </section>
+
+  <InsuranceStrip />
+  <CtaBand />
+</Base>

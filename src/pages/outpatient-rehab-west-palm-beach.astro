@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site.js';
+import PageHero from '../components/PageHero.astro';
+import ProgramCards from '../components/ProgramCards.astro';
+import InsuranceStrip from '../components/InsuranceStrip.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+
+const benefits = [
+  { icon: 'home', text: 'Sleep in your own bed every night while receiving intensive clinical treatment during the day.' },
+  { icon: 'briefcase', text: 'Many clients keep their jobs, parenting responsibilities and daily commitments during treatment.' },
+  { icon: 'users', text: 'Build a real support network through group therapy with peers in recovery.' },
+  { icon: 'shield', text: 'Typically more affordable than residential rehab, and covered by most insurance plans.' },
+];
+
+const fits = [
+  'You have a stable and supportive place to live',
+  'You’re stepping down from detox, inpatient or residential treatment',
+  'You have work, family or school responsibilities to keep up with',
+  'You’ve tried treatment before and want care that goes deeper',
+  'You’re dealing with co-occurring mental health and substance use',
+  'You need psychiatric medication management alongside therapy',
+];
+---
+<Base
+  title="Outpatient Rehab West Palm Beach | Sunview Wellness"
+  description={`Evidence-based outpatient addiction rehab in West Palm Beach, FL. PHP, IOP & OP programs. Live at home, keep your job, and recover with expert clinical support. Call ${SITE.phone}.`}
+  breadcrumbs={[{ name: 'Outpatient Rehab West Palm Beach', href: '/outpatient-rehab-west-palm-beach/' }]}
+>
+  <PageHero
+    eyebrow="Outpatient Rehab · West Palm Beach, Florida"
+    title="Outpatient Rehab"
+    accent="West Palm Beach"
+    lead="Evidence-based outpatient addiction rehab in West Palm Beach. PHP, IOP and OP programs: live at home, keep your job, and recover with expert clinical support."
+    cta={{ label: 'Start Outpatient Rehab Today', href: '/get-help-now/' }}
+    stats={[
+      { value: '3', label: 'Program levels' },
+      { value: '50+', label: 'Years combined experience' },
+      { value: 'Free', label: 'Transportation' },
+      { value: 'Joint Commission', label: 'Accredited' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">About outpatient rehab</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">What is outpatient rehab?</h2>
+        <p class="mt-5 text-lg text-charcoal">Outpatient rehab lets you receive professional addiction treatment while you keep living at home. Unlike inpatient or residential rehab, you attend treatment during the day or evening and go home each night.</p>
+        <p class="mt-4 text-lg text-charcoal">That isn’t a lesser version of treatment. It’s where the skills you learn meet the stress, relationships and triggers of everyday life. At Sunview, those real moments become the material we work with.</p>
+      </div>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {benefits.map((b) => (
+          <li class="card">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-mist text-teal"><Icon name={b.icon} class="h-5 w-5" /></span>
+            <p class="mt-4 font-bold text-charcoal">{b.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Our programs</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Outpatient rehab programs in West Palm Beach</h2>
+      </div>
+      <div class="mt-10"><ProgramCards /></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Is outpatient rehab right for you?</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl">Who is a good candidate for outpatient rehab?</h2>
+        <ul class="mt-8 space-y-4">
+          {fits.map((f) => <li class="flex gap-3 text-lg"><span class="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-teal text-white"><Icon name="check" class="h-4 w-4" /></span>{f}</li>)}
+        </ul>
+      </div>
+      <div class="rounded-[var(--radius-card)] bg-cream p-8 sm:p-10">
+        <p class="text-xs font-extrabold uppercase tracking-[0.16em] text-teal">When a different setting is safer</p>
+        <h3 class="mt-2 text-2xl">We’ll tell you honestly</h3>
+        <p class="mt-4 text-charcoal">Outpatient care works best when you’re medically and psychiatrically stable. If our pre-screening shows you need something first, we’ll refer you to a higher level of care and gladly welcome you afterwards. That includes medical detox after long-term benzodiazepine, opioid or heavy alcohol use, and stabilization for methadone maintenance or severe psychiatric symptoms.</p>
+        <a href="/admissions/" class="mt-6 inline-flex items-center gap-2 font-extrabold text-teal">How admissions works <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <InsuranceStrip title="Most insurance covers outpatient rehab" lead="Most health plans include benefits for substance use treatment. We verify yours for free before you start, so you know what’s covered." />
+  <CtaBand title="Start outpatient rehab in West Palm Beach" lead="Our admissions team handles insurance verification, pre-screening and enrollment. Call now or request a callback." />
+</Base>

@@ -1,0 +1,61 @@
+---
+// Decorative brand motif: the logo's sun rising over a wave (real mark, from the master file),
+// plus the concentric "sun rays" arcs used on Sunview's article artwork.
+interface Props {
+  variant?: 'sun' | 'rays' | 'waves';
+  class?: string;
+  ripple?: boolean; // rays only: a light pulse travels outward through the rings, like a ripple on water
+}
+const { variant = 'sun', class: cls = '', ripple = false } = Astro.props;
+---
+{variant === 'sun' && (
+  // The real sun-and-wave mark, cut from the 2560px master logo (not a redrawing), so it matches the lockup.
+  <img src="/images/brand/sunview-mark.webp" alt="" width="480" height="226" class={cls} aria-hidden="true" />
+)}
+{variant === 'rays' && (
+  <svg class:list={[cls, ripple && 'sv-ripple']} viewBox="0 0 400 400" fill="none" aria-hidden="true">
+    {Array.from({ length: 9 }).map((_, i) => (
+      <circle cx="400" cy="0" r={60 + i * 38} stroke="currentColor" stroke-width="1.6" style={ripple ? `--i:${i}` : undefined} />
+    ))}
+  </svg>
+)}
+
+<style is:global>
+  /* A pulse of light travels outward through still rings, like a ripple crossing water.
+     Plays each time the banner comes into view (the script below toggles .is-playing). */
+  .sv-ripple circle {
+    opacity: 0.45;
+    transform-box: view-box;
+    transform-origin: 400px 0px; /* the shared center of the rings */
+  }
+  .sv-ripple.is-playing circle {
+    animation: sv-ripple 1.4s ease-out both;
+    animation-delay: calc(var(--i) * 160ms + 400ms);
+  }
+  @keyframes sv-ripple {
+    0% { opacity: 0.45; stroke-width: 1.6; transform: scale(0.99); }
+    35% { opacity: 1; stroke-width: 2.6; transform: scale(1.005); }
+    100% { opacity: 0.45; stroke-width: 1.6; transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sv-ripple circle { animation: none; opacity: 1; }
+  }
+</style>
+{variant === 'waves' && (
+  <svg class={cls} viewBox="0 0 1440 120" preserveAspectRatio="none" fill="none" aria-hidden="true">
+    <path d="M0 70c180-50 360-50 540-10s360 40 540 0 270-50 360-30" stroke="currentColor" stroke-width="2" />
+    <path d="M0 92c200-36 380-30 560 0s360 30 540-4 250-40 340-26" stroke="currentColor" stroke-width="1.5" opacity=".6" />
+    <path d="M0 112c220-24 400-18 580 4s360 18 520-8 240-26 340-16" stroke="currentColor" stroke-width="1" opacity=".35" />
+  </svg>
+)}
+
+<script>
+  // Replay the ripple whenever a banner scrolls back into view: play on enter, reset on leave.
+  const ripples = document.querySelectorAll<SVGElement>('.sv-ripple');
+  if (ripples.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) e.target.classList.toggle('is-playing', e.isIntersecting);
+    }, { threshold: 0.15 });
+    ripples.forEach((el) => io.observe(el));
+  }
+</script>

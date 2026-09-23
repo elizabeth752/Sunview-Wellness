@@ -1,0 +1,110 @@
+---
+// Location block, design "B" (approved 2026-09-22): address + a Mon–Fri schedule grid on the left,
+// the Google map, phone and directions on the right. Hours come from the questionnaire (Q7):
+// PHP Mon–Fri 9am–1pm · Day IOP any 3 weekdays 9am–1pm · Evening IOP Mon/Wed/Thu 6–9pm ·
+// OP any 1 weekday 9am–1pm (Client Wiki 2026-09-22). Service area + languages from the same Wiki update.
+import Icon from './Icon.astro';
+import { SITE } from '../data/site.js';
+interface Props { title?: string; subtitle?: string; showPageLink?: boolean }
+const {
+  title = 'Our Outpatient Treatment Center in West Palm Beach',
+  subtitle = 'Easy to reach, and we’ll get you here if you can’t drive.',
+  showPageLink = true,
+} = Astro.props;
+const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postal}`;
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addr)}`;
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+// on = runs that day · pick = any 3 of these days · off = no session
+const rows = [
+  { name: 'PHP', cells: ['on', 'on', 'on', 'on', 'on'] },
+  { name: 'Day IOP', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
+  { name: 'Evening IOP', cells: ['eve', 'off', 'eve', 'eve', 'off'] },
+  { name: 'OP', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
+];
+const cellClass: Record<string, string> = {
+  on: 'bg-teal',
+  pick: 'sv-pick',
+  eve: 'bg-teal-deep',
+  off: 'bg-mist',
+};
+const cellLabel: Record<string, string> = { on: 'Runs 9am to 1pm', pick: 'Available to choose, 9am to 1pm', eve: 'Runs 6pm to 9pm', off: 'No session' };
+---
+<section class="section">
+  <div class="container-x grid items-start gap-10 lg:grid-cols-2">
+    <div>
+      <span class="eyebrow">Location & hours</span>
+      <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{title}</h2>
+      <p class="subheading mt-3">{subtitle}</p>
+
+      <ul class="mt-6 space-y-3">
+        <li class="flex items-start gap-3">
+          <Icon name="pin" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+          <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="font-bold hover:text-teal">{addr}</a>
+        </li>
+        <li class="flex items-start gap-3">
+          <Icon name="car" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+          <span>Serving West Palm Beach and Palm Beach County, with free transportation to and from our facility.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <Icon name="message" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+          <span>Care in English and Spanish.</span>
+        </li>
+      </ul>
+
+      <div class="mt-6 rounded-[var(--radius-card)] border border-line p-5">
+        <p class="font-extrabold">Your week at Sunview</p>
+        <table class="mt-3 w-full table-fixed border-separate border-spacing-1.5 text-[13px]">
+          <colgroup><col class="w-[92px]" />{days.map(() => <col />)}</colgroup>
+          <caption class="sr-only">Program schedule, Monday to Friday</caption>
+          <thead>
+            <tr>
+              <td></td>
+              {days.map((d) => <th scope="col" class="text-center font-extrabold text-muted">{d}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr>
+                <th scope="row" class="pr-1 text-left font-extrabold">{r.name}</th>
+                {r.cells.map((c) => (
+                  <td class="p-0"><span class:list={['block h-[22px] rounded-[6px]', cellClass[c]]} title={cellLabel[c]}><span class="sr-only">{cellLabel[c]}</span></span></td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted">
+          <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal"></span>PHP 9am–1pm, every weekday</li>
+          <li class="inline-flex items-center gap-1.5"><span class="sv-pick inline-block h-2.5 w-3.5 rounded-[3px]"></span>Day IOP 9am–1pm, any 3 days</li>
+          <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal-deep"></span>Evening IOP 6–9pm</li>
+          <li class="inline-flex items-center gap-1.5"><span class="sv-pick inline-block h-2.5 w-3.5 rounded-[3px]"></span>OP 9am–1pm, any 1 day</li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="overflow-hidden rounded-[var(--radius-lg)] border border-line">
+        <iframe
+          src={SITE.mapsEmbed}
+          title={`Map to Sunview Wellness, ${addr}`}
+          class="block h-[300px] w-full sm:h-[360px]"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <a href={SITE.phoneHref} class="mt-5 inline-flex items-center gap-3 text-lg font-extrabold text-teal hover:text-teal-light">
+        <Icon name="phone" class="h-5 w-5" />{SITE.phone}
+      </a>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <a href={directions} target="_blank" rel="noopener" class="btn-teal">Get directions</a>
+        {showPageLink && <a href="/locations/west-palm-beach/" class="btn-ghost">West Palm Beach location</a>}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Day IOP: hatched = "available, pick any 3 days" */
+  .sv-pick { background: repeating-linear-gradient(135deg, var(--color-teal-light) 0 6px, color-mix(in srgb, var(--color-teal-light) 55%, white) 6px 12px); }
+</style>
