@@ -89,9 +89,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     if (organization.length < 2) return json(400, { ok: false, error: 'Please enter your organization.' });
     if (!EMAIL_RE.test(email)) return json(400, { ok: false, error: 'Please enter a valid email address.' });
     if (!LEVELS.includes(level)) return json(400, { ok: false, error: 'Please choose the patient’s current level of care.' });
-  } else {
-    if (carrier.length < 2) return json(400, { ok: false, error: 'Please enter your insurance carrier.' });
-    if (!policy) return json(400, { ok: false, error: 'Please enter your Membership Policy ID.' });
   }
   if (raw.consent !== true) return json(400, { ok: false, error: 'Consent is required to request a callback.' });
 
@@ -125,8 +122,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     params.set('custom_fields[membership_policy_id]', 'N/A (professional referral)');
     params.set('custom_fields[insurance_carrier]', 'N/A (professional referral)');
   } else {
-    params.set('custom_fields[membership_policy_id]', policy);
-    params.set('custom_fields[insurance_carrier]', carrier);
+    // Both are optional on the form; backfill blanks because CTM rejects a lead with a blank required custom field.
+    params.set('custom_fields[membership_policy_id]', policy || 'Not provided');
+    params.set('custom_fields[insurance_carrier]', carrier || 'Not provided');
   }
   const sid = str(raw.visitor_sid, 120);
   if (sid) params.set('visitor_sid', sid); // ties the lead to the visitor's CTM session / tracking number

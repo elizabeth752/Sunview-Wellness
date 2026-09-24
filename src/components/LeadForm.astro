@@ -98,12 +98,12 @@ const field =
       </div>
     </div>
     <div>
-      <label class:list={[lbl, 'whitespace-nowrap']} for={`${formId}-policy`}>Membership Policy ID <span aria-hidden="true" class="text-error">*</span></label>
-      <input id={`${formId}-policy`} class={field} type="text" name="policy_id" required maxlength="40" autocomplete="off" data-member-id-input />
+      <label class:list={[lbl, 'whitespace-nowrap']} for={`${formId}-policy`}>Membership Policy ID (optional)</label>
+      <input id={`${formId}-policy`} class={field} type="text" name="policy_id" maxlength="40" autocomplete="off" data-member-id-input />
     </div>
     <div>
-      <label class={lbl} for={`${formId}-carrier`}>Insurance Carrier <span aria-hidden="true" class="text-error">*</span></label>
-      <input id={`${formId}-carrier`} class={field} type="text" name="insurance_carrier" required maxlength="60" autocomplete="off" />
+      <label class={lbl} for={`${formId}-carrier`}>Insurance Carrier (optional)</label>
+      <input id={`${formId}-carrier`} class={field} type="text" name="insurance_carrier" maxlength="60" autocomplete="off" />
     </div>
     {showMessage && (
       <div class="sm:col-span-2">
@@ -254,8 +254,8 @@ const field =
       } else {
         const policy = String(fd.get('policy_id') || '').trim();
         const carrier = String(fd.get('insurance_carrier') || '').trim();
-        // Every field is required. Flag each missing one and show a single message under the button.
-        const missing = validate(fd, ['name', 'phone', 'policy_id', 'insurance_carrier'], { phone: phone.length < 10 });
+        // Only name and phone are required; policy ID and carrier are optional (the API backfills them for CTM).
+        const missing = validate(fd, ['name', 'phone'], { phone: phone.length < 10 });
         if (missing.length) return show('Please fill in all required fields to check your coverage.');
         if (phone.length < 10) return show('Please enter a valid 10-digit phone number.');
         if (Date.now() - started < MIN_FILL_MS) return show('One moment, then try again.');
