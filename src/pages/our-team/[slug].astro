@@ -1,18 +1,22 @@
 ---
 // /our-team/{slug}/: About-Team-Content-Briefs.md §B, one template for every person page (published or not).
 // Data: src/data/team.js. Sources and open questions: docs/content/about-team-sources-team.md.
-// Hero has no form (brief exception): H1 = full name, subheading = title, initials portrait on the right.
+// Person template per docs/content/SOP-Blog-Post-Author-Templates.md §3 (one page per person, authors included).
+// Banner (Home hero look, no form, no buttons): breadcrumb, H1 = name with credentials, role, photo or initials.
 // Body: bio + "Role at Sunview" beside a sticky credentials card at desktop (stacks on mobile).
 // Frank also gets "In Vivo Treatment™ and Clinical Architecture™". "Articles by {First}" appears only when
-// src/data/posts.js has posts whose author is this person. No rotation sections, no reviewed-by byline.
+// src/data/posts.js has posts whose author is this person (shared PostCard; ≤3 → grid, >3 → carousel with arrows,
+// no URL changes). No links to other staff anywhere on a person page (SOP §3): the team archive is where everyone
+// is listed. No rotation sections, no reviewed-by byline.
 // Schema: BreadcrumbList (Base) + ProfilePage with a Person mainEntity.
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
+import PostCard from '../../components/PostCard.astro';
 import { SITE, initials } from '../../data/site.js';
-import { PEOPLE, TEAM_GROUPS, peopleInGroup, personHref, isPublished } from '../../data/team.js';
-import { sortedPosts, formatDate } from '../../data/posts.js';
+import { PEOPLE, TEAM_GROUPS, personHref, isPublished } from '../../data/team.js';
+import { postsBy } from '../../data/posts.js';
 
 export function getStaticPaths() {
   return PEOPLE.map((person) => ({ params: { slug: person.slug }, props: { person } }));
@@ -22,8 +26,8 @@ const { person: p } = Astro.props;
 const path = personHref(p);
 const url = new URL(path, SITE.url).href;
 const group = TEAM_GROUPS.find((g) => g.id === p.group)!;
-const colleagues = peopleInGroup(p.group).filter((x) => x.slug !== p.slug);
-const articles = sortedPosts.filter((post) => post.author?.name === p.name);
+const articles = postsBy(p.slug); // blog order: articles first, then podcasts
+const carousel = articles.length > 3;
 const crumbs = [{ name: 'Our Team', href: '/our-team/' }, { name: p.name, href: path }];
 
 const nameWithCreds = p.creds ? `${p.name}, ${p.creds}` : p.name;
@@ -67,15 +71,15 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
 <Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema} noindex={!published}>
   <PageHero
     title={p.name}
+    titleNote={p.creds}
     subheading={p.title}
     crumbs={crumbs}
-    secondary={{ label: 'Meet the whole team', href: '/our-team/' }}
+    actions={false}
     ripple={false}
-    compact
+    banner
   >
-    {p.creds && <p class="mt-3 font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-white/85">{p.creds}</p>}
     <Fragment slot="aside">
-      <div class="mx-auto w-full max-w-[320px] lg:ml-auto lg:mr-0">
+      <div class="mx-auto w-full max-w-[300px] lg:ml-auto lg:mr-0">
         <div class="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[var(--radius-lg)] bg-mist ring-4 ring-white/15">
           {p.photo
             ? <img src={p.photo} alt={`${p.name}, ${p.title} at Sunview Wellness`} class="absolute inset-0 h-full w-full object-cover" />
@@ -145,17 +149,6 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           )}
         </div>
 
-        {colleagues.length > 0 && (
-          <div class="mt-6 px-1">
-            <p class="text-sm font-extrabold uppercase tracking-[0.08em] text-muted">Also on this team</p>
-            <ul class="mt-3 space-y-2">
-              {colleagues.map((c) => (
-                <li><a href={personHref(c)} class="inline-flex items-center gap-2 font-bold text-charcoal hover:text-teal"><span class="grid h-8 w-8 place-items-center rounded-full bg-mist text-xs font-extrabold text-teal" aria-hidden="true">{initials(c.name)}</span>{c.name}</a></li>
-              ))}
-            </ul>
-            <a href="/our-team/" class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-teal hover:text-teal-light"><Icon name="arrow-left" class="h-4 w-4" />Our treatment team</a>
-          </div>
-        )}
       </aside>
 
       <div class="min-w-0 lg:col-start-1 lg:row-start-2">
@@ -199,22 +192,66 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
       <div class="container-x">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <h2 id="articles-title" class="text-3xl sm:text-[2.1875rem]">Articles by {p.first}</h2>
-          <a href="/blog/" class={link}>All articles and podcasts</a>
+          <div class="flex items-center gap-4">
+            <a href="/blog/" class={link}>All articles and podcasts</a>
+            {carousel && (
+              <div class="flex gap-2">
+                <button type="button" class="sv-arrow" aria-label={`Previous articles by ${p.first}`} aria-controls="articles-track" data-dir="-1"><Icon name="chevron-left" class="h-5 w-5" /></button>
+                <button type="button" class="sv-arrow" aria-label={`Next articles by ${p.first}`} aria-controls="articles-track" data-dir="1"><Icon name="chevron-right" class="h-5 w-5" /></button>
+              </div>
+            )}
+          </div>
         </div>
-        <ul class="mt-8 divide-y divide-line border-y border-line">
-          {articles.slice(0, 6).map((post) => (
-            <li>
-              <a href={`/blog/${post.slug}/`} class="group grid gap-1 py-5 sm:grid-cols-[160px_1fr_auto] sm:items-center sm:gap-6">
-                <span class="text-sm text-muted">{formatDate(post.date)}{post.type === 'video' ? ' · Video' : ''}</span>
-                <span class="font-display text-lg font-bold text-charcoal group-hover:text-teal">{post.title}</span>
-                <Icon name="arrow" class="hidden h-5 w-5 text-teal sm:block" />
-              </a>
-            </li>
-          ))}
-        </ul>
+        {carousel ? (
+          <ul id="articles-track" class="sv-track mt-8" aria-label={`Articles by ${p.name}`} data-track>
+            {articles.map((post) => <li><PostCard post={post} as="h3" /></li>)}
+          </ul>
+        ) : (
+          <ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {articles.map((post) => <li><PostCard post={post} as="h3" /></li>)}
+          </ul>
+        )}
       </div>
     </section>
   )}
 
-  <CtaBand title="Start with a conversation" />
+  <CtaBand title="Start With a Conversation" headingLevel="h2" />
 </Base>
+
+<style>
+  /* Articles carousel: scroll-snap track, 1 card visible on phones, 2 on tablets, 3 at desktop */
+  .sv-track {
+    display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain;
+    padding-bottom: 0.75rem; scrollbar-width: thin;
+  }
+  .sv-track > li { scroll-snap-align: start; }
+  @media (min-width: 768px) { .sv-track { grid-auto-columns: calc((100% - 1.5rem) / 2); } }
+  @media (min-width: 1024px) { .sv-track { grid-auto-columns: calc((100% - 3rem) / 3); } }
+  .sv-arrow {
+    display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 9999px;
+    border: 2px solid var(--color-teal); color: var(--color-teal); background: #fff; transition: background-color .2s, color .2s, opacity .2s;
+  }
+  .sv-arrow:hover:not(:disabled) { background: var(--color-teal); color: #fff; }
+  .sv-arrow:disabled { opacity: .35; cursor: default; }
+</style>
+
+<script>
+  // Articles carousel arrows: scroll by one card; no URL changes. Arrows disable at the ends.
+  document.querySelectorAll<HTMLElement>('[data-track]').forEach((track) => {
+    const section = track.closest('section')!;
+    const arrows = [...section.querySelectorAll<HTMLButtonElement>('.sv-arrow')];
+    const step = () => {
+      const card = track.querySelector<HTMLElement>('li');
+      return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || '24') : track.clientWidth;
+    };
+    const update = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      arrows.forEach((a) => (a.disabled = a.dataset.dir === '-1' ? track.scrollLeft <= 2 : track.scrollLeft >= max));
+    };
+    arrows.forEach((a) => a.addEventListener('click', () => track.scrollBy({ left: step() * Number(a.dataset.dir), behavior: 'smooth' })));
+    track.addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    addEventListener('resize', update);
+    update();
+  });
+</script>

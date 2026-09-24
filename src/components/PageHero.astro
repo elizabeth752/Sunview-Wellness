@@ -24,6 +24,9 @@ interface Props {
   ripple?: boolean;
   trust?: boolean; // trust strip below the hero: every commercial page (Home, ServicePage layouts, /our-team/, /for-professionals/); not on blog, person, privacy, thank-you or 404 pages (Decisions 2026-09-24, correction 1)
   crumbs?: Crumb[]; // visible breadcrumb trail (after Home); mirrors Base's BreadcrumbList
+  actions?: boolean; // false: no buttons (blog, post and person banners: SOP Blog/Post/Author §0)
+  titleNote?: string; // smaller second part of the H1 (e.g. a person's credentials), same heading text
+  banner?: boolean; // blog/post/person banner: Home hero height feel without the form (min-height at desktop)
 }
 const {
   title,
@@ -38,13 +41,18 @@ const {
   ripple = true,
   trust = false,
   crumbs = [],
+  actions = true,
+  titleNote,
+  banner = false,
 } = Astro.props;
 const hasAside = Astro.slots.has('aside');
+const hasBelow = Astro.slots.has('below');
 ---
 <section class="sv-hero relative isolate overflow-hidden bg-teal text-white">
   <SunMark variant="rays" ripple={ripple} class="pointer-events-none absolute -right-16 -top-16 -z-10 h-[520px] w-[520px] text-gold/60" />
 
-  <div class:list={['container-x grid items-center gap-12', compact ? 'py-12 sm:py-16' : 'py-12 sm:py-20', hasAside && 'lg:grid-cols-[1.15fr_0.85fr]']}>
+  <div class:list={['container-x', banner && 'flex flex-col justify-center lg:min-h-[460px]', compact ? 'py-12 sm:py-16' : 'py-12 sm:py-20']}>
+  <div class:list={['grid items-center gap-12', hasAside && 'lg:grid-cols-[1.15fr_0.85fr]']}>
     <div class="max-w-3xl">
       {crumbs.length > 0 && (
         <nav aria-label="Breadcrumb" class="mb-5 text-sm text-white/80">
@@ -62,15 +70,19 @@ const hasAside = Astro.slots.has('aside');
       <h1 class="text-[2.5rem] text-white sm:text-[3.125rem]">
         {title}
         {accent && <><br /><em class="font-display italic">{accent}</em></>}
+        {titleNote && <span class="sr-only">, </span>}
+        {titleNote && <span class="mt-3 block font-sans text-base font-extrabold uppercase tracking-[0.08em] text-white/85 sm:text-lg">{titleNote}</span>}
       </h1>
       {subheading && <p class="subheading mt-4 !text-white">{subheading}</p>}
       {supporting && <p class="mt-1 text-lg font-bold text-white/90">{supporting}</p>}
       {lead && <p class="mt-6 max-w-[62ch] text-lg text-white/90">{lead}</p>}
       <slot />
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={cta.href} class="btn-sun">{cta.label} <Icon name="arrow" /></a>
-        {secondary && <a href={secondary.href} class="btn-ghost-light">{secondary.label}</a>}
-      </div>
+      {actions && (
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={cta.href} class="btn-sun">{cta.label} <Icon name="arrow" /></a>
+          {secondary && <a href={secondary.href} class="btn-ghost-light">{secondary.label}</a>}
+        </div>
+      )}
       {stats.length > 0 && (
         <dl class="mt-12 grid grid-cols-2 gap-6 border-t border-white/25 pt-8 sm:grid-cols-4">
           {stats.map((s) => (
@@ -83,6 +95,8 @@ const hasAside = Astro.slots.has('aside');
       )}
     </div>
     {hasAside && <div class="w-full"><slot name="aside" /></div>}
+  </div>
+  {hasBelow && <slot name="below" />}
   </div>
 </section>
 {trust && <TrustStrip />}

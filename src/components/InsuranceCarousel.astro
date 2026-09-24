@@ -1,0 +1,47 @@
+---
+// Compact insurance carousel for the post sidebar (SOP Blog/Post/Author §2): about 1.3 logos visible (one full, the
+// next one peeking), infinite smooth auto-scroll, pauses on hover/focus, the whole strip links to the insurance page.
+// Logos: INSURANCE in src/data/site.js. The list is rendered twice so the loop is seamless; the copy is hidden from
+// assistive tech. Reduced motion: static.
+import { INSURANCE } from '../data/site.js';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+const secs = INSURANCE.length * 2.6;
+---
+<a href="/admissions/insurance/" class:list={['sv-ins block overflow-hidden rounded-[var(--radius-sm)]', cls]} aria-label="Insurance we accept: see plans and verify your coverage">
+  <ul class="sv-ins-track" style={`--sv-ins-dur:${secs}s`}>
+    {[0, 1].map((copy) =>
+      INSURANCE.map((c) => (
+        <li aria-hidden={copy === 1 ? 'true' : undefined}>
+          <img src={c.logo} alt="" loading="lazy" style={`width:${Math.round((c.w ?? 140) * 0.8)}px`} />
+        </li>
+      )),
+    )}
+  </ul>
+</a>
+
+<style>
+  .sv-ins { container-type: inline-size; }
+  .sv-ins-track {
+    display: flex;
+    width: max-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    animation: sv-ins var(--sv-ins-dur, 28s) linear infinite;
+  }
+  .sv-ins:hover .sv-ins-track,
+  .sv-ins:focus-visible .sv-ins-track { animation-play-state: paused; }
+  /* 1 / 1.3 of the strip per logo: one logo in full, the next one partly visible */
+  .sv-ins-track li {
+    flex: none;
+    width: 77cqw;
+    height: 88px;
+    display: grid;
+    place-items: center;
+    padding: 0 12px;
+  }
+  .sv-ins-track img { display: block; max-width: 100%; max-height: 56px; height: auto; object-fit: contain; }
+  @keyframes sv-ins { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .sv-ins-track { animation: none; } }
+</style>

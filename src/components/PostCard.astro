@@ -1,0 +1,68 @@
+---
+// Shared post card (SOP Blog/Post/Author §0 "Cards", §1 "Card anatomy"): blog grid, post related/latest blocks,
+// person "Articles by", Home "Recovery Resources". One component, three variants:
+//   default: feature graphic · category (+ read time) · title · ≈3-line excerpt · author · Read more →
+//   compact: small graphic left + category + title (sidebar related articles)
+// No publication date on cards. The graphic and the title link to the post; the author links to the person page.
+// Title element: `as` (default 'p'); use 'h3' only where an H2 precedes the card list.
+import Icon from './Icon.astro';
+import Avatar from './Avatar.astro';
+import { postAuthor, postImage, postExcerpt, postUrl, readTime, categoryColor } from '../data/posts.js';
+
+interface Props {
+  post: any;
+  variant?: 'default' | 'compact';
+  as?: 'p' | 'h3';
+  lead?: boolean; // larger card (first row of the blog grid)
+  class?: string;
+  eager?: boolean;
+  size?: 'md' | 'sm'; // sm: narrower columns (post "Latest articles", Home at tablet)
+}
+const { post, variant = 'default', as: Title = 'p', lead = false, class: cls = '', eager = false, size = 'md' } = Astro.props;
+const author = postAuthor(post);
+const href = postUrl(post);
+const mins = readTime(post);
+const meta = post.type === 'video' ? 'Video' : post.type === 'external' ? 'LinkedIn' : mins ? `${mins} min read` : null;
+const color = categoryColor(post.category).dot;
+---
+{variant === 'compact' ? (
+  <article class:list={['pc pc-compact group flex items-start gap-4', cls]}>
+    <a href={href} class="relative block w-[112px] shrink-0 overflow-hidden rounded-[var(--radius-sm)]" tabindex="-1" aria-hidden="true">
+      <img src={postImage(post)} alt="" width="1200" height="630" loading="lazy" class="aspect-[1200/630] w-full object-cover" />
+    </a>
+    <div class="min-w-0">
+      <span class="inline-flex items-center gap-1.5 text-[12px] font-extrabold uppercase tracking-[0.08em] text-muted">
+        <span class="h-2 w-2 rounded-full" style={`background:${color}`} aria-hidden="true"></span>{post.category}
+      </span>
+      <Title class="mt-1 font-display text-[15px] font-bold leading-snug text-charcoal">
+        <a href={href} class="line-clamp-3 hover:text-teal">{post.title}</a>
+      </Title>
+    </div>
+  </article>
+) : (
+  <article class:list={['pc group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-line bg-white transition hover:shadow-[var(--shadow-soft)]', lead && 'is-lead', cls]}
+    data-author={post.author} data-category={post.category}>
+    <a href={href} class="relative block overflow-hidden bg-mist" tabindex="-1" aria-hidden="true">
+      <img src={postImage(post)} alt="" width="1200" height="630" loading={eager ? 'eager' : 'lazy'} class="aspect-[1200/630] w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+    </a>
+    <div class:list={['pc-body flex flex-1 flex-col', size === 'sm' ? 'p-5' : 'p-6']}>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px]">
+        <span class="inline-flex items-center gap-1.5 font-extrabold uppercase tracking-[0.08em] text-charcoal">
+          <span class="h-2.5 w-2.5 rounded-full ring-2 ring-white" style={`background:${color}`} aria-hidden="true"></span>{post.category}
+        </span>
+        {meta && <span class="inline-flex items-center gap-1 text-muted">{post.type === 'video' ? <Icon name="play" class="h-3.5 w-3.5" /> : <Icon name="clock" class="h-3.5 w-3.5" />}{meta}</span>}
+      </div>
+      <Title class:list={['pc-title mt-3 font-display font-bold leading-snug text-charcoal', size === 'sm' ? 'text-lg' : 'text-xl']}>
+        <a href={href} class="hover:text-teal">{post.title}</a>
+      </Title>
+      <p class="pc-excerpt mt-3 line-clamp-3 text-[15px] text-charcoal">{postExcerpt(post)}</p>
+      <div class="mt-auto pt-5"><div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 border-t border-line pt-4">
+        <a href={author.href} class="inline-flex min-w-0 items-center gap-2.5 text-sm font-bold text-charcoal hover:text-teal">
+          <Avatar person={author} class="h-9 w-9" text="text-xs" />
+          <span class="whitespace-nowrap">{author.name}</span>
+        </a>
+        <a href={href} class="inline-flex shrink-0 items-center gap-1 text-sm font-extrabold text-teal hover:text-teal-light" aria-label={`Read more: ${post.title}`}>Read more <span aria-hidden="true">→</span></a>
+      </div></div>
+    </div>
+  </article>
+)}

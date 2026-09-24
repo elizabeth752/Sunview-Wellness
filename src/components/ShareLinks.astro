@@ -1,0 +1,30 @@
+---
+// "Share on" links for a post (SOP Blog/Post/Author §2): Facebook, X, LinkedIn, WhatsApp, each sharing the
+// canonical URL. Plain links (no SDKs, no tracking scripts); they open in a new tab.
+import Icon from './Icon.astro';
+interface Props { url: string; title: string; tone?: 'light' | 'dark'; class?: string }
+const { url, title, tone = 'light', class: cls = '' } = Astro.props;
+const u = encodeURIComponent(url);
+const t = encodeURIComponent(title);
+const links = [
+  { name: 'Facebook', icon: 'facebook', href: `https://www.facebook.com/sharer/sharer.php?u=${u}` },
+  { name: 'X', icon: 'xsocial', href: `https://twitter.com/intent/tweet?url=${u}&text=${t}` },
+  { name: 'LinkedIn', icon: 'linkedin', href: `https://www.linkedin.com/sharing/share-offsite/?url=${u}` },
+  { name: 'WhatsApp', icon: 'whatsapp', href: `https://wa.me/?text=${t}%20${u}` },
+];
+const btn = tone === 'dark'
+  ? 'border-white/40 text-white hover:bg-white hover:text-teal'
+  : 'border-line bg-white text-teal hover:border-teal hover:bg-teal hover:text-white';
+---
+<div class:list={['flex flex-wrap items-center gap-3', cls]}>
+  <span class:list={['text-[13px] font-extrabold uppercase tracking-[0.08em]', tone === 'dark' ? 'text-white/85' : 'text-muted']}>Share on</span>
+  <ul class="flex gap-2">
+    {links.map((l) => (
+      <li>
+        <a href={l.href} target="_blank" rel="noopener" class:list={['grid h-10 w-10 place-items-center rounded-full border transition', btn]} aria-label={`Share on ${l.name} (opens in a new tab)`}>
+          <Icon name={l.icon} class="h-[18px] w-[18px]" />
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>

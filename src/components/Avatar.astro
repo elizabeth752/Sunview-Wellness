@@ -1,0 +1,11 @@
+---
+// Person avatar: the headshot when team.js has `photo`, otherwise the branded initials placeholder
+// (teal initials on mist with a gold ring), per SOP Blog/Post/Author §0 "Images". Decorative: the name is always
+// next to it in text.
+import { initials } from '../data/site.js';
+interface Props { person: { name: string; photo?: string | null }; class?: string; text?: string }
+const { person, class: cls = 'h-12 w-12', text = 'text-base' } = Astro.props;
+---
+{person.photo
+  ? <img src={person.photo} alt="" loading="lazy" class:list={['shrink-0 rounded-full object-cover', cls]} />
+  : <span class:list={['grid shrink-0 place-items-center rounded-full border-2 border-gold bg-mist font-display font-bold leading-none text-teal', cls, text]} aria-hidden="true">{initials(person.name)}</span>}

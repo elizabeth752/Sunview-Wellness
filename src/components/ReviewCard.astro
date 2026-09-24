@@ -1,0 +1,23 @@
+---
+// One Google review, verbatim (src/data/reviews.js), for the post sidebar (SOP Blog/Post/Author §2): name
+// (first name + last initial), stars, full text, link to Sunview's Google reviews.
+import { GBP_URL } from '../data/reviews.js';
+interface Props { review: { author: string; rating: number; text: string } }
+const { review: r } = Astro.props;
+---
+<figure aria-label={`Google review by ${r.author}`}>
+  <div class="flex items-center gap-3">
+    <span class="grid h-10 w-10 flex-none place-items-center rounded-full bg-teal font-bold text-white" aria-hidden="true">{r.author.charAt(0)}</span>
+    <div>
+      <p class="font-bold leading-tight text-charcoal">{r.author}</p>
+      <p class="mt-0.5 flex gap-px text-[#fbbc04]" role="img" aria-label={`${r.rating} out of 5 stars on Google`}>
+        {Array.from({ length: r.rating }).map(() => (
+          <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+        ))}
+      </p>
+    </div>
+    <img src="/images/badges/google-reviews.svg" alt="" width="93" height="33" class="ml-auto h-6 w-auto" />
+  </div>
+  <blockquote class="mt-4 text-[15px] leading-relaxed text-charcoal">“{r.text}”</blockquote>
+  <a href={GBP_URL} target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-1 text-sm font-extrabold text-teal hover:text-teal-light">Read our reviews on Google <span aria-hidden="true">→</span></a>
+</figure>

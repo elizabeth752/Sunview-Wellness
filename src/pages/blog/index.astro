@@ -1,16 +1,22 @@
 ---
-// Blog hub (/blog/ replaced /media/, final sitemap). Articles first, podcasts and videos below (user, 2026-09-24).
+// Blog hub (/blog/ replaced /media/, final sitemap), per docs/content/SOP-Blog-Post-Author-Templates.md §1:
+// banner (breadcrumb, H1, one paragraph, no form) · authors row · category tabs · cards grid · CTA (H2).
+// Every post is in the HTML; the author and category filters combine and only hide/show cards client-side. State
+// lives in JS only: no ?query, no hash, no /page/2/ or /category/ URLs.
+// Order (client rule 2026-09-24): articles (on-site + LinkedIn) newest first, then podcasts/videos newest first.
+// Grid: first row = the 2 first visible cards, larger; then rows of 3. The same rule is re-applied to the filtered
+// set (the script marks the first two visible cards as leads), so a filtered view keeps the 2-then-3 rhythm.
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import PostCard from '../../components/PostCard.astro';
+import Avatar from '../../components/Avatar.astro';
 import Icon from '../../components/Icon.astro';
-import { sortedPosts, formatDate, postImage } from '../../data/posts.js';
-
-const writing = sortedPosts.filter((p) => p.type !== 'video');
-const videos = sortedPosts.filter((p) => p.type === 'video');
+import { SITE } from '../../data/site.js';
+import { blogOrder, categories, authors, postAuthor, postUrl, postOgImage, postUpdated, categoryColor } from '../../data/posts.js';
 
 const crumbs = [{ name: 'Blog', href: '/blog/' }];
-const site = 'https://sunviewwellness.com';
+const site = SITE.url;
 const schema = [{
   '@context': 'https://schema.org',
   '@type': 'Blog',
@@ -18,14 +24,20 @@ const schema = [{
   url: `${site}/blog/`,
   name: 'Sunview Wellness Blog',
   publisher: { '@id': `${site}/#organization` },
-  blogPost: writing.map((p) => ({
-    '@type': 'BlogPosting',
-    headline: p.title,
-    url: `${site}/blog/${p.slug}/`,
-    datePublished: p.date,
-    author: { '@type': 'Person', name: p.author.name, url: new URL(p.author.href, site).href },
-  })),
+  blogPost: blogOrder.map((p) => {
+    const a = postAuthor(p);
+    return {
+      '@type': 'BlogPosting',
+      headline: p.title,
+      url: new URL(postUrl(p), site).href,
+      image: new URL(postOgImage(p), site).href,
+      datePublished: p.date,
+      dateModified: postUpdated(p),
+      author: { '@type': 'Person', name: a.name, url: new URL(a.href, site).href },
+    };
+  }),
 }];
+const count = (fn: (p: any) => boolean) => blogOrder.filter(fn).length;
 ---
 <Base
   title="Addiction and Mental Health Recovery Blog | Sunview Wellness"
@@ -35,56 +47,127 @@ const schema = [{
 >
   <PageHero
     title="Addiction and Mental Health Recovery Blog"
-    subheading="Leading the conversation."
-    lead="From redefining clinical outcomes to challenging the status quo in behavioral health, Frank Galimidi and the Sunview team are making their mark on the world of extended care."
+    lead="From redefining clinical outcomes to challenging the status quo in behavioral health, Frank Galimidi and the Sunview team write and talk about extended care, In Vivo Treatment™ and what recovery looks like in real life."
     crumbs={crumbs}
-    cta={{ label: 'Get help now', href: '/admissions/' }}
-    compact
+    actions={false}
+    banner
   />
 
-  <section class="section" aria-labelledby="articles-title">
-    <div class="container-x">
-      <h2 id="articles-title" class="text-3xl sm:text-4xl">Articles on Addiction Treatment and Recovery</h2>
-      <p class="mt-4 max-w-2xl text-lg text-charcoal">Frank writes on community-based care, extended care and the future of behavioral health.</p>
-      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {writing.map((p) => (
-          <a href={`/blog/${p.slug}/`} class="card group !p-0 overflow-hidden">
-            <div class="aspect-[1200/630] overflow-hidden bg-teal">
-              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
-            </div>
-            <div class="p-6">
-              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-teal">Article · {formatDate(p.date)}</p>
-              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
-              <p class="mt-2 text-sm text-charcoal">{p.dek}</p>
-            </div>
-          </a>
+  <section class="section bg-mist" aria-labelledby="posts-title">
+    <div class="container-x" data-blog>
+      <h2 id="posts-title" class="sr-only">Articles and podcasts</h2>
+
+      {/* Authors row: people with at least one post. Clicking the chip filters; the name links to the person page. */}
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+        <span class="text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">Authors</span>
+        <ul class="flex flex-wrap gap-3">
+          {authors.map((a) => (
+            <li class="sv-author flex cursor-pointer items-center gap-3 rounded-full border-2 border-transparent bg-white py-1.5 pl-1.5 pr-5 shadow-[var(--shadow-soft)] transition" data-author-chip={a.slug}>
+              <button type="button" class="relative rounded-full" aria-pressed="false" data-author={a.slug} aria-label={`Show only posts by ${a.name}`}>
+                <Avatar person={a} class="h-12 w-12" text="text-base" />
+                <span class="sv-author-check absolute -bottom-0.5 -right-0.5 hidden h-5 w-5 place-items-center rounded-full bg-teal text-white" aria-hidden="true"><Icon name="check" class="h-3 w-3" /></span>
+              </button>
+              <span class="leading-tight">
+                <a href={a.href} class="font-display text-lg font-bold text-charcoal hover:text-teal">{a.name}</a>
+                {a.creds && <span class="mt-0.5 block text-xs font-bold text-muted">{a.creds}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Category tabs, generated from the posts (only categories with at least one post) */}
+      <div class="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter by topic">
+        {['All', ...categories].map((c) => (
+          <button type="button" class="sv-tab" aria-pressed={c === 'All' ? 'true' : 'false'} data-category={c === 'All' ? '' : c}>
+            {c !== 'All' && <span class="h-2.5 w-2.5 rounded-full" style={`background:${categoryColor(c).dot}`} aria-hidden="true"></span>}
+            {c}
+            <span class="sv-tab-count">{c === 'All' ? blogOrder.length : count((p) => p.category === c)}</span>
+          </button>
         ))}
       </div>
+
+      <p class="sr-only" aria-live="polite" data-status></p>
+
+      <ul class="sv-grid mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-6" data-grid>
+        {blogOrder.map((p, i) => (
+          <li class:list={['sv-cell', i < 2 && 'is-lead']} data-author={p.author} data-category={p.category}>
+            <PostCard post={p} as="h3" eager={i < 2} />
+          </li>
+        ))}
+      </ul>
+
+      <p class="mt-10 hidden rounded-[var(--radius-card)] bg-white p-6 text-center text-lg" data-empty>
+        No posts match these filters. <button type="button" class="font-extrabold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light" data-reset>Show all</button>
+      </p>
     </div>
   </section>
 
-  <section class="section bg-mist" aria-labelledby="podcasts-title">
-    <div class="container-x">
-      <h2 id="podcasts-title" class="text-3xl sm:text-4xl">Podcasts and Videos With Frank Galimidi</h2>
-      <p class="mt-4 max-w-2xl text-lg text-charcoal">Conversations on extended care, staying sober and what treatment should look like after rehab.
-        <a href="https://www.youtube.com/@frankgalimidi" target="_blank" rel="noopener" class="font-bold text-teal underline decoration-2 underline-offset-4">Watch on YouTube</a></p>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        {videos.map((p) => (
-          <a href={`/blog/${p.slug}/`} class="card group !p-0 overflow-hidden">
-            <div class="relative aspect-video overflow-hidden bg-teal">
-              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.03]" />
-              <span class="absolute inset-0 flex items-center justify-center"><span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-sun text-charcoal shadow-lg"><Icon name="play" class="ml-1 h-7 w-7" /></span></span>
-            </div>
-            <div class="p-6">
-              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-teal">{p.show} · {formatDate(p.date)}</p>
-              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
-              <p class="mt-2 text-charcoal">{p.dek}</p>
-            </div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <CtaBand />
+  <CtaBand headingLevel="h2" />
 </Base>
+
+<style>
+  .sv-author[aria-current='true'],
+  .sv-author:has(button[aria-pressed='true']) { border-color: var(--color-teal); }
+  .sv-author:has(button[aria-pressed='true']) .sv-author-check { display: grid; }
+  .sv-tab {
+    display: inline-flex; align-items: center; gap: 0.5rem; height: 42px; padding: 0 1.1rem;
+    border-radius: 9999px; border: 1px solid var(--color-line); background: #fff;
+    font-weight: 800; font-size: 15px; color: var(--color-charcoal); transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .sv-tab:hover { border-color: var(--color-teal); color: var(--color-teal); }
+  .sv-tab[aria-pressed='true'] { background: var(--color-teal); border-color: var(--color-teal); color: #fff; }
+  .sv-tab-count { font-size: 12px; font-weight: 800; min-width: 1.5rem; padding: 0 .4rem; border-radius: 9999px; background: var(--color-mist); color: var(--color-teal); text-align: center; line-height: 1.5rem; }
+  .sv-tab[aria-pressed='true'] .sv-tab-count { background: rgb(255 255 255 / .18); color: #fff; }
+  @media (min-width: 1024px) {
+    .sv-cell { grid-column: span 2; }
+    .sv-cell.is-lead { grid-column: span 3; }
+  }
+  .sv-cell[hidden] { display: none; }
+  .sv-cell.is-lead :global(.pc-title) { font-size: 1.5rem; }
+  @media (min-width: 1024px) {
+    .sv-cell.is-lead :global(.pc-body) { padding: 1.75rem 2rem 2rem; }
+    .sv-cell.is-lead :global(.pc-title) { font-size: 1.75rem; line-height: 1.2; }
+    .sv-cell.is-lead :global(.pc-excerpt) { font-size: 1.0625rem; }
+  }
+</style>
+
+<script>
+  // Client-side filters: author × category. Never touches location (no query string, no hash).
+  const root = document.querySelector<HTMLElement>('[data-blog]');
+  if (root) {
+    const cells = [...root.querySelectorAll<HTMLElement>('.sv-cell')];
+    const authorBtns = [...root.querySelectorAll<HTMLButtonElement>('button[data-author]')];
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('.sv-tab')];
+    const empty = root.querySelector<HTMLElement>('[data-empty]')!;
+    const status = root.querySelector<HTMLElement>('[data-status]')!;
+    const state = { author: '', category: '' };
+
+    const apply = () => {
+      let shown = 0;
+      for (const cell of cells) {
+        const ok = (!state.author || cell.dataset.author === state.author) && (!state.category || cell.dataset.category === state.category);
+        cell.hidden = !ok;
+        cell.classList.toggle('is-lead', ok && shown < 2);
+        if (ok) shown++;
+      }
+      empty.classList.toggle('hidden', shown > 0);
+      authorBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.author === state.author)));
+      tabs.forEach((t) => t.setAttribute('aria-pressed', String((t.dataset.category ?? '') === state.category)));
+      status.textContent = shown ? `Showing ${shown} ${shown === 1 ? 'post' : 'posts'}` : 'No posts match these filters';
+    };
+
+    authorBtns.forEach((b) => b.addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.author = state.author === b.dataset.author ? '' : b.dataset.author!;
+      apply();
+    }));
+    // Clicking anywhere on the author chip (except the name link) toggles the same filter
+    root.querySelectorAll<HTMLElement>('[data-author-chip]').forEach((chip) => chip.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) return;
+      chip.querySelector<HTMLButtonElement>('button')?.click();
+    }));
+    tabs.forEach((t) => t.addEventListener('click', () => { state.category = t.dataset.category ?? ''; apply(); }));
+    root.querySelector('[data-reset]')?.addEventListener('click', () => { state.author = ''; state.category = ''; apply(); });
+  }
+</script>

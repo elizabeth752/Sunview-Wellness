@@ -12,7 +12,9 @@
 // is noindex and out of the sitemap (NOINDEX_PATHS below), and the person is left out of the /our-team/ grid,
 // "Also on this team" lists, the /about/ initials stack, the team schema and every other link. Remove the flag
 // (and add the fuller bio) when it arrives: they reappear everywhere automatically.
-// Posts: "Articles by {First}" is built from src/data/posts.js where post.author.name === name.
+// Posts: "Articles by {First}" is built from src/data/posts.js where post.author === slug (posts reference people by slug,
+// so name, creds, title, photo and bio here propagate to bylines, cards and BlogPosting schema).
+// Person pages never link to other staff (SOP Blog/Post/Author §3): keep bio/role copy free of /our-team/{slug}/ links.
 
 export const TEAM_GROUPS = [
   { id: 'leadership', title: 'Leadership and Clinical Direction' },
@@ -28,7 +30,7 @@ const PRIMARY_THERAPIST_ROLE = [
 ];
 // Answer 3.8: "ongoing clinical supervision by the Clinical Director", no frequency.
 const INTERN_SUPERVISION =
-  'As a registered intern, {first} receives ongoing clinical supervision by Sunview’s <a href="/our-team/dana-martin/">Clinical Director, Dana Martin</a>, who encourages clinicians to look beyond the presenting symptom and stay curious about what may be happening underneath it.';
+  'As a registered intern, {first} receives ongoing clinical supervision by Sunview’s Clinical Director, Dana Martin, who encourages clinicians to look beyond the presenting symptom and stay curious about what may be happening underneath it.';
 const GROUP_LEADER_ROLE = [
   'At Sunview, day programming doesn’t rotate through a different facilitator every hour. It runs as one continuous group from 9 AM to 1 PM, with breaks, led by the same facilitator from start to finish. That consistency lets the group go deeper into the material instead of switching topics and leaders every hour.',
   'Internal Family Systems (IFS) is woven into group topics across the program, alongside CBT, DBT and trauma-informed approaches. <a href="/therapies/group-therapy/">Group therapy at Sunview</a>.',

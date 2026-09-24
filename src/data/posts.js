@@ -4,12 +4,26 @@
 // Video summaries are paraphrased from each episode's own YouTube description (our copy: no "client", no em dashes).
 // Article bodies are Frank's signed articles, verbatim (blog rewrites are not for launch, Decisions 2026-09-24).
 
-const FRANK = {
-  name: 'Frank Galimidi',
-  creds: 'CASAC, CAP, CRADC, ICADC, NCAC II, SAP',
-  role: 'CEO, Sunview Wellness · Creator of In Vivo Treatment™ and Clinical Architecture™',
-  href: '/our-team/frank-galimidi/', // author page: byline link + BlogPosting author.url (E-E-A-T)
+// author: slug of the person in src/data/team.js (a reference, not free text). Name, credentials, role, photo, bio
+// and the /our-team/{slug}/ link are read from team.js everywhere (banner, cards, author filter, BlogPosting).
+// category: one per post. Its card/OG graphic color lives in CATEGORY_COLORS below; blog tabs are generated from
+// the categories actually in use.
+// updated: optional ISO date for BlogPosting dateModified (defaults to `date`).
+// sources: optional [{ label, url }], only verifiable links (rendered as "Sources" with rel="nofollow noopener").
+// Feature graphics (card + og:image) are generated per slug by scripts/generate-post-graphics.mjs into
+// public/images/blog/{slug}.webp and public/images/blog/og/{slug}.png. Re-run it after adding or retitling a post.
+
+import { personBySlug, personHref } from './team.js';
+
+// One brand color per category (Brand Book tokens). bg = graphic ground, ink = title color on it,
+// accent = rays/rule color, dot = the category marker on light cards.
+export const CATEGORY_COLORS = {
+  'Clinical Approach': { token: 'teal', bg: '#126E6E', ink: '#FFFFFF', accent: '#CF9034', dot: '#126E6E' },
+  'Extended Care': { token: 'cream', bg: '#FDF6E3', ink: '#545555', accent: '#CF9034', dot: '#CF9034' },
+  Podcasts: { token: 'charcoal', bg: '#545555', ink: '#FFFFFF', accent: '#F5C518', dot: '#545555' },
 };
+const FALLBACK_COLOR = CATEGORY_COLORS['Clinical Approach'];
+export const categoryColor = (c) => CATEGORY_COLORS[c] ?? FALLBACK_COLOR;
 
 export const posts = [
   {
@@ -18,8 +32,8 @@ export const posts = [
     title: 'What Should a Treatment Center Feel Like?',
     dek: 'Clinical excellence matters, and so does recovery culture. What to pay attention to when you visit or call a program.',
     date: '2026-09-22',
-    image: '/images/media/treatment-center-feel.webp',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Clinical Approach',
     body: `
 <p>When people search for addiction treatment, they understandably look at the services first. What levels of care are offered? Does the program accept my insurance? Are there licensed clinicians? What does the schedule look like? Can I continue working or going to school?</p>
 <p>Those are important questions. But there is another question that people considering treatment, and their families, should ask:</p>
@@ -77,7 +91,9 @@ export const posts = [
     date: '2026-09-16',
     youtube: 'haoZ3Qb6kWA',
     show: 'Recovery Centered Podcast',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Podcasts',
+    sources: [{ label: 'Recovery Centered Podcast on YouTube', url: 'https://www.youtube.com/watch?v=haoZ3Qb6kWA' }],
     summary: [
       'In this conversation with Tim Roberto, Frank explores why 28 days is rarely enough to create lasting recovery.',
       'Detox and residential treatment provide safety, stabilization, structure and a critical interruption in the cycle of substance use. But recovery isn’t finished when someone is medically stable or reaches a discharge date. The deeper work often begins when a person has to apply what they’ve learned to relationships, work, responsibility, stress and everyday life.',
@@ -91,8 +107,8 @@ export const posts = [
     seoTitle: 'In Vivo Treatment™: Recovery Has to Work in the Real World', // <title> only (≤60, answer 9.1)
     dek: 'Recovery skills shouldn’t just exist on paper. At some point, you have to practice them where your life actually happens.',
     date: '2026-09-10',
-    image: '/images/media/in-vivo-treatment.webp',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Clinical Approach',
     body: `
 <p>For decades, addiction treatment has relied heavily on highly structured environments to help people begin the process of recovery.</p>
 <p>At Sunview Wellness, we know there is tremendous value in that structure. Detox and residential care provide safety, stabilization, a physical break from substances, and the space to start addressing the root causes of addiction.</p>
@@ -163,7 +179,9 @@ export const posts = [
     date: '2026-09-08',
     youtube: '6hMPNGCWx9E',
     show: 'The Saving Dose Podcast · Episode 10',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Podcasts',
+    sources: [{ label: 'The Saving Dose Podcast · Episode 10 on YouTube', url: 'https://www.youtube.com/watch?v=6hMPNGCWx9E' }],
     summary: [
       'Dr. John Hsu and William Pedranti are joined by Frank Galimidi, a clinical leader with 23 years in addiction treatment who entered the field himself, in recovery, at 22.',
       'Frank argues that the treatment industry has made enormous scientific progress with very little movement in relapse rates, and he is direct about why: short-term treatment, insurance-driven discharge, and a cultural belief that stabilization equals recovery.',
@@ -177,12 +195,13 @@ export const posts = [
     seoTitle: 'Insurance Cuts Patients Off the Moment They Start Doing Well', // <title> only (≤60, answer 9.1)
     dek: 'A clip from Episode 10 of The Saving Dose on why coverage so often ends right when recovery starts to take hold.',
     date: '2026-09-08',
-    image: '/images/media/insurance-clip.webp',
     externalUrl:
       'https://www.linkedin.com/posts/john-hsu-md-300a8b2a_insurance-companies-cut-patients-off-the-ugcPost-7503470595251109889-kgrR/',
     externalLabel: 'Watch the clip on LinkedIn',
     relatedVideo: 'what-actually-happens-after-rehab',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Extended Care',
+    sources: [{ label: 'Original post on LinkedIn', url: 'https://www.linkedin.com/posts/john-hsu-md-300a8b2a_insurance-companies-cut-patients-off-the-ugcPost-7503470595251109889-kgrR/' }],
     summary: [
       'In this clip from The Saving Dose, Frank describes a pattern he has watched for two decades: people begin to stabilize, feel better and engage in treatment, and that improvement becomes the reason coverage ends.',
       'The early weeks after stabilization are when the real work of recovery begins: returning to relationships, work and responsibility with support still in place. The full conversation is in Episode 10.',
@@ -196,7 +215,9 @@ export const posts = [
     date: '2026-06-02',
     youtube: '9yUaIjr6O1I',
     show: 'KIND Counseling',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Podcasts',
+    sources: [{ label: 'KIND Counseling on YouTube', url: 'https://www.youtube.com/watch?v=9yUaIjr6O1I' }],
     summary: [
       'Frank Galimidi talks about his 23-year career in substance use disorder and mental health treatment.',
       'He explains how outpatient programs differ from inpatient rehab: people go home every day and learn to manage their recovery in real-world settings. He also walks through the levels of care Sunview offers for substance use, mental health and co-occurring conditions, with both daytime and evening programming.',
@@ -210,7 +231,9 @@ export const posts = [
     date: '2026-06-02',
     youtube: 'jrmMDuDjkyk',
     show: 'The elev8.io Podcast · Episode 13',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Podcasts',
+    sources: [{ label: 'The elev8.io Podcast · Episode 13 on YouTube', url: 'https://www.youtube.com/watch?v=jrmMDuDjkyk' }],
     summary: [
       'Gary Garth sits down with Frank Galimidi to talk about one of the biggest gaps in behavioral health: the difference between getting sober and actually staying sober.',
       'They cover why extended care (PHP, IOP and outpatient) is critical for long-term success, how reimbursement structures influence care decisions, and why outcomes, not just admissions, will define the future of the field.',
@@ -223,11 +246,12 @@ export const posts = [
     dek: 'Why extended care is where recovery actually happens.',
     metaDescription: 'Frank Galimidi on why PHP, IOP and outpatient care are where recovery is proven, because sobriety is practiced in real life, not in treatment. Read more.', // meta only (dek too short, answer 9.1)
     date: '2026-06-02',
-    image: '/images/media/recovery-bubble.webp',
     externalUrl:
       'https://www.linkedin.com/pulse/recovery-doesnt-happen-bubble-why-extended-care-where-frank-0yste',
     externalLabel: 'Read the full article on LinkedIn',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Extended Care',
+    sources: [{ label: 'Original post on LinkedIn', url: 'https://www.linkedin.com/pulse/recovery-doesnt-happen-bubble-why-extended-care-where-frank-0yste' }],
     summary: [
       'After twenty-two years in addiction treatment, from Brooklyn to the Florida model, Frank has watched residential programs save lives, and watched the same people return again and again. Not because they didn’t care, but because they were never taught how to live sober in the world they actually had to return to.',
       '“Sobriety is not proven in treatment. It is proven in life.” PHP, IOP and outpatient care were never meant to be afterthoughts. They are the bridge between insight and application, where people manage cravings after a long workday and set boundaries with real family members.',
@@ -241,11 +265,12 @@ export const posts = [
     dek: 'Why “good enough” care is no longer acceptable.',
     metaDescription: 'Frank Galimidi on why community-based outpatient care must be intensive, skilled and transformative, not merely adequate. Read the full article.', // meta only (dek too short, answer 9.1)
     date: '2026-06-02',
-    image: '/images/media/beyond-good-enough.webp',
     externalUrl:
       'https://www.linkedin.com/pulse/beyond-good-enough-redefining-community-based-care-frank-8vrce',
     externalLabel: 'Read the full article on LinkedIn',
-    author: FRANK,
+    author: 'frank-galimidi', // slug in src/data/team.js
+    category: 'Clinical Approach',
+    sources: [{ label: 'Original post on LinkedIn', url: 'https://www.linkedin.com/pulse/beyond-good-enough-redefining-community-based-care-frank-8vrce' }],
     summary: [
       'Community-based providers (local outpatient clinics, recovery centers and mental health programs) are too often associated with mediocrity, and the people they serve stereotyped as unmotivated. Frank argues that narrative is inaccurate and harmful.',
       'Community programs already deliver most of the behavioral health treatment in the United States. They serve working professionals, parents, and people who are unemployed or unhoused. That’s why they need to be intensive, skilled and transformative, not merely adequate.',
@@ -256,6 +281,49 @@ export const posts = [
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
 
+// Blog order (client rule 2026-09-24): articles (on-site and LinkedIn) newest first, then podcasts/videos newest first.
+const isVideo = (p) => p.type === 'video';
+export const blogOrder = [...sortedPosts.filter((p) => !isVideo(p)), ...sortedPosts.filter(isVideo)];
+
+// Tabs: categories with at least one post, in blog order of first appearance.
+export const categories = [...new Set(blogOrder.map((p) => p.category))];
+
+export const postUrl = (p) => `/blog/${p.slug}/`;
+export const postImage = (p) => `/images/blog/${p.slug}.webp`; // card graphic (1200×630)
+export const postOgImage = (p) => `/images/blog/og/${p.slug}.png`; // og:image (1200×630)
+export const postUpdated = (p) => p.updated ?? p.date;
+export const postExcerpt = (p) => p.excerpt ?? p.dek;
+
+// Resolved author (team.js person) for a post
+export const postAuthor = (p) => {
+  const person = personBySlug(p.author);
+  if (!person) throw new Error(`posts.js: unknown author "${p.author}" on ${p.slug}`);
+  return {
+    ...person,
+    href: personHref(person),
+    nameWithCreds: person.creds ? `${person.name}, ${person.creds}` : person.name,
+    role: person.title,
+  };
+};
+export const postsBy = (slug) => blogOrder.filter((p) => p.author === slug);
+// People with at least one post (blog authors row)
+export const authors = [...new Set(blogOrder.map((p) => p.author))].map((slug) => postAuthor({ author: slug, slug }));
+
+// Read time for on-site articles (230 wpm)
+export const readTime = (p) => {
+  if (p.type !== 'article' || !p.body) return null;
+  const words = p.body.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 230));
+};
+
+// 3 most recent posts, excluding the current one
+export const latestPosts = (p, n = 3) => sortedPosts.filter((x) => x.slug !== p.slug).slice(0, n);
+// Same category first (newest first), then the latest of the rest
+export const relatedPosts = (p, n = 3) => {
+  const others = sortedPosts.filter((x) => x.slug !== p.slug);
+  return [...others.filter((x) => x.category === p.category), ...others.filter((x) => x.category !== p.category)].slice(0, n);
+};
+
 export const formatDate = (iso) =>
   new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', {
     month: 'long',
@@ -263,6 +331,3 @@ export const formatDate = (iso) =>
     year: 'numeric',
     timeZone: 'UTC',
   });
-
-export const postImage = (p) =>
-  p.image || (p.youtube ? `https://i.ytimg.com/vi/${p.youtube}/hqdefault.jpg` : '/images/brand/og-default.jpg');
