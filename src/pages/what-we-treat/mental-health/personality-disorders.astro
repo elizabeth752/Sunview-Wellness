@@ -4,7 +4,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, MENTAL_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/mental-health/personality-disorders/';
@@ -19,29 +19,29 @@ const signs = [
 const treating = [
   { icon: 'users', title: 'A relational lens', text: 'We look at the relationships, family systems and learned patterns around you, not just at a diagnosis. People are shaped by their experiences, and can create something different.' },
   { icon: 'message', title: 'Carefrontation in group', text: 'Honest feedback, given with care and without shame. You practice hearing hard things without shutting down, and saying them without attacking.' },
-  { icon: 'heart', title: 'A strong therapeutic relationship', text: 'Our lead therapist’s work centers on the therapeutic alliance and connection as drivers of lasting change. That relationship is where new patterns get practiced first.' },
+  { icon: 'heart', title: 'A strong therapeutic relationship', html: 'Our <a href="/our-team/gabriel-pena/" class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">lead therapist</a>’s work centers on the therapeutic alliance and connection as drivers of lasting change. That relationship is where new patterns get practiced first.' },
   { icon: 'refresh', title: 'Patterns in real time', text: 'You go home every day. The conflict at home or at work comes back to group, where we slow it down and look at what happened.' },
 ];
 
 const approaches = [
-  { name: 'DBT', text: 'Builds skills for emotional regulation, distress tolerance and relationships: the core of how we work with intense emotions.' },
-  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the different parts of yourself, including the protective ones that react before you can think.' },
-  { name: 'Psychodynamic therapy', text: 'Looks at how early experiences and relationships formed the patterns you live within today.' },
-  { name: 'Family systems work', text: 'Explores the roles and patterns in your family that may keep the cycle going, with your consent.' },
-  { name: 'CBT', text: 'Works on the thoughts and beliefs that drive reactions and substance use.' },
+  { name: 'DBT', href: '/therapies/dbt/', text: 'Builds skills for emotional regulation, distress tolerance and relationships: the core of how we work with intense emotions.' },
+  { name: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/', text: 'Helps you understand the different parts of yourself, including the protective ones that react before you can think.' },
+  { name: 'Psychodynamic therapy', href: '/therapies/inner-child-therapy/', text: 'Looks at how early experiences and relationships formed the patterns you live within today.' },
+  { name: 'Family systems work', href: '/therapies/family-therapy/', text: 'Explores the roles and patterns in your family that may keep the cycle going, with your consent.' },
+  { name: 'CBT', href: '/therapies/cbt/', text: 'Works on the thoughts and beliefs that drive reactions and substance use.' },
 ];
 
 const faqs = [
-  { q: 'Do you treat borderline personality disorder?', a: 'Personality disorders are among the conditions we see most often alongside substance use. Your pre-screening and intake assessment help us understand your specific needs and recommend the right level of care. <a href="/admissions/">Start with admissions</a>.' },
+  { q: 'Do you treat borderline personality disorder?', a: 'We treat personality disorders, including the patterns often described as borderline, when they come with substance use. They are among the conditions we see most often. Your pre-screening and intake assessment help us understand your specific needs and recommend the right level of care. <a href="/admissions/">Start with admissions</a>.' },
   { q: 'Will I be treated as a label?', a: 'No. We approach people with curiosity rather than judgment. Instead of asking what’s wrong with you, we want to understand what happened to you and what patterns you’ve been living within.' },
   { q: 'Is group therapy right for me if relationships are hard?', a: 'Group is often where the most useful work happens. The same facilitator leads the whole session, and our carefrontation culture teaches honest feedback without shame, so you can practice new ways of relating with support.' },
-  { q: 'Do you treat personality disorders without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If that isn’t your situation, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do you treat personality disorders without substance use?', a: 'We treat personality disorders when they come with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for personality disorder care on its own, we’ll help you find the right fit.' },
   { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
 ];
 ---
 <ServicePage
   path={path}
-  metaTitle="Personality Disorder Treatment in West Palm Beach | Sunview"
+  metaTitle="Personality Disorder & Addiction Treatment | West Palm Beach"
   description="Personality disorders treated alongside substance use in West Palm Beach. DBT, IFS and psychodynamic work in outpatient PHP, IOP and OP."
   crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }, { name: 'Personality Disorders', href: path }]}
   h1="Personality Disorder and Addiction Treatment in West Palm Beach"
@@ -71,6 +71,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </aside>
     </div>
   </section>
@@ -88,7 +89,7 @@ const faqs = [
           <div class="card">
             <Icon name={t.icon} class="h-7 w-7 text-teal" />
             <h3 class="mt-4 text-xl">{t.title}</h3>
-            <p class="mt-2">{t.text}</p>
+            <p class="mt-2">{t.html ? <Fragment set:html={t.html} /> : t.text}</p>
           </div>
         ))}
       </div>
@@ -108,7 +109,7 @@ const faqs = [
       <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
         {approaches.map((a) => (
           <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
-            <dt class="font-extrabold">{a.name}</dt>
+            <dt class="font-extrabold">{a.html ? <Fragment set:html={a.html} /> : a.href ? <a href={a.href} class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{a.name}</a> : a.name}</dt>
             <dd>{a.text}</dd>
           </div>
         ))}
@@ -146,9 +147,8 @@ const faqs = [
     level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily group work gives patterns room to show up and change. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you need depth and have to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps support in place as new patterns settle in.</p>`}
     related={[
       { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
-      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      ...siblings(MENTAL_PAGES, ['trauma-ptsd', 'bipolar-disorder']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

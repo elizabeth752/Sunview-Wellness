@@ -32,7 +32,7 @@ const faqs = [
 ---
 <ProgramPage
   path="/programs/outpatient/"
-  metaTitle="Outpatient Program (OP) in West Palm Beach | Sunview"
+  metaTitle="Outpatient Rehab Program (OP) in West Palm Beach | Sunview"
   description="Outpatient program in West Palm Beach: one day a week, 9 AM to 1 PM, any weekday. Ongoing support after PHP or IOP while life gets back to normal."
   crumb="Outpatient Program"
   h1="Outpatient Program in West Palm Beach"
@@ -103,7 +103,9 @@ const faqs = [
       <ol class="flex flex-wrap gap-3" aria-label="The In Vivo Treatment loop">
         {loop.map((l, i) => (
           <li class="inline-flex items-center gap-3 rounded-full bg-white/10 px-5 py-3 font-extrabold text-white ring-1 ring-white/25">
-            <span class="font-sans text-sm text-sun">{String(i + 1).padStart(2, '0')}</span>{l}
+            {/* Number and label in separate elements with a real space between them (QA batch 1, item 30);
+                 the <ol> already announces the position, so the visual number is hidden from screen readers */}
+            <span class="font-sans text-sm text-sun" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{' '}<span>{l}</span>
           </li>
         ))}
       </ol>
@@ -137,6 +139,5 @@ const faqs = [
     highlight={['OP']}
     title="Outpatient Program Schedule in West Palm Beach"
     subtitle="One weekday morning, your choice of day"
-    intro="The Outpatient Program is highlighted. The other levels are shown so you can compare."
   />
 </ProgramPage>

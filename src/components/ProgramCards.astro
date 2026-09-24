@@ -14,7 +14,14 @@ const { linkCards = true } = Astro.props;
       <div class="flex flex-1 flex-col px-7 py-6">
         <p class="flex items-start gap-3 font-bold text-charcoal">
           <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-teal-light" />
-          <span class="whitespace-pre-line">{p.schedule}</span>
+          <span>
+            {p.schedule.split('\n').map((line) => {
+              const href = 'scheduleLinks' in p ? (p.scheduleLinks as Record<string, string>)[line.split(':')[0]] : undefined;
+              return href
+                ? <a href={href} class="block text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{line}</a>
+                : <span class="block">{line}</span>;
+            })}
+          </span>
         </p>
         {p.hours && <p class="mt-2 flex items-center gap-3 text-sm font-bold text-charcoal"><Icon name="calendar" class="h-5 w-5 text-teal-light" />{p.hours}</p>}
         <p class="mt-5 text-charcoal"><strong class="text-charcoal">Best for:</strong> {p.bestFor}</p>

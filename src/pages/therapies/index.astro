@@ -39,18 +39,20 @@ const matrix = [
   { slug: 'dbt', note: 'Skills in group and individual sessions' },
   { slug: 'family-therapy', note: 'When clinically appropriate and you agree', partial: true },
 ].map((m) => ({ ...m, t: therapyBySlug(m.slug) }));
+// Psychiatry is part of every level (QA batch 5, item 7). Not a therapy page, so it's added outside THERAPIES.
+matrix.push({ slug: 'psychiatry', note: 'Through our partner, Telemed Clinix', t: { name: 'Psychiatric care and medication management', href: '/programs/psychiatry-medication-management/' } });
 
 const faqs = [
   { q: 'Do I choose my therapy?', a: 'You don’t pick from a menu. Every program combines group, individual and family work, and your therapist draws on the approaches that fit you. You’re always part of those decisions, and your treatment plan is reviewed with you every month.' },
   { q: 'Is therapy individual or group?', a: 'Both. Most of your time is in one continuous group, and you also meet one-on-one with your primary therapist every week for 45 to 60 minutes. <a href="/therapies/group-therapy/">How group therapy works</a>.' },
-  { q: 'Do you offer therapy without a program?', a: 'No. Our therapy happens within PHP, IOP and OP. If you’re looking for weekly private therapy only, call us anyway and we’ll point you to the right place.' },
+  { q: 'Do you offer therapy without a program?', a: 'No. Our therapy happens within PHP, IOP and OP. For weekly private therapy on its own, call us anyway and we’ll help you find a good fit elsewhere.' },
   { q: 'What is IFS?', a: 'Internal Family Systems is a way of understanding the different parts of yourself, including the ones that protect you in ways that no longer help. It’s part of our group topics and individual sessions. <a href="/therapies/internal-family-systems/">Internal Family Systems (IFS)</a>.' },
   { q: 'Is family therapy required?', a: 'No. Families are involved when it’s clinically appropriate and you agree. Nobody is pressured into it. <a href="/therapies/family-therapy/">Family therapy at Sunview</a>.' },
 ];
 ---
 <ServicePage
   path="/therapies/"
-  metaTitle="Therapy Approaches at Sunview Wellness | West Palm Beach"
+  metaTitle="Addiction Therapy Approaches in West Palm Beach | Sunview"
   description="IFS, inner child therapy, CBT, DBT, family and group therapy, used together in outpatient addiction and dual diagnosis treatment in West Palm Beach."
   crumbs={[THERAPIES_HUB]}
   h1="Therapy Approaches for Addiction and Mental Health in West Palm Beach"
@@ -113,12 +115,12 @@ const faqs = [
       <p class="mt-4 max-w-3xl text-lg">Six approaches, used together rather than one at a time.</p>
       <div class="mt-10 grid auto-rows-[minmax(150px,auto)] gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {bento.map((b) => (
-          <a href={b.t.href} class:list={['group flex flex-col rounded-[var(--radius-lg)] border border-line p-6 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]', b.size, b.tone]}>
+          <>{/* Title is the only link (QA batch 5, item 8); stretched-link makes the whole card clickable */}<div class:list={['card-link-focus group relative flex flex-col rounded-[var(--radius-lg)] border border-line p-6 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]', b.size, b.tone]}>
             <Icon name={b.icon} class:list={['h-7 w-7', b.tone.includes('text-white') ? 'text-sun' : 'text-teal']} />
-            <h3 class:list={['mt-4', b.size.includes('row-span-2') ? 'text-3xl' : 'text-xl', b.tone.includes('text-white') && 'text-white']}>{b.t.name}</h3>
+            <h3 class:list={['mt-4', b.size.includes('row-span-2') ? 'text-3xl' : 'text-xl', b.tone.includes('text-white') && 'text-white']}><a href={b.t.href} class:list={['stretched-link group-hover:underline decoration-2 underline-offset-4', b.tone.includes('text-white') ? 'text-white' : 'text-charcoal group-hover:text-teal']}>{b.t.name}</a></h3>{' '}
             <p class:list={['mt-2', b.tone.includes('text-white') ? 'text-white/90' : '']}>{b.t.line}</p>
-            <span class:list={['mt-auto inline-flex items-center gap-1.5 pt-4 font-bold', b.tone.includes('text-white') ? 'text-white' : 'text-teal']}>{b.t.label} <Icon name="arrow" class="h-4 w-4" /></span>
-          </a>
+            <span class="mt-auto pt-4"><Icon name="arrow" class:list={['h-5 w-5 transition group-hover:translate-x-1', b.tone.includes('text-white') ? 'text-sun' : 'text-teal']} /></span>
+          </div>{' '}</>
         ))}
       </div>
     </div>
@@ -129,11 +131,13 @@ const faqs = [
     <div class="container-x">
       <h2 class="max-w-4xl text-3xl sm:text-[2.1875rem]">Group, Individual and Family: How Sessions Fit Together</h2>
       <p class="mt-4 max-w-3xl text-lg">A sample week in PHP. In IOP, the group mornings (or evenings) fall on three days instead of five.</p>
-      <div class="mt-10 overflow-x-auto pb-2">
-        <div class="grid min-w-[640px] grid-cols-5 gap-3">
+      <div class="mt-10">
+        {/* Phones: one row per day (label left, sessions right). From sm: the five-column week. No horizontal scroll. */}
+        <div class="grid gap-3 sm:grid-cols-5">
           {days.map((d, i) => (
-            <div class="flex flex-col gap-2">
-              <p class="text-center font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-muted">{d}</p>
+            <div class="grid grid-cols-[3rem_1fr] items-start gap-3 sm:flex sm:flex-col sm:gap-2">
+              <p class="pt-4 font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-muted sm:pt-0 sm:text-center">{d}</p>
+              <div class="flex flex-col gap-2">
               <div class="rounded-[12px] bg-teal px-3 py-4 text-white">
                 <p class="text-xs text-white/80">9 AM – 1 PM</p>
                 <p class="font-extrabold">Group</p>
@@ -141,6 +145,7 @@ const faqs = [
               </div>
               {i === 1 && <div class="rounded-[12px] border-2 border-teal bg-white px-3 py-3"><p class="text-xs text-muted">45–60 min</p><p class="font-extrabold text-charcoal">Individual session</p></div>}
               {i === 3 && <div class="rounded-[12px] border-2 border-dashed border-gold bg-white px-3 py-3"><p class="text-xs text-muted">Week one</p><p class="font-extrabold text-charcoal">Family contact</p></div>}
+              </div>
             </div>
           ))}
         </div>

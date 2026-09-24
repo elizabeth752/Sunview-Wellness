@@ -36,7 +36,7 @@ const experiential = [
 const faqs = [
   { q: 'Will I have to talk in group?', a: 'You’ll be invited to, not forced. Most people start by listening. As trust builds with the same facilitator and the same peers, sharing usually gets easier.' },
   { q: 'What is carefrontation?', a: 'Honest, sometimes difficult feedback, given because people care enough not to just tell you what you want to hear. It’s never meant to shame or attack anyone, and you’ll learn how to give it and receive it.' },
-  { q: 'Are groups mixed gender?', a: 'Most days, yes. Twice a month, women and men meet in separate groups for the day.' },
+  { q: 'Are groups mixed gender?', a: 'Most days, yes. Every other Thursday, women and men meet in separate groups for the day.' },
   { q: 'Who leads the group?', a: 'One clinician leads your group for the whole session, from start to finish, instead of a different facilitator every hour. <a href="/our-team/">Meet our clinical team</a>.' },
   { q: 'Is group therapy enough on its own?', a: 'Group is the core of each program day, but not the only piece. You also meet one-on-one with your primary therapist every week, and psychiatric care is available when you need it. <a href="/programs/">See how the programs fit together</a>.' },
 ];
@@ -98,7 +98,8 @@ const faqs = [
         </div>
       </div>
       <blockquote class="mx-auto mt-14 max-w-3xl border-t-2 border-gold pt-6 text-center font-display text-2xl leading-snug text-charcoal sm:text-[1.75rem]">
-        “We can be compassionate without avoiding accountability, and we can hold someone accountable without taking away their dignity.”
+        <p>“We can be compassionate without avoiding accountability, and we can hold someone accountable without taking away their dignity.”</p>
+        <footer class="mt-4 font-sans text-sm font-bold not-italic text-muted">Sunview’s Clinical Director</footer>
       </blockquote>
     </div>
   </section>
@@ -108,10 +109,10 @@ const faqs = [
     <div class="container-x grid items-center gap-12 lg:grid-cols-2">
       <div>
         <h2 class="text-3xl sm:text-[2.1875rem]">Gender-Specific Group Days</h2>
-        <p class="mt-5 text-lg">Twice a month, women meet together in one group room and men in another. The day follows the same structure as any other, but some experiences are easier to share with people who relate to them more closely.</p>
-        <p class="mt-4 text-lg">We started with once a month. The feedback was so positive that we moved to twice a month.</p>
+        <p class="mt-5 text-lg">Every other Thursday, women meet together in one group room and men in another. The day follows the same structure as any other, but some experiences are easier to share with people who relate to them more closely.</p>
+        <p class="mt-4 text-lg">We started with once a month. The feedback was so positive that we expanded to every other week.</p>
       </div>
-      <div class="rounded-[var(--radius-lg)] bg-white p-6" aria-label="Calendar: gender-specific group days twice a month, mixed groups on the other days" role="img">
+      <div class="rounded-[var(--radius-lg)] bg-white p-6" aria-label="Calendar: gender-specific groups every other Thursday, mixed groups on the other days" role="img">
         {weeks.map((w, wi) => (
           <div class:list={['grid grid-cols-5 gap-2', wi > 0 && 'mt-3']}>
             {w.map((d) => {
@@ -125,7 +126,7 @@ const faqs = [
             })}
           </div>
         ))}
-        <p class="mt-4 text-center text-xs text-muted">Gender-specific days run twice a month</p>
+        <p class="mt-4 text-center text-xs text-muted">Gender-specific days run every other Thursday</p>
       </div>
     </div>
   </section>

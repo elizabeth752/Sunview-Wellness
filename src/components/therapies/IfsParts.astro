@@ -1,6 +1,7 @@
 ---
 // IFS "parts" diagram for /therapies/internal-family-systems/: a central Self with the parts around it,
-// labeled in plain language. Decorative explanation only (general IFS description, no clinical claims).
+// labeled in plain language (general IFS description, no clinical claims). Screen readers get the sr-only
+// list; the drawing itself is aria-hidden.
 const parts = [
   { label: 'The part that protects', pos: 'left-1/2 top-0 -translate-x-1/2' },
   { label: 'The part that gets overwhelmed', pos: 'right-0 top-1/2 -translate-y-1/2' },
@@ -8,19 +9,24 @@ const parts = [
   { label: 'The part that stays in control', pos: 'left-0 top-1/2 -translate-y-1/2' },
 ];
 ---
-<figure class="mx-auto w-full max-w-[420px]" aria-label="Diagram: the Self at the center, with different parts around it">
-  <div class="relative aspect-square">
+<figure class="mx-auto w-full max-w-[420px]">
+  {/* Text equivalent for screen readers (QA batch 5, item 11); the drawn diagram below is aria-hidden. */}
+  <ul class="sr-only">
+    <li>At the center: the Self, calm, curious and compassionate.</li>{' '}
+    {parts.map((p) => <><li>Around it: {p.label.charAt(0).toLowerCase() + p.label.slice(1)}.</li>{' '}</>)}
+  </ul>
+  <div class="relative aspect-square" aria-hidden="true">
     {/* orbit */}
     <div class="absolute inset-[16%] rounded-full border-2 border-dashed border-teal-light/50"></div>
     {/* Self */}
     <div class="absolute left-1/2 top-1/2 flex h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-teal text-center text-white shadow-[0_0_0_10px_rgba(31,158,158,0.15)]">
-      <span class="font-display text-xl font-extrabold sm:text-2xl">Self</span>
+      <span class="font-display text-xl font-extrabold sm:text-2xl">Self</span>{' '}
       <span class="mt-0.5 px-2 text-[11px] leading-tight text-white/85 sm:text-xs">calm, curious, compassionate</span>
-    </div>
+    </div>{' '}
     {parts.map((p) => (
-      <div class:list={['absolute flex h-[30%] w-[30%] items-center justify-center rounded-full border border-line bg-white p-2 text-center text-[11px] font-bold leading-tight text-charcoal shadow-[var(--shadow-soft)] sm:text-[13px]', p.pos]}>
+      <><div class:list={['absolute flex h-[30%] w-[30%] items-center justify-center rounded-full border border-line bg-white p-2 text-center text-[11px] font-bold leading-tight text-charcoal shadow-[var(--shadow-soft)] sm:text-[13px]', p.pos]}>
         {p.label}
-      </div>
+      </div>{' '}</>
     ))}
   </div>
   <figcaption class="mt-4 text-center text-sm text-muted">Every part has a reason. The work starts with getting to know them.</figcaption>

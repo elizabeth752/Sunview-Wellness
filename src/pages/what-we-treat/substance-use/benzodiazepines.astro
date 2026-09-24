@@ -5,7 +5,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/substance-use/benzodiazepines/';
@@ -17,6 +17,7 @@ const signs = [
   'Anxiety or sleep gets worse when a dose wears off',
   'You can’t imagine facing the day without it',
   'You mix it with alcohol or other substances',
+  'You’ve tried to stop or cut down and felt worse than before',
 ];
 
 const how = [
@@ -28,12 +29,19 @@ const how = [
   { icon: 'refresh', title: 'Practice in real life', text: 'You bring what happens at home and at work back to group, and we practice a different response together.' },
 ];
 
+// QA batch 3, item 1: facts reused from the program pages and /admissions/what-to-expect/ (no new claims).
+const weeks = [
+  { when: 'Your first week', text: 'Intake, your first groups and your first one-on-one session. With your consent, your therapist contacts a loved one. We schedule your Telemed Clinix psychiatric evaluation for you, including a review of the medications you take.' },
+  { when: 'A typical morning or evening', text: 'One continuous group from 9 AM to 1 PM with the same facilitator, or evening IOP on Monday, Wednesday and Thursday from 6 to 9 PM. Once a week, 45 to 60 minutes with your primary therapist. CBT and DBT skills for anxious moments are part of the work.' },
+  { when: 'Stepping down', text: 'When you’re ready, you move from PHP to IOP to OP with the same team.' },
+];
+
 const faqs = [
   { q: 'I have a prescription. Does that change anything?', a: 'A prescription is part of the picture, not the whole of it. During pre-screening we look at the dose, how often you take it and for how long, so we can recommend a level of care that’s safe for you.' },
-  { q: 'Do I need detox before starting?', a: 'If you’ve taken benzodiazepines consistently for an extended time, usually yes. Stopping can carry real withdrawal risks, so medically supervised detox and stabilization come first. We’ll help you find it.' },
+  { q: 'Do I need detox before starting?', a: 'It depends on how much you take and for how long. If you’ve taken benzodiazepines consistently for an extended time, usually yes. Stopping can carry real withdrawal risks, so medically supervised detox and stabilization come first. We’ll help you find it.' },
   { q: 'How will my anxiety be treated without benzodiazepines?', a: 'With therapy, skills and psychiatric care. Your Telemed Clinix provider manages psychiatric medication, and your therapists work on the anxiety itself. <a href="/what-we-treat/mental-health/anxiety/">Learn about anxiety and addiction treatment</a>.' },
   { q: 'Can I keep my other psychiatric medications?', a: 'Often, yes. Your provider reviews what you take and makes changes only when they’re clinically indicated, not just because you’re starting a program.' },
-  { q: 'Does insurance cover benzodiazepine addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+  { q: 'Does insurance cover benzodiazepine addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We verify your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
 ];
 ---
 <ServicePage
@@ -63,6 +71,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </div>
     </div>
   </section>
@@ -106,15 +115,34 @@ const faqs = [
     </div>
   </section>
 
+  {/* Week to week: split with a divided list (QA batch 3, item 1) */}
+  <section class="section bg-cream">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <span class="eyebrow">Week to week</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Treatment Looks Like Week to Week</h2>
+        <p class="subheading mt-3">After detox, steady structure while anxiety settles</p>
+        <p class="mt-5 text-lg">Most people start with us once medically supervised detox and stabilization are done.</p>
+      </div>
+      <div class="self-start divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+        {weeks.map((w) => (
+          <div class="grid gap-1 p-6 sm:grid-cols-[0.75fr_1.25fr] sm:gap-6">
+            <h3 class="text-lg">{w.when}</h3>
+            <p>{w.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <NextSteps
     title="Which Level of Care Fits"
     subtitle="Where most people start after detox"
     level={`<p>After detox, many people start in the <a href="/programs/php/">Partial Hospitalization Program</a> for daily structure while anxiety settles. From there they step down to the <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, and then the <a href="/programs/outpatient/">Outpatient Program</a>. Our Clinical Director recommends where you start.</p>`}
     related={[
       { label: CATEGORIES.substance.label, href: CATEGORIES.substance.href },
-      ...SUBSTANCE_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'All conditions we treat', href: WWT.href },
+      ...siblings(SUBSTANCE_PAGES, ['alcohol', 'opioids']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

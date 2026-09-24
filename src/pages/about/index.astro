@@ -1,6 +1,6 @@
 ---
 // /about/: About-Team-Content-Briefs.md §C. Sources and open items in docs/content/about-team-sources-about.md.
-// No reviewed-by byline (brief decision). Rotation: Reviews + Map. Trust strip below the hero (ServicePage default).
+// No reviewed-by byline (brief decision). Rotation: Reviews + Map. Accreditation logos in the hero (ServicePage default).
 // Schema: MedicalOrganization + BreadcrumbList come from Base (#organization); this page adds AboutPage
 // (about/mainEntity point at #organization, no duplicate org node) + FAQPage from the visible questions.
 import ServicePage from '../../layouts/ServicePage.astro';
@@ -45,7 +45,7 @@ const mvv: { key: string; label: string; icon: string; text: string | string[] }
 
 // USPs 1–4: Client Wiki (wiki txt lines 191–210), as close to verbatim as the copy rules allow. Removed: the
 // length-of-stay sentence in USP 1 (answer 8.6), em dashes, "clients" → "people", "mandated-client" →
-// "mandated", "door-to-door" (answer 6.1), USP 2's closing "Cadillac" clause (kept in the Mission above), and USP 4's
+// "mandated" (the "door-to-door" wording was restored by the Decisions of 2026-09-24), USP 2's closing "Cadillac" clause (kept in the Mission above), and USP 4's
 // source note. The short titles are ours. Every deviation is logged in about-team-sources-about.md.
 const usps = [
   { title: 'A true standalone program', html: 'A true standalone PHP/IOP/OP extended care program, “a dying breed” locally, built for the person who works and lives locally and needs flexibility rather than luxury housing or a six-month sober living funnel.' },
@@ -77,10 +77,10 @@ const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.regio
 const seal = ACCREDITATIONS[0];
 
 const faqs = [
-  { q: 'Is Sunview a residential facility?', a: 'No. Sunview is outpatient only: PHP, IOP and OP. You sleep at home every night, and we don’t provide detox or housing. If you need 24-hour care first, we’ll help you find it and plan your step down to us. <a href="/programs/">Compare our levels of care</a>.' },
+  { q: 'Is Sunview a residential facility?', a: 'Sunview is outpatient care: PHP, IOP and OP. You sleep at home every night. If you need detox, housing or 24-hour care first, we’ll help you find it and plan your step down to us. <a href="/programs/">Compare our levels of care</a>.' },
   { q: 'Are you accredited?', a: 'Yes. Sunview Wellness is accredited by The Joint Commission.' },
   { q: 'Who is Sunview for?', a: 'Adults 18 and older living with substance use, often alongside mental health conditions like anxiety, depression or trauma. Many people come to us after detox or residential treatment; others start from home because they, or someone who cares about them, see that more help is needed. <a href="/admissions/">How admissions works</a>.' },
-  { q: 'Do you treat mental health on its own?', a: 'Our programs treat mental health conditions alongside substance use. If mental health is your only concern, call us anyway and we’ll help you find the right kind of care. <a href="/what-we-treat/mental-health/">Mental health conditions we treat</a>.' },
+  { q: 'Do you treat mental health on its own?', a: 'We treat mental health conditions alongside substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for mental health care on its own, we’ll help you find the right fit. <a href="/what-we-treat/mental-health/">Mental health conditions we treat</a>.' },
   { q: 'Where are you located?', a: `${addr}. Free door-to-door transportation is available if you can’t drive yourself.` },
 ];
 

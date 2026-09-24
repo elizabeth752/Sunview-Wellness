@@ -1,6 +1,6 @@
 ---
 // /locations/west-palm-beach/: Professionals-Location-Content-Briefs.md §B. Sources and open items in
-// docs/content/location-sources.md. No reviewed-by byline. Trust strip below the hero (ServicePage default).
+// docs/content/location-sources.md. No reviewed-by byline. Accreditation logos in the hero (ServicePage default).
 // Rotation: Insurance + Reviews + Map (the map lives inside "Address, Hours and Contact", so ServicePage's
 // shared MapSection is off to avoid a second map). "Getting Here" is omitted: parking and transit are
 // unverified (brief: write only what's verifiable, otherwise omit).
@@ -28,6 +28,8 @@ const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeU
 // Joint Commission ID, JC verification link and DCF license number: not supplied yet. Per the placeholder policy
 // (Decisions 2026-09-24) they are omitted from the page and the schema; add the rows back when they arrive.
 const seal = ACCREDITATIONS[0];
+// NPI: public in the NPPES registry, verifiable (QA batch 9, item 4).
+const NPI = '1326620667';
 
 // Week grid. Hours: Q7 (PHP, Day IOP, Evening IOP), OP one weekday 9–1 (live homepage), same as
 // site.js PROGRAMS and ProgramSchedule.
@@ -76,7 +78,8 @@ const faqs = [
   { q: 'Where exactly are you?', a: `${addr}. <a href="${directions}" target="_blank" rel="noopener">Get directions on Google Maps</a>.`, plain: `${addr}.` },
   { q: 'Do you offer transportation?', a: 'Yes. If you can’t drive yourself, we offer free door-to-door transportation to and from our center. Ask about it when you call admissions. <a href="/admissions/what-to-expect/">What to expect in treatment</a>.' },
   { q: 'What are your hours?', a: 'PHP runs Monday to Friday, 9 AM to 1 PM. Day IOP meets 3 days a week and OP one weekday, both 9 AM to 1 PM. Evening IOP meets Monday, Wednesday and Thursday, 6 to 9 PM. <a href="/programs/">Compare levels of care</a>.' },
-  { q: 'Are you a residential facility?', a: 'No. Sunview is outpatient only: PHP, IOP and OP. You sleep at home every night, and we don’t provide detox or housing. If you need 24-hour care first, we’ll help you find it and plan your step down to us.' },
+  { q: 'Are you a residential facility?', a: 'Sunview is outpatient care: PHP, IOP and OP. You sleep at home every night. If you need detox, housing or 24-hour care first, we’ll help you find it and plan your step down to us.' },
+  { q: 'Do you serve people outside West Palm Beach?', a: 'Yes. We serve people across Palm Beach County, and free door-to-door transportation applies wherever you live in the county.' },
 ];
 
 const strip = (html: string) => html.replace(/<[^>]+>/g, '');
@@ -101,6 +104,7 @@ const clinic = {
   // No `geo`: site.js has no coordinates and we don't invent them (see location-sources.md).
   hasMap: placeUrl,
   foundingDate: SITE.foundingYear,
+  identifier: { '@type': 'PropertyValue', propertyID: 'NPI', value: NPI },
   openingHoursSpecification: [
     // PHP, Day IOP and OP mornings
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '13:00' },
@@ -146,7 +150,9 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           <SunMark variant="rays" ripple={false} class="pointer-events-none absolute -bottom-24 -right-24 -z-10 h-[300px] w-[300px] text-white/10" />
           <h3 class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-sun">Address</h3>
           <address class="mt-3 not-italic">
-            <span class="block font-display text-[2.5rem] font-extrabold leading-[1.05] text-white sm:text-6xl">{SITE.address.street}</span>
+            {/* Two visual lines; the hidden comma keeps the extracted text "4802 East Ave, West Palm Beach, …" (QA batch 9, item 2). */}
+            <span class="block font-display text-[2.5rem] font-extrabold leading-[1.05] text-white sm:text-6xl">{SITE.address.street}<span class="sr-only">,</span></span>
+            {' '}
             <span class="mt-2 block text-xl text-white/90 sm:text-2xl">{SITE.address.city}, {SITE.address.region} {SITE.address.postal}</span>
           </address>
           <div class="mt-7 flex flex-wrap gap-3">
@@ -298,6 +304,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
               <dd class="mt-1 font-bold text-charcoal">Sunview Medical Center</dd>
             </div>
           </dl>
+          <p class="mt-6 border-t border-line pt-4 font-sans text-sm font-bold text-muted">NPI {NPI}</p>
         </div>
       </div>
     </div>

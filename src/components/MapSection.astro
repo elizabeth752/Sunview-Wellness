@@ -16,11 +16,13 @@ const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.regio
 const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addr)}`;
 
 const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-// Only the two fixed schedules are shown (client request 2026-09-22): rows with flexible days read as
-// "no hours". on = runs that day · off = no session
+// All four rows (QA batch 1, item 11), each with its hours on its own line so flexible rows never read as
+// "no hours". Same cell and legend vocabulary as ProgramSchedule: Runs · Pick your days · Evening.
 const rows = [
-  { name: 'PHP', cells: ['on', 'on', 'on', 'on', 'on'] },
-  { name: 'Evening IOP', cells: ['eve', 'off', 'eve', 'eve', 'off'] },
+  { name: 'PHP', when: '9am–1pm, every weekday', cells: ['on', 'on', 'on', 'on', 'on'] },
+  { name: 'Day IOP', when: '9am–1pm, any 3 days', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
+  { name: 'Evening IOP', when: '6–9pm, Mon, Wed, Thu', cells: ['eve', 'off', 'eve', 'eve', 'off'] },
+  { name: 'OP', when: '9am–1pm, any 1 day', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
 ];
 const cellClass: Record<string, string> = {
   on: 'bg-teal',
@@ -28,7 +30,7 @@ const cellClass: Record<string, string> = {
   eve: 'bg-teal-deep',
   off: 'bg-mist',
 };
-const cellLabel: Record<string, string> = { on: 'Runs 9am to 1pm', pick: 'Available to choose, 9am to 1pm', eve: 'Runs 6pm to 9pm', off: 'No session' };
+const cellLabel: Record<string, string> = { on: 'Runs, 9am to 1pm', pick: 'Pick your days, 9am to 1pm', eve: 'Evening, 6pm to 9pm', off: 'No session' };
 ---
 <section class="section">
   <div class="container-x grid items-start gap-10 lg:grid-cols-2">
@@ -55,7 +57,7 @@ const cellLabel: Record<string, string> = { on: 'Runs 9am to 1pm', pick: 'Availa
       {showSchedule && <div class="mt-6 rounded-[var(--radius-card)] border border-line p-5">
         <p class="font-extrabold">Your week at Sunview</p>
         <table class="mt-3 w-full table-fixed border-separate border-spacing-1.5 text-[13px]">
-          <colgroup><col class="w-[92px]" />{days.map(() => <col />)}</colgroup>
+          <colgroup><col class="w-[108px] sm:w-[150px]" />{days.map(() => <col />)}</colgroup>
           <caption class="sr-only">Program schedule, Monday to Friday</caption>
           <thead>
             <tr>
@@ -66,17 +68,21 @@ const cellLabel: Record<string, string> = { on: 'Runs 9am to 1pm', pick: 'Availa
           <tbody>
             {rows.map((r) => (
               <tr>
-                <th scope="row" class="pr-1 text-left font-extrabold">{r.name}</th>
+                <th scope="row" class="py-0.5 pr-1 text-left align-middle">
+                  <span class="block font-extrabold">{r.name}</span>
+                  <small class="block text-[11px] font-normal leading-snug text-muted"><span class="sr-only">: </span>{r.when}</small>
+                </th>
                 {r.cells.map((c) => (
-                  <td class="p-0"><span class:list={['block h-[22px] rounded-[6px]', cellClass[c]]} title={cellLabel[c]}><span class="sr-only">{cellLabel[c]}</span></span></td>
+                  <td class="p-0 align-middle"><span class:list={['block h-[22px] rounded-[6px]', cellClass[c]]} title={cellLabel[c]}><span class="sr-only">{cellLabel[c]}</span></span></td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
-        <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted">
-          <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal"></span>PHP 9am–1pm, every weekday</li>
-          <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal-deep"></span>Evening IOP 6–9pm</li>
+        <ul class="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-xs text-muted" aria-label="Legend">
+          <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal"></span><span><strong class="text-charcoal">Runs</strong> 9am–1pm</span></li>
+          <li class="inline-flex items-center gap-1.5"><span class="sv-pick inline-block h-2.5 w-3.5 rounded-[3px]"></span><span><strong class="text-charcoal">Pick your days</strong> 9am–1pm</span></li>
+          <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal-deep"></span><span><strong class="text-charcoal">Evening</strong> 6–9pm</span></li>
         </ul>
       </div>}
     </div>
@@ -103,6 +109,6 @@ const cellLabel: Record<string, string> = { on: 'Runs 9am to 1pm', pick: 'Availa
 </section>
 
 <style>
-  /* Day IOP: hatched = "available, pick any 3 days" */
+  /* Day IOP and OP: hatched = "pick your days" */
   .sv-pick { background: repeating-linear-gradient(135deg, var(--color-teal-light) 0 6px, color-mix(in srgb, var(--color-teal-light) 55%, white) 6px 12px); }
 </style>

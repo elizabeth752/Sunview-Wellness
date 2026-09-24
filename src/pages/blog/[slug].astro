@@ -4,7 +4,9 @@
 // Body ≥1024px: article + sticky sidebar (ToC from the article's H2s, mini CTA, insurance carousel, one Google
 // review, related posts). <1024px: no sidebar; a "Table of contents" button opens a drawer; the call CTA is the
 // sitewide bottom call bar; insurance, review and related render after the article.
-// End of the article: Sources (when the post has them) · Share on · author mini-card · Latest articles.
+// End of the article: Sources (only real references) · Share on · author mini-card (<1024px only). Latest articles
+// is a full-width section below the article + sidebar block (QA batch 11 item 8). Every post has a `body` with ≥2 H2s.
+// Podcasts: lazy YouTube facade first (poster = YouTube thumbnail, 16:9, loads only on click), then the body.
 // Author = reference into src/data/team.js (postAuthor). Feature graphic = og:image (scripts/generate-post-graphics.mjs).
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
@@ -15,11 +17,13 @@ import PostCard from '../../components/PostCard.astro';
 import ShareLinks from '../../components/ShareLinks.astro';
 import InsuranceCarousel from '../../components/InsuranceCarousel.astro';
 import ReviewCard from '../../components/ReviewCard.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
 import { SITE } from '../../data/site.js';
 import { REVIEWS } from '../../data/reviews.js';
 import {
-  posts, formatDate, postAuthor, postUrl, postOgImage, postUpdated, postExcerpt,
-  latestPosts, relatedPosts, categoryColor,
+  posts, formatDate, postAuthor, postUrl, postOgImage, postUpdated,
+  latestPosts, relatedPosts, categoryColor, durationIso,
 } from '../../data/posts.js';
 
 export function getStaticPaths() {
@@ -39,20 +43,24 @@ const metaTitle =
   post.title;
 const related = relatedPosts(post, 3);
 const latest = latestPosts(post, 3);
-const relatedVideo = post.relatedVideo ? posts.find((p) => p.slug === post.relatedVideo) : null;
+
+// Bio excerpts, both from the one team.js record (QA batch 11 items 6, 7, 18): byline ≈2 lines, mini-card ≈5 lines.
+// Cut in the HTML too (not only visually), so the full bio lives on the person page only.
+const bioWords = author.bio.join(' ').split(/\s+/);
+const excerpt = (n: number) => (bioWords.length > n ? `${bioWords.slice(0, n).join(' ').replace(/[,.;:]$/, '')}…` : bioWords.join(' '));
+const bylineBio = excerpt(26);
+const cardBio = excerpt(60);
 
 // Article body: give every H2 an id for the table of contents (H2s only)
 const slugify = (s: string) =>
   s.replace(/<[^>]+>/g, '').toLowerCase().normalize('NFKD').replace(/[^\w\s-]/g, '').trim().replace(/[\s_]+/g, '-').replace(/-+/g, '-');
 const toc: { id: string; text: string }[] = [];
-const body: string | null = post.body
-  ? post.body.replace(/<h2>([\s\S]*?)<\/h2>/g, (_: string, inner: string) => {
+const body: string = post.body.replace(/<h2>([\s\S]*?)<\/h2>/g, (_: string, inner: string) => {
       let id = slugify(inner);
       while (toc.some((t) => t.id === id)) id += '-2';
       toc.push({ id, text: inner.replace(/<[^>]+>/g, '') });
-      return `<h2 id="${id}" tabindex="-1">${inner}</h2>`;
-    })
-  : null;
+      return `<h2 id="${id}" tabindex="-1" class="toc-target">${inner}</h2>`;
+    });
 const hasToc = toc.length >= 2;
 
 // One verbatim Google review: the featured short ones, alternating by post
@@ -78,10 +86,11 @@ if (post.type === 'video') {
   schemaNode.video = {
     '@type': 'VideoObject',
     name: post.title,
-    description: post.dek,
+    description: post.metaDescription ?? post.dek,
     thumbnailUrl: `https://i.ytimg.com/vi/${post.youtube}/hqdefault.jpg`,
-    uploadDate: post.date,
-    embedUrl: `https://www.youtube-nocookie.com/embed/${post.youtube}`,
+    uploadDate: post.uploadDate,
+    duration: durationIso(post),
+    embedUrl: `https://www.youtube.com/embed/${post.youtube}`,
     contentUrl: `https://www.youtube.com/watch?v=${post.youtube}`,
   };
 }
@@ -97,23 +106,26 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
   breadcrumbs={crumbs}
   schema={[schemaNode]}
 >
+  {/* H1 kept to the article column's width at ≥1024px (QA batch 11 item 10) */}
+  <div class="sv-post-hero">
   <PageHero title={post.title} crumbs={crumbs} actions={false} banner>
     <Fragment slot="below">
-      <div class="mt-8 grid gap-6 border-t border-white/20 pt-7 lg:mt-10 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12 lg:pt-9">
-        {/* Author: full block at desktop; photo + name + role on one line below 1024px */}
+      <div class="mt-8 grid gap-6 border-t border-white/20 pt-7 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-[30px] lg:pt-9">
+        {/* Compact byline (QA batch 11 item 6): 65px photo, name + credentials + role on one line, 2-line bio, Read more.
+            Below 1024px: photo + name + role only (SOP §2). */}
         <div class="flex items-center gap-4 lg:items-start">
-          <Avatar person={author} class="h-12 w-12 lg:h-20 lg:w-20" text="text-base lg:text-2xl" />
+          <Avatar person={author} class="h-[65px] w-[65px]" text="text-xl" />
           <div class="min-w-0">
             <p class="leading-snug">
-              <a href={author.href} class="font-display text-lg font-bold text-white hover:underline lg:text-xl">{author.name}</a><span class="hidden text-sm font-bold text-white/80 lg:inline">, {author.creds}</span>
-              <span class="text-white/85"><span aria-hidden="true" class="lg:hidden"> · </span><span class="text-[15px] lg:mt-0.5 lg:block">{author.role}</span></span>
+              <a href={author.href} class="font-display text-lg font-bold text-white hover:underline">{author.name}</a><span class="hidden text-sm font-bold text-white/80 lg:inline">, {author.creds}</span>
+              <span class="text-[15px] text-white/85"><span aria-hidden="true"> · </span>{author.role}</span>
             </p>
-            <p class="mt-3 hidden max-w-[60ch] text-[15px] leading-relaxed text-white/85 lg:line-clamp-3">{author.bio[0]}</p>
-            <a href={author.href} class="mt-3 hidden items-center gap-1 text-sm font-extrabold text-white underline decoration-gold decoration-2 underline-offset-4 hover:decoration-white lg:inline-flex" aria-label={`Read more about ${author.name}`}>Read more <span aria-hidden="true">→</span></a>
+            <p class="mt-1.5 hidden max-w-[70ch] text-[15px] leading-relaxed text-white/85 lg:line-clamp-2">{bylineBio}</p>
+            <a href={author.href} class="mt-1.5 hidden items-center gap-1 text-sm font-extrabold text-white underline decoration-gold decoration-2 underline-offset-4 hover:decoration-white lg:inline-flex" aria-label={`Read more about ${author.name}`}>Read more <span aria-hidden="true">→</span></a>
           </div>
         </div>
         {/* Category · date · share */}
-        <div class="flex flex-col gap-5 lg:border-l lg:border-white/20 lg:pl-12">
+        <div class="flex flex-col gap-4 lg:border-l lg:border-white/20 lg:pl-8">
           <dl class="flex flex-wrap gap-x-10 gap-y-3">
             <div>
               <dt class="text-[13px] font-extrabold uppercase tracking-[0.08em] text-white/70">Category</dt>
@@ -129,81 +141,67 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
           <ShareLinks url={url} title={post.title} tone="dark" />
         </div>
       </div>
+      {/* One-line origin note (not a source): "Originally published on LinkedIn" · "Watch on YouTube" · "Watch the clip" */}
+      {post.note && (
+        <p class="mt-6 text-[15px] leading-relaxed text-white/85">
+          <Icon name={post.type === 'article' ? 'linkedin' : post.type === 'video' ? 'youtube' : 'play'} class="mr-1.5 inline-block h-4 w-4 -translate-y-px align-middle text-gold" />
+          {post.note.text && <>{post.note.text}<span aria-hidden="true"> · </span></>}
+          <a href={post.note.url} target="_blank" rel="noopener" class="whitespace-nowrap font-extrabold text-white underline decoration-gold decoration-2 underline-offset-4 hover:decoration-white">{post.note.linkText}<Icon name="external" class="ml-1 inline-block h-3.5 w-3.5 align-middle" /><span class="sr-only"> (opens in a new tab)</span></a>
+        </p>
+      )}
     </Fragment>
   </PageHero>
+  </div>
 
   {/* <1024px: table of contents drawer trigger (closed by default) */}
   {hasToc && (
     <div class="border-b border-line bg-white lg:hidden">
-      <div class="container-x py-3">
-        <button type="button" class="inline-flex items-center gap-2 rounded-full border-2 border-teal px-5 py-2 font-extrabold text-teal hover:bg-mist" aria-haspopup="dialog" aria-controls="toc-drawer" data-toc-open>
-          <Icon name="list" class="h-5 w-5" />Table of contents
-        </button>
-      </div>
+      <TocDrawer items={toc} class="container-x py-3" />
     </div>
   )}
 
-  <div class="bg-mist py-10 sm:py-14 lg:py-16">
+  <div class="bg-mist py-10 sm:py-14 lg:pb-12 lg:pt-16">
     <div class="container-x lg:grid lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start lg:gap-[30px]">
       <div class="min-w-0">
         <article class="rounded-[var(--radius-lg)] bg-white p-6 sm:p-10 xl:p-14" data-article>
           {post.type === 'video' && (
-            <div class="yt-facade relative aspect-video overflow-hidden rounded-[var(--radius-card)] bg-teal" data-yt={post.youtube} data-title={post.title}>
-              <img src={`https://i.ytimg.com/vi/${post.youtube}/hqdefault.jpg`} alt="" class="h-full w-full object-cover" />
+            <div class="yt-facade relative mb-10 aspect-video overflow-hidden rounded-[var(--radius-card)] bg-teal" data-yt={post.youtube} data-title={post.title}>
+              <img src={`https://i.ytimg.com/vi/${post.youtube}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" class="h-full w-full object-cover" />
               <button type="button" class="absolute inset-0 flex items-center justify-center bg-teal/20 transition hover:bg-teal/10" aria-label={`Play video: ${post.title}`}>
                 <span class="inline-flex h-20 w-20 items-center justify-center rounded-full bg-sun text-charcoal shadow-xl"><Icon name="play" class="ml-1 h-9 w-9" /></span>
               </button>
             </div>
           )}
 
-          {body ? (
-            <div class="prose-sv sv-article" set:html={body} />
-          ) : (
-            <div class:list={['prose-sv sv-article', post.type === 'video' && 'mt-8']}>
-              <p class="!text-xl !leading-relaxed text-charcoal">{postExcerpt(post)}</p>
-              {post.summary.map((para: string) => <p>{para}</p>)}
-            </div>
-          )}
+          <div class="prose-sv sv-article" set:html={body} />
 
-          {post.type === 'external' && (
-            <div class="mt-8 flex flex-wrap gap-3">
-              <a href={post.externalUrl} target="_blank" rel="noopener" class="btn-teal">{post.externalLabel} <Icon name="external" /></a>
-              {relatedVideo && <a href={postUrl(relatedVideo)} class="btn-ghost">Watch the full episode</a>}
-            </div>
-          )}
-
-          {/* End of article: Sources · Share on · author mini-card */}
+          {/* End of article: Sources · Share on · author mini-card (<1024px) */}
           <div class="mt-12 space-y-8 border-t border-line pt-8">
             {post.sources?.length > 0 && (
               <section aria-labelledby="sources-title">
                 <h2 id="sources-title" class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">Sources</h2>
-                <ol class="mt-3 list-decimal space-y-2 pl-5 text-[15px] marker:font-bold marker:text-teal">
-                  {post.sources.map((s: { label: string; url: string }) => (
-                    <li><a href={s.url} target="_blank" rel="nofollow noopener" class="font-semibold text-teal underline decoration-teal-light decoration-2 underline-offset-4 hover:text-teal-light">{s.label}</a></li>
+                <ol class="mt-3 list-decimal space-y-2 pl-5 text-[15px] leading-relaxed marker:font-bold marker:text-teal">
+                  {post.sources.map((s: { label: string; url?: string }) => (
+                    <li>{s.url
+                      ? <a href={s.url} target="_blank" rel="nofollow noopener" class="font-semibold text-teal underline decoration-teal-light decoration-2 underline-offset-4 hover:text-teal-light">{s.label}</a>
+                      : s.label}</li>
                   ))}
                 </ol>
               </section>
             )}
             <ShareLinks url={url} title={post.title} />
-            <aside class="flex flex-col gap-5 rounded-[var(--radius-card)] bg-cream p-6 sm:flex-row sm:p-8" aria-label="About the author">
+            <aside class="flex flex-col gap-5 rounded-[var(--radius-card)] bg-cream p-6 sm:flex-row sm:p-8 lg:hidden" aria-label="About the author" data-author-card>
               <Avatar person={author} class="h-20 w-20" text="text-2xl" />
               <div class="min-w-0">
                 <span class={label}>About the author</span>
                 <p class="mt-1 font-display text-xl font-bold text-charcoal"><a href={author.href} class="hover:text-teal">{author.name}</a><span class="font-sans text-sm font-bold text-muted">, {author.creds}</span></p>
                 <p class="text-[15px] font-bold text-teal">{author.role}</p>
-                <p class="mt-3 line-clamp-5 text-[15px] leading-relaxed">{author.bio.join(' ')}</p>
+                <p class="mt-3 line-clamp-5 text-[15px] leading-relaxed">{cardBio}</p>
                 <a href={author.href} class="mt-3 inline-flex items-center gap-1 text-sm font-extrabold text-teal hover:text-teal-light" aria-label={`Read more about ${author.name}`}>Read more <span aria-hidden="true">→</span></a>
               </div>
             </aside>
           </div>
         </article>
-
-        <section class="mt-12" aria-labelledby="latest-title">
-          <h2 id="latest-title" class="text-2xl sm:text-3xl">Latest Articles</h2>
-          <ul class="sv-latest mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-            {latest.map((p) => <li><PostCard post={p} as="h3" size="sm" /></li>)}
-          </ul>
-        </section>
 
         {/* <1024px: sidebar blocks after the article, before the CTA */}
         <div class="mt-12 grid gap-6 md:grid-cols-2 lg:hidden">
@@ -214,7 +212,7 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
           <div class={cardCls}><ReviewCard review={review} /></div>
           <div class={cardCls}>
             <span class={label}>Related articles</span>
-            <ul class="mt-4 space-y-5">{related.map((p) => <li><PostCard post={p} variant="compact" /></li>)}</ul>
+            <ul class="sv-related mt-3">{related.map((p) => <li><a href={postUrl(p)}>{p.title}</a></li>)}</ul>
           </div>
         </div>
       </div>
@@ -225,9 +223,7 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
           {hasToc && (
             <nav class={cardCls} aria-labelledby="toc-title">
               <span id="toc-title" class={label}>In this article</span>
-              <ul class="sv-toc mt-3 space-y-1">
-                {toc.map((t) => <li><a href={`#${t.id}`} data-toc-link={t.id}>{t.text}</a></li>)}
-              </ul>
+              <TocList items={toc} class="mt-3" />
             </nav>
           )}
           <div class="rounded-[var(--radius-card)] bg-teal p-6 text-white">
@@ -241,56 +237,53 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
           <div class={cardCls}><ReviewCard review={review} /></div>
           <div class={cardCls}>
             <span class={label}>Related articles</span>
-            <ul class="mt-4 space-y-5">{related.map((p) => <li><PostCard post={p} variant="compact" /></li>)}</ul>
+            <ul class="sv-related mt-3">{related.map((p) => <li><a href={postUrl(p)}>{p.title}</a></li>)}</ul>
           </div>
         </div>
       </aside>
     </div>
   </div>
 
+  {/* Latest articles: full width below the article + sidebar block (QA batch 11 item 8) */}
+  <section class="bg-mist pb-14 sm:pb-16" aria-labelledby="latest-title">
+    <div class="container-x pt-4 lg:pt-6">
+      <h2 id="latest-title" class="text-2xl sm:text-3xl">Latest Articles</h2>
+      <ul class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-latest>
+        {latest.map((p) => <li><PostCard post={p} as="h3" size="sm" /></li>)}
+      </ul>
+    </div>
+  </section>
+
   <CtaBand headingLevel="h2" />
 
-  {hasToc && (
-    <dialog id="toc-drawer" class="sv-drawer" aria-labelledby="toc-drawer-title">
-      <div class="flex items-center justify-between gap-4 border-b border-line px-6 py-4">
-        <p id="toc-drawer-title" class="font-display text-xl font-bold text-charcoal">Table of contents</p>
-        <button type="button" class="grid h-10 w-10 place-items-center rounded-full hover:bg-mist" aria-label="Close table of contents" data-toc-close><Icon name="x" class="h-5 w-5" /></button>
-      </div>
-      <ul class="sv-toc space-y-1 px-4 py-4">
-        {toc.map((t) => <li><a href={`#${t.id}`} data-toc-link={t.id}>{t.text}</a></li>)}
-      </ul>
-    </dialog>
-  )}
 </Base>
 
 <style>
-  .sv-article :global(h2) { scroll-margin-top: 100px; }
-  .sv-article :global(h2:focus) { outline: none; }
   .sv-article > :global(:first-child) { margin-top: 0; }
   .sv-article { max-width: 72ch; }
+  /* H1 = article column width at ≥1024px (container − 340px sidebar − 30px gap) */
+  @media (min-width: 1024px) {
+    .sv-post-hero :global(.sv-hero .max-w-3xl) { max-width: calc(100% - 370px); }
+  }
+  /* Labels inside the body: "Summary by the Sunview Wellness team" · "From the episode description…" */
+  .sv-article :global(.sv-src-label) {
+    margin-top: 0.5rem; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
+  }
+  /* Verbatim episode notes: set apart from our copy */
+  .sv-article :global(.sv-notes) { border-left: 3px solid var(--color-gold); padding-left: 1.25rem; }
+  .sv-article :global(.sv-notes > * + *) { margin-top: 1em; }
+  .sv-article :global(.sv-chapters li + li) { margin-top: 0.35rem; }
+  .sv-article :global(.sv-chapters) { list-style: none; padding-left: 0; font-size: 15px; }
+  /* Related articles: plain list of titles (QA batch 11 item 9) */
+  .sv-related { list-style: disc; padding-left: 1.1rem; }
+  .sv-related li { padding: 0.35rem 0; }
+  .sv-related li::marker { color: var(--color-gold); }
+  .sv-related a { font-weight: 700; line-height: 1.35; color: var(--color-charcoal); }
+  .sv-related a:hover { color: var(--color-teal); text-decoration: underline; }
   /* Sticky sidebar: stays 100px from the top (84px header + 16px); scrolls inside itself when taller than the viewport */
   @media (min-width: 1024px) {
     .sv-sidebar { max-height: calc(100vh - 116px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; border-radius: 12px; }
   }
-  .sv-toc :global(a) {
-    position: relative; display: block; padding: 0.4rem 0.5rem 0.4rem 1.4rem; border-radius: 8px;
-    font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--color-charcoal);
-  }
-  .sv-toc :global(a)::before {
-    content: ''; position: absolute; left: 0.45rem; top: 0.95rem; width: 6px; height: 6px; border-radius: 9999px;
-    background: var(--color-line); transition: background-color .2s, transform .2s;
-  }
-  .sv-toc :global(a:hover) { color: var(--color-teal); background: var(--color-mist); }
-  .sv-toc :global(a[aria-current='true']) { color: var(--color-teal); background: var(--color-mist); font-weight: 800; }
-  .sv-toc :global(a[aria-current='true'])::before { background: var(--color-gold); transform: scale(1.35); }
-  .sv-drawer {
-    margin: auto auto 0; width: 100%; max-width: 100%; max-height: 80vh; padding: 0; border: 0;
-    border-radius: 20px 20px 0 0; background: #fff; color: var(--color-charcoal);
-  }
-  @media (min-width: 640px) { .sv-drawer { margin: auto; max-width: 520px; border-radius: 20px; } }
-  .sv-drawer::backdrop { background: rgb(14 84 84 / .55); }
-  .sv-drawer[open] { animation: sv-drawer-in .25s ease-out; }
-  @keyframes sv-drawer-in { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
 </style>
 
 <script>
@@ -306,50 +299,5 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
       el.replaceChildren(iframe);
     });
   });
-
-  // Table of contents: smooth scroll without touching the URL, active item on scroll, mobile drawer.
-  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
-  const heads = [...new Set(links.map((a) => a.dataset.tocLink!))]
-    .map((id) => document.getElementById(id))
-    .filter((h): h is HTMLElement => !!h);
-  const drawer = document.getElementById('toc-drawer') as HTMLDialogElement | null;
-  const opener = document.querySelector<HTMLButtonElement>('[data-toc-open]');
-
-  const setActive = (id: string) =>
-    links.forEach((a) => (a.dataset.tocLink === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
-
-  links.forEach((a) => a.addEventListener('click', (e) => {
-    const target = document.getElementById(a.dataset.tocLink!);
-    if (!target) return;
-    e.preventDefault();
-    const go = () => {
-      target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
-      target.focus({ preventScroll: true });
-      setActive(target.id);
-    };
-    if (drawer?.open) { drawer.close(); requestAnimationFrame(go); } else go();
-  }));
-
-  if (heads.length && 'IntersectionObserver' in window) {
-    const visible = new Set<string>();
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((en) => (en.isIntersecting ? visible.add(en.target.id) : visible.delete(en.target.id)));
-      const first = heads.find((h) => visible.has(h.id));
-      if (first) setActive(first.id);
-      else {
-        // Between headings: the last heading above the viewport's reading line is the current section
-        const above = heads.filter((h) => h.getBoundingClientRect().top < 120);
-        setActive((above[above.length - 1] ?? heads[0]).id);
-      }
-    }, { rootMargin: '-100px 0px -55% 0px' });
-    heads.forEach((h) => io.observe(h));
-  }
-
-  if (drawer && opener) {
-    opener.addEventListener('click', () => drawer.showModal());
-    drawer.querySelector('[data-toc-close]')?.addEventListener('click', () => drawer.close());
-    // Click on the backdrop (outside the panel) closes; Esc closes natively
-    drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.close(); });
-    drawer.addEventListener('close', () => opener.focus());
-  }
+  // Table of contents behavior lives in components/toc (TocList + TocDrawer).
 </script>

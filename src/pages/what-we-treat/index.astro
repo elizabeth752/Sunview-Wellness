@@ -13,7 +13,7 @@ const groups = [
 
 const faqs = [
   { q: 'What if I have both a substance use problem and a mental health condition?', a: 'That’s what we’re built for. We treat both together, with one team and one plan. <a href="/what-we-treat/dual-diagnosis/">Dual diagnosis treatment</a>.' },
-  { q: 'Do you treat mental health on its own?', a: 'Our programs treat mental health conditions alongside substance use. If mental health is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do you treat mental health on its own?', a: 'We treat mental health conditions alongside substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for mental health care on its own, we’ll help you find the right fit.' },
   { q: 'Do you treat eating disorders or gambling?', a: 'As secondary concerns, yes: we include them in your treatment plan. If one becomes the main issue, we’ll connect you with a program that specializes in it.' },
   { q: 'Which level of care do I need?', a: 'You don’t have to know. Our Clinical Director reviews your pre-screening and recommends PHP, IOP or OP. <a href="/programs/">Compare levels of care</a>.' },
   { q: 'Does insurance cover it?', a: 'Most plans do, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance</a>.' },
@@ -42,7 +42,7 @@ const faqs = [
         </div>
         <ul class="grid gap-3 self-start sm:grid-cols-2">
           {g.pages.map((p) => (
-            <li><a href={p.href} class="card flex items-center justify-between gap-3 !py-4 font-bold text-charcoal transition hover:border-teal hover:text-teal">{p.label} <Icon name="arrow" class="h-4 w-4 shrink-0 text-teal" /></a></li>
+            <>{/* Explicit whitespace between items: the build strips it, and text extractors ran the labels together (QA batch 2, item 5) */}<li><a href={p.href} class="card flex items-center justify-between gap-3 !py-4 font-bold text-charcoal transition hover:border-teal hover:text-teal"><span>{p.label}</span> <Icon name="arrow" class="h-4 w-4 shrink-0 text-teal" /></a></li>{' '}</>
           ))}
         </ul>
       </div>
@@ -75,7 +75,7 @@ const faqs = [
       <figure class="card !p-8">
         <ol class="space-y-3" aria-label="Layers we explore">
           {['What brought you here', 'The patterns underneath', 'Relationships and family systems', 'Past experiences still showing up today'].map((l, i) => (
-            <li class="rounded-[var(--radius-card)] bg-mist px-5 py-3 font-bold text-charcoal" style={`margin-left:${i * 14}px`}>{l}</li>
+            <><li class="rounded-[var(--radius-card)] bg-mist px-5 py-3 font-bold text-charcoal" style={`margin-left:${i * 14}px`}>{l}</li>{' '}</>
           ))}
         </ol>
       </figure>
@@ -91,6 +91,7 @@ const faqs = [
         <p class="subheading mt-3">You don’t need a diagnosis to call</p>
         <p class="mt-5 text-lg">Many people call saying, “I don’t know what to do anymore,” or “I know I need help, but I don’t know where to start.” That’s enough. The first conversation is about listening and figuring out, together, what you need.</p>
         <p class="mt-4 text-lg">After a short pre-screening, our Clinical Director recommends the level of care that fits you, using ASAM criteria and clinical judgment. We check your insurance for free, and free door-to-door transportation is available if you can’t drive.</p>
+        <p class="mt-4 text-lg">If you’d like to read first, start with our <a href="/admissions/faq/" class="font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">answers to the questions people ask before they call</a>.</p>
         <a href="/admissions/" class="btn-teal mt-8">Talk to admissions <Icon name="arrow" /></a>
       </div>
       <div class="self-center">

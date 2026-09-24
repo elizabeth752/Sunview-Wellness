@@ -100,7 +100,7 @@ const faqs = [
   {/* 5. Big-type statement */}
   <section class="section bg-cream">
     <div class="container-x">
-      <h2 class="text-3xl sm:text-[2.1875rem]">Why We Do Not Take a One-Size-Fits-All Approach</h2>
+      <h2 class="text-3xl sm:text-[2.1875rem]">One Foundation, Many Ways of Working</h2>
       <p class="mt-8 max-w-4xl font-display text-3xl font-extrabold leading-tight text-teal sm:text-[2.6rem]">Every person is different. So is every clinician.</p>
       <div class="mt-8 grid max-w-5xl gap-6 text-lg md:grid-cols-3">
         <p>We don’t require our team to work from one single model, and we don’t apply one model to everyone.</p>
@@ -112,12 +112,12 @@ const faqs = [
 
   {/* Related row */}
   <nav aria-label="Related pages" class="border-t border-line py-8">
+    {/* Max 5 links, "Talk to admissions" last (QA batch 5, item 4). Explicit {' '}: the build strips whitespace between tags. */}
     <div class="container-x flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
-      <span class="font-extrabold text-charcoal">Keep exploring:</span>
-      <a href="/therapies/" class="font-bold text-teal hover:underline">All therapy approaches</a>
-      {related.map((r) => <a href={r.href} class="font-bold text-teal hover:underline">{r.label}</a>)}
-      <a href="/programs/" class="font-bold text-teal hover:underline">Outpatient levels of care</a>
-      <a href="/what-we-treat/mental-health/personality-disorders/" class="font-bold text-teal hover:underline">Personality disorder treatment</a>
+      <span class="font-extrabold text-charcoal">Keep exploring:</span>{' '}
+      <a href="/therapies/" class="font-bold text-teal hover:underline">All therapy approaches</a>{' '}
+      {related.map((r) => <><a href={r.href} class="font-bold text-teal hover:underline">{r.label}</a>{' '}</>)}
+      <a href="/programs/" class="font-bold text-teal hover:underline">Outpatient levels of care</a>{' '}
       <a href="/admissions/" class="btn-teal ml-auto">Talk to admissions <Icon name="arrow" /></a>
     </div>
   </nav>

@@ -1,0 +1,38 @@
+Source URL,Expected,HTTP status on preview (sunview-wellness.vercel.app),Result
+/,200,200,OK
+/about-us/,301 → /our-team/,301 → /our-team/,OK
+/conditions-we-treat/,301 → /what-we-treat/,301 → /what-we-treat/,OK
+/dual-diagnosis/,301 → /what-we-treat/dual-diagnosis/,301 → /what-we-treat/dual-diagnosis/,OK
+/substance-use-disorder/,301 → /what-we-treat/substance-use/,301 → /what-we-treat/substance-use/,OK
+/faq/,301 → /admissions/faq/,301 → /admissions/faq/,OK
+/privacy-policy/,200,200,OK
+/php-iop-west-palm-beach/,301 → /programs/iop/,301 → /programs/iop/,OK
+/outpatient-rehab-west-palm-beach/,301 → /programs/outpatient/,301 → /programs/outpatient/,OK
+/drug-rehab-west-palm-beach/,301 → /what-we-treat/substance-use/,301 → /what-we-treat/substance-use/,OK
+/get-help-now/,301 → /admissions/,301 → /admissions/,OK
+/media/,301 → /blog/,301 → /blog/,OK
+/media-category/articles/,301 → /blog/,301 → /blog/,OK
+/media/getting-sober-vs-staying-sober/,301 → /blog/getting-sober-vs-staying-sober/,301 → /blog/getting-sober-vs-staying-sober/,OK
+/media/drugs-and-alcohol-its-worse-than-you-think/,301 → /blog/drugs-and-alcohol-its-worse-than-you-think/,301 → /blog/drugs-and-alcohol-its-worse-than-you-think/,OK
+/media/recovery-doesnt-happen-in-a-bubble/,301 → /blog/recovery-doesnt-happen-in-a-bubble/,301 → /blog/recovery-doesnt-happen-in-a-bubble/,OK
+/media/beyond-good-enough-redefining-community-based-care/,301 → /blog/beyond-good-enough-redefining-community-based-care/,301 → /blog/beyond-good-enough-redefining-community-based-care/,OK
+/media/what-actually-happens-after-rehab/,301 → /blog/what-actually-happens-after-rehab/,301 → /blog/what-actually-happens-after-rehab/,OK
+/media/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/,301 → /blog/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/,301 → /blog/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/,OK
+/media/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/,301 → /blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/,301 → /blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/,OK
+/media/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/,301 → /blog/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/,301 → /blog/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/,OK
+/media/what-should-a-treatment-center-feel-like/,301 → /blog/what-should-a-treatment-center-feel-like/,301 → /blog/what-should-a-treatment-center-feel-like/,OK
+/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/,301 → /blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/,301 → /blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/,OK
+/locations.kml,301 → /locations/west-palm-beach/,301 → /locations/west-palm-beach/,OK
+/mental-health/,301 → /what-we-treat/mental-health/,301 → /what-we-treat/mental-health/,OK
+/contact/,301 → /admissions/,301 → /admissions/,OK
+/substance-abuse/,301 → /what-we-treat/substance-use/,301 → /what-we-treat/substance-use/,OK
+/location/,301 → /locations/west-palm-beach/,301 → /locations/west-palm-beach/,OK
+/referral/,301 → /for-professionals/,301 → /for-professionals/,OK
+/referral-2/,301 → /for-professionals/,301 → /for-professionals/,OK
+/test-make-a-referral/,301 → /for-professionals/,301 → /for-professionals/,OK
+/about/,200,200,OK
+/hello-world/,410,410,OK
+/a-simple-guide-to-design-thinking/,410,410,OK
+/web-design-trends-for-2020/,410,410,OK
+/?utm_source=google&utm_medium=organic&utm_campaign=gbp,200,200,OK
+/our-approach/,301 → /about/our-approach/,301 → /about/our-approach/,OK

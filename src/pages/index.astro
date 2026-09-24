@@ -23,7 +23,7 @@ const week = [
   { icon: 'users', title: 'One group, one facilitator', text: 'The same clinician leads your group from 9am to 1pm, with breaks. Nobody re-explains their history to a new face every hour, so the work can go deeper.', href: '/therapies/group-therapy/', link: 'Group therapy' },
   { icon: 'heart', title: 'Family contact in the first week', text: 'With your consent, your therapist calls a loved one in your first week. After that, updates and family sessions follow at a pace that fits you.', href: '/therapies/family-therapy/', link: 'Family therapy' },
   { icon: 'pill', title: 'Psychiatry that continues after discharge', text: 'Medication management through Telemed Clinix, in a private office on site. You can keep the same provider after you finish with us.', href: '/programs/psychiatry-medication-management/', link: 'Psychiatry & medication' },
-  { icon: 'calendar', title: 'Gender-specific group days', text: 'On regular gender-specific group days, women and men meet in separate groups. Some things are easier to say to people who relate.', href: '/therapies/group-therapy/', link: 'How groups work' },
+  { icon: 'calendar', title: 'Gender-specific group days', text: 'Every other Thursday, women and men meet in separate groups. Some things are easier to say to people who relate.', href: '/therapies/group-therapy/', link: 'How groups work' },
   { icon: 'message', title: 'A weekly session that’s just yours', text: 'You meet one-on-one with your primary therapist for 45 to 60 minutes each week, and sooner if something comes up.', href: '/admissions/what-to-expect/', link: 'What to expect' },
   { icon: 'chart', title: 'Progress you can see', text: 'We track recovery and symptoms with the BAM, PHQ-9 and GAD-7, and review your treatment plan with you every month.', href: '/about/our-approach/', link: 'Our approach & outcomes' },
 ];
@@ -61,7 +61,7 @@ const treat = [
     links: [['Alcohol', '/what-we-treat/substance-use/alcohol/'], ['Cocaine & crack', '/what-we-treat/substance-use/cocaine/'], ['Opioids', '/what-we-treat/substance-use/opioids/'], ['Benzodiazepines', '/what-we-treat/substance-use/benzodiazepines/']],
   },
   {
-    title: 'Mental health',
+    title: 'Co-occurring mental health',
     anchor: 'Co-occurring mental health treatment',
     href: '/what-we-treat/mental-health/',
     text: 'Anxiety, depression, trauma and personality disorders are the conditions we see most alongside substance use.',
@@ -85,7 +85,7 @@ const scope = [
 
 const faqs = [
   { q: 'Can I keep working while I’m in treatment?', a: 'Many people do. PHP runs Monday to Friday, 9am to 1pm. Day IOP meets three mornings a week, and evening IOP meets Monday, Wednesday and Thursday from 6 to 9pm. See <a href="/programs/">how the levels of care compare</a>.' },
-  { q: 'Do you offer detox or residential treatment?', a: 'No. Sunview is outpatient only: PHP, IOP and OP. If you need detox or residential care first, we’ll tell you honestly and help you get there.' },
+  { q: 'Do you offer detox or residential treatment?', a: 'Sunview is outpatient care: PHP, IOP and OP. If you need detox or residential care first, we’ll tell you honestly and help you get there.' },
   { q: 'Can I stay on Suboxone or Vivitrol?', a: 'Yes. Sunview is abstinence-based, but not medication-free. Anti-craving medications are welcome when a qualified outside provider prescribes and manages them. <a href="/programs/psychiatry-medication-management/">How medication works here</a>.' },
   { q: 'Does insurance cover it?', a: 'Most plans do, including Medicaid. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance</a>.' },
   { q: 'How soon can I start?', a: 'Once your pre-screening is done and your benefits are verified, we can often have you enrolled within 24 hours. <a href="/admissions/">Start here</a>.' },
@@ -115,9 +115,6 @@ const faqs = [
   </PageHero>
 
 
-  {/* Insurance: white, centered, logos alone in an infinite grayscale marquee (client request 2026-09-22) */}
-  <InsuranceSection />
-
   {/* Name the fear before the program: the first call as a conversation (design "B", approved 2026-09-22).
        Visitor bubbles are verbatim Q23 phrases; the teal bubble is Sunview's reply. */}
   <section class="section">
@@ -135,10 +132,11 @@ const faqs = [
             {c.said.map((line) => (
               <p class="max-w-[92%] justify-self-start rounded-[18px] rounded-bl-md border border-line bg-white px-3.5 py-2.5 text-[15px] leading-snug">{line}</p>
             ))}
-            <p class="max-w-[92%] justify-self-end rounded-[18px] rounded-br-md bg-teal px-3.5 py-2.5 text-[15px] leading-snug text-white">
-              {c.reply}
-              <span class="mt-1 block text-[11px] font-bold text-white/80">Sunview admissions</span>
-            </p>
+            {/* Sunview's reply, captioned on its own line under the bubble (QA batch 1, item 12) */}
+            <figure class="grid max-w-[92%] justify-self-end">
+              <p class="rounded-[18px] rounded-br-md bg-teal px-3.5 py-2.5 text-[15px] leading-snug text-white">{c.reply}</p>
+              <figcaption class="mt-1 text-right text-xs font-bold text-muted">Sunview admissions</figcaption>
+            </figure>
             <a href={c.href} class="mt-1.5 inline-flex items-center gap-2 font-extrabold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{c.link} <Icon name="arrow" class="h-4 w-4" /></a>
           </div>
         ))}
@@ -153,7 +151,7 @@ const faqs = [
         <span class="eyebrow">Levels of care</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Outpatient Treatment Programs in West Palm Beach: PHP, IOP and OP</h2>
         <p class="subheading mt-3">Three levels of care, one team the whole way through</p>
-        <p class="mt-5 text-lg">Most people come to us after detox or residential treatment. Others come straight from home. Either way, our Clinical Director reviews your pre-screening and recommends the level that fits, using ASAM criteria and clinical judgment.</p>
+        <p class="mt-5 text-lg">Outpatient addiction treatment in West Palm Beach starts with the right level of care. Most people come to us after detox or residential treatment. Others come straight from home. Either way, our Clinical Director reviews your pre-screening and recommends the level that fits, using ASAM criteria and clinical judgment.</p>
       </div>
       <div class="mt-10"><ProgramCards /></div>
       <p class="mt-6 flex items-center gap-2 font-bold"><Icon name="car" class="h-5 w-5 shrink-0 text-teal" />Free door-to-door transportation if you can’t drive yourself.</p>
@@ -299,6 +297,8 @@ const faqs = [
 
   <Reviews />
 
+  {/* Insurance after Reviews (QA batch 1, item 10): white, centered, logos alone in an infinite grayscale marquee */}
+  <InsuranceSection />
 
   <MapSection />
 

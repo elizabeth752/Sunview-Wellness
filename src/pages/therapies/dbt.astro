@@ -69,7 +69,7 @@ const faqs = [
       <div>
         <h2 class="text-3xl sm:text-[2.1875rem]">DBT at Sunview: Skills Plus Insight</h2>
         <p class="mt-5 text-lg">DBT is one of the shared approaches our clinical team works from, together with IFS, CBT and trauma-informed care. Our Clinical Director, Dana Martin, is known for integrating DBT-based approaches into her clinical work, and several of our therapists have a strong foundation in DBT.</p>
-        <p class="mt-4 text-lg">We teach the skills, and we also look at why certain emotions hit so hard in the first place. Skills without that insight are harder to use when it counts.</p>
+        <p class="mt-4 text-lg">DBT skills are integrated into groups and individual sessions, not offered as a separate DBT program. We teach the skills, and we also look at why certain emotions hit so hard in the first place. Skills without that insight are harder to use when it counts.</p>
         <p class="mt-4 text-lg">In your weekly individual session, your therapist helps you apply the skills to your own week: the argument, the craving after work, the phone call you’ve been dreading.</p>
       </div>
       <blockquote class="border-l-4 border-gold pl-6 font-display text-2xl leading-snug text-charcoal sm:text-[1.75rem]">
@@ -95,9 +95,9 @@ const faqs = [
     <div class="container-x grid gap-10 lg:grid-cols-[1fr_1fr]">
       <div>
         <h2 class="text-3xl sm:text-[2.1875rem]">DBT Skills in Group Programming</h2>
-        <p class="mt-5 text-lg">DBT skills show up throughout our group programming, led by the same facilitator for the whole session. Twice a month, groups are gender-specific, which can make it easier to practice skills around relationships and boundaries. Group topics include:</p>
+        <p class="mt-5 text-lg">DBT skills show up throughout our group programming, led by the same facilitator for the whole session. Every other Thursday, groups are gender-specific, which can make it easier to practice skills around relationships and boundaries. Group topics include:</p>
         <ul class="mt-6 grid gap-3 sm:grid-cols-2">
-          {topics.map((t) => <li class="flex items-center gap-3 border-b border-line pb-3 font-bold text-charcoal"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-teal" />{t}</li>)}
+          {topics.map((t) => <><li class="flex items-center gap-3 border-b border-line pb-3 font-bold text-charcoal"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-teal" />{t}</li>{' '}</>)}
         </ul>
       </div>
       <div class="self-end rounded-[var(--radius-lg)] bg-cream p-7 sm:p-9">
@@ -124,12 +124,12 @@ const faqs = [
 
   {/* Related row */}
   <nav aria-label="Related pages" class="border-t border-line py-8">
+    {/* Max 5 links, "Talk to admissions" last (QA batch 5, item 4). Explicit {' '}: the build strips whitespace between tags. */}
     <div class="container-x flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
-      <span class="font-extrabold text-charcoal">Keep exploring:</span>
-      <a href="/therapies/" class="font-bold text-teal hover:underline">All therapy approaches</a>
-      {related.map((r) => <a href={r.href} class="font-bold text-teal hover:underline">{r.label}</a>)}
-      <a href="/programs/" class="font-bold text-teal hover:underline">Outpatient levels of care</a>
-      <a href="/what-we-treat/mental-health/anxiety/" class="font-bold text-teal hover:underline">Anxiety and addiction treatment</a>
+      <span class="font-extrabold text-charcoal">Keep exploring:</span>{' '}
+      <a href="/therapies/" class="font-bold text-teal hover:underline">All therapy approaches</a>{' '}
+      {related.map((r) => <><a href={r.href} class="font-bold text-teal hover:underline">{r.label}</a>{' '}</>)}
+      <a href="/programs/" class="font-bold text-teal hover:underline">Outpatient levels of care</a>{' '}
       <a href="/admissions/" class="btn-teal ml-auto">Talk to admissions <Icon name="arrow" /></a>
     </div>
   </nav>

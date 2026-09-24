@@ -24,3 +24,6 @@ docs/content/client-wiki-*.txt
 .vercel
 .env*
 !.env.example
+
+# raw third-party pages downloaded as sources (LinkedIn/YouTube/WordPress HTML); the extracted .txt files are kept
+docs/content/blog-sources/*.html

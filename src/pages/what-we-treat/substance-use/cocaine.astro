@@ -6,7 +6,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/substance-use/cocaine/';
@@ -16,7 +16,8 @@ const signs = [
   'Cravings take over your thinking, especially around money, stress or certain people',
   'Using turns into binges, followed by crashes that leave you drained or low',
   'Money, work or relationships are slipping, and you keep using anyway',
-  'You hide how much you use, or feel on edge when you’re not using',
+  'You hide how much you use',
+  'You feel on edge when you’re not using',
   'You’ve promised yourself you’d stop, more than once',
 ];
 
@@ -29,12 +30,21 @@ const how = [
   { icon: 'layers', title: 'The patterns underneath', text: 'Psychodynamic work and Internal Family Systems look at what sits beneath the use, so change lasts longer than willpower does.' },
 ];
 
+// QA batch 3, item 1: facts reused from the program pages and /admissions/what-to-expect/ (no new claims).
+const weeks = [
+  { when: 'Week one', title: 'Getting started', text: 'Intake, your first groups and your first individual session. With your consent, your therapist contacts a loved one, and we schedule your Telemed Clinix psychiatric appointment for you.' },
+  { when: 'Mornings', title: 'One group, 9 AM to 1 PM', text: 'The same facilitator all morning, with breaks. Yesterday’s craving or trigger becomes today’s work.' },
+  { when: 'Or evenings', title: 'Evening IOP after work', text: 'Monday, Wednesday and Thursday from 6 to 9 PM.' },
+  { when: 'Every week', title: 'Your own session', text: '45 to 60 minutes with your primary therapist, plus random drug testing as part of your recovery support.' },
+  { when: 'Over time', title: 'Stepping down', text: 'From PHP to IOP to OP, with the same team.' },
+];
+
 const faqs = [
-  { q: 'Do I need detox before cocaine treatment?', a: 'Your pre-screening decides where to start. If you also use alcohol, opioids or benzodiazepines, medically supervised detox may need to come first for those. Our Clinical Director looks at your whole picture and recommends the right level of care.' },
+  { q: 'Do I need detox before cocaine treatment?', a: 'It depends on what else you use, and how much and for how long. If you also use alcohol, opioids or benzodiazepines, medically supervised detox may need to come first for those. Your pre-screening looks at your whole picture, and our Clinical Director recommends the right level of care.' },
   { q: 'Do you drug test?', a: 'Yes. Random drug testing is part of every program, as part of our ongoing monitoring and recovery support.' },
   { q: 'Can I keep working during treatment?', a: 'Yes. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, and day programs end at 1 PM. <a href="/programs/iop/">See the Intensive Outpatient Program</a>.' },
   { q: 'What if I’ve relapsed before?', a: 'You’re not starting from zero. Recovery isn’t linear, and we use hard moments as part of the work: what happened, what you needed, and how to handle the next one differently.' },
-  { q: 'Does insurance cover cocaine addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+  { q: 'Does insurance cover cocaine addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We verify your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
 ];
 ---
 <ServicePage
@@ -64,6 +74,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </div>
     </div>
   </section>
@@ -96,18 +107,39 @@ const faqs = [
         <span class="eyebrow">The whole picture</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Cocaine and Co-Occurring Mental Health</h2>
         <p class="subheading mt-3">Treated together, by one team</p>
-        <p class="mt-5 text-lg">Many people we work with are living with more than one thing at once: anxiety, depression, trauma or a personality disorder alongside substance use. Using can start as a way to cope with emotional pain, then make that pain worse. We treat the cycle between them, with psychiatric care through Telemed Clinix included.</p>
+        <p class="mt-5 text-lg">Many people we work with are living with more than one thing at once: anxiety, depression, trauma or a personality disorder alongside substance use. Using can start as a way to cope with emotional pain, then make that pain worse. We treat the cycle between them, with psychiatric care through Telemed Clinix included. Read more about <a href="/what-we-treat/mental-health/" class="font-bold text-teal underline decoration-2 underline-offset-4">co-occurring mental health treatment</a>.</p>
         <p class="mt-4 text-lg">If you’re also drinking heavily or using opioids or benzodiazepines, tell us during pre-screening. Medically supervised detox may need to come first for those, and we’ll help you plan the path back to us.</p>
       </div>
       <div class="card !p-7">
-        <h3 class="text-xl">Keep reading</h3>
+        <h3 class="text-xl">Related conditions</h3>
         <ul class="mt-4 space-y-3">
           <li><a href="/what-we-treat/dual-diagnosis/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Dual diagnosis treatment</a></li>
-          <li><a href="/what-we-treat/mental-health/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Co-occurring mental health treatment</a></li>
           <li><a href="/what-we-treat/mental-health/trauma-ptsd/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Trauma and PTSD treatment</a></li>
           <li><a href="/what-we-treat/mental-health/personality-disorders/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Personality disorder and addiction treatment</a></li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  {/* Week to week: dark band with a compact timeline (QA batch 3, item 1) */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <span class="eyebrow eyebrow-light">Week to week</span>
+        <h2 class="mt-3 text-3xl text-white sm:text-[2.1875rem]">What Treatment Looks Like Week to Week</h2>
+        <p class="subheading mt-3 !text-white">Structure for the craving, one week at a time</p>
+        <p class="mt-5 text-lg text-white/90">You go home every night, so the work happens in real time. Here’s how the weeks usually go.</p>
+      </div>
+      <ol class="relative border-l-2 border-white/25 pl-8">
+        {weeks.map((w) => (
+          <li class="relative pb-6 last:pb-0">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-teal-deep bg-gold" aria-hidden="true"></span>
+            <p class="font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-white/75">{w.when}</p>
+            <h3 class="mt-0.5 text-lg text-white">{w.title}</h3>
+            <p class="mt-1 text-white/90">{w.text}</p>
+          </li>
+        ))}
+      </ol>
     </div>
   </section>
 
@@ -117,9 +149,8 @@ const faqs = [
     level={`<p>If you need daily structure to break the cycle, the <a href="/programs/php/">Partial Hospitalization Program</a> meets every weekday morning. The <a href="/programs/iop/">Intensive Outpatient Program</a> meets three days a week, day or evening, so you can keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps one morning a week in place as life gets steadier. Our Clinical Director recommends the level that fits you.</p>`}
     related={[
       { label: CATEGORIES.substance.label, href: CATEGORIES.substance.href },
-      ...SUBSTANCE_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'All conditions we treat', href: WWT.href },
+      ...siblings(SUBSTANCE_PAGES, ['alcohol', 'opioids']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

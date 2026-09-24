@@ -4,7 +4,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/substance-use/alcohol/';
@@ -28,18 +28,25 @@ const how = [
   { icon: 'heart', title: 'Family, when you’re ready', text: 'With your consent, your therapist contacts a loved one in your first week. After that, involvement moves at your pace.' },
 ];
 
+// QA batch 3, item 1: facts reused from the program pages and /admissions/what-to-expect/ (no new claims).
+const weeks = [
+  { label: 'Week one', title: 'Getting started', text: 'Intake, your first groups and your first one-on-one session. With your consent, your therapist contacts a loved one, and we schedule your Telemed Clinix psychiatric appointment for you.' },
+  { label: 'Most days', title: 'A morning or an evening', text: 'In PHP, one continuous group from 9 AM to 1 PM with the same facilitator. If you work days, evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM. Once a week, 45 to 60 minutes with your primary therapist.' },
+  { label: 'Over time', title: 'Stepping down', text: 'As your days fill back up, you move from PHP to IOP to OP with the same team. If an outside provider prescribes naltrexone, it continues alongside.' },
+];
+
 const faqs = [
-  { q: 'Do I need detox before alcohol treatment?', a: 'Not always. Alcohol withdrawal can be dangerous, so if you’ve been drinking heavily for a long time, medically supervised detox may need to come first. We look at this with you during pre-screening and help you find detox if you need it.' },
+  { q: 'Do I need detox before alcohol treatment?', a: 'It depends on how much and how long you’ve been drinking. Alcohol withdrawal can be dangerous, so after heavy drinking over a long time, medically supervised detox may need to come first. We look at this with you during pre-screening and help you find detox if you need it.' },
   { q: 'Can I keep working during alcohol treatment?', a: 'Yes. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, and day programs end at 1 PM. <a href="/programs/iop/">See the Intensive Outpatient Program</a>.' },
   { q: 'Can I take naltrexone while I’m in the program?', a: 'Yes. Naltrexone and other anti-craving medications are welcome when a qualified outside provider prescribes and manages them. If you don’t have one, we can refer you.' },
   { q: 'What if I also struggle with anxiety or depression?', a: 'That’s common, and we treat both together, with psychiatric care through Telemed Clinix included. <a href="/what-we-treat/dual-diagnosis/">Learn about dual diagnosis treatment</a>.' },
-  { q: 'Does insurance cover alcohol rehab?', a: 'Most plans cover outpatient alcohol treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+  { q: 'Does insurance cover alcohol rehab?', a: 'Most plans cover outpatient alcohol treatment, including Medicaid plans. We verify your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
 ];
 ---
 <ServicePage
   path={path}
-  metaTitle="Alcohol Addiction Treatment in West Palm Beach | Sunview"
-  description="Outpatient alcohol addiction treatment in West Palm Beach: PHP, IOP and OP for adults who want to stop drinking. Free door-to-door transportation."
+  metaTitle="Alcohol Rehab & Addiction Treatment in West Palm Beach"
+  description="Alcohol rehab in West Palm Beach: outpatient PHP, IOP and OP for adults ready to stop drinking without leaving home. Free door-to-door transportation."
   crumbs={[WWT, { name: CATEGORIES.substance.name, href: CATEGORIES.substance.href }, { name: 'Alcohol Addiction Treatment', href: path }]}
   h1="Alcohol Addiction Treatment in West Palm Beach"
   subheading="Stop drinking without putting your whole life on hold."
@@ -63,6 +70,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </div>
     </div>
   </section>
@@ -106,15 +114,39 @@ const faqs = [
     </div>
   </section>
 
+  {/* Week to week: 3-step horizontal strip (QA batch 3, item 1) */}
+  <section class="section bg-cream">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Week to week</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Treatment Looks Like Week to Week</h2>
+        <p class="subheading mt-3">From your first morning to stepping down</p>
+        <p class="mt-5 text-lg">Many people start with us right after detox. Here’s how the weeks usually go.</p>
+      </div>
+      <ol class="relative mt-12 grid gap-8 lg:grid-cols-3 lg:gap-8">
+        <span class="absolute left-0 right-0 top-[22px] hidden h-[2px] bg-gold lg:block" aria-hidden="true"></span>
+        {weeks.map((w, i) => (
+          <li class="relative flex gap-4 lg:block">
+            <span class="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal font-sans font-extrabold text-white ring-4 ring-cream">{i + 1}</span>
+            <div class="lg:mt-5">
+              <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{w.label}</p>
+              <h3 class="mt-1 text-xl">{w.title}</h3>
+              <p class="mt-2">{w.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
   <NextSteps
     title="Which Level of Care Fits"
     subtitle="Where most people start with alcohol"
     level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a> right after detox, for the most structure. If you work days, the <a href="/programs/iop/">Intensive Outpatient Program</a> has an evening option. When your days fill back up, the <a href="/programs/outpatient/">Outpatient Program</a> keeps one morning a week in place. Our Clinical Director recommends the level that fits you.</p>`}
     related={[
       { label: CATEGORIES.substance.label, href: CATEGORIES.substance.href },
-      ...SUBSTANCE_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'All conditions we treat', href: WWT.href },
+      ...siblings(SUBSTANCE_PAGES, ['cocaine', 'benzodiazepines']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

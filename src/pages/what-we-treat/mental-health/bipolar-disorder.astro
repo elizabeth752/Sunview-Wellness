@@ -5,7 +5,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, MENTAL_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/mental-health/bipolar-disorder/';
@@ -18,16 +18,16 @@ const treating = [
 ];
 
 const approaches = [
-  { name: 'CBT', text: 'Works on the thought patterns that can drive substance use and make mood harder to manage.' },
-  { name: 'DBT', text: 'Builds skills for regulating intense emotions and getting through hard moments without using.' },
-  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the different parts of yourself and how they respond to stress.' },
-  { name: 'Psychodynamic and family systems work', text: 'Explores relationships and patterns that may be reinforcing the cycle, when you’re stable enough for that work.' },
+  { name: 'CBT', href: '/therapies/cbt/', text: 'Works on the thought patterns that can drive substance use and make mood harder to manage.' },
+  { name: 'DBT', href: '/therapies/dbt/', text: 'Builds skills for regulating intense emotions and getting through hard moments without using.' },
+  { name: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/', text: 'Helps you understand the different parts of yourself and how they respond to stress.' },
+  { name: 'Psychodynamic and family systems work', html: '<a href="/therapies/inner-child-therapy/" class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychodynamic</a> and <a href="/therapies/family-therapy/" class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">family systems work</a>', text: 'Explores relationships and patterns that may be reinforcing the cycle, when you’re stable enough for that work.' },
 ];
 
 const faqs = [
   { q: 'Can I keep taking my mood stabilizer or other medications?', a: 'Often, yes. Your Telemed Clinix provider reviews what you take, how well it’s working and whether anything needs to change. We don’t switch medications just because you start a program.' },
   { q: 'I receive a long-acting injectable. Can I still attend?', a: 'Injectable psychiatric medications are given and monitored by an outside provider who can administer them properly. We coordinate with that provider while you’re in treatment with us.' },
-  { q: 'Do you treat bipolar disorder without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If bipolar disorder is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do you treat bipolar disorder without substance use?', a: 'We treat bipolar disorder when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for bipolar disorder care on its own, we’ll help you find the right fit.' },
   { q: 'What if my symptoms get worse during treatment?', a: 'We watch for changes throughout treatment. If psychiatric symptoms significantly worsen, or you can’t take part safely, we help you reach a more intensive level of care for stabilization and plan your return.' },
   { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
 ];
@@ -60,7 +60,7 @@ const faqs = [
       </div>
       <aside class="card self-start !p-7">
         <Icon name="compass" class="h-8 w-8 text-teal" />
-        <h3 class="mt-4 text-xl">What matters most here</h3>
+        <h3 class="mt-4 text-xl">What matters most in treatment</h3>
         <p class="mt-3">Staying on a steady, well-managed medication plan, and having a team that notices early when things change. Our program is built around both.</p>
       </aside>
     </div>
@@ -99,7 +99,7 @@ const faqs = [
       <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
         {approaches.map((a) => (
           <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
-            <dt class="font-extrabold">{a.name}</dt>
+            <dt class="font-extrabold">{a.html ? <Fragment set:html={a.html} /> : a.href ? <a href={a.href} class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{a.name}</a> : a.name}</dt>
             <dd>{a.text}</dd>
           </div>
         ))}
@@ -137,9 +137,8 @@ const faqs = [
     level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily contact with the team supports stability. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you’re steadier and need to keep working, and the <a href="/programs/outpatient/">Outpatient Program</a> keeps support in place over time. You need to be psychiatrically stable enough to take part in outpatient care; if not yet, we’ll help you get there first.</p>`}
     related={[
       { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
-      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      ...siblings(MENTAL_PAGES, ['depression', 'adhd']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

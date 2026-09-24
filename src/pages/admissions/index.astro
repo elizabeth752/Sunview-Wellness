@@ -4,7 +4,6 @@
 // ServicePage scrolls to the visible form. No reviewed-by byline on Admissions pages (brief decision).
 // Rotation: Insurance + Reviews + Map.
 import ServicePage from '../../layouts/ServicePage.astro';
-import ScopeNote from '../../components/ScopeNote.astro';
 import Icon from '../../components/Icon.astro';
 import { SITE } from '../../data/site.js';
 
@@ -52,7 +51,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
 <ServicePage
   path="/admissions/"
   metaTitle="Outpatient Rehab Admissions in West Palm Beach | Sunview"
-  description="Start outpatient treatment in West Palm Beach with one call, a free insurance check and a Clinical Director pre-screening. Often enrolled within 24 hours."
+  description="Start outpatient treatment in West Palm Beach with one call, a free insurance check and a pre-screening reviewed by our Clinical Director."
   crumbs={[{ name: 'Admissions', href: '/admissions/' }]}
   h1="Admissions for Outpatient Treatment in West Palm Beach"
   subheading="Reaching out is the hardest part. We'll listen first."
@@ -167,7 +166,6 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           <p class="mt-5 text-[15px]">Then we’ll help you find the right place, and plan Sunview as your next step.</p>
         </div>
       </div>
-      <ScopeNote class="mt-6" />
     </div>
   </section>
 

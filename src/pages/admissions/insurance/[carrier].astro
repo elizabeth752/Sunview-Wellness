@@ -5,30 +5,53 @@
 // Carrier copy lives in src/data/payers.js; Sunview facts come from the live site (free verification,
 // Medicaid, enrollment often within 24 hours, free door-to-door transportation).
 import ServicePage from '../../../layouts/ServicePage.astro';
-import LeadForm from '../../../components/LeadForm.astro';
 import Icon from '../../../components/Icon.astro';
-import { PAYERS } from '../../../data/payers.js';
+import { PUBLISHED_PAYERS } from '../../../data/payers.js';
 
 export function getStaticPaths() {
-  return PAYERS.map((p) => ({ params: { carrier: p.slug }, props: { payer: p } }));
+  // Only published payers are generated (payers.js `publish: false`; Humana is out of the build per QA 12 #17).
+  return PUBLISHED_PAYERS.map((p) => ({ params: { carrier: p.slug }, props: { payer: p } }));
 }
 
 const { payer: p } = Astro.props;
 const S = p.short;
+// Body copy uses the carrier's short form after the first full mention (QA 8 #2: "UnitedHealthcare" in the
+// title, H1, crumb and lead, "UHC" after that). Carriers without `abbr` keep `short` everywhere.
+const A = p.abbr ?? S;
 const path = `/admissions/insurance/${p.slug}/`;
 // <title> ≤60 chars (answer 9.1): keyword first, then the longest brand form that fits.
 const metaBase = `${S} Rehab Coverage in West Palm Beach`;
 const metaTitle = [`${metaBase} | Sunview Wellness`, `${metaBase} | Sunview`, metaBase].find((t) => t.length <= 60)!;
+// Network status (QA 7 #17): one variable per carrier in payers.js drives the status card, hero, body,
+// FAQ and meta description together. 'in' → "In network with {S}"; anything else → "We work with {S}".
+const inNetwork = p.network === 'in';
+const net = inNetwork
+  ? {
+      card: `In network with ${A}`,
+      hero: 'In network for PHP, IOP and outpatient treatment. We check your benefits for free.',
+      body: `Sunview is in network with ${A}.`,
+      faqQ: `Is Sunview in network with ${A}?`,
+      faqA: `Yes, Sunview Wellness is in network with ${A} for PHP, IOP and OP. Network rules can differ from plan to plan, so we confirm yours during the free benefits check.`,
+      meta: `Sunview Wellness is in network with ${S} for PHP, IOP and OP in West Palm Beach.`,
+    }
+  : {
+      card: `We work with ${A}`,
+      hero: `We work with ${A} plans for PHP, IOP and outpatient treatment. We check your benefits for free.`,
+      body: `We work with ${A} plans.`,
+      faqQ: `Does Sunview work with ${A}?`,
+      faqA: `Yes, we work with ${A} plans for PHP, IOP and OP. Network rules differ from plan to plan, so we confirm how yours applies during the free benefits check.`,
+      meta: `Sunview Wellness works with ${S} plans for PHP, IOP and OP in West Palm Beach.`,
+    };
 
 const glance = [
-  { icon: 'shield', label: 'Network status', value: `In network with ${S}` },
+  { icon: 'shield', label: 'Network status', value: net.card },
   { icon: 'layers', label: 'Levels of care', value: 'PHP, IOP and OP' },
   { icon: 'check-circle', label: 'Benefits check', value: 'Free, before you commit' },
   { icon: 'clock', label: 'Getting started', value: 'Often enrolled within 24 hours' },
 ];
 
 const steps = [
-  { title: 'Send your details', text: `Your name, phone, ${S} member ID and plan name, through the form or a call.` },
+  { title: 'Send your details', text: `Your name, phone, ${A} member ID and plan name, through the form or a call.` },
   { title: 'We call your plan', text: 'We confirm network status, which levels of care are covered and whether approval is needed first.' },
   { title: 'You get a straight answer', text: 'We walk you through what we found before you commit to anything.' },
 ];
@@ -40,25 +63,24 @@ const programs = [
 ];
 
 const faqs = [
-  { q: `Is Sunview in network with ${S}?`, a: `Yes, Sunview Wellness is in network with ${S} for PHP, IOP and OP. Network rules can differ from plan to plan, so we confirm yours during the free benefits check.` },
-  { q: 'Do I need pre-authorization?', a: `Some ${S} plans require approval before PHP or IOP starts, and some don’t. If yours does, our team requests it for you and keeps you updated.` },
-  { q: 'What if my plan is out of network?', a: `Call us anyway. We’ll explain what your plan allows, whether any out-of-network benefits apply and what your options are. <a href="/admissions/insurance/">See insurance and payment options</a>.` },
-  { q: `Does ${S} cover IOP?`, a: `Intensive outpatient treatment is a recognized level of care, and ${S} plans generally cover it when it’s medically necessary. The details depend on your plan. <a href="/programs/iop/">Learn about the Intensive Outpatient Program</a>.` },
+  { q: net.faqQ, a: net.faqA },
+  { q: 'Do I need pre-authorization?', a: `Some ${A} plans require approval before PHP or IOP starts, and some don’t. If yours does, our team requests it for you and keeps you updated.` },
+  { q: 'What if my plan is out of network?', a: `Ask us. We’ll check your out-of-network benefits and walk you through your options. <a href="/admissions/insurance/">See insurance and payment options</a>.` },
+  { q: `Does ${A} cover IOP?`, a: `Intensive outpatient treatment is a recognized level of care, and ${A} plans generally cover it when it’s medically necessary. The details depend on your plan. <a href="/programs/iop/">Learn about the Intensive Outpatient Program</a>.` },
   { q: 'How long does verification take?', a: 'We start as soon as we have your details, and once your benefits are verified and your pre-screening is done, we can often have you enrolled within 24 hours. <a href="/admissions/">How admissions works</a>.' },
 ];
 ---
 <ServicePage
   path={path}
   metaTitle={metaTitle}
-  description={`Sunview Wellness is in network with ${S} for PHP, IOP and OP in West Palm Beach. Free benefits check before you start.`}
+  description={`${net.meta} Free benefits check before you start.`}
   crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'Insurance & Payment', href: '/admissions/insurance/' }, { name: S, href: path }]}
   h1={`${S} Coverage for Outpatient Rehab in West Palm Beach`}
-  subheading="In network for PHP, IOP and outpatient treatment. We check your benefits for free."
+  subheading={net.hero}
   lead={`Outpatient treatment for substance use and co-occurring mental health conditions, using your ${p.carrier} plan. We confirm your benefits before you start, so there are no surprises.`}
-  faqTitle={`Frequently Asked Questions About ${S} Coverage`}
+  faqTitle={`Frequently Asked Questions About ${A} Coverage`}
   faqs={faqs}
   reviews
-  mobileForm={false}
   noindex={p.noindex === true}
 >
   {/* Coverage at a glance (no heading: a summary row, like a fact strip) */}
@@ -83,7 +105,7 @@ const faqs = [
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
       <div>
-        <h2 class="text-3xl sm:text-[2.1875rem]">Does {S} Cover Outpatient Addiction Treatment?</h2>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Does {A} Cover Outpatient Addiction Treatment?</h2>
         <p class="mt-5 text-lg">{p.intro}</p>
         <p class="mt-4 text-lg">{p.extra}</p>
         <p class="mt-4 text-lg">Coverage always depends on the plan: its network, whether approval is needed first, and your share of the cost. We never quote amounts before we’ve checked, and we won’t tell you anything is fully covered until your plan confirms it.</p>
@@ -98,10 +120,10 @@ const faqs = [
   {/* Using your plan: plan-type explainer + what to have ready + verification strip */}
   <section class="section bg-mist">
     <div class="container-x">
-      <h2 class="max-w-4xl text-3xl sm:text-[2.1875rem]">Using Your {S} Plan at Sunview</h2>
-      <p class="mt-4 max-w-3xl text-lg">Sunview is in network with {S}. Here is how the most common plan structures usually affect starting outpatient treatment.</p>
+      <h2 class="max-w-4xl text-3xl sm:text-[2.1875rem]">Using Your {A} Plan at Sunview</h2>
+      <p class="mt-4 max-w-3xl text-lg">{net.body} Here is how the most common plan structures usually affect starting outpatient treatment.</p>
       <div class="mt-10 grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
-        <dl class="divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+        <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line bg-white">
           {p.planTypes.map((t) => (
             <div class="grid gap-1 p-6 sm:grid-cols-[0.75fr_1.25fr] sm:gap-6">
               <dt class="font-extrabold text-charcoal">{t.type}</dt>
@@ -113,7 +135,14 @@ const faqs = [
           <div class="rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
             <p class="flex items-center gap-2 font-extrabold text-charcoal"><Icon name="briefcase" class="h-5 w-5 text-teal" />What to have ready</p>
             <p class="mt-2">{p.ready}</p>
+            {p.card && <p class="mt-3">{p.card}</p>}
           </div>
+          {p.approvals && (
+            <div class="rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
+              <p class="flex items-center gap-2 font-extrabold text-charcoal"><Icon name="clock" class="h-5 w-5 text-teal" />Approvals and reviews</p>
+              <p class="mt-2">{p.approvals}</p>
+            </div>
+          )}
           <div class="rounded-[var(--radius-card)] bg-cream p-6">
             <p class="flex items-center gap-2 font-extrabold text-charcoal"><Icon name="compass" class="h-5 w-5 text-teal" />Good to know</p>
             <p class="mt-2">{p.note}</p>
@@ -139,7 +168,7 @@ const faqs = [
   <section class="section">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">Programs Covered: PHP, IOP and OP</h2>
-      <p class="mt-4 max-w-3xl text-lg">All three levels of care work with {S} plans when they’re medically necessary. Our Clinical Director recommends which one fits you after a short pre-screening. <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Compare levels of care</a>.</p>
+      <p class="mt-4 max-w-3xl text-lg">All three levels of care work with {A} plans when they’re medically necessary. Our Clinical Director recommends which one fits you after a short pre-screening. <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Compare levels of care</a>.</p>
       <ul class="mt-8 divide-y divide-line border-y border-line">
         {programs.map((pr) => (
           <li>
@@ -162,7 +191,7 @@ const faqs = [
     <div class="container-x grid items-center gap-10 lg:grid-cols-2">
       <div>
         <h2 class="text-3xl sm:text-[2.1875rem]">Co-Occurring Mental Health and Psychiatric Care</h2>
-        <p class="mt-5 text-lg">Many people living with substance use also have anxiety, depression or trauma. Your {S} plan’s behavioral health benefits apply to treating them together, which is how every program at Sunview works.</p>
+        <p class="mt-5 text-lg">Many people living with substance use also have anxiety, depression or trauma. Your {A} plan’s behavioral health benefits apply to treating them together, which is how every program at Sunview works.</p>
         <p class="mt-4 text-lg">Psychiatric evaluation and medication management come through our partner, Telemed Clinix, as part of your program.</p>
       </div>
       <ul class="space-y-3">
@@ -172,20 +201,23 @@ const faqs = [
     </div>
   </section>
 
-  {/* Verification form (the body's own form, so ServicePage's pre-CTA mobile form is off) */}
-  <section id="verify" class="section bg-teal text-white">
-    <div class="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+  {/* Benefits check: a button, not a third form (QA 7 #15). It scrolls to the visible coverage form:
+       the hero form at lg and up, ServicePage's pre-CTA form below lg (#get-started handler). */}
+  <section class="section bg-teal text-white">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
       <div>
-        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Get Your {S} Benefits Verified</h2>
-        <p class="mt-5 text-lg text-white/90">Send your details and our admissions team will check your {S} benefits for free. No commitment, and everything you share is confidential.</p>
-        <ul class="mt-6 space-y-2 text-white/90">
-          <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 text-white" />Network status and covered levels of care</li>
-          <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 text-white" />Whether approval is needed first</li>
-          <li class="flex items-center gap-2"><Icon name="car" class="h-5 w-5 text-white" />Free door-to-door transportation if you can’t drive</li>
-        </ul>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Get Your {A} Benefits Verified</h2>
+        <p class="mt-5 text-lg text-white/90">Send your details and our admissions team will check your {A} benefits for free. No commitment, and everything you share is confidential.</p>
         <p class="mt-6 text-sm text-white/80">More about <a href="/admissions/insurance/" class="font-bold text-white underline">insurance and payment</a> · <a href="/admissions/faq/" class="font-bold text-white underline">admissions FAQ</a> · <a href="/admissions/" class="font-bold text-white underline">how admissions works</a></p>
       </div>
-      <LeadForm formId={`payer-${p.slug}`} dark />
+      <div>
+        <ul class="space-y-2 text-white/90">
+          <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-white" />Network status and covered levels of care</li>
+          <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-white" />Whether approval is needed first</li>
+          <li class="flex items-center gap-2"><Icon name="car" class="h-5 w-5 shrink-0 text-white" />Free door-to-door transportation if you can’t drive</li>
+        </ul>
+        <a href="#get-started" class="btn-sun mt-8 max-sm:px-5">Check my {A} coverage <Icon name="arrow" class="hidden h-5 w-5 sm:block" /></a>
+      </div>
     </div>
   </section>
 </ServicePage>

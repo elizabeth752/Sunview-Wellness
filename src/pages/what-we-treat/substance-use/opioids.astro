@@ -5,7 +5,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/substance-use/opioids/';
@@ -28,18 +28,25 @@ const how = [
   { icon: 'heart', title: 'Family involvement', text: 'With your consent, your therapist contacts a loved one in your first week, and involvement grows at your pace.' },
 ];
 
+// QA batch 3, item 1: facts reused from the program pages and /admissions/what-to-expect/ (no new claims).
+const weeks = [
+  { icon: 'calendar', label: 'Week one', title: 'Getting started', text: 'Intake, your first groups and your first individual session. With your consent, your therapist contacts a loved one. We schedule your Telemed Clinix psychiatric appointment for you, and if you take Suboxone or Vivitrol, we coordinate with your prescriber.' },
+  { icon: 'clock', label: 'A typical day', title: 'Morning or evening', text: 'PHP is one continuous group from 9 AM to 1 PM with the same facilitator. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM. Once a week, 45 to 60 minutes with your primary therapist, plus random drug testing.' },
+  { icon: 'refresh', label: 'Over time', title: 'Stepping down', text: 'From PHP to IOP, then OP, with the same team. Your medication stays with your outside prescriber, and we keep care connected.' },
+];
+
 const faqs = [
   { q: 'Can I stay on Suboxone or Vivitrol?', a: 'Yes. Sunview is abstinence-based but not medication-free. Suboxone and Vivitrol are welcome when a qualified outside provider prescribes and manages them, and we coordinate with that provider.' },
   { q: 'What if I’m on methadone?', a: 'We don’t provide methadone maintenance, and we generally don’t admit people who are maintained on it. If you’re coming off methadone, medical stabilization may come first. We’ll help you find the right program.' },
-  { q: 'Do I need detox before starting?', a: 'Usually, yes. If you’ve been using opioids regularly, medically supervised detox, and often residential treatment, comes first. Most people come to us as the next step after that care.' },
+  { q: 'Do I need detox before starting?', a: 'It depends on how much and how long you’ve been using, but usually, yes. If you’ve been using opioids regularly, medically supervised detox, and often residential treatment, comes first. Most people come to us as the next step after that care.' },
   { q: 'Can I start MAT while I’m at Sunview?', a: 'If you’re interested in medication-assisted treatment, we can refer you to a qualified provider who prescribes and manages it, and coordinate with them while you’re in the program.' },
-  { q: 'Does insurance cover opioid addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+  { q: 'Does insurance cover opioid addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We verify your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
 ];
 ---
 <ServicePage
   path={path}
   metaTitle="Opioid Addiction Treatment in West Palm Beach | Sunview"
-  description="Opioid addiction treatment in West Palm Beach after detox: PHP, IOP and OP. Suboxone and Vivitrol welcome via your prescriber; no methadone maintenance."
+  description="Opioid addiction treatment in West Palm Beach after detox: PHP, IOP and OP. Suboxone and Vivitrol welcome through your prescriber."
   crumbs={[WWT, { name: CATEGORIES.substance.name, href: CATEGORIES.substance.href }, { name: 'Opioid Addiction Treatment', href: path }]}
   h1="Opioid Addiction Treatment in West Palm Beach"
   subheading="The next step after detox, with your medication plan respected."
@@ -63,6 +70,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </div>
     </div>
   </section>
@@ -74,7 +82,7 @@ const faqs = [
         <span class="eyebrow">Treatment</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How Sunview Treats Opioid Addiction</h2>
         <p class="subheading mt-3">Abstinence-based, medication-friendly</p>
-        <p class="mt-5 text-lg">Opioids aren’t allowed during the program, other than anti-craving medications prescribed and managed by a qualified provider. Treatment happens in PHP, IOP or OP, and most people join us after detox or residential care. You also meet one-on-one with your primary therapist every week for 45 to 60 minutes, and free door-to-door transportation to and from our center is available if you can’t drive yourself.</p>
+        <p class="mt-5 text-lg">During the program, the only opioid-related medications are anti-craving medications prescribed and managed by a qualified provider. Treatment happens in PHP, IOP or OP, and most people join us after detox or residential care. You also meet one-on-one with your primary therapist every week for 45 to 60 minutes, and free door-to-door transportation to and from our center is available if you can’t drive yourself.</p>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {how.map((h) => (
@@ -107,15 +115,38 @@ const faqs = [
     </div>
   </section>
 
+  {/* Week to week: tinted cards with a top rule (QA batch 3, item 1) */}
+  <section class="section bg-cream">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <span class="eyebrow">Week to week</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Treatment Looks Like Week to Week</h2>
+        <p class="subheading mt-3">The step after detox, with your medication plan kept in place</p>
+        <p class="mt-5 text-lg">Most people join us right after detox or residential care.</p>
+      </div>
+      <ol class="mt-10 grid gap-6 md:grid-cols-3">
+        {weeks.map((w) => (
+          <li class="rounded-[var(--radius-card)] border-t-4 border-teal bg-white p-6">
+            <div class="flex items-center gap-3">
+              <Icon name={w.icon} class="h-6 w-6 text-teal" />
+              <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{w.label}</p>
+            </div>
+            <h3 class="mt-3 text-xl">{w.title}</h3>
+            <p class="mt-2">{w.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
   <NextSteps
     title="Which Level of Care Fits"
     subtitle="Where most people start after detox"
     level={`<p>Most people start in the <a href="/programs/php/">Partial Hospitalization Program</a> right after detox or residential care, for daily structure while living at home. From there they step down to the <a href="/programs/iop/">Intensive Outpatient Program</a> and then the <a href="/programs/outpatient/">Outpatient Program</a>, with the same team. Our Clinical Director recommends where you start.</p>`}
     related={[
       { label: CATEGORIES.substance.label, href: CATEGORIES.substance.href },
-      ...SUBSTANCE_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'All conditions we treat', href: WWT.href },
+      ...siblings(SUBSTANCE_PAGES, ['alcohol', 'benzodiazepines']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

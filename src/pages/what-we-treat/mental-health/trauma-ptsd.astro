@@ -5,7 +5,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, MENTAL_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/mental-health/trauma-ptsd/';
@@ -20,22 +20,22 @@ const signs = [
 const treating = [
   { icon: 'shield', title: 'Every clinician is trauma-informed', text: 'Whoever is in the room with you understands how trauma shapes behavior, reactions and relationships, and responds with that in mind.' },
   { icon: 'clock', title: 'Stability first, depth later', text: 'We don’t rush you into painful memories. Early on the focus is safety and stability. Deeper work comes as trust and steadiness grow.' },
-  { icon: 'users', title: 'Safety in the group', text: 'Twice a month, women and men meet in separate groups. For many people, that extra layer of safety makes it easier to speak.' },
+  { icon: 'users', title: 'Safety in the group', text: 'Every other Thursday, women and men meet in separate groups. For many people, that extra layer of safety makes it easier to speak.' },
   { icon: 'heart', title: 'Family, at your pace', text: 'With your consent, your therapist contacts a loved one in your first week. You decide how and when family becomes part of the work.' },
 ];
 
 const approaches = [
-  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the protective parts of you that formed around painful experiences, and relate to them with less fear.' },
-  { name: 'Inner child work', text: 'Recognizes the younger parts of you that still carry old experiences, and builds the compassion and safety they missed.' },
-  { name: 'Psychodynamic therapy', text: 'Explores how past experiences may still be showing up in how you think, feel and relate today.' },
-  { name: 'DBT', text: 'Builds skills for overwhelming emotions, so you have ways to stay grounded besides using.' },
-  { name: 'Psychodrama and CBT', text: 'Psychodrama brings experiences into the room in a structured way; CBT works on the thoughts that keep you stuck.' },
+  { name: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/', text: 'Helps you understand the protective parts of you that formed around painful experiences, and relate to them with less fear.' },
+  { name: 'Inner child work', href: '/therapies/inner-child-therapy/', text: 'Recognizes the younger parts of you that still carry old experiences, and builds the compassion and safety they missed.' },
+  { name: 'Psychodynamic therapy', href: '/therapies/inner-child-therapy/', text: 'Explores how past experiences may still be showing up in how you think, feel and relate today.' },
+  { name: 'DBT', href: '/therapies/dbt/', text: 'Builds skills for overwhelming emotions, so you have ways to stay grounded besides using.' },
+  { name: 'Psychodrama and CBT', html: 'Psychodrama and <a href="/therapies/cbt/" class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">CBT</a>', text: 'Psychodrama brings experiences into the room in a structured way; CBT works on the thoughts that keep you stuck.' },
 ];
 
 const faqs = [
   { q: 'Will I have to talk about my trauma right away?', a: 'No. Early in treatment the focus is on safety and stability. Deeper work happens when you’re steadier and have built trust with your therapist and group, at a pace that feels safe.' },
   { q: 'Do you offer EMDR?', a: 'We don’t offer EMDR as a designated service. EMDR-informed techniques may be used in individual sessions when clinically appropriate. Our main approaches include IFS, inner child work, psychodynamic therapy and DBT.' },
-  { q: 'Do you treat PTSD without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If trauma is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do you treat PTSD without substance use?', a: 'We treat PTSD when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for PTSD care on its own, we’ll help you find the right fit.' },
   { q: 'What if difficult memories become overwhelming?', a: 'Your team adjusts the pace. We also monitor your mental health throughout treatment, and if symptoms significantly worsen or your safety becomes a concern, we help you reach a more intensive level of care.' },
   { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
 ];
@@ -72,6 +72,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </aside>
     </div>
   </section>
@@ -109,7 +110,7 @@ const faqs = [
       <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
         {approaches.map((a) => (
           <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
-            <dt class="font-extrabold">{a.name}</dt>
+            <dt class="font-extrabold">{a.html ? <Fragment set:html={a.html} /> : a.href ? <a href={a.href} class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{a.name}</a> : a.name}</dt>
             <dd>{a.text}</dd>
           </div>
         ))}
@@ -147,9 +148,8 @@ const faqs = [
     level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily structure and support help build the stability deeper work needs. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you’re steadier and need to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps the work going over time.</p>`}
     related={[
       { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
-      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      ...siblings(MENTAL_PAGES, ['anxiety', 'personality-disorders']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

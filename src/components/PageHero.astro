@@ -1,12 +1,12 @@
 ---
 // Hero: flat teal ground (brand book: no gradients), gold rings with the one-time light pulse.
 // Sitewide rule (Home review round 2 final + content prompt, 2026-09-22): nothing above the H1 except the
-// breadcrumb on inner pages; no eyebrow, checklist or badges in the hero. The hero is H1, subheading, one
-// paragraph, two buttons and the coverage form (aside slot). Trust content lives in TrustStrip, right below.
+// breadcrumb on inner pages; no eyebrow or checklist in the hero. The hero is H1, subheading, one paragraph,
+// two buttons, the accreditation logo row on commercial pages (`trust`) and the coverage form (aside slot).
 // Every CTA points to /admissions/.
 import Icon from './Icon.astro';
 import SunMark from './SunMark.astro';
-import TrustStrip from './TrustStrip.astro';
+import AccreditationBadges from './AccreditationBadges.astro';
 
 interface Stat { value: string; label: string }
 interface Crumb { name: string; href: string }
@@ -22,7 +22,7 @@ interface Props {
   stats?: Stat[];
   compact?: boolean;
   ripple?: boolean;
-  trust?: boolean; // trust strip below the hero: every commercial page (Home, ServicePage layouts, /our-team/, /for-professionals/); not on blog, person, privacy, thank-you or 404 pages (Decisions 2026-09-24, correction 1)
+  trust?: boolean; // accreditation logos under the buttons (white, Joint Commission in color, no text): every commercial page (Home, ServicePage layouts, /our-team/, /for-professionals/); not on blog, person, privacy, thank-you or 404 pages (QA batch 1, item 2)
   crumbs?: Crumb[]; // visible breadcrumb trail (after Home); mirrors Base's BreadcrumbList
   actions?: boolean; // false: no buttons (blog, post and person banners: SOP Blog/Post/Author §0)
   titleNote?: string; // smaller second part of the H1 (e.g. a person's credentials), same heading text
@@ -83,6 +83,7 @@ const hasBelow = Astro.slots.has('below');
           {secondary && <a href={secondary.href} class="btn-ghost-light">{secondary.label}</a>}
         </div>
       )}
+      {trust && <AccreditationBadges hero class="mt-8" />}
       {stats.length > 0 && (
         <dl class="mt-12 grid grid-cols-2 gap-6 border-t border-white/25 pt-8 sm:grid-cols-4">
           {stats.map((s) => (
@@ -99,4 +100,3 @@ const hasBelow = Astro.slots.has('below');
   {hasBelow && <slot name="below" />}
   </div>
 </section>
-{trust && <TrustStrip />}

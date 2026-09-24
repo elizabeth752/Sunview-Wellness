@@ -20,7 +20,7 @@ const cols = [
     title: 'What We Treat',
     links: [
       ['Substance use', '/what-we-treat/substance-use/'],
-      ['Mental health', '/what-we-treat/mental-health/'],
+      ['Co-occurring mental health', '/what-we-treat/mental-health/'],
       ['Dual diagnosis', '/what-we-treat/dual-diagnosis/'],
       ['Therapies', '/therapies/'],
     ],
@@ -43,8 +43,9 @@ const cols = [
 const year = new Date().getFullYear();
 ---
 <footer class="pb-24 md:pb-0">
-  {/* Gradient: brand teal at the top fading down to teal-deep, meeting the bottom bar (client request 2026-09-22) */}
-  <div class="relative overflow-hidden bg-linear-to-b from-teal to-teal-deep text-white">
+  {/* Vertical gradient (QA batch 1, item 4): brand teal #126e6e at the top to #0e5858 at the bottom, the same
+       teal 20% darker (each RGB channel × 0.8), just above the teal-deep bottom bar */}
+  <div class="relative overflow-hidden bg-linear-to-b from-teal to-[#0e5858] text-white">
     {/* Rings sit under the wave: the cream area above the curve hides their top, so they read as ripples
          spreading out from under the water line. */}
     <SunMark variant="rays" class="pointer-events-none absolute -right-6 top-0 h-[460px] w-[460px] text-gold/35" />

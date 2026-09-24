@@ -1,6 +1,8 @@
 ---
 // FAQ accordion: each question is a <button> (not a heading) controlling its answer panel.
 // Each question is its own rounded card, 5px apart (client request 2026-09-22).
+// Answers are server-rendered in the HTML (QA batch 6, item 25) and collapsed with hidden="until-found",
+// so crawlers and find-in-page see the full text; `beforematch` opens a panel when the browser finds a match in it.
 import Icon from './Icon.astro';
 interface Faq { q: string; a: string }
 interface Props { faqs: Faq[]; id?: string }
@@ -19,7 +21,7 @@ const { faqs, id = 'faq' } = Astro.props;
         {f.q}
         <span class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mist text-teal transition group-aria-expanded:rotate-180"><Icon name="chevron" class="h-4 w-4" /></span>
       </button>
-      <div id={`${id}-a${i}`} role="region" aria-labelledby={`${id}-q${i}`} class="pb-6 [&_a]:font-bold [&_a]:text-teal [&_a]:underline" hidden set:html={f.a} />
+      <div id={`${id}-a${i}`} role="region" aria-labelledby={`${id}-q${i}`} hidden="until-found"><div class="pb-6 [&_a]:font-bold [&_a]:text-teal [&_a]:underline" set:html={f.a} /></div>
     </div>
   ))}
 </div>
@@ -29,7 +31,12 @@ const { faqs, id = 'faq' } = Astro.props;
     btn.addEventListener('click', () => {
       const open = btn.getAttribute('aria-expanded') === 'true';
       btn.setAttribute('aria-expanded', String(!open));
-      document.getElementById(btn.getAttribute('aria-controls')!)!.hidden = open;
+      const panel = document.getElementById(btn.getAttribute('aria-controls')!)!;
+      if (open) panel.setAttribute('hidden', 'until-found');
+      else panel.removeAttribute('hidden');
+    });
+    document.getElementById(btn.getAttribute('aria-controls')!)?.addEventListener('beforematch', () => {
+      btn.setAttribute('aria-expanded', 'true');
     });
   });
 </script>

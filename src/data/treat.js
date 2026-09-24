@@ -23,3 +23,7 @@ export const MENTAL_PAGES = [
   { slug: 'personality-disorders', name: 'Personality disorders', label: 'Personality disorder and addiction treatment', href: '/what-we-treat/mental-health/personality-disorders/', blurb: 'Among the most frequent presentations. DBT, IFS and relational work in group and individual sessions.' },
   { slug: 'adhd', name: 'ADHD', label: 'ADHD and addiction treatment', href: '/what-we-treat/mental-health/adhd/', blurb: 'Structure, skills and psychiatric care, without stimulant medications during the program.' },
 ];
+
+// Related-pages block (QA batch 3, item 3): at most 4 links (parent, two siblings, dual diagnosis).
+export const siblings = (pages, slugs) =>
+  pages.filter((p) => slugs.includes(p.slug)).map((p) => ({ label: p.label, href: p.href }));

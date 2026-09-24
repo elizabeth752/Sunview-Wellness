@@ -1,15 +1,24 @@
 ---
 // Google reviews carousel (approved design, 2026-09-22): white section, centered H2, Google Reviews
 // wordmark + 5 stars, then a carousel showing 4.1 cards on desktop / 2.1 on tablet / 1.1 on mobile, arrows on
-// the sides, and "Read our reviews on Google" below. Cards mirror Google's review UI.
+// the sides (outside the cards, so they never cover text), and "Read our reviews on Google" below. Cards
+// mirror Google's review UI: name, then the star rating (no relative date, QA batch 1 item 3).
 // Text is verbatim, 5 stars only, first name + last initial; each card caps text at 5 lines and the
 // rest scrolls inside the card (touch/wheel/keyboard) or opens with "More". No reviewer photos,
 // no AggregateRating schema. Data: src/data/reviews.js.
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
-import { reviewsByDate, relativeDate, GBP_URL } from '../data/reviews.js';
-interface Props { title?: string; id?: string }
-const { title = 'What People Say About Sunview Wellness', id = 'reviews' } = Astro.props;
+import { reviewsByDate, GBP_URL } from '../data/reviews.js';
+// `limit` (QA batch 2, item 12): category and program pages (ServicePage) show 6 of the 11 reviews, a window
+// that starts at an index derived from the page path, so each page gets a stable, different set (same set on
+// every build). Home and Our Team pass no limit and show all 11. No schema here, so nothing to keep in sync;
+// the AggregateRating on Home/Locations uses the Google profile totals (GBP_RATING), not what's on screen.
+interface Props { title?: string; id?: string; limit?: number; seed?: string }
+const { title = 'What People Say About Sunview Wellness', id = 'reviews', limit, seed = Astro.url.pathname } = Astro.props;
+const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
+const reviews = limit && limit < reviewsByDate.length
+  ? Array.from({ length: limit }, (_, k) => reviewsByDate[(hash(seed) + k) % reviewsByDate.length])
+  : reviewsByDate;
 
 // Google-style avatar colors, picked per initial
 const COLORS = ['#1a73e8', '#e8710a', '#188038', '#d93025', '#9334e6', '#12b5cb', '#c5221f', '#b06000'];
@@ -27,19 +36,23 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
       </p>
     </div>
 
-    <div class="sv-reviews relative mt-10" data-carousel>
-      <button type="button" class="sv-rv-arrow absolute -left-3 top-1/2 z-10 hidden -translate-y-1/2 md:inline-flex" data-dir="-1" aria-label="Previous reviews" aria-controls={`${id}-track`}>
+    <div class="sv-reviews relative mt-10 md:px-14" data-carousel>
+      <button type="button" class="sv-rv-arrow absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 md:inline-flex" data-dir="-1" aria-label="Previous reviews" aria-controls={`${id}-track`}>
         <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><path d="m15 18-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
       </button>
       <ul id={`${id}-track`} class="sv-rv-track" aria-label="Google reviews">
-        {reviewsByDate.map((r, i) => (
+        {reviews.map((r, i) => (
           <li class="sv-rv-card">
-            <article class="flex h-full flex-col gap-2.5 rounded-[12px] border border-[#dadce0] bg-white p-[18px] font-[Roboto,Arial,sans-serif] text-[#202124]" aria-label={`Review by ${r.author}`}>
+            <article class="flex h-full flex-col gap-2.5 sv-rv-box rounded-[12px] border border-[#dadce0] bg-white p-[18px] font-[Roboto,Arial,sans-serif] text-[#202124]" aria-label={`Review by ${r.author}`}>
               <div class="flex items-center gap-3">
                 <span class="grid h-10 w-10 flex-none place-items-center rounded-full text-lg font-medium text-white" style={`background:${color(r.author)}`} aria-hidden="true">{r.author.charAt(0)}</span>
                 <div>
                   <p class="text-[15px] font-medium leading-tight">{r.author}</p>
-                  <p class="text-[13px] text-[#70757a]">{relativeDate(r.date)}</p>
+                  <p class="mt-1 flex gap-px text-[#fbbc04]" role="img" aria-label={`${r.rating} out of 5 stars`}>
+                    {Array.from({ length: r.rating }).map(() => (
+                      <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+                    ))}
+                  </p>
                 </div>
                 <svg viewBox="0 0 48 48" class="ml-auto h-5 w-5 flex-none" role="img" aria-label="Google">
                   <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" />
@@ -48,18 +61,13 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
                   <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z" />
                 </svg>
               </div>
-              <p class="flex gap-px text-[#fbbc04]" aria-label={`${r.rating} out of 5 stars`}>
-                {Array.from({ length: 5 }).map(() => (
-                  <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
-                ))}
-              </p>
               <p class="sv-rv-text" id={`${id}-t${i}`} tabindex="0">{r.text}</p>
               <button type="button" class="sv-rv-more self-start text-sm font-medium text-[#1a73e8]" aria-controls={`${id}-t${i}`} aria-expanded="false" hidden>More</button>
             </article>
           </li>
         ))}
       </ul>
-      <button type="button" class="sv-rv-arrow absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 md:inline-flex" data-dir="1" aria-label="Next reviews" aria-controls={`${id}-track`}>
+      <button type="button" class="sv-rv-arrow absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 md:inline-flex" data-dir="1" aria-label="Next reviews" aria-controls={`${id}-track`}>
         <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
       </button>
     </div>
@@ -72,12 +80,14 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
 
 <style is:global>
   /* 1.1 cards on mobile, 2.1 on tablet, 3.1 on small laptops, 4.1 on desktop; swipe with scroll-snap */
-  .sv-rv-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 12px; scrollbar-width: none; overscroll-behavior-x: contain; list-style: none; margin: 0; }
+  /* Padding left and bottom leaves room for each card's soft shadow inside the scroll box */
+  .sv-rv-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 4px 22px 12px; scroll-padding-left: 12px; scrollbar-width: none; overscroll-behavior-x: contain; list-style: none; margin: 0; }
   .sv-rv-track::-webkit-scrollbar { display: none; }
   .sv-rv-card { scroll-snap-align: start; flex: 0 0 calc((100% - 16px) / 1.1); }
   @media (min-width: 768px) { .sv-rv-card { flex-basis: calc((100% - 2 * 16px) / 2.1); } }
   @media (min-width: 1024px) { .sv-rv-card { flex-basis: calc((100% - 3 * 16px) / 3.1); } }
   @media (min-width: 1280px) { .sv-rv-card { flex-basis: calc((100% - 4 * 16px) / 4.1); } }
+  .sv-rv-box { box-shadow: -5px 6px 14px -4px rgba(60, 64, 67, .18); }
   /* 5-line text box: the rest scrolls inside the card, or opens with "More" */
   .sv-rv-text { font-size: 14px; line-height: 1.4; max-height: calc(1.4em * 5); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-right: 6px; scrollbar-width: thin; }
   .sv-rv-text.is-long { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); }

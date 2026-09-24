@@ -1,25 +1,24 @@
 ---
-// Row of accreditation logos (light by default; onDark for teal grounds). `compact` = the trust strip size.
+// Row of accreditation logos (light by default; onDark for teal grounds). `hero` = the row under the hero
+// buttons on commercial pages (QA batch 1, item 2): white logos (logoOnDark), Joint Commission in its
+// original colors, no text, sized to read as one balanced row (one line from 375px up).
 // A seal links out only when ACCREDITATIONS has a verification `url`; with url null it renders as a plain image.
 import { ACCREDITATIONS } from '../data/site.js';
-interface Props { onDark?: boolean; compact?: boolean; class?: string }
-const { onDark = false, compact = false, class: cls = '' } = Astro.props;
-// Joint Commission 56px · NAATP 51px · SAMHSA 40px (wordmark only) · Action Alliance 46px
-const heights: Record<string, string> = compact
-  ? { 'National Association of Addiction Treatment Providers': 'h-[41px]', SAMHSA: 'h-8', 'National Action Alliance for Suicide Prevention': 'h-[37px]' }
-  : { 'National Association of Addiction Treatment Providers': 'h-[51px]', SAMHSA: 'h-10', 'National Action Alliance for Suicide Prevention': 'h-[46px]' };
-const jcHeight = compact ? 'h-[45px]' : 'h-14';
+interface Props { onDark?: boolean; hero?: boolean; class?: string }
+const { onDark: onDarkProp = false, hero = false, class: cls = '' } = Astro.props;
+const onDark = onDarkProp || hero;
+// Default: Joint Commission 56px · NAATP 51px · SAMHSA 40px (wordmark only) · Action Alliance 46px
+const heights: Record<string, string> = hero
+  ? { 'The Joint Commission': 'h-10 sm:h-14', 'National Association of Addiction Treatment Providers': 'h-8 sm:h-11', SAMHSA: 'h-6 sm:h-8', 'National Action Alliance for Suicide Prevention': 'h-8 sm:h-10' }
+  : { 'The Joint Commission': 'h-14', 'National Association of Addiction Treatment Providers': 'h-[51px]', SAMHSA: 'h-10', 'National Action Alliance for Suicide Prevention': 'h-[46px]' };
 ---
-<ul class:list={['flex flex-wrap items-center gap-x-8 gap-y-4', cls]} aria-label="Accreditations and memberships">
-  {ACCREDITATIONS.map((a) => (
-    <li>
-      {a.url ? (
-        <a href={a.url} target="_blank" rel="noopener" class="block" aria-label={`${a.name} (verification)`}>
-          <img src={onDark ? a.logoOnDark : a.logo} alt={a.name} width={a.w} height={a.h} loading="lazy" class:list={['block w-auto', heights[a.name] ?? jcHeight]} />
-        </a>
-      ) : (
-        <img src={onDark ? a.logoOnDark : a.logo} alt={a.name} width={a.w} height={a.h} loading="lazy" class:list={['block w-auto', heights[a.name] ?? jcHeight]} />
-      )}
-    </li>
-  ))}
+<ul class:list={['flex flex-wrap items-center', hero ? 'gap-x-4 gap-y-4 sm:gap-x-8' : 'gap-x-8 gap-y-4', cls]} aria-label="Accreditations and memberships">
+  {ACCREDITATIONS.map((a) => {
+    const img = <img src={onDark ? a.logoOnDark : a.logo} alt={a.name} width={a.w} height={a.h} loading={hero ? 'eager' : 'lazy'} class:list={['block w-auto', heights[a.name]]} />;
+    return (
+      <li>
+        {a.url ? <a href={a.url} target="_blank" rel="noopener" class="block" aria-label={`${a.name} (verification)`}>{img}</a> : img}
+      </li>
+    );
+  })}
 </ul>

@@ -1,17 +1,21 @@
 ---
 // Cards linking to the What We Treat child pages. Anchors are the destination's name.
+// Title, blurb and link are separate block elements (QA batch 2, items 5/10/17): the visible link carries the
+// descriptive anchor and stretches over the card, so the whole card stays clickable without one big <a>.
 import Icon from './Icon.astro';
 import { SUBSTANCE_PAGES, MENTAL_PAGES } from '../data/treat.js';
 interface Props { group: 'substance' | 'mental'; exclude?: string; class?: string }
 const { group, exclude, class: cls = '' } = Astro.props;
 const pages = (group === 'substance' ? SUBSTANCE_PAGES : MENTAL_PAGES).filter((p) => p.href !== exclude);
 ---
-<div class:list={['grid gap-5 sm:grid-cols-2', pages.length > 4 ? 'lg:grid-cols-3' : 'lg:grid-cols-4', cls]}>
+<ul class:list={['grid gap-5 sm:grid-cols-2', pages.length > 4 ? 'lg:grid-cols-3' : 'lg:grid-cols-4', cls]}>
   {pages.map((p) => (
-    <a href={p.href} class="card group flex flex-col transition hover:border-teal">
-      <h3 class="text-xl group-hover:text-teal">{p.name}</h3>
-      <p class="mt-2 text-[15px]">{p.blurb}</p>
-      <span class="mt-auto inline-flex items-center gap-1.5 pt-4 font-bold text-teal">{p.label} <Icon name="arrow" class="h-4 w-4" /></span>
-    </a>
+    <li class="flex">
+      <article class="card card-link-focus group relative flex w-full flex-col transition hover:border-teal">
+        <h3 class="text-xl group-hover:text-teal">{p.name}</h3>{' '}
+        <p class="mt-2 text-[15px]">{p.blurb}</p>{' '}
+        <p class="mt-auto pt-4"><a href={p.href} class="stretched-link font-bold text-teal">{p.label}&nbsp;<Icon name="arrow" class="inline-block h-4 w-4 align-[-2px]" /></a></p>
+      </article>
+    </li>
   ))}
-</div>
+</ul>

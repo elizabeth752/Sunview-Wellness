@@ -2,15 +2,17 @@
 // /our-team/: About-Team-Content-Briefs.md §A. Data: src/data/team.js. Sources and open questions:
 // docs/content/about-team-sources-team.md. Rotation: Reviews. No reviewed-by byline (brief decision).
 // Structure varies on purpose (client, 2026-09-23) and differs from the old /about-us/ card grid:
-// leadership as two wide profile features, therapists as editorial portrait tiles, group leaders and
-// medical oversight as a directory list, admissions on a teal band, and "How Our Team Works Together" as
+// leadership as two wide profile features, therapists and group leaders as portrait tiles (therapists in a
+// four-up grid on mist, group leaders beside the section intro), admissions on a teal band. Every person uses
+// the same TeamCard markup (QA 8 #16); only the variant's layout differs, and "How Our Team Works Together" as
 // three pillars around a pull quote.
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Reviews from '../../components/Reviews.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
-import { SITE, initials } from '../../data/site.js';
+import TeamCard from '../../components/TeamCard.astro';
+import { SITE } from '../../data/site.js';
 import { TEAM_GROUPS, PUBLISHED_PEOPLE, peopleInGroup, personHref } from '../../data/team.js';
 
 const path = '/our-team/';
@@ -100,22 +102,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <p class="mt-4 text-lg">Our CEO sets the standard of care and created the ideas the program is built on. Our Clinical Director shapes the clinical model, recommends each person’s level of care and supervises the clinical team.</p>
       </div>
       <ul class="mt-10 grid gap-8 lg:grid-cols-2">
-        {leaders.map((p) => (
-          <li class="grid overflow-hidden rounded-[var(--radius-lg)] border border-line sm:grid-cols-[0.8fr_1.2fr]">
-            <div class="relative grid aspect-[4/3] place-items-center bg-mist sm:aspect-auto sm:min-h-[300px]">
-              {p.photo
-                ? <img src={p.photo} alt={`${p.name}, ${p.title}`} class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-                : <span class="grid h-32 w-32 place-items-center rounded-full border-2 border-gold font-display text-5xl font-bold text-teal" aria-hidden="true">{initials(p.name)}</span>}
-            </div>
-            <div class="flex flex-col p-7 sm:p-8">
-              <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{p.creds}</p>
-              <h3 class="mt-2 text-2xl"><a href={personHref(p)} class="hover:text-teal">{p.name}</a></h3>
-              <p class="font-bold text-charcoal">{p.title}</p>
-              <p class="mt-4 font-display text-lg italic leading-snug text-teal">{p.highlight}</p>
-              <p class="mt-4 text-[15px]">{p.specialty}</p>
-            </div>
-          </li>
-        ))}
+        {leaders.map((p) => <TeamCard person={p} variant="feature" />)}
       </ul>
     </div>
   </section>
@@ -128,25 +115,12 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <p class="text-lg">Every person in the program has a primary therapist for a weekly individual session. Our therapists share a trauma-informed foundation and each bring their own training and focus.</p>
       </div>
       <ul class="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-        {therapists.map((p) => (
-          <li class="group flex flex-col">
-            <a href={personHref(p)} class="relative grid aspect-square place-items-center overflow-hidden rounded-[var(--radius-card)] bg-white" tabindex="-1" aria-hidden="true">
-              {p.photo
-                ? <img src={p.photo} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-                : <span class="font-display text-6xl font-bold text-teal/80 transition group-hover:scale-105">{initials(p.name)}</span>}
-              <span class="absolute inset-x-0 bottom-0 h-1 bg-gold" aria-hidden="true"></span>
-            </a>
-            <h3 class="mt-5 text-xl"><a href={personHref(p)} class="hover:text-teal">{p.name}</a></h3>
-            <p class="mt-1 text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{p.creds}</p>
-            <p class="mt-1 font-bold">{p.title}</p>
-            {p.specialty && <p class="mt-2 text-[15px]">{p.specialty}</p>}
-          </li>
-        ))}
+        {therapists.map((p) => <TeamCard person={p} variant="tile" />)}
       </ul>
     </div>
   </section>
 
-  {/* 3. Group leaders + medical oversight: directory list */}
+  {/* 3. Group leaders + medical oversight: intro beside a two-up tile grid */}
   <section id="facilitators" class="section scroll-mt-24" aria-labelledby="facilitators-title">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
@@ -155,20 +129,8 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <p class="mt-4">Psychiatric evaluation and medication management are provided through Sunview’s partner, Telemed Clinix, and are coordinated as part of treatment.</p>
         <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2"><a href="/therapies/group-therapy/" class={link}>Group therapy at Sunview</a><a href="/programs/psychiatry-medication-management/" class={link}>Psychiatry and medication management</a></p>
       </div>
-      <ul class="self-start divide-y divide-line border-y border-line">
-        {facilitators.map((p) => (
-          <li>
-            <a href={personHref(p)} class="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-6 sm:gap-6">
-              <span class="grid h-14 w-14 place-items-center rounded-full bg-mist font-display text-xl font-bold text-teal sm:h-16 sm:w-16" aria-hidden="true">{initials(p.name)}</span>
-              <span class="min-w-0">
-                <span class="block font-display text-xl font-bold text-charcoal group-hover:text-teal">{p.name}<span class="font-sans text-sm font-extrabold text-teal">, {p.creds}</span></span>
-                <span class="block font-bold">{p.title}</span>
-                {p.specialty && <span class="mt-1 block text-[15px]">{p.specialty}</span>}
-              </span>
-              <Icon name="arrow" class="h-5 w-5 text-teal transition group-hover:translate-x-1" />
-            </a>
-          </li>
-        ))}
+      <ul class="grid gap-x-6 gap-y-10 self-start sm:grid-cols-2">
+        {facilitators.map((p) => <TeamCard person={p} variant="tile" tone="mist" />)}
       </ul>
     </div>
   </section>
@@ -181,16 +143,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <p class="text-lg text-white/90">The people who keep the program running day to day and who work with the professionals and organizations that refer to Sunview.</p>
       </div>
       <ul class="mt-10 grid gap-6 md:grid-cols-2">
-        {admissions.map((p) => (
-          <li class="flex items-start gap-5 rounded-[var(--radius-card)] bg-white p-6 text-charcoal sm:p-7">
-            <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-mist font-display text-2xl font-bold text-teal" aria-hidden="true">{initials(p.name)}</span>
-            <div class="min-w-0">
-              <h3 class="text-xl"><a href={personHref(p)} class="hover:text-teal">{p.name}</a></h3>
-              <p class="font-bold text-teal">{p.title}</p>
-              <p class="mt-2 text-[15px]">{p.specialty}</p>
-            </div>
-          </li>
-        ))}
+        {admissions.map((p) => <TeamCard person={p} variant="band" />)}
       </ul>
       <p class="mt-8 text-white/90">Ready to talk? Call admissions at <a href={SITE.phoneHref} class="font-bold text-white underline decoration-sun decoration-2 underline-offset-4">{SITE.phone}</a> or <a href="/admissions/" class="font-bold text-white underline decoration-sun decoration-2 underline-offset-4">see how admissions works</a>.</p>
     </div>

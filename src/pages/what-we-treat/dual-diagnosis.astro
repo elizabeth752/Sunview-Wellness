@@ -96,11 +96,11 @@ const faqs = [
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-3">
         {levels.map((l) => (
-          <a href={l.href} class="card group flex flex-col transition hover:border-teal">
-            <h3 class="font-sans text-lg font-extrabold group-hover:text-teal">{l.name}</h3>
+          <article class="card card-link-focus group relative flex flex-col transition hover:border-teal">
+            <h3 class="font-sans text-lg font-extrabold group-hover:text-teal"><a href={l.href} class="stretched-link">{l.name}</a></h3>{' '}
             <p class="mt-2">{l.text}</p>
-            <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
-          </a>
+            <span class="mt-auto pt-4" aria-hidden="true"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+          </article>
         ))}
       </div>
     </div>
@@ -120,7 +120,7 @@ const faqs = [
         <Icon name="compass" class="h-8 w-8 text-teal" />
         <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Understanding the Why Behind the Behavior</h2>
         <p class="mt-4">We ask what happened to you, not what’s wrong with you. Psychodynamic work explores how past experiences and relationships still shape your reactions today.</p>
-        <p class="mt-3">A family systems lens looks at the patterns around you, too, because people don’t struggle in isolation. When it’s clinically appropriate and you agree, loved ones can take part.</p>
+        <p class="mt-3">A family systems lens looks at the patterns around you, too, because people don’t struggle in isolation. When it’s clinically appropriate and you agree, loved ones can take part in <a href="/therapies/family-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">family therapy</a>.</p>
         <a href="/therapies/inner-child-therapy/" class="mt-5 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Inner child therapy <Icon name="arrow" class="h-4 w-4" /></a>
       </article>
     </div>

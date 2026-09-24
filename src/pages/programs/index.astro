@@ -6,7 +6,8 @@ import ProgramSchedule from '../../components/ProgramSchedule.astro';
 import Icon from '../../components/Icon.astro';
 
 // Comparison: one card per level, rows aligned across cards with subgrid so it reads as a table.
-const rows = ['Schedule', 'Hours per week', 'Best for', 'Typical entry point', 'What continues'];
+// A cell is plain text, or { text, href } when it links somewhere (Evening option → the Evening IOP section).
+const rows = ['Schedule', 'Hours per week', 'Evening option', 'Best for', 'Typical entry point', 'What continues'];
 const levels = [
   {
     code: 'PHP',
@@ -16,6 +17,7 @@ const levels = [
     cells: [
       'Monday to Friday, 9 AM to 1 PM',
       'About 20',
+      'No',
       'The most structure and clinical support we offer, while living at home',
       'After detox or residential treatment, or from home when weekly therapy isn’t enough',
       'Weekly individual session · psychiatric care · free door-to-door transportation',
@@ -29,6 +31,7 @@ const levels = [
     cells: [
       'Day: any 3 weekdays, 9 AM to 1 PM · Evening: Mon, Wed, Thu, 6 to 9 PM',
       '9 to 12',
+      { text: 'Yes, Mon/Wed/Thu 6–9 PM', href: '/programs/iop/#evening-iop' }, // QA batch 1, items 20 + 27
       'Working adults, parents and students who need real clinical depth',
       'Stepping down from PHP or residential care, or a first step when your pre-screening supports it',
       'Weekly individual session · psychiatric care · free door-to-door transportation',
@@ -42,6 +45,7 @@ const levels = [
     cells: [
       'One weekday of your choice, 9 AM to 1 PM',
       'About 4',
+      'No',
       'Ongoing support while life gets back to normal, and longer-term maintenance',
       'Stepping down from PHP or IOP, or a first step when your pre-screening supports it',
       'Individual sessions as recommended · psychiatric care · free door-to-door transportation',
@@ -60,6 +64,7 @@ const notOffered = [
   { label: 'Residential treatment', text: 'If you need 24-hour care, we’ll refer you to residential treatment and plan Sunview as your next step.' },
   { label: 'Housing', text: 'All three levels are outpatient. You live at home and come to us for treatment.' },
   { label: 'Methadone maintenance', text: 'Methadone needs a different level of medical support than we provide. We’ll help you find a program that offers it.' },
+  { label: 'Psychiatry or therapy on its own', text: 'Psychiatric care and individual therapy are part of PHP, IOP and OP, not separate services. If you’re looking for weekly private therapy only, we’ll point you to the right place.' },
 ];
 
 const faqs = [
@@ -67,12 +72,12 @@ const faqs = [
   { q: 'Do I have to start with PHP?', a: 'No. Many people start in PHP after detox or residential treatment, but you can start in IOP or OP if your pre-screening supports it.' },
   { q: 'How do you decide my level of care?', a: 'Our Clinical Director reviews your pre-screening and recommends a level using ASAM criteria and clinical judgment: your symptoms, length of sobriety, treatment history and home environment. <a href="/admissions/">Start your pre-screening</a>.' },
   { q: 'Can I switch levels during treatment?', a: 'Yes. Most people step down as they progress, and you can step back up if you need more support, with the same team the whole time.' },
-  { q: 'Is any of this residential?', a: 'No. PHP, IOP and OP are all outpatient. You sleep at home every night. If you need residential care first, we’ll help you get there.' },
+  { q: 'Is any of this residential?', a: 'PHP, IOP and OP are all outpatient: you sleep at home every night. If you need residential care first, we’ll help you get there.' },
 ];
 ---
 <ProgramPage
   path="/programs/"
-  metaTitle="Outpatient Levels of Care in West Palm Beach | Sunview"
+  metaTitle="Outpatient Rehab Programs in West Palm Beach: PHP, IOP, OP"
   description="Compare PHP, IOP and OP at Sunview Wellness in West Palm Beach. Hours, who each level is for, and how the Clinical Director recommends the right one."
   crumb="Programs"
   h1="Outpatient Treatment Programs in West Palm Beach"
@@ -96,7 +101,7 @@ const faqs = [
       </div>
       <div class="mt-10 grid gap-6 lg:grid-cols-3">
         {levels.map((l) => (
-          <article class="card grid grid-rows-subgrid overflow-hidden !p-0 [grid-row:span_7]">
+          <article class="card grid grid-rows-subgrid overflow-hidden !p-0 [grid-row:span_8]">
             <div class:list={['px-6 pb-5 pt-6', l.head]}>
               <p class="font-display text-4xl font-extrabold leading-none">{l.code}</p>
               <h3 class:list={['mt-2 font-sans text-lg font-extrabold', l.code === 'OP' ? 'text-charcoal' : 'text-white']}>{l.name}</h3>
@@ -104,7 +109,9 @@ const faqs = [
             {l.cells.map((c, i) => (
               <div class="border-t border-line px-6 py-4">
                 <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-muted">{rows[i]}</p>
-                <p class:list={['mt-1', i < 2 && 'font-bold text-charcoal']}>{c}</p>
+                <p class:list={['mt-1', i < 3 && 'font-bold text-charcoal']}>
+                  {typeof c === 'string' ? c : <a href={c.href} class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{c.text}</a>}
+                </p>
               </div>
             ))}
             <div class="border-t border-line px-6 pb-6 pt-4">
@@ -158,15 +165,15 @@ const faqs = [
     </div>
   </section>
 
-  {/* 5. What we don't offer */}
+  {/* 5. Scope: what comes first elsewhere, and where we send you */}
   <section class="section bg-mist">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
         <span class="eyebrow">Honest about scope</span>
-        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Sunview Does Not Offer, and Where We Send You</h2>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">When Detox, Residential Care or Housing Comes First</h2>
         <p class="subheading mt-3">If you need something else first, we’ll help you find it.</p>
         <p class="mt-5 text-lg">Outpatient care works when you’re medically and psychiatrically steady enough to take part.</p>
-        <p class="mt-4"><a href="/therapies/group-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4">How group therapy works at Sunview</a></p>
+        <p class="mt-4"><a href="/admissions/" class="font-bold text-teal underline decoration-2 underline-offset-4">Talk to admissions</a></p>
       </div>
       <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line bg-white">
         {notOffered.map((n) => (

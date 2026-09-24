@@ -13,7 +13,7 @@ const secs = INSURANCE.length * 2.6;
     {[0, 1].map((copy) =>
       INSURANCE.map((c) => (
         <li aria-hidden={copy === 1 ? 'true' : undefined}>
-          <img src={c.logo} alt="" loading="lazy" style={`width:${Math.round((c.w ?? 140) * 0.8)}px`} />
+          <img src={c.logo} alt={copy === 0 ? c.name : ''} loading="lazy" style={`width:${Math.round((c.w ?? 140) * 0.8)}px`} />
         </li>
       )),
     )}

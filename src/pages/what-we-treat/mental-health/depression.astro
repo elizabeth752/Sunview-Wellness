@@ -4,7 +4,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, MENTAL_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/mental-health/depression/';
@@ -24,15 +24,15 @@ const treating = [
 ];
 
 const approaches = [
-  { name: 'Psychodynamic therapy', text: 'Looks at how past experiences and relationships may still shape how you feel today.' },
-  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the different parts of yourself, including the part that goes numb or reaches for a substance.' },
-  { name: 'CBT', text: 'Works on the thought patterns that keep low mood and substance use going.' },
-  { name: 'DBT', text: 'Builds skills for intense emotions and hard moments, so you have options besides using.' },
+  { name: 'Psychodynamic therapy', href: '/therapies/inner-child-therapy/', text: 'Looks at how past experiences and relationships may still shape how you feel today.' },
+  { name: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/', text: 'Helps you understand the different parts of yourself, including the part that goes numb or reaches for a substance.' },
+  { name: 'CBT', href: '/therapies/cbt/', text: 'Works on the thought patterns that keep low mood and substance use going.' },
+  { name: 'DBT', href: '/therapies/dbt/', text: 'Builds skills for intense emotions and hard moments, so you have options besides using.' },
   { name: 'Trauma-informed care', text: 'Every clinician is trauma-informed, because depression often sits on top of older pain.' },
 ];
 
 const faqs = [
-  { q: 'Do you treat depression without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If depression is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do you treat depression without substance use?', a: 'We treat depression when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for depression care on its own, we’ll help you find the right fit.' },
   { q: 'Can I keep taking my antidepressant?', a: 'Often, yes. Your Telemed Clinix provider reviews what you take, how well it’s working and whether anything needs to change. We don’t switch medications just because you start a program.' },
   { q: 'How will I know treatment is helping?', a: 'We track depressive symptoms with the PHQ-9 during treatment, and your therapist reviews your treatment plan and goals with you every month.' },
   { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
@@ -71,6 +71,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </aside>
     </div>
   </section>
@@ -108,7 +109,7 @@ const faqs = [
       <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
         {approaches.map((a) => (
           <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
-            <dt class="font-extrabold">{a.name}</dt>
+            <dt class="font-extrabold">{a.href ? <a href={a.href} class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{a.name}</a> : a.name}</dt>
             <dd>{a.text}</dd>
           </div>
         ))}
@@ -146,9 +147,8 @@ const faqs = [
     level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily structure helps when motivation is low, especially after detox or residential care. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you need depth and have to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps support in place as life fills back up.</p>`}
     related={[
       { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
-      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      ...siblings(MENTAL_PAGES, ['anxiety', 'trauma-ptsd']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

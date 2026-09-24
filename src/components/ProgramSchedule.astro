@@ -17,15 +17,16 @@ const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 const rows = [
   { code: 'PHP', name: 'PHP', when: '9am–1pm, every weekday', cells: ['on', 'on', 'on', 'on', 'on'] },
   { code: 'DAY-IOP', name: 'Day IOP', when: '9am–1pm, any 3 days', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
-  { code: 'EVE-IOP', name: 'Evening IOP', when: '6–9pm, Mon · Wed · Thu', cells: ['eve', 'off', 'eve', 'eve', 'off'] },
+  { code: 'EVE-IOP', name: 'Evening IOP', when: '6–9pm, Mon, Wed, Thu', cells: ['eve', 'off', 'eve', 'eve', 'off'] },
   { code: 'OP', name: 'OP', when: '9am–1pm, any 1 day', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
 ];
 const isOn = (code: string) => highlight === 'all' || highlight.includes(code);
 const cellClass: Record<string, string> = { on: 'bg-teal', pick: 'sv-pick', eve: 'bg-teal-deep', off: 'bg-white border border-line' };
+// Legend and cell labels share one vocabulary (QA batch 1, item 6): Runs · Pick your days · Evening
 const cellLabel: Record<string, string> = {
-  on: 'Runs 9am to 1pm',
-  pick: 'Available to choose, 9am to 1pm',
-  eve: 'Runs 6pm to 9pm',
+  on: 'Runs, 9am to 1pm',
+  pick: 'Pick your days, 9am to 1pm',
+  eve: 'Evening, 6pm to 9pm',
   off: 'No session',
 };
 ---
@@ -52,8 +53,9 @@ const cellLabel: Record<string, string> = {
           {rows.map((r) => (
             <tr class:list={[!isOn(r.code) && 'sv-muted']}>
               <th scope="row" class="py-1 pr-2 text-left align-middle">
+                {/* Sub-label on its own line (never runs into the name, even as plain text) */}
                 <span class="block font-extrabold text-charcoal">{r.name}</span>
-                <span class="block text-xs font-normal leading-snug text-muted">{r.when}</span>
+                <small class="block text-xs font-normal leading-snug text-muted"><span class="sr-only">: </span>{r.when}</small>
               </th>
               {r.cells.map((c) => (
                 <td class="p-0 align-middle"><span class:list={['block h-[28px] rounded-[6px]', cellClass[c]]} title={cellLabel[c]}><span class="sr-only">{cellLabel[c]}</span></span></td>
@@ -62,10 +64,10 @@ const cellLabel: Record<string, string> = {
           ))}
         </tbody>
       </table>
-      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted">
-        <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal"></span>Runs 9am–1pm</li>
-        <li class="inline-flex items-center gap-1.5"><span class="sv-pick inline-block h-2.5 w-3.5 rounded-[3px]"></span>Pick your days, 9am–1pm</li>
-        <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal-deep"></span>Runs 6–9pm</li>
+      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted" aria-label="Legend">
+        <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal"></span><span><strong class="text-charcoal">Runs</strong> 9am–1pm</span></li>
+        <li class="inline-flex items-center gap-1.5"><span class="sv-pick inline-block h-2.5 w-3.5 rounded-[3px]"></span><span><strong class="text-charcoal">Pick your days</strong> 9am–1pm</span></li>
+        <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal-deep"></span><span><strong class="text-charcoal">Evening</strong> 6–9pm</span></li>
       </ul>
     </div>
   </div>

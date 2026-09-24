@@ -1,6 +1,7 @@
 // Google reviews for Sunview Wellness (Google Business Profile, read 2026-09-22: 17 reviews, 4.5 average).
 // Only 5-star reviews with text are kept here (11), newest first. `date` is approximate, derived from
-// Google's relative date on 2026-09-22, so the card can show "a week ago" etc. without going stale. Text is verbatim, including the reviewers' own
+// Google's relative date on 2026-09-22; it only orders the cards (the cards show the star rating, not a date,
+// per QA batch 1 item 3). Text is verbatim, including the reviewers' own
 // spelling and punctuation. Don't edit it. Names are first name + last initial per the Home content spec.
 // Reviewer profile photos are intentionally NOT reproduced (see README: privacy in a treatment context).
 
@@ -82,11 +83,3 @@ export const REVIEWS = [
 export const featuredReviews = REVIEWS.filter((r) => r.featured);
 export const reviewsByDate = [...REVIEWS].sort((a, b) => b.date.localeCompare(a.date));
 
-// Google-style relative date ("a week ago", "3 months ago", "a year ago"), computed at build time.
-export function relativeDate(iso, now = new Date()) {
-  const days = Math.max(0, Math.round((now - new Date(iso + 'T12:00:00Z')) / 86400000));
-  if (days < 7) return days <= 1 ? 'a day ago' : `${days} days ago`;
-  if (days < 30) { const w = Math.round(days / 7); return w === 1 ? 'a week ago' : `${w} weeks ago`; }
-  if (days < 365) { const m = Math.round(days / 30.4); return m <= 1 ? 'a month ago' : `${m} months ago`; }
-  const y = Math.round(days / 365); return y === 1 ? 'a year ago' : `${y} years ago`;
-}

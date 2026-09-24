@@ -35,15 +35,26 @@ export const SITE = {
 // Header per Sunview-Content-Build-Prompt.md, URLs per docs/content/sunview-final-sitemap.xlsx (2026-09-22).
 // Pages that aren't written yet will 404 until they're built.
 export const NAV = [
+  // Order per QA batch 1 (2026-09-24): About · Programs · What We Treat · Therapies · Admissions · Blog.
+  {
+    label: 'About',
+    href: '/about/',
+    children: [
+      { label: 'About Sunview', href: '/about/' },
+      { label: 'Our team', href: '/our-team/' },
+      { label: 'Our approach & outcomes', href: '/about/our-approach/' },
+      { label: 'West Palm Beach location', href: '/locations/west-palm-beach/' },
+    ],
+  },
   {
     label: 'Programs',
     href: '/programs/',
     children: [
-      { label: 'Partial Hospitalization (PHP)', href: '/programs/php/', note: 'Mon–Fri, 9am–1pm' },
-      { label: 'Intensive Outpatient (IOP)', href: '/programs/iop/', note: 'Day or evening, 3 days a week' },
-      { label: 'Outpatient Program (OP)', href: '/programs/outpatient/', note: 'One day a week' },
-      { label: 'Psychiatry & Medication', href: '/programs/psychiatry-medication-management/', note: 'Telemed Clinix, continues after discharge' },
-      { label: 'Compare levels of care', href: '/programs/', note: 'Which one fits you' },
+      { label: 'Partial Hospitalization (PHP)', href: '/programs/php/' },
+      { label: 'Intensive Outpatient (IOP)', href: '/programs/iop/' },
+      { label: 'Outpatient Program (OP)', href: '/programs/outpatient/' },
+      { label: 'Psychiatry & Medication', href: '/programs/psychiatry-medication-management/' },
+      { label: 'Compare levels of care', href: '/programs/' },
     ],
   },
   // Megamenu per What-We-Treat-Content-Briefs.md (2026-09-22): the only megamenu; opens on hover and click.
@@ -108,16 +119,6 @@ export const NAV = [
       { label: 'For professionals', href: '/for-professionals/' }, // answer 9.3: last item; footer link stays
     ],
   },
-  {
-    label: 'About',
-    href: '/about/',
-    children: [
-      { label: 'About Sunview', href: '/about/' },
-      { label: 'Our team', href: '/our-team/' },
-      { label: 'Our approach & outcomes', href: '/about/our-approach/' },
-      { label: 'West Palm Beach location', href: '/locations/west-palm-beach/' },
-    ],
-  },
   // /blog/ replaced /media/ (final sitemap); /media/* 301s to /blog/*.
   { label: 'Blog', href: '/blog/' },
 ];
@@ -137,6 +138,8 @@ export const PROGRAMS = [
     code: 'IOP',
     name: 'Intensive Outpatient Program',
     schedule: 'Day: 3 days/week · 9 AM – 1 PM\nEvening: Mon, Wed, Thu · 6 – 9 PM',
+    // The evening line links to the Evening IOP section (QA batch 1, item 27)
+    scheduleLinks: { Evening: '/programs/iop/#evening-iop' },
     hours: '9–12 hours / week',
     bestFor:
       'Working adults, parents and students who need real clinical depth but have to keep their days (or evenings) free.',

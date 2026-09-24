@@ -5,9 +5,12 @@
 // progress line), deliberately different from the card-grid pages.
 import ServicePage from '../../layouts/ServicePage.astro';
 import Icon from '../../components/Icon.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
 import { THERAPIES_HUB } from '../../data/therapies.js';
 
 const path = '/therapies/inner-child-therapy/';
+// Shared ToC (components/toc, same as blog posts): sticky list ≥1024px, drawer below. Targets use `toc-target`.
 const toc = [
   ['what', 'What inner child therapy is'],
   ['psychodynamic', 'Psychodynamic therapy'],
@@ -16,7 +19,7 @@ const toc = [
   ['skills', 'Why skills alone aren’t enough'],
   ['ifs', 'Inner child work and IFS'],
   ['when', 'When this work begins'],
-];
+].map(([id, text]) => ({ id, text }));
 
 const steps = [
   { n: '01', title: 'Identify the part', text: 'Name the younger part of you that still carries an old feeling or belief, like “I’m not good enough” or “I’m not safe.”' },
@@ -69,16 +72,15 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   {/* 1. Editorial intro with sticky mini-TOC */}
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
-      <nav aria-label="On this page" class="hidden lg:block">
-        <div class="sticky top-[110px] border-l-2 border-line pl-5">
-          <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
-          <ol class="mt-3 space-y-2 text-sm">
-            {toc.map(([id, label]) => <li><a href={`#${id}`} class="text-charcoal hover:text-teal">{label}</a></li>)}
-          </ol>
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
         </div>
       </nav>
       <div class="max-w-[70ch]">
-        <h2 id="what" class="scroll-mt-28 text-3xl sm:text-[2.1875rem]">What Inner Child Therapy Is</h2>
+        <h2 id="what" tabindex="-1" class="toc-target text-3xl sm:text-[2.1875rem]">What Inner Child Therapy Is</h2>
         <div class="prose-sv mt-6">
           <p>Inner child work focuses on the younger parts of ourselves that may still carry emotions, beliefs or experiences from childhood. Feeling rejected, unsafe, criticized, or like you were never good enough can keep shaping how you see yourself and relate to others long after you’ve grown up.</p>
           <p>In therapy, we help you identify those experiences, understand how they shaped the patterns you live with now, and develop compassion for the younger part of you that went through them. The point isn’t to stay in the past. It’s to stop the past from making your decisions.</p>
@@ -86,10 +88,10 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         </div>
 
         {/* 2. Pull quote */}
-        <h2 id="psychodynamic" class="mt-16 scroll-mt-28 text-3xl sm:text-[2.1875rem]">How Psychodynamic Therapy Looks Beneath the Surface</h2>
+        <h2 id="psychodynamic" tabindex="-1" class="mt-16 toc-target text-3xl sm:text-[2.1875rem]">How Psychodynamic Therapy Looks Beneath the Surface</h2>
         <figure class="mt-8 border-l-4 border-teal pl-6 sm:pl-8">
           <blockquote class="font-display text-2xl leading-snug text-charcoal sm:text-[1.9rem]">“At its core, it is about understanding the ‘why’ behind what we do.”</blockquote>
-          <figcaption class="mt-3 text-sm text-muted">Sunview’s clinical team</figcaption>
+          <figcaption class="mt-3 text-sm text-muted">Sunview’s Clinical Director</figcaption>
         </figure>
         <div class="prose-sv mt-8">
           <p>Psychodynamic therapy looks at how past experiences, relationships and emotions influence the way you think, feel and behave today. Rather than focusing only on the immediate problem, it explores patterns that may be happening outside your awareness.</p>
@@ -102,7 +104,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   {/* 3. Reparenting stepper */}
   <section class="section bg-mist">
     <div class="container-x">
-      <h2 id="reparenting" class="max-w-3xl scroll-mt-28 text-3xl sm:text-[2.1875rem]">Reparenting: What It Looks Like in a Session</h2>
+      <h2 id="reparenting" tabindex="-1" class="max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Reparenting: What It Looks Like in a Session</h2>
       <p class="subheading mt-3">Giving yourself what was missing earlier in life</p>
       <ol class="relative mt-10 grid gap-8 lg:grid-cols-3 lg:gap-6">
         <span class="absolute left-0 right-0 top-6 hidden h-0.5 bg-teal/25 lg:block" aria-hidden="true"></span>
@@ -114,9 +116,12 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           </li>
         ))}
       </ol>
+      {/* Chips: one list item each, with explicit {' '} (the build strips whitespace between tags; QA batch 5, item 3) */}
       <div class="mt-10 flex flex-wrap items-center gap-2">
-        <span class="mr-2 font-bold text-charcoal">What reparenting offers:</span>
-        {gives.map((g) => <span class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-bold text-teal">{g}</span>)}
+        <p id="reparenting-offers" class="mr-2 font-bold text-charcoal">What reparenting offers:</p>{' '}
+        <ul aria-labelledby="reparenting-offers" class="flex flex-wrap gap-2">
+          {gives.map((g) => <><li class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-bold text-teal">{g}</li>{' '}</>)}
+        </ul>
       </div>
     </div>
   </section>
@@ -124,7 +129,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   {/* 4. Full-bleed band */}
   <section class="section bg-teal-deep text-white">
     <div class="container-x">
-      <h2 id="underneath" class="max-w-3xl scroll-mt-28 text-3xl text-white sm:text-[2.1875rem]">Shame, Inadequacy and Fear Underneath Substance Use</h2>
+      <h2 id="underneath" tabindex="-1" class="max-w-3xl toc-target text-3xl text-white sm:text-[2.1875rem]">Shame, Inadequacy and Fear Underneath Substance Use</h2>
       <p class="mt-4 max-w-2xl text-lg text-white/85">Substance use often begins as a way to cope with feelings that were there long before the first drink or drug.</p>
       <div class="mt-10 grid gap-8 md:grid-cols-3 md:gap-0 md:divide-x md:divide-white/20">
         {underneath.map((u) => (
@@ -141,22 +146,25 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
-        <h2 id="skills" class="scroll-mt-28 text-3xl sm:text-[2.1875rem]">Why Coping Skills Alone Are Not Enough</h2>
+        <h2 id="skills" tabindex="-1" class="toc-target text-3xl sm:text-[2.1875rem]">Why Coping Skills Alone Are Not Enough</h2>
         <p class="mt-5 text-lg">We value coping skills and relapse prevention, and we teach them. But without exploring where triggers and thoughts began, those skills can become a band-aid over a bullet hole: helpful for a moment, hard to sustain over time.</p>
       </div>
+      {/* <640px the table stacks: one card per row, each cell with its column label (QA batch 5, item 17).
+          Explicit ARIA roles keep table semantics after the display change; the visual labels are aria-hidden. */}
       <div class="overflow-hidden rounded-[var(--radius-card)] border border-line">
-        <table class="w-full text-left text-[15px]">
-          <thead>
-            <tr class="bg-mist">
-              <th scope="col" class="w-1/2 px-5 py-4 font-extrabold text-muted">Skills alone</th>
-              <th scope="col" class="w-1/2 px-5 py-4 font-extrabold text-teal">Skills plus insight</th>
+        <table role="table" class="w-full text-left text-[15px] max-sm:block">
+          <caption class="sr-only">Coping skills alone compared with skills plus insight</caption>
+          <thead role="rowgroup" class="max-sm:sr-only">
+            <tr role="row" class="bg-mist">
+              <th role="columnheader" scope="col" class="w-1/2 px-5 py-4 font-extrabold text-muted">Skills alone</th>
+              <th role="columnheader" scope="col" class="w-1/2 px-5 py-4 font-extrabold text-teal">Skills plus insight</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-line">
+          <tbody role="rowgroup" class="divide-y divide-line max-sm:block">
             {compare.map(([a, b]) => (
-              <tr>
-                <td class="px-5 py-4 align-top text-muted">{a}</td>
-                <td class="px-5 py-4 align-top font-bold text-charcoal">{b}</td>
+              <tr role="row" class="max-sm:block max-sm:py-2">
+                <td role="cell" class="px-5 py-4 align-top text-muted max-sm:block max-sm:py-2"><span aria-hidden="true" class="mb-1 block text-xs font-extrabold uppercase tracking-[0.08em] text-muted sm:hidden">Skills alone</span>{a}</td>
+                <td role="cell" class="px-5 py-4 align-top font-bold text-charcoal max-sm:block max-sm:py-2 max-sm:bg-mist/60"><span aria-hidden="true" class="mb-1 block text-xs font-extrabold uppercase tracking-[0.08em] text-teal sm:hidden">Skills plus insight</span>{b}</td>
               </tr>
             ))}
           </tbody>
@@ -170,7 +178,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     <div class="container-x">
       <div class="grid items-center gap-8 rounded-[var(--radius-lg)] bg-cream p-8 sm:p-10 lg:grid-cols-[1.3fr_0.7fr]">
         <div>
-          <h2 id="ifs" class="scroll-mt-28 text-2xl sm:text-[1.75rem]">Inner Child Work and Internal Family Systems</h2>
+          <h2 id="ifs" tabindex="-1" class="toc-target text-2xl sm:text-[1.75rem]">Inner Child Work and Internal Family Systems</h2>
           <p class="mt-4">Internal Family Systems (IFS) is part of the shared foundation of our clinical model, woven into group topics and used in individual sessions when it fits. IFS gives a language for all your parts; inner child work focuses on the youngest ones. Together, they help you understand what each part is protecting.</p>
         </div>
         <a href="/therapies/internal-family-systems/" class="btn-teal justify-self-start lg:justify-self-end">Internal Family Systems (IFS) <Icon name="arrow" /></a>
@@ -181,7 +189,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   {/* 7. Progress line */}
   <section class="section bg-mist">
     <div class="container-x">
-      <h2 id="when" class="max-w-3xl scroll-mt-28 text-3xl sm:text-[2.1875rem]">When This Work Begins in Treatment</h2>
+      <h2 id="when" tabindex="-1" class="max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">When This Work Begins in Treatment</h2>
       <p class="mt-5 max-w-3xl text-lg">Early in treatment, a lot is still happening at the surface: adjusting to structure, managing cravings, learning to feel safe. Asking you to unpack deep wounds right away wouldn’t be realistic or kind. As you stabilize and trust your therapist and peers, the work can go deeper.</p>
       <ol class="mt-10 grid gap-4 md:grid-cols-3 md:gap-0">
         {phases.map((p, i) => (
@@ -196,12 +204,12 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
 
       <div class="mt-12 border-t border-line pt-6 text-[15px]">
         <p class="font-extrabold text-charcoal">Keep exploring</p>
+        {/* Max 5 links, "Talk to admissions" last (QA batch 5, item 4) */}
         <p class="mt-2 flex flex-wrap gap-x-5 gap-y-2">
-          <a href="/therapies/" class={link}>All therapy approaches</a>
-          <a href="/therapies/family-therapy/" class={link}>Family therapy</a>
-          <a href="/what-we-treat/mental-health/trauma-ptsd/" class={link}>Trauma and PTSD treatment</a>
-          <a href="/what-we-treat/dual-diagnosis/" class={link}>Dual diagnosis treatment</a>
-          <a href="/programs/" class={link}>Compare levels of care</a>
+          <a href="/therapies/" class={link}>All therapy approaches</a>{' '}
+          <a href="/therapies/family-therapy/" class={link}>Family therapy</a>{' '}
+          <a href="/what-we-treat/mental-health/trauma-ptsd/" class={link}>Trauma and PTSD treatment</a>{' '}
+          <a href="/programs/" class={link}>Compare levels of care</a>{' '}
           <a href="/admissions/" class={link}>Talk to admissions</a>
         </p>
       </div>

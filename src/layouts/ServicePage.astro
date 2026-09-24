@@ -1,6 +1,6 @@
 ---
 // Shared template for commercial service pages (Programs + What We Treat briefs, content prompt template):
-// hero (breadcrumb above the H1, coverage form) → trust strip (every commercial page, Decisions 2026-09-24) → page body (default slot) → optional "links" slot →
+// hero (breadcrumb above the H1, accreditation logos under the buttons, coverage form) → page body (default slot) → optional "links" slot →
 // rotation sections chosen per page group (Insurance / Reviews / Map) → FAQ →
 // coverage form below lg → CTA.
 // Schema: MedicalOrganization (Base) + BreadcrumbList (Base) + WebPage (+ optional `about`)
@@ -36,7 +36,7 @@ interface Props {
   schema?: Record<string, unknown>[]; // overrides the default page schema (e.g. programs' MedicalTherapy)
   about?: Record<string, unknown>; // schema `about` node (e.g. MedicalCondition)
   ctaTitle?: string; // overrides the CTA band's tagline when the page already uses it (e.g. /about/'s subheading)
-  noindex?: boolean; // robots noindex (e.g. the Humana payer page until its products are confirmed)
+  noindex?: boolean; // robots noindex for pages that must build but not be indexed
 }
 const {
   path, metaTitle, description, crumbs, h1, subheading, lead, faqTitle, faqs,
@@ -71,7 +71,7 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
   <slot name="links" />
 
   {insurance && <InsuranceSection />}
-  {reviews && <Reviews />}
+  {reviews && <Reviews limit={6} seed={path} />}
   {map && <MapSection showSchedule={false} />}
 
   {faqSection && <section class="section bg-mist">
@@ -87,7 +87,7 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
   </section>}
 
   {/* Coverage form below lg (in the hero on desktop) */}
-  {mobileForm && <section class="section scroll-mt-20 bg-teal lg:hidden" data-form-anchor>
+  {mobileForm && <section class="section scroll-mt-[100px] bg-teal lg:hidden" data-form-anchor>
     <div class="container-x max-w-2xl"><LeadForm formId={`${formId}-mobile`} dark /></div>
   </section>}
 
@@ -97,13 +97,17 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
 <script>
   // Links to #get-started scroll to whichever coverage form is visible: the hero form on desktop,
   // the pre-CTA form on mobile (Admissions brief: every section CTA scrolls to the form).
+  // scroll-margin-top on each anchor keeps the form below the 84px sticky header.
+  const visibleForm = () => [...document.querySelectorAll<HTMLElement>('[data-form-anchor]')].find((el) => el.offsetParent !== null);
   document.addEventListener('click', (e) => {
     const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href="#get-started"]');
     if (!a) return;
-    const target = [...document.querySelectorAll<HTMLElement>('[data-form-anchor]')].find((el) => el.offsetParent !== null);
+    const target = visibleForm();
     if (!target) return;
     e.preventDefault();
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     target.querySelector<HTMLInputElement>('input')?.focus({ preventScroll: true });
   });
+  // Direct visits to a URL ending in #get-started land on the visible form too.
+  if (location.hash === '#get-started') visibleForm()?.scrollIntoView({ block: 'start' });
 </script>

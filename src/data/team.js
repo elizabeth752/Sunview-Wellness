@@ -8,8 +8,8 @@
 //
 // photo: null → branded initials placeholder on mist ({{PHOTO}}). Set a path when headshots arrive.
 // linkedin: null → no LinkedIn link and no schema sameAs ({{LINKEDIN_URL}}). Set the URL to show it.
-// publish: false → no real bio yet (Decisions 2026-09-24, placeholder policy). The person page still builds but
-// is noindex and out of the sitemap (NOINDEX_PATHS below), and the person is left out of the /our-team/ grid,
+// publish: false → no real bio yet (Decisions 2026-09-24, placeholder policy). The person page is NOT built
+// (QA batch 12, item 17) and the person is left out of the /our-team/ grid,
 // "Also on this team" lists, the /about/ initials stack, the team schema and every other link. Remove the flag
 // (and add the fuller bio) when it arrives: they reappear everywhere automatically.
 // Posts: "Articles by {First}" is built from src/data/posts.js where post.author === slug (posts reference people by slug,
@@ -28,9 +28,7 @@ const PRIMARY_THERAPIST_ROLE = [
   'Primary therapists at Sunview meet with each person they work with for an individual therapy session once a week, typically for 45 to 60 minutes, with extra sessions or check-ins when there’s a clinical need. Individual work sits alongside the group program in <a href="/programs/php/">PHP</a>, <a href="/programs/iop/">IOP</a> and <a href="/programs/outpatient/">outpatient care</a>.',
   'With consent, the primary therapist also makes a first family contact during the first week of programming, to introduce themselves and hear what loved ones feel would help. <a href="/admissions/for-families/">How families are involved in treatment</a>.',
 ];
-// Answer 3.8: "ongoing clinical supervision by the Clinical Director", no frequency.
-const INTERN_SUPERVISION =
-  'As a registered intern, {first} receives ongoing clinical supervision by Sunview’s Clinical Director, Dana Martin, who encourages clinicians to look beyond the presenting symptom and stay curious about what may be happening underneath it.';
+// Supervision remarks (who supervises whom, how often) are internal and stay off person pages (QA batch 9, item 17).
 const GROUP_LEADER_ROLE = [
   'At Sunview, day programming doesn’t rotate through a different facilitator every hour. It runs as one continuous group from 9 AM to 1 PM, with breaks, led by the same facilitator from start to finish. That consistency lets the group go deeper into the material instead of switching topics and leaders every hour.',
   'Internal Family Systems (IFS) is woven into group topics across the program, alongside CBT, DBT and trauma-informed approaches. <a href="/therapies/group-therapy/">Group therapy at Sunview</a>.',
@@ -58,11 +56,11 @@ export const PEOPLE = [
     education: [],
     bio: [
       'As Chief Executive Officer of Sunview Wellness, Frank Galimidi brings more than 23 years of specialized experience in addiction treatment and behavioral healthcare leadership. His career has been defined by a commitment to raising the standard of care through executive strategy, operational excellence and a deep clinical understanding. Frank holds the CASAC, CAP, CRADC, NCAC II and ICADC credentials and is a qualified Substance Abuse Professional (SAP).',
-      'He has been an executive at both for-profit and nonprofit agencies, and came to Sunview to lead a turnaround of the organization. Before Sunview, he was Chief Clinical Officer at Sunset House and Executive Director of the Meadows Counseling Center. Earlier, he ran a nonprofit residential and IOP program for six years.',
-      'His leadership philosophy centers on two ideas: Clinical Architecture™ and moving beyond the “I = Addict” mentality. Through Clinical Architecture™, Frank builds treatment environments that foster accountability, connection, structure and sustainable recovery, helping people build lives defined not by past struggles but by growth, purpose and long-term wellness.',
+      'He has been an executive at both for-profit and nonprofit agencies, and joined Sunview to lead the program. Before Sunview, he was Chief Clinical Officer at Sunset House and Executive Director of the Meadows Counseling Center. Earlier, he ran a nonprofit residential and IOP program for six years.',
+      'His leadership philosophy centers on two ideas: Clinical Architecture™ and moving beyond “I = Sick”, the fear of functioning as a healthy adult once the sick role is removed. Through Clinical Architecture™, Frank builds treatment environments that foster accountability, connection, structure and sustainable recovery, helping people build lives defined not by past struggles but by growth, purpose and long-term wellness.',
       'Frank is an active contributor to industry discussions through professional publications, podcasts and leadership forums, where he advocates for treatment models that prioritize meaningful transformation over short-term stabilization.',
     ],
-    highlight: 'Treatment models that prioritize meaningful transformation over short-term stabilization.',
+    highlight: 'Treatment models that prioritize meaningful transformation over short-term stabilization.', // /our-team/ leader card only (not on the person page, it repeats the bio)
     role: [
       'Frank leads Sunview Wellness as Chief Executive Officer, setting the strategy and the standard of care for the whole program. He is the creator of In Vivo Treatment™ and Clinical Architecture™, the two ideas behind how Sunview’s outpatient programs are built.',
     ],
@@ -95,11 +93,11 @@ export const PEOPLE = [
       'A contributing author to books on families navigating substance use disorders, Dana is known for integrating trauma-informed, narrative and DBT-based approaches. She doesn’t operate behind closed doors: she prioritizes visibility, approachability and open communication across every level of the organization, believing that a strong internal culture creates powerful clinical outcomes.',
       'Her training at the master’s and doctoral levels comes from a systems-based perspective, and it shapes how she sees the people Sunview serves. Instead of asking “What is wrong with this person?”, she wants to understand what happened to them, what they have learned and which patterns they have been living within.',
     ],
-    highlight: 'Not “What is wrong with this person?” but “What happened to this person?”',
+    highlight: 'Not “What is wrong with this person?” but “What happened to this person?”', // /our-team/ leader card only (not on the person page, it repeats the bio)
     role: [
       'As Clinical Director, Dana reviews every pre-screening assessment and recommends the level of care that fits, <a href="/programs/">PHP, IOP or outpatient</a>, using ASAM criteria alongside clinical judgment and a view of the person as a whole.',
       'Her systems perspective runs through the program’s design: space to explore relationships, family dynamics, past experiences and coping patterns, not only symptoms, and an emphasis on <a href="/therapies/family-therapy/">family involvement</a> when it’s clinically appropriate.',
-      'Dana also supervises the clinical team. In supervision she asks clinicians to think systemically, with questions like “What is this behavior communicating?” and “What function does this pattern serve?”, so the team understands why an intervention is used, not only which one.',
+      'Dana also leads the clinical team and asks clinicians to think systemically, with questions like “What is this behavior communicating?” and “What function does this pattern serve?”, so the team understands why an intervention is used, not only which one.',
     ],
     photo: null,
     linkedin: null,
@@ -123,13 +121,13 @@ export const PEOPLE = [
     ],
     education: ['M.Ed. and Ed.S. in Clinical Mental Health Counseling, Florida Atlantic University'],
     // Title: Wiki contacts list ("Lead Therapist"); Wiki author entry says "Primary Therapist". Bio P3: Wiki bio.
-    // EMDR: answer 3.4 allows exactly "trained in EMDR-informed approaches; Sunview does not offer EMDR as a service".
+    // EMDR: answer 3.4 allows "trained in EMDR-informed approaches". The scope note ("Sunview does not offer EMDR as a
+    // service") lives on the trauma page, not in the bio (QA batch 9, item 17). Internal Wiki notes (coverage,
+    // succession, caseload) are not published.
     bio: [
       'Gabriel Peña is a Licensed Mental Health Counselor and Qualified Supervisor in Florida. He holds M.Ed. and Ed.S. degrees in Clinical Mental Health Counseling from Florida Atlantic University. His clinical experience spans substance use disorders, co-occurring mental health conditions, trauma and identity-related stressors, particularly within LGBTQ+ populations.',
-      'Gabriel’s professional interests center on the therapeutic alliance and interpersonal connection as drivers of lasting psychological change. He uses an integrative, trauma-informed approach that incorporates CBT, Adlerian therapy and other evidence-based interventions, tailored to each person he works with.',
-      'At Sunview, Gabriel is the Clinical Director’s lead therapist and covers for her when she is out. He is being developed into an assistant clinical director role and works with many of the more difficult cases. He is trained in EMDR-informed approaches; Sunview does not offer EMDR as a service.',
+      'Gabriel’s professional interests center on the therapeutic alliance and interpersonal connection as drivers of lasting psychological change. He uses an integrative, trauma-informed approach that incorporates CBT, Adlerian therapy and other evidence-based interventions, tailored to each person he works with. He is also trained in EMDR-informed approaches.',
     ],
-    highlight: 'Connection as a driver of lasting change.',
     role: [
       'As Lead Therapist, Gabriel brings his integrative, trauma-informed approach to Sunview’s outpatient programs. He works within the shared clinical foundation that runs across the program, including <a href="/therapies/internal-family-systems/">Internal Family Systems (IFS)</a>, <a href="/therapies/cbt/">CBT</a> and <a href="/therapies/dbt/">DBT</a>, while drawing on his own areas of expertise.',
       'His experience with co-occurring conditions fits the way Sunview treats <a href="/what-we-treat/dual-diagnosis/">dual diagnosis</a>: looking at how substance use and mental health influence each other rather than treating each on its own.',
@@ -154,7 +152,7 @@ export const PEOPLE = [
     ],
     education: [],
     bio: ['Tyler Shoens is a full-time member of the clinical staff at Sunview Wellness and a registered intern working toward licensure.'],
-    role: [...PRIMARY_THERAPIST_ROLE, INTERN_SUPERVISION.replace('{first}', 'Tyler')],
+    role: PRIMARY_THERAPIST_ROLE,
     photo: null,
     linkedin: null,
   },
@@ -175,8 +173,7 @@ export const PEOPLE = [
       'Maria Nowak is a Registered Mental Health Counseling Intern with a master’s degree in Clinical Mental Health Counseling. Bilingual in English and Spanish, she has experience across the lifespan with diverse populations, including individuals navigating substance use, trauma, mood disorders and co-occurring mental health challenges.',
       'Maria approaches counseling with empathy, cultural sensitivity and deep respect for each person’s unique experiences, values and goals. She is committed to helping people feel understood, supported and empowered to make lasting change.',
     ],
-    highlight: 'Empathy, cultural sensitivity and respect for each person’s values and goals.',
-    role: [...PRIMARY_THERAPIST_ROLE, INTERN_SUPERVISION.replace('{first}', 'Maria')],
+    role: PRIMARY_THERAPIST_ROLE,
     photo: null,
     linkedin: null,
   },
@@ -197,8 +194,7 @@ export const PEOPLE = [
       'Jillian John brings more than ten years of experience in the child welfare system. She provides a warm, safe and supportive environment where people feel seen, heard and empowered. Jillian also offers faith-based Christian counseling, integrating biblical principles with evidence-based therapeutic practices.',
       'Her clinical approach draws from CBT, DBT and insight-oriented, strengths-based, emotion-focused, attachment-based and narrative therapies. She considers it a true privilege to be invited into the vulnerable and meaningful parts of a person’s life.',
     ],
-    highlight: 'A true privilege to be invited into the vulnerable and meaningful parts of a person’s life.',
-    role: [...PRIMARY_THERAPIST_ROLE, INTERN_SUPERVISION.replace('{first}', 'Jillian')],
+    role: PRIMARY_THERAPIST_ROLE,
     photo: null,
     linkedin: null,
   },
@@ -219,7 +215,6 @@ export const PEOPLE = [
       'Matthew Snyder is the founder of Therapeutic Health Services in Palm Beach Gardens and a former Program Director for a respected nonprofit addiction treatment program in Palm Beach County. He specializes in substance use disorders, LGBTQ+ issues, aging populations, anxiety, depression and veteran-related concerns, working with individuals, couples and families.',
       'Matthew incorporates experiential and action-oriented modalities, including Sand Tray Therapy, and serves as a Board Member for Professional Development at the FAU Phyllis & Harvey Sandler School of Social Work.',
     ],
-    highlight: 'Experiential, action-oriented work, including Sand Tray Therapy.',
     role: GROUP_LEADER_ROLE,
     photo: null,
     linkedin: null,
@@ -282,7 +277,6 @@ export const PEOPLE = [
       'Carissa serves as Office Manager at Sunview Wellness, overseeing daily operations and supporting both staff and the people in treatment throughout the recovery process. She manages office operations, scheduling, communication and administrative coordination.',
       'Known for being dependable, organized and compassionate, Carissa is passionate about creating a welcoming environment for individuals seeking treatment and recovery.',
     ],
-    highlight: 'Dependable, organized and compassionate.',
     role: [
       'Carissa handles most admissions and incoming calls at Sunview. Her role spans the office and admissions: scheduling, communication and the administrative coordination that keeps each person’s treatment running smoothly. If you’re thinking about starting, <a href="/admissions/">here’s how admissions works</a>.',
     ],
@@ -306,7 +300,6 @@ export const PEOPLE = [
       'Scott Belovicz brings more than 14 years of experience across the private and nonprofit sectors in substance use and mental health treatment. Known for his approachable personality, sense of humor and genuine passion for sobriety and recovery, Scott plays an integral role in creating a supportive and welcoming environment for the people in treatment and for staff alike.',
       'Outside of work, Scott enjoys spending time with family and friends, hunting, fishing, cooking and watching football.',
     ],
-    highlight: 'A genuine passion for sobriety and recovery.',
     role: [
       'As Director of Business Development, Scott is a point of contact for professionals and organizations who want to work with Sunview. <a href="/for-professionals/">Information for referring professionals</a>.',
     ],
@@ -318,8 +311,9 @@ export const PEOPLE = [
 export const personBySlug = (slug) => PEOPLE.find((p) => p.slug === slug);
 export const personHref = (p) => `/our-team/${p.slug}/`;
 export const isPublished = (p) => p.publish !== false;
-// Everyone shown and linked on the site. PEOPLE (all) is only for building the person pages.
+// Everyone shown, linked and built on the site (person pages are built from this list only).
 export const PUBLISHED_PEOPLE = PEOPLE.filter(isPublished);
 export const peopleInGroup = (id) => PUBLISHED_PEOPLE.filter((p) => p.group === id);
-// Person pages that build but stay noindex and out of the sitemap (read by astro.config.mjs's sitemap filter).
+// Unpublished person paths (read by astro.config.mjs's sitemap filter). These pages aren't built any more, so the
+// filter is a no-op safety net; keep the export so the config keeps working.
 export const NOINDEX_PATHS = PEOPLE.filter((p) => !isPublished(p)).map(personHref);

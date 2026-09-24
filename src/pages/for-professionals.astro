@@ -38,7 +38,7 @@ const fit = [
 const first = [
   { when: 'Risk of significant withdrawal, such as consistent, extended use of benzodiazepines or opioids', route: 'Medically supervised detox, and often residential care, before Sunview' },
   { when: 'Needs medical stabilization or round-the-clock monitoring right now', route: 'A higher level of care first' },
-  { when: 'Currently maintained on methadone', route: 'Generally not admitted; detox and medical stabilization first' },
+  { when: 'Currently maintained on methadone', route: 'Detox and medical stabilization first; Sunview can be the next step' },
   { when: 'An eating disorder, gambling or sex and love addiction as the primary clinical issue', route: 'A program that specializes in that condition' },
   { when: 'Acute psychiatric instability, disorientation or imminent risk of harm to self or others', route: 'A more appropriate level of care for stabilization' },
 ];
@@ -264,7 +264,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           {modalities.map((m) => <a href={m.href} class="rounded-full border border-white/35 px-3 py-1 font-bold text-white hover:bg-white/10">{m.name}</a>)}
           <span>and trauma-informed care.</span>
         </p>
-        <p class="mt-4 text-[15px] text-white/85">Gender-specific group days run twice a month.</p>
+        <p class="mt-4 text-[15px] text-white/85">Gender-specific group days run every other Thursday.</p>
         <a href="/about/our-approach/" class="btn-ghost-light mt-8">Our clinical approach and outcomes</a>
       </div>
       <dl class="grid gap-px overflow-hidden rounded-[var(--radius-card)] bg-white/15 sm:grid-cols-2">
@@ -324,7 +324,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   </section>
 
   {/* Referral form below lg (in the hero on desktop) */}
-  <section id="refer" class="section scroll-mt-20 bg-teal lg:hidden" data-form-anchor>
+  <section id="refer" class="section scroll-mt-24 bg-teal lg:hidden" data-form-anchor>
     <div class="container-x max-w-2xl"><LeadForm variant="referral" formId="for-professionals-mobile" /></div>
   </section>
 

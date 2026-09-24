@@ -1,0 +1,65 @@
+---
+// Shared table of contents list: blog posts (/blog/{slug}/ sidebar + drawer) and long pages like
+// /therapies/inner-child-therapy/. One place for the link styles, smooth scroll and the active item.
+// Targets need the `toc-target` utility (global.css: scroll-margin-top below the 84px sticky header) and
+// tabindex="-1" so focus moves with the scroll. TocDrawer adds the <1024px drawer around this list.
+interface Props { items: { id: string; text: string }[]; class?: string }
+const { items, class: cls } = Astro.props;
+---
+<ul class:list={['sv-toc space-y-1', cls]}>
+  {items.map((t) => <><li><a href={`#${t.id}`} data-toc-link={t.id}>{t.text}</a></li>{' '}</>)}
+</ul>
+
+<style>
+  .sv-toc a {
+    position: relative; display: block; padding: 0.4rem 0.5rem 0.4rem 1.4rem; border-radius: 8px;
+    font-size: 15px; font-weight: 600; line-height: 1.35; color: var(--color-charcoal);
+  }
+  .sv-toc a::before {
+    content: ''; position: absolute; left: 0.45rem; top: 0.95rem; width: 6px; height: 6px; border-radius: 9999px;
+    background: var(--color-line); transition: background-color .2s, transform .2s;
+  }
+  .sv-toc a:hover { color: var(--color-teal); background: var(--color-mist); }
+  .sv-toc a[aria-current='true'] { color: var(--color-teal); background: var(--color-mist); font-weight: 800; }
+  .sv-toc a[aria-current='true']::before { background: var(--color-gold); transform: scale(1.35); }
+</style>
+
+<script>
+  // Smooth scroll without touching the URL, focus follows, active item on scroll. Runs once per page
+  // (Astro bundles this script once however many lists render: e.g. sidebar + drawer on blog posts).
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')];
+  const heads = [...new Set(links.map((a) => a.dataset.tocLink!))]
+    .map((id) => document.getElementById(id))
+    .filter((h): h is HTMLElement => !!h);
+
+  const setActive = (id: string) =>
+    links.forEach((a) => (a.dataset.tocLink === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+
+  links.forEach((a) => a.addEventListener('click', (e) => {
+    const target = document.getElementById(a.dataset.tocLink!);
+    if (!target) return;
+    e.preventDefault();
+    const go = () => {
+      target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      target.focus({ preventScroll: true });
+      setActive(target.id);
+    };
+    const drawer = a.closest('dialog');
+    if (drawer?.open) { drawer.dataset.tocNav = '1'; drawer.close(); requestAnimationFrame(go); } else go();
+  }));
+
+  if (heads.length && 'IntersectionObserver' in window) {
+    const visible = new Set<string>();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => (en.isIntersecting ? visible.add(en.target.id) : visible.delete(en.target.id)));
+      const first = heads.find((h) => visible.has(h.id));
+      if (first) setActive(first.id);
+      else {
+        // Between headings: the last heading above the viewport's reading line is the current section
+        const above = heads.filter((h) => h.getBoundingClientRect().top < 120);
+        setActive((above[above.length - 1] ?? heads[0]).id);
+      }
+    }, { rootMargin: '-100px 0px -55% 0px' });
+    heads.forEach((h) => io.observe(h));
+  }
+</script>

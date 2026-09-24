@@ -8,8 +8,8 @@ import Icon from '../../../components/Icon.astro';
 import { INSURANCE } from '../../../data/site.js';
 
 const MEDICAID = ['Sunshine Health', 'AmeriHealth Caritas Florida', 'Molina Healthcare', 'Community Care Plan'];
-// Carriers with their own page (payer pages, /admissions/insurance/<slug>/). Humana's page is built but noindex
-// (answer 7.2), so its logo stays on the wall unlinked: no link equity into a noindex page.
+// Carriers with their own page (payer pages, /admissions/insurance/<slug>/). Humana's page is not generated
+// (payers.js `publish: false`, QA 12 #17), so its logo stays on the wall unlinked; Humana is still accepted.
 const PAGES: Record<string, string> = {
   Aetna: '/admissions/insurance/aetna/',
   'Florida Blue': '/admissions/insurance/florida-blue/',
@@ -28,7 +28,7 @@ const checks = [
 const faqs = [
   { q: 'Is Sunview in network with my plan?', a: 'We’re in network with major commercial plans and Florida Medicaid plans. The fastest way to know for sure is a free benefits check: send the form or call us.' },
   { q: 'Does Medicaid cover IOP or PHP?', a: 'Florida Medicaid plans generally cover outpatient treatment when it’s medically necessary. We accept Sunshine Health, AmeriHealth Caritas, Molina Healthcare and Community Care Plan, and we confirm your specific plan before you start.' },
-  { q: 'What if I lose coverage during treatment?', a: 'Tell us as soon as you know. We’ll look at your options with you, including other coverage you may qualify for, so your care doesn’t simply stop.' },
+  { q: 'What if I lose coverage during treatment?', a: 'Ask us as soon as you know. We’ll talk through your options with you, including other coverage you may qualify for, so your care doesn’t simply stop.' },
   { q: 'Do you take Medicare?', a: 'Medicare isn’t on our list of accepted plans. Ask us anyway: we’ll tell you honestly what your options are and help you find care that fits.' },
   { q: 'Is the insurance check really free?', a: 'Yes. Verifying your benefits costs nothing and doesn’t commit you to treatment.' },
 ];
@@ -174,7 +174,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <h2 class="text-3xl text-white sm:text-[2.1875rem]">Why We Verify Before You Commit</h2>
         <p class="mt-4 text-lg text-white/90">The weeks after stabilization are when the real work of recovery begins. Knowing what your plan covers from the start helps us plan care that doesn’t stop right when it’s starting to take hold.</p>
         <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/blog/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/" class="btn-ghost-light">Watch Frank’s clip</a>
+          <a href="/blog/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/" class="btn-ghost-light">Watch why insurers cut care short</a>
           <a href="/admissions/faq/" class="btn-ghost-light">All admissions FAQs</a>
         </div>
       </div>

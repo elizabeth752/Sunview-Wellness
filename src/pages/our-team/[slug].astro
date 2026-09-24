@@ -1,5 +1,5 @@
 ---
-// /our-team/{slug}/: About-Team-Content-Briefs.md §B, one template for every person page (published or not).
+// /our-team/{slug}/: About-Team-Content-Briefs.md §B, one template for every published person page.
 // Data: src/data/team.js. Sources and open questions: docs/content/about-team-sources-team.md.
 // Person template per docs/content/SOP-Blog-Post-Author-Templates.md §3 (one page per person, authors included).
 // Banner (Home hero look, no form, no buttons): breadcrumb, H1 = name with credentials, role, photo or initials.
@@ -15,11 +15,12 @@ import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
 import PostCard from '../../components/PostCard.astro';
 import { SITE, initials } from '../../data/site.js';
-import { PEOPLE, TEAM_GROUPS, personHref, isPublished } from '../../data/team.js';
+import { PUBLISHED_PEOPLE, TEAM_GROUPS, personHref } from '../../data/team.js';
 import { postsBy } from '../../data/posts.js';
 
 export function getStaticPaths() {
-  return PEOPLE.map((person) => ({ params: { slug: person.slug }, props: { person } }));
+  // Published people only: `publish: false` records stay in team.js but get no page (QA batch 12, item 17).
+  return PUBLISHED_PEOPLE.map((person) => ({ params: { slug: person.slug }, props: { person } }));
 }
 
 const { person: p } = Astro.props;
@@ -33,10 +34,7 @@ const crumbs = [{ name: 'Our Team', href: '/our-team/' }, { name: p.name, href: 
 const nameWithCreds = p.creds ? `${p.name}, ${p.creds}` : p.name;
 // <title> ≤60 / description ≤155 (answer 9.1): metaRole and metaDescription in team.js override when too long.
 const metaTitle = `${p.name}, ${p.metaRole ?? p.title} | Sunview Wellness`;
-const published = isPublished(p); // publish: false → noindex, out of the sitemap and unlinked (team.js)
-const description = p.metaDescription ?? (!published
-  ? `${nameWithCreds}, ${p.title} at Sunview Wellness, an outpatient addiction and mental health treatment center in West Palm Beach.`
-  : `${nameWithCreds}, ${p.title} at Sunview Wellness in West Palm Beach. ${p.specialty}`);
+const description = p.metaDescription ?? `${nameWithCreds}, ${p.title} at Sunview Wellness in West Palm Beach. ${p.specialty}`;
 
 const personNode: Record<string, unknown> = {
   '@type': 'Person',
@@ -68,7 +66,7 @@ const schema = [
 const loop = ['Learn', 'Apply', 'Experience', 'Process', 'Adjust', 'Apply again'];
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---
-<Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema} noindex={!published}>
+<Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema}>
   <PageHero
     title={p.name}
     titleNote={p.creds}
@@ -99,10 +97,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <div class="prose-sv mt-6 max-w-[68ch] text-lg">
           {p.bio.map((para: string) => <p>{para}</p>)}
         </div>
-        {p.highlight && (
-          <p class="mt-8 max-w-[52ch] border-l-4 border-gold pl-5 font-display text-xl italic leading-snug text-teal sm:text-2xl">{p.highlight}</p>
-        )}
-
+        {/* No pull-quote here: `highlight` repeats the bio (QA batch 9, item 11); it's only used on /our-team/ leader cards. */}
       </div>
 
       <aside class="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start" aria-labelledby="credentials-title">
@@ -110,14 +105,15 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           {p.credentials.length > 0 ? (
             <>
               <h2 id="credentials-title" class="text-2xl">Credentials</h2>
-              <ul class="mt-5 space-y-3">
+              {/* Definition list: the abbreviation (dt) and what it stands for (dd) are separate elements (QA batch 9, item 12). */}
+              <dl class="mt-5 space-y-3">
                 {p.credentials.map((c: { abbr: string; label?: string }) => (
-                  <li class="flex items-start gap-3">
-                    <span class="mt-0.5 inline-flex min-w-[3.25rem] justify-center rounded-full bg-mist px-2 py-0.5 font-sans text-xs font-extrabold text-teal">{c.abbr}</span>
-                    {c.label && <span class="text-[15px] leading-snug">{c.label}</span>}
-                  </li>
+                  <div class="flex items-start gap-3">
+                    <dt class="mt-0.5 inline-flex min-w-[3.25rem] shrink-0 justify-center rounded-full bg-mist px-2 py-0.5 font-sans text-xs font-extrabold text-teal">{c.abbr}</dt>
+                    {c.label && <dd class="text-[15px] leading-snug"><span class="sr-only">: </span>{c.label}</dd>}
+                  </div>
                 ))}
-              </ul>
+              </dl>
             </>
           ) : (
             <h2 id="credentials-title" class="text-2xl">{p.experience ? 'Experience' : 'At Sunview'}</h2>

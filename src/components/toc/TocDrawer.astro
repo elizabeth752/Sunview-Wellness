@@ -1,0 +1,44 @@
+---
+// <1024px table of contents: a trigger button that opens a bottom-sheet drawer (<dialog>) with the shared
+// TocList. Used on blog posts and /therapies/inner-child-therapy/. The page hides the wrapper at lg.
+import Icon from '../Icon.astro';
+import TocList from './TocList.astro';
+interface Props { items: { id: string; text: string }[]; label?: string; class?: string }
+const { items, label = 'Table of contents', class: cls } = Astro.props;
+---
+<div class={cls}>
+  <button type="button" class="inline-flex items-center gap-2 rounded-full border-2 border-teal px-5 py-2 font-extrabold text-teal hover:bg-mist" aria-haspopup="dialog" aria-controls="toc-drawer" data-toc-open>
+    <Icon name="list" class="h-5 w-5" />{label}
+  </button>
+  <dialog id="toc-drawer" class="sv-drawer" aria-labelledby="toc-drawer-title">
+    <div class="flex items-center justify-between gap-4 border-b border-line px-6 py-4">
+      <p id="toc-drawer-title" class="font-display text-xl font-bold text-charcoal">{label}</p>
+      <button type="button" class="grid h-10 w-10 place-items-center rounded-full hover:bg-mist" aria-label={`Close ${label.toLowerCase()}`} data-toc-close><Icon name="x" class="h-5 w-5" /></button>
+    </div>
+    <TocList items={items} class="px-4 py-4" />
+  </dialog>
+</div>
+
+<style>
+  .sv-drawer {
+    margin: auto auto 0; width: 100%; max-width: 100%; max-height: 80vh; padding: 0; border: 0;
+    border-radius: 20px 20px 0 0; background: #fff; color: var(--color-charcoal);
+  }
+  @media (min-width: 640px) { .sv-drawer { margin: auto; max-width: 520px; border-radius: 20px; } }
+  .sv-drawer::backdrop { background: rgb(14 84 84 / .55); }
+  .sv-drawer[open] { animation: sv-drawer-in .25s ease-out; }
+  @keyframes sv-drawer-in { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+</style>
+
+<script>
+  const drawer = document.getElementById('toc-drawer') as HTMLDialogElement | null;
+  const opener = document.querySelector<HTMLButtonElement>('[data-toc-open]');
+  if (drawer && opener) {
+    opener.addEventListener('click', () => drawer.showModal());
+    drawer.querySelector('[data-toc-close]')?.addEventListener('click', () => drawer.close());
+    // Click on the backdrop (outside the panel) closes; Esc closes natively
+    drawer.addEventListener('click', (e) => { if (e.target === drawer) drawer.close(); });
+    // Back to the trigger, unless the drawer closed because a link was chosen (focus then goes to that heading)
+    drawer.addEventListener('close', () => { if (drawer.dataset.tocNav) delete drawer.dataset.tocNav; else opener.focus(); });
+  }
+</script>

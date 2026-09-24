@@ -17,7 +17,7 @@ const includes = [
 const session = [
   { icon: 'users', title: 'One continuous group', text: 'The same facilitator leads the whole session, with breaks along the way. Trust builds faster and the work goes deeper. Topics draw on IFS, CBT, DBT and psychodrama.' },
   { icon: 'message', title: 'Carefrontation', text: 'Honest feedback, given with care. Group members learn to point out patterns and blind spots without shaming anyone, and to hear hard things without shutting down. Compassion and accountability, at the same time.' },
-  { icon: 'calendar', title: 'Gender-specific days', text: 'Twice a month, women and men meet in separate groups. Some things are easier to say to people who relate, and that extra layer of safety often opens up new conversations.' },
+  { icon: 'calendar', title: 'Gender-specific days', text: 'Every other Thursday, women and men meet in separate groups. Some things are easier to say to people who relate, and that extra layer of safety often opens up new conversations.' },
   { icon: 'heart', title: 'Family contact in week one', text: 'With your consent, your therapist contacts a loved one during your first week. After that, family involvement moves at a pace that fits you: updates, calls or family sessions.' },
   { icon: 'refresh', title: 'Real life comes back to group', text: 'You try a skill, then come back and say, “I got triggered at work,” or “this happened with my spouse.” We slow that moment down together and practice a different response.' },
 ];
@@ -32,7 +32,7 @@ const fits = [
 const faqs = [
   { q: 'Can I keep working during IOP?', a: 'Yes. That is what IOP is designed for. Day IOP meets three mornings a week, 9 AM to 1 PM, on days you choose. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, after most workdays end.' },
   { q: 'How is IOP different from PHP?', a: 'Intensity. PHP meets every weekday morning, about 20 hours a week. IOP meets three days a week, 9 to 12 hours. The clinical model is the same: one continuous group, a weekly individual session and psychiatric care. <a href="/programs/php/">Learn about the Partial Hospitalization Program</a>.' },
-  { q: 'How long does IOP last?', a: 'It follows your progress, not a fixed calendar. IOP is extended care, typically several months, adjusted to how you’re doing. Your therapist reviews your treatment plan with you every month, and when you’re ready, you step down to the <a href="/programs/outpatient/">Outpatient Program</a> with the same team.' },
+  { q: 'How long does IOP last?', a: 'It follows your progress, not a fixed calendar. IOP is extended care, typically several months, adjusted to your progress. Your therapist reviews your treatment plan with you every month, and when you’re ready, you step down to the <a href="/programs/outpatient/">Outpatient Program</a> with the same team.' },
   { q: 'Is evening IOP the same program as day IOP?', a: 'Yes. The clinical content is the same: the continuous group format, the weekly individual session and access to psychiatric care. Only the hours are different.' },
   { q: 'Does insurance cover IOP?', a: 'Most plans cover intensive outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
 ];
@@ -40,7 +40,7 @@ const faqs = [
 <ProgramPage
   path="/programs/iop/"
   metaTitle="Intensive Outpatient (IOP) in West Palm Beach | Sunview"
-  description="Day or evening IOP in West Palm Beach for substance use and co-occurring conditions, 3 days a week. Keep your job, with free door-to-door transportation."
+  description="Day or evening intensive outpatient program in West Palm Beach for substance use and co-occurring conditions, 3 days a week, so you can keep your job."
   crumb="Intensive Outpatient Program"
   h1="Intensive Outpatient Program in West Palm Beach"
   subheading="Real clinical depth, three days a week, on a schedule that fits your life."
@@ -83,9 +83,11 @@ const faqs = [
         <p class="mt-4">Day IOP meets three mornings a week. You and your team choose the three days around your work, school or family schedule, so treatment doesn’t have to compete with the rest of your week.</p>
         <p class="mt-3">Instead of a different facilitator every hour, one clinician leads your group for the whole morning, with breaks. <a href="/therapies/group-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4">How group therapy works at Sunview</a>.</p>
       </article>
-      <article id="evening-iop" class="card flex scroll-mt-32 flex-col !p-8">
+      <article class="card flex flex-col !p-8">
         <Icon name="briefcase" class="h-8 w-8 text-teal" />
-        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Evening IOP: Monday, Wednesday and Thursday, 6 to 9 PM</h2>
+        {/* #evening-iop: linked from the Programs hub comparison and Home's IOP card (QA batch 1, item 27).
+             scroll-margin clears the 84px sticky header */}
+        <h2 id="evening-iop" class="mt-4 scroll-mt-[108px] text-2xl sm:text-[1.75rem]">Evening IOP: Monday, Wednesday and Thursday, 6 to 9 PM</h2>
         <p class="mt-4">Evening IOP is built for people who work during the day. You keep your full workday and come to group after it, three evenings a week.</p>
         <p class="mt-3">The clinical content is the same as day IOP: the same continuous group with one facilitator, the same weekly individual session and the same access to psychiatric care. Only the clock changes.</p>
       </article>

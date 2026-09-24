@@ -5,7 +5,7 @@
 import ServicePage from '../../../layouts/ServicePage.astro';
 import NextSteps from '../../../components/NextSteps.astro';
 import Icon from '../../../components/Icon.astro';
-import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { WWT, CATEGORIES, MENTAL_PAGES, siblings } from '../../../data/treat.js';
 import { conditionAbout } from '../../../lib/programSchema.js';
 
 const path = '/what-we-treat/mental-health/adhd/';
@@ -25,24 +25,24 @@ const treating = [
 ];
 
 const approaches = [
-  { name: 'CBT', text: 'Helps with the thought patterns and habits that make follow-through hard and using feel like the answer.' },
-  { name: 'DBT', text: 'Builds skills for emotional regulation and impulse control in the moment.' },
-  { name: 'Internal Family Systems (IFS)', text: 'Explores the different parts of yourself, including the frustrated or self-critical ones that often come with ADHD.' },
-  { name: 'Psychodynamic therapy', text: 'Looks at how experiences like feeling criticized or not good enough may still shape how you see yourself.' },
+  { name: 'CBT', href: '/therapies/cbt/', text: 'Helps with the thought patterns and habits that make follow-through hard and using feel like the answer.' },
+  { name: 'DBT', href: '/therapies/dbt/', text: 'Builds skills for emotional regulation and impulse control in the moment.' },
+  { name: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/', text: 'Explores the different parts of yourself, including the frustrated or self-critical ones that often come with ADHD.' },
+  { name: 'Psychodynamic therapy', href: '/therapies/inner-child-therapy/', text: 'Looks at how experiences like feeling criticized or not good enough may still shape how you see yourself.' },
 ];
 
 const faqs = [
   { q: 'Can I keep taking Adderall during the program?', a: 'No. Sunview is abstinence-based, and stimulant medications like Adderall aren’t used during the program. Your Telemed Clinix provider evaluates your needs and makes medication decisions that fit your treatment.' },
   { q: 'I have a prescription. Doesn’t that settle it?', a: 'A prescription doesn’t by itself determine whether outpatient care fits. During pre-screening we look at what you take, how much, how often and for how long, so we can recommend a level of care that’s safe for you.' },
-  { q: 'Do I need an ADHD diagnosis to start?', a: 'No. You don’t need a specific diagnosis to reach out. Your pre-screening and assessment help us understand the full picture, and psychiatric evaluation is part of the program through Telemed Clinix.' },
-  { q: 'Do you treat ADHD without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If ADHD is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do I need an ADHD diagnosis to start?', a: 'No. You don’t need a diagnosis to call us. Your pre-screening and assessment help us understand the full picture, and psychiatric evaluation happens through Telemed Clinix as part of the program.' },
+  { q: 'Do you treat ADHD without substance use?', a: 'We treat ADHD when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for ADHD care on its own, we’ll help you find the right fit.' },
   { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
 ];
 ---
 <ServicePage
   path={path}
   metaTitle="ADHD and Addiction Treatment in West Palm Beach | Sunview"
-  description="ADHD treated alongside substance use in West Palm Beach: structure, skills and psychiatric care in PHP, IOP and OP, with no stimulant medications."
+  description="ADHD treated alongside substance use in West Palm Beach: structure and skills, with psychiatric care and no stimulant medications during the program."
   crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }, { name: 'ADHD', href: path }]}
   h1="ADHD and Addiction Treatment in West Palm Beach"
   subheading="Structure, skills and support that work with how your mind works."
@@ -71,6 +71,7 @@ const faqs = [
         <ul class="mt-4 space-y-3">
           {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
         </ul>
+        <p class="mt-5 border-t border-line pt-4 font-bold text-teal">Recognizing a few of these is reason enough to call. You don’t need to be sure.</p>
       </aside>
     </div>
   </section>
@@ -108,7 +109,7 @@ const faqs = [
       <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
         {approaches.map((a) => (
           <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
-            <dt class="font-extrabold">{a.name}</dt>
+            <dt class="font-extrabold">{a.html ? <Fragment set:html={a.html} /> : a.href ? <a href={a.href} class="text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{a.name}</a> : a.name}</dt>
             <dd>{a.text}</dd>
           </div>
         ))}
@@ -146,9 +147,8 @@ const faqs = [
     level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where the same schedule every weekday builds routine. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you need depth and have to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps a weekly anchor in place as your routine gets stronger.</p>`}
     related={[
       { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
-      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
-      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
-      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      ...siblings(MENTAL_PAGES, ['anxiety', 'bipolar-disorder']),
+      { label: CATEGORIES.dual.label, href: CATEGORIES.dual.href },
     ]}
   />
 </ServicePage>

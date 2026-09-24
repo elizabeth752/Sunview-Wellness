@@ -1,13 +1,13 @@
 ---
 // Shared post card (SOP Blog/Post/Author §0 "Cards", §1 "Card anatomy"): blog grid, post related/latest blocks,
 // person "Articles by", Home "Recovery Resources". One component, three variants:
-//   default: feature graphic · category (+ read time) · title · ≈3-line excerpt · author · Read more →
+//   default: feature graphic · category + content type/read time · title · ≈3-line excerpt · author · Read more →
 //   compact: small graphic left + category + title (sidebar related articles)
 // No publication date on cards. The graphic and the title link to the post; the author links to the person page.
 // Title element: `as` (default 'p'); use 'h3' only where an H2 precedes the card list.
 import Icon from './Icon.astro';
 import Avatar from './Avatar.astro';
-import { postAuthor, postImage, postExcerpt, postUrl, readTime, categoryColor } from '../data/posts.js';
+import { postAuthor, postImage, postExcerpt, postUrl, cardMeta, categoryColor } from '../data/posts.js';
 
 interface Props {
   post: any;
@@ -21,8 +21,7 @@ interface Props {
 const { post, variant = 'default', as: Title = 'p', lead = false, class: cls = '', eager = false, size = 'md' } = Astro.props;
 const author = postAuthor(post);
 const href = postUrl(post);
-const mins = readTime(post);
-const meta = post.type === 'video' ? 'Video' : post.type === 'external' ? 'LinkedIn' : mins ? `${mins} min read` : null;
+const meta = cardMeta(post); // 'Article · 4 min read' · 'Podcast · 48 min' · 'Video' (LinkedIn clip)
 const color = categoryColor(post.category).dot;
 ---
 {variant === 'compact' ? (
@@ -50,7 +49,7 @@ const color = categoryColor(post.category).dot;
         <span class="inline-flex items-center gap-1.5 font-extrabold uppercase tracking-[0.08em] text-charcoal">
           <span class="h-2.5 w-2.5 rounded-full ring-2 ring-white" style={`background:${color}`} aria-hidden="true"></span>{post.category}
         </span>
-        {meta && <span class="inline-flex items-center gap-1 text-muted">{post.type === 'video' ? <Icon name="play" class="h-3.5 w-3.5" /> : <Icon name="clock" class="h-3.5 w-3.5" />}{meta}</span>}
+        <span class="inline-flex items-center gap-1 text-muted">{meta.kind === 'video' ? <Icon name="play" class="h-3.5 w-3.5" /> : meta.label.includes('min read') ? <Icon name="clock" class="h-3.5 w-3.5" /> : null}{meta.label}</span>
       </div>
       <Title class:list={['pc-title mt-3 font-display font-bold leading-snug text-charcoal', size === 'sm' ? 'text-lg' : 'text-xl']}>
         <a href={href} class="hover:text-teal">{post.title}</a>

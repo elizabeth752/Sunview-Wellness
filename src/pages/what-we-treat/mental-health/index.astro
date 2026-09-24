@@ -16,7 +16,7 @@ const therapies = [
 ];
 
 const faqs = [
-  { q: 'Do you treat mental health without substance use?', a: 'Our programs are built for people living with substance use and mental health conditions together. If mental health is your only concern, call us anyway: we’ll listen and help you find the right kind of care.' },
+  { q: 'Do you treat mental health without substance use?', a: 'We treat mental health conditions like depression, anxiety, trauma and personality disorders when they come with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for mental health care on its own, we’ll help you find the right fit.' },
   { q: 'Is there a psychiatrist?', a: 'Psychiatric care is provided through our partner, Telemed Clinix: physicians, nurse practitioners and physician assistants who understand dual diagnosis. It’s part of your program, and we schedule it for you.' },
   { q: 'Can I keep my medications?', a: 'Often, yes. Your provider reviews what you take and makes changes only when they’re clinically indicated. We don’t switch medications just because you’re starting a program.' },
   { q: 'Which conditions do you see most?', a: 'Personality disorders, anxiety and depressive disorders, and trauma-related disorders, usually alongside alcohol or cocaine use. Many people are living with more than one.' },
@@ -25,7 +25,7 @@ const faqs = [
 ---
 <ServicePage
   path="/what-we-treat/mental-health/"
-  metaTitle="Co-Occurring Mental Health Treatment | West Palm Beach"
+  metaTitle="Co-Occurring Mental Health Treatment in West Palm Beach"
   description="Depression, anxiety, trauma, bipolar and personality disorders treated alongside substance use in PHP, IOP and OP in West Palm Beach, psychiatry included."
   crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }]}
   h1="Co-Occurring Mental Health Treatment in West Palm Beach"
@@ -61,10 +61,11 @@ const faqs = [
       </div>
       <ol class="grid gap-3" aria-label="The cycle between mental health and substance use">
         {['Emotional distress', 'Using to cope', 'Symptoms get worse', 'Stronger pull to use'].map((s, i) => (
-          <li class="card flex items-center gap-4 !py-4">
-            <span class="font-sans text-2xl font-extrabold text-teal" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-            <span class="font-bold text-charcoal">{s}</span>
-          </li>
+          <><li class="card flex items-center gap-4 !py-4">
+            {/* Number and label in separate elements with a real space between them (same as the OP In Vivo steps);
+                 the <ol> already announces the position, so the visual number is hidden from screen readers */}
+            <span class="font-sans text-2xl font-extrabold text-teal" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{' '}<span class="font-bold text-charcoal">{s}</span>
+          </li>{' '}</>
         ))}
       </ol>
     </div>
@@ -104,11 +105,11 @@ const faqs = [
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {therapies.map((t) => (
-          <a href={t.href} class="card group flex flex-col transition hover:border-teal">
-            <h3 class="text-lg group-hover:text-teal">{t.name}</h3>
+          <article class="card card-link-focus group relative flex flex-col transition hover:border-teal">
+            <h3 class="text-lg group-hover:text-teal"><a href={t.href} class="stretched-link">{t.name}</a></h3>{' '}
             <p class="mt-2 text-[15px]">{t.text}</p>
-            <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
-          </a>
+            <span class="mt-auto pt-4" aria-hidden="true"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+          </article>
         ))}
       </div>
     </div>

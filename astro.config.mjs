@@ -17,7 +17,7 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // Out of the sitemap: noindex pages (thank-you; Humana payer page until products are confirmed, answer 7.2;
+      // Out of the sitemap: noindex pages (thank-you; the Humana payer page, now not built at all (QA batch 12), kept here as a safety net;
       // privacy policy until legal sign-off, answer 9.7) and the old URLs that 301 in production.
       filter: (page) =>
         !page.includes('/api/') &&

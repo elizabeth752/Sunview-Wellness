@@ -1,0 +1,53 @@
+---
+// One card markup for every person on /our-team/ (QA 8 #16). Same content structure in every section:
+// photo or initials · name (h3, the link to the bio) · credentials · title · one-line specialty. Each part is its
+// own block element, so extracted text keeps spaces between them. `variant` only changes the layout/visuals:
+//   feature → wide leadership profile (adds the optional `highlight` line)
+//   tile    → portrait tile (media on white; `tone="mist"` for tiles on a white section)
+//   band    → compact white card on the teal Admissions band
+import { initials } from '../data/site.js';
+import { personHref } from '../data/team.js';
+
+interface Person { name: string; slug: string; creds?: string; title: string; specialty?: string | null; highlight?: string; photo?: string | null }
+interface Props { person: Person; variant?: 'feature' | 'tile' | 'band'; tone?: 'white' | 'mist' }
+const { person: p, variant = 'tile', tone = 'white' } = Astro.props;
+
+const v = {
+  feature: {
+    li: 'grid overflow-hidden rounded-[var(--radius-lg)] border border-line sm:grid-cols-[0.8fr_1.2fr]',
+    media: 'relative grid aspect-[4/3] place-items-center bg-mist sm:aspect-auto sm:min-h-[300px]',
+    initials: 'grid h-32 w-32 place-items-center rounded-full border-2 border-gold font-display text-5xl font-bold text-teal',
+    body: 'flex flex-col p-7 sm:p-8',
+    name: 'text-2xl',
+  },
+  tile: {
+    li: 'group flex flex-col',
+    media: `relative grid aspect-square place-items-center overflow-hidden rounded-[var(--radius-card)] ${tone === 'mist' ? 'bg-mist' : 'bg-white'}`,
+    initials: 'font-display text-6xl font-bold text-teal/80 transition group-hover:scale-105',
+    body: 'mt-5',
+    name: 'text-xl',
+  },
+  band: {
+    li: 'flex items-start gap-5 rounded-[var(--radius-card)] bg-white p-6 text-charcoal sm:p-7',
+    media: 'relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl bg-mist',
+    initials: 'font-display text-2xl font-bold text-teal',
+    body: 'min-w-0',
+    name: 'text-xl',
+  },
+}[variant];
+---
+<li class={v.li} data-team-card>
+  <div class={v.media} aria-hidden="true">
+    {p.photo
+      ? <img src={p.photo} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+      : <span class={v.initials}>{initials(p.name)}</span>}
+    {variant === 'tile' && <span class="absolute inset-x-0 bottom-0 h-1 bg-gold"></span>}
+  </div>
+  <div class={v.body}>
+    <h3 class={v.name}><a href={personHref(p)} class="hover:text-teal">{p.name}</a></h3>
+    {p.creds && <p class="mt-1 text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{p.creds}</p>}
+    <p class="mt-1 font-bold text-charcoal">{p.title}</p>
+    {variant === 'feature' && p.highlight && <p class="mt-4 font-display text-lg italic leading-snug text-teal">{p.highlight}</p>}
+    {p.specialty && <p class="mt-2 text-[15px]">{p.specialty}</p>}
+  </div>
+</li>

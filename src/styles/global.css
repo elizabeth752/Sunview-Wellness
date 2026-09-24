@@ -102,6 +102,21 @@
 @utility card {
   @apply rounded-[var(--radius-card)] border border-line bg-white p-6;
 }
+/* Whole-card click target without wrapping the card in one <a> (QA batch 2, item 5): the card is `relative`,
+   title, text and link stay separate block elements, and this link's ::after covers the card. The focus
+   ring moves to the card so keyboard users see the whole target. */
+@utility stretched-link {
+  &::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-card); z-index: 1; }
+  &:focus-visible { outline: none; }
+}
+/* Table of contents anchor targets (components/toc): land below the 84px sticky header + 16px */
+@utility toc-target {
+  scroll-margin-top: 100px;
+  &:focus { outline: none; }
+}
+@utility card-link-focus {
+  &:has(.stretched-link:focus-visible) { outline: 2px solid var(--color-gold); outline-offset: 2px; }
+}
 /* 80px desktop / 48px mobile */
 @utility section {
   @apply py-12 sm:py-20;
