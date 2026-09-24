@@ -22,7 +22,7 @@ const morning = [
 ];
 
 const provide = [
-  'Free transportation to and from our center if you can’t drive yourself',
+  'Free door-to-door transportation to and from our center if you can’t drive yourself',
   'A weekly individual session with your primary therapist',
   'Psychiatric care scheduled for you',
   'Family involvement at your pace',
@@ -57,14 +57,14 @@ const faqs = [
   metaTitle="What to Expect at Sunview | Outpatient Rehab West Palm Beach"
   description="A typical day in PHP, a typical evening in IOP, your first week, and what changes as treatment progresses at Sunview Wellness in West Palm Beach."
   crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'What to Expect', href: '/admissions/what-to-expect/' }]}
-  h1="What to Expect in Outpatient Treatment at Sunview Wellness"
+  h1="What to Expect in Outpatient Treatment in West Palm Beach"
   subheading="From your first call to your last morning, here is how it works."
   lead="Your first week, a typical PHP morning, an IOP evening, the ground rules and how the work changes as you go. No surprises, just a clear picture of what treatment feels like here."
   faqTitle="Frequently Asked Questions About Starting Treatment"
   faqs={faqs}
   reviews
 >
-  <!-- 1. First week: horizontal timeline -->
+  {/* 1. First week: horizontal timeline */}
   <section class="section">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">Your First Week</h2>
@@ -86,7 +86,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 2. PHP morning: time ruler -->
+  {/* 2. PHP morning: time ruler */}
   <section class="section bg-mist">
     <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
@@ -107,7 +107,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 3. IOP evening: dark band -->
+  {/* 3. IOP evening: dark band */}
   <section class="sv-evening section relative overflow-hidden bg-teal-deep text-white">
     <div class="container-x relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
       <div>
@@ -127,7 +127,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 4. Gender-specific days + culture -->
+  {/* 4. Gender-specific days + culture */}
   <section class="section">
     <div class="container-x grid items-center gap-12 lg:grid-cols-2">
       <div>
@@ -142,7 +142,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 5. Ground rules: provide / ask -->
+  {/* 5. Ground rules: provide / ask */}
   <section class="section bg-mist">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">Transportation, Drug Testing and Ground Rules</h2>
@@ -157,12 +157,12 @@ const faqs = [
           <ul class="mt-4 space-y-3">{ask.map((p) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{p}</li>)}</ul>
         </div>
       </div>
-      <!-- [to confirm] "what to bring" list: kept generic until admissions confirms -->
+      {/* [to confirm] "what to bring" list: kept generic until admissions confirms */}
       <p class="mt-6 text-[15px] text-muted">We’ll tell you what to bring when we schedule your first day. Anti-craving medications like Suboxone and naltrexone are welcome when an outside provider manages them: see <a href="/what-we-treat/substance-use/" class="font-bold text-teal underline">substance use disorder treatment</a>.</p>
     </div>
   </section>
 
-  <!-- 6. Progress over time -->
+  {/* 6. Progress over time */}
   <section class="section">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">How the Work Changes Over Time</h2>
@@ -181,7 +181,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 7. Tracking progress: instrument tiles -->
+  {/* 7. Tracking progress: instrument tiles */}
   <section class="section bg-mist">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">How We Track Your Progress</h2>

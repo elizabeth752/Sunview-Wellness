@@ -112,7 +112,7 @@ const field =
       </div>
     )}
 
-    <!-- SMS consent appears once there's a policy ID to text about -->
+    {/* SMS consent appears once there's a policy ID to text about */}
     <label data-sms-consent hidden class="flex items-start gap-2.5 text-[13px] leading-snug text-muted sm:col-span-2">
       <input type="checkbox" name="sms_opt_in" value="yes" class="mt-0.5 h-4 w-4 flex-none accent-teal" />
       <span>Text me about my verification. Message and data rates may apply; reply STOP to opt out. Consent isn’t a condition of treatment.</span>
@@ -120,7 +120,7 @@ const field =
     </>
     )}
 
-    <!-- honeypot: hidden from people and from autofill -->
+    {/* honeypot: hidden from people and from autofill */}
     <div class="hidden" aria-hidden="true">
       <label>Leave this empty <input type="text" name="hp_field" tabindex="-1" autocomplete="off" /></label>
     </div>
@@ -131,7 +131,7 @@ const field =
     >
       <span data-label>{referral ? 'Send referral' : 'Check Your Coverage'}</span>
     </button>
-    <!-- Validation / status message, right under the button -->
+    {/* Validation / status message, right under the button */}
     <p class="sv-form-msg -mt-1 text-center text-sm font-bold text-error sm:col-span-2" role="alert" hidden></p>
   </div>
 

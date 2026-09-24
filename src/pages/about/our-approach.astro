@@ -3,12 +3,11 @@
 // Copy restructured from the old /our-approach/ page (questionnaire Q8–Q15, Q18, Q20–Q22), the In Vivo article
 // and the "What should a treatment center feel like?" article (src/data/posts.js), and Frank's live bio.
 // Scope (Q18): no formal EMDR service and no art therapy, so neither is mentioned here.
-// No reviewed-by byline (brief: none on About pages). Rotation: Reviews only. No trust strip (Home only).
+// No reviewed-by byline (brief: none on About pages). Rotation: Reviews only. Trust strip below the hero (ServicePage default).
 // Layout, deliberately unlike /about/ and Home's In Vivo band: two-lane loop diagram, editorial definition
 // block, teal statement band, ascending three-step progression, iceberg figure, supervision questions,
 // measures table, discharge timeline.
 import ServicePage from '../../layouts/ServicePage.astro';
-import SourceFlag from '../../components/SourceFlag.astro';
 import Icon from '../../components/Icon.astro';
 import { pageSchema } from '../../lib/programSchema.js';
 
@@ -18,8 +17,8 @@ const description = 'In Vivo Treatment™, Clinical Architecture™ and a system
 const IN_VIVO_URL = '/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/';
 const FEEL_URL = '/blog/what-should-a-treatment-center-feel-like/';
 // "I = Sick": definition from the Client Wiki, Proprietary concepts (CEO notes, 10 Sep 2026; wiki txt lines 218–221).
-// Answer 2.1: the section keeps only those two sentences, with the review flag, until Frank confirms.
-const I_SICK_NOTE = 'Review: Frank must confirm whether “I = Sick” or “I = Addict” (his website bio) is the canonical term. Definition from the Client Wiki CEO notes.';
+// Answer 2.1: the section keeps only those two sentences until Frank confirms (review note below, not shown).
+// Review: Frank must confirm whether “I = Sick” or “I = Addict” (his website bio) is the canonical term.
 const I_SICK_TEXT = '“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed. Our CEO, Frank Galimidi, names it as a main driver of repeat admissions, so we address it directly by helping people redefine themselves beyond the diagnosis.';
 
 // In Vivo loop (article: Learn → Apply → Experience → Process → Adjust → Apply Again).
@@ -89,8 +88,6 @@ const after = [
   { when: 'Ongoing', icon: 'refresh', title: 'What we learn improves discharge planning', text: 'What people tell us helps us strengthen our discharge planning and continuing-care recommendations.' },
 ];
 
-const flagHtml = `<mark class="ml-1 inline-block rounded-[4px] bg-error px-1 align-middle font-sans text-[10px] font-extrabold uppercase not-italic leading-4 tracking-normal text-white" title="${I_SICK_NOTE}">[SOURCE?]</mark>`;
-const iSickAnswer = (flag: string) => `${I_SICK_TEXT}${flag}`;
 
 const faqBase = [
   { q: 'What is In Vivo Treatment?', a: `<em>In vivo</em> means “within the living environment.” Because you live at home during PHP, IOP or OP, you practice recovery skills in real life, bring what happened back to the program, work through it with your team, adjust and try again. <a href="${IN_VIVO_URL}">How In Vivo Treatment™ works in the real world</a>.` },
@@ -99,9 +96,7 @@ const faqBase = [
   { q: 'What does “I = Sick” mean?', a: '' },
   { q: 'What happens after I finish?', a: 'You can keep seeing your Telemed Clinix psychiatric provider after discharge. Our team also reaches out to see how you’re doing and whether you’re still connected to the supports recommended at discharge, like an individual therapist, psychiatric care and recovery meetings. <a href="/programs/psychiatry-medication-management/">Psychiatry and medication management at Sunview</a>.' },
 ];
-// Visible FAQ carries the review flag; the FAQPage schema doesn't.
-const faqs = faqBase.map((f) => (f.a ? f : { ...f, a: iSickAnswer(flagHtml) }));
-const schemaFaqs = faqBase.map((f) => (f.a ? f : { ...f, a: iSickAnswer('') }));
+const faqs = faqBase.map((f) => (f.a ? f : { ...f, a: I_SICK_TEXT }));
 
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---
@@ -110,15 +105,15 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   metaTitle={metaTitle}
   description={description}
   crumbs={[{ name: 'About', href: '/about/' }, { name: 'Our Approach', href: path }]}
-  h1="Our Clinical Approach to Addiction and Mental Health Treatment"
+  h1="Our Clinical Approach to Addiction and Mental Health Treatment in West Palm Beach"
   subheading="Recovery has to work in the real world."
   lead="At Sunview Wellness in West Palm Beach, you live at home while you’re in treatment, so recovery gets practiced where your life actually happens. We look beneath the symptoms that brought you in, involve your family when it helps, and measure progress along the way."
   faqTitle="Questions About Our Clinical Approach"
   faqs={faqs}
   reviews
-  schema={pageSchema({ path, title: metaTitle, description, faqs: schemaFaqs })}
+  schema={pageSchema({ path, title: metaTitle, description, faqs })}
 >
-  <!-- 1. In Vivo Treatment™: intro + two-lane loop (program / your life), then the "would / did" contrast beside the infographic -->
+  {/* 1. In Vivo Treatment™: intro + two-lane loop (program / your life), then the "would / did" contrast beside the infographic */}
   <section class="section">
     <div class="container-x">
       <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
@@ -131,7 +126,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         </div>
       </div>
 
-      <!-- Loop: vertical on mobile, two lanes on desktop -->
+      {/* Loop: vertical on mobile, two lanes on desktop */}
       <div class="relative mt-12">
         <div class="pointer-events-none absolute inset-0 hidden grid-rows-2 overflow-hidden rounded-[var(--radius-lg)] lg:grid" aria-hidden="true">
           <div class="border-b border-dashed border-teal/30 bg-mist px-5 pt-4"><span class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">In the program</span></div>
@@ -185,7 +180,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 2. Clinical Architecture™: editorial definition block, only what the site says -->
+  {/* 2. Clinical Architecture™: editorial definition block, only what the site says */}
   <section class="section bg-cream">
     <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
@@ -210,17 +205,17 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 3. I = Sick: teal full-bleed band, H2 + the two sentences from the CEO notes (answer 2.1) -->
+  {/* 3. I = Sick: teal full-bleed band, H2 + the two sentences from the CEO notes (answer 2.1) */}
   <section class="section relative overflow-hidden bg-teal text-white">
     <div class="container-x">
       <div class="mx-auto max-w-3xl text-center">
         <h2 class="text-3xl text-white sm:text-[2.1875rem]">I = Sick: How We Think About Addiction</h2>
-        <p class="mt-6 font-display text-2xl leading-snug text-white sm:text-[1.75rem]">{I_SICK_TEXT}<SourceFlag note={I_SICK_NOTE} /></p>
+        <p class="mt-6 font-display text-2xl leading-snug text-white sm:text-[1.75rem]">{I_SICK_TEXT}</p>
       </div>
     </div>
   </section>
 
-  <!-- 4. Stabilization → Insight → Integration: ascending three-step progression -->
+  {/* 4. Stabilization → Insight → Integration: ascending three-step progression */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-3xl">
@@ -245,7 +240,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 5. Beneath the presenting symptom: iceberg figure + prose -->
+  {/* 5. Beneath the presenting symptom: iceberg figure + prose */}
   <section class="section bg-mist">
     <div class="container-x grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
       <figure class="mx-auto w-full max-w-[420px]">
@@ -277,7 +272,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 6. Family systems: prose + the questions asked in clinical supervision -->
+  {/* 6. Family systems: prose + the questions asked in clinical supervision */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
       <div>
@@ -304,7 +299,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 7. How we measure progress: measures table (stacks below md) -->
+  {/* 7. How we measure progress: measures table (stacks below md) */}
   <section class="section border-t border-line">
     <div class="container-x">
       <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
@@ -338,7 +333,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 8. Continuity after discharge: horizontal timeline -->
+  {/* 8. Continuity after discharge: horizontal timeline */}
   <section class="section bg-mist">
     <div class="container-x">
       <div class="max-w-3xl">

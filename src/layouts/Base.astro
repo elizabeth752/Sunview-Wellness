@@ -89,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     <meta name="theme-color" content="#126e6e" />
 
-    <!-- Favicons: the logo's sun-and-wave mark (cut from the master file; strokes thickened for tab sizes) -->
+    {/* Favicons: the logo's sun-and-wave mark (cut from the master file; strokes thickened for tab sizes) */}
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -109,7 +109,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:image" content={ogImage} />
 
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <!-- No other tag scripts here: CallTrackingMetrics (DNI) and analytics load through GTM. -->
+    {/* No other tag scripts here: CallTrackingMetrics (DNI) and analytics load through GTM. */}
 
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>

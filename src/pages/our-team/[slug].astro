@@ -1,5 +1,5 @@
 ---
-// /our-team/{slug}/: About-Team-Content-Briefs.md §B, one template for all 11 person pages.
+// /our-team/{slug}/: About-Team-Content-Briefs.md §B, one template for every person page (published or not).
 // Data: src/data/team.js. Sources and open questions: docs/content/about-team-sources-team.md.
 // Hero has no form (brief exception): H1 = full name, subheading = title, initials portrait on the right.
 // Body: bio + "Role at Sunview" beside a sticky credentials card at desktop (stacks on mobile).
@@ -11,7 +11,7 @@ import PageHero from '../../components/PageHero.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
 import { SITE, initials } from '../../data/site.js';
-import { PEOPLE, TEAM_GROUPS, peopleInGroup, personHref } from '../../data/team.js';
+import { PEOPLE, TEAM_GROUPS, peopleInGroup, personHref, isPublished } from '../../data/team.js';
 import { sortedPosts, formatDate } from '../../data/posts.js';
 
 export function getStaticPaths() {
@@ -29,7 +29,8 @@ const crumbs = [{ name: 'Our Team', href: '/our-team/' }, { name: p.name, href: 
 const nameWithCreds = p.creds ? `${p.name}, ${p.creds}` : p.name;
 // <title> ≤60 / description ≤155 (answer 9.1): metaRole and metaDescription in team.js override when too long.
 const metaTitle = `${p.name}, ${p.metaRole ?? p.title} | Sunview Wellness`;
-const description = p.metaDescription ?? (p.bioPending
+const published = isPublished(p); // publish: false → noindex, out of the sitemap and unlinked (team.js)
+const description = p.metaDescription ?? (!published
   ? `${nameWithCreds}, ${p.title} at Sunview Wellness, an outpatient addiction and mental health treatment center in West Palm Beach.`
   : `${nameWithCreds}, ${p.title} at Sunview Wellness in West Palm Beach. ${p.specialty}`);
 
@@ -63,7 +64,7 @@ const schema = [
 const loop = ['Learn', 'Apply', 'Experience', 'Process', 'Adjust', 'Apply again'];
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---
-<Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema}>
+<Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema} noindex={!published}>
   <PageHero
     title={p.name}
     subheading={p.title}
@@ -84,16 +85,13 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </Fragment>
   </PageHero>
 
-  <!-- Bio + role beside the credentials card -->
+  {/* Bio + role beside the credentials card */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[1fr_340px] lg:gap-x-16 lg:gap-y-14">
-      <!-- DOM order About → Credentials → Role (brief order, and the mobile stacking order); at desktop the
-           credentials card sits in the right column across both rows. -->
+      {/* DOM order About → Credentials → Role (brief order, and the mobile stacking order); at desktop the
+           credentials card sits in the right column across both rows. */}
       <div class="min-w-0 lg:col-start-1 lg:row-start-1">
         <h2 class="text-3xl sm:text-[2.1875rem]">About {p.first}</h2>
-        {p.bioPending && (
-          <p class="mt-4"><mark class="rounded-[4px] bg-error px-1.5 py-0.5 font-sans text-xs font-extrabold uppercase text-white" title="The Client Wiki has only a one-line bio and this person isn't on the live site. A fuller bio is requested (answer 3.5).">[Wiki bio pending]</mark></p>
-        )}
         <div class="prose-sv mt-6 max-w-[68ch] text-lg">
           {p.bio.map((para: string) => <p>{para}</p>)}
         </div>

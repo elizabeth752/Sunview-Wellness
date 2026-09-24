@@ -1,12 +1,13 @@
 ---
 // /about/: About-Team-Content-Briefs.md §C. Sources and open items in docs/content/about-team-sources-about.md.
-// No reviewed-by byline (brief decision). Rotation: Reviews + Map. No trust strip (Home only, client decision).
+// No reviewed-by byline (brief decision). Rotation: Reviews + Map. Trust strip below the hero (ServicePage default).
 // Schema: MedicalOrganization + BreadcrumbList come from Base (#organization); this page adds AboutPage
 // (about/mainEntity point at #organization, no duplicate org node) + FAQPage from the visible questions.
 import ServicePage from '../../layouts/ServicePage.astro';
 import Icon from '../../components/Icon.astro';
 import SunMark from '../../components/SunMark.astro';
-import { SITE, ACCREDITATIONS } from '../../data/site.js';
+import { SITE, ACCREDITATIONS, initials } from '../../data/site.js';
+import { PUBLISHED_PEOPLE } from '../../data/team.js';
 
 const path = '/about/';
 const metaTitle = 'About Sunview Wellness | Outpatient Rehab in West Palm Beach';
@@ -49,7 +50,7 @@ const mvv: { key: string; label: string; icon: string; text: string | string[] }
 const usps = [
   { title: 'A true standalone program', html: 'A true standalone PHP/IOP/OP extended care program, “a dying breed” locally, built for the person who works and lives locally and needs flexibility rather than luxury housing or a six-month sober living funnel.' },
   { title: 'In network with nearly every carrier', html: 'In network with virtually every insurance carrier there is, including Medicaid, which the majority of local competitors are not.' },
-  { title: 'In vivo, with clinical depth behind it', html: 'The “in vivo” model with genuine clinical depth behind it: Joint Commission accredited, a PhD-led clinical team with 50+ years combined experience, intentionally built rather than mandated group-think, plus free transportation and psychiatric medication management via the Telemed Clinix partnership, so people can recover while working, parenting and living at home.' },
+  { title: 'In vivo, with clinical depth behind it', html: 'The “in vivo” model with genuine clinical depth behind it: Joint Commission accredited, a PhD-led clinical team with 50+ years combined experience, intentionally built rather than mandated group-think, plus free door-to-door transportation and psychiatric medication management via the Telemed Clinix partnership, so people can recover while working, parenting and living at home.' },
   { title: 'A named clinical model', html: 'A named clinical model rather than generic outpatient care. The team works psychodynamically and uses <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> as an integrative modality, working on the shame, inadequacy and fear underneath the substance use rather than the symptoms sitting on top of it.' },
 ];
 
@@ -69,8 +70,8 @@ const measures = [
   { abbr: 'RSA-R', name: 'Satisfaction survey', text: 'Your feedback on the program, which we review and use to make changes.' },
 ];
 
-// Decorative initials for the Wiki roster (brief §B table). Office Manager omitted until her surname is confirmed.
-const roster = ['FG', 'DM', 'GP', 'TS', 'MN', 'JJ', 'MS', 'WB', 'JT', 'SB'];
+// Decorative initials for the published team roster (team.js; people with publish: false stay out).
+const roster = PUBLISHED_PEOPLE.map((p) => initials(p.name));
 
 const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postal}`;
 const seal = ACCREDITATIONS[0];
@@ -80,7 +81,7 @@ const faqs = [
   { q: 'Are you accredited?', a: 'Yes. Sunview Wellness is accredited by The Joint Commission.' },
   { q: 'Who is Sunview for?', a: 'Adults 18 and older living with substance use, often alongside mental health conditions like anxiety, depression or trauma. Many people come to us after detox or residential treatment; others start from home because they, or someone who cares about them, see that more help is needed. <a href="/admissions/">How admissions works</a>.' },
   { q: 'Do you treat mental health on its own?', a: 'Our programs treat mental health conditions alongside substance use. If mental health is your only concern, call us anyway and we’ll help you find the right kind of care. <a href="/what-we-treat/mental-health/">Mental health conditions we treat</a>.' },
-  { q: 'Where are you located?', a: `${addr}. Free transportation is available if you can’t drive yourself.` },
+  { q: 'Where are you located?', a: `${addr}. Free door-to-door transportation is available if you can’t drive yourself.` },
 ];
 
 const url = new URL(path, SITE.url).href;
@@ -122,7 +123,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   map
   schema={schema}
 >
-  <!-- 1. Mission, Vision and Values: open triptych with gold rules (verbatim Client Wiki text) -->
+  {/* 1. Mission, Vision and Values: open triptych with gold rules (verbatim Client Wiki text) */}
   <section class="section">
     <div class="container-x">
       <div class="mx-auto max-w-3xl text-center">
@@ -147,7 +148,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 2. A true outpatient model: "instead of / at Sunview" contrast rows on cream -->
+  {/* 2. A true outpatient model: "instead of / at Sunview" contrast rows on cream */}
   <section class="section bg-cream">
     <div class="container-x grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
@@ -177,7 +178,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <p class="mt-5 text-[15px]">Stepping down from detox or residential care? That’s where most people start with us. <a href="/admissions/what-to-expect/" class={link}>What to expect in treatment</a>.</p>
       </div>
     </div>
-    <!-- USPs 1–4 (Client Wiki), numbered row under the contrast grid -->
+    {/* USPs 1–4 (Client Wiki), numbered row under the contrast grid */}
     <ol class="container-x mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
       {usps.map((u, i) => (
         <li class="border-t-2 border-gold pt-6">
@@ -189,7 +190,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </ol>
   </section>
 
-  <!-- 3. Founded in 2021: full-bleed teal milestone band with an oversized year -->
+  {/* 3. Founded in 2021: full-bleed teal milestone band with an oversized year */}
   <section class="relative isolate overflow-hidden bg-teal py-14 text-white sm:py-20">
     <SunMark variant="waves" class="pointer-events-none absolute -bottom-10 -left-10 -z-10 h-[260px] w-[260px] text-white/10" />
     <div class="container-x grid items-center gap-10 lg:grid-cols-[auto_1fr_auto] lg:gap-14">
@@ -207,7 +208,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 4. The people: avatar stack + one big figure, then a single link -->
+  {/* 4. The people: avatar stack + one big figure, then a single link */}
   <section class="section">
     <div class="container-x grid items-center gap-12 lg:grid-cols-[1fr_1fr]">
       <div>
@@ -231,7 +232,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 5. Measures: typographic stat row on mist, abbreviations as the "numbers" -->
+  {/* 5. Measures: typographic stat row on mist, abbreviations as the "numbers" */}
   <section class="section bg-mist">
     <div class="container-x">
       <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
@@ -256,7 +257,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 6. Serving West Palm Beach: address "ticket" + fact rows, no map here (the Map block follows the reviews) -->
+  {/* 6. Serving West Palm Beach: address "ticket" + fact rows, no map here (the Map block follows the reviews) */}
   <section class="section">
     <div class="container-x grid items-start gap-12 lg:grid-cols-[1.1fr_0.9fr]">
       <div>
@@ -279,8 +280,8 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
         <li class="flex items-start gap-4 border-t border-line p-6">
           <Icon name="car" class="mt-0.5 h-6 w-6 shrink-0 text-teal" />
           <div>
-            <p class="font-sans font-extrabold text-charcoal">Free transportation</p>
-            <p class="mt-1">Free transportation to and from our center if you can’t drive yourself, arranged through Uber Health.</p>
+            <p class="font-sans font-extrabold text-charcoal">Free door-to-door transportation</p>
+            <p class="mt-1">Free door-to-door transportation to and from our center if you can’t drive yourself.</p>
           </div>
         </li>
         <li class="flex items-start gap-4 border-t border-line p-6">

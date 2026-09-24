@@ -1,6 +1,6 @@
 ---
 // Shared template for commercial service pages (Programs + What We Treat briefs, content prompt template):
-// hero (breadcrumb above the H1, coverage form) → page body (default slot) → optional "links" slot →
+// hero (breadcrumb above the H1, coverage form) → trust strip (every commercial page, Decisions 2026-09-24) → page body (default slot) → optional "links" slot →
 // rotation sections chosen per page group (Insurance / Reviews / Map) → FAQ →
 // coverage form below lg → CTA.
 // Schema: MedicalOrganization (Base) + BreadcrumbList (Base) + WebPage (+ optional `about`)
@@ -60,9 +60,9 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
   noindex={noindex}
   schema={schema ?? pageSchema({ path, title: metaTitle, description, about, faqs })}
 >
-  <PageHero title={h1} subheading={subheading} lead={lead} crumbs={crumbs} cta={{ label: 'Get help now', href: helpHref }}>
+  <PageHero trust title={h1} subheading={subheading} lead={lead} crumbs={crumbs} cta={{ label: 'Get help now', href: helpHref }}>
     <Fragment slot="aside">
-      <!-- Desktop only; below lg the same form renders right before the CTA section -->
+      {/* Desktop only; below lg the same form renders right before the CTA section */}
       <div class="hidden scroll-mt-28 lg:block" data-form-anchor><LeadForm formId={`${formId}-hero`} dark /></div>
     </Fragment>
   </PageHero>
@@ -86,7 +86,7 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
     </div>
   </section>}
 
-  <!-- Coverage form below lg (in the hero on desktop) -->
+  {/* Coverage form below lg (in the hero on desktop) */}
   {mobileForm && <section class="section scroll-mt-20 bg-teal lg:hidden" data-form-anchor>
     <div class="container-x max-w-2xl"><LeadForm formId={`${formId}-mobile`} dark /></div>
   </section>}

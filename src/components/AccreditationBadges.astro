@@ -1,5 +1,6 @@
 ---
 // Row of accreditation logos (light by default; onDark for teal grounds). `compact` = the trust strip size.
+// A seal links out only when ACCREDITATIONS has a verification `url`; with url null it renders as a plain image.
 import { ACCREDITATIONS } from '../data/site.js';
 interface Props { onDark?: boolean; compact?: boolean; class?: string }
 const { onDark = false, compact = false, class: cls = '' } = Astro.props;
@@ -12,16 +13,13 @@ const jcHeight = compact ? 'h-[45px]' : 'h-14';
 <ul class:list={['flex flex-wrap items-center gap-x-8 gap-y-4', cls]} aria-label="Accreditations and memberships">
   {ACCREDITATIONS.map((a) => (
     <li>
-      <a href={a.url} target="_blank" rel="noopener" class="block" aria-label={`${a.name} (verification)`}>
-      <img
-        src={onDark ? a.logoOnDark : a.logo}
-        alt={a.name}
-        width={a.w}
-        height={a.h}
-        loading="lazy"
-        class:list={['block w-auto', heights[a.name] ?? jcHeight]}
-      />
-      </a>
+      {a.url ? (
+        <a href={a.url} target="_blank" rel="noopener" class="block" aria-label={`${a.name} (verification)`}>
+          <img src={onDark ? a.logoOnDark : a.logo} alt={a.name} width={a.w} height={a.h} loading="lazy" class:list={['block w-auto', heights[a.name] ?? jcHeight]} />
+        </a>
+      ) : (
+        <img src={onDark ? a.logoOnDark : a.logo} alt={a.name} width={a.w} height={a.h} loading="lazy" class:list={['block w-auto', heights[a.name] ?? jcHeight]} />
+      )}
     </li>
   ))}
 </ul>

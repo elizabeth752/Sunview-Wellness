@@ -1,7 +1,8 @@
 // Blog: articles and podcasts at /blog/<slug>/ (final sitemap). Slugs match the live WordPress URLs; /media/<slug>/ and the
 // root-level legacy slug 301 here (vercel.json).
 // type: 'article' (full body on-site) · 'video' (YouTube embed + summary) · 'external' (LinkedIn piece)
-// Video summaries are paraphrased from each episode's own YouTube description.
+// Video summaries are paraphrased from each episode's own YouTube description (our copy: no "client", no em dashes).
+// Article bodies are Frank's signed articles, verbatim (blog rewrites are not for launch, Decisions 2026-09-24).
 
 const FRANK = {
   name: 'Frank Galimidi',
@@ -198,7 +199,7 @@ export const posts = [
     author: FRANK,
     summary: [
       'Frank Galimidi talks about his 23-year career in substance use disorder and mental health treatment.',
-      'He explains how outpatient programs differ from inpatient rehab: clients go home every day and learn to manage their recovery in real-world settings. He also walks through the levels of care Sunview offers for substance use, mental health and co-occurring conditions, with both daytime and evening programming.',
+      'He explains how outpatient programs differ from inpatient rehab: people go home every day and learn to manage their recovery in real-world settings. He also walks through the levels of care Sunview offers for substance use, mental health and co-occurring conditions, with both daytime and evening programming.',
     ],
   },
   {
@@ -229,8 +230,8 @@ export const posts = [
     author: FRANK,
     summary: [
       'After twenty-two years in addiction treatment, from Brooklyn to the Florida model, Frank has watched residential programs save lives, and watched the same people return again and again. Not because they didn’t care, but because they were never taught how to live sober in the world they actually had to return to.',
-      '“Sobriety is not proven in treatment. It is proven in life.” PHP, IOP and outpatient care were never meant to be afterthoughts. They are the bridge between insight and application, where clients manage cravings after a long workday and set boundaries with real family members.',
-      'Frank also describes how Sunview works in practice: the program operates only at the PHP, IOP and OP levels, and clients live in their own homes and communities. “Getting sober is an event. Staying sober is a practice.”',
+      '“Sobriety is not proven in treatment. It is proven in life.” PHP, IOP and outpatient care were never meant to be afterthoughts. They are the bridge between insight and application, where people manage cravings after a long workday and set boundaries with real family members.',
+      'Frank also describes how Sunview works in practice: the program operates only at the PHP, IOP and OP levels, and people live in their own homes and communities. “Getting sober is an event. Staying sober is a practice.”',
     ],
   },
   {
@@ -246,7 +247,7 @@ export const posts = [
     externalLabel: 'Read the full article on LinkedIn',
     author: FRANK,
     summary: [
-      'Community-based providers (local outpatient clinics, recovery centers and mental health programs) are too often associated with mediocrity, and their clients stereotyped as unmotivated. Frank argues that narrative is inaccurate and harmful.',
+      'Community-based providers (local outpatient clinics, recovery centers and mental health programs) are too often associated with mediocrity, and the people they serve stereotyped as unmotivated. Frank argues that narrative is inaccurate and harmful.',
       'Community programs already deliver most of the behavioral health treatment in the United States. They serve working professionals, parents, and people who are unemployed or unhoused. That’s why they need to be intensive, skilled and transformative, not merely adequate.',
       'His test for providers: would you trust this program with your own loved one? “The future of community based care is not defined by adequacy but by a collective commitment to excellence.”',
     ],

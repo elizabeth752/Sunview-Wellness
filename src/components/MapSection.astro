@@ -8,7 +8,7 @@ import { SITE } from '../data/site.js';
 interface Props { title?: string; subtitle?: string; showPageLink?: boolean; showSchedule?: boolean }
 const {
   title = 'Our Outpatient Treatment Center in West Palm Beach',
-  subtitle = 'Easy to reach, with free transportation if you can’t drive.',
+  subtitle = 'Easy to reach, with free door-to-door transportation if you can’t drive.',
   showPageLink = true,
   showSchedule = true, // program pages have their own full ProgramSchedule section
 } = Astro.props;
@@ -44,7 +44,7 @@ const cellLabel: Record<string, string> = { on: 'Runs 9am to 1pm', pick: 'Availa
         </li>
         <li class="flex items-start gap-3">
           <Icon name="car" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
-          <span>Free transportation to and from our center if you can’t drive yourself.</span>
+          <span>Free door-to-door transportation to and from our center if you can’t drive yourself.</span>
         </li>
         <li class="flex items-start gap-3">
           <Icon name="message" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />

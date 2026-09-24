@@ -213,98 +213,17 @@ export const CARRIERS = [
 // works on both. Sources: breathe-website (Joint Commission, NAATP), Regain-hope-site (SAMHSA).
 // National Action Alliance for Suicide Prevention: from the live sunviewwellness.com homepage
 // (300px raster; ask the client for a vector if it needs to render larger).
+// url: verification link for the seal. null = no link yet: every component renders the seal as a plain image
+// (Decisions 2026-09-24, placeholder policy). Set the URL to make it a link.
 export const ACCREDITATIONS = [
-  { name: 'The Joint Commission', url: '{{SEAL_URL_JOINT_COMMISSION}}', logo: '/images/accreditations/joint-commission.webp', logoOnDark: '/images/accreditations/joint-commission.webp', w: 240, h: 240 },
-  { name: 'National Action Alliance for Suicide Prevention', url: '{{SEAL_URL_ACTION_ALLIANCE}}', logo: '/images/accreditations/action-alliance.webp', logoOnDark: '/images/accreditations/action-alliance-white.webp', w: 196, h: 92 },
-  { name: 'SAMHSA', url: '{{SEAL_URL_SAMHSA}}', logo: '/images/accreditations/samhsa.svg', logoOnDark: '/images/accreditations/samhsa-white.svg', w: 83, h: 28 },
-  { name: 'National Association of Addiction Treatment Providers', url: '{{SEAL_URL_NAATP}}', logo: '/images/accreditations/naatp.svg', logoOnDark: '/images/accreditations/naatp-white.svg', w: 159, h: 50 },
+  { name: 'The Joint Commission', url: null, logo: '/images/accreditations/joint-commission.webp', logoOnDark: '/images/accreditations/joint-commission.webp', w: 240, h: 240 },
+  { name: 'National Action Alliance for Suicide Prevention', url: null, logo: '/images/accreditations/action-alliance.webp', logoOnDark: '/images/accreditations/action-alliance-white.webp', w: 196, h: 92 },
+  { name: 'SAMHSA', url: null, logo: '/images/accreditations/samhsa.svg', logoOnDark: '/images/accreditations/samhsa-white.svg', w: 83, h: 28 },
+  { name: 'National Association of Addiction Treatment Providers', url: null, logo: '/images/accreditations/naatp.svg', logoOnDark: '/images/accreditations/naatp-white.svg', w: 159, h: 50 },
 ];
 
-// Bios condensed from sunviewwellness.com/about-us/. No headshots exist yet, so cards show initials.
-export const TEAM = [
-  {
-    group: 'Leadership',
-    people: [
-      {
-        name: 'Frank Galimidi',
-        role: 'Chief Executive Officer',
-        creds: 'CASAC · CAP · CRADC · ICADC · NCAC II · SAP',
-        bio: 'Frank brings more than 23 years in addiction treatment and behavioral healthcare leadership. Both are built on one idea: people should leave treatment defined by growth and purpose, not by their past. He writes and speaks widely on extended and community-based care.',
-      },
-      {
-        name: 'Dana Martin',
-        role: 'Clinical Director',
-        creds: 'Ph.D. · LMFT · MCAP · QS',
-        bio: 'Dana holds a Ph.D. in Couple and Family Therapy and an MS in Marriage and Family Therapy from Nova Southeastern University. Her systems-based training shapes Sunview’s whole clinical model. She reviews every pre-screening, recommends each client’s level of care and supervises the clinical team. She is a contributing author to books on families navigating substance use.',
-      },
-    ],
-  },
-  {
-    group: 'Clinical Team',
-    people: [
-      {
-        name: 'Gabriel Peña',
-        role: 'Lead Therapist',
-        creds: 'Ed.S. · LMHC · QS',
-        bio: 'Licensed Mental Health Counselor and Qualified Supervisor (FAU). Gabriel works across substance use, co-occurring conditions, trauma and identity-related stress, particularly in LGBTQ+ populations, using an integrative, trauma-informed approach. He is EMDR-trained and draws on EMDR-informed techniques in individual sessions when clinically appropriate.',
-      },
-      {
-        name: 'Matthew Snyder',
-        role: 'Group Facilitator',
-        creds: 'LCSW',
-        bio: 'Founder of Therapeutic Health Services in Palm Beach Gardens and former Program Director of a Palm Beach County nonprofit treatment program. Matthew uses experiential methods like Sand Tray and sits on the FAU Sandler School of Social Work board.',
-      },
-      {
-        name: 'Walter Bierschenk',
-        role: 'Group Facilitator',
-        creds: 'LMHC · EMT-P · NERPSC',
-        bio: 'Retired 25-year fire-service veteran, Behavioral Health Professional for Palm Beach Gardens Fire Rescue and former US Naval Aircrewman and Rescue Swimmer. Walter brings a first-responder’s understanding of stress, resilience and asking for help.',
-      },
-      {
-        name: 'Maria Nowak',
-        role: 'Primary Therapist',
-        creds: 'MS · Registered Mental Health Counseling Intern',
-        bio: 'Bilingual in English and Spanish. Maria works with immigrants and diverse populations navigating substance use, trauma and mood disorders, with a focus on cultural sensitivity.',
-      },
-      {
-        name: 'Jillian John',
-        role: 'Primary Therapist',
-        creds: 'MSW · Registered Clinical Social Worker Intern',
-        bio: 'More than ten years in the child welfare system. Jillian draws on CBT, DBT, attachment-based and narrative therapies, and offers faith-based Christian counseling for clients who want it.',
-      },
-      {
-        name: 'Laura Contreras',
-        role: 'Primary Therapist',
-        creds: 'MS · Registered Mental Health Intern',
-        bio: 'Nova Southeastern graduate with a warm, collaborative, trauma-informed style grounded in DBT and CBT. Her earlier work in eating-disorder treatment admissions still shapes how she meets clients.',
-      },
-      {
-        name: 'Mia Grazel',
-        role: 'Group Facilitator',
-        creds: 'BS Psychology · MS Forensic Psychology (in progress)',
-        bio: 'Mia leads groups on family dynamics, boundaries, emotional regulation, goal setting and CBT/DBT coping skills, with collaboration and genuine connection at the center.',
-      },
-    ],
-  },
-  {
-    group: 'Support Staff',
-    people: [
-      {
-        name: 'Scott Belovicz',
-        role: 'Director of Clinical Outreach',
-        creds: '14+ years in substance use & mental health treatment',
-        bio: 'Scott has worked across private and nonprofit treatment for more than 14 years. His humor and passion for recovery help new clients feel at home from the first call.',
-      },
-      {
-        name: 'Karissa Delaney',
-        role: 'Office Manager',
-        creds: 'Operations & Client Support',
-        bio: 'Karissa keeps scheduling, communication and daily operations running so clients and families always have someone dependable to reach.',
-      },
-    ],
-  },
-];
-
+// The team roster lives in src/data/team.js (Wiki names and titles). The old TEAM list condensed from the live
+// /about-us/ page was unused and contradicted the Wiki (Karissa Delaney, Walter's live-site credentials), so it was removed.
 export const initials = (name) =>
   name
     .split(/\s+/)

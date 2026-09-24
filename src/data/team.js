@@ -8,8 +8,10 @@
 //
 // photo: null → branded initials placeholder on mist ({{PHOTO}}). Set a path when headshots arrive.
 // linkedin: null → no LinkedIn link and no schema sameAs ({{LINKEDIN_URL}}). Set the URL to show it.
-// bioPending: true → the Wiki bio is a single line and the person isn't on the live site; the page shows a
-// visible "[Wiki bio pending]" marker (a fuller bio is requested, answer 3.5) next to the Wiki line.
+// publish: false → no real bio yet (Decisions 2026-09-24, placeholder policy). The person page still builds but
+// is noindex and out of the sitemap (NOINDEX_PATHS below), and the person is left out of the /our-team/ grid,
+// "Also on this team" lists, the /about/ initials stack, the team schema and every other link. Remove the flag
+// (and add the fuller bio) when it arrives: they reappear everywhere automatically.
 // Posts: "Articles by {First}" is built from src/data/posts.js where post.author.name === name.
 
 export const TEAM_GROUPS = [
@@ -143,7 +145,7 @@ export const PEOPLE = [
     title: 'Primary Therapist (Registered Intern)',
     group: 'therapists',
     specialty: null,
-    bioPending: true, // Wiki bio is one line (used below); Tyler isn't on the live site. Fuller bio requested (3.5)
+    publish: false, // Wiki bio is one line (used below); Tyler isn't on the live site. Fuller bio requested (3.5)
     credentials: [
       { abbr: 'MSW', label: 'Master of Social Work' },
       { abbr: 'RCSWI', label: 'Registered Clinical Social Worker Intern' },
@@ -249,7 +251,7 @@ export const PEOPLE = [
     title: 'Medical Oversight',
     group: 'facilitators',
     specialty: null,
-    bioPending: true, // Wiki bio: "Contracted medical doctor" (the rest of that line is internal, not published). Fuller bio requested (3.5)
+    publish: false, // Wiki bio: "Contracted medical doctor" (the rest of that line is internal, not published). Fuller bio requested (3.5)
     credentials: [{ abbr: 'M.D.', label: 'Doctor of Medicine' }],
     education: [],
     bio: ['Jose Toledo, M.D., is a contracted medical doctor who provides medical oversight at Sunview Wellness.'],
@@ -312,5 +314,10 @@ export const PEOPLE = [
 ];
 
 export const personBySlug = (slug) => PEOPLE.find((p) => p.slug === slug);
-export const peopleInGroup = (id) => PEOPLE.filter((p) => p.group === id);
 export const personHref = (p) => `/our-team/${p.slug}/`;
+export const isPublished = (p) => p.publish !== false;
+// Everyone shown and linked on the site. PEOPLE (all) is only for building the person pages.
+export const PUBLISHED_PEOPLE = PEOPLE.filter(isPublished);
+export const peopleInGroup = (id) => PUBLISHED_PEOPLE.filter((p) => p.group === id);
+// Person pages that build but stay noindex and out of the sitemap (read by astro.config.mjs's sitemap filter).
+export const NOINDEX_PATHS = PEOPLE.filter((p) => !isPublished(p)).map(personHref);

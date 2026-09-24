@@ -1,18 +1,20 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import SourceFlag from '../components/SourceFlag.astro';
 import { SITE } from '../data/site.js';
 
-// Answer 9.7 (2026-09-24): one combined page. H1 Privacy Policy · H2 Website Privacy Policy (placeholder until
-// legal supplies it) · H2 HIPAA Notice of Privacy Practices (the live notice, headings demoted one level).
+// Answer 9.7 (2026-09-24): one combined page. H1 Privacy Policy · H2 HIPAA Notice of Privacy Practices (the live
+// notice, headings demoted one level). Decisions 2026-09-24: the Website Privacy Policy section shows nothing
+// (no heading, no placeholder) until legal supplies the text. Legal to supply: data collected by the forms,
+// call tracking (CallTrackingMetrics), analytics/Google Tag Manager cookies, SMS consent, retention and contact.
+// Add it then as an H2 "Website Privacy Policy" above the HIPAA notice.
 // noindex and out of the sitemap (astro.config.mjs) until legal sign-off. No /terms-of-use/ or /hipaa-notice/.
 // HIPAA notice text copied verbatim from the live sunviewwellness.com/privacy-policy/ (Sept 2026).
 // NEEDS LEGAL REVIEW before launch: it references the "UHS Compliance Hotline", hospital
 // procedures (lab tests, x-rays, surgery) and a 2013 effective date, and has no website/cookie
 // or online-form section. Don't edit the substance without the client's approval.
+// Legal review required: not approved by legal. Keep noindex and out of the sitemap until sign-off.
 ---
-<!-- [LEGAL REVIEW REQUIRED] Privacy policy + HIPAA notice: not approved by legal. Keep noindex and out of the sitemap until sign-off. -->
 <Base
   title="Privacy Policy | Sunview Wellness"
   description="Sunview Wellness privacy policy and HIPAA Notice of Privacy Practices: how your protected health information may be used and disclosed, and your rights."
@@ -24,12 +26,6 @@ import { SITE } from '../data/site.js';
   <section class="section">
     <div class="container-x max-w-3xl">
       <div class="prose-sv">
-        <h2 id="website-privacy-policy">Website Privacy Policy</h2>
-        <!-- [LEGAL REVIEW REQUIRED] No website privacy policy exists yet (the live page only has the HIPAA notice).
-             Legal to supply: data collected by the forms, call tracking (CallTrackingMetrics), analytics/Google Tag
-             Manager cookies, SMS consent, retention and contact. Keep this H2 and replace the placeholder below. -->
-        <p>Our website privacy policy is being finalized. For questions about how we handle information you share through this website, please contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or call <a href={SITE.phoneHref}>{SITE.phone}</a>.<SourceFlag note="Website privacy policy text pending legal review (answer 9.7 / 9.5)." /></p>
-
         <h2 id="hipaa-notice">HIPAA Notice of Privacy Practices</h2>
         <p class="rounded-2xl bg-cream px-6 py-5 font-bold text-charcoal">This notice describes how medical information about you may be used and disclosed and how you can get access to this information. Please review it carefully.</p>
         <p><strong>Effective Date:</strong> September 23, 2013. Version #1</p>

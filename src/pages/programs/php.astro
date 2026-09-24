@@ -11,11 +11,11 @@ const includes = [
   'One continuous group with the same facilitator all morning',
   'A weekly individual session with your primary therapist, 45 to 60 minutes',
   'Psychiatric care through Telemed Clinix, scheduled for you',
-  'Free transportation to and from our center if you can’t drive yourself',
+  'Free door-to-door transportation to and from our center if you can’t drive yourself',
 ];
 
 const day = [
-  { time: 'Morning', title: 'Arrive and settle in', text: 'If you use our free transportation, your ride is already booked.' },
+  { time: 'Morning', title: 'Arrive and settle in', text: 'If you use our free door-to-door transportation, your ride is already booked.' },
   { time: '9 AM to 1 PM', title: 'The group block', text: 'One facilitator leads the whole morning, with breaks, so the conversation goes deeper instead of restarting every hour.' },
   { time: 'During the week', title: 'Your individual session', text: 'Once a week you meet one-on-one with your primary therapist for 45 to 60 minutes. If something urgent comes up, you can ask for a check-in sooner.' },
   { time: 'When scheduled', title: 'Psychiatric appointment', text: 'Telemed Clinix visits happen virtually from a private office at Sunview. We book them for you, and prescriptions go to the pharmacy you choose.' },
@@ -40,7 +40,7 @@ const faqs = [
 <ProgramPage
   path="/programs/php/"
   metaTitle="Partial Hospitalization (PHP) in West Palm Beach | Sunview"
-  description="PHP in West Palm Beach: structured outpatient care Monday to Friday, 9 AM to 1 PM. Sleep at home, with free transportation. Joint Commission accredited."
+  description="PHP in West Palm Beach: outpatient care Monday to Friday, 9 AM to 1 PM. Sleep at home, free door-to-door transportation. Joint Commission accredited."
   crumb="Partial Hospitalization Program"
   h1="Partial Hospitalization Program in West Palm Beach"
   subheading="Full mornings of treatment, five days a week, and your own bed every night."
@@ -53,7 +53,7 @@ const faqs = [
   faqs={faqs}
   linksClass=""
 >
-  <!-- 1. What PHP is -->
+  {/* 1. What PHP is */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
       <div>
@@ -62,7 +62,7 @@ const faqs = [
         <p class="subheading mt-3">Daily structure without leaving home</p>
         <div class="prose-sv mt-6">
           <p>PHP gives you treatment every weekday morning, from 9 AM to 1 PM, about 20 hours a week. It’s the most structure we offer, and you still go home every night.</p>
-          <p>Your mornings are one continuous group led by the same facilitator from start to finish, with breaks. On top of that, you meet with your primary therapist one-on-one every week, and you see a psychiatric provider through our Telemed Clinix partnership when medication is part of your care. If you can’t drive yourself, free transportation to and from our center is available.</p>
+          <p>Your mornings are one continuous group led by the same facilitator from start to finish, with breaks. On top of that, you meet with your primary therapist one-on-one every week, and you see a psychiatric provider through our Telemed Clinix partnership when medication is part of your care. If you can’t drive yourself, free door-to-door transportation to and from our center is available.</p>
           <p>PHP treats substance use and mental health together. Read more about our <a href="/what-we-treat/substance-use/">substance use treatment</a> and how we approach <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
         </div>
       </div>
@@ -76,7 +76,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 2. Who PHP is for -->
+  {/* 2. Who PHP is for */}
   <section class="section bg-mist">
     <div class="container-x grid gap-12 lg:grid-cols-2">
       <div>
@@ -95,7 +95,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 3. A day in PHP -->
+  {/* 3. A day in PHP */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-5xl">
@@ -116,7 +116,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 4. The continuum -->
+  {/* 4. The continuum */}
   <section class="section bg-mist">
     <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
@@ -140,7 +140,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 5. Higher level first -->
+  {/* 5. Higher level first */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-2">
       <div>
@@ -166,7 +166,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 6. Weekly schedule -->
+  {/* 6. Weekly schedule */}
   <ProgramSchedule
     highlight={['PHP']}
     title="PHP Schedule in West Palm Beach"

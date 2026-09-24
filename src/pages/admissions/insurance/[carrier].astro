@@ -3,7 +3,7 @@
 // Sources and open questions: docs/content/admissions-sources-payers.md. No reviewed-by byline on
 // Admissions pages (brief). Rotation: Reviews only; insurance is the page's main content.
 // Carrier copy lives in src/data/payers.js; Sunview facts come from the live site (free verification,
-// Medicaid, enrollment often within 24 hours, free transportation).
+// Medicaid, enrollment often within 24 hours, free door-to-door transportation).
 import ServicePage from '../../../layouts/ServicePage.astro';
 import LeadForm from '../../../components/LeadForm.astro';
 import Icon from '../../../components/Icon.astro';
@@ -61,7 +61,7 @@ const faqs = [
   mobileForm={false}
   noindex={p.noindex === true}
 >
-  <!-- Coverage at a glance (no heading: a summary row, like a fact strip) -->
+  {/* Coverage at a glance (no heading: a summary row, like a fact strip) */}
   <div class="border-b border-line bg-white">
     <div class="container-x flex flex-col gap-6 py-8 lg:flex-row lg:items-center lg:gap-10">
       <img src={p.logo} alt={`${S} logo`} width="160" height="48" loading="lazy" class="h-10 w-auto max-w-[180px] shrink-0 object-contain" />
@@ -79,7 +79,7 @@ const faqs = [
     </div>
   </div>
 
-  <!-- Does it cover -->
+  {/* Does it cover */}
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
       <div>
@@ -95,7 +95,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Using your plan: plan-type explainer + what to have ready + verification strip -->
+  {/* Using your plan: plan-type explainer + what to have ready + verification strip */}
   <section class="section bg-mist">
     <div class="container-x">
       <h2 class="max-w-4xl text-3xl sm:text-[2.1875rem]">Using Your {S} Plan at Sunview</h2>
@@ -120,7 +120,7 @@ const faqs = [
           </div>
         </div>
       </div>
-      <!-- Verification steps strip -->
+      {/* Verification steps strip */}
       <ol class="mt-12 grid overflow-hidden rounded-[var(--radius-card)] border border-line bg-white md:grid-cols-3">
         {steps.map((st, i) => (
           <li class:list={['flex gap-4 p-6', i > 0 && 'border-t border-line md:border-l md:border-t-0']}>
@@ -135,7 +135,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Programs covered: rows, not cards -->
+  {/* Programs covered: rows, not cards */}
   <section class="section">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">Programs Covered: PHP, IOP and OP</h2>
@@ -157,7 +157,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Co-occurring + psychiatry. Telemed Clinix billing under the carrier: [to confirm] -->
+  {/* Co-occurring + psychiatry. Telemed Clinix billing under the carrier: [to confirm] */}
   <section class="section bg-cream">
     <div class="container-x grid items-center gap-10 lg:grid-cols-2">
       <div>
@@ -172,7 +172,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Verification form (the body's own form, so ServicePage's pre-CTA mobile form is off) -->
+  {/* Verification form (the body's own form, so ServicePage's pre-CTA mobile form is off) */}
   <section id="verify" class="section bg-teal text-white">
     <div class="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
@@ -181,7 +181,7 @@ const faqs = [
         <ul class="mt-6 space-y-2 text-white/90">
           <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 text-white" />Network status and covered levels of care</li>
           <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 text-white" />Whether approval is needed first</li>
-          <li class="flex items-center gap-2"><Icon name="car" class="h-5 w-5 text-white" />Free transportation if you can’t drive</li>
+          <li class="flex items-center gap-2"><Icon name="car" class="h-5 w-5 text-white" />Free door-to-door transportation if you can’t drive</li>
         </ul>
         <p class="mt-6 text-sm text-white/80">More about <a href="/admissions/insurance/" class="font-bold text-white underline">insurance and payment</a> · <a href="/admissions/faq/" class="font-bold text-white underline">admissions FAQ</a> · <a href="/admissions/" class="font-bold text-white underline">how admissions works</a></p>
       </div>

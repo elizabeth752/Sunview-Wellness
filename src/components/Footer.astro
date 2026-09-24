@@ -43,12 +43,12 @@ const cols = [
 const year = new Date().getFullYear();
 ---
 <footer class="pb-24 md:pb-0">
-  <!-- Gradient: brand teal at the top fading down to teal-deep, meeting the bottom bar (client request 2026-09-22) -->
+  {/* Gradient: brand teal at the top fading down to teal-deep, meeting the bottom bar (client request 2026-09-22) */}
   <div class="relative overflow-hidden bg-linear-to-b from-teal to-teal-deep text-white">
-    <!-- Rings sit under the wave: the cream area above the curve hides their top, so they read as ripples
-         spreading out from under the water line. -->
+    {/* Rings sit under the wave: the cream area above the curve hides their top, so they read as ripples
+         spreading out from under the water line. */}
     <SunMark variant="rays" class="pointer-events-none absolute -right-6 top-0 h-[460px] w-[460px] text-gold/35" />
-    <!-- Wave divider (approved CTA "A"): cream above the curve continues the CTA; gold line on the edge. -->
+    {/* Wave divider (approved CTA "A"): cream above the curve continues the CTA; gold line on the edge. */}
     <svg class="relative block h-[56px] w-full sm:h-[72px]" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true">
       <path d="M0 42 C 240 2 480 2 720 32 S 1200 72 1440 22 V0 H0 Z" fill="var(--color-cream)" />
       <path d="M0 42 C 240 2 480 2 720 32 S 1200 72 1440 22" fill="none" stroke="var(--color-gold)" stroke-width="2" vector-effect="non-scaling-stroke" />
@@ -88,7 +88,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <!-- 1px divider: green → gold → green (client request 2026-09-22) -->
+  {/* 1px divider: green → gold → green (client request 2026-09-22) */}
   <div class="h-px bg-linear-to-r from-teal-deep via-gold to-teal-deep" aria-hidden="true"></div>
   <div class="bg-teal-deep">
     <div class="container-x py-[15px] text-sm text-white">

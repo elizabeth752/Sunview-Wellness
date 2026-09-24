@@ -31,7 +31,7 @@ const faqs = [
   faqs={faqs}
   insurance
 >
-  <!-- Substance use + mental health -->
+  {/* Substance use + mental health */}
   {groups.map((g, gi) => (
     <section class:list={['section', gi === 1 && 'bg-mist']}>
       <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
@@ -49,7 +49,7 @@ const faqs = [
     </section>
   ))}
 
-  <!-- Dual diagnosis -->
+  {/* Dual diagnosis */}
   <section class="section">
     <div class="container-x">
       <div class="rounded-[var(--radius-lg)] bg-teal p-8 text-white sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
@@ -62,7 +62,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Beneath the symptom -->
+  {/* Beneath the symptom */}
   <section class="section bg-mist">
     <div class="container-x grid items-center gap-12 lg:grid-cols-2">
       <div>
@@ -82,7 +82,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Not sure -->
+  {/* Not sure */}
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-2">
       <div>
@@ -90,7 +90,7 @@ const faqs = [
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Not Sure What You Need? Start With a Conversation</h2>
         <p class="subheading mt-3">You don’t need a diagnosis to call</p>
         <p class="mt-5 text-lg">Many people call saying, “I don’t know what to do anymore,” or “I know I need help, but I don’t know where to start.” That’s enough. The first conversation is about listening and figuring out, together, what you need.</p>
-        <p class="mt-4 text-lg">After a short pre-screening, our Clinical Director recommends the level of care that fits you, using ASAM criteria and clinical judgment. We check your insurance for free, and free transportation is available if you can’t drive.</p>
+        <p class="mt-4 text-lg">After a short pre-screening, our Clinical Director recommends the level of care that fits you, using ASAM criteria and clinical judgment. We check your insurance for free, and free door-to-door transportation is available if you can’t drive.</p>
         <a href="/admissions/" class="btn-teal mt-8">Talk to admissions <Icon name="arrow" /></a>
       </div>
       <div class="self-center">

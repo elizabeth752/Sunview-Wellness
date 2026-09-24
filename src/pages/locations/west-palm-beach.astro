@@ -1,6 +1,6 @@
 ---
 // /locations/west-palm-beach/: Professionals-Location-Content-Briefs.md §B. Sources and open items in
-// docs/content/location-sources.md. No reviewed-by byline, no trust strip (Home only, client decision).
+// docs/content/location-sources.md. No reviewed-by byline. Trust strip below the hero (ServicePage default).
 // Rotation: Insurance + Reviews + Map (the map lives inside "Address, Hours and Contact", so ServicePage's
 // shared MapSection is off to avoid a second map). "Getting Here" is omitted: parking and transit are
 // unverified (brief: write only what's verifiable, otherwise omit).
@@ -16,7 +16,7 @@ const path = '/locations/west-palm-beach/';
 const url = new URL(path, SITE.url).href;
 const metaTitle = 'Sunview Wellness West Palm Beach | Outpatient Rehab Location';
 const description =
-  'Sunview Wellness at 4802 East Ave, West Palm Beach, FL 33407. PHP, IOP and OP with free transportation to and from our center. Directions and hours.';
+  'Sunview Wellness at 4802 East Ave, West Palm Beach, FL 33407. PHP, IOP and OP with free door-to-door transportation. Directions and hours.';
 
 // Google Maps Place ID (brief). The keyless embed can't take a Place ID (the Embed API needs a key), so the
 // iframe reuses SITE.mapsEmbed (address query, same as MapSection); the Place ID goes on the links.
@@ -25,9 +25,8 @@ const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.regio
 const placeUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${SITE.name}, ${addr}`)}&query_place_id=${PLACE_ID}`;
 const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addr)}&destination_place_id=${PLACE_ID}`;
 
-// Placeholders (brief decision): replace when the client sends them.
-const JC_ID = '{{JC_ID}}';
-const DCF_LICENSE = '{{DCF_LICENSE}}';
+// Joint Commission ID, JC verification link and DCF license number: not supplied yet. Per the placeholder policy
+// (Decisions 2026-09-24) they are omitted from the page and the schema; add the rows back when they arrive.
 const seal = ACCREDITATIONS[0];
 
 // Week grid. Hours: Q7 (PHP, Day IOP, Evening IOP), OP one weekday 9–1 (live homepage), same as
@@ -71,14 +70,11 @@ const programs = [
   },
 ];
 
-// FAQ. `a` is rendered (HTML); `plain` (if set) is the schema text, so the review flag never reaches JSON-LD.
-const flag = (note: string) =>
-  `<mark class="ml-1 inline-block rounded-[4px] bg-error px-1 align-middle font-sans text-[10px] font-extrabold uppercase leading-4 tracking-normal text-white no-underline" title="${note}">[SOURCE?]</mark>`;
-const parkingPlain = 'Call us before your first day and we’ll walk you through arriving at 4802 East Ave. If you can’t drive yourself, free transportation to and from our center is available, so you don’t need a car to get here.';
+// FAQ. `a` is rendered (HTML); `plain` (if set) is the schema text.
+// Parking and transit are unconfirmed (Elizabeth): the parking FAQ is left out until they're confirmed (Decisions 2026-09-24).
 const faqs = [
   { q: 'Where exactly are you?', a: `${addr}. <a href="${directions}" target="_blank" rel="noopener">Get directions on Google Maps</a>.`, plain: `${addr}.` },
-  { q: 'Is parking available?', a: `${parkingPlain}${flag('Parking and transit are [to confirm with Elizabeth]. No parking claim is made until confirmed.')}`, plain: parkingPlain },
-  { q: 'Do you offer transportation?', a: 'Yes. If you can’t drive yourself, we offer free transportation to and from our center, through Uber Health. Ask about it when you call admissions. <a href="/admissions/what-to-expect/">What to expect in treatment</a>.' },
+  { q: 'Do you offer transportation?', a: 'Yes. If you can’t drive yourself, we offer free door-to-door transportation to and from our center. Ask about it when you call admissions. <a href="/admissions/what-to-expect/">What to expect in treatment</a>.' },
   { q: 'What are your hours?', a: 'PHP runs Monday to Friday, 9 AM to 1 PM. Day IOP meets 3 days a week and OP one weekday, both 9 AM to 1 PM. Evening IOP meets Monday, Wednesday and Thursday, 6 to 9 PM. <a href="/programs/">Compare levels of care</a>.' },
   { q: 'Are you a residential facility?', a: 'No. Sunview is outpatient only: PHP, IOP and OP. You sleep at home every night, and we don’t provide detox or housing. If you need 24-hour care first, we’ll help you find it and plan your step down to us.' },
 ];
@@ -131,15 +127,15 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   description={description}
   crumbs={[{ name: 'West Palm Beach Location', href: path }]}
   h1="Outpatient Rehab Center in West Palm Beach, FL"
-  subheading="Easy to reach, with free transportation if you can't drive."
-  lead="Sunview Wellness is an outpatient rehab center at 4802 East Ave in West Palm Beach for adults 18 and older. Programs run in the morning, with an evening IOP after work, and if you can’t drive yourself, free transportation to and from our center is available."
+  subheading="Easy to reach, with free door-to-door transportation if you can't drive."
+  lead="Sunview Wellness is an outpatient rehab center at 4802 East Ave in West Palm Beach for adults 18 and older. Programs run in the morning, with an evening IOP after work, and if you can’t drive yourself, free door-to-door transportation to and from our center is available."
   faqTitle="Frequently Asked Questions About Our West Palm Beach Location"
   faqs={faqs}
   insurance
   reviews
   schema={schema}
 >
-  <!-- 1. Address, Hours and Contact: oversized address panel + tall map, then a Mon–Fri day-card grid -->
+  {/* 1. Address, Hours and Contact: oversized address panel + tall map, then a Mon–Fri day-card grid */}
   <section class="section" id="address-hours">
     <div class="container-x">
       <h2 class="text-3xl sm:text-[2.1875rem]">Address, Hours and Contact</h2>
@@ -216,22 +212,22 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 2. Transport: cream band with a door-to-door route strip -->
+  {/* 2. Transport: cream band with a door-to-door route strip */}
   <section class="section bg-cream">
     <div class="container-x">
       <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
         <div>
-          <h2 class="text-3xl sm:text-[2.1875rem]">Free Transportation to and From Our West Palm Beach Center</h2>
+          <h2 class="text-3xl sm:text-[2.1875rem]">Free Door-to-Door Transportation in West Palm Beach</h2>
           <p class="subheading mt-3">No car shouldn’t mean no treatment</p>
         </div>
-        <p class="text-lg lg:pb-1">If you can’t drive yourself, we offer free transportation to and from our center, through Uber Health. Taking the ride off your plate makes it easier to show up for every group, and showing up consistently is a big part of how treatment works.</p>
+        <p class="text-lg lg:pb-1">If you can’t drive yourself, we offer free door-to-door transportation to and from our center. Taking the ride off your plate makes it easier to show up for every group, and showing up consistently is a big part of how treatment works.</p>
       </div>
 
       <ol class="relative mt-12 grid gap-6 md:grid-cols-3">
         <span class="absolute bottom-8 left-[27px] top-8 border-l-2 border-dashed border-gold md:bottom-auto md:left-[16%] md:right-[16%] md:top-[27px] md:border-l-0 md:border-t-2" aria-hidden="true"></span>
         {[
           { icon: 'phone', t: 'Tell admissions you need a ride', d: 'Mention it on your first call, or any time during treatment.' },
-          { icon: 'car', t: 'We book your free ride', d: `From your home to ${SITE.address.street}, through Uber Health, at no cost to you.` },
+          { icon: 'car', t: 'We book your free ride', d: `Door to door, from your home to ${SITE.address.street}, at no cost to you.` },
           { icon: 'home', t: 'A ride home after programming', d: 'Morning programs end at 1 PM and evening IOP at 9 PM.' },
         ].map((s) => (
           <li class="relative flex gap-5 md:flex-col md:items-center md:text-center">
@@ -250,7 +246,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 3. Programs at this location: stacked ledger rows (code · name + hours · summary · link) -->
+  {/* 3. Programs at this location: stacked ledger rows (code · name + hours · summary · link) */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-3xl">
@@ -276,7 +272,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 4. Accreditation and licensing: framed "certificate" panel on mist -->
+  {/* 4. Accreditation and licensing: framed "certificate" panel on mist */}
   <section class="section bg-mist">
     <div class="container-x grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
@@ -290,15 +286,9 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
             <img src={seal.logo} alt="The Joint Commission accreditation seal" width={seal.w} height={seal.h} loading="lazy" class="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
             <div>
               <p class="font-sans text-lg font-extrabold text-charcoal">Accredited by The Joint Commission</p>
-              <a href={JC_ID} target="_blank" rel="noopener" class={`${link} text-[15px]`}>Verify our Joint Commission accreditation</a>
-              <p class="mt-1 font-sans text-sm text-muted">ID: <span class="font-extrabold text-charcoal">{JC_ID}</span></p>
             </div>
           </div>
           <dl class="grid gap-x-8 gap-y-5 pt-6 sm:grid-cols-2">
-            <div class="sm:col-span-2">
-              <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">State license</dt>
-              <dd class="mt-1 font-bold text-charcoal">Florida Department of Children and Families (DCF), license <span class="rounded-[4px] border border-dashed border-line bg-mist px-1.5 font-sans">{DCF_LICENSE}</span></dd>
-            </div>
             <div>
               <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">Founded</dt>
               <dd class="mt-1 font-display text-3xl font-extrabold text-teal">2021</dd>
@@ -313,7 +303,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 5. Who we serve: 2×2 statement tiles beside a short scope note -->
+  {/* 5. Who we serve: 2×2 statement tiles beside a short scope note */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>

@@ -22,7 +22,7 @@ interface Props {
   stats?: Stat[];
   compact?: boolean;
   ripple?: boolean;
-  trust?: boolean; // trust strip below the hero: Home only (client request 2026-09-22, overrides the prompt's "every commercial page")
+  trust?: boolean; // trust strip below the hero: every commercial page (Home, ServicePage layouts, /our-team/, /for-professionals/); not on blog, person, privacy, thank-you or 404 pages (Decisions 2026-09-24, correction 1)
   crumbs?: Crumb[]; // visible breadcrumb trail (after Home); mirrors Base's BreadcrumbList
 }
 const {

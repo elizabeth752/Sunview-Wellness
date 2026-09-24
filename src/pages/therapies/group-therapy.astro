@@ -54,7 +54,7 @@ const faqs = [
   reviews
   about={{ '@type': 'MedicalTherapy', name: 'Group therapy' }}
 >
-  <!-- 1. Morning timeline -->
+  {/* 1. Morning timeline */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
       <div>
@@ -82,7 +82,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 2. Carefrontation: speech bubbles -->
+  {/* 2. Carefrontation: speech bubbles */}
   <section class="section bg-mist">
     <div class="container-x">
       <h2 class="max-w-3xl text-3xl sm:text-[2.1875rem]">Carefrontation: Honest Feedback With Care</h2>
@@ -103,7 +103,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 3. Gender-specific days: cream band + calendar -->
+  {/* 3. Gender-specific days: cream band + calendar */}
   <section class="section bg-cream">
     <div class="container-x grid items-center gap-12 lg:grid-cols-2">
       <div>
@@ -130,7 +130,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 4. Big statement: built on the CEO's model (Client Wiki, "The clinical model in the CEO's words", 10 Sep 2026) -->
+  {/* 4. Big statement: built on the CEO's model (Client Wiki, "The clinical model in the CEO's words", 10 Sep 2026) */}
   <section class="section">
     <div class="container-x max-w-4xl text-center">
       <h2 class="text-3xl sm:text-[2.1875rem]">Breaking Secrecy: Why Groups Work</h2>
@@ -139,12 +139,12 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 5. Experiential row -->
+  {/* 5. Experiential row */}
   <section class="section bg-mist">
     <div class="container-x">
       <h2 class="max-w-3xl text-3xl sm:text-[2.1875rem]">Experiential Work in Group, Including Psychodrama</h2>
       <p class="mt-5 max-w-3xl text-lg">Psychodrama is an important part of our group programming. When it’s clinically appropriate, groups also use hands-on, expressive activities that give you another way to process emotions and reach insight beyond talking.</p>
-      <!-- REVIEW 8.5: plain-language passage pending Elizabeth review (psychodrama definition, first item of `experiential`) -->
+      {/* REVIEW 8.5: plain-language passage pending Elizabeth review (psychodrama definition, first item of `experiential`) */}
       <ul class="mt-10 divide-y divide-line border-y border-line lg:grid lg:grid-cols-4 lg:divide-x lg:divide-y-0">
         {experiential.map((e) => (
           <li class="flex gap-4 py-6 lg:flex-col lg:px-6 lg:first:pl-0">
@@ -159,7 +159,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 6. Across levels: shared schedule chart -->
+  {/* 6. Across levels: shared schedule chart */}
   <ProgramSchedule
     class="section"
     title="Group Therapy Across PHP, IOP and OP"
@@ -167,7 +167,7 @@ const faqs = [
     intro="Group runs on the same schedule as your program: every weekday in PHP, three days a week in IOP (day or evening), and one weekday in OP."
   />
 
-  <!-- Related row -->
+  {/* Related row */}
   <section class="border-t border-line py-10">
     <div class="container-x flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
       <p class="font-extrabold text-charcoal">Keep exploring</p>

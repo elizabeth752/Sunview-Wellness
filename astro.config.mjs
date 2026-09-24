@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
+import { NOINDEX_PATHS } from './src/data/team.js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,7 +29,9 @@ export default defineConfig({
           '/hipaa-notice/',
           '/about-us/',
           '/our-approach/',
-        ].some((path) => new URL(page).pathname === path),
+        ]
+          .concat(NOINDEX_PATHS) // person pages without a real bio yet (team.js `publish: false`)
+          .some((path) => new URL(page).pathname === path),
     }),
   ],
 });

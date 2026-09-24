@@ -11,7 +11,7 @@ import Reviews from '../../components/Reviews.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
 import { SITE, initials } from '../../data/site.js';
-import { TEAM_GROUPS, PEOPLE, peopleInGroup, personHref } from '../../data/team.js';
+import { TEAM_GROUPS, PUBLISHED_PEOPLE, peopleInGroup, personHref } from '../../data/team.js';
 
 const path = '/our-team/';
 const metaTitle = 'Our Team | Sunview Wellness, West Palm Beach';
@@ -31,7 +31,7 @@ const schema = [
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: PEOPLE.map((p, i) => ({
+      itemListElement: PUBLISHED_PEOPLE.map((p, i) => ({
         '@type': 'ListItem',
         position: i + 1,
         url: new URL(personHref(p), SITE.url).href,
@@ -77,9 +77,10 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     lead="Sunview’s multidisciplinary team brings more than 50 years of combined clinical experience to outpatient addiction and mental health treatment in West Palm Beach. Our clinical model is led by a Ph.D. Clinical Director, and every clinician is trauma-informed."
     crumbs={crumbs}
     compact
+    trust
   />
 
-  <!-- Jump links to each group -->
+  {/* Jump links to each group */}
   <nav aria-label="Team sections" class="border-b border-line bg-white">
     <ul class="container-x flex flex-wrap gap-x-6 gap-y-2 py-4 text-sm font-bold">
       {TEAM_GROUPS.map((g) => (
@@ -91,7 +92,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </ul>
   </nav>
 
-  <!-- 1. Leadership: two wide profile features -->
+  {/* 1. Leadership: two wide profile features */}
   <section id="leadership" class="section scroll-mt-24" aria-labelledby="leadership-title">
     <div class="container-x">
       <div class="max-w-3xl">
@@ -119,7 +120,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 2. Therapists: editorial portrait tiles, no card chrome -->
+  {/* 2. Therapists: editorial portrait tiles, no card chrome */}
   <section id="therapists" class="section scroll-mt-24 bg-mist" aria-labelledby="therapists-title">
     <div class="container-x">
       <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
@@ -129,7 +130,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
       <ul class="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
         {therapists.map((p) => (
           <li class="group flex flex-col">
-            <a href={personHref(p)} class="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[var(--radius-card)] bg-white" tabindex="-1" aria-hidden="true">
+            <a href={personHref(p)} class="relative grid aspect-square place-items-center overflow-hidden rounded-[var(--radius-card)] bg-white" tabindex="-1" aria-hidden="true">
               {p.photo
                 ? <img src={p.photo} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
                 : <span class="font-display text-6xl font-bold text-teal/80 transition group-hover:scale-105">{initials(p.name)}</span>}
@@ -138,24 +139,23 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
             <h3 class="mt-5 text-xl"><a href={personHref(p)} class="hover:text-teal">{p.name}</a></h3>
             <p class="mt-1 text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{p.creds}</p>
             <p class="mt-1 font-bold">{p.title}</p>
-            {p.specialty
-              ? <p class="mt-2 text-[15px]">{p.specialty}</p>
-              : <p class="mt-2 text-[15px]"><mark class="rounded-[4px] bg-error px-1 font-sans text-[11px] font-extrabold uppercase text-white">[Wiki bio pending]</mark></p>}
+            {p.specialty && <p class="mt-2 text-[15px]">{p.specialty}</p>}
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <!-- 3. Group leaders + medical oversight: directory list -->
+  {/* 3. Group leaders + medical oversight: directory list */}
   <section id="facilitators" class="section scroll-mt-24" aria-labelledby="facilitators-title">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
         <h2 id="facilitators-title" class="text-3xl sm:text-[2.1875rem]">{groupTitle('facilitators')}</h2>
         <p class="mt-4 text-lg">Day programming runs as one continuous group from 9 AM to 1 PM, led by the same facilitator for the whole morning, so the group can go deeper instead of switching leaders every hour.</p>
-        <p class="mt-4"><a href="/therapies/group-therapy/" class={link}>Group therapy at Sunview</a></p>
+        <p class="mt-4">Psychiatric evaluation and medication management are provided through Sunview’s partner, Telemed Clinix, and are coordinated as part of treatment.</p>
+        <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2"><a href="/therapies/group-therapy/" class={link}>Group therapy at Sunview</a><a href="/programs/psychiatry-medication-management/" class={link}>Psychiatry and medication management</a></p>
       </div>
-      <ul class="divide-y divide-line border-y border-line">
+      <ul class="self-start divide-y divide-line border-y border-line">
         {facilitators.map((p) => (
           <li>
             <a href={personHref(p)} class="group grid grid-cols-[auto_1fr_auto] items-center gap-4 py-6 sm:gap-6">
@@ -163,9 +163,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
               <span class="min-w-0">
                 <span class="block font-display text-xl font-bold text-charcoal group-hover:text-teal">{p.name}<span class="font-sans text-sm font-extrabold text-teal">, {p.creds}</span></span>
                 <span class="block font-bold">{p.title}</span>
-                {p.specialty
-                  ? <span class="mt-1 block text-[15px]">{p.specialty}</span>
-                  : <span class="mt-1 block"><mark class="rounded-[4px] bg-error px-1 font-sans text-[11px] font-extrabold uppercase text-white">[Wiki bio pending]</mark></span>}
+                {p.specialty && <span class="mt-1 block text-[15px]">{p.specialty}</span>}
               </span>
               <Icon name="arrow" class="h-5 w-5 text-teal transition group-hover:translate-x-1" />
             </a>
@@ -175,7 +173,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 4. Admissions and outreach: teal band -->
+  {/* 4. Admissions and outreach: teal band */}
   <section id="admissions" class="section scroll-mt-24 bg-teal text-white" aria-labelledby="admissions-title">
     <div class="container-x">
       <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
@@ -198,7 +196,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  <!-- 5. How our team works together: three pillars + pull quote (Q9, Q15) -->
+  {/* 5. How our team works together: three pillars + pull quote (Q9, Q15) */}
   <section id="how-we-work" class="section scroll-mt-24 bg-cream" aria-labelledby="how-title">
     <div class="container-x">
       <div class="max-w-3xl">

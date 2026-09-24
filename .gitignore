@@ -19,3 +19,8 @@ npm-debug.log*
 
 # client source material (internal business data; repo is public). Lives in ~/Downloads/SunView/
 docs/content/client-wiki-*.txt
+
+# Vercel CLI link + pulled env
+.vercel
+.env*
+!.env.example

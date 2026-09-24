@@ -109,17 +109,17 @@ const faqs = [
     lead="PHP, IOP and outpatient treatment for adults with substance use and co-occurring mental health conditions. You go home every night, keep your life moving, and do the deeper work with a team that knows your name."
   >
     <Fragment slot="aside">
-      <!-- Desktop only; below lg the same form renders right before the CTA section -->
+      {/* Desktop only; below lg the same form renders right before the CTA section */}
       <div class="hidden lg:block"><LeadForm formId="home-hero" dark /></div>
     </Fragment>
   </PageHero>
 
 
-  <!-- Insurance: white, centered, logos alone in an infinite grayscale marquee (client request 2026-09-22) -->
+  {/* Insurance: white, centered, logos alone in an infinite grayscale marquee (client request 2026-09-22) */}
   <InsuranceSection />
 
-  <!-- Name the fear before the program: the first call as a conversation (design "B", approved 2026-09-22).
-       Visitor bubbles are verbatim Q23 phrases; the teal bubble is Sunview's reply. -->
+  {/* Name the fear before the program: the first call as a conversation (design "B", approved 2026-09-22).
+       Visitor bubbles are verbatim Q23 phrases; the teal bubble is Sunview's reply. */}
   <section class="section">
     <div class="container-x grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
@@ -146,7 +146,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Levels of care -->
+  {/* Levels of care */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-5xl">
@@ -156,7 +156,7 @@ const faqs = [
         <p class="mt-5 text-lg">Most people come to us after detox or residential treatment. Others come straight from home. Either way, our Clinical Director reviews your pre-screening and recommends the level that fits, using ASAM criteria and clinical judgment.</p>
       </div>
       <div class="mt-10"><ProgramCards /></div>
-      <p class="mt-6 flex items-center gap-2 font-bold"><Icon name="car" class="h-5 w-5 shrink-0 text-teal" />Free transportation if you can’t drive yourself.</p>
+      <p class="mt-6 flex items-center gap-2 font-bold"><Icon name="car" class="h-5 w-5 shrink-0 text-teal" />Free door-to-door transportation if you can’t drive yourself.</p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href="/programs/" class="btn-ghost">Compare levels of care</a>
         <a href="/programs/psychiatry-medication-management/" class="btn-ghost">Psychiatry and medication management</a>
@@ -164,7 +164,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Recovery, not sobriety -->
+  {/* Recovery, not sobriety */}
   <section class="section bg-mist">
     <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
@@ -188,7 +188,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- In vivo -->
+  {/* In vivo */}
   <section class="section relative overflow-hidden bg-teal text-white">
     <SunMark variant="rays" class="pointer-events-none absolute -left-24 -top-24 h-[480px] w-[480px] -scale-x-100 text-gold/40" />
     <div class="container-x relative grid items-center gap-12 lg:grid-cols-2">
@@ -206,7 +206,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- What a week looks like -->
+  {/* What a week looks like */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-5xl">
@@ -227,7 +227,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- What we treat -->
+  {/* What we treat */}
   <section class="section bg-mist">
     <div class="container-x">
       <div class="max-w-5xl">
@@ -253,7 +253,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Honest about scope -->
+  {/* Honest about scope */}
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
@@ -274,7 +274,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Team voice -->
+  {/* Team voice */}
   <section class="section bg-mist">
     <div class="container-x grid items-center gap-12 lg:grid-cols-2">
       <figure class="card !p-8 sm:!p-10">
@@ -304,7 +304,7 @@ const faqs = [
 
   <LatestArticles />
 
-  <!-- FAQ -->
+  {/* FAQ */}
   <section class="section bg-mist">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
       <div>
@@ -317,12 +317,12 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Coverage form below lg (in the hero on desktop) -->
+  {/* Coverage form below lg (in the hero on desktop) */}
   <section class="section bg-teal lg:hidden">
     <div class="container-x max-w-2xl"><LeadForm formId="home-mobile" dark /></div>
   </section>
 
   <CtaBand
-    lead="A true outpatient model for real life. Call or send a message: we’ll listen first, verify your insurance for free, and can often have you enrolled within 24 hours. Free transportation is included."
+    lead="A true outpatient model for real life. Call or send a message: we’ll listen first, verify your insurance for free, and can often have you enrolled within 24 hours. Free door-to-door transportation is included."
   />
 </Base>

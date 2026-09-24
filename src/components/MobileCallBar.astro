@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import { SITE } from '../data/site.js';
 ---
-<!-- Mobile: the header's single button, pinned to the bottom (Home review round 2, item 4) -->
+{/* Mobile: the header's single button, pinned to the bottom (Home review round 2, item 4) */}
 <div class="fixed inset-x-0 bottom-0 z-[60] border-t border-line bg-white p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] md:hidden">
   <a href={SITE.phoneHref} class="btn-sun w-full"><Icon name="phone" class="h-4 w-4 shrink-0" />Call Now {SITE.phone}</a>
 </div>

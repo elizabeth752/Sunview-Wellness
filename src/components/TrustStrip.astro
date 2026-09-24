@@ -1,18 +1,19 @@
 ---
 // Trust strip directly below the hero on every commercial page (Home-Review-Round-2-Final.md §3 and
-// Sunview-Content-Build-Prompt.md template 1b, 2026-09-22): a band with no heading. Four check items on
-// the left, the four seals on the right (each linked to its {{SEAL_URL_*}} placeholder). Stacks on mobile:
-// items first, seals below.
+// Sunview-Content-Build-Prompt.md template 1b; Decisions 2026-09-24, correction 1): Home, every ServicePage
+// page, /our-team/ and /for-professionals/. Not on blog, person, privacy, thank-you or 404 pages.
+// A band with no heading. Four check items on the left, the four seals on the right (linked only when the
+// seal has a verification URL in ACCREDITATIONS; plain otherwise). Stacks on mobile: items first, seals below.
 import Icon from './Icon.astro';
 import AccreditationBadges from './AccreditationBadges.astro';
 const items = [
   'Joint Commission accredited',
   '50+ years of combined clinical experience',
-  'Free transportation to and from our center',
+  'Free door-to-door transportation',
   'Day and evening programs: PHP, IOP and OP',
 ];
 ---
-<div class="border-b border-line bg-white">
+<div class="border-b border-line bg-white" data-trust-strip>
   <div class="container-x flex flex-col gap-6 py-7 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
     <ul class="grid gap-x-8 gap-y-2.5 sm:grid-cols-2 sm:gap-y-3">
       {items.map((i) => (

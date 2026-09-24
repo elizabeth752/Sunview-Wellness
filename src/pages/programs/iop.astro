@@ -11,7 +11,7 @@ const includes = [
   'A weekly individual session with your primary therapist, 45 to 60 minutes',
   'Psychiatric evaluation and medication management through Telemed Clinix, scheduled for you',
   'Random drug testing as part of your recovery support',
-  'Free transportation to and from our center if you can’t drive yourself',
+  'Free door-to-door transportation to and from our center if you can’t drive yourself',
 ];
 
 const session = [
@@ -40,7 +40,7 @@ const faqs = [
 <ProgramPage
   path="/programs/iop/"
   metaTitle="Intensive Outpatient (IOP) in West Palm Beach | Sunview"
-  description="Day or evening IOP in West Palm Beach for substance use and co-occurring conditions, 3 days a week. Keep your job, with free transportation."
+  description="Day or evening IOP in West Palm Beach for substance use and co-occurring conditions, 3 days a week. Keep your job, with free door-to-door transportation."
   crumb="Intensive Outpatient Program"
   h1="Intensive Outpatient Program in West Palm Beach"
   subheading="Real clinical depth, three days a week, on a schedule that fits your life."
@@ -52,7 +52,7 @@ const faqs = [
   faqTitle="Frequently Asked Questions About IOP"
   faqs={faqs}
 >
-  <!-- 1. What IOP is -->
+  {/* 1. What IOP is */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
       <div>
@@ -74,7 +74,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 2 + 3. Day and evening IOP -->
+  {/* 2 + 3. Day and evening IOP */}
   <section class="section bg-mist">
     <div class="container-x grid gap-6 lg:grid-cols-2">
       <article class="card flex flex-col !p-8">
@@ -92,14 +92,14 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 4. A typical session -->
+  {/* 4. A typical session */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-5xl">
         <span class="eyebrow">Inside the room</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">A Typical IOP Session at Sunview</h2>
         <p class="subheading mt-3">Less lecture, more real conversation</p>
-        <p class="mt-5 text-lg">You arrive, settle in, and the group starts together. If you rely on our free transportation, your ride is already scheduled.</p>
+        <p class="mt-5 text-lg">You arrive, settle in, and the group starts together. If you rely on our free door-to-door transportation, your ride is already scheduled.</p>
       </div>
       <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {session.map((s) => (
@@ -113,7 +113,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 5. Fit and scope -->
+  {/* 5. Fit and scope */}
   <section class="section bg-mist">
     <div class="container-x grid gap-12 lg:grid-cols-2">
       <div>
@@ -136,7 +136,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 6. Weekly schedule -->
+  {/* 6. Weekly schedule */}
   <ProgramSchedule
     class="section"
     highlight={['DAY-IOP', 'EVE-IOP']}

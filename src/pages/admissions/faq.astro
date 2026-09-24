@@ -69,12 +69,12 @@ const groups = [
       { q: 'Can I keep working?', a: 'Many people do. PHP ends at 1 PM, day IOP meets three mornings a week, and evening IOP meets after work. <a href="/admissions/what-to-expect/">What a day looks like</a>.' },
       { q: 'Is there an evening program?', a: 'Yes. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, with the same clinical content as day IOP. <a href="/programs/iop/">Intensive Outpatient Program</a>.' },
       // (site, verbatim)
-      { q: 'Is transportation provided?', a: 'Yes. If you can’t drive yourself, we offer free transportation to and from our center for your program days, through Uber Health. Ask about it when you call admissions.' },
+      { q: 'Is transportation provided?', a: 'Yes. If you can’t drive yourself, we offer free door-to-door transportation to and from our center for your program days. Ask about it when you call admissions.' },
       { q: 'Is there drug testing?', a: 'Yes. Random drug testing is part of how we support your recovery and keep the group safe for everyone.' },
       // [to confirm] phone policy during group
       { q: 'Can I use my phone?', a: 'Ask us about the current policy. Groups work best when everyone is present, and we’ll explain what to expect before your first day.' },
       // (site)
-      { q: 'Where are you located?', a: '4802 East Ave, West Palm Beach, FL 33407. Free transportation is available if you can’t drive yourself.' },
+      { q: 'Where are you located?', a: '4802 East Ave, West Palm Beach, FL 33407. Free door-to-door transportation is available if you can’t drive yourself.' },
     ],
   },
   {
@@ -119,10 +119,10 @@ const allFaqs = groups.flatMap((g) => g.faqs);
 >
   <section class="section">
     <div class="container-x">
-      <!-- Preserved from the live /faq/ "About Sunview Wellness" paragraph -->
+      {/* Preserved from the live /faq/ "About Sunview Wellness" paragraph */}
       <p class="max-w-4xl text-lg"><strong class="text-charcoal">About Sunview Wellness:</strong> We are an outpatient program offering PHP, IOP and OP for substance use disorder and dual diagnosis. Services include individual, family and group counseling, plus referral to our partner psychiatric provider for evaluation and medication management. <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Compare our programs</a>.</p>
 
-      <!-- Mobile: horizontal scrollable chips -->
+      {/* Mobile: horizontal scrollable chips */}
       <nav aria-label="FAQ topics" class="-mx-4 mt-8 overflow-x-auto px-4 lg:hidden">
         <ul class="flex w-max gap-2 pb-2">
           {groups.map((g) => (
@@ -132,7 +132,7 @@ const allFaqs = groups.flatMap((g) => g.faqs);
       </nav>
 
       <div class="mt-8 grid gap-10 lg:mt-12 lg:grid-cols-[240px_1fr] lg:gap-14">
-        <!-- Desktop: sticky jump-to nav -->
+        {/* Desktop: sticky jump-to nav */}
         <nav aria-label="FAQ topics" class="hidden lg:block">
           <div class="sticky top-28 rounded-[var(--radius-card)] bg-mist p-5">
             <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-muted">Jump to</p>
@@ -156,7 +156,7 @@ const allFaqs = groups.flatMap((g) => g.faqs);
     </div>
   </section>
 
-  <!-- Closing block with the form (brief: "Still have questions?") -->
+  {/* Closing block with the form (brief: "Still have questions?") */}
   <section class="section bg-teal text-white">
     <div class="container-x grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
       <div>

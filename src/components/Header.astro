@@ -14,7 +14,7 @@ const isActive = (item: Item) =>
 <header class="sticky top-0 z-50 border-b border-line bg-white">
   <div class="container-x flex h-[84px] items-center justify-between gap-4">
     <a href="/" class="shrink-0" aria-label="Sunview Wellness home">
-      <!-- Horizontal lockup, icon left, as on the official site. Brand book minimum: 140px wide -->
+      {/* Horizontal lockup, icon left, as on the official site. Brand book minimum: 140px wide */}
       <img src="/images/brand/sunview-logo-horizontal.webp" alt="Sunview Wellness" width="880" height="174" class="h-auto w-[180px] sm:w-[220px]" />
     </a>
 
@@ -95,8 +95,8 @@ const isActive = (item: Item) =>
     </nav>
 
     <div class="flex items-center gap-3">
-      <!-- Header = logo · menu · one button (client request 2026-09-22). The number is the CTM target
-           number; CTM's swap script replaces it with the visitor's tracking number. -->
+      {/* Header = logo · menu · one button (client request 2026-09-22). The number is the CTM target
+           number; CTM's swap script replaces it with the visitor's tracking number. */}
       <a href={SITE.phoneHref} class="btn-sun hidden !px-5 md:inline-flex"><Icon name="phone" class="h-4 w-4" />Call Now {SITE.phone}</a>
       <button
         type="button"
@@ -111,7 +111,7 @@ const isActive = (item: Item) =>
     </div>
   </div>
 
-  <!-- Mobile: full-screen menu with accordions -->
+  {/* Mobile: full-screen menu with accordions */}
   <nav id="mobile-nav" aria-label="Mobile" class="fixed inset-x-0 bottom-0 top-[84px] hidden overflow-y-auto border-t border-line bg-white pb-28 xl:hidden" data-nav-panel>
     <ul class="container-x divide-y divide-line py-2">
       {NAV.map((item) => (
