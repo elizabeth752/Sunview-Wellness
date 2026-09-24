@@ -1,0 +1,142 @@
+---
+// /programs/outpatient/: Programs-Content-Briefs.md §3. Sources in docs/content/programs-sources.md.
+// No length-of-stay figures and no alumni-program claims (brief rules).
+import ProgramPage from '../../layouts/ProgramPage.astro';
+import ProgramSchedule from '../../components/ProgramSchedule.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import Icon from '../../components/Icon.astro';
+
+const includes = [
+  'One morning a week, 9 AM to 1 PM, on the weekday you choose',
+  'About 4 hours of treatment a week',
+  'Group therapy, with individual and family sessions as clinically recommended',
+  'Psychiatric care through Telemed Clinix when medication is part of your plan',
+  'Free transportation to and from our center if you can’t drive yourself',
+];
+
+const who = [
+  { icon: 'layers', title: 'Stepping down from PHP or IOP', text: 'You’ve done the intensive work and your days are filling back up with work and family. OP keeps a weekly anchor in place while you take on more.' },
+  { icon: 'refresh', title: 'Longer-term maintenance', text: 'Recovery isn’t linear. A standing morning each week gives you a place to bring the hard days before they turn into old patterns.' },
+  { icon: 'compass', title: 'Structured support without a higher level first', text: 'Not everyone comes from residential care. If your pre-screening shows OP is the right fit, you can start here.' },
+];
+
+const loop = ['Learn', 'Apply', 'Experience', 'Process', 'Adjust', 'Apply again'];
+
+const faqs = [
+  { q: 'How many hours a week is the Outpatient Program?', a: 'About 4 hours: one morning a week, from 9 AM to 1 PM.' },
+  { q: 'Can I choose which day I attend?', a: 'Yes. OP runs Monday through Friday, and you pick the weekday that works around your job, school or family.' },
+  { q: 'Can I start in OP without doing PHP or IOP first?', a: 'Yes, if your pre-screening supports it. Our Clinical Director reviews every pre-screening and recommends the level of care that fits. <a href="/admissions/">Start with admissions</a>.' },
+  { q: 'Can I move back up to IOP or PHP?', a: 'Yes. If symptoms return or life gets harder, you can step back up to the <a href="/programs/iop/">Intensive Outpatient Program</a> or the <a href="/programs/php/">Partial Hospitalization Program</a>, with the same team.' },
+  { q: 'Does insurance cover outpatient treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+];
+---
+<ProgramPage
+  path="/programs/outpatient/"
+  metaTitle="Outpatient Program (OP) in West Palm Beach | Sunview"
+  description="Outpatient program in West Palm Beach: one day a week, 9 AM to 1 PM, any weekday. Ongoing support after PHP or IOP while life gets back to normal."
+  crumb="Outpatient Program"
+  h1="Outpatient Program in West Palm Beach"
+  subheading="One morning a week to keep the work going while life takes back the rest."
+  lead="Outpatient treatment for adults with substance use and co-occurring mental health conditions: a weekly group morning, individual sessions when you need them, and the same team you already know."
+  therapy={{
+    name: 'Outpatient Program (OP)',
+    description: 'Outpatient treatment one weekday morning a week (9 AM to 1 PM) for substance use and co-occurring mental health conditions, as a step-down from PHP or IOP or for longer-term maintenance.',
+  }}
+  faqTitle="Frequently Asked Questions About Outpatient Treatment"
+  faqs={faqs}
+  linksClass=""
+>
+  <!-- 1. What OP is -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The program</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What the Outpatient Program Is</h2>
+        <p class="subheading mt-3">A weekly anchor for recovery in real life</p>
+        <div class="prose-sv mt-6">
+          <p>Our Outpatient Program (OP) is the least intensive level of care at Sunview. You come in one morning a week, from 9 AM to 1 PM, on the weekday you choose. That’s about 4 hours of treatment a week, built around a life that’s getting fuller.</p>
+          <p>OP centers on group therapy, with individual and family sessions when your therapist recommends them. You keep access to psychiatric care through our Telemed Clinix partnership, and you keep working with therapists who already know your story.</p>
+          <p>It’s outpatient rehab in West Palm Beach for substance use and for the mental health conditions that often come with it. Read more about our <a href="/what-we-treat/substance-use/">substance use treatment</a> and <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
+        </div>
+      </div>
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">What OP includes</h3>
+        <ul class="mt-4 space-y-3">
+          {includes.map((i) => <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />{i}</li>)}
+        </ul>
+        <a href="/therapies/group-therapy/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">How group therapy works at Sunview <Icon name="arrow" class="h-4 w-4" /></a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. Who OP is for -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Who it’s for</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Who the Outpatient Program Is For</h2>
+        <p class="subheading mt-3">For when you need less time in treatment, not less support</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {who.map((w) => (
+          <div class="card">
+            <Icon name={w.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{w.title}</h3>
+            <p class="mt-2">{w.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Insight to integration -->
+  <section class="section relative overflow-hidden bg-teal text-white">
+    <div class="container-x relative grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow eyebrow-light">In Vivo Treatment™</span>
+        <h2 class="mt-3 text-3xl text-white sm:text-[2.1875rem]">What Changes in OP: From Insight to Integration</h2>
+        <p class="subheading mt-3 !text-white">Understanding why is the start. Choosing differently is the goal.</p>
+        <p class="mt-5 text-lg text-white/90">Earlier in treatment, the question is “how do I get through this?” By OP, it’s closer to “I understand why I do this, I can see it happening, and I have a choice about how I respond.”</p>
+        <p class="mt-4 text-lg text-white/90">Most of your week now happens outside the room. The argument at home, the stressful day at work: you bring what actually happened back to group, we slow it down together, and you try again. That’s recovery practiced in real life.</p>
+        <a href="/about/our-approach/" class="btn-ghost-light mt-8">Our clinical approach <Icon name="arrow" /></a>
+      </div>
+      <ol class="flex flex-wrap gap-3" aria-label="The In Vivo Treatment loop">
+        {loop.map((l, i) => (
+          <li class="inline-flex items-center gap-3 rounded-full bg-white/10 px-5 py-3 font-extrabold text-white ring-1 ring-white/25">
+            <span class="font-sans text-sm text-sun">{String(i + 1).padStart(2, '0')}</span>{l}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. Continued support -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">After the program</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Support That Continues After the Program</h2>
+        <p class="subheading mt-3">Finishing OP doesn’t mean losing your providers</p>
+        <p class="mt-5 text-lg">If medication is part of your recovery, you can keep seeing the same Telemed Clinix provider after you finish at Sunview. Your psychiatric care doesn’t reset just because the program ends.</p>
+        <p class="mt-4 text-lg">After discharge, our team reaches out to see how you’re doing: whether you’re still connected to the supports we recommended, like an individual therapist, psychiatric care and recovery meetings, and how life is going overall.</p>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+
+      <!-- 5. When OP is not enough -->
+      <div class="rounded-[var(--radius-lg)] bg-mist p-7 sm:p-9">
+        <h2 class="text-2xl sm:text-[1.75rem]">When OP Is Not Enough</h2>
+        <p class="mt-4">Needing more support isn’t failure. There are ebbs and flows, hard seasons and old patterns that resurface. If symptoms come back or life gets heavier, you can step back up to the <a href="/programs/iop/" class="font-bold text-teal underline decoration-2 underline-offset-4">Intensive Outpatient Program</a> or the <a href="/programs/php/" class="font-bold text-teal underline decoration-2 underline-offset-4">Partial Hospitalization Program</a> with the same team, and step down again when you’re ready.</p>
+        <ScopeNote class="mt-6 !bg-white" />
+        <a href="/admissions/" class="btn-teal mt-6">Talk to admissions <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Weekly schedule -->
+  <ProgramSchedule
+    highlight={['OP']}
+    title="Outpatient Program Schedule in West Palm Beach"
+    subtitle="One weekday morning, your choice of day"
+    intro="The Outpatient Program is highlighted. The other levels are shown so you can compare."
+  />
+</ProgramPage>

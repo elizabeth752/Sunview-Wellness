@@ -1,0 +1,155 @@
+---
+// /what-we-treat/mental-health/trauma-ptsd/: What-We-Treat-Content-Briefs.md §K. Sources in
+// docs/content/what-we-treat-sources-mental.md. Rotation: Reviews only. Reviewed by Dana.
+// No EMDR claim: only "EMDR-informed techniques may be used in individual sessions when clinically appropriate" (Q18).
+import ServicePage from '../../../layouts/ServicePage.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { conditionAbout } from '../../../lib/programSchema.js';
+
+const path = '/what-we-treat/mental-health/trauma-ptsd/';
+
+const signs = [
+  'You use to quiet memories, nightmares or a body that won’t settle',
+  'You feel on edge, numb, or both',
+  'Certain places, people or dates pull you back toward using',
+  'Getting sober brought old pain closer to the surface',
+];
+
+const treating = [
+  { icon: 'shield', title: 'Every clinician is trauma-informed', text: 'Whoever is in the room with you understands how trauma shapes behavior, reactions and relationships, and responds with that in mind.' },
+  { icon: 'clock', title: 'Stability first, depth later', text: 'We don’t rush you into painful memories. Early on the focus is safety and stability. Deeper work comes as trust and steadiness grow.' },
+  { icon: 'users', title: 'Safety in the group', text: 'Twice a month, women and men meet in separate groups. For many people, that extra layer of safety makes it easier to speak.' },
+  { icon: 'heart', title: 'Family, at your pace', text: 'With your consent, your therapist contacts a loved one in your first week. You decide how and when family becomes part of the work.' },
+];
+
+const approaches = [
+  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the protective parts of you that formed around painful experiences, and relate to them with less fear.' },
+  { name: 'Inner child work', text: 'Recognizes the younger parts of you that still carry old experiences, and builds the compassion and safety they missed.' },
+  { name: 'Psychodynamic therapy', text: 'Explores how past experiences may still be showing up in how you think, feel and relate today.' },
+  { name: 'DBT', text: 'Builds skills for overwhelming emotions, so you have ways to stay grounded besides using.' },
+  { name: 'Psychodrama and CBT', text: 'Psychodrama brings experiences into the room in a structured way; CBT works on the thoughts that keep you stuck.' },
+];
+
+const faqs = [
+  { q: 'Will I have to talk about my trauma right away?', a: 'No. Early in treatment the focus is on safety and stability. Deeper work happens when you’re steadier and have built trust with your therapist and group, at a pace that feels safe.' },
+  { q: 'Do you offer EMDR?', a: 'We don’t offer EMDR as a designated service. EMDR-informed techniques may be used in individual sessions when clinically appropriate. Our main approaches include IFS, inner child work, psychodynamic therapy and DBT.' },
+  { q: 'Do you treat PTSD without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If trauma is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'What if difficult memories become overwhelming?', a: 'Your team adjusts the pace. We also monitor your mental health throughout treatment, and if symptoms significantly worsen or your safety becomes a concern, we help you reach a more intensive level of care.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle="Trauma and PTSD Treatment in West Palm Beach | Sunview"
+  description="Trauma-informed treatment for PTSD alongside substance use in West Palm Beach. Outpatient PHP, IOP and OP with psychodynamic, IFS and DBT-based care."
+  crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }, { name: 'Trauma & PTSD', href: path }]}
+  h1="Trauma and PTSD Treatment in West Palm Beach"
+  subheading="Trauma-informed care, at a pace that keeps you safe."
+  lead="Trauma and PTSD treated alongside substance use in outpatient PHP, IOP and OP, with clinicians who are all trauma-informed and never rush you into what you’re not ready to face."
+  faqTitle="Frequently Asked Questions About Trauma Treatment"
+  faqs={faqs}
+  reviews
+  about={conditionAbout('Post-traumatic stress disorder')}
+>
+  <!-- The cycle -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The cycle</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How Trauma and Substance Use Feed Each Other</h2>
+        <p class="subheading mt-3">What numbs the pain can keep it in place</p>
+        <div class="prose-sv mt-6">
+          <p>At Sunview, trauma and PTSD are treated as part of <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>, alongside substance use, within our Partial Hospitalization, Intensive Outpatient and Outpatient programs. Trauma-related disorders are among the conditions we see most often in people who come to us for addiction treatment.</p>
+          <p>Substances can become a way to quiet what trauma leaves behind: the memories, the tension, the feeling of never being fully safe. For a while that works. But using also keeps the pain from being processed, and it often brings its own harm, so the cycle tightens.</p>
+          <p>We think of it in layers. The substance use is what’s visible. Underneath are experiences that shaped how you see yourself, relate to others and cope. We work through those layers carefully, one at a time.</p>
+        </div>
+      </div>
+      <!-- REVIEW 8.5: plain-language passage pending Elizabeth review -->
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">Signs the two may be connected</h3>
+        <ul class="mt-4 space-y-3">
+          {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Treating it at Sunview -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">At Sunview</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Treating Trauma Alongside Addiction at Sunview</h2>
+        <p class="subheading mt-3">Safety comes before depth</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {treating.map((t) => (
+          <div class="card">
+            <Icon name={t.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{t.title}</h3>
+            <p class="mt-2">{t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Therapies -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <span class="eyebrow">Therapy</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Therapy Approaches We Use</h2>
+        <p class="subheading mt-3">From “what’s wrong with me” to “what happened to me”</p>
+        <p class="mt-5 text-lg">Our work is about understanding the why behind your reactions, then practicing new ways to respond from who you are today rather than from old wounds. EMDR-informed techniques may be used in individual sessions when clinically appropriate.</p>
+        <a href="/therapies/" class="btn-teal mt-8">How therapy works at Sunview <Icon name="arrow" /></a>
+      </div>
+      <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
+        {approaches.map((a) => (
+          <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
+            <dt class="font-extrabold">{a.name}</dt>
+            <dd>{a.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Psychiatry -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Medication</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Psychiatric Care and Medication</h2>
+        <p class="subheading mt-3">Support for stability while the deeper work happens</p>
+        <p class="mt-5 text-lg">Psychiatric evaluation and medication management are part of every program through our partner, Telemed Clinix. Your provider reviews what you already take and adjusts only when it’s clinically indicated. Appointments happen virtually from a private office at Sunview.</p>
+        <p class="mt-4 text-lg">Medication can support stability. Therapy is where trauma is understood and worked through. You can keep the same provider after you finish.</p>
+      </div>
+      <div class="card !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h3 class="mt-4 text-xl">What psychiatric care includes</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Evaluation and review of your current medications</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Confidential appointments, scheduled for you</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />The same provider after discharge, if you want</li>
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    class="section"
+    title="Which Level of Care Fits"
+    subtitle="Our Clinical Director helps you decide"
+    level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily structure and support help build the stability deeper work needs. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you’re steadier and need to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps the work going over time.</p>`}
+    related={[
+      { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
+      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+    ]}
+  />
+</ServicePage>

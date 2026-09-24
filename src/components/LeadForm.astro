@@ -4,6 +4,10 @@
 // Per Claude-Code-Tracking-Form-Phone.md (2026-09-22): submits FormData to /api/lead/ (server-side CTM
 // proxy), sends gclid from the URL or the _gcl_aw cookie, shows an inline confirmation and pushes
 // dataLayer {event:'lead_form_submit'}. A failed CTM call is never disguised as success.
+// variant="referral" (/for-professionals/, Professionals-Location-Content-Briefs.md §A): same card, same
+// endpoint, a referral field set instead of the coverage fields (no policy ID / carrier, no SMS consent).
+// The default (coverage) variant's markup, payload and dataLayer push are unchanged. CTM mapping of the
+// referral fields: see src/pages/api/lead.ts [Oriana to map fields].
 import { SITE } from '../data/site.js';
 
 interface Props {
@@ -13,8 +17,13 @@ interface Props {
   // Accepted for older call sites; the card has one look everywhere.
   sub?: string;
   dark?: boolean;
+  variant?: 'coverage' | 'referral';
 }
-const { heading = 'Talk to an Admissions Specialist', formId = 'sunview-coverage', showMessage = false } = Astro.props;
+const { variant = 'coverage', formId = 'sunview-coverage', showMessage = false } = Astro.props;
+const referral = variant === 'referral';
+const heading = Astro.props.heading ?? (referral ? 'Refer a Patient' : 'Talk to an Admissions Specialist');
+// Referral select options (brief §A): the referring professional's view of where the patient is now.
+const LEVELS = ['Detox', 'Residential', 'Hospital', 'Outpatient', 'Other'];
 
 // 13px ink-muted labels · 45px fields and button (client request), 15px text, 8px radius · error-red asterisks (brand book state colors)
 const lbl = 'mb-1.5 block text-[13px] leading-snug text-muted';
@@ -26,6 +35,7 @@ const field =
   novalidate
   data-form-id={formId}
   data-phone={SITE.phone}
+  data-variant={referral ? 'referral' : undefined}
 >
   <div class="mb-4 flex items-center gap-3">
     <img src="/images/badges/hipaa-compliant.svg" alt="HIPAA Compliant" width="115" height="64" class="block h-10 w-auto flex-none" />
@@ -33,6 +43,42 @@ const field =
   </div>
 
   <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    {referral ? (
+      <>
+        <div>
+          <label class={lbl} for={`${formId}-name`}>Your name <span aria-hidden="true" class="text-error">*</span></label>
+          <input id={`${formId}-name`} class={field} type="text" name="name" autocomplete="name" required maxlength="80" />
+        </div>
+        <div>
+          <label class={lbl} for={`${formId}-org`}>Organization <span aria-hidden="true" class="text-error">*</span></label>
+          <input id={`${formId}-org`} class={field} type="text" name="organization" autocomplete="organization" required maxlength="100" />
+        </div>
+        <div>
+          <label class={lbl} for={`${formId}-phone`}>Phone <span aria-hidden="true" class="text-error">*</span></label>
+          <input id={`${formId}-phone`} class={field} type="tel" name="phone" autocomplete="tel-national" inputmode="tel" required />
+        </div>
+        <div>
+          <label class={lbl} for={`${formId}-email`}>Email <span aria-hidden="true" class="text-error">*</span></label>
+          <input id={`${formId}-email`} class={field} type="email" name="email" autocomplete="email" required maxlength="120" />
+        </div>
+        <div class="sm:col-span-2">
+          <label class={lbl} for={`${formId}-level`}>Patient’s current level of care <span aria-hidden="true" class="text-error">*</span></label>
+          <div class="relative">
+            <select id={`${formId}-level`} class:list={[field, 'appearance-none pr-10']} name="level_of_care" required>
+              <option value="" selected disabled></option>
+              {LEVELS.map((l) => <option value={l}>{l}</option>)}
+            </select>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-muted"><path d="m6 9 6 6 6-6" /></svg>
+          </div>
+        </div>
+        <div class="sm:col-span-2">
+          <label class={lbl} for={`${formId}-notes`}>Notes</label>
+          <textarea id={`${formId}-notes`} class:list={[field, '!h-auto py-2']} name="message" rows="3" maxlength="1000" aria-describedby={`${formId}-notes-hint`}></textarea>
+          <p id={`${formId}-notes-hint`} class="mt-1.5 text-[12px] leading-snug text-muted">Please do not include the patient’s full name, date of birth or diagnosis in this form. We’ll collect clinical details by phone.</p>
+        </div>
+      </>
+    ) : (
+    <>
     <div>
       <label class={lbl} for={`${formId}-name`}>What’s your name? <span aria-hidden="true" class="text-error">*</span></label>
       <input id={`${formId}-name`} class={field} type="text" name="name" autocomplete="name" required maxlength="80" />
@@ -71,6 +117,8 @@ const field =
       <input type="checkbox" name="sms_opt_in" value="yes" class="mt-0.5 h-4 w-4 flex-none accent-teal" />
       <span>Text me about my verification. Message and data rates may apply; reply STOP to opt out. Consent isn’t a condition of treatment.</span>
     </label>
+    </>
+    )}
 
     <!-- honeypot: hidden from people and from autofill -->
     <div class="hidden" aria-hidden="true">
@@ -81,17 +129,23 @@ const field =
       type="submit"
       class="mt-1.5 inline-flex h-[45px] items-center justify-center rounded-[8px] bg-teal px-[30px] text-[15px] font-bold text-white transition hover:bg-teal-light disabled:cursor-wait disabled:opacity-60 sm:col-span-2"
     >
-      <span data-label>Check Your Coverage</span>
+      <span data-label>{referral ? 'Send referral' : 'Check Your Coverage'}</span>
     </button>
     <!-- Validation / status message, right under the button -->
     <p class="sv-form-msg -mt-1 text-center text-sm font-bold text-error sm:col-span-2" role="alert" hidden></p>
   </div>
 
+  {referral ? (
+    <p class="mt-3.5 text-center text-[13px] leading-relaxed text-muted">
+      Or call admissions directly at <a href={SITE.phoneHref} class="font-bold text-teal">{SITE.phone}</a>.
+    </p>
+  ) : (
   <p class="mt-3.5 text-center text-[11px] leading-relaxed text-muted">
     Or call us 24/7 at <a href={SITE.phoneHref} class="font-bold text-teal">{SITE.phone}</a>. Everything you share is confidential.
   </p>
+  )}
   <p class="mt-2 text-center text-[10px] leading-normal text-muted">
-    By submitting, you agree to our <a href="/terms-of-use/" class="underline">Terms of Use</a> and <a href="/hipaa-notice/" class="underline">Notice of Privacy Practices</a>.
+    By submitting, you agree to our <a href="/privacy-policy/" class="underline">Privacy Policy</a>.
   </p>
 </form>
 
@@ -128,6 +182,8 @@ const field =
 
   document.querySelectorAll<HTMLFormElement>('.sv-lead-form').forEach((form) => {
     const started = Date.now();
+    const referral = form.dataset.variant === 'referral';
+    const idle = referral ? 'Send referral' : 'Check Your Coverage';
     const msg = form.querySelector<HTMLParagraphElement>('.sv-form-msg')!;
     const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
     const label = btn.querySelector<HTMLSpanElement>('[data-label]')!;
@@ -138,17 +194,18 @@ const field =
       msg.classList.toggle('text-teal', ok);
     };
 
-    // SMS consent only makes sense once there's a policy ID to text about.
-    const memberId = form.querySelector<HTMLInputElement>('[data-member-id-input]')!;
-    const consent = form.querySelector<HTMLElement>('[data-sms-consent]')!;
-    const consentBox = consent.querySelector<HTMLInputElement>('input')!;
+    // SMS consent only makes sense once there's a policy ID to text about (coverage variant only).
+    const memberId = form.querySelector<HTMLInputElement>('[data-member-id-input]');
+    const consent = form.querySelector<HTMLElement>('[data-sms-consent]');
+    const consentBox = consent?.querySelector<HTMLInputElement>('input') ?? null;
     const syncConsent = () => {
+      if (!memberId || !consent || !consentBox) return;
       const has = memberId.value.trim().length > 0;
       consent.hidden = !has;
       if (!has) consentBox.checked = false;
     };
-    memberId.addEventListener('input', syncConsent);
-    form.querySelectorAll<HTMLInputElement>('input').forEach((el) =>
+    memberId?.addEventListener('input', syncConsent);
+    form.querySelectorAll<HTMLInputElement | HTMLSelectElement>('input, select').forEach((el) =>
       el.addEventListener('input', () => {
         el.classList.remove('!border-error');
         el.removeAttribute('aria-invalid');
@@ -157,34 +214,60 @@ const field =
     );
     syncConsent();
 
+    // Flags each field in `required` that is missing or fails `invalid`, and returns the missing names.
+    const validate = (fd: FormData, required: string[], invalid: Record<string, boolean>) => {
+      const missing = required.filter((n) => !String(fd.get(n) || '').trim());
+      required.forEach((n) => {
+        const el = form.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${n}"]`)!;
+        const bad = missing.includes(n) || (!missing.includes(n) && !!invalid[n]);
+        el.setAttribute('aria-invalid', String(bad));
+        el.classList.toggle('!border-error', bad);
+      });
+      return missing;
+    };
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const fd = new FormData(form);
       const name = String(fd.get('name') || '').trim();
       const phone = String(fd.get('phone') || '').replace(/\D/g, '');
-      const policy = String(fd.get('policy_id') || '').trim();
-      const carrier = String(fd.get('insurance_carrier') || '').trim();
-      // Every field is required. Flag each missing one and show a single message under the button.
-      const required = ['name', 'phone', 'policy_id', 'insurance_carrier'];
-      const missing = required.filter((n) => !String(fd.get(n) || '').trim());
-      required.forEach((n) => {
-        const el = form.querySelector<HTMLInputElement>(`[name="${n}"]`)!;
-        const bad = missing.includes(n) || (n === 'phone' && !missing.includes('phone') && phone.length < 10);
-        el.setAttribute('aria-invalid', String(bad));
-        el.classList.toggle('!border-error', bad);
-      });
-      if (missing.length) return show('Please fill in all required fields to check your coverage.');
-      if (phone.length < 10) return show('Please enter a valid 10-digit phone number.');
-      if (Date.now() - started < MIN_FILL_MS) return show('One moment, then try again.');
-
       const body = new FormData();
-      body.set('name', name);
-      body.set('country_code', '1');
-      body.set('phone', phone);
-      body.set('insurance_carrier', carrier);
-      body.set('policy_id', policy);
-      body.set('sms_opt_in', fd.get('sms_opt_in') === 'yes' ? 'yes' : 'no');
-      body.set('message', String(fd.get('message') || ''));
+
+      if (referral) {
+        // Referral variant (/for-professionals/): no insurance fields. Notes are optional.
+        const email = String(fd.get('email') || '').trim();
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const missing = validate(fd, ['name', 'organization', 'phone', 'email', 'level_of_care'], { phone: phone.length < 10, email: !emailOk });
+        if (missing.length) return show('Please fill in all required fields to send your referral.');
+        if (phone.length < 10) return show('Please enter a valid 10-digit phone number.');
+        if (!emailOk) return show('Please enter a valid email address.');
+        if (Date.now() - started < MIN_FILL_MS) return show('One moment, then try again.');
+
+        body.set('form_variant', 'referral');
+        body.set('name', name);
+        body.set('country_code', '1');
+        body.set('phone', phone);
+        body.set('organization', String(fd.get('organization') || '').trim());
+        body.set('email', email);
+        body.set('level_of_care', String(fd.get('level_of_care') || ''));
+        body.set('message', String(fd.get('message') || ''));
+      } else {
+        const policy = String(fd.get('policy_id') || '').trim();
+        const carrier = String(fd.get('insurance_carrier') || '').trim();
+        // Every field is required. Flag each missing one and show a single message under the button.
+        const missing = validate(fd, ['name', 'phone', 'policy_id', 'insurance_carrier'], { phone: phone.length < 10 });
+        if (missing.length) return show('Please fill in all required fields to check your coverage.');
+        if (phone.length < 10) return show('Please enter a valid 10-digit phone number.');
+        if (Date.now() - started < MIN_FILL_MS) return show('One moment, then try again.');
+
+        body.set('name', name);
+        body.set('country_code', '1');
+        body.set('phone', phone);
+        body.set('insurance_carrier', carrier);
+        body.set('policy_id', policy);
+        body.set('sms_opt_in', fd.get('sms_opt_in') === 'yes' ? 'yes' : 'no');
+        body.set('message', String(fd.get('message') || ''));
+      }
       body.set('consent', 'true'); // submitting = agreeing to the Terms of Use / Notice of Privacy Practices stated on the card
       body.set('hp_field', String(fd.get('hp_field') || ''));
       body.set('visitor_sid', (window as any).__ctm?.config?.sid || '');
@@ -197,16 +280,30 @@ const field =
         const res = await fetch('/api/lead/', { method: 'POST', headers: { Accept: 'application/json' }, body });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong sending that.');
-        (window as any).dataLayer?.push({ event: 'lead_form_submit', form_id: form.dataset.formId });
+        // Same event for both variants; the referral form adds form_variant so GTM can tell them apart.
+        (window as any).dataLayer?.push(
+          referral
+            ? { event: 'lead_form_submit', form_id: form.dataset.formId, form_variant: 'referral' }
+            : { event: 'lead_form_submit', form_id: form.dataset.formId },
+        );
         form.reset();
         syncConsent();
-        show('Thank you. We’ve got your information, and an admissions specialist will call you shortly.', true);
-        label.textContent = 'Check Your Coverage';
+        show(
+          referral
+            ? 'Thank you. We’ve received your referral, and our admissions team will be in touch.'
+            : 'Thank you. We’ve got your information, and an admissions specialist will call you shortly.',
+          true,
+        );
+        label.textContent = idle;
         btn.disabled = false;
       } catch (err) {
-        show(`${(err as Error).message} Please call us at ${form.dataset.phone} and we’ll verify your benefits right away.`);
+        show(
+          referral
+            ? `${(err as Error).message} Please call admissions at ${form.dataset.phone}.`
+            : `${(err as Error).message} Please call us at ${form.dataset.phone} and we’ll verify your benefits right away.`,
+        );
         btn.disabled = false;
-        label.textContent = 'Check Your Coverage';
+        label.textContent = idle;
       }
     });
   });

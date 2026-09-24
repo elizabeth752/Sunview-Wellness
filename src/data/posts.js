@@ -1,4 +1,5 @@
-// Media & Podcasts. Slugs match the live WordPress URLs exactly (/media/<slug>/).
+// Blog: articles and podcasts at /blog/<slug>/ (final sitemap). Slugs match the live WordPress URLs; /media/<slug>/ and the
+// root-level legacy slug 301 here (vercel.json).
 // type: 'article' (full body on-site) · 'video' (YouTube embed + summary) · 'external' (LinkedIn piece)
 // Video summaries are paraphrased from each episode's own YouTube description.
 
@@ -6,6 +7,7 @@ const FRANK = {
   name: 'Frank Galimidi',
   creds: 'CASAC, CAP, CRADC, ICADC, NCAC II, SAP',
   role: 'CEO, Sunview Wellness · Creator of In Vivo Treatment™ and Clinical Architecture™',
+  href: '/our-team/frank-galimidi/', // author page: byline link + BlogPosting author.url (E-E-A-T)
 };
 
 export const posts = [
@@ -69,6 +71,7 @@ export const posts = [
     slug: 'recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days',
     type: 'video',
     title: 'Recovery Centered Podcast with Tim Roberto: Why Addiction Treatment Can’t End at 28 Days',
+    seoTitle: 'Why Addiction Treatment Can’t End at 28 Days | Sunview', // <title> only (≤60, answer 9.1)
     dek: 'Why 28 days is rarely enough, and what a stronger continuum of care looks like.',
     date: '2026-09-16',
     youtube: 'haoZ3Qb6kWA',
@@ -84,6 +87,7 @@ export const posts = [
     slug: 'in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world',
     type: 'article',
     title: 'In Vivo Treatment™ at Sunview Wellness: Recovery Has to Work in the Real World',
+    seoTitle: 'In Vivo Treatment™: Recovery Has to Work in the Real World', // <title> only (≤60, answer 9.1)
     dek: 'Recovery skills shouldn’t just exist on paper. At some point, you have to practice them where your life actually happens.',
     date: '2026-09-10',
     image: '/images/media/in-vivo-treatment.webp',
@@ -123,14 +127,14 @@ export const posts = [
 <p>That feedback loop is the heart of In Vivo Treatment™.</p>
 
 <h2>The Real World Becomes Part of the Clinical Environment</h2>
-<p>At Sunview Wellness, our <a href="/outpatient-rehab-west-palm-beach/">outpatient levels of care</a> give clients meaningful structure while letting them handle the everyday pressures of life. That means going back to work, managing bills, fixing relationships, building a sober network, and figuring out how to fill their time without substances.</p>
+<p>At Sunview Wellness, our <a href="/programs/">outpatient levels of care</a> give clients meaningful structure while letting them handle the everyday pressures of life. That means going back to work, managing bills, fixing relationships, building a sober network, and figuring out how to fill their time without substances.</p>
 <p>It also means running into roadblocks. But hitting a roadblock is not a treatment failure; it is often what makes treatment actually click.</p>
 <p>A client might realize that setting a boundary is a lot harder when they are sitting across from a real family member. They might find that going back to work triggers unexpected anxiety, or that boredom is a much bigger trigger than they thought. Conversely, they might successfully navigate a situation that used to automatically lead to using.</p>
 <p>Both the struggles and the wins give our treatment team invaluable insights. Instead of guessing how recovery will hold up out in the wild, we help clients examine how it is actually holding up.</p>
 
 <h2>Why Continuing Care Matters</h2>
 <p>One of the most vulnerable stretches in recovery is stepping down from high structure back into everyday life. The pre-treatment stressors are still right there: families need attention, bills are due, jobs need to be maintained, and relationships need mending. And they are expected to navigate all of that without the coping mechanism they relied on for years.</p>
-<p>That is why a true continuum of care is so important at Sunview Wellness. High-level care is essential for stabilization, but stabilization is not the same thing as long-term recovery. Our <a href="/php-iop-west-palm-beach/">Partial Hospitalization (PHP), Intensive Outpatient (IOP)</a>, and standard outpatient programs build a bridge, letting people practice their recovery step by step while clinical backup is still within reach.</p>
+<p>That is why a true continuum of care is so important at Sunview Wellness. High-level care is essential for stabilization, but stabilization is not the same thing as long-term recovery. Our <a href="/programs/">Partial Hospitalization (PHP), Intensive Outpatient (IOP)</a>, and standard outpatient programs build a bridge, letting people practice their recovery step by step while clinical backup is still within reach.</p>
 <p>The goal is not just to keep people in treatment longer; it is to weave treatment seamlessly into life.</p>
 
 <h2>Treatment Should Prepare People to Need Less Treatment</h2>
@@ -169,6 +173,7 @@ export const posts = [
     slug: 'insurance-companies-cut-patients-off-the-moment-they-start-doing-well',
     type: 'external',
     title: 'Insurance companies cut patients off the moment they start doing well',
+    seoTitle: 'Insurance Cuts Patients Off the Moment They Start Doing Well', // <title> only (≤60, answer 9.1)
     dek: 'A clip from Episode 10 of The Saving Dose on why coverage so often ends right when recovery starts to take hold.',
     date: '2026-09-08',
     image: '/images/media/insurance-clip.webp',
@@ -215,6 +220,7 @@ export const posts = [
     type: 'external',
     title: 'Recovery Doesn’t Happen in a Bubble',
     dek: 'Why extended care is where recovery actually happens.',
+    metaDescription: 'Frank Galimidi on why PHP, IOP and outpatient care are where recovery is proven, because sobriety is practiced in real life, not in treatment. Read more.', // meta only (dek too short, answer 9.1)
     date: '2026-06-02',
     image: '/images/media/recovery-bubble.webp',
     externalUrl:
@@ -232,6 +238,7 @@ export const posts = [
     type: 'external',
     title: 'Beyond Good Enough: Redefining Community-Based Care',
     dek: 'Why “good enough” care is no longer acceptable.',
+    metaDescription: 'Frank Galimidi on why community-based outpatient care must be intensive, skilled and transformative, not merely adequate. Read the full article.', // meta only (dek too short, answer 9.1)
     date: '2026-06-02',
     image: '/images/media/beyond-good-enough.webp',
     externalUrl:

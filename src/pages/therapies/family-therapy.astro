@@ -1,0 +1,177 @@
+---
+// /therapies/family-therapy/: Therapies-Content-Briefs.md §D. Sources in
+// docs/content/therapies-sources-inner-family.md. Rotation: Reviews only. Reviewed by Dana.
+// Layout: system diagram, vertical timeline, cycle graphic, quiet reassurance block, profile spotlight,
+// CTA band. Deliberately different from the card-grid pages.
+import ServicePage from '../../layouts/ServicePage.astro';
+import NextSteps from '../../components/NextSteps.astro';
+import Icon from '../../components/Icon.astro';
+import { THERAPIES_HUB } from '../../data/therapies.js';
+
+const path = '/therapies/family-therapy/';
+const nodes = [
+  { label: 'Partner', pos: 'left-1/2 top-0 -translate-x-1/2' },
+  { label: 'Parent', pos: 'right-0 top-1/2 -translate-y-1/2' },
+  { label: 'Child', pos: 'left-1/2 bottom-0 -translate-x-1/2' },
+  { label: 'Sibling', pos: 'left-0 top-1/2 -translate-y-1/2' },
+];
+
+const timeline = [
+  { when: 'At intake', title: 'Getting to know your family system', text: 'A biopsychosocial assessment explores your family history and the people you feel closest to. We review the releases of information you sign and talk about your comfort level.' },
+  { when: 'First week', title: 'Initial family contact', text: 'With your consent, your therapist reaches out to a loved one to introduce themselves and hear what they think would help us understand you.' },
+  { when: 'Ongoing', title: 'Updates when appropriate', text: 'Depending on your needs, that can mean weekly phone calls or email updates, always within the limits you agree to.' },
+  { when: 'Biweekly or monthly', title: 'Family sessions', text: 'Sessions with your loved ones on a timeline that supports your treatment, not someone else’s schedule.' },
+];
+
+const cycle = ['A crisis', 'Someone steps in to rescue', 'Short-term relief', 'The pattern repeats'];
+
+const faqs = [
+  { q: 'Is family therapy required?', a: 'No. Families are involved when it’s clinically appropriate and when you agree. We may encourage you to stay open to it, but nobody is pressured.' },
+  { q: 'How soon will you contact my family?', a: 'With your consent, your therapist makes an initial family contact within your first week of programming.' },
+  { q: 'What if my family is part of the problem?', a: 'That’s exactly why we look at the whole system. We explore those relationships carefully with you, respect your boundaries, and decide together whether and how anyone gets involved.' },
+  // REVIEW 8.5: plain-language passage pending Elizabeth review ("Can my partner attend?")
+  { q: 'Can my partner attend?', a: 'Often, yes. Who takes part depends on your releases of information, your comfort and what your therapist recommends. Ask during your first week.' },
+  { q: 'Do you offer family therapy on its own?', a: 'No. Family therapy is part of treatment within our PHP, IOP and outpatient programs. If your family is looking for counseling on its own, we’ll point you to the right place.' },
+];
+
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<ServicePage
+  path={path}
+  metaTitle="Family Therapy for Addiction in West Palm Beach | Sunview"
+  description="Family therapy and family involvement in outpatient addiction treatment in West Palm Beach. First contact in week one, led by a systems-trained team."
+  crumbs={[THERAPIES_HUB, { name: 'Family Therapy', href: path }]}
+  h1="Family Therapy for Addiction Recovery in West Palm Beach"
+  subheading="Recovery is not only an individual process."
+  lead="Addiction and mental health struggles affect the whole family. We bring your loved ones into treatment when it helps and when you agree, at a pace that fits you, with a team trained to see the system around you."
+  faqTitle="Frequently Asked Questions About Family Therapy"
+  faqs={faqs}
+  reviews
+  about={{ '@type': 'MedicalTherapy', name: 'Family therapy' }}
+>
+  <!-- 1. Systems diagram + prose -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Why Family Systems Matter in Addiction and Recovery</h2>
+        <div class="prose-sv mt-6">
+          <p>Every member of a family plays a role, whether they recognize it or not. Each person helps keep the system’s sense of “normal,” even when those patterns aren’t healthy. Even someone who has been cut off still plays a part through the distance itself.</p>
+          <p>Patterns also travel across generations: beliefs, coping strategies and ways of relating get passed down. We look at them in a circle, not a straight line, because each person’s response shapes the others.</p>
+          <p>At Sunview, family therapy is part of treatment within our <a href="/programs/">PHP, IOP and outpatient programs</a>, not a standalone service. If you’re looking for weekly private family counseling only, we’ll point you to the right place.</p>
+        </div>
+      </div>
+      <figure class="mx-auto w-full max-w-[340px]" aria-label="A family system: the person in treatment connected to a partner, parent, child and sibling">
+        <div class="relative aspect-square">
+          <div class="absolute inset-[16%] rounded-full border-2 border-dashed border-teal/30"></div>
+          <span class="absolute left-1/2 top-1/2 inline-flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-teal text-center font-sans text-sm font-extrabold leading-tight text-white">You</span>
+          {nodes.map((n) => (
+            <span class={`absolute inline-flex h-[72px] w-[72px] items-center justify-center rounded-full border-2 border-teal bg-white font-sans text-sm font-bold text-charcoal ${n.pos}`}>{n.label}</span>
+          ))}
+        </div>
+        <figcaption class="mt-4 text-center text-sm text-muted">Each person’s response shapes the others.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. Vertical timeline -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">How Families Are Involved at Sunview</h2>
+        <p class="subheading mt-3">On a timeline that fits your treatment</p>
+      </div>
+      <ol class="relative border-l-2 border-teal/30 pl-8">
+        {timeline.map((t) => (
+          <li class="relative pb-8 last:pb-0">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-mist bg-teal" aria-hidden="true"></span>
+            <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{t.when}</p>
+            <h3 class="mt-1 text-xl">{t.title}</h3>
+            <p class="mt-1">{t.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3. Cycle graphic -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div class="order-2 lg:order-1">
+        <ol class="grid grid-cols-2 gap-3" aria-label="A rescuing cycle">
+          {cycle.map((c, i) => (
+            <li class:list={['flex items-center gap-3 rounded-full border border-line px-4 py-3 font-bold text-charcoal', i === 3 && 'bg-cream']}>
+              <Icon name="refresh" class="h-4 w-4 shrink-0 text-teal" />{c}
+            </li>
+          ))}
+        </ol>
+        <div class="mt-5 rounded-[var(--radius-card)] border-l-4 border-gold bg-cream p-5">
+          <p class="font-extrabold text-charcoal">Break the cycle</p>
+          <p class="mt-1">Boundaries are not abandonment. Family work helps loved ones step out of rescuing and into support that actually helps recovery.</p>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <!-- Built on the CEO's model (Client Wiki, "The clinical model in the CEO's words", 10 Sep 2026) -->
+        <h2 class="text-3xl sm:text-[2.1875rem]">Breaking Enabling and Rescuing Cycles</h2>
+        <p class="mt-5 text-lg">Family therapy exists to break enabling and rescuing cycles and to align everyone’s expectations, so that recovery is supported rather than undermined.</p>
+        <p class="mt-4 text-lg">Families often come to us exhausted and full of questions. Did we enable this? If we set boundaries, are we abandoning them? Those questions are part of the work.</p>
+        <p class="mt-4 text-lg">We help loved ones understand their own patterns and roles in the system, so the family can change alongside the person in treatment instead of pulling them back into old routines.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Not ready -->
+  <section class="section pt-0">
+    <div class="container-x">
+      <div class="rounded-[var(--radius-lg)] bg-cream p-8 sm:p-10">
+        <h2 class="max-w-3xl text-3xl sm:text-[2.1875rem]">When Someone Is Not Ready to Involve Family</h2>
+        <div class="mt-5 grid gap-6 text-lg md:grid-cols-2">
+          <p>Not everyone wants their family involved, and that’s okay. We take your hesitation seriously, support you, and never pressure you into it.</p>
+          <p>We may gently invite you to stay open-minded, and to explore what’s underneath the hesitation. As treatment progresses, healthy involvement sometimes becomes possible in ways that didn’t feel safe at first. Either way, the decision stays with you and your therapist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Profile spotlight -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="max-w-3xl text-3xl sm:text-[2.1875rem]">A Clinical Director Trained in Couple and Family Therapy</h2>
+      <figure class="mt-8 grid gap-8 rounded-[var(--radius-lg)] bg-white p-8 shadow-[var(--shadow-soft)] sm:p-10 md:grid-cols-[auto_1fr] md:items-start">
+        <span class="inline-flex h-24 w-24 items-center justify-center rounded-full bg-teal font-sans text-3xl font-extrabold text-white" aria-hidden="true">DM</span>
+        <div>
+          <p class="text-xl font-extrabold text-charcoal">Dana Martin, Ph.D., LMFT, MCAP, QS</p>
+          <p class="text-muted">Clinical Director</p>
+          <p class="mt-4">Dana holds a Ph.D. in Couple and Family Therapy and an MS in Marriage and Family Therapy from Nova Southeastern University. Her systems-based training shapes Sunview’s whole clinical model, including how families are brought into treatment.</p>
+          <a href="/our-team/dana-martin/" class={`mt-5 inline-flex items-center gap-2 ${link}`}>About Dana Martin <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 6. Families outside the session -->
+  <section class="section">
+    <div class="container-x">
+      <div class="flex flex-col gap-6 rounded-[var(--radius-lg)] bg-teal p-8 text-white sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl text-white sm:text-[2.1875rem]">Support for Families Outside the Session</h2>
+          <p class="mt-3 text-lg text-white/90">If you’re worried about someone you love, you don’t have to wait for a session to get guidance. Start with what to expect and how to help.</p>
+        </div>
+        <a href="/admissions/for-families/" class="btn-ghost-light shrink-0">Support for families</a>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    title="Which Level of Care Fits"
+    subtitle="Family work is part of every level"
+    level={`<p>Family involvement is available in the <a href="/programs/php/">Partial Hospitalization Program</a>, the <a href="/programs/iop/">Intensive Outpatient Program</a> and the <a href="/programs/outpatient/">Outpatient Program</a>. Our Clinical Director recommends where you start.</p>`}
+    related={[
+      { label: 'All therapy approaches', href: '/therapies/' },
+      { label: 'Group therapy', href: '/therapies/group-therapy/' },
+      { label: 'Inner child therapy', href: '/therapies/inner-child-therapy/' },
+      { label: 'Dual diagnosis treatment', href: '/what-we-treat/dual-diagnosis/' },
+      { label: 'Substance use disorder treatment', href: '/what-we-treat/substance-use/' },
+      { label: 'Depression and addiction treatment', href: '/what-we-treat/mental-health/depression/' },
+    ]}
+  />
+</ServicePage>

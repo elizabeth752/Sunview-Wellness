@@ -1,0 +1,276 @@
+SUNVIEW WELLNESS: OPEN CONTENT QUESTIONS
+Website rebuild (local build, not published). Prepared 2026-09-24.
+
+How to use this file:
+- Each question has a number, the context, and what we need back.
+- [CLAUDE.AI] = likely a brief or strategy decision that claude.ai can answer.
+- [ELIZABETH] = a fact about Sunview that only the client can confirm.
+- [ORIANA] = CallTrackingMetrics setup.
+- Answer inline under each question (for example "A: ...").
+- Anything unanswered stays on the site as a visible placeholder or flag, or is left out.
+
+Source situation that explains most of the questions below:
+Our copy of the Client Wiki (PDF dated 2026-09-22) only has brand colors, fonts and the logo filled in.
+Mission, Vision, Values, USPs 1-4, the team bios, the insurance/in-network matrix, service area,
+languages, amenities and the CEO's models are all BLANK in our copy. The briefs cite the Wiki for
+many of these. If a fuller Wiki exists, sending it would answer many of the questions at once.
+
+======================================================================
+0. THE WIKI ITSELF
+======================================================================
+0.1 [CLAUDE.AI / ELIZABETH] Is there a newer or fuller version of the Client Wiki than the 2026-09-22 PDF?
+    The briefs quote Wiki content (bios, USPs, Mission/Vision/Values, "Breaking Secrecy",
+    "enabling/rescuing cycles", in-network status, "admissions team, Carissa", the 24/7 line)
+    that is not in our copy.
+    Need: the full Wiki text, or the specific sections listed in this file.
+
+======================================================================
+1. ABOUT PAGE (/about/)
+======================================================================
+1.1 [ELIZABETH] Mission, Vision and Values, verbatim.
+    The brief says to use them word for word from the Wiki, with no rewrite. Ours are blank, so the
+    page shows placeholders.
+    Need: the exact text of each.
+
+1.2 [ELIZABETH] USPs 1-4, verbatim.
+    Our Wiki has blank USP 1-3 and no USP 4. "A True Outpatient Model for Real Life" is currently
+    written from the questionnaire, the live site and Frank's articles.
+    Need: the four USPs.
+
+1.3 [ELIZABETH] "Founded in 2021" and "Formerly Sunview Medical Center".
+    Both come from the brief only; they aren't on the live site or in the Wiki.
+    Need: confirm both. When did the name change? Can we add "Sunview Medical Center" as an
+    alternate name in the Google schema (helps people who search the old name)?
+
+1.4 [ELIZABETH] Service area and languages.
+    The pages say "West Palm Beach and Palm Beach County" and "care in English and Spanish".
+    Need: confirm the service area wording and that Spanish-language care is available.
+
+======================================================================
+2. OUR APPROACH PAGE (/about/our-approach/)
+======================================================================
+2.1 [ELIZABETH, from Frank] What does "I = Sick" mean?
+    The brief calls it Frank's term, but no source defines it. The live site bio says Frank's
+    philosophy is about "moving beyond the 'I = Addict' mentality".
+    Need: Frank's own definition (2-4 sentences). Is "I = Sick" the same idea as "I = Addict", or
+    a different one? Until then the section shows a review flag.
+
+2.2 [ELIZABETH, from Frank] Clinical Architecture(TM): anything more we can say?
+    The brief says "only what the site says". Right now it covers two ideas (Clinical Excellence,
+    Recovery Culture) and "accountability, connection, structure and sustainable recovery".
+    Need: confirm that's enough, or send more approved wording.
+
+2.3 [ELIZABETH] In Vivo infographic.
+    The image from the live article has a "Gemini Notebook" watermark and a typo.
+    Need: a clean version of the infographic.
+
+2.4 [CLAUDE.AI] Carefrontation (Q14) and gender-specific groups every other Thursday (Q12).
+    These were on the earlier version of the approach page but aren't in the new brief's H2 list,
+    so they're currently not on the page.
+    Need: should they appear somewhere (About, Group Therapy, or Our Approach)?
+
+======================================================================
+3. TEAM PAGES (/our-team/ and 11 person pages)
+======================================================================
+3.1 [ELIZABETH] Office Manager's name.
+    Wiki: "Carissa". Live site: "Karissa Delaney". A Google review also says "Karissa Delaney the
+    office manager".
+    Need: exact spelling of first name and surname (it becomes the page URL).
+
+3.2 [ELIZABETH] Jillian John's credential.
+    Brief/Wiki: RMHCI (Registered Mental Health Counseling Intern).
+    Live site: "MSW, Registered Clinical Social Worker Intern" (RCSWI).
+    These are different license tracks. Need: which one is correct?
+
+3.3 [ELIZABETH] Walter Bierschenk's credential and background.
+    Brief/Wiki: LCSW. Live site: LMHC, EMT-P, NERPSC, with a master's in Clinical Mental Health
+    Counseling (a counseling degree usually leads to LMHC, not LCSW).
+    The brief says include his retired firefighter / US Navy / VA background only if the Wiki bio
+    has it; the Wiki is blank, so it's removed and his bio is now about 35 words.
+    Need: correct credential(s), and whether we can use the fire service / Navy background.
+
+3.4 [ELIZABETH] Gabriel Pena.
+    The credential line shows "LMHC, QS" (brief). The live site also lists Ed.S. EMDR is left out
+    (he's EMDR-trained, not certified).
+    Need: confirm the credential line; confirm whether "trained in EMDR-informed approaches" may
+    be said.
+
+3.5 [ELIZABETH] Bios for Tyler Shoens (MSW, RCSWI) and Jose Toledo, M.D.
+    Neither is on the live site and the Wiki bios are blank. The pages show "[Wiki bio pending]".
+    Need: a short bio for each (background, focus, education). For Dr. Toledo: what does "Medical
+    Oversight" cover, and is he connected to Telemed Clinix?
+
+3.6 [ELIZABETH] Short bios are thin.
+    The brief asks for 120-250 words per bio. Only Frank and Dana reach that; the others are
+    35-90 words because the live bios are short and we don't invent facts.
+    Need (optional): longer bios or a few more facts per person.
+
+3.7 [ELIZABETH] Headshots and LinkedIn URLs for all 11 people, including Frank and Dana.
+    Current: initials placeholders, and no LinkedIn links.
+
+3.8 [ELIZABETH] Clinical Director supervision frequency.
+    The brief says "weekly supervision by the Clinical Director", but the questionnaire doesn't
+    give a frequency. The page currently says "supervision" without "weekly".
+    Need: confirm "weekly".
+
+3.9 [ELIZABETH] Quoting Dana by name.
+    Several pages quote the Clinical Director questionnaire and attribute it to "Dana Martin, Ph.D.,
+    LMFT". The questionnaire itself isn't signed.
+    Need: confirm Dana wrote those answers and agrees to be quoted by name.
+
+3.10 [ELIZABETH] Scott Belovicz's title.
+    The brief says Director of Business Development; the live site says Director of Clinical
+    Outreach. The brief's title is used. Need: confirm.
+
+3.11 [ELIZABETH] Matthew Snyder and Walter Bierschenk are shown as "Contract Group Leader" (brief)
+    instead of the live site's "Group Facilitator". Need: confirm.
+
+======================================================================
+4. FOR PROFESSIONALS (/for-professionals/)
+======================================================================
+4.1 [ELIZABETH] "Same-day" response and pre-screening.
+    The brief says "same-day response" (meta description) and "same-day pre-screening review by
+    the Clinical Director". The questionnaire describes the review but gives no timing.
+    Need: can we promise same-day?
+
+4.2 [ELIZABETH] What do referring professionals receive after a referral?
+    The brief: "you receive confirmation of admission [to confirm what feedback is shared, with
+    consent]". There's also an FAQ, "Do you provide progress updates?"
+    Need: what is shared with the referrer, when, and under what consent/release.
+
+4.3 [ELIZABETH] Patient information in the referral form's Notes field.
+    Notes is free text sent to CTM. Should the form say not to include the patient's full name
+    or diagnosis?
+
+4.4 [CLAUDE.AI] Required fields on the referral form.
+    Currently required: name, organization, phone, email, level of care. Notes is optional.
+    Need: confirm.
+
+======================================================================
+5. WEST PALM BEACH LOCATION (/locations/west-palm-beach/)
+======================================================================
+5.1 [ELIZABETH] Parking and public transit.
+    The "Getting Here" section is left out because nothing is verified. The parking FAQ doesn't
+    claim there is parking. Need: parking details and any transit info.
+
+5.2 [ELIZABETH] Wheelchair accessibility. Need: is the facility accessible?
+
+5.3 [ELIZABETH] "LGBTQ+ friendly" (brief, citing the Wiki).
+    It's only supported by Gabriel's live bio today. Need: confirm we can say it.
+
+5.4 [ELIZABETH] Florida DCF license number and Joint Commission ID (with its verification link).
+    Both show as placeholders. Links for all accreditation seals (Joint Commission, Action
+    Alliance, SAMHSA, NAATP) are also still placeholders.
+
+5.5 [ELIZABETH] The location page shows the Google rating as 4.5 from 17 reviews (from the brief).
+    Need: confirm it's current.
+
+======================================================================
+6. TRANSPORTATION (affects Home, Admissions, About, Location, Professionals)
+======================================================================
+6.1 [ELIZABETH] Which is correct?
+    Questionnaire (Q7): Uber Health rides for people who can't drive.
+    Live site FAQ: "We'll pick you up in the morning and drop you off."
+    The new site uses the Uber Health wording everywhere.
+    Also: is transportation free across all of Palm Beach County, or is there a limit?
+
+======================================================================
+7. ADMISSIONS AND INSURANCE
+======================================================================
+7.1 [ELIZABETH] In-network status for Aetna, Florida Blue, Cigna, UnitedHealthcare and Humana.
+    Each carrier page says "in network with {carrier}" (brief: "per the Wiki"; our Wiki is blank).
+    Need: confirm each one; any that aren't in network change to "we work with".
+
+7.2 [CLAUDE.AI / ELIZABETH] Humana page.
+    Humana has left the employer commercial market; it's now mostly Medicare Advantage and
+    Medicaid, and Medicare isn't on Sunview's accepted list.
+    Need: which Humana products Sunview accepts, and whether a Humana page still makes sense.
+
+7.3 [ELIZABETH] Self-pay, out-of-network benefits, and what happens if someone loses coverage
+    during treatment. The FAQs currently say "ask us".
+
+7.4 [ELIZABETH] How Telemed Clinix psychiatry is billed under these plans.
+
+7.5 [ELIZABETH] "Call us 24/7" appears under the form sitewide. Is there a 24/7 line, and does
+    after-hours reach a person?
+
+7.6 [ELIZABETH] Program policies for the FAQs: phone use during group, taking a day off
+    (attendance), what to bring on day one (currently: insurance card, photo ID, medication list).
+
+7.7 [ELIZABETH] The four admissions steps and "what we'll ask" on the call were written from the
+    live site and standard practice. Need: a quick review.
+
+7.8 [ELIZABETH] Hours when admissions answers calls (not program hours). Not documented anywhere.
+
+======================================================================
+8. CLINICAL CONTENT (What We Treat, Therapies)
+======================================================================
+8.1 [ELIZABETH] Crisis line. The footer crisis line (988/911) was removed at the client's request.
+    Should clinical pages (depression, trauma, bipolar) show a crisis resource?
+
+8.2 [ELIZABETH] Can we name borderline personality disorder (BPD) specifically? The questionnaire
+    only says "personality disorders".
+
+8.3 [ELIZABETH] ADHD: does Sunview evaluate or diagnose ADHD, or only treat it with psychiatric
+    evaluation as part of the program? The FAQ currently says the latter.
+
+8.4 [ELIZABETH] The CEO's "Breaking Secrecy: Why Groups Work" model and the "Breaking Enabling and
+    Rescuing Cycles" model (both cited to the Wiki). The sections are written only from the
+    questionnaire. Need: the original wording.
+
+8.5 [ELIZABETH] Plain-language descriptions we wrote (not from a source) that need a quick review:
+    the psychodrama definition, the "signs the two may be connected" boxes on mental health pages,
+    the three conversation starters on For Families, the CBT "homework" FAQ, and "Can my partner
+    attend family sessions?".
+
+8.6 [ELIZABETH] Can the site publish length-of-stay figures (for example "60-90 days", "130-day
+    average")? Briefs say "Pending Elizabeth"; none are published now. Also "scholarships" (only
+    mentioned in a podcast description) is left out.
+
+======================================================================
+9. SITE-WIDE DECISIONS
+======================================================================
+9.1 [CLAUDE.AI] Meta title/description length. Many brief metas run long (titles up to 69
+    characters, descriptions up to 181) while the content prompt says titles <=60 and
+    descriptions <=155. Need: keep the brief's text verbatim, or trim?
+
+9.2 [CLAUDE.AI] Trust strip. The briefs ask for the accreditation trust strip on commercial pages,
+    but it's shown on Home only, per an earlier client request. Need: confirm Home only.
+
+9.3 [CLAUDE.AI] Header menu. For Professionals isn't in the header spec. It's now linked from the
+    footer (with the West Palm Beach location). Need: fine as is, or add to the header?
+
+9.4 [CLAUDE.AI] Old URLs /about-us/ and /our-approach/ now redirect to /our-team/ and
+    /about/our-approach/. Confirm.
+
+9.5 [ELIZABETH] Privacy policy. The live one was copied from a hospital template (mentions a
+    "UHS Compliance Hotline" and a 2013 date) and has no website/cookie section. Needs legal review
+    before launch.
+
+9.6 [ELIZABETH] Real photos of the facility and team. There are none yet; pages use brand graphics.
+
+9.7 [CLAUDE.AI / ELIZABETH] Legal pages /terms-of-use/ and /hipaa-notice/ are in the final sitemap but
+    not built: there's no brief or source text for them. Today the HIPAA notice lives inside the
+    Privacy Policy page (copied from the live site), and the footer only links to the Privacy Policy.
+    Need: a brief or the legal text for both, or confirmation that one combined page is enough.
+
+9.8 [ELIZABETH] Therapies URLs from the sitemap:
+    - /therapies/psychodynamic-therapy/ was built as /therapies/inner-child-therapy/ (brief decision).
+      Confirm the URL.
+    - /therapies/psychodrama/ has no page; psychodrama is a section inside Group Therapy (brief
+      decision). Confirm no separate page.
+
+======================================================================
+10. CALLTRACKINGMETRICS [ORIANA]
+======================================================================
+10.1 Referral form (For Professionals) sends these new fields to the Sunview FormReactor:
+     email, custom_fields[referral_source] ("Professional referral: <level of care>"),
+     custom_fields[organization], custom_fields[referral_notes].
+     CTM drops unknown fields silently. Need: create/map them on the reactor.
+
+10.2 The referral form fills custom_fields[membership_policy_id] and [insurance_carrier] with
+     "N/A (professional referral)" in case the reactor requires them. Need: are they required?
+     If not, we remove the N/A values.
+
+10.3 Neither form has been tested end to end against CTM (a test would create a real lead).
+     Need: a go-ahead for one test submission of each form, and confirmation that it arrives.

@@ -1,4 +1,5 @@
 ---
+// Old URL: 301s in production (vercel.json). Kept pending deletion (user's OK); noindex + out of the sitemap.
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -35,6 +36,7 @@ const measures = [
   title="Our Clinical Approach | IFS, Psychodynamic & In Vivo Treatment™ | Sunview Wellness"
   description="How Sunview Wellness treats addiction and co-occurring mental health: IFS, psychodynamic and inner child work, CBT, DBT, psychodrama, family involvement and In Vivo Treatment™ in West Palm Beach, FL."
   breadcrumbs={[{ name: 'Our Approach', href: '/our-approach/' }]}
+  noindex
 >
   <PageHero
     eyebrow="The Sunview clinical model"
@@ -59,7 +61,7 @@ const measures = [
         <blockquote class="mt-5 font-display text-2xl leading-snug text-charcoal">
           “Instead of asking ‘What is wrong with this person?’ I want to understand: What happened to this person? What have they learned? What patterns have they been living within?”
         </blockquote>
-        <figcaption class="mt-5 text-sm"><strong class="text-charcoal">Dana Martin, Ph.D., LMFT</strong><br /><span class="text-charcoal">Clinical Director</span></figcaption>
+        <figcaption class="mt-5 text-sm"><strong class="text-charcoal">Sunview’s Clinical Director</strong></figcaption>
       </figure>
     </div>
   </section>
@@ -126,7 +128,7 @@ const measures = [
             <p class="font-display text-2xl font-bold text-charcoal">In Vivo Treatment™</p>
             <p class="mt-1 text-charcoal">Because you’re living at home, what you learn on Tuesday gets tested on Wednesday, with your spouse, at work, or in a hard conversation with family. You bring it back, we slow it down together, and you try again.</p>
           </div>
-          <a href="/media/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/" class="btn-ghost shrink-0">Read more</a>
+          <a href="/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/" class="btn-ghost shrink-0">Read more</a>
         </div>
       </div>
     </div>

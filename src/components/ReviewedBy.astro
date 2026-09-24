@@ -1,0 +1,19 @@
+---
+// Reviewed-by byline in the hero, directly under the subheading (Programs + What We Treat + Therapies
+// briefs, 2026-09-23 update): small avatar, name, credentials, title and "Updated {date}", linked to the
+// person's /our-team/ page. Replaces the old block before the FAQ. Mirrors `reviewedBy` in the page schema.
+// Frank Galimidi by default; Dana Martin on clinical pages.
+import { REVIEWERS, LAST_REVIEWED, initials } from '../data/site.js';
+interface Props { who?: 'frank' | 'dana'; class?: string }
+const { who = 'frank', class: cls = '' } = Astro.props;
+const r = REVIEWERS[who];
+const date = new Date(`${LAST_REVIEWED}T12:00:00`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<a href={r.href} class:list={['group inline-flex max-w-full items-center gap-3 text-sm text-white/90', cls]}>
+  {r.photo
+    ? <img src={r.photo} alt="" width="36" height="36" loading="lazy" class="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-white/40" />
+    : <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 font-sans text-xs font-extrabold text-white ring-2 ring-white/40" aria-hidden="true">{initials(r.name)}</span>}
+  <span class="leading-snug">
+    Reviewed by <strong class="font-extrabold text-white group-hover:underline">{r.name}, {r.creds}</strong> · {r.role} · Updated <time datetime={LAST_REVIEWED}>{date}</time>
+  </span>
+</a>

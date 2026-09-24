@@ -1,0 +1,161 @@
+---
+// /what-we-treat/dual-diagnosis/: What-We-Treat-Content-Briefs.md §D. Sources in
+// docs/content/what-we-treat-sources.md. Rotation: Insurance + Reviews. Reviewed by Dana (clinical).
+import ServicePage from '../../layouts/ServicePage.astro';
+import NextSteps from '../../components/NextSteps.astro';
+import Icon from '../../components/Icon.astro';
+import { WWT, CATEGORIES } from '../../data/treat.js';
+
+const integrated = [
+  { icon: 'users', title: 'One team', text: 'Your therapist, group facilitator and psychiatric provider work from the same understanding of you.' },
+  { icon: 'layers', title: 'One plan', text: 'Your treatment plan covers substance use and mental health together, and you review it with your therapist every month.' },
+  { icon: 'refresh', title: 'The connection between them', text: 'We look at how the two interact and reinforce each other, instead of treating each on its own.' },
+];
+
+const levels = [
+  { href: '/programs/php/', name: 'Partial Hospitalization Program', text: 'Monday to Friday, 9 AM to 1 PM, when you need the most structure while living at home.' },
+  { href: '/programs/iop/', name: 'Intensive Outpatient Program', text: 'Three days a week, day or evening, so you can keep working.' },
+  { href: '/programs/outpatient/', name: 'Outpatient Program', text: 'One weekday morning to keep the work going as life gets steadier.' },
+];
+
+const faqs = [
+  { q: 'What is dual diagnosis?', a: 'Dual diagnosis means living with a substance use disorder and a mental health condition at the same time, such as alcohol use with depression, or cocaine use with anxiety or trauma.' },
+  { q: 'Do you treat both at the same time?', a: 'Yes. That’s the point of integrated treatment: one team and one plan for both, focused on how they affect each other.' },
+  { q: 'Do I need a diagnosis to start?', a: 'No. Many people come to us without a formal diagnosis. Your pre-screening and psychiatric evaluation help clarify what’s going on. <a href="/admissions/">Start with admissions</a>.' },
+  { q: 'Is medication required?', a: 'No. Medication is one tool, not a requirement. If it could help, your Telemed Clinix provider will talk it through with you. <a href="/programs/psychiatry-medication-management/">How psychiatric care works</a>.' },
+  { q: 'What if one condition is more severe?', a: 'We treat the whole picture and adjust the focus as you go. If one condition needs more intensive or specialized care first, we’ll help you get it and plan your next step with us.' },
+];
+---
+<ServicePage
+  path="/what-we-treat/dual-diagnosis/"
+  metaTitle="Dual Diagnosis Treatment in West Palm Beach | Sunview"
+  description="Integrated dual diagnosis treatment in West Palm Beach: substance use and mental health treated as one picture in PHP, IOP and OP, psychiatry included."
+  crumbs={[WWT, { name: CATEGORIES.dual.name, href: CATEGORIES.dual.href }]}
+  h1="Dual Diagnosis Treatment in West Palm Beach"
+  subheading="When substance use and mental health feed each other, we treat the cycle, not two separate problems."
+  lead="Integrated outpatient treatment for adults living with substance use and a mental health condition at the same time, in PHP, IOP and OP, with psychiatric care built in."
+  faqTitle="Frequently Asked Questions About Dual Diagnosis"
+  faqs={faqs}
+  insurance
+  reviews
+>
+  <!-- What it means -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The basics</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Dual Diagnosis Means</h2>
+        <p class="subheading mt-3">Two conditions, one connected picture</p>
+        <div class="prose-sv mt-6">
+          <p>Dual diagnosis means living with both a substance use disorder and a mental health condition. Naming both matters. But what matters more is understanding the relationship between them.</p>
+          <p>Substance use can start as a way of coping with emotional distress. Continued use can then make depression, anxiety, trauma symptoms or other conditions worse. Over time the two become deeply connected, and each keeps the other going.</p>
+          <p>Read more about the <a href="/what-we-treat/substance-use/">substance use disorders we treat</a> and our <a href="/what-we-treat/mental-health/">co-occurring mental health treatment</a>.</p>
+        </div>
+      </div>
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">What we see most often</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Alcohol and crack cocaine use</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Anxiety and depressive disorders</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Trauma-related disorders</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Personality disorders</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Integrated -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Integrated care</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What “Integrated” Looks Like in Practice</h2>
+        <p class="subheading mt-3">We treat the person behind the symptoms</p>
+        <p class="mt-5 text-lg">Integrated treatment means treating you as a whole, not as two separate problems. We’re not only trying to stop a behavior or manage a diagnosis. We’re trying to understand what keeps the cycle going, so you can interrupt it.</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {integrated.map((i) => (
+          <div class="card">
+            <Icon name={i.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{i.title}</h3>
+            <p class="mt-2">{i.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Across levels -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Levels of care</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Dual Diagnosis Treatment Across PHP, IOP and OP</h2>
+        <p class="subheading mt-3">The same integrated approach at every level</p>
+        <p class="mt-5 text-lg">Dual diagnosis care isn’t a separate track at Sunview. It’s how every program works. You step down as you progress, keeping the same team.</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {levels.map((l) => (
+          <a href={l.href} class="card group flex flex-col transition hover:border-teal">
+            <h3 class="font-sans text-lg font-extrabold group-hover:text-teal">{l.name}</h3>
+            <p class="mt-2">{l.text}</p>
+            <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Psychiatry + therapy / the why -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-6 lg:grid-cols-2">
+      <article class="card !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Psychiatry, Medication and Therapy Working Together</h2>
+        <p class="mt-4">Psychiatric evaluation and medication management come through Telemed Clinix, scheduled for you in a private office on site. Your provider reviews what you take and adjusts only when it’s clinically indicated.</p>
+        <p class="mt-3">Medication can help you stabilize. Therapy builds the insight and skills that last. Together, they cover both sides of the cycle.</p>
+        <a href="/programs/psychiatry-medication-management/" class="mt-5 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </article>
+      <article class="card !p-8">
+        <Icon name="compass" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Understanding the Why Behind the Behavior</h2>
+        <p class="mt-4">We ask what happened to you, not what’s wrong with you. Psychodynamic work explores how past experiences and relationships still shape your reactions today.</p>
+        <p class="mt-3">A family systems lens looks at the patterns around you, too, because people don’t struggle in isolation. When it’s clinically appropriate and you agree, loved ones can take part.</p>
+        <a href="/therapies/inner-child-therapy/" class="mt-5 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Inner child therapy <Icon name="arrow" class="h-4 w-4" /></a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Is it right for you?</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Who Dual Diagnosis Treatment Is Right For</h2>
+        <p class="subheading mt-3">Adults ready to look at the whole picture</p>
+        <p class="mt-5 text-lg">Our programs are for adults 18 and older who are medically and psychiatrically stable enough to take part in outpatient care. Many are stepping down from detox or residential treatment; others come straight from home.</p>
+        <p class="mt-4 text-lg">If symptoms are severe right now, or if stopping a substance could cause dangerous withdrawal, a higher level of care comes first. We’ll say so honestly during pre-screening and help you find it.</p>
+      </div>
+      <div class="card self-start !p-7">
+        <h3 class="text-xl">It tends to fit if</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />You’re living with substance use and a mental health condition</li>
+          <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />You’re not in active withdrawal</li>
+          <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />You have a safe place to live</li>
+          <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />You want to understand why, not just stop</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    title="Which Level of Care Fits for Dual Diagnosis"
+    subtitle="Our Clinical Director helps you decide"
+    level={`<p>Our Clinical Director reviews your pre-screening and recommends the <a href="/programs/php/">Partial Hospitalization Program</a>, the <a href="/programs/iop/">Intensive Outpatient Program</a> or the <a href="/programs/outpatient/">Outpatient Program</a>, using ASAM criteria and clinical judgment.</p>`}
+    related={[
+      { label: 'All conditions we treat', href: '/what-we-treat/' },
+      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
+    ]}
+  />
+</ServicePage>

@@ -1,0 +1,102 @@
+---
+// /what-we-treat/: What-We-Treat-Content-Briefs.md §A (menu page). Sources in
+// docs/content/what-we-treat-sources.md. Rotation: Insurance only. Reviewed by Frank.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES, MENTAL_PAGES } from '../../data/treat.js';
+
+const groups = [
+  { h2: 'Substance Use Disorders We Treat', cat: CATEGORIES.substance, text: 'Alcohol and crack cocaine are what we see most. We also treat opioids and benzodiazepines, usually after medically supervised detox. Sunview is abstinence-based but medication-friendly: anti-craving medications like naltrexone and Suboxone are welcome through an outside prescriber.', pages: SUBSTANCE_PAGES },
+  { h2: 'Co-Occurring Mental Health Conditions We Treat', cat: CATEGORIES.mental, text: 'Treated alongside substance use, never as a separate track. Personality, anxiety, depressive and trauma-related disorders are the most frequent, and psychiatric care through Telemed Clinix is part of every program.', pages: MENTAL_PAGES },
+];
+
+const faqs = [
+  { q: 'What if I have both a substance use problem and a mental health condition?', a: 'That’s what we’re built for. We treat both together, with one team and one plan. <a href="/what-we-treat/dual-diagnosis/">Dual diagnosis treatment</a>.' },
+  { q: 'Do you treat mental health on its own?', a: 'Our programs treat mental health conditions alongside substance use. If mental health is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Do you treat eating disorders or gambling?', a: 'As secondary concerns, yes: we include them in your treatment plan. If one becomes the main issue, we’ll connect you with a program that specializes in it.' },
+  { q: 'Which level of care do I need?', a: 'You don’t have to know. Our Clinical Director reviews your pre-screening and recommends PHP, IOP or OP. <a href="/programs/">Compare levels of care</a>.' },
+  { q: 'Does insurance cover it?', a: 'Most plans do, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance</a>.' },
+];
+---
+<ServicePage
+  path="/what-we-treat/"
+  metaTitle="Conditions We Treat in West Palm Beach | Sunview Wellness"
+  description="Substance use, co-occurring mental health conditions and dual diagnosis, treated together in PHP, IOP and OP in West Palm Beach."
+  crumbs={[WWT]}
+  h1="Substance Use and Mental Health Conditions We Treat in West Palm Beach"
+  subheading="Treated as one picture, because that is how they show up in real life."
+  lead="Outpatient treatment for adults with substance use disorders and the mental health conditions that often come with them, in PHP, IOP and OP."
+  faqTitle="Frequently Asked Questions About What We Treat"
+  faqs={faqs}
+  insurance
+>
+  <!-- Substance use + mental health -->
+  {groups.map((g, gi) => (
+    <section class:list={['section', gi === 1 && 'bg-mist']}>
+      <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <h2 class="text-3xl sm:text-[2.1875rem]">{g.h2}</h2>
+          <p class="mt-4 text-lg">{g.text}</p>
+          <a href={g.cat.href} class="btn-teal mt-6 !h-auto min-h-[45px] py-3 text-center !whitespace-normal sm:!whitespace-nowrap">{g.cat.label} <Icon name="arrow" /></a>
+        </div>
+        <ul class="grid gap-3 self-start sm:grid-cols-2">
+          {g.pages.map((p) => (
+            <li><a href={p.href} class="card flex items-center justify-between gap-3 !py-4 font-bold text-charcoal transition hover:border-teal hover:text-teal">{p.label} <Icon name="arrow" class="h-4 w-4 shrink-0 text-teal" /></a></li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <!-- Dual diagnosis -->
+  <section class="section">
+    <div class="container-x">
+      <div class="rounded-[var(--radius-lg)] bg-teal p-8 text-white sm:p-10 lg:flex lg:items-center lg:justify-between lg:gap-10">
+        <div class="max-w-3xl">
+          <h2 class="text-3xl text-white sm:text-[2.1875rem]">Dual Diagnosis: When Both Are Present</h2>
+          <p class="mt-4 text-lg text-white/90">When substance use and mental health feed each other, we treat the cycle between them, not two separate problems. It’s how every program at Sunview works.</p>
+        </div>
+        <a href={CATEGORIES.dual.href} class="btn-sun mt-6 shrink-0 lg:mt-0">Dual diagnosis treatment <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneath the symptom -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Our approach</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How We Look Beneath the Presenting Symptom</h2>
+        <p class="subheading mt-3">The tip of the iceberg is only where it starts</p>
+        <p class="mt-5 text-lg">The symptoms that bring someone to treatment are often connected to deeper struggles that built up over time, like layers of an onion. We use evidence-based practices, and we also look beneath the surface: the emotional experiences, relationship patterns and history that keep the problem going.</p>
+        <a href="/therapies/" class="btn-ghost mt-8">How therapy works at Sunview</a>
+      </div>
+      <figure class="card !p-8">
+        <ol class="space-y-3" aria-label="Layers we explore">
+          {['What brought you here', 'The patterns underneath', 'Relationships and family systems', 'Past experiences still showing up today'].map((l, i) => (
+            <li class="rounded-[var(--radius-card)] bg-mist px-5 py-3 font-bold text-charcoal" style={`margin-left:${i * 14}px`}>{l}</li>
+          ))}
+        </ol>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Not sure -->
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Getting started</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Not Sure What You Need? Start With a Conversation</h2>
+        <p class="subheading mt-3">You don’t need a diagnosis to call</p>
+        <p class="mt-5 text-lg">Many people call saying, “I don’t know what to do anymore,” or “I know I need help, but I don’t know where to start.” That’s enough. The first conversation is about listening and figuring out, together, what you need.</p>
+        <p class="mt-4 text-lg">After a short pre-screening, our Clinical Director recommends the level of care that fits you, using ASAM criteria and clinical judgment. We check your insurance for free, and free transportation is available if you can’t drive.</p>
+        <a href="/admissions/" class="btn-teal mt-8">Talk to admissions <Icon name="arrow" /></a>
+      </div>
+      <div class="self-center">
+        <ScopeNote />
+        <p class="mt-5"><a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Compare levels of care</a> · <a href="/programs/psychiatry-medication-management/" class="font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management</a></p>
+      </div>
+    </div>
+  </section>
+</ServicePage>

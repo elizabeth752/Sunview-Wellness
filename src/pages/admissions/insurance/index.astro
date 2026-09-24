@@ -1,0 +1,183 @@
+---
+// /admissions/insurance/: Admissions-Content-Briefs.md §B. Sources in
+// docs/content/admissions-sources-main-insurance.md. Insurance is the main content (logos in the body,
+// commercial first, then Medicaid: CEO guardrail), so no InsuranceSection marquee; rotation = Reviews.
+// Never copays, deductibles or "100% covered". No reviewed-by byline on Admissions pages.
+import ServicePage from '../../../layouts/ServicePage.astro';
+import Icon from '../../../components/Icon.astro';
+import { INSURANCE } from '../../../data/site.js';
+
+const MEDICAID = ['Sunshine Health', 'AmeriHealth Caritas Florida', 'Molina Healthcare', 'Community Care Plan'];
+// Carriers with their own page (payer pages, /admissions/insurance/<slug>/). Humana's page is built but noindex
+// (answer 7.2), so its logo stays on the wall unlinked: no link equity into a noindex page.
+const PAGES: Record<string, string> = {
+  Aetna: '/admissions/insurance/aetna/',
+  'Florida Blue': '/admissions/insurance/florida-blue/',
+  Cigna: '/admissions/insurance/cigna/',
+  UnitedHealthcare: '/admissions/insurance/unitedhealthcare/',
+};
+const commercial = INSURANCE.filter((c) => !MEDICAID.includes(c.name));
+const medicaid = INSURANCE.filter((c) => MEDICAID.includes(c.name));
+
+const checks = [
+  { label: 'In-network status', text: 'Whether Sunview is in network with your specific plan.' },
+  { label: 'Level of care authorized', text: 'Which outpatient levels your plan covers: PHP, IOP or OP.' },
+  { label: 'Pre-authorization', text: 'Whether your plan needs approval before you start, and we handle the request.' },
+];
+
+const faqs = [
+  { q: 'Is Sunview in network with my plan?', a: 'We’re in network with major commercial plans and Florida Medicaid plans. The fastest way to know for sure is a free benefits check: send the form or call us.' },
+  { q: 'Does Medicaid cover IOP or PHP?', a: 'Florida Medicaid plans generally cover outpatient treatment when it’s medically necessary. We accept Sunshine Health, AmeriHealth Caritas, Molina Healthcare and Community Care Plan, and we confirm your specific plan before you start.' },
+  { q: 'What if I lose coverage during treatment?', a: 'Tell us as soon as you know. We’ll look at your options with you, including other coverage you may qualify for, so your care doesn’t simply stop.' },
+  { q: 'Do you take Medicare?', a: 'Medicare isn’t on our list of accepted plans. Ask us anyway: we’ll tell you honestly what your options are and help you find care that fits.' },
+  { q: 'Is the insurance check really free?', a: 'Yes. Verifying your benefits costs nothing and doesn’t commit you to treatment.' },
+];
+
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<ServicePage
+  path="/admissions/insurance/"
+  metaTitle="Insurance for Outpatient Rehab in West Palm Beach | Sunview"
+  description="We verify your benefits for free before you start. In network with major commercial plans and Florida Medicaid for PHP, IOP and OP in West Palm Beach."
+  crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'Insurance & Payment', href: '/admissions/insurance/' }]}
+  h1="Insurance Coverage for Outpatient Rehab in West Palm Beach"
+  subheading="In network with virtually every carrier, including Medicaid."
+  lead="Most people use insurance for PHP, IOP and outpatient treatment at Sunview. We verify your benefits for free before you start, so you know what your plan covers before you commit to anything."
+  faqTitle="Frequently Asked Questions About Insurance"
+  faqs={faqs}
+  reviews
+>
+  <!-- 1. Commercial logo wall -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">Commercial plans</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Commercial Plans We Work With</h2>
+        <p class="subheading mt-3">Employer, individual and family plans</p>
+        <p class="mt-5 text-lg">These are the commercial carriers we work with most. Coverage depends on your specific plan, which is why we check before you start. Carriers with a guide of their own are linked.</p>
+      </div>
+      <ul class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {commercial.map((c) => {
+          const href = PAGES[c.name];
+          const tile = (
+            <>
+              <span class="flex h-24 items-center justify-center rounded-[var(--radius-card)] border border-line bg-white px-4 transition group-hover:border-teal">
+                <img src={c.logo} alt="" loading="lazy" class="h-auto max-h-12 w-auto max-w-[80%] object-contain" />
+              </span>
+              <span class:list={['mt-2 block text-center text-[15px] font-bold', href ? 'text-teal group-hover:underline' : 'text-charcoal']}>{c.name}{href && <Icon name="arrow" class="ml-1 inline h-3.5 w-3.5" />}</span>
+            </>
+          );
+          return <li>{href ? <a href={href} class="group block">{tile}</a> : <div>{tile}</div>}</li>;
+        })}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. Medicaid: second, smaller row -->
+  <section class="border-t border-line bg-mist py-12 sm:py-14">
+    <div class="container-x grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <h2 class="text-2xl sm:text-[1.75rem]">Florida Medicaid Plans We Accept</h2>
+        <p class="mt-3">Medicaid plans can cover PHP, IOP and OP when treatment is medically necessary. We confirm your plan the same way, for free.</p>
+      </div>
+      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {medicaid.map((c) => (
+          <li class="flex flex-col items-center rounded-[var(--radius-card)] bg-white p-3 text-center">
+            <img src={c.logo} alt="" loading="lazy" class="h-10 w-auto max-w-full object-contain" />
+            <span class="mt-2 text-sm font-bold text-charcoal">{c.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. VOB: receipt-style checklist -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Free verification</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How the Free Insurance Verification Works</h2>
+        <p class="subheading mt-3">We call your plan so you don’t have to</p>
+        <p class="mt-5 text-lg">Send the form with your name, phone, member ID and carrier, or call us. Our admissions team contacts your plan and confirms the essentials, then calls you back with a clear answer. It’s free, and it happens before you commit to anything.</p>
+        <a href="/admissions/" class={`mt-6 inline-flex items-center gap-2 ${link}`}>How admissions works <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <figure class="relative mx-auto w-full max-w-md rounded-[var(--radius-card)] border border-line bg-white p-7 shadow-[var(--shadow-soft)]">
+        <div class="flex items-center justify-between border-b border-dashed border-line pb-4">
+          <p class="font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-teal">Benefits check</p>
+          <Icon name="shield" class="h-6 w-6 text-teal" />
+        </div>
+        <ul class="divide-y divide-dashed divide-line">
+          {checks.map((c) => (
+            <li class="flex items-start gap-3 py-4">
+              <span class="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md border-2 border-teal text-teal"><Icon name="check" class="h-3.5 w-3.5" /></span>
+              <span><strong class="block text-charcoal">{c.label}</strong><span class="text-[15px]">{c.text}</span></span>
+            </li>
+          ))}
+        </ul>
+        <p class="border-t border-dashed border-line pt-4 text-sm text-muted">Cost to you: free. No commitment.</p>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4. What insurance covers: simple table -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">Coverage</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Insurance Typically Covers in Outpatient Treatment</h2>
+        <p class="subheading mt-3">Recognized levels of care, confirmed plan by plan</p>
+      </div>
+      <div class="mt-8 overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
+        <table class="w-full text-left text-[15px]">
+          <thead class="bg-teal text-white">
+            <tr>
+              <th scope="col" class="px-5 py-3 font-extrabold">Service</th>
+              <th scope="col" class="px-5 py-3 font-extrabold">How plans usually treat it</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-line">
+            <tr><th scope="row" class="px-5 py-4 font-bold"><a href="/programs/php/" class={link}>Partial Hospitalization Program</a></th><td class="px-5 py-4">A recognized level of care, covered when medically necessary</td></tr>
+            <tr><th scope="row" class="px-5 py-4 font-bold"><a href="/programs/iop/" class={link}>Intensive Outpatient Program</a></th><td class="px-5 py-4">A recognized level of care, day or evening</td></tr>
+            <tr><th scope="row" class="px-5 py-4 font-bold"><a href="/programs/outpatient/" class={link}>Outpatient Program</a></th><td class="px-5 py-4">A recognized level of care, often after PHP or IOP</td></tr>
+            <!-- [to confirm] Telemed Clinix billing arrangement with the client -->
+            <tr><th scope="row" class="px-5 py-4 font-bold"><a href="/programs/psychiatry-medication-management/" class={link}>Psychiatric care</a></th><td class="px-5 py-4">Provided through Telemed Clinix, which bills those services itself</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-5 text-[15px] text-muted">What you pay depends on your plan. We’ll go over it with you after the benefits check. <a href="/programs/" class={link}>Compare levels of care</a>. We treat <a href="/what-we-treat/substance-use/" class={link}>substance use disorders</a> and <a href="/what-we-treat/dual-diagnosis/" class={link}>dual diagnosis</a> at every level.</p>
+    </div>
+  </section>
+
+  <!-- 5. Plan not listed: callout -->
+  <section class="section">
+    <div class="container-x">
+      <div class="flex flex-col gap-6 rounded-[var(--radius-lg)] border-2 border-dashed border-teal/40 p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between">
+        <div class="max-w-3xl">
+          <h2 class="text-3xl sm:text-[2.1875rem]">If Your Plan Isn't Listed</h2>
+          <p class="mt-3 font-display text-2xl italic text-teal">Don’t see your plan? Ask us.</p>
+          <!-- [to confirm] out-of-network coordination and self-pay options -->
+          <p class="mt-4 text-lg">The logos above are the plans we see most, not a complete list. If your plan isn’t there, or you’re not sure whether it’s in network, ask us. We’ll also talk through out-of-network benefits and self-pay questions with you.</p>
+        </div>
+        <a href="/admissions/" class="btn-teal shrink-0">Ask about my plan <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Why verify: pull quote -->
+  <section class="section bg-teal text-white">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+      <figure>
+        <blockquote class="font-display text-3xl leading-snug text-white sm:text-[2.5rem]">“Insurance companies cut patients off the moment they start doing well.”</blockquote>
+        <figcaption class="mt-5 text-white/85"><strong class="text-white">Frank Galimidi</strong>, Chief Executive Officer · The Saving Dose, Episode 10</figcaption>
+      </figure>
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Why We Verify Before You Commit</h2>
+        <p class="mt-4 text-lg text-white/90">The weeks after stabilization are when the real work of recovery begins. Knowing what your plan covers from the start helps us plan care that doesn’t stop right when it’s starting to take hold.</p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/blog/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/" class="btn-ghost-light">Watch Frank’s clip</a>
+          <a href="/admissions/faq/" class="btn-ghost-light">All admissions FAQs</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ServicePage>

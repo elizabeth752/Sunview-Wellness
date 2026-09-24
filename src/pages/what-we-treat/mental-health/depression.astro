@@ -1,0 +1,154 @@
+---
+// /what-we-treat/mental-health/depression/: What-We-Treat-Content-Briefs.md §I. Sources in
+// docs/content/what-we-treat-sources-mental.md. Rotation: Reviews only. Reviewed by Dana.
+import ServicePage from '../../../layouts/ServicePage.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { conditionAbout } from '../../../lib/programSchema.js';
+
+const path = '/what-we-treat/mental-health/depression/';
+
+const signs = [
+  'You drink or use to get through heavy, low days',
+  'Your mood drops further after the substance wears off',
+  'Things you used to enjoy feel flat, with or without using',
+  'Staying sober is hard because the heaviness keeps coming back',
+];
+
+const treating = [
+  { icon: 'users', title: 'One team, one plan', text: 'Your therapist, group facilitator and psychiatric provider work from the same understanding of how your mood and your substance use affect each other.' },
+  { icon: 'chart', title: 'Progress you can measure', text: 'We use the PHQ-9 throughout treatment to track depressive symptoms, and your therapist reviews your treatment plan with you every month.' },
+  { icon: 'calendar', title: 'Structure when motivation is low', text: 'A group that meets at the same time, with the same facilitator and the same people, gives your week a shape even on days you don’t feel like it.' },
+  { icon: 'refresh', title: 'Real life brought back to group', text: 'You go home every day. The hard evening or the good morning comes back to the room, and we work through it together.' },
+];
+
+const approaches = [
+  { name: 'Psychodynamic therapy', text: 'Looks at how past experiences and relationships may still shape how you feel today.' },
+  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the different parts of yourself, including the part that goes numb or reaches for a substance.' },
+  { name: 'CBT', text: 'Works on the thought patterns that keep low mood and substance use going.' },
+  { name: 'DBT', text: 'Builds skills for intense emotions and hard moments, so you have options besides using.' },
+  { name: 'Trauma-informed care', text: 'Every clinician is trauma-informed, because depression often sits on top of older pain.' },
+];
+
+const faqs = [
+  { q: 'Do you treat depression without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If depression is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Can I keep taking my antidepressant?', a: 'Often, yes. Your Telemed Clinix provider reviews what you take, how well it’s working and whether anything needs to change. We don’t switch medications just because you start a program.' },
+  { q: 'How will I know treatment is helping?', a: 'We track depressive symptoms with the PHQ-9 during treatment, and your therapist reviews your treatment plan and goals with you every month.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+  { q: 'What if my depression gets worse during treatment?', a: 'We watch for changes in your mental health and functioning. If symptoms significantly worsen or your safety becomes a concern, we help you reach a more intensive level of care for stabilization.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle="Depression and Addiction Treatment in West Palm Beach"
+  description="Depression treated alongside substance use in West Palm Beach. Outpatient PHP, IOP and OP with therapy and psychiatric medication management."
+  crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }, { name: 'Depression', href: path }]}
+  h1="Depression and Addiction Treatment in West Palm Beach"
+  subheading="When low mood and substance use keep feeding each other, we treat the cycle."
+  lead="Depression treated alongside substance use in outpatient PHP, IOP and OP, with therapy, psychiatric care and a team that tracks how you’re actually doing."
+  faqTitle="Frequently Asked Questions About Depression Treatment"
+  faqs={faqs}
+  reviews
+  about={conditionAbout('Depression')}
+>
+  <!-- The cycle -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The cycle</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How Depression and Substance Use Feed Each Other</h2>
+        <p class="subheading mt-3">Relief that turns into the next low</p>
+        <div class="prose-sv mt-6">
+          <p>At Sunview, depression is treated as part of <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>, alongside substance use, within our Partial Hospitalization, Intensive Outpatient and Outpatient programs. Depressive disorders are among the conditions we see most often in people who come to us for addiction treatment.</p>
+          <p>The cycle tends to look familiar. Drinking or using starts as a way to cope with emotional pain: to get through a heavy evening, to feel something, or to feel less. For a while it helps. Then continued use deepens the depression it was supposed to ease, and the low mood makes the next drink or pill feel more necessary.</p>
+          <p>Over time the two become hard to pull apart. That’s why we don’t treat them as separate problems. We look at how they connect in your life and work on the whole pattern.</p>
+        </div>
+      </div>
+      <!-- REVIEW 8.5: plain-language passage pending Elizabeth review -->
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">Signs the two may be connected</h3>
+        <ul class="mt-4 space-y-3">
+          {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Treating it at Sunview -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">At Sunview</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Treating Depression Alongside Addiction at Sunview</h2>
+        <p class="subheading mt-3">One connected picture, not two separate problems</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {treating.map((t) => (
+          <div class="card">
+            <Icon name={t.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{t.title}</h3>
+            <p class="mt-2">{t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Therapies -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <span class="eyebrow">Therapy</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Therapy Approaches We Use</h2>
+        <p class="subheading mt-3">Skills for today, insight for what’s underneath</p>
+        <p class="mt-5 text-lg">Coping skills help you get through a low day. Insight helps you understand why the low days and the using became linked in the first place. We work on both, at a pace that feels safe.</p>
+        <a href="/therapies/" class="btn-teal mt-8">How therapy works at Sunview <Icon name="arrow" /></a>
+      </div>
+      <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
+        {approaches.map((a) => (
+          <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
+            <dt class="font-extrabold">{a.name}</dt>
+            <dd>{a.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Psychiatry -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Medication</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Psychiatric Care and Medication</h2>
+        <p class="subheading mt-3">Included in treatment, and there after you finish</p>
+        <p class="mt-5 text-lg">Psychiatric evaluation and medication management are part of every program through our partner, Telemed Clinix. Your provider reviews any antidepressant or other medication you already take and adjusts only when it’s clinically indicated. Appointments happen virtually from a private office at Sunview, and prescriptions go to the pharmacy you choose.</p>
+        <p class="mt-4 text-lg">Medication can help you stabilize. The therapy is where you build the insight and skills that last. And when you finish, you can keep the same provider.</p>
+      </div>
+      <div class="card !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h3 class="mt-4 text-xl">What psychiatric care includes</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Evaluation and review of your current medications</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Appointments scheduled for you, on site</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />The same provider after discharge, if you want</li>
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    class="section"
+    title="Which Level of Care Fits"
+    subtitle="Our Clinical Director helps you decide"
+    level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily structure helps when motivation is low, especially after detox or residential care. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you need depth and have to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps support in place as life fills back up.</p>`}
+    related={[
+      { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
+      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+    ]}
+  />
+</ServicePage>

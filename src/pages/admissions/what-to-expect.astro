@@ -1,0 +1,218 @@
+---
+// /admissions/what-to-expect/: Admissions-Content-Briefs.md §D. Sources in
+// docs/content/admissions-sources-faq-expect-families.md. Rotation: Reviews. No reviewed-by byline.
+// Structure varies on purpose (client, 2026-09-23): horizontal week timeline, time ruler, dark evening band,
+// split with pull quote, provide/ask columns, progress bar, instrument tiles.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+
+const week = [
+  { day: 'Day 1', title: 'Intake', text: 'Paperwork, a biopsychosocial assessment about your history and relationships, and the releases that let us coordinate your care.' },
+  { day: 'Early in the week', title: 'Your first groups', text: 'You join the continuous group with one facilitator and meet your primary therapist for your first individual session.' },
+  { day: 'Within week one', title: 'Family contact', text: 'With your consent, your therapist contacts a loved one to introduce themselves and hear what they’ve seen.' },
+  { day: 'Scheduled for you', title: 'First Telemed appointment', text: 'We book your psychiatric evaluation with Telemed Clinix, held in a private office at Sunview.' },
+];
+
+const morning = [
+  { time: '9:00', title: 'Group begins', text: 'One continuous group, led by the same facilitator all morning.' },
+  { time: 'Mid-morning', title: 'Break', text: 'Breaks come throughout the morning.' },
+  { time: 'During the week', title: 'Individual session', text: '45 to 60 minutes with your primary therapist, once a week.' },
+  { time: 'When scheduled', title: 'Telemed appointment', text: 'Virtual psychiatric care in a private office on site.' },
+  { time: '1:00', title: 'Home', text: 'The afternoon is yours. What happens next becomes tomorrow’s work.' },
+];
+
+const provide = [
+  'Free transportation to and from our center if you can’t drive yourself',
+  'A weekly individual session with your primary therapist',
+  'Psychiatric care scheduled for you',
+  'Family involvement at your pace',
+];
+const ask = [
+  'No marijuana, stimulants, opioids or benzodiazepines during the program',
+  'Random drug testing as part of your recovery support',
+  'Show up, and be honest when it’s hard',
+  'Medications prescribed and managed by a qualified provider',
+];
+
+const instruments = [
+  { name: 'BAM', text: 'The Brief Addiction Monitor looks at risk and at the protective factors we want to see grow.' },
+  { name: 'PHQ-9', text: 'Tracks symptoms of depression over the course of treatment.' },
+  { name: 'GAD-7', text: 'Tracks symptoms of anxiety over the course of treatment.' },
+  { name: 'Monthly plan review', text: 'You and your therapist review your treatment plan and goals every month.' },
+  { name: 'RSA-R survey', text: 'Your feedback on your experience, which we use to improve the program.' },
+];
+
+const faqs = [
+  // [to confirm] what to bring on day one
+  { q: 'What should I bring on day one?', a: 'We’ll tell you exactly what to bring when we schedule your first day. It usually helps to have your insurance card, a photo ID and a list of any medications you take.' },
+  { q: 'Will I be in group all morning?', a: 'Mostly. The group runs from 9 AM to 1 PM with breaks, led by the same facilitator. Individual sessions and psychiatric appointments are scheduled around it. <a href="/therapies/group-therapy/">Group therapy at Sunview</a>.' },
+  { q: 'How often do I see my therapist?', a: 'Once a week for 45 to 60 minutes, plus extra check-ins when something comes up that can’t wait.' },
+  // [to confirm] attendance policy
+  { q: 'Can I take a day off?', a: 'Talk to your therapist or the admissions team ahead of time. Consistent attendance matters for your progress, and we’ll work with you on scheduling when life gets in the way.' },
+  { q: 'What happens if I have a bad week?', a: 'You bring it to group and to your therapist. Hard weeks aren’t failure; they’re part of the work, and often where real change starts. If you need more support, you can step up a level. <a href="/programs/">Compare levels of care</a>.' },
+];
+---
+<ServicePage
+  path="/admissions/what-to-expect/"
+  metaTitle="What to Expect at Sunview | Outpatient Rehab West Palm Beach"
+  description="A typical day in PHP, a typical evening in IOP, your first week, and what changes as treatment progresses at Sunview Wellness in West Palm Beach."
+  crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'What to Expect', href: '/admissions/what-to-expect/' }]}
+  h1="What to Expect in Outpatient Treatment at Sunview Wellness"
+  subheading="From your first call to your last morning, here is how it works."
+  lead="Your first week, a typical PHP morning, an IOP evening, the ground rules and how the work changes as you go. No surprises, just a clear picture of what treatment feels like here."
+  faqTitle="Frequently Asked Questions About Starting Treatment"
+  faqs={faqs}
+  reviews
+>
+  <!-- 1. First week: horizontal timeline -->
+  <section class="section">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Your First Week</h2>
+      <p class="subheading mt-3">Getting settled, one step at a time</p>
+      <ol class="relative mt-12 grid gap-8 lg:grid-cols-4 lg:gap-6">
+        <span class="absolute left-0 right-0 top-[22px] hidden h-[2px] bg-gold lg:block" aria-hidden="true"></span>
+        {week.map((w, i) => (
+          <li class="relative flex gap-4 lg:block">
+            <span class="relative z-10 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-teal font-sans font-extrabold text-white ring-4 ring-white">{i + 1}</span>
+            <div class="lg:mt-5">
+              <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-teal">{w.day}</p>
+              <h3 class="mt-1 text-xl">{w.title}</h3>
+              <p class="mt-2 text-[15px]">{w.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-10 text-lg">Most people are nervous in week one. That’s normal. Your therapist and group facilitator will help you find your footing. Read more about <a href="/therapies/family-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4">family therapy</a> and <a href="/programs/psychiatry-medication-management/" class="font-bold text-teal underline decoration-2 underline-offset-4">psychiatric care and medication management</a>.</p>
+    </div>
+  </section>
+
+  <!-- 2. PHP morning: time ruler -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">A Typical PHP Morning</h2>
+        <p class="subheading mt-3">Monday to Friday, 9 AM to 1 PM</p>
+        <p class="mt-5 text-lg">In the <a href="/programs/php/" class="font-bold text-teal underline decoration-2 underline-offset-4">Partial Hospitalization Program</a>, your morning is one continuous group with the same facilitator, not a new topic and a new face every hour. That consistency lets the group go deeper.</p>
+      </div>
+      <ol class="relative border-l-2 border-teal/30 pl-8">
+        {morning.map((m) => (
+          <li class="relative pb-7 last:pb-0">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-mist bg-teal" aria-hidden="true"></span>
+            <p class="font-sans text-sm font-extrabold text-teal">{m.time}</p>
+            <h3 class="mt-0.5 text-lg">{m.title}</h3>
+            <p class="mt-1 text-[15px]">{m.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3. IOP evening: dark band -->
+  <section class="sv-evening section relative overflow-hidden bg-teal-deep text-white">
+    <div class="container-x relative grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">A Typical IOP Evening</h2>
+        <p class="subheading mt-3 !text-white">Monday, Wednesday and Thursday, 6 to 9 PM</p>
+        <p class="mt-5 text-lg text-white/90">Evening IOP is built for people who work during the day. You finish your workday, come to group, and head home by 9. The structure is the same as day programming: one continuous group, a weekly individual session and access to psychiatric care.</p>
+        <a href="/programs/iop/" class="btn-ghost-light mt-8">Intensive Outpatient Program</a>
+      </div>
+      <ul class="grid grid-cols-3 gap-3 text-center">
+        {['Mon', 'Wed', 'Thu'].map((d) => (
+          <li class="rounded-[var(--radius-card)] bg-white/10 px-3 py-5 ring-1 ring-white/20">
+            <span class="block font-sans text-lg font-extrabold">{d}</span>
+            <span class="mt-1 block text-sm text-white/80">6–9 PM</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. Gender-specific days + culture -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Gender-Specific Days and Group Culture</h2>
+        <p class="mt-5 text-lg">Twice a month, women and men meet in separate groups. The day follows the same structure, and many people find it easier to share what feels more understood by others of the same gender.</p>
+        <p class="mt-4 text-lg">The group culture runs on carefrontation: honest feedback given with care, never to shame. You’ll learn to give it and to hear it. <a href="/therapies/group-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4">Group therapy</a>.</p>
+      </div>
+      <blockquote class="border-l-4 border-gold pl-6 font-display text-2xl leading-snug text-charcoal sm:text-[1.75rem]">
+        “We can be compassionate without avoiding accountability, and we can hold someone accountable without taking away their dignity.”
+        <footer class="mt-4 font-sans text-sm font-bold not-italic text-muted">Sunview’s clinical team</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 5. Ground rules: provide / ask -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Transportation, Drug Testing and Ground Rules</h2>
+      <p class="subheading mt-3">Abstinence-based, not medication-free</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        <div class="rounded-[var(--radius-lg)] bg-white p-7">
+          <h3 class="flex items-center gap-2 text-xl"><Icon name="car" class="h-6 w-6 text-teal" />What we provide</h3>
+          <ul class="mt-4 space-y-3">{provide.map((p) => <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />{p}</li>)}</ul>
+        </div>
+        <div class="rounded-[var(--radius-lg)] border-2 border-teal/20 bg-white p-7">
+          <h3 class="flex items-center gap-2 text-xl"><Icon name="shield" class="h-6 w-6 text-teal" />What we ask</h3>
+          <ul class="mt-4 space-y-3">{ask.map((p) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{p}</li>)}</ul>
+        </div>
+      </div>
+      <!-- [to confirm] "what to bring" list: kept generic until admissions confirms -->
+      <p class="mt-6 text-[15px] text-muted">We’ll tell you what to bring when we schedule your first day. Anti-craving medications like Suboxone and naltrexone are welcome when an outside provider manages them: see <a href="/what-we-treat/substance-use/" class="font-bold text-teal underline">substance use disorder treatment</a>.</p>
+    </div>
+  </section>
+
+  <!-- 6. Progress over time -->
+  <section class="section">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">How the Work Changes Over Time</h2>
+      <p class="subheading mt-3">From “how do I get through this?” to “why do I respond this way?”</p>
+      <div class="mt-10 grid overflow-hidden rounded-full text-center text-sm font-extrabold sm:grid-cols-3 sm:text-base">
+        <span class="bg-teal-light px-4 py-3 text-white">Stabilization</span>
+        <span class="bg-teal px-4 py-3 text-white">Insight</span>
+        <span class="bg-teal-deep px-4 py-3 text-white">Integration</span>
+      </div>
+      <div class="mt-6 grid gap-6 text-[15px] sm:grid-cols-3">
+        <p>Early on, the focus is steadiness: structure, sobriety, sleep and coping skills.</p>
+        <p>As trust builds, the work goes deeper into patterns, relationships and past experiences.</p>
+        <p>Later, insight turns into choices you practice at home and at work.</p>
+      </div>
+      <p class="mt-8 rounded-[var(--radius-card)] bg-cream px-6 py-5 text-lg">Recovery isn’t linear. Hard days, triggers and old patterns will show up. They don’t mean treatment has failed; they’re moments we work through together. See how we treat <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal underline decoration-2 underline-offset-4">dual diagnosis</a>.</p>
+    </div>
+  </section>
+
+  <!-- 7. Tracking progress: instrument tiles -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">How We Track Your Progress</h2>
+      <p class="subheading mt-3">More than whether you finished the program</p>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {instruments.map((t) => (
+          <li class="rounded-[var(--radius-card)] border-t-4 border-teal bg-white p-5">
+            <p class="font-sans text-lg font-extrabold text-teal">{t.name}</p>
+            <p class="mt-2 text-[15px]">{t.text}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-8">Questions before you start? <a href="/admissions/faq/" class="font-bold text-teal underline decoration-2 underline-offset-4">Admissions FAQ</a> · <a href="/admissions/insurance/" class="font-bold text-teal underline decoration-2 underline-offset-4">Insurance and payment</a> · <a href="/admissions/" class="font-bold text-teal underline decoration-2 underline-offset-4">Talk to admissions</a></p>
+    </div>
+  </section>
+</ServicePage>
+
+<style>
+  /* Evening band: a faint scatter of "stars" */
+  .sv-evening::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 20%, rgb(255 255 255 / 0.5), transparent),
+      radial-gradient(1px 1px at 28% 70%, rgb(255 255 255 / 0.4), transparent),
+      radial-gradient(1.5px 1.5px at 46% 15%, rgb(255 255 255 / 0.35), transparent),
+      radial-gradient(1px 1px at 64% 55%, rgb(255 255 255 / 0.45), transparent),
+      radial-gradient(1.5px 1.5px at 82% 25%, rgb(255 255 255 / 0.5), transparent),
+      radial-gradient(1px 1px at 92% 80%, rgb(255 255 255 / 0.35), transparent),
+      radial-gradient(40px 40px at 90% 12%, rgb(245 197 24 / 0.18), transparent);
+    pointer-events: none;
+  }
+</style>

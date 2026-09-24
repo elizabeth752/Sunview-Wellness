@@ -1,13 +1,17 @@
 ---
-// Hero: flat teal ground (brand book: no gradients), gold rings with the one-time light pulse,
-// eyebrow (<span>) above a keyword + geo H1, optional subheading <p> under it. Every CTA points to /admissions/.
+// Hero: flat teal ground (brand book: no gradients), gold rings with the one-time light pulse.
+// Sitewide rule (Home review round 2 final + content prompt, 2026-09-22): nothing above the H1 except the
+// breadcrumb on inner pages; no eyebrow, checklist or badges in the hero. The hero is H1, subheading, one
+// paragraph, two buttons and the coverage form (aside slot). Trust content lives in TrustStrip, right below.
+// Every CTA points to /admissions/.
 import Icon from './Icon.astro';
 import SunMark from './SunMark.astro';
-import AccreditationBadges from './AccreditationBadges.astro';
+import TrustStrip from './TrustStrip.astro';
 
 interface Stat { value: string; label: string }
+interface Crumb { name: string; href: string }
 interface Props {
-  eyebrow?: string;
+  eyebrow?: string; // deprecated: no longer rendered (nothing above the H1 but the breadcrumb)
   title: string;
   accent?: string; // optional second line of the H1, set in italic
   subheading?: string;
@@ -18,10 +22,10 @@ interface Props {
   stats?: Stat[];
   compact?: boolean;
   ripple?: boolean;
-  badges?: boolean; // accreditation logos under the buttons
+  trust?: boolean; // trust strip below the hero: Home only (client request 2026-09-22, overrides the prompt's "every commercial page")
+  crumbs?: Crumb[]; // visible breadcrumb trail (after Home); mirrors Base's BreadcrumbList
 }
 const {
-  eyebrow,
   title,
   accent,
   subheading,
@@ -32,7 +36,8 @@ const {
   stats = [],
   compact = false,
   ripple = true,
-  badges = true,
+  trust = false,
+  crumbs = [],
 } = Astro.props;
 const hasAside = Astro.slots.has('aside');
 ---
@@ -41,8 +46,20 @@ const hasAside = Astro.slots.has('aside');
 
   <div class:list={['container-x grid items-center gap-12', compact ? 'py-12 sm:py-16' : 'py-12 sm:py-20', hasAside && 'lg:grid-cols-[1.15fr_0.85fr]']}>
     <div class="max-w-3xl">
-      {eyebrow && <span class="eyebrow eyebrow-light">{eyebrow}</span>}
-      <h1 class:list={[eyebrow && 'mt-4', 'text-[2.5rem] text-white sm:text-[3.125rem]']}>
+      {crumbs.length > 0 && (
+        <nav aria-label="Breadcrumb" class="mb-5 text-sm text-white/80">
+          <ol class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            {[{ name: 'Home', href: '/' }, ...crumbs].map((c, i, all) => (
+              <li class="inline-flex items-center gap-2">
+                {i < all.length - 1
+                  ? <><a href={c.href} class="font-bold text-white hover:underline">{c.name}</a><span aria-hidden="true">›</span></>
+                  : <span aria-current="page">{c.name}</span>}
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      <h1 class="text-[2.5rem] text-white sm:text-[3.125rem]">
         {title}
         {accent && <><br /><em class="font-display italic">{accent}</em></>}
       </h1>
@@ -54,7 +71,6 @@ const hasAside = Astro.slots.has('aside');
         <a href={cta.href} class="btn-sun">{cta.label} <Icon name="arrow" /></a>
         {secondary && <a href={secondary.href} class="btn-ghost-light">{secondary.label}</a>}
       </div>
-      {badges && <AccreditationBadges onDark class="mt-8" />}
       {stats.length > 0 && (
         <dl class="mt-12 grid grid-cols-2 gap-6 border-t border-white/25 pt-8 sm:grid-cols-4">
           {stats.map((s) => (
@@ -69,3 +85,4 @@ const hasAside = Astro.slots.has('aside');
     {hasAside && <div class="w-full"><slot name="aside" /></div>}
   </div>
 </section>
+{trust && <TrustStrip />}

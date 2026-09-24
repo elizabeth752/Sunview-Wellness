@@ -1,0 +1,136 @@
+---
+// /therapies/dbt/: Therapies-Content-Briefs.md §G. Sources in docs/content/therapies-sources-ifs-cbt-dbt.md.
+// Rotation: Reviews only. Reviewed by Dana.
+// Structure (varied on purpose): 2×2 skill tiles → split with pull quote → teal link band →
+// checklist with side note → wave visual → related row.
+import ServicePage from '../../layouts/ServicePage.astro';
+import DbtWave from '../../components/therapies/DbtWave.astro';
+import Icon from '../../components/Icon.astro';
+import { THERAPIES_HUB, therapyBySlug } from '../../data/therapies.js';
+
+const self = therapyBySlug('dbt');
+const related = self.related.map(therapyBySlug);
+
+const skills = [
+  { title: 'Mindfulness', text: 'Noticing what you’re thinking and feeling right now, without judging it or being swept away by it.', cls: 'bg-teal text-white', h: 'text-white', p: 'text-white/90' },
+  { title: 'Distress tolerance', text: 'Getting through a painful moment without making it worse, including without using.', cls: 'bg-teal-light text-white', h: 'text-white', p: 'text-white/90' },
+  { title: 'Emotion regulation', text: 'Understanding your emotions, lowering how intense they get, and recovering faster when they spike.', cls: 'bg-cream text-charcoal', h: 'text-charcoal', p: 'text-charcoal' },
+  { title: 'Interpersonal effectiveness', text: 'Asking for what you need, setting boundaries and keeping relationships steady, even in conflict.', cls: 'bg-mist text-charcoal', h: 'text-charcoal', p: 'text-charcoal' },
+];
+
+const topics = ['Emotional regulation', 'Boundaries', 'Coping skills (CBT and DBT)', 'Family dynamics', 'Goal setting', 'Life skills'];
+
+const faqs = [
+  { q: 'Is DBT only for borderline personality disorder?', a: 'No. DBT skills help anyone who struggles with intense emotions, impulsive reactions or relationships, including many people in addiction treatment. It’s also central to how we work with <a href="/what-we-treat/mental-health/personality-disorders/">personality disorders</a>.' },
+  { q: 'Is DBT a full program here?', a: 'No. DBT is integrated into our PHP, IOP and OP programs, in group skills work and in individual sessions. We don’t run a standalone DBT program.' },
+  { q: 'What skills will I learn?', a: 'Skills in four areas: mindfulness, distress tolerance, emotion regulation and interpersonal effectiveness, practiced in group and applied to your own life in individual sessions.' },
+  { q: 'How is DBT different from CBT?', a: 'CBT works on changing thoughts and behaviors. DBT adds skills for accepting and surviving intense emotions without acting on them. We use both. <a href="/therapies/cbt/">Cognitive behavioral therapy (CBT)</a>.' },
+  { q: 'Is DBT used in individual sessions?', a: 'Yes, when it fits. Your primary therapist may use DBT-based approaches in your weekly session to help you apply the skills to what’s happening in your life.' },
+];
+---
+<ServicePage
+  path="/therapies/dbt/"
+  metaTitle="DBT Therapy in West Palm Beach | Sunview Wellness"
+  description="Dialectical behavior therapy for addiction, emotional regulation and co-occurring conditions in outpatient PHP, IOP and OP in West Palm Beach."
+  crumbs={[THERAPIES_HUB, { name: 'Dialectical Behavior Therapy (DBT)', href: self.href }]}
+  h1="Dialectical Behavior Therapy in West Palm Beach"
+  subheading="Skills to sit with discomfort, and the support to use them when life pushes back."
+  lead="Dialectical behavior therapy (DBT) teaches practical skills for intense emotions, painful moments and hard relationships. At Sunview those skills are part of outpatient treatment for substance use and co-occurring conditions."
+  faqTitle="Frequently Asked Questions About DBT"
+  faqs={faqs}
+  reviews
+  about={{ '@type': 'MedicalTherapy', name: 'Dialectical behavior therapy (DBT)' }}
+>
+  <!-- 1. 2×2 skill tiles -->
+  <section class="section">
+    <div class="container-x">
+      <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
+        <div>
+          <h2 class="text-3xl sm:text-[2.1875rem]">What DBT Is</h2>
+          <p class="subheading mt-3">Acceptance and change, at the same time</p>
+          <p class="mt-5 text-lg">DBT balances two things that can seem opposite: accepting yourself and your feelings as they are, and working to change what isn’t helping. It does that through skills in four areas. None of them ask you to pretend a feeling isn’t there. They help you respond to it on purpose.</p>
+          <p class="mt-4 text-lg">At Sunview, DBT is used within our <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">PHP, IOP and OP programs</a>, not as standalone private therapy. If you’re looking for weekly private therapy only, we’ll point you to the right place.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {skills.map((s) => (
+            <div class:list={['rounded-[var(--radius-lg)] p-7', s.cls]}>
+              <h3 class:list={['text-xl', s.h]}>{s.title}</h3>
+              <p class:list={['mt-2', s.p]}>{s.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Split with pull quote -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">DBT at Sunview: Skills Plus Insight</h2>
+        <p class="mt-5 text-lg">DBT is one of the shared approaches our clinical team works from, together with IFS, CBT and trauma-informed care. Our Clinical Director, Dana Martin, is known for integrating DBT-based approaches into her clinical work, and several of our therapists have a strong foundation in DBT.</p>
+        <p class="mt-4 text-lg">We teach the skills, and we also look at why certain emotions hit so hard in the first place. Skills without that insight are harder to use when it counts.</p>
+        <p class="mt-4 text-lg">In your weekly individual session, your therapist helps you apply the skills to your own week: the argument, the craving after work, the phone call you’ve been dreading.</p>
+      </div>
+      <blockquote class="border-l-4 border-gold pl-6 font-display text-2xl leading-snug text-charcoal sm:text-[1.75rem]">
+        “We do not believe a person can authentically engage in those interventions without going deeper first to see where these triggers and thoughts even began and came up for them.”
+        <footer class="mt-4 font-sans text-sm font-bold not-italic text-muted">Sunview’s Clinical Director</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 3. Teal link band -->
+  <section class="bg-teal py-12 text-white sm:py-16">
+    <div class="container-x grid items-center gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">DBT for Personality Disorders and Emotional Dysregulation</h2>
+        <p class="mt-4 text-lg text-white/90">Personality disorders are among the conditions we see most often alongside substance use. DBT skills help with the intense emotions, impulsive reactions and relationship strain that often come with them, while the rest of your treatment looks at what’s underneath. We don’t see anyone as too much or beyond help: people are shaped by their experiences, and they can learn to respond differently. It’s part of our <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-white underline decoration-2 underline-offset-4">dual diagnosis treatment</a>.</p>
+      </div>
+      <a href="/what-we-treat/mental-health/personality-disorders/" class="btn-sun justify-self-start lg:justify-self-end">Personality disorder treatment <Icon name="arrow" /></a>
+    </div>
+  </section>
+
+  <!-- 4. Checklist of group topics -->
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">DBT Skills in Group Programming</h2>
+        <p class="mt-5 text-lg">DBT skills show up throughout our group programming, led by the same facilitator for the whole session. Twice a month, groups are gender-specific, which can make it easier to practice skills around relationships and boundaries. Group topics include:</p>
+        <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+          {topics.map((t) => <li class="flex items-center gap-3 border-b border-line pb-3 font-bold text-charcoal"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-teal" />{t}</li>)}
+        </ul>
+      </div>
+      <div class="self-end rounded-[var(--radius-lg)] bg-cream p-7 sm:p-9">
+        <Icon name="users" class="h-7 w-7 text-teal" />
+        <p class="mt-4 text-lg">Practicing a skill with other people, then trying it at home that evening, is what makes it usable. You bring back what happened, and the group helps you adjust.</p>
+        <a href="/therapies/group-therapy/" class="mt-5 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Group therapy at Sunview <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Wave -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">Tolerating Discomfort Without Using</h2>
+        <p class="mt-5 text-lg">Early in recovery, strong feelings can seem like they’ll never pass, and using can feel like the only way through. As treatment goes on, people often find they can sit with emotions that once felt overwhelming. Recovery isn’t about never feeling stress or triggers again. It’s about having the skills and support to move through them differently.</p>
+        <p class="mt-4 text-lg">DBT gives you concrete things to do in that window: notice the urge, name the emotion, use a distress tolerance skill, reach out to someone. If a hard moment turns into a slip, we look at it together, without shame, and figure out what you need next time.</p>
+      </div>
+      <div class="mt-10 rounded-[var(--radius-lg)] bg-white p-6 ring-1 ring-line sm:p-10">
+        <DbtWave />
+      </div>
+    </div>
+  </section>
+
+  <!-- Related row -->
+  <nav aria-label="Related pages" class="border-t border-line py-8">
+    <div class="container-x flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
+      <span class="font-extrabold text-charcoal">Keep exploring:</span>
+      <a href="/therapies/" class="font-bold text-teal hover:underline">All therapy approaches</a>
+      {related.map((r) => <a href={r.href} class="font-bold text-teal hover:underline">{r.label}</a>)}
+      <a href="/programs/" class="font-bold text-teal hover:underline">Outpatient levels of care</a>
+      <a href="/what-we-treat/mental-health/anxiety/" class="font-bold text-teal hover:underline">Anxiety and addiction treatment</a>
+      <a href="/admissions/" class="btn-teal ml-auto">Talk to admissions <Icon name="arrow" /></a>
+    </div>
+  </nav>
+</ServicePage>

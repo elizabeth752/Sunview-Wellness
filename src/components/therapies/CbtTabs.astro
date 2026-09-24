@@ -1,0 +1,52 @@
+---
+// Group / Individual toggle for /therapies/cbt/. Accessible tabs (role=tablist, aria-selected); without JS
+// both panels stay visible, stacked.
+import Icon from '../Icon.astro';
+const tabs = [
+  { id: 'group', label: 'In group', icon: 'users', title: 'Practicing with people who get it', text: 'Our groups work on the thought patterns and triggers that keep coming up, with CBT coping skills alongside DBT-based ones. Because the same facilitator leads the whole session, a skill introduced early can be tried out on a real situation before the group ends.', link: { href: '/therapies/group-therapy/', label: 'Group therapy at Sunview' } },
+  { id: 'individual', label: 'In individual sessions', icon: 'message', title: 'Applying it to your own patterns', text: 'In your weekly one-on-one session, your primary therapist helps you map your own triggers and the thoughts that come with them, then connect them to where they began. CBT is one tool your therapist may use, chosen for what you need.', link: { href: '/admissions/what-to-expect/', label: 'What to expect in treatment' } },
+];
+---
+<div class="sv-cbt-tabs mt-10" data-cbt-tabs>
+  <div role="tablist" aria-label="Where CBT happens" class="hidden gap-2 rounded-full bg-white p-1.5 ring-1 ring-line sm:inline-flex" data-cbt-tablist>
+    {tabs.map((t, i) => (
+      <button type="button" role="tab" id={`cbt-tab-${t.id}`} aria-controls={`cbt-panel-${t.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}
+        class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-bold text-charcoal aria-selected:bg-teal aria-selected:text-white">
+        <Icon name={t.icon} class="h-4 w-4" />{t.label}
+      </button>
+    ))}
+  </div>
+  <div class="mt-6 grid gap-6">
+    {tabs.map((t) => (
+      <div role="tabpanel" id={`cbt-panel-${t.id}`} aria-labelledby={`cbt-tab-${t.id}`} class="rounded-[var(--radius-lg)] bg-white p-7 ring-1 ring-line sm:p-9" data-cbt-panel>
+        <p class="font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-teal sm:hidden">{t.label}</p>
+        <h3 class="mt-2 text-2xl sm:mt-0">{t.title}</h3>
+        <p class="mt-3 max-w-3xl text-lg">{t.text}</p>
+        <a href={t.link.href} class="mt-4 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{t.link.label} <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  // Enhance only from sm up (the tablist is hidden on mobile, where both panels stay stacked).
+  document.querySelectorAll<HTMLElement>('[data-cbt-tabs]').forEach((root) => {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role=tab]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-cbt-panel]')];
+    const mq = window.matchMedia('(min-width: 640px)');
+    const select = (i: number, focus = false) => {
+      tabs.forEach((t, j) => { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panels.forEach((p, j) => { p.hidden = mq.matches && i !== j; });
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(i));
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); select((i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length, true); }
+      });
+    });
+    const sync = () => select(Math.max(0, tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true')));
+    mq.addEventListener('change', sync);
+    sync();
+  });
+</script>

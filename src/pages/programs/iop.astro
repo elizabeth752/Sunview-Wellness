@@ -1,0 +1,146 @@
+---
+// /programs/iop/: Programs-Content-Briefs.md §1. Sources in docs/content/programs-sources.md.
+// No length-of-stay figures anywhere (brief rule; pending Elizabeth).
+import ProgramPage from '../../layouts/ProgramPage.astro';
+import ProgramSchedule from '../../components/ProgramSchedule.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import Icon from '../../components/Icon.astro';
+
+const includes = [
+  'Group therapy three days a week, day or evening',
+  'A weekly individual session with your primary therapist, 45 to 60 minutes',
+  'Psychiatric evaluation and medication management through Telemed Clinix, scheduled for you',
+  'Random drug testing as part of your recovery support',
+  'Free transportation to and from our center if you can’t drive yourself',
+];
+
+const session = [
+  { icon: 'users', title: 'One continuous group', text: 'The same facilitator leads the whole session, with breaks along the way. Trust builds faster and the work goes deeper. Topics draw on IFS, CBT, DBT and psychodrama.' },
+  { icon: 'message', title: 'Carefrontation', text: 'Honest feedback, given with care. Group members learn to point out patterns and blind spots without shaming anyone, and to hear hard things without shutting down. Compassion and accountability, at the same time.' },
+  { icon: 'calendar', title: 'Gender-specific days', text: 'Twice a month, women and men meet in separate groups. Some things are easier to say to people who relate, and that extra layer of safety often opens up new conversations.' },
+  { icon: 'heart', title: 'Family contact in week one', text: 'With your consent, your therapist contacts a loved one during your first week. After that, family involvement moves at a pace that fits you: updates, calls or family sessions.' },
+  { icon: 'refresh', title: 'Real life comes back to group', text: 'You try a skill, then come back and say, “I got triggered at work,” or “this happened with my spouse.” We slow that moment down together and practice a different response.' },
+];
+
+const fits = [
+  'You’re medically stable and not in active withdrawal',
+  'You need more than a weekly therapy appointment',
+  'You’re stepping down from PHP, residential treatment or detox',
+  'You work, study or care for family and need treatment to fit around it',
+];
+
+const faqs = [
+  { q: 'Can I keep working during IOP?', a: 'Yes. That is what IOP is designed for. Day IOP meets three mornings a week, 9 AM to 1 PM, on days you choose. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, after most workdays end.' },
+  { q: 'How is IOP different from PHP?', a: 'Intensity. PHP meets every weekday morning, about 20 hours a week. IOP meets three days a week, 9 to 12 hours. The clinical model is the same: one continuous group, a weekly individual session and psychiatric care. <a href="/programs/php/">Learn about the Partial Hospitalization Program</a>.' },
+  { q: 'How long does IOP last?', a: 'It follows your progress, not a fixed calendar. IOP is extended care, typically several months, adjusted to how you’re doing. Your therapist reviews your treatment plan with you every month, and when you’re ready, you step down to the <a href="/programs/outpatient/">Outpatient Program</a> with the same team.' },
+  { q: 'Is evening IOP the same program as day IOP?', a: 'Yes. The clinical content is the same: the continuous group format, the weekly individual session and access to psychiatric care. Only the hours are different.' },
+  { q: 'Does insurance cover IOP?', a: 'Most plans cover intensive outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+];
+---
+<ProgramPage
+  path="/programs/iop/"
+  metaTitle="Intensive Outpatient (IOP) in West Palm Beach | Sunview"
+  description="Day or evening IOP in West Palm Beach for substance use and co-occurring conditions, 3 days a week. Keep your job, with free transportation."
+  crumb="Intensive Outpatient Program"
+  h1="Intensive Outpatient Program in West Palm Beach"
+  subheading="Real clinical depth, three days a week, on a schedule that fits your life."
+  lead="Group therapy, a weekly session with your own therapist and psychiatric care when you need it, for adults with substance use and co-occurring mental health conditions. Choose day or evening, and go home every night."
+  therapy={{
+    name: 'Intensive Outpatient Program (IOP)',
+    description: 'Day and evening intensive outpatient treatment for substance use and co-occurring mental health conditions: group therapy three days a week, weekly individual therapy and integrated psychiatric care.',
+  }}
+  faqTitle="Frequently Asked Questions About IOP"
+  faqs={faqs}
+>
+  <!-- 1. What IOP is -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The program</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What the Intensive Outpatient Program Is</h2>
+        <p class="subheading mt-3">Structured treatment that fits around the rest of your life</p>
+        <div class="prose-sv mt-6">
+          <p>Our Intensive Outpatient Program (IOP) gives you the clinical depth of a treatment program without stepping away from your life. You attend group therapy three days a week, meet one-on-one with your primary therapist every week, and see a psychiatric provider when medication is part of your care.</p>
+          <p>IOP is built for adults who need real support but can’t put everything on hold: working adults, parents, students, and people stepping down from our <a href="/programs/php/">Partial Hospitalization Program</a> or from residential care. It treats substance use and co-occurring conditions like anxiety, depression and trauma together, as one connected picture. Read more about our <a href="/what-we-treat/substance-use/">substance use treatment</a> and <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
+        </div>
+      </div>
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">What IOP includes</h3>
+        <ul class="mt-4 space-y-3">
+          {includes.map((i) => <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />{i}</li>)}
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2 + 3. Day and evening IOP -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-6 lg:grid-cols-2">
+      <article class="card flex flex-col !p-8">
+        <Icon name="clock" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Day IOP: 3 Days a Week, 9 AM to 1 PM</h2>
+        <p class="mt-4">Day IOP meets three mornings a week. You and your team choose the three days around your work, school or family schedule, so treatment doesn’t have to compete with the rest of your week.</p>
+        <p class="mt-3">Instead of a different facilitator every hour, one clinician leads your group for the whole morning, with breaks. <a href="/therapies/group-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4">How group therapy works at Sunview</a>.</p>
+      </article>
+      <article id="evening-iop" class="card flex scroll-mt-32 flex-col !p-8">
+        <Icon name="briefcase" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Evening IOP: Monday, Wednesday and Thursday, 6 to 9 PM</h2>
+        <p class="mt-4">Evening IOP is built for people who work during the day. You keep your full workday and come to group after it, three evenings a week.</p>
+        <p class="mt-3">The clinical content is the same as day IOP: the same continuous group with one facilitator, the same weekly individual session and the same access to psychiatric care. Only the clock changes.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4. A typical session -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Inside the room</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">A Typical IOP Session at Sunview</h2>
+        <p class="subheading mt-3">Less lecture, more real conversation</p>
+        <p class="mt-5 text-lg">You arrive, settle in, and the group starts together. If you rely on our free transportation, your ride is already scheduled.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {session.map((s) => (
+          <div class="card">
+            <Icon name={s.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Fit and scope -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Is IOP right for you?</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Who IOP Is Right For, and Who Needs More First</h2>
+        <p class="subheading mt-3">We recommend the level that sets you up to succeed</p>
+        <p class="mt-5 text-lg">Every admission starts with a short pre-screening. Our Clinical Director reviews it and recommends your level of care using ASAM criteria and clinical judgment, looking at your symptoms, length of sobriety, treatment history and home environment. The wrong level of care is a disservice, so if PHP would serve you better, we’ll tell you.</p>
+        <p class="mt-4 text-lg">If you’ve been taking opioids or benzodiazepines regularly for a long time, medically supervised detox, and often residential care, comes first. That’s about your safety, and we’ll help you plan the path back to us.</p>
+        <a href="/admissions/" class="btn-teal mt-8">Start your pre-screening <Icon name="arrow" /></a>
+      </div>
+      <div>
+        <div class="card !p-7">
+          <h3 class="text-xl">IOP tends to fit if</h3>
+          <ul class="mt-4 space-y-3">
+            {fits.map((f) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{f}</li>)}
+          </ul>
+        </div>
+        <ScopeNote class="mt-5" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Weekly schedule -->
+  <ProgramSchedule
+    class="section"
+    highlight={['DAY-IOP', 'EVE-IOP']}
+    title="IOP Schedule in West Palm Beach"
+    subtitle="Day or evening, three days a week"
+  />
+</ProgramPage>

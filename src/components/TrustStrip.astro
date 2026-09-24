@@ -1,0 +1,24 @@
+---
+// Trust strip directly below the hero on every commercial page (Home-Review-Round-2-Final.md §3 and
+// Sunview-Content-Build-Prompt.md template 1b, 2026-09-22): a band with no heading. Four check items on
+// the left, the four seals on the right (each linked to its {{SEAL_URL_*}} placeholder). Stacks on mobile:
+// items first, seals below.
+import Icon from './Icon.astro';
+import AccreditationBadges from './AccreditationBadges.astro';
+const items = [
+  'Joint Commission accredited',
+  '50+ years of combined clinical experience',
+  'Free transportation to and from our center',
+  'Day and evening programs: PHP, IOP and OP',
+];
+---
+<div class="border-b border-line bg-white">
+  <div class="container-x flex flex-col gap-6 py-7 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+    <ul class="grid gap-x-8 gap-y-2.5 sm:grid-cols-2 sm:gap-y-3">
+      {items.map((i) => (
+        <li class="flex items-center gap-2 font-bold text-charcoal xl:whitespace-nowrap"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-teal" />{i}</li>
+      ))}
+    </ul>
+    <AccreditationBadges compact class="shrink-0 !gap-x-6" />
+  </div>
+</div>

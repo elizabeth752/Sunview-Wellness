@@ -1,0 +1,363 @@
+---
+// /about/our-approach/: About-Team-Content-Briefs.md §D. Sources in docs/content/about-team-sources-approach.md.
+// Copy restructured from the old /our-approach/ page (questionnaire Q8–Q15, Q18, Q20–Q22), the In Vivo article
+// and the "What should a treatment center feel like?" article (src/data/posts.js), and Frank's live bio.
+// Scope (Q18): no formal EMDR service and no art therapy, so neither is mentioned here.
+// No reviewed-by byline (brief: none on About pages). Rotation: Reviews only. No trust strip (Home only).
+// Layout, deliberately unlike /about/ and Home's In Vivo band: two-lane loop diagram, editorial definition
+// block, teal statement band, ascending three-step progression, iceberg figure, supervision questions,
+// measures table, discharge timeline.
+import ServicePage from '../../layouts/ServicePage.astro';
+import SourceFlag from '../../components/SourceFlag.astro';
+import Icon from '../../components/Icon.astro';
+import { pageSchema } from '../../lib/programSchema.js';
+
+const path = '/about/our-approach/';
+const metaTitle = 'Our Clinical Approach and Outcomes | Sunview Wellness';
+const description = 'In Vivo Treatment™, Clinical Architecture™ and a systems-based model: how Sunview treats addiction and co-occurring conditions and measures progress.';
+const IN_VIVO_URL = '/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/';
+const FEEL_URL = '/blog/what-should-a-treatment-center-feel-like/';
+// "I = Sick": definition from the Client Wiki, Proprietary concepts (CEO notes, 10 Sep 2026; wiki txt lines 218–221).
+// Answer 2.1: the section keeps only those two sentences, with the review flag, until Frank confirms.
+const I_SICK_NOTE = 'Review: Frank must confirm whether “I = Sick” or “I = Addict” (his website bio) is the canonical term. Definition from the Client Wiki CEO notes.';
+const I_SICK_TEXT = '“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed. Our CEO, Frank Galimidi, names it as a main driver of repeat admissions, so we address it directly by helping people redefine themselves beyond the diagnosis.';
+
+// In Vivo loop (article: Learn → Apply → Experience → Process → Adjust → Apply Again).
+// lane: where the step happens. Program = in the room at Sunview; life = at home, at work, with family.
+const loop = [
+  { step: 'Learn', lane: 'program', text: 'Skills for triggers, relapse prevention, emotional regulation, boundaries and communication.' },
+  { step: 'Apply', lane: 'life', text: 'You go home, go to work and try those skills where your life actually happens.' },
+  { step: 'Experience', lane: 'life', text: 'The argument with your spouse, the Friday night alone, the rough day at work.' },
+  { step: 'Process', lane: 'program', text: 'You bring what actually happened back to the program and talk it through.' },
+  { step: 'Adjust', lane: 'program', text: 'Together we look at what worked, what didn’t and what to try next.' },
+  { step: 'Apply again', lane: 'life', text: 'Back out with sharper awareness and another chance to practice.' },
+];
+// Desktop placement: [column, row] in a 6 x 2 grid (row 1 = program lane, row 2 = life lane).
+const place = ['lg:col-start-1 lg:row-start-1', 'lg:col-start-2 lg:row-start-2', 'lg:col-start-3 lg:row-start-2', 'lg:col-start-4 lg:row-start-1', 'lg:col-start-5 lg:row-start-1', 'lg:col-start-6 lg:row-start-2'];
+
+const hypothetical = [
+  'What would you do if a craving hit?',
+  'How would you respond if someone crossed a boundary?',
+  'What coping skill would you use if you felt overwhelmed?',
+];
+const real = [
+  'What actually happened when the craving hit yesterday?',
+  'How did it go when you set that boundary with your family?',
+  'How did you handle that rough day at work?',
+  'What did you do when you felt lonely, angry, bored or overwhelmed?',
+];
+
+const stages = [
+  {
+    name: 'Stabilization',
+    ask: '“How do I get through this?”',
+    text: 'Adjusting to the structure of programming, establishing sobriety, managing cravings or psychiatric symptoms, learning coping skills and starting to feel safe enough to engage. Asking anyone to unpack deeply rooted trauma at this point may not be realistic or clinically appropriate.',
+  },
+  {
+    name: 'Insight',
+    ask: '“Why do I respond this way in the first place?”',
+    text: 'As you become more stable and build trust with your therapist and peers, we explore the patterns underneath the symptoms: relationships, family dynamics, past experiences, beliefs about yourself and emotional triggers. This is where IFS, psychodynamic and trauma-informed work can become especially meaningful.',
+  },
+  {
+    name: 'Integration',
+    ask: '“I can see it happening, and I have a choice about how I respond.”',
+    text: 'Insight alone isn’t change. Here the deeper work connects with practical recovery skills, so understanding why you do something turns into recognizing it in the moment and responding differently.',
+  },
+];
+
+const beneath = ['Past experiences', 'Relationships', 'Family dynamics', 'Trauma', 'Beliefs about yourself', 'Coping patterns'];
+
+const supervision = [
+  'What is this behavior communicating?',
+  'What function does this pattern serve?',
+  'What might be happening in this person’s relationships that is reinforcing it?',
+  'What are we missing if we only look at the individual?',
+];
+
+const measures = [
+  { tool: 'Brief Addiction Monitor (BAM)', looks: 'Substance use, recovery and overall functioning, including both risk factors and protective factors.', use: 'We want to see protective factors grow through treatment, a sign you’re building a stronger foundation, not only stopping use.' },
+  { tool: 'PHQ-9', looks: 'Symptoms of depression.', use: 'Repeated over the course of treatment to show how symptoms are changing.' },
+  { tool: 'GAD-7', looks: 'Symptoms of anxiety.', use: 'Repeated over the course of treatment alongside the PHQ-9.' },
+  { tool: 'Monthly treatment plan review', looks: 'Your progress toward the goals you set with your therapist.', use: 'Each month you and your therapist review what’s working, what still needs attention, and adjust the plan together.' },
+  { tool: 'RSA-R Consumer Satisfaction Survey', looks: 'How you experience our programming: what helps and what could be better.', use: 'We review the feedback and use it to make changes to the program.' },
+];
+
+const after = [
+  { when: 'At discharge', icon: 'compass', title: 'Supports recommended for the next stage', text: 'Your team recommends the supports to stay connected to after you leave, such as an individual therapist, psychiatric care and sober support meetings.' },
+  { when: 'After discharge', icon: 'pill', title: 'The same psychiatric provider', text: 'You can keep seeing your Telemed Clinix provider for psychiatric care and medication management, so that part of your care doesn’t reset when the program ends.' },
+  { when: 'Follow-up outreach', icon: 'message', title: 'We check in', text: 'Our team reaches out to ask how you’re doing: whether you’re still connected to the supports recommended at discharge, whether you’ve maintained your sobriety, and how life is going overall.' },
+  { when: 'Ongoing', icon: 'refresh', title: 'What we learn improves discharge planning', text: 'What people tell us helps us strengthen our discharge planning and continuing-care recommendations.' },
+];
+
+const flagHtml = `<mark class="ml-1 inline-block rounded-[4px] bg-error px-1 align-middle font-sans text-[10px] font-extrabold uppercase not-italic leading-4 tracking-normal text-white" title="${I_SICK_NOTE}">[SOURCE?]</mark>`;
+const iSickAnswer = (flag: string) => `${I_SICK_TEXT}${flag}`;
+
+const faqBase = [
+  { q: 'What is In Vivo Treatment?', a: `<em>In vivo</em> means “within the living environment.” Because you live at home during PHP, IOP or OP, you practice recovery skills in real life, bring what happened back to the program, work through it with your team, adjust and try again. <a href="${IN_VIVO_URL}">How In Vivo Treatment™ works in the real world</a>.` },
+  { q: 'Is this evidence-based?', a: 'We value evidence-based practices and interventions. The approaches that inform our work include CBT, DBT, Internal Family Systems (IFS) and trauma-informed care. We also look beneath the surface symptoms, and we track progress with the BAM, PHQ-9 and GAD-7.' },
+  { q: 'How do you track progress?', a: 'With the Brief Addiction Monitor (BAM), the PHQ-9 and GAD-7 for depression and anxiety, monthly treatment plan reviews with your therapist, and the RSA-R Consumer Satisfaction Survey, which tells us how you experience the program.' },
+  { q: 'What does “I = Sick” mean?', a: '' },
+  { q: 'What happens after I finish?', a: 'You can keep seeing your Telemed Clinix psychiatric provider after discharge. Our team also reaches out to see how you’re doing and whether you’re still connected to the supports recommended at discharge, like an individual therapist, psychiatric care and recovery meetings. <a href="/programs/psychiatry-medication-management/">Psychiatry and medication management at Sunview</a>.' },
+];
+// Visible FAQ carries the review flag; the FAQPage schema doesn't.
+const faqs = faqBase.map((f) => (f.a ? f : { ...f, a: iSickAnswer(flagHtml) }));
+const schemaFaqs = faqBase.map((f) => (f.a ? f : { ...f, a: iSickAnswer('') }));
+
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<ServicePage
+  path={path}
+  metaTitle={metaTitle}
+  description={description}
+  crumbs={[{ name: 'About', href: '/about/' }, { name: 'Our Approach', href: path }]}
+  h1="Our Clinical Approach to Addiction and Mental Health Treatment"
+  subheading="Recovery has to work in the real world."
+  lead="At Sunview Wellness in West Palm Beach, you live at home while you’re in treatment, so recovery gets practiced where your life actually happens. We look beneath the symptoms that brought you in, involve your family when it helps, and measure progress along the way."
+  faqTitle="Questions About Our Clinical Approach"
+  faqs={faqs}
+  reviews
+  schema={pageSchema({ path, title: metaTitle, description, faqs: schemaFaqs })}
+>
+  <!-- 1. In Vivo Treatment™: intro + two-lane loop (program / your life), then the "would / did" contrast beside the infographic -->
+  <section class="section">
+    <div class="container-x">
+      <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <div>
+          <h2 class="text-3xl sm:text-[2.1875rem]">In Vivo Treatment™: Recovery Practiced in Real Life</h2>
+          <p class="subheading mt-3">In vivo means “within the living environment.”</p>
+        </div>
+        <div class="prose-sv">
+          <p>Detox and residential care provide safety, stabilization and a break from substances. Eventually, though, everyone in recovery faces the real test: <strong>can I stay sober while actually living my life?</strong> Recovery skills shouldn’t only exist on paper. At some point you have to practice them where your life happens.</p>
+        </div>
+      </div>
+
+      <!-- Loop: vertical on mobile, two lanes on desktop -->
+      <div class="relative mt-12">
+        <div class="pointer-events-none absolute inset-0 hidden grid-rows-2 overflow-hidden rounded-[var(--radius-lg)] lg:grid" aria-hidden="true">
+          <div class="border-b border-dashed border-teal/30 bg-mist px-5 pt-4"><span class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">In the program</span></div>
+          <div class="bg-cream px-5 pb-4 pt-4"><span class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-gold">In your life</span></div>
+        </div>
+        <svg class="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
+          <polyline points="50,55 150,145 250,145 350,55 450,55 550,145" fill="none" stroke="var(--color-gold)" stroke-width="2" stroke-dasharray="6 6" vector-effect="non-scaling-stroke" />
+        </svg>
+        <ol class="relative grid gap-4 border-l-2 border-dashed border-gold pl-6 lg:grid-cols-6 lg:grid-rows-[1fr_1fr] lg:gap-0 lg:border-0 lg:px-2 lg:pl-2">
+          {loop.map((s, i) => (
+            <li class:list={['relative lg:flex lg:items-center lg:px-2 lg:py-12', place[i]]}>
+              <span class="absolute -left-[33px] top-5 h-3 w-3 rounded-full bg-gold lg:hidden" aria-hidden="true"></span>
+              <div class:list={['w-full rounded-[var(--radius-card)] border bg-white p-5', s.lane === 'program' ? 'border-teal' : 'border-gold']}>
+                <p class="flex items-center justify-between gap-2">
+                  <span class="font-sans text-sm font-extrabold text-muted">{String(i + 1).padStart(2, '0')}</span>
+                  <span class:list={['rounded-full px-2 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.06em] lg:hidden', s.lane === 'program' ? 'bg-mist text-teal' : 'bg-cream text-charcoal']}>{s.lane === 'program' ? 'In the program' : 'In your life'}</span>
+                </p>
+                <h3 class="mt-1 font-sans text-xl font-extrabold">{s.step}</h3>
+                <p class="mt-2 text-[15px] leading-snug">{s.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <p class="mt-5 flex items-center gap-2 text-sm text-muted"><Icon name="refresh" class="h-4 w-4 text-teal" />Then around again. That feedback loop is the heart of In Vivo Treatment™.</p>
+
+      <div class="mt-14 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+        <figure>
+          <img src="/images/media/in-vivo-infographic.webp" width="1200" height="670" loading="lazy" alt="In Vivo Treatment™ infographic: clinical stabilization flows through PHP and IOP into real-world recovery and a learn, apply, process, adjust cycle." class="h-auto w-full rounded-[var(--radius-card)] border border-line" />
+        </figure>
+        <div>
+          <h3 class="text-2xl">From “What Would You Do” to “What Did You Do”</h3>
+          <div class="mt-5 space-y-5">
+            <div>
+              <p class="font-sans text-sm font-extrabold uppercase tracking-[0.06em] text-muted">In a controlled setting</p>
+              <ul class="mt-2 space-y-1.5">
+                {hypothetical.map((q) => <li class="text-muted">{q}</li>)}
+              </ul>
+            </div>
+            <div class="border-l-4 border-teal pl-4">
+              <p class="font-sans text-sm font-extrabold uppercase tracking-[0.06em] text-teal">In outpatient care</p>
+              <ul class="mt-2 space-y-1.5">
+                {real.map((q) => <li class="font-bold text-charcoal">{q}</li>)}
+              </ul>
+            </div>
+          </div>
+          <p class="mt-6 text-lg">Hitting a roadblock isn’t a treatment failure. It’s often what makes treatment click. The goal isn’t to turn anyone into a professional patient: it’s to help you build a life you can sustain without us.</p>
+          <a href={IN_VIVO_URL} class={`${link} mt-5 inline-flex items-center gap-2`}>How In Vivo Treatment™ works in the real world <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Clinical Architecture™: editorial definition block, only what the site says -->
+  <section class="section bg-cream">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Clinical Architecture™</h2>
+        <p class="mt-5 text-lg">Clinical Architecture™ is the framework created by our CEO, Frank Galimidi. Through it, he builds treatment environments that foster accountability, connection, structure and sustainable recovery.</p>
+        <p class="mt-4 text-lg">Two of its ideas shape how we think about the treatment environment at Sunview.</p>
+        <a href={FEEL_URL} class={`${link} mt-6 inline-flex items-center gap-2`}>What a treatment center should feel like <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <div>
+        <dl class="divide-y divide-gold/40 border-y border-gold/40">
+          <div class="grid gap-2 py-6 sm:grid-cols-[180px_1fr] sm:gap-6">
+            <dt class="font-display text-2xl font-bold text-teal">Clinical Excellence</dt>
+            <dd class="text-lg">Treatment has substance behind it. Therapy has purpose, groups are meaningful, clinicians understand addiction and behavioral health, and treatment plans reflect the individual instead of moving everyone through the same experience.</dd>
+          </div>
+          <div class="grid gap-2 py-6 sm:grid-cols-[180px_1fr] sm:gap-6">
+            <dt class="font-display text-2xl font-bold text-teal">Recovery Culture</dt>
+            <dd class="text-lg">Whether the environment itself supports recovery: people connect, honesty is encouraged, accountability exists alongside compassion, and recovery happens throughout the program, not only during a scheduled therapy hour.</dd>
+          </div>
+        </dl>
+        <p class="mt-8 font-display text-2xl italic leading-snug text-charcoal">Clinical excellence gives treatment its substance. Recovery culture gives that treatment somewhere to live.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. I = Sick: teal full-bleed band, H2 + the two sentences from the CEO notes (answer 2.1) -->
+  <section class="section relative overflow-hidden bg-teal text-white">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">I = Sick: How We Think About Addiction</h2>
+        <p class="mt-6 font-display text-2xl leading-snug text-white sm:text-[1.75rem]">{I_SICK_TEXT}<SourceFlag note={I_SICK_NOTE} /></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Stabilization → Insight → Integration: ascending three-step progression -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">From Stabilization to Insight to Integration</h2>
+        <p class="subheading mt-3">The work deepens as you’re ready for it.</p>
+        <p class="mt-5 text-lg">In PHP, IOP and OP you’re already living outside a treatment environment, which is exactly what makes deeper work possible over time. We don’t rush anyone into uncovering something painful simply because it exists. We build the foundation first.</p>
+      </div>
+      <ol class="mt-12 grid gap-6 lg:grid-cols-3 lg:items-end">
+        {stages.map((s, i) => (
+          <li class:list={['flex flex-col rounded-t-[var(--radius-lg)] border-b-4 border-teal p-7', i === 0 && 'bg-mist lg:min-h-[380px]', i === 1 && 'bg-teal/10 lg:min-h-[440px]', i === 2 && 'bg-teal text-white lg:min-h-[500px]']}>
+            <span class:list={['font-sans text-sm font-extrabold', i === 2 ? 'text-sun' : 'text-teal']}>Step {i + 1}</span>
+            <h3 class:list={['mt-1 text-3xl', i === 2 && 'text-white']}>{s.name}</h3>
+            <p class:list={['mt-4 font-display text-xl italic leading-snug', i === 2 ? 'text-white' : 'text-teal']}>{s.ask}</p>
+            <p class:list={['mt-4', i === 2 && 'text-white/90']}>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-10 grid gap-6 border-t border-line pt-8 lg:grid-cols-[auto_1fr] lg:items-start">
+        <Icon name="compass" class="h-8 w-8 text-gold" />
+        <p class="max-w-[75ch] text-lg">Recovery isn’t linear. Difficult days, unexpected triggers and old patterns resurfacing don’t automatically mean treatment has failed. We use those moments therapeutically, so you can understand what happened and handle the next one differently. Read more about <a href="/therapies/internal-family-systems/" class={link}>Internal Family Systems therapy</a> and <a href="/therapies/inner-child-therapy/" class={link}>inner child therapy</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Beneath the presenting symptom: iceberg figure + prose -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <figure class="mx-auto w-full max-w-[420px]">
+        <svg viewBox="0 0 400 460" class="h-auto w-full" role="img" aria-labelledby="iceberg-title">
+          <title id="iceberg-title">An iceberg: substance use and mental health symptoms above the waterline; past experiences, relationships, family dynamics, trauma, beliefs about yourself and coping patterns below it.</title>
+          <rect x="0" y="120" width="400" height="340" rx="18" fill="var(--color-teal)" opacity="0.12" />
+          <line x1="0" y1="120" x2="400" y2="120" stroke="var(--color-teal)" stroke-width="2" stroke-dasharray="8 6" />
+          <polygon points="150,120 185,40 205,28 228,60 255,120" fill="#ffffff" stroke="var(--color-teal)" stroke-width="2" />
+          <polygon points="150,120 255,120 330,210 350,320 290,420 160,440 70,380 45,260 85,170" fill="var(--color-teal)" opacity="0.85" />
+          <text x="200" y="100" text-anchor="middle" font-family="var(--font-sans)" font-size="13" font-weight="800" fill="var(--color-teal)">SYMPTOMS</text>
+          {beneath.map((b, i) => (
+            <text x="200" y={180 + i * 40} text-anchor="middle" font-family="var(--font-sans)" font-size="17" font-weight="800" fill="#ffffff">{b}</text>
+          ))}
+        </svg>
+        <figcaption class="mt-3 text-center text-sm text-muted">What brings someone in is usually the tip of the iceberg.</figcaption>
+      </figure>
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Going Beneath the Presenting Symptom</h2>
+        <div class="prose-sv mt-6">
+          <p>The symptoms that bring someone into treatment are often connected to deeper, unresolved struggles that developed and intensified over time. We value evidence-based practices, and we also look beneath the tip of the iceberg: the emotional experiences, relational patterns and underlying factors feeding substance use and mental health concerns.</p>
+          <p><strong>Psychodynamic therapy</strong> explores how your past experiences, relationships and emotions shape the way you think, feel and act today. <strong>Inner child work</strong> looks at younger parts of you that may still carry feelings of being rejected, unsafe, criticized or not good enough. The point isn’t only to understand the past. It’s shifting insight into action.</p>
+          <p>In group, that work is supported by <a href="/therapies/group-therapy/">carefrontation in group therapy</a>, supportive and honest feedback between group members, and by <a href="/admissions/what-to-expect/">gender-specific group days</a> twice a month.</p>
+        </div>
+        <div class="mt-8 rounded-[var(--radius-card)] bg-white p-6 sm:p-7">
+          <p class="font-display text-2xl leading-snug text-charcoal">Skills without depth can become a <em class="text-teal">band-aid over a bullet hole.</em></p>
+          <p class="mt-3">Coping with triggers and changing harmful thought patterns matters, and we teach it through CBT and relapse prevention. But those tools hold better once you’ve looked at where the triggers and thoughts began. If people keep relapsing after treatment, something is missing. We look for the gaps in care and work to fill them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Family systems: prose + the questions asked in clinical supervision -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Family Systems in Treatment</h2>
+        <p class="subheading mt-3">Recovery is not only an individual process.</p>
+        <div class="prose-sv mt-6">
+          <p>Our Clinical Director, Dana Martin, Ph.D., LMFT, is a couple and family therapist, and her systems-based training shaped the way the program was designed. Every member of a family plays a role in how the system works, even when those patterns aren’t healthy, and patterns can be carried from one generation to the next.</p>
+          <p>If we only treat the individual symptom, we may miss the system that keeps reinforcing it. Substance use and mental health concerns often affect the whole family, so we believe in family recovery.</p>
+          <p>When it’s clinically appropriate and you agree, your therapist contacts a loved one in your first week. From there, involvement can include weekly phone or email updates and family sessions every two weeks or monthly. Nobody is pressured into it. See <a href="/therapies/family-therapy/">how family therapy works at Sunview</a>.</p>
+        </div>
+      </div>
+      <aside class="self-start rounded-[var(--radius-lg)] border-2 border-teal p-7 sm:p-9">
+        <p class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">Asked in clinical supervision</p>
+        <p class="mt-2">The Clinical Director asks the team to look past the presenting symptom and think systemically:</p>
+        <ol class="mt-6 space-y-5">
+          {supervision.map((q, i) => (
+            <li class="grid grid-cols-[2rem_1fr] gap-2">
+              <span class="font-display text-2xl font-bold leading-none text-gold" aria-hidden="true">{i + 1}</span>
+              <span class="font-display text-xl leading-snug text-charcoal">{q}</span>
+            </li>
+          ))}
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 7. How we measure progress: measures table (stacks below md) -->
+  <section class="section border-t border-line">
+    <div class="container-x">
+      <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <div>
+          <h2 class="text-3xl sm:text-[2.1875rem]">How We Measure Progress</h2>
+          <p class="subheading mt-3">Success is more than finishing a program.</p>
+        </div>
+        <p class="text-lg">We look for meaningful progress in the areas that brought you in, along with more stability, functioning, insight and engagement in recovery. Progress looks different for each person, so we measure it along the way, and we use your feedback to evaluate ourselves too.</p>
+      </div>
+      <div class="mt-10 overflow-hidden rounded-[var(--radius-card)] border border-line">
+        <table class="w-full text-left">
+          <caption class="sr-only">Tools Sunview uses to measure progress during treatment</caption>
+          <thead class="hidden bg-teal text-white md:table-header-group">
+            <tr>
+              <th scope="col" class="w-[26%] px-6 py-4 font-sans text-sm font-extrabold uppercase tracking-[0.06em]">Measure</th>
+              <th scope="col" class="w-[34%] px-6 py-4 font-sans text-sm font-extrabold uppercase tracking-[0.06em]">What it looks at</th>
+              <th scope="col" class="px-6 py-4 font-sans text-sm font-extrabold uppercase tracking-[0.06em]">How we use it</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-line">
+            {measures.map((m, i) => (
+              <tr class:list={['block md:table-row', i % 2 === 1 && 'bg-mist']}>
+                <th scope="row" class="block px-5 pt-5 font-sans text-lg font-extrabold text-charcoal md:table-cell md:px-6 md:py-5 md:align-top">{m.tool}</th>
+                <td class="block px-5 pt-2 md:table-cell md:px-6 md:py-5 md:align-top"><span class="text-xs font-extrabold uppercase tracking-[0.06em] text-teal md:hidden">What it looks at: </span>{m.looks}</td>
+                <td class="block px-5 pb-5 pt-2 md:table-cell md:px-6 md:py-5 md:align-top"><span class="text-xs font-extrabold uppercase tracking-[0.06em] text-teal md:hidden">How we use it: </span>{m.use}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Continuity after discharge: horizontal timeline -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">Continuity After Discharge</h2>
+        <p class="subheading mt-3">Your care doesn’t just stop at the door.</p>
+        <p class="mt-5 text-lg">The goal is for you to leave with more stability, insight, practical recovery skills and ongoing supports, so you can keep making progress outside of Sunview.</p>
+      </div>
+      <ol class="relative mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <span class="absolute left-0 right-0 top-[22px] hidden h-0.5 bg-gold/60 lg:block" aria-hidden="true"></span>
+        {after.map((a) => (
+          <li class="relative">
+            <span class="relative z-10 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-teal ring-2 ring-gold"><Icon name={a.icon} class="h-5 w-5" /></span>
+            <p class="mt-4 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">{a.when}</p>
+            <h3 class="mt-1 text-xl">{a.title}</h3>
+            <p class="mt-2">{a.text}</p>
+          </li>
+        ))}
+      </ol>
+      <a href="/programs/psychiatry-medication-management/" class={`${link} mt-10 inline-flex items-center gap-2`}>Psychiatry and medication management at Sunview <Icon name="arrow" class="h-4 w-4" /></a>
+    </div>
+  </section>
+</ServicePage>

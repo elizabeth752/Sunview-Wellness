@@ -1,0 +1,10 @@
+---
+// Scope lines required on every program page (Programs briefs), framed positively. Sources: Q3, Q5, live site.
+import Icon from './Icon.astro';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<div class:list={['rounded-[var(--radius-card)] border-l-4 border-gold bg-cream p-6', cls]}>
+  <p class="flex items-start gap-3 font-extrabold text-charcoal"><Icon name="compass" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Sunview is outpatient care only.</p>
+  <p class="mt-2">We don’t provide detox, residential treatment or housing. If you need one of those first, we’ll help you get there and plan Sunview as your next step.</p>
+</div>

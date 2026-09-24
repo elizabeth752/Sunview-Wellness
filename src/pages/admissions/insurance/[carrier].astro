@@ -1,0 +1,191 @@
+---
+// /admissions/insurance/{carrier}/: Admissions-Content-Briefs.md §F (payer template, 5 pages).
+// Sources and open questions: docs/content/admissions-sources-payers.md. No reviewed-by byline on
+// Admissions pages (brief). Rotation: Reviews only; insurance is the page's main content.
+// Carrier copy lives in src/data/payers.js; Sunview facts come from the live site (free verification,
+// Medicaid, enrollment often within 24 hours, free transportation).
+import ServicePage from '../../../layouts/ServicePage.astro';
+import LeadForm from '../../../components/LeadForm.astro';
+import Icon from '../../../components/Icon.astro';
+import { PAYERS } from '../../../data/payers.js';
+
+export function getStaticPaths() {
+  return PAYERS.map((p) => ({ params: { carrier: p.slug }, props: { payer: p } }));
+}
+
+const { payer: p } = Astro.props;
+const S = p.short;
+const path = `/admissions/insurance/${p.slug}/`;
+// <title> ≤60 chars (answer 9.1): keyword first, then the longest brand form that fits.
+const metaBase = `${S} Rehab Coverage in West Palm Beach`;
+const metaTitle = [`${metaBase} | Sunview Wellness`, `${metaBase} | Sunview`, metaBase].find((t) => t.length <= 60)!;
+
+const glance = [
+  { icon: 'shield', label: 'Network status', value: `In network with ${S}` },
+  { icon: 'layers', label: 'Levels of care', value: 'PHP, IOP and OP' },
+  { icon: 'check-circle', label: 'Benefits check', value: 'Free, before you commit' },
+  { icon: 'clock', label: 'Getting started', value: 'Often enrolled within 24 hours' },
+];
+
+const steps = [
+  { title: 'Send your details', text: `Your name, phone, ${S} member ID and plan name, through the form or a call.` },
+  { title: 'We call your plan', text: 'We confirm network status, which levels of care are covered and whether approval is needed first.' },
+  { title: 'You get a straight answer', text: 'We walk you through what we found before you commit to anything.' },
+];
+
+const programs = [
+  { code: 'PHP', name: 'Partial Hospitalization Program', href: '/programs/php/', text: 'Monday to Friday, 9 AM to 1 PM. The most structure we offer while you live at home.' },
+  { code: 'IOP', name: 'Intensive Outpatient Program', href: '/programs/iop/', text: 'Three days a week, day or evening, so you can keep working.' },
+  { code: 'OP', name: 'Outpatient Program', href: '/programs/outpatient/', text: 'One weekday morning to keep the work going as life gets steadier.' },
+];
+
+const faqs = [
+  { q: `Is Sunview in network with ${S}?`, a: `Yes, Sunview Wellness is in network with ${S} for PHP, IOP and OP. Network rules can differ from plan to plan, so we confirm yours during the free benefits check.` },
+  { q: 'Do I need pre-authorization?', a: `Some ${S} plans require approval before PHP or IOP starts, and some don’t. If yours does, our team requests it for you and keeps you updated.` },
+  { q: 'What if my plan is out of network?', a: `Call us anyway. We’ll explain what your plan allows, whether any out-of-network benefits apply and what your options are. <a href="/admissions/insurance/">See insurance and payment options</a>.` },
+  { q: `Does ${S} cover IOP?`, a: `Intensive outpatient treatment is a recognized level of care, and ${S} plans generally cover it when it’s medically necessary. The details depend on your plan. <a href="/programs/iop/">Learn about the Intensive Outpatient Program</a>.` },
+  { q: 'How long does verification take?', a: 'We start as soon as we have your details, and once your benefits are verified and your pre-screening is done, we can often have you enrolled within 24 hours. <a href="/admissions/">How admissions works</a>.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle={metaTitle}
+  description={`Sunview Wellness is in network with ${S} for PHP, IOP and OP in West Palm Beach. Free benefits check before you start.`}
+  crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'Insurance & Payment', href: '/admissions/insurance/' }, { name: S, href: path }]}
+  h1={`${S} Coverage for Outpatient Rehab in West Palm Beach`}
+  subheading="In network for PHP, IOP and outpatient treatment. We check your benefits for free."
+  lead={`Outpatient treatment for substance use and co-occurring mental health conditions, using your ${p.carrier} plan. We confirm your benefits before you start, so there are no surprises.`}
+  faqTitle={`Frequently Asked Questions About ${S} Coverage`}
+  faqs={faqs}
+  reviews
+  mobileForm={false}
+  noindex={p.noindex === true}
+>
+  <!-- Coverage at a glance (no heading: a summary row, like a fact strip) -->
+  <div class="border-b border-line bg-white">
+    <div class="container-x flex flex-col gap-6 py-8 lg:flex-row lg:items-center lg:gap-10">
+      <img src={p.logo} alt={`${S} logo`} width="160" height="48" loading="lazy" class="h-10 w-auto max-w-[180px] shrink-0 object-contain" />
+      <dl class="grid flex-1 grid-cols-2 gap-x-6 gap-y-4 lg:grid-cols-4">
+        {glance.map((g) => (
+          <div class="flex items-start gap-3">
+            <Icon name={g.icon} class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+            <div class="flex flex-col-reverse">
+              <dt class="text-xs font-bold uppercase tracking-[0.08em] text-muted">{g.label}</dt>
+              <dd class="font-extrabold text-charcoal">{g.value}</dd>
+            </div>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+
+  <!-- Does it cover -->
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Does {S} Cover Outpatient Addiction Treatment?</h2>
+        <p class="mt-5 text-lg">{p.intro}</p>
+        <p class="mt-4 text-lg">{p.extra}</p>
+        <p class="mt-4 text-lg">Coverage always depends on the plan: its network, whether approval is needed first, and your share of the cost. We never quote amounts before we’ve checked, and we won’t tell you anything is fully covered until your plan confirms it.</p>
+      </div>
+      <aside class="self-start border-l-4 border-gold pl-6">
+        <p class="font-display text-2xl leading-snug text-charcoal">“Don’t see your plan? Reach out. It’s very likely we can get your treatment covered.”</p>
+        <p class="mt-3 text-sm text-muted">Sunview Wellness admissions</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Using your plan: plan-type explainer + what to have ready + verification strip -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="max-w-4xl text-3xl sm:text-[2.1875rem]">Using Your {S} Plan at Sunview</h2>
+      <p class="mt-4 max-w-3xl text-lg">Sunview is in network with {S}. Here is how the most common plan structures usually affect starting outpatient treatment.</p>
+      <div class="mt-10 grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
+        <dl class="divide-y divide-line rounded-[var(--radius-card)] border border-line bg-white">
+          {p.planTypes.map((t) => (
+            <div class="grid gap-1 p-6 sm:grid-cols-[0.75fr_1.25fr] sm:gap-6">
+              <dt class="font-extrabold text-charcoal">{t.type}</dt>
+              <dd>{t.text}</dd>
+            </div>
+          ))}
+        </dl>
+        <div class="space-y-5 self-start">
+          <div class="rounded-[var(--radius-card)] bg-white p-6 ring-1 ring-line">
+            <p class="flex items-center gap-2 font-extrabold text-charcoal"><Icon name="briefcase" class="h-5 w-5 text-teal" />What to have ready</p>
+            <p class="mt-2">{p.ready}</p>
+          </div>
+          <div class="rounded-[var(--radius-card)] bg-cream p-6">
+            <p class="flex items-center gap-2 font-extrabold text-charcoal"><Icon name="compass" class="h-5 w-5 text-teal" />Good to know</p>
+            <p class="mt-2">{p.note}</p>
+          </div>
+        </div>
+      </div>
+      <!-- Verification steps strip -->
+      <ol class="mt-12 grid overflow-hidden rounded-[var(--radius-card)] border border-line bg-white md:grid-cols-3">
+        {steps.map((st, i) => (
+          <li class:list={['flex gap-4 p-6', i > 0 && 'border-t border-line md:border-l md:border-t-0']}>
+            <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-teal font-sans text-sm font-extrabold text-white" aria-hidden="true">{i + 1}</span>
+            <div>
+              <p class="font-extrabold text-charcoal">{st.title}</p>
+              <p class="mt-1 text-[15px]">{st.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Programs covered: rows, not cards -->
+  <section class="section">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Programs Covered: PHP, IOP and OP</h2>
+      <p class="mt-4 max-w-3xl text-lg">All three levels of care work with {S} plans when they’re medically necessary. Our Clinical Director recommends which one fits you after a short pre-screening. <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Compare levels of care</a>.</p>
+      <ul class="mt-8 divide-y divide-line border-y border-line">
+        {programs.map((pr) => (
+          <li>
+            <a href={pr.href} class="group grid items-center gap-2 py-5 sm:grid-cols-[90px_1fr_auto] sm:gap-6">
+              <span class="font-display text-3xl font-extrabold text-teal">{pr.code}</span>
+              <span>
+                <span class="block font-extrabold text-charcoal group-hover:text-teal">{pr.name}</span>
+                <span class="block text-[15px]">{pr.text}</span>
+              </span>
+              <Icon name="arrow" class="hidden h-5 w-5 text-teal transition group-hover:translate-x-1 sm:block" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Co-occurring + psychiatry. Telemed Clinix billing under the carrier: [to confirm] -->
+  <section class="section bg-cream">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Co-Occurring Mental Health and Psychiatric Care</h2>
+        <p class="mt-5 text-lg">Many people living with substance use also have anxiety, depression or trauma. Your {S} plan’s behavioral health benefits apply to treating them together, which is how every program at Sunview works.</p>
+        <p class="mt-4 text-lg">Psychiatric evaluation and medication management come through our partner, Telemed Clinix, as part of your program.</p>
+      </div>
+      <ul class="space-y-3">
+        <li><a href="/what-we-treat/dual-diagnosis/" class="flex items-center justify-between gap-4 rounded-[var(--radius-card)] bg-white px-6 py-5 font-extrabold text-charcoal ring-1 ring-line hover:text-teal hover:ring-teal">Dual diagnosis treatment <Icon name="arrow" class="h-5 w-5 shrink-0 text-teal" /></a></li>
+        <li><a href="/programs/psychiatry-medication-management/" class="flex items-center justify-between gap-4 rounded-[var(--radius-card)] bg-white px-6 py-5 font-extrabold text-charcoal ring-1 ring-line hover:text-teal hover:ring-teal">Psychiatric care and medication management <Icon name="arrow" class="h-5 w-5 shrink-0 text-teal" /></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Verification form (the body's own form, so ServicePage's pre-CTA mobile form is off) -->
+  <section id="verify" class="section bg-teal text-white">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Get Your {S} Benefits Verified</h2>
+        <p class="mt-5 text-lg text-white/90">Send your details and our admissions team will check your {S} benefits for free. No commitment, and everything you share is confidential.</p>
+        <ul class="mt-6 space-y-2 text-white/90">
+          <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 text-white" />Network status and covered levels of care</li>
+          <li class="flex items-center gap-2"><Icon name="check-circle" class="h-5 w-5 text-white" />Whether approval is needed first</li>
+          <li class="flex items-center gap-2"><Icon name="car" class="h-5 w-5 text-white" />Free transportation if you can’t drive</li>
+        </ul>
+        <p class="mt-6 text-sm text-white/80">More about <a href="/admissions/insurance/" class="font-bold text-white underline">insurance and payment</a> · <a href="/admissions/faq/" class="font-bold text-white underline">admissions FAQ</a> · <a href="/admissions/" class="font-bold text-white underline">how admissions works</a></p>
+      </div>
+      <LeadForm formId={`payer-${p.slug}`} dark />
+    </div>
+  </section>
+</ServicePage>

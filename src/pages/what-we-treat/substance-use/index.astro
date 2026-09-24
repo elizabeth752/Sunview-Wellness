@@ -1,0 +1,154 @@
+---
+// /what-we-treat/substance-use/: What-We-Treat-Content-Briefs.md §B. Sources in
+// docs/content/what-we-treat-sources.md. Rotation: Insurance + Reviews. Reviewed by Frank.
+import ServicePage from '../../../layouts/ServicePage.astro';
+import ConditionCards from '../../../components/ConditionCards.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+
+const levels = [
+  { code: 'PHP', href: '/programs/php/', name: 'Partial Hospitalization Program', text: 'Monday to Friday, 9 AM to 1 PM. The most structure we offer, often right after detox or residential care.' },
+  { code: 'IOP', href: '/programs/iop/', name: 'Intensive Outpatient Program', text: 'Three days a week, day or evening, for people who need real depth and have to keep working.' },
+  { code: 'OP', href: '/programs/outpatient/', name: 'Outpatient Program', text: 'One weekday morning, to keep the work going as life takes back the rest of the week.' },
+];
+
+const deeper = [
+  { icon: 'layers', title: 'The why behind the behavior', text: 'Psychodynamic work looks at how past experiences and relationships still shape what you do today, so the pattern makes sense instead of just being resisted.' },
+  { icon: 'heart', title: 'Inner child work', text: 'Old experiences of feeling unsafe, rejected or not good enough can drive adult choices. We help you recognize them and respond from who you are now.' },
+  { icon: 'users', title: 'Internal Family Systems', text: 'IFS is part of our group topics and individual sessions: understanding the different parts of yourself, including the one that reaches for a substance.' },
+  { icon: 'message', title: 'Carefrontation', text: 'Honest feedback, given with care. Compassion and accountability at the same time, without shame.' },
+];
+
+const faqs = [
+  { q: 'Do you offer detox?', a: 'No. Sunview is outpatient only. If stopping could cause dangerous withdrawal, you’ll need medically supervised detox first. We’ll help you find it and plan Sunview as your next step.' },
+  { q: 'Can I keep working during treatment?', a: 'Many people do. PHP ends at 1 PM, day IOP meets three mornings a week, and evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM. <a href="/programs/iop/">See the Intensive Outpatient Program</a>.' },
+  { q: 'What if I’m on Suboxone?', a: 'You’re welcome here. Sunview is abstinence-based but not medication-free. Suboxone and naltrexone are supported when a qualified outside provider prescribes and manages them, and we coordinate with that provider or refer you to one.' },
+  { q: 'How do you decide between PHP and IOP?', a: 'Our Clinical Director reviews your pre-screening and recommends a level using ASAM criteria and clinical judgment: your symptoms, length of sobriety, treatment history and home environment. <a href="/programs/">Compare levels of care</a>.' },
+  { q: 'Do you treat alcohol and drugs together?', a: 'Yes. Many people use more than one substance, and we treat the whole picture, including any mental health conditions that come with it.' },
+];
+---
+<ServicePage
+  path="/what-we-treat/substance-use/"
+  metaTitle="Substance Use Treatment in West Palm Beach | Sunview"
+  description="Outpatient PHP, IOP and OP for alcohol, cocaine, opioid and benzodiazepine addiction in West Palm Beach. Keep your job, sleep at home, free transportation."
+  crumbs={[WWT, { name: CATEGORIES.substance.name, href: CATEGORIES.substance.href }]}
+  h1="Substance Use Disorder Treatment in West Palm Beach"
+  subheading="Sobriety removes the substance. Recovery examines the life around it."
+  lead="Outpatient addiction treatment for adults in PHP, IOP and OP. You keep your job, sleep at home, and work with a team that looks beneath the substance to the patterns driving it."
+  faqTitle="Frequently Asked Questions About Addiction Treatment"
+  faqs={faqs}
+  insurance
+  reviews
+>
+  <!-- Substances -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Substances</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Substances We Treat Most Often</h2>
+        <p class="subheading mt-3">Alcohol and crack cocaine lead the list</p>
+        <p class="mt-5 text-lg">Alcohol and crack cocaine are the substances we see most. We also treat opioids and benzodiazepines, usually as the next step after medically supervised detox. Many people come to us using more than one substance, and often with anxiety, depression or trauma alongside it.</p>
+      </div>
+      <ConditionCards group="substance" class="mt-10" />
+    </div>
+  </section>
+
+  <!-- Levels -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Levels of care</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Outpatient Addiction Treatment: PHP, IOP and OP</h2>
+        <p class="subheading mt-3">Keep your job. Sleep in your own bed.</p>
+        <p class="mt-5 text-lg">Every level includes group therapy with one facilitator for the whole session, individual therapy, psychiatric care through Telemed Clinix and free transportation if you can’t drive. You step down as you progress, with the same team.</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {levels.map((l) => (
+          <a href={l.href} class="card group flex flex-col transition hover:border-teal">
+            <span class="font-display text-4xl font-extrabold leading-none text-teal">{l.code}</span>
+            <h3 class="mt-3 font-sans text-lg font-extrabold group-hover:text-teal">{l.name}</h3>
+            <p class="mt-2">{l.text}</p>
+            <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstinence-based, medication-friendly -->
+  <section class="section">
+    <div class="container-x grid items-start gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Medication</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Abstinence-Based, Medication-Friendly</h2>
+        <p class="subheading mt-3">Free of substances doesn’t mean free of medication</p>
+        <p class="mt-5 text-lg">While you’re in treatment, marijuana, stimulants, opioids and benzodiazepines are off the table. At the same time, we support medications that help recovery. Anti-craving medications like naltrexone and Suboxone are welcome when a qualified outside provider prescribes and manages them, and we coordinate with them.</p>
+        <p class="mt-4 text-lg">A prescription or a medical card doesn’t decide fit on its own. During pre-screening we look at what you take, how much, how often and for how long.</p>
+      </div>
+      <div class="card !p-8">
+        <h3 class="text-xl">How medication works here</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Psychiatric medications managed through Telemed Clinix</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Suboxone, Vivitrol and naltrexone through your outside provider</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Same psychiatric provider after you finish, if you want</li>
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Deeper than coping skills -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Our approach</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Going Deeper Than Coping Skills</h2>
+        <p class="subheading mt-3">Skills matter. So does where the triggers began.</p>
+        <p class="mt-5 text-lg">We teach coping skills and relapse prevention. But skills without insight are a band-aid over a bullet hole: it’s hard to change a trigger you don’t understand. So we go beneath the presenting problem, at a pace that’s safe for you.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {deeper.map((d) => (
+          <div class="card">
+            <Icon name={d.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{d.title}</h3>
+            <p class="mt-2">{d.text}</p>
+          </div>
+        ))}
+      </div>
+      <a href="/therapies/" class="btn-teal mt-8">How therapy works at Sunview <Icon name="arrow" /></a>
+    </div>
+  </section>
+
+  <!-- Detox or residential first -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Safety first</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">When You Need Detox or Residential First</h2>
+        <p class="subheading mt-3">If you need something else first, we’ll help you find it.</p>
+        <p class="mt-5 text-lg">Outpatient treatment works when you’re medically and psychiatrically steady enough to take part. If you’ve been using opioids or benzodiazepines regularly for a long time, or if stopping could cause dangerous withdrawal, medically supervised detox and often residential care come first.</p>
+        <p class="mt-4 text-lg">We’ll tell you honestly during pre-screening, help you find the right place, and plan Sunview as your next step. Most people who come to us are stepping down from exactly that kind of care.</p>
+      </div>
+      <!-- Family -->
+      <div class="rounded-[var(--radius-lg)] bg-cream p-7 sm:p-9">
+        <h2 class="text-2xl sm:text-[1.75rem]">Family Involvement in Addiction Treatment</h2>
+        <p class="mt-4">Addiction affects the whole family, and families often see patterns that aren’t obvious in treatment. With your consent, your therapist contacts a loved one during your first week. After that, involvement follows your pace: updates, calls, or family sessions every few weeks.</p>
+        <p class="mt-3">If you’re hesitant, that’s okay. Nobody is pressured into it. We’ll explore what’s underneath the hesitation, when you’re ready.</p>
+        <a href="/therapies/family-therapy/" class="mt-5 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Family therapy at Sunview <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    title="Which Level of Care Fits for Substance Use"
+    subtitle="You don’t have to know before you call"
+    level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a> after detox or residential treatment. Others start in the <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, or in the <a href="/programs/outpatient/">Outpatient Program</a> when their pre-screening supports it. Our Clinical Director recommends the level that fits you.</p>`}
+    related={[
+      { label: 'All conditions we treat', href: '/what-we-treat/' },
+      { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      ...SUBSTANCE_PAGES.map((p) => ({ label: p.label, href: p.href })),
+    ]}
+  />
+</ServicePage>

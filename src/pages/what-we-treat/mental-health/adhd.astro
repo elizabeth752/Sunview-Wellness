@@ -1,0 +1,154 @@
+---
+// /what-we-treat/mental-health/adhd/: What-We-Treat-Content-Briefs.md §N. Sources in
+// docs/content/what-we-treat-sources-mental.md. Rotation: Reviews only. Reviewed by Dana.
+// Confirmed by the client (2026-09-22). Stimulants are not used during the program (Q3).
+import ServicePage from '../../../layouts/ServicePage.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { conditionAbout } from '../../../lib/programSchema.js';
+
+const path = '/what-we-treat/mental-health/adhd/';
+
+const signs = [
+  'You use to slow a racing mind, or to feel able to focus',
+  'Restlessness and impulsive choices keep leading back to using',
+  'Routines fall apart quickly, and substances fill the gaps',
+  'A stimulant prescription has become hard to use as directed',
+];
+
+const treating = [
+  { icon: 'calendar', title: 'Structure and routine', text: 'Treatment happens at the same time, with the same facilitator and the same group. That predictable rhythm is part of the treatment.' },
+  { icon: 'compass', title: 'Life skills and goal setting', text: 'Our groups cover life skills, goal setting, boundaries and emotional regulation: practical tools for the days that feel scattered.' },
+  { icon: 'shield', title: 'Coping skills that stick', text: 'CBT and DBT coping skills give you something to reach for when impulses or frustration hit, other than a substance.' },
+  { icon: 'refresh', title: 'Practice in real life', text: 'You go home every day and try what you learned. What worked, and what didn’t, comes back to group the next time.' },
+];
+
+const approaches = [
+  { name: 'CBT', text: 'Helps with the thought patterns and habits that make follow-through hard and using feel like the answer.' },
+  { name: 'DBT', text: 'Builds skills for emotional regulation and impulse control in the moment.' },
+  { name: 'Internal Family Systems (IFS)', text: 'Explores the different parts of yourself, including the frustrated or self-critical ones that often come with ADHD.' },
+  { name: 'Psychodynamic therapy', text: 'Looks at how experiences like feeling criticized or not good enough may still shape how you see yourself.' },
+];
+
+const faqs = [
+  { q: 'Can I keep taking Adderall during the program?', a: 'No. Sunview is abstinence-based, and stimulant medications like Adderall aren’t used during the program. Your Telemed Clinix provider evaluates your needs and makes medication decisions that fit your treatment.' },
+  { q: 'I have a prescription. Doesn’t that settle it?', a: 'A prescription doesn’t by itself determine whether outpatient care fits. During pre-screening we look at what you take, how much, how often and for how long, so we can recommend a level of care that’s safe for you.' },
+  { q: 'Do I need an ADHD diagnosis to start?', a: 'No. You don’t need a specific diagnosis to reach out. Your pre-screening and assessment help us understand the full picture, and psychiatric evaluation is part of the program through Telemed Clinix.' },
+  { q: 'Do you treat ADHD without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If ADHD is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle="ADHD and Addiction Treatment in West Palm Beach | Sunview"
+  description="ADHD treated alongside substance use in West Palm Beach: structure, skills and psychiatric care in PHP, IOP and OP, with no stimulant medications."
+  crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }, { name: 'ADHD', href: path }]}
+  h1="ADHD and Addiction Treatment in West Palm Beach"
+  subheading="Structure, skills and support that work with how your mind works."
+  lead="ADHD treated alongside substance use in outpatient PHP, IOP and OP, with a predictable routine, practical skills groups and psychiatric care, without stimulant medications during the program."
+  faqTitle="Frequently Asked Questions About ADHD Treatment"
+  faqs={faqs}
+  reviews
+  about={conditionAbout('Attention deficit hyperactivity disorder')}
+>
+  <!-- The cycle -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The cycle</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How ADHD and Substance Use Feed Each Other</h2>
+        <p class="subheading mt-3">Looking for focus, finding a new problem</p>
+        <div class="prose-sv mt-6">
+          <p>At Sunview, ADHD is treated as part of <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>, alongside substance use, within our Partial Hospitalization, Intensive Outpatient and Outpatient programs.</p>
+          <p>For many people, substances start as a way to manage what ADHD makes hard: a mind that won’t slow down, restlessness, frustration, or trouble focusing. Some use to feel calmer; others use stimulants to feel able to function. The relief doesn’t last, and using adds new problems of its own.</p>
+          <p>None of this is a character flaw. We look at how your attention, your emotions and your substance use connect, and build a plan that works with how your mind works.</p>
+        </div>
+      </div>
+      <!-- REVIEW 8.5: plain-language passage pending Elizabeth review -->
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">Signs the two may be connected</h3>
+        <ul class="mt-4 space-y-3">
+          {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Treating it at Sunview -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">At Sunview</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Treating ADHD Alongside Addiction at Sunview</h2>
+        <p class="subheading mt-3">Structure is part of the treatment</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {treating.map((t) => (
+          <div class="card">
+            <Icon name={t.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{t.title}</h3>
+            <p class="mt-2">{t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Therapies -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <span class="eyebrow">Therapy</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Therapy Approaches We Use</h2>
+        <p class="subheading mt-3">Practical tools, plus the story underneath</p>
+        <p class="mt-5 text-lg">Skills help with the day-to-day. Many adults with ADHD also carry years of being told they weren’t trying hard enough. We make room for that too.</p>
+        <a href="/therapies/" class="btn-teal mt-8">How therapy works at Sunview <Icon name="arrow" /></a>
+      </div>
+      <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
+        {approaches.map((a) => (
+          <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
+            <dt class="font-extrabold">{a.name}</dt>
+            <dd>{a.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Psychiatry -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Medication</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Psychiatric Care and Medication</h2>
+        <p class="subheading mt-3">Medication decisions made by your provider, with care</p>
+        <p class="mt-5 text-lg">Sunview is abstinence-based, so stimulant medications like Adderall and similar aren’t used during the program. That doesn’t mean you’re on your own: psychiatric evaluation and medication management are part of every program through our partner, Telemed Clinix.</p>
+        <p class="mt-4 text-lg">Your provider reviews your history and current medications and decides what’s clinically appropriate while you’re in treatment. Appointments happen virtually from a private office at Sunview, and you can keep the same provider after you finish.</p>
+      </div>
+      <div class="card !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h3 class="mt-4 text-xl">What psychiatric care includes</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Psychiatric evaluation and medication review</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Appointments scheduled for you, on site</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />The same provider after discharge, if you want</li>
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    class="section"
+    title="Which Level of Care Fits"
+    subtitle="Our Clinical Director helps you decide"
+    level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where the same schedule every weekday builds routine. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you need depth and have to keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps a weekly anchor in place as your routine gets stronger.</p>`}
+    related={[
+      { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
+      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+    ]}
+  />
+</ServicePage>

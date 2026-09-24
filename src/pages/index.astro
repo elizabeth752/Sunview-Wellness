@@ -15,10 +15,9 @@ import LeadForm from '../components/LeadForm.astro';
 import Reviews from '../components/Reviews.astro';
 import MapSection from '../components/MapSection.astro';
 import LatestArticles from '../components/LatestArticles.astro';
+import InsuranceSection from '../components/InsuranceSection.astro';
+import { GBP_RATING } from '../data/reviews.js';
 
-// Hero checklist (between the lead and the buttons). Same four proof points as the live site's
-// homepage stat bar (sunviewwellness.com: 50+ / 3 / Free / Dual Diagnosis).
-const proof = ['50+ years combined experience', '3 program levels', 'Free transportation', 'Dual diagnosis specialty'];
 
 const week = [
   { icon: 'users', title: 'One group, one facilitator', text: 'The same clinician leads your group from 9am to 1pm, with breaks. Nobody re-explains their history to a new face every hour, so the work can go deeper.', href: '/therapies/group-therapy/', link: 'Group therapy' },
@@ -27,6 +26,24 @@ const week = [
   { icon: 'calendar', title: 'Gender-specific group days', text: 'On regular gender-specific group days, women and men meet in separate groups. Some things are easier to say to people who relate.', href: '/therapies/group-therapy/', link: 'How groups work' },
   { icon: 'message', title: 'A weekly session that’s just yours', text: 'You meet one-on-one with your primary therapist for 45 to 60 minutes each week, and sooner if something comes up.', href: '/admissions/what-to-expect/', link: 'What to expect' },
   { icon: 'chart', title: 'Progress you can see', text: 'We track recovery and symptoms with the BAM, PHQ-9 and GAD-7, and review your treatment plan with you every month.', href: '/about/our-approach/', link: 'Our approach & outcomes' },
+];
+
+// "When you first reach out": verbatim questionnaire Q23 phrases + Sunview's reply
+const conversations = [
+  {
+    title: 'If it’s you',
+    said: ['I can’t keep living like this.', 'I know I need help, but I don’t know where to start.', 'I don’t know who I am without this.'],
+    reply: 'If you don’t know who you are without this, that is where we start.',
+    href: '/admissions/what-to-expect/',
+    link: 'What happens after you call',
+  },
+  {
+    title: 'If it’s someone you love',
+    said: ['I’ve tried everything.', 'I’m afraid something is going to happen to him.', 'If I set boundaries, am I abandoning her?'],
+    reply: 'Those questions are part of the work too. Families are involved from the first week, when your loved one agrees.',
+    href: '/admissions/for-families/',
+    link: 'Support for families',
+  },
 ];
 
 const phases = [
@@ -45,7 +62,7 @@ const treat = [
   },
   {
     title: 'Mental health',
-    anchor: 'Mental health treatment',
+    anchor: 'Co-occurring mental health treatment',
     href: '/what-we-treat/mental-health/',
     text: 'Anxiety, depression, trauma and personality disorders are the conditions we see most alongside substance use.',
     links: [['Depression', '/what-we-treat/mental-health/depression/'], ['Anxiety', '/what-we-treat/mental-health/anxiety/'], ['Trauma & PTSD', '/what-we-treat/mental-health/trauma-ptsd/'], ['Bipolar disorder', '/what-we-treat/mental-health/bipolar-disorder/'], ['Personality disorders', '/what-we-treat/mental-health/personality-disorders/'], ['ADHD', '/what-we-treat/mental-health/adhd/']],
@@ -74,11 +91,9 @@ const faqs = [
   { q: 'How soon can I start?', a: 'Once your pre-screening is done and your benefits are verified, we can often have you enrolled within 24 hours. <a href="/admissions/">Start here</a>.' },
 ];
 
-// Never lead with Medicaid (Client Wiki 2026-09-22): commercial payers first, then Medicaid plans.
-const commercial = ['Aetna', 'Florida Blue', 'Cigna', 'UnitedHealthcare', 'Oscar', 'Ambetter', 'Humana'];
-const medicaid = ['Sunshine Health', 'AmeriHealth Caritas', 'Molina Healthcare', 'Community Care Plan'];
 ---
 <Base
+  orgExtra={{ aggregateRating: { '@type': 'AggregateRating', ratingValue: GBP_RATING.average, reviewCount: GBP_RATING.count, bestRating: 5 } }}
   title="Drug & Alcohol Rehab in West Palm Beach | Sunview Wellness"
   description="Outpatient drug, alcohol and mental health treatment in West Palm Beach. PHP, IOP and OP for adults. Joint Commission accredited. Free insurance check."
   schema={[{
@@ -88,16 +103,11 @@ const medicaid = ['Sunshine Health', 'AmeriHealth Caritas', 'Molina Healthcare',
   }]}
 >
   <PageHero
+    trust
     title="Drug and Alcohol Rehab in West Palm Beach"
-    subheading="Your Community. Your Recovery."
-    supporting="A true outpatient model for real life."
+    subheading="Your Community. Your Recovery. Keep your job and sleep in your own bed."
     lead="PHP, IOP and outpatient treatment for adults with substance use and co-occurring mental health conditions. You go home every night, keep your life moving, and do the deeper work with a team that knows your name."
   >
-    <ul class="mt-6 flex flex-col gap-2">
-      {proof.map((p) => (
-        <li class="flex items-center gap-2 font-bold text-white"><Icon name="check-circle" class="h-5 w-5 shrink-0 text-white" />{p}</li>
-      ))}
-    </ul>
     <Fragment slot="aside">
       <!-- Desktop only; below lg the same form renders right before the CTA section -->
       <div class="hidden lg:block"><LeadForm formId="home-hero" dark /></div>
@@ -105,36 +115,33 @@ const medicaid = ['Sunshine Health', 'AmeriHealth Caritas', 'Molina Healthcare',
   </PageHero>
 
 
-  <!-- Name the fear before the program -->
-  <section class="section bg-mist">
-    <div class="container-x">
-      <div class="max-w-5xl">
+  <!-- Insurance: white, centered, logos alone in an infinite grayscale marquee (client request 2026-09-22) -->
+  <InsuranceSection />
+
+  <!-- Name the fear before the program: the first call as a conversation (design "B", approved 2026-09-22).
+       Visitor bubbles are verbatim Q23 phrases; the teal bubble is Sunview's reply. -->
+  <section class="section">
+    <div class="container-x grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
         <span class="eyebrow">When you first reach out</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Getting Help for Addiction or Mental Health: Where to Start</h2>
         <p class="subheading mt-3">If you don’t know what to do anymore, start here</p>
         <p class="mt-5 text-lg">Most people don’t call with a plan. They call because something isn’t working anymore. You don’t need the right words or a diagnosis. The first conversation is about listening and figuring out, together, what you need.</p>
       </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="card">
-          <h3 class="text-2xl">If it’s you</h3>
-          <ul class="mt-5 space-y-3 border-l-2 border-gold pl-5 font-display text-xl">
-            <li>“I can’t keep living like this.”</li>
-            <li>“I know I need help, but I don’t know where to start.”</li>
-            <li>“I don’t know who I am without this.”</li>
-          </ul>
-          <p class="mt-5">If you don’t know who you are without this, that is where we start.</p>
-          <a href="/admissions/what-to-expect/" class="mt-5 inline-flex items-center gap-2 font-extrabold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">What happens after you call <Icon name="arrow" class="h-4 w-4" /></a>
-        </div>
-        <div class="card">
-          <h3 class="text-2xl">If it’s someone you love</h3>
-          <ul class="mt-5 space-y-3 border-l-2 border-gold pl-5 font-display text-xl">
-            <li>“I’ve tried everything.”</li>
-            <li>“I’m afraid something is going to happen to him.”</li>
-            <li>“If I set boundaries, am I abandoning her?”</li>
-          </ul>
-          <p class="mt-5">Those questions are part of the work too. Families are involved from the first week, when your loved one agrees.</p>
-          <a href="/admissions/for-families/" class="mt-5 inline-flex items-center gap-2 font-extrabold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Support for families <Icon name="arrow" class="h-4 w-4" /></a>
-        </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        {conversations.map((c) => (
+          <div class="grid content-start gap-2.5 rounded-[18px] bg-mist p-5">
+            <h3 class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">{c.title}</h3>
+            {c.said.map((line) => (
+              <p class="max-w-[92%] justify-self-start rounded-[18px] rounded-bl-md border border-line bg-white px-3.5 py-2.5 text-[15px] leading-snug">{line}</p>
+            ))}
+            <p class="max-w-[92%] justify-self-end rounded-[18px] rounded-br-md bg-teal px-3.5 py-2.5 text-[15px] leading-snug text-white">
+              {c.reply}
+              <span class="mt-1 block text-[11px] font-bold text-white/80">Sunview admissions</span>
+            </p>
+            <a href={c.href} class="mt-1.5 inline-flex items-center gap-2 font-extrabold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">{c.link} <Icon name="arrow" class="h-4 w-4" /></a>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -252,7 +259,7 @@ const medicaid = ['Sunshine Health', 'AmeriHealth Caritas', 'Molina Healthcare',
       <div>
         <span class="eyebrow">Honest about scope</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Is Outpatient Treatment the Right Fit for You?</h2>
-        <p class="subheading mt-3">What we don’t do, and where we’ll send you instead</p>
+        <p class="subheading mt-3">If you need something else first, we’ll help you find it.</p>
         <p class="mt-5 text-lg">Outpatient care works when you’re medically and psychiatrically steady enough to take part. If you need something first, we’ll say so.</p>
         <a href="/admissions/" class="btn-ghost mt-8">Talk to admissions</a>
       </div>
@@ -273,15 +280,15 @@ const medicaid = ['Sunshine Health', 'AmeriHealth Caritas', 'Molina Healthcare',
       <figure class="card !p-8 sm:!p-10">
         <SunMark variant="sun" class="h-10 w-auto text-gold" />
         <blockquote class="mt-5 font-display text-2xl leading-snug sm:text-[1.75rem]">
-          “Instead of simply asking, ‘What is wrong with this person?’ I want to understand, ‘What happened to this person? What have they learned? What patterns have they been living within? What has been reinforced throughout their life?’”
+          "Instead of simply asking, 'What is wrong with this person?' I want to understand, 'What happened to this person? What have they learned? What patterns have they been living within? What has been reinforced throughout their life?'"
         </blockquote>
-        <figcaption class="mt-5"><strong>Dana Martin, Ph.D., LMFT</strong><br /><span class="text-sm text-muted">Clinical Director</span></figcaption>
+        <figcaption class="mt-5"><strong>Sunview’s Clinical Director</strong></figcaption>
       </figure>
       <div>
         <span class="eyebrow">Our team</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Meet Our Clinical Team in West Palm Beach</h2>
         <p class="subheading mt-3">A PhD-led team with more than 50 years of combined experience</p>
-        <p class="mt-5 text-lg">Licensed therapists, social workers, certified addiction professionals and group facilitators, including a retired 25-year firefighter and a bilingual English and Spanish therapist. Every clinician is trauma-informed, and each brings their own specialty.</p>
+        <p class="mt-5 text-lg">Licensed therapists, social workers, certified addiction professionals and group facilitators, including a bilingual English and Spanish therapist. Every clinician is trauma-informed, and each brings their own specialty.</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="/our-team/" class="btn-ghost">Meet the team</a>
           <a href="/about/" class="btn-ghost">About Sunview Wellness</a>
@@ -292,31 +299,6 @@ const medicaid = ['Sunshine Health', 'AmeriHealth Caritas', 'Molina Healthcare',
 
   <Reviews />
 
-  <!-- Insurance -->
-  <section class="section">
-    <div class="container-x">
-      <div class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-        <div class="max-w-5xl">
-          <span class="eyebrow">Insurance</span>
-          <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Insurance Accepted for Outpatient Rehab in Florida</h2>
-        <p class="subheading mt-3">In network with virtually every carrier, including Medicaid.</p>
-          <p class="mt-5 text-lg">We check your benefits for free before you start, so you know what’s covered.</p>
-        </div>
-        <div class="lg:text-right"><a href="/admissions/insurance/" class="btn-teal">Verify my insurance <Icon name="arrow" /></a></div>
-      </div>
-      <div class="mt-10 grid gap-6 md:grid-cols-2">
-        <div class="card">
-          <h3 class="text-xl">Commercial plans</h3>
-          <ul class="mt-4 flex flex-wrap gap-2">{commercial.map((m) => <li class="rounded-full border border-line px-3 py-1 font-bold">{m}</li>)}</ul>
-        </div>
-        <div class="card">
-          <h3 class="text-xl">Medicaid plans</h3>
-          <ul class="mt-4 flex flex-wrap gap-2">{medicaid.map((m) => <li class="rounded-full border border-line px-3 py-1 font-bold">{m}</li>)}</ul>
-        </div>
-      </div>
-      <p class="mt-5 text-sm text-muted">Don’t see your plan? Ask us. Coverage depends on your specific plan.</p>
-    </div>
-  </section>
 
   <MapSection />
 

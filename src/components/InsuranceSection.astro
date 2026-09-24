@@ -1,0 +1,21 @@
+---
+// Insurance rotation section (Home + every program page): white, centered, logos alone in the
+// infinite grayscale marquee (client request 2026-09-22).
+import Icon from './Icon.astro';
+import InsuranceMarquee from './InsuranceMarquee.astro';
+interface Props { title?: string; subtitle?: string }
+const {
+  title = 'Insurance Accepted for Outpatient Rehab in Florida',
+  subtitle = 'In network with virtually every carrier, including Medicaid.',
+} = Astro.props;
+---
+<section class="section">
+  <div class="container-x text-center">
+    <h2 class="text-3xl sm:text-[2.1875rem]">{title}</h2>
+    <p class="subheading mt-3">{subtitle}</p>
+  </div>
+  <InsuranceMarquee class="mt-10" />
+  <div class="container-x mt-10 text-center">
+    <a href="/admissions/insurance/" class="btn-teal">Verify my insurance <Icon name="arrow" /></a>
+  </div>
+</section>

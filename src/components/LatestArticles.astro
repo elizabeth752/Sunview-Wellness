@@ -5,7 +5,7 @@
 import Icon from './Icon.astro';
 import { sortedPosts, formatDate, postImage } from '../data/posts.js';
 interface Props { title?: string; href?: string }
-const { title = 'Recovery Resources From the Sunview Team', href = '/media/' } = Astro.props;
+const { title = 'Recovery Resources From the Sunview Team', href = '/blog/' } = Astro.props;
 const latest = sortedPosts.slice(0, 3);
 ---
 <section class="section">
@@ -20,7 +20,7 @@ const latest = sortedPosts.slice(0, 3);
     <ul class="mt-10 grid gap-6 md:grid-cols-3">
       {latest.map((p) => (
         <li>
-          <a href={`/media/${p.slug}/`} class="card group flex h-full flex-col overflow-hidden !p-0">
+          <a href={`/blog/${p.slug}/`} class="card group flex h-full flex-col overflow-hidden !p-0">
             <div class="relative aspect-[1200/630] overflow-hidden bg-teal">
               <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
               {p.type === 'video' && <span class="absolute inset-0 flex items-center justify-center"><span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white text-teal"><Icon name="play" class="ml-1 h-6 w-6" /></span></span>}

@@ -1,0 +1,28 @@
+---
+// "Wave" visual for /therapies/dbt/: an urge or emotion rises, peaks and passes. General illustration of
+// distress tolerance, not a claimed protocol.
+const marks = [
+  { x: 14, label: 'It starts' },
+  { x: 50, label: 'It peaks' },
+  { x: 86, label: 'It passes' },
+];
+---
+<figure class="w-full" aria-label="Illustration: an urge rises, peaks and passes without acting on it">
+  <div class="relative">
+    <svg viewBox="0 0 600 220" class="h-auto w-full" role="presentation" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="dbt-wave-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="var(--color-teal-light)" stop-opacity="0.45" />
+          <stop offset="1" stop-color="var(--color-teal-light)" stop-opacity="0.05" />
+        </linearGradient>
+      </defs>
+      <path d="M0 200 C120 200 180 30 300 30 C420 30 480 200 600 200 L600 220 L0 220 Z" fill="url(#dbt-wave-fill)" />
+      <path d="M0 200 C120 200 180 30 300 30 C420 30 480 200 600 200" fill="none" stroke="var(--color-teal)" stroke-width="4" stroke-linecap="round" />
+      <line x1="0" y1="205" x2="600" y2="205" stroke="var(--color-gold)" stroke-width="2" stroke-dasharray="6 6" />
+    </svg>
+    {marks.map((m) => (
+      <span class="absolute -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-3 py-1 text-xs font-extrabold text-teal ring-1 ring-line sm:text-sm" style={`left:${m.x}%;top:${m.x === 50 ? '2%' : '62%'}`}>{m.label}</span>
+    ))}
+  </div>
+  <figcaption class="mt-3 text-sm text-muted">Strong feelings and urges rise and fall. The skill is riding the wave without acting on it.</figcaption>
+</figure>

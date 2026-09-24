@@ -58,3 +58,9 @@ Scope rules from the questionnaire. Don't advertise these:
 4. **Insurance list**: logos match the live site. The wiki's in-network/PPO matrix is still empty, so confirm the list with billing.
 5. Hours of operation for calls/admissions (not just program hours) aren't documented anywhere.
 6. Third-party claims deliberately left out: "130-day average stay" and "scholarships" (from a podcast description). Add them only with client sign-off.
+7. **Frank Galimidi headshot** for the reviewed-by block on the program pages. It shows initials until `REVIEWER.photo` is set in `src/data/site.js`.
+8. **`/our-team/frank-galimidi/`** (the reviewed-by link) doesn't exist yet. It comes from the `/our-team/{first-last}/` template.
+9. **`vercel.json` legacy redirects `/our-team/` → `/about-us/` and `/about/` → `/about-us/`** conflict with the final sitemap, where both are pages. Remove them before launch.
+10. **Program meta titles and descriptions** are the brief's text verbatim and run long (titles 61–69 characters, descriptions up to 172), but the updated content prompt says titles ≤60 and descriptions ≤155. Confirm which rule wins before launch.
+11. **Length-of-stay figures**: none are published, pending the client's confirmation (see `docs/content/programs-sources.md`).
+12. **Seal URLs** `{{SEAL_URL_*}}` are still placeholders.

@@ -1,0 +1,19 @@
+---
+// Relapse-prevention loop for /therapies/cbt/: the In Vivo cycle as a ring of steps.
+const steps = ['Learn', 'Apply', 'Experience', 'Process', 'Adjust', 'Apply again'];
+---
+<ol class="relative mx-auto grid aspect-square w-full max-w-[400px] place-items-center" aria-label="The In Vivo Treatment loop">
+  <span class="absolute inset-[14%] rounded-full border-2 border-dashed border-gold" aria-hidden="true"></span>
+  <span class="absolute text-center font-display text-lg font-extrabold leading-tight text-teal" aria-hidden="true">Real life<br />is the practice</span>
+  {steps.map((s, i) => {
+    const a = (i / steps.length) * 2 * Math.PI - Math.PI / 2;
+    const x = 50 + 42 * Math.cos(a);
+    const y = 50 + 42 * Math.sin(a);
+    return (
+      <li class="absolute flex h-[26%] w-[26%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-white text-center shadow-[var(--shadow-soft)] ring-1 ring-line" style={`left:${x}%;top:${y}%`}>
+        <span class="font-sans text-[11px] font-extrabold text-gold">{String(i + 1).padStart(2, '0')}</span>
+        <span class="px-1 text-[12px] font-extrabold leading-tight text-charcoal sm:text-sm">{s}</span>
+      </li>
+    );
+  })}
+</ol>

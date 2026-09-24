@@ -1,0 +1,90 @@
+---
+// Blog hub (/blog/ replaced /media/, final sitemap). Articles first, podcasts and videos below (user, 2026-09-24).
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { sortedPosts, formatDate, postImage } from '../../data/posts.js';
+
+const writing = sortedPosts.filter((p) => p.type !== 'video');
+const videos = sortedPosts.filter((p) => p.type === 'video');
+
+const crumbs = [{ name: 'Blog', href: '/blog/' }];
+const site = 'https://sunviewwellness.com';
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  '@id': `${site}/blog/#blog`,
+  url: `${site}/blog/`,
+  name: 'Sunview Wellness Blog',
+  publisher: { '@id': `${site}/#organization` },
+  blogPost: writing.map((p) => ({
+    '@type': 'BlogPosting',
+    headline: p.title,
+    url: `${site}/blog/${p.slug}/`,
+    datePublished: p.date,
+    author: { '@type': 'Person', name: p.author.name, url: new URL(p.author.href, site).href },
+  })),
+}];
+---
+<Base
+  title="Addiction and Mental Health Recovery Blog | Sunview Wellness"
+  description="Articles and podcasts from Sunview Wellness CEO Frank Galimidi on In Vivo Treatment™, extended care and community-based addiction treatment."
+  breadcrumbs={crumbs}
+  schema={schema}
+>
+  <PageHero
+    title="Addiction and Mental Health Recovery Blog"
+    subheading="Leading the conversation."
+    lead="From redefining clinical outcomes to challenging the status quo in behavioral health, Frank Galimidi and the Sunview team are making their mark on the world of extended care."
+    crumbs={crumbs}
+    cta={{ label: 'Get help now', href: '/admissions/' }}
+    compact
+  />
+
+  <section class="section" aria-labelledby="articles-title">
+    <div class="container-x">
+      <h2 id="articles-title" class="text-3xl sm:text-4xl">Articles on Addiction Treatment and Recovery</h2>
+      <p class="mt-4 max-w-2xl text-lg text-charcoal">Frank writes on community-based care, extended care and the future of behavioral health.</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {writing.map((p) => (
+          <a href={`/blog/${p.slug}/`} class="card group !p-0 overflow-hidden">
+            <div class="aspect-[1200/630] overflow-hidden bg-teal">
+              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-teal">Article · {formatDate(p.date)}</p>
+              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
+              <p class="mt-2 text-sm text-charcoal">{p.dek}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-mist" aria-labelledby="podcasts-title">
+    <div class="container-x">
+      <h2 id="podcasts-title" class="text-3xl sm:text-4xl">Podcasts and Videos With Frank Galimidi</h2>
+      <p class="mt-4 max-w-2xl text-lg text-charcoal">Conversations on extended care, staying sober and what treatment should look like after rehab.
+        <a href="https://www.youtube.com/@frankgalimidi" target="_blank" rel="noopener" class="font-bold text-teal underline decoration-2 underline-offset-4">Watch on YouTube</a></p>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {videos.map((p) => (
+          <a href={`/blog/${p.slug}/`} class="card group !p-0 overflow-hidden">
+            <div class="relative aspect-video overflow-hidden bg-teal">
+              <img src={postImage(p)} alt="" loading="lazy" class="h-full w-full object-cover opacity-90 transition duration-500 group-hover:scale-[1.03]" />
+              <span class="absolute inset-0 flex items-center justify-center"><span class="inline-flex h-16 w-16 items-center justify-center rounded-full bg-sun text-charcoal shadow-lg"><Icon name="play" class="ml-1 h-7 w-7" /></span></span>
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-teal">{p.show} · {formatDate(p.date)}</p>
+              <h3 class="mt-2 text-xl group-hover:text-teal">{p.title}</h3>
+              <p class="mt-2 text-charcoal">{p.dek}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

@@ -1,0 +1,109 @@
+---
+// Shared template for commercial service pages (Programs + What We Treat briefs, content prompt template):
+// hero (breadcrumb above the H1, coverage form) → page body (default slot) → optional "links" slot →
+// rotation sections chosen per page group (Insurance / Reviews / Map) → FAQ →
+// coverage form below lg → CTA.
+// Schema: MedicalOrganization (Base) + BreadcrumbList (Base) + WebPage (+ optional `about`)
+// + FAQPage.
+import Base from './Base.astro';
+import PageHero from '../components/PageHero.astro';
+import LeadForm from '../components/LeadForm.astro';
+import InsuranceSection from '../components/InsuranceSection.astro';
+import Reviews from '../components/Reviews.astro';
+import MapSection from '../components/MapSection.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { pageSchema } from '../lib/programSchema.js';
+
+interface Faq { q: string; a: string }
+interface Crumb { name: string; href: string }
+interface Props {
+  path: string;
+  metaTitle: string;
+  description: string;
+  crumbs: Crumb[]; // after Home; the last one is this page
+  h1: string;
+  subheading: string;
+  lead: string;
+  faqTitle: string;
+  faqs: Faq[];
+  insurance?: boolean;
+  reviews?: boolean;
+  map?: boolean;
+  faqSection?: boolean; // false when the page renders its own FAQ content (e.g. /admissions/faq/)
+  mobileForm?: boolean; // false when the body already has a form section
+  helpHref?: string; // target of the hero/CTA "Get help now" ('#get-started' scrolls to the form)
+  schema?: Record<string, unknown>[]; // overrides the default page schema (e.g. programs' MedicalTherapy)
+  about?: Record<string, unknown>; // schema `about` node (e.g. MedicalCondition)
+  ctaTitle?: string; // overrides the CTA band's tagline when the page already uses it (e.g. /about/'s subheading)
+  noindex?: boolean; // robots noindex (e.g. the Humana payer page until its products are confirmed)
+}
+const {
+  path, metaTitle, description, crumbs, h1, subheading, lead, faqTitle, faqs,
+  insurance = false,
+  reviews = false,
+  map = false,
+  faqSection = true,
+  mobileForm = true,
+  helpHref = '/admissions/',
+  schema,
+  about,
+  ctaTitle,
+  noindex = false,
+} = Astro.props;
+const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
+---
+<Base
+  title={metaTitle}
+  description={description}
+  breadcrumbs={crumbs}
+  noindex={noindex}
+  schema={schema ?? pageSchema({ path, title: metaTitle, description, about, faqs })}
+>
+  <PageHero title={h1} subheading={subheading} lead={lead} crumbs={crumbs} cta={{ label: 'Get help now', href: helpHref }}>
+    <Fragment slot="aside">
+      <!-- Desktop only; below lg the same form renders right before the CTA section -->
+      <div class="hidden scroll-mt-28 lg:block" data-form-anchor><LeadForm formId={`${formId}-hero`} dark /></div>
+    </Fragment>
+  </PageHero>
+
+  <slot />
+  <slot name="links" />
+
+  {insurance && <InsuranceSection />}
+  {reviews && <Reviews />}
+  {map && <MapSection showSchedule={false} />}
+
+  {faqSection && <section class="section bg-mist">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{faqTitle}</h2>
+        <p class="subheading mt-3">Straight answers before you call</p>
+        <a href="/admissions/faq/" class="btn-ghost mt-8">All admissions FAQs</a>
+      </div>
+      <FaqList faqs={faqs} />
+    </div>
+  </section>}
+
+  <!-- Coverage form below lg (in the hero on desktop) -->
+  {mobileForm && <section class="section scroll-mt-20 bg-teal lg:hidden" data-form-anchor>
+    <div class="container-x max-w-2xl"><LeadForm formId={`${formId}-mobile`} dark /></div>
+  </section>}
+
+  <CtaBand helpHref={helpHref} title={ctaTitle} />
+</Base>
+
+<script>
+  // Links to #get-started scroll to whichever coverage form is visible: the hero form on desktop,
+  // the pre-CTA form on mobile (Admissions brief: every section CTA scrolls to the form).
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href="#get-started"]');
+    if (!a) return;
+    const target = [...document.querySelectorAll<HTMLElement>('[data-form-anchor]')].find((el) => el.offsetParent !== null);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.querySelector<HTMLInputElement>('input')?.focus({ preventScroll: true });
+  });
+</script>

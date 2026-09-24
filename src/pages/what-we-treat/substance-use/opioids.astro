@@ -1,0 +1,121 @@
+---
+// /what-we-treat/substance-use/opioids/: What-We-Treat-Content-Briefs.md §G. Sources in
+// docs/content/what-we-treat-sources-substance.md. Rotation: Reviews only. Reviewed by Frank.
+// Framed as the step after medically supervised detox or residential care (brief assumption).
+import ServicePage from '../../../layouts/ServicePage.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+import { conditionAbout } from '../../../lib/programSchema.js';
+
+const path = '/what-we-treat/substance-use/opioids/';
+
+const signs = [
+  'You need more to get the same effect',
+  'You feel sick, restless or anxious when it wears off',
+  'Pills run out early, or you take them beyond the prescription',
+  'You get opioids from more than one place',
+  'Work, family and money are taking a back seat to using',
+  'You’ve tried to stop on your own, and it hasn’t held',
+];
+
+const how = [
+  { icon: 'pill', title: 'Suboxone and Vivitrol welcome', text: 'Buprenorphine and naltrexone are supported when a qualified outside provider prescribes and manages them. If you already have one, we keep care connected. If you don’t, we refer you.' },
+  { icon: 'calendar', title: 'Psychiatric care built in', text: 'Psychiatric evaluation and medication management through Telemed Clinix, scheduled for you in a private office on site.' },
+  { icon: 'users', title: 'One group, one facilitator', text: 'The same clinician leads your group for the whole session, so the work goes deeper instead of restarting every hour.' },
+  { icon: 'shield', title: 'Random drug testing', text: 'Part of how we support your recovery and keep the group safe for everyone in it.' },
+  { icon: 'layers', title: 'Beneath the use', text: 'Psychodynamic work, inner child work and Internal Family Systems look at what the opioids were quieting, at a pace that’s safe for you.' },
+  { icon: 'heart', title: 'Family involvement', text: 'With your consent, your therapist contacts a loved one in your first week, and involvement grows at your pace.' },
+];
+
+const faqs = [
+  { q: 'Can I stay on Suboxone or Vivitrol?', a: 'Yes. Sunview is abstinence-based but not medication-free. Suboxone and Vivitrol are welcome when a qualified outside provider prescribes and manages them, and we coordinate with that provider.' },
+  { q: 'What if I’m on methadone?', a: 'We don’t provide methadone maintenance, and we generally don’t admit people who are maintained on it. If you’re coming off methadone, medical stabilization may come first. We’ll help you find the right program.' },
+  { q: 'Do I need detox before starting?', a: 'Usually, yes. If you’ve been using opioids regularly, medically supervised detox, and often residential treatment, comes first. Most people come to us as the next step after that care.' },
+  { q: 'Can I start MAT while I’m at Sunview?', a: 'If you’re interested in medication-assisted treatment, we can refer you to a qualified provider who prescribes and manages it, and coordinate with them while you’re in the program.' },
+  { q: 'Does insurance cover opioid addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle="Opioid Addiction Treatment in West Palm Beach | Sunview"
+  description="Opioid addiction treatment in West Palm Beach after detox: PHP, IOP and OP. Suboxone and Vivitrol welcome via your prescriber; no methadone maintenance."
+  crumbs={[WWT, { name: CATEGORIES.substance.name, href: CATEGORIES.substance.href }, { name: 'Opioid Addiction Treatment', href: path }]}
+  h1="Opioid Addiction Treatment in West Palm Beach"
+  subheading="The next step after detox, with your medication plan respected."
+  lead="Outpatient treatment for adults recovering from heroin, fentanyl, oxycodone, hydrocodone and other opioids, usually right after detox or residential care. You keep your life moving while you do the deeper work."
+  faqTitle="Frequently Asked Questions About Opioid Addiction Treatment"
+  faqs={faqs}
+  reviews
+  about={conditionAbout('Opioid use disorder')}
+>
+  <!-- Signs -->
+  <section class="section">
+    <div class="container-x grid items-start gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Recognizing it</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Signs Opioid Use Has Become a Problem</h2>
+        <p class="subheading mt-3">When a prescription or a habit starts running things</p>
+        <p class="mt-5 text-lg">Opioid use often starts somewhere understandable: pain, a prescription, a hard season. It can become dependence before anyone names it. If some of these signs sound familiar, reach out. The first conversation is about listening, not judging.</p>
+      </div>
+      <div class="card !p-7">
+        <h3 class="text-xl">Some common signs</h3>
+        <ul class="mt-4 space-y-3">
+          {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we treat -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Treatment</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How Sunview Treats Opioid Addiction</h2>
+        <p class="subheading mt-3">Abstinence-based, medication-friendly</p>
+        <p class="mt-5 text-lg">Opioids aren’t allowed during the program, other than anti-craving medications prescribed and managed by a qualified provider. Treatment happens in PHP, IOP or OP, and most people join us after detox or residential care. You also meet one-on-one with your primary therapist every week for 45 to 60 minutes, and free transportation to and from our center is available if you can’t drive yourself.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {how.map((h) => (
+          <div class="card">
+            <Icon name={h.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{h.title}</h3>
+            <p class="mt-2">{h.text}</p>
+          </div>
+        ))}
+      </div>
+      <a href="/programs/psychiatry-medication-management/" class="mt-8 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">How medication works at Sunview <Icon name="arrow" class="h-4 w-4" /></a>
+    </div>
+  </section>
+
+  <!-- Co-occurring + detox -->
+  <section class="section">
+    <div class="container-x grid gap-6 lg:grid-cols-2">
+      <article class="rounded-[var(--radius-lg)] border border-line p-7 sm:p-9">
+        <Icon name="brain" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Opioids and Co-Occurring Mental Health</h2>
+        <p class="mt-4">Opioids often quiet something else: anxiety, depression, trauma. When the substance goes, those feelings can come back louder. We treat both at the same time, with therapy and psychiatric care from one team, so you’re not left facing them alone. We track depression and anxiety symptoms with the PHQ-9 and GAD-7 throughout treatment, and review your treatment plan with you every month.</p>
+        <p class="mt-3">Read more about <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal underline decoration-2 underline-offset-4">dual diagnosis treatment</a> and <a href="/what-we-treat/mental-health/trauma-ptsd/" class="font-bold text-teal underline decoration-2 underline-offset-4">trauma and PTSD treatment</a>.</p>
+      </article>
+      <article class="rounded-[var(--radius-lg)] bg-cream p-7 sm:p-9">
+        <Icon name="shield" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">When Detox Comes First</h2>
+        <p class="mt-4">If you’ve been using opioids consistently for a while, medically supervised detox and often residential treatment come first, so you’re medically stable before intensive therapy starts.</p>
+        <p class="mt-3">Methadone maintenance needs a different kind of program than ours. If that’s where you are, we’ll help you find it. Either way, we’ll plan Sunview as your next step.</p>
+      </article>
+    </div>
+  </section>
+
+  <NextSteps
+    title="Which Level of Care Fits"
+    subtitle="Where most people start after detox"
+    level={`<p>Most people start in the <a href="/programs/php/">Partial Hospitalization Program</a> right after detox or residential care, for daily structure while living at home. From there they step down to the <a href="/programs/iop/">Intensive Outpatient Program</a> and then the <a href="/programs/outpatient/">Outpatient Program</a>, with the same team. Our Clinical Director recommends where you start.</p>`}
+    related={[
+      { label: CATEGORIES.substance.label, href: CATEGORIES.substance.href },
+      ...SUBSTANCE_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      { label: 'All conditions we treat', href: WWT.href },
+    ]}
+  />
+</ServicePage>

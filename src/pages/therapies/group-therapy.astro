@@ -1,0 +1,183 @@
+---
+// /therapies/group-therapy/: Therapies-Content-Briefs.md §B (includes the psychodrama section; no standalone
+// psychodrama page). Sources in docs/content/therapies-sources-hub-group.md. Rotation: Reviews only.
+// Reviewed by Dana. Body structure: morning timeline, speech-bubble contrast, cream calendar band,
+// big statement, experiential row, shared schedule chart.
+import ServicePage from '../../layouts/ServicePage.astro';
+import ProgramSchedule from '../../components/ProgramSchedule.astro';
+import Icon from '../../components/Icon.astro';
+import { THERAPIES_HUB, therapyBySlug } from '../../data/therapies.js';
+
+const self = therapyBySlug('group-therapy');
+const related = self.related.map(therapyBySlug);
+
+const morning = [
+  { time: '9 AM', title: 'The group starts together', text: 'Everyone checks in. Your facilitator already knows where yesterday left off.' },
+  { break: true },
+  { time: 'Mid-morning', title: 'The work goes deeper', text: 'Topics draw on IFS, CBT, DBT and psychodrama. Real moments from home and work get slowed down and looked at.' },
+  { break: true },
+  { time: 'Late morning', title: 'Practice and feedback', text: 'Skills, experiential exercises and honest feedback from people who know your story.' },
+  { time: '1 PM', title: 'Group ends', text: 'Your afternoon is yours. What happens in it becomes material for the next session.' },
+];
+
+const weeks = [
+  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+  ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+];
+
+const experiential = [
+  // REVIEW 8.5: plain-language passage pending Elizabeth review (psychodrama definition)
+  { icon: 'users', title: 'Psychodrama', text: 'Acting out a situation or relationship in the room, so it can be seen and worked through instead of only talked about.' },
+  { icon: 'sparkle', title: 'Drawing', text: 'A different way to reach feelings that are hard to put into words.' },
+  { icon: 'compass', title: 'Vision boards', text: 'Picturing the life you’re building, and what stands between you and it.' },
+  { icon: 'layers', title: 'Other creative exercises', text: 'Hands-on activities your facilitator brings in when they fit the group’s work.' },
+];
+
+const faqs = [
+  { q: 'Will I have to talk in group?', a: 'You’ll be invited to, not forced. Most people start by listening. As trust builds with the same facilitator and the same peers, sharing usually gets easier.' },
+  { q: 'What is carefrontation?', a: 'Honest, sometimes difficult feedback, given because people care enough not to just tell you what you want to hear. It’s never meant to shame or attack anyone, and you’ll learn how to give it and receive it.' },
+  { q: 'Are groups mixed gender?', a: 'Most days, yes. Twice a month, women and men meet in separate groups for the day.' },
+  { q: 'Who leads the group?', a: 'One clinician leads your group for the whole session, from start to finish, instead of a different facilitator every hour. <a href="/our-team/">Meet our clinical team</a>.' },
+  { q: 'Is group therapy enough on its own?', a: 'Group is the core of each program day, but not the only piece. You also meet one-on-one with your primary therapist every week, and psychiatric care is available when you need it. <a href="/programs/">See how the programs fit together</a>.' },
+];
+---
+<ServicePage
+  path="/therapies/group-therapy/"
+  metaTitle="Group Therapy for Addiction in West Palm Beach | Sunview"
+  description="Group therapy in West Palm Beach with one continuous group and one facilitator every day of treatment, plus gender-specific days and honest peer feedback."
+  crumbs={[THERAPIES_HUB, { name: 'Group Therapy', href: self.href }]}
+  h1="Group Therapy for Addiction and Mental Health in West Palm Beach"
+  subheading="The same facilitator, the same group, so the work can go deeper."
+  lead="Group therapy is the heart of every program day at Sunview: one continuous group, led by one clinician, where people with substance use and co-occurring mental health conditions do real work together."
+  faqTitle="Frequently Asked Questions About Group Therapy"
+  faqs={faqs}
+  reviews
+  about={{ '@type': 'MedicalTherapy', name: 'Group therapy' }}
+>
+  <!-- 1. Morning timeline -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">One Continuous Group, One Facilitator</h2>
+        <div class="prose-sv mt-6">
+          <p>Many programs switch topics and facilitators every hour. We don’t. Your group runs from 9 AM to 1 PM with breaks along the way, and the same clinician leads it from start to finish. The group builds trust faster, and the conversation can keep going where it left off.</p>
+          <p>Group therapy happens within our <a href="/programs/">outpatient programs</a>, PHP, IOP and OP, not as a standalone service. If you’re looking for weekly private therapy only, we’ll point you to the right place.</p>
+          <p>Many people in group live with substance use and a mental health condition at once. See <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
+        </div>
+      </div>
+      <ol class="relative ml-3 border-l-2 border-teal/30 pl-8" aria-label="A morning in group">
+        {morning.map((m) => m.break ? (
+          <li class="relative -ml-8 mb-5 pl-8">
+            <span class="inline-flex items-center gap-2 rounded-full bg-cream px-3 py-1 text-xs font-bold uppercase tracking-[0.08em] text-muted">Break</span>
+          </li>
+        ) : (
+          <li class="relative mb-7 last:mb-0">
+            <span class="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-4 border-white bg-teal ring-2 ring-teal/30" aria-hidden="true"></span>
+            <p class="font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-teal">{m.time}</p>
+            <h3 class="mt-1 text-xl">{m.title}</h3>
+            <p class="mt-1">{m.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 2. Carefrontation: speech bubbles -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="max-w-3xl text-3xl sm:text-[2.1875rem]">Carefrontation: Honest Feedback With Care</h2>
+      <p class="mt-5 max-w-3xl text-lg">Carefrontation means being willing to have an honest, sometimes difficult conversation with someone because you care about them. The point is never to shame, attack or criticize. It’s to help someone see a pattern they can’t see yet. In group, you learn to give feedback from what you observed, not from assumptions about someone’s intentions, and to pause and listen when it’s your turn to receive it.</p>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div>
+          <p class="text-xs font-extrabold uppercase tracking-[0.1em] text-muted">Instead of</p>
+          <p class="mt-3 max-w-md rounded-[20px] rounded-bl-md border border-line bg-white px-5 py-4 text-lg text-charcoal line-through decoration-muted/50">“You’re being manipulative.”</p>
+        </div>
+        <div class="lg:mt-14">
+          <p class="text-xs font-extrabold uppercase tracking-[0.1em] text-teal">We practice</p>
+          <p class="mt-3 rounded-[20px] rounded-br-md bg-teal px-5 py-4 text-lg text-white">“I noticed that when you were talking about that situation, it sounded similar to the pattern you described earlier, and I wonder if you might be doing something similar here.”</p>
+        </div>
+      </div>
+      <blockquote class="mx-auto mt-14 max-w-3xl border-t-2 border-gold pt-6 text-center font-display text-2xl leading-snug text-charcoal sm:text-[1.75rem]">
+        “We can be compassionate without avoiding accountability, and we can hold someone accountable without taking away their dignity.”
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 3. Gender-specific days: cream band + calendar -->
+  <section class="section bg-cream">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Gender-Specific Group Days</h2>
+        <p class="mt-5 text-lg">Twice a month, women meet together in one group room and men in another. The day follows the same structure as any other, but some experiences are easier to share with people who relate to them more closely.</p>
+        <p class="mt-4 text-lg">We started with once a month. The feedback was so positive that we moved to twice a month.</p>
+      </div>
+      <div class="rounded-[var(--radius-lg)] bg-white p-6" aria-label="Calendar: gender-specific group days twice a month, mixed groups on the other days" role="img">
+        {weeks.map((w, wi) => (
+          <div class:list={['grid grid-cols-5 gap-2', wi > 0 && 'mt-3']}>
+            {w.map((d) => {
+              const on = wi === 0 && d === 'Thu';
+              return (
+                <div class:list={['rounded-[10px] px-2 py-3 text-center', on ? 'bg-teal text-white' : 'bg-mist text-charcoal']}>
+                  <p class="text-xs font-bold uppercase">{d}</p>
+                  <p class:list={['mt-1 text-[11px] leading-tight', on ? 'text-white' : 'text-muted']}>{on ? 'Women · Men' : 'Mixed group'}</p>
+                </div>
+              );
+            })}
+          </div>
+        ))}
+        <p class="mt-4 text-center text-xs text-muted">Gender-specific days run twice a month</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Big statement: built on the CEO's model (Client Wiki, "The clinical model in the CEO's words", 10 Sep 2026) -->
+  <section class="section">
+    <div class="container-x max-w-4xl text-center">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Breaking Secrecy: Why Groups Work</h2>
+      <p class="mt-8 font-display text-3xl leading-snug text-teal sm:text-[2.6rem]">Shared out loud, shame loses its power.</p>
+      <p class="mx-auto mt-6 max-w-2xl text-lg">Groups work by breaking secrecy. Someone admits something they’re ashamed of, finds that others in the room share it, and the shame starts to lose its power. Many people spend a long time trying to convince themselves they can manage on their own. In group, saying “I can’t do this by myself anymore” gets a little easier, and sometimes another person sees a pattern you can’t see in yourself.</p>
+    </div>
+  </section>
+
+  <!-- 5. Experiential row -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="max-w-3xl text-3xl sm:text-[2.1875rem]">Experiential Work in Group, Including Psychodrama</h2>
+      <p class="mt-5 max-w-3xl text-lg">Psychodrama is an important part of our group programming. When it’s clinically appropriate, groups also use hands-on, expressive activities that give you another way to process emotions and reach insight beyond talking.</p>
+      <!-- REVIEW 8.5: plain-language passage pending Elizabeth review (psychodrama definition, first item of `experiential`) -->
+      <ul class="mt-10 divide-y divide-line border-y border-line lg:grid lg:grid-cols-4 lg:divide-x lg:divide-y-0">
+        {experiential.map((e) => (
+          <li class="flex gap-4 py-6 lg:flex-col lg:px-6 lg:first:pl-0">
+            <Icon name={e.icon} class="h-7 w-7 shrink-0 text-teal" />
+            <div>
+              <h3 class="text-lg">{e.title}</h3>
+              <p class="mt-1 text-[15px]">{e.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. Across levels: shared schedule chart -->
+  <ProgramSchedule
+    class="section"
+    title="Group Therapy Across PHP, IOP and OP"
+    subtitle="Mornings in every program, evenings in IOP"
+    intro="Group runs on the same schedule as your program: every weekday in PHP, three days a week in IOP (day or evening), and one weekday in OP."
+  />
+
+  <!-- Related row -->
+  <section class="border-t border-line py-10">
+    <div class="container-x flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <p class="font-extrabold text-charcoal">Keep exploring</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 text-[15px]">
+        <li><a href={THERAPIES_HUB.href} class="font-bold text-teal hover:text-teal-light">All therapy approaches</a></li>
+        {related.map((r) => <li><a href={r.href} class="font-bold text-teal hover:text-teal-light">{r.label}</a></li>)}
+        <li><a href="/what-we-treat/mental-health/personality-disorders/" class="font-bold text-teal hover:text-teal-light">Personality disorder and addiction treatment</a></li>
+        <li><a href="/programs/" class="font-bold text-teal hover:text-teal-light">Compare levels of care</a></li>
+        <li><a href="/admissions/" class="font-bold text-teal hover:text-teal-light">Talk to admissions</a></li>
+      </ul>
+    </div>
+  </section>
+</ServicePage>

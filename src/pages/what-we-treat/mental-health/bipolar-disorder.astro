@@ -1,0 +1,145 @@
+---
+// /what-we-treat/mental-health/bipolar-disorder/: What-We-Treat-Content-Briefs.md §L. Sources in
+// docs/content/what-we-treat-sources-mental.md. Rotation: Reviews only. Reviewed by Dana.
+// Confirmed by the client (2026-09-22). No clinical detail beyond the sources.
+import ServicePage from '../../../layouts/ServicePage.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+import { conditionAbout } from '../../../lib/programSchema.js';
+
+const path = '/what-we-treat/mental-health/bipolar-disorder/';
+
+const treating = [
+  { icon: 'pill', title: 'Medication continuity', text: 'Your current medications are reviewed, not automatically changed. Your provider adjusts only when it’s clinically indicated.' },
+  { icon: 'shield', title: 'Stability before depth', text: 'The first goal is steadiness. Deeper therapeutic work comes as your mood and your recovery become more stable.' },
+  { icon: 'chart', title: 'Watching for changes', text: 'We pay attention to changes in your mental health and daily functioning throughout treatment, and review your plan with you every month.' },
+  { icon: 'users', title: 'One team, one plan', text: 'Your therapist and your psychiatric provider work from the same picture of how your mood and substance use affect each other.' },
+];
+
+const approaches = [
+  { name: 'CBT', text: 'Works on the thought patterns that can drive substance use and make mood harder to manage.' },
+  { name: 'DBT', text: 'Builds skills for regulating intense emotions and getting through hard moments without using.' },
+  { name: 'Internal Family Systems (IFS)', text: 'Helps you understand the different parts of yourself and how they respond to stress.' },
+  { name: 'Psychodynamic and family systems work', text: 'Explores relationships and patterns that may be reinforcing the cycle, when you’re stable enough for that work.' },
+];
+
+const faqs = [
+  { q: 'Can I keep taking my mood stabilizer or other medications?', a: 'Often, yes. Your Telemed Clinix provider reviews what you take, how well it’s working and whether anything needs to change. We don’t switch medications just because you start a program.' },
+  { q: 'I receive a long-acting injectable. Can I still attend?', a: 'Injectable psychiatric medications are given and monitored by an outside provider who can administer them properly. We coordinate with that provider while you’re in treatment with us.' },
+  { q: 'Do you treat bipolar disorder without substance use?', a: 'Our programs are built for people living with substance use and co-occurring mental health conditions together. If bipolar disorder is your only concern, call us anyway and we’ll help you find the right kind of care.' },
+  { q: 'What if my symptoms get worse during treatment?', a: 'We watch for changes throughout treatment. If psychiatric symptoms significantly worsen, or you can’t take part safely, we help you reach a more intensive level of care for stabilization and plan your return.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle="Bipolar Disorder and Addiction Treatment in West Palm Beach"
+  description="Bipolar disorder treated alongside substance use in West Palm Beach. Outpatient care with psychiatric medication management through Telemed Clinix."
+  crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }, { name: 'Bipolar Disorder', href: path }]}
+  h1="Bipolar Disorder and Addiction Treatment in West Palm Beach"
+  subheading="Stability first, then the deeper work, with medication care that continues."
+  lead="Bipolar disorder treated alongside substance use in outpatient PHP, IOP and OP, with psychiatric medication management through Telemed Clinix and a team that puts your stability first."
+  faqTitle="Frequently Asked Questions About Bipolar Disorder Treatment"
+  faqs={faqs}
+  reviews
+  about={conditionAbout('Bipolar disorder')}
+>
+  <!-- The cycle -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">The cycle</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How Bipolar Disorder and Substance Use Feed Each Other</h2>
+        <p class="subheading mt-3">Two conditions, one connected picture</p>
+        <div class="prose-sv mt-6">
+          <p>At Sunview, bipolar disorder is treated as part of <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>, alongside substance use, within our Partial Hospitalization, Intensive Outpatient and Outpatient programs.</p>
+          <p>Substance use can start as a way to cope with emotional distress, including the highs and lows of a mood disorder. Over time, continued use can make those symptoms harder to manage, and the symptoms can make using feel more necessary. The two become deeply connected.</p>
+          <p>That’s why we don’t treat them separately. We look at how your mood, your substance use, your relationships and your daily life affect each other, and build one plan around all of it.</p>
+        </div>
+      </div>
+      <aside class="card self-start !p-7">
+        <Icon name="compass" class="h-8 w-8 text-teal" />
+        <h3 class="mt-4 text-xl">What matters most here</h3>
+        <p class="mt-3">Staying on a steady, well-managed medication plan, and having a team that notices early when things change. Our program is built around both.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Treating it at Sunview -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">At Sunview</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Treating Bipolar Disorder Alongside Addiction at Sunview</h2>
+        <p class="subheading mt-3">Steadiness is the foundation</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {treating.map((t) => (
+          <div class="card">
+            <Icon name={t.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{t.title}</h3>
+            <p class="mt-2">{t.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Therapies -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <span class="eyebrow">Therapy</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Therapy Approaches We Use</h2>
+        <p class="subheading mt-3">Skills now, deeper work when you’re ready</p>
+        <p class="mt-5 text-lg">Early on, therapy focuses on skills and stability. As you become steadier and trust builds, the work can move from “how do I get through this?” to “why do I respond this way?”</p>
+        <a href="/therapies/" class="btn-teal mt-8">How therapy works at Sunview <Icon name="arrow" /></a>
+      </div>
+      <dl class="divide-y divide-line self-start rounded-[var(--radius-card)] border border-line">
+        {approaches.map((a) => (
+          <div class="grid gap-1 p-6 sm:grid-cols-[0.8fr_1.2fr] sm:gap-6">
+            <dt class="font-extrabold">{a.name}</dt>
+            <dd>{a.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- Psychiatry -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Medication</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Psychiatric Care and Medication</h2>
+        <p class="subheading mt-3">Continuity, during treatment and after</p>
+        <p class="mt-5 text-lg">Psychiatric evaluation and medication management are part of every program through our partner, Telemed Clinix. Your provider starts by understanding your current regimen and history, not by making assumptions, and sends prescriptions to the pharmacy you choose.</p>
+        <p class="mt-4 text-lg">If you receive a long-acting injectable, an outside provider gives and monitors it, and we coordinate with them. When you finish at Sunview, you can keep the same Telemed Clinix provider, so your care doesn’t stop with the program.</p>
+      </div>
+      <div class="card !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h3 class="mt-4 text-xl">What psychiatric care includes</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Evaluation and review of your current medications</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Appointments scheduled for you, on site</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />The same provider after discharge, if you want</li>
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    class="section"
+    title="Which Level of Care Fits"
+    subtitle="Our Clinical Director helps you decide"
+    level={`<p>Many people start in the <a href="/programs/php/">Partial Hospitalization Program</a>, where daily contact with the team supports stability. The <a href="/programs/iop/">Intensive Outpatient Program</a>, day or evening, fits when you’re steadier and need to keep working, and the <a href="/programs/outpatient/">Outpatient Program</a> keeps support in place over time. You need to be psychiatrically stable enough to take part in outpatient care; if not yet, we’ll help you get there first.</p>`}
+    related={[
+      { label: 'Co-occurring mental health treatment', href: CATEGORIES.mental.href },
+      ...MENTAL_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+    ]}
+  />
+</ServicePage>

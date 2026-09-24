@@ -1,0 +1,350 @@
+---
+// /locations/west-palm-beach/: Professionals-Location-Content-Briefs.md §B. Sources and open items in
+// docs/content/location-sources.md. No reviewed-by byline, no trust strip (Home only, client decision).
+// Rotation: Insurance + Reviews + Map (the map lives inside "Address, Hours and Contact", so ServicePage's
+// shared MapSection is off to avoid a second map). "Getting Here" is omitted: parking and transit are
+// unverified (brief: write only what's verifiable, otherwise omit).
+// Schema: the site's ONLY LocalBusiness node, a MedicalClinic (#clinic) whose parentOrganization is Base's
+// MedicalOrganization (#organization), + FAQPage. BreadcrumbList comes from Base.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import SunMark from '../../components/SunMark.astro';
+import { SITE, ACCREDITATIONS } from '../../data/site.js';
+import { GBP_URL, GBP_RATING } from '../../data/reviews.js';
+
+const path = '/locations/west-palm-beach/';
+const url = new URL(path, SITE.url).href;
+const metaTitle = 'Sunview Wellness West Palm Beach | Outpatient Rehab Location';
+const description =
+  'Sunview Wellness at 4802 East Ave, West Palm Beach, FL 33407. PHP, IOP and OP with free transportation to and from our center. Directions and hours.';
+
+// Google Maps Place ID (brief). The keyless embed can't take a Place ID (the Embed API needs a key), so the
+// iframe reuses SITE.mapsEmbed (address query, same as MapSection); the Place ID goes on the links.
+const PLACE_ID = 'ChIJbzYD7xTV2IgRubmVOC4bOs4';
+const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postal}`;
+const placeUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${SITE.name}, ${addr}`)}&query_place_id=${PLACE_ID}`;
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addr)}&destination_place_id=${PLACE_ID}`;
+
+// Placeholders (brief decision): replace when the client sends them.
+const JC_ID = '{{JC_ID}}';
+const DCF_LICENSE = '{{DCF_LICENSE}}';
+const seal = ACCREDITATIONS[0];
+
+// Week grid. Hours: Q7 (PHP, Day IOP, Evening IOP), OP one weekday 9–1 (live homepage), same as
+// site.js PROGRAMS and ProgramSchedule.
+const days = [
+  { d: 'Monday', short: 'Mon', eve: true },
+  { d: 'Tuesday', short: 'Tue', eve: false },
+  { d: 'Wednesday', short: 'Wed', eve: true },
+  { d: 'Thursday', short: 'Thu', eve: true },
+  { d: 'Friday', short: 'Fri', eve: false },
+];
+
+const programs = [
+  {
+    code: 'PHP',
+    name: 'Partial Hospitalization Program',
+    href: '/programs/php/',
+    when: 'Monday to Friday, 9 AM to 1 PM',
+    text: 'The most structure we offer: five mornings a week of group therapy, a weekly individual session and psychiatric care, while you live at home.',
+  },
+  {
+    code: 'IOP',
+    name: 'Intensive Outpatient Program',
+    href: '/programs/iop/',
+    when: 'Day: 3 days a week, 9 AM to 1 PM · Evening: Mon, Wed, Thu, 6 to 9 PM',
+    text: 'Real clinical depth for working adults, parents and students who need to keep their days, or their evenings, free.',
+  },
+  {
+    code: 'OP',
+    name: 'Outpatient Program',
+    href: '/programs/outpatient/',
+    when: 'One weekday of your choice, 9 AM to 1 PM',
+    text: 'A step down after PHP or IOP, and longer-term support while life gets back to normal.',
+  },
+  {
+    code: 'Rx',
+    name: 'Psychiatric Care and Medication Management',
+    href: '/programs/psychiatry-medication-management/',
+    when: 'Part of every level of care',
+    text: 'Through our partner, Telemed Clinix. Appointments are virtual, held in one of our private offices here, and you can keep your provider after you finish.',
+  },
+];
+
+// FAQ. `a` is rendered (HTML); `plain` (if set) is the schema text, so the review flag never reaches JSON-LD.
+const flag = (note: string) =>
+  `<mark class="ml-1 inline-block rounded-[4px] bg-error px-1 align-middle font-sans text-[10px] font-extrabold uppercase leading-4 tracking-normal text-white no-underline" title="${note}">[SOURCE?]</mark>`;
+const parkingPlain = 'Call us before your first day and we’ll walk you through arriving at 4802 East Ave. If you can’t drive yourself, free transportation to and from our center is available, so you don’t need a car to get here.';
+const faqs = [
+  { q: 'Where exactly are you?', a: `${addr}. <a href="${directions}" target="_blank" rel="noopener">Get directions on Google Maps</a>.`, plain: `${addr}.` },
+  { q: 'Is parking available?', a: `${parkingPlain}${flag('Parking and transit are [to confirm with Elizabeth]. No parking claim is made until confirmed.')}`, plain: parkingPlain },
+  { q: 'Do you offer transportation?', a: 'Yes. If you can’t drive yourself, we offer free transportation to and from our center, through Uber Health. Ask about it when you call admissions. <a href="/admissions/what-to-expect/">What to expect in treatment</a>.' },
+  { q: 'What are your hours?', a: 'PHP runs Monday to Friday, 9 AM to 1 PM. Day IOP meets 3 days a week and OP one weekday, both 9 AM to 1 PM. Evening IOP meets Monday, Wednesday and Thursday, 6 to 9 PM. <a href="/programs/">Compare levels of care</a>.' },
+  { q: 'Are you a residential facility?', a: 'No. Sunview is outpatient only: PHP, IOP and OP. You sleep at home every night, and we don’t provide detox or housing. If you need 24-hour care first, we’ll help you find it and plan your step down to us.' },
+];
+
+const strip = (html: string) => html.replace(/<[^>]+>/g, '');
+const clinic = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  '@id': `${url}#clinic`,
+  name: SITE.name,
+  alternateName: 'Sunview Medical Center', // answer 1.3: former name, confirmed by Elizabeth
+  url,
+  parentOrganization: { '@id': `${SITE.url}/#organization` },
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postal,
+    addressCountry: SITE.address.country,
+  },
+  // No `geo`: site.js has no coordinates and we don't invent them (see location-sources.md).
+  hasMap: placeUrl,
+  foundingDate: SITE.foundingYear,
+  openingHoursSpecification: [
+    // PHP, Day IOP and OP mornings
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '13:00' },
+    // Evening IOP
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Wednesday', 'Thursday'], opens: '18:00', closes: '21:00' },
+  ],
+  sameAs: [SITE.mapsUrl, GBP_URL, SITE.social.facebook, SITE.social.instagram, SITE.social.linkedin, SITE.social.x],
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: GBP_RATING.average, reviewCount: GBP_RATING.count, bestRating: 5 },
+};
+const schema = [
+  clinic,
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.plain ?? strip(f.a) } })),
+  },
+];
+
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<ServicePage
+  path={path}
+  metaTitle={metaTitle}
+  description={description}
+  crumbs={[{ name: 'West Palm Beach Location', href: path }]}
+  h1="Outpatient Rehab Center in West Palm Beach, FL"
+  subheading="Easy to reach, with free transportation if you can't drive."
+  lead="Sunview Wellness is an outpatient rehab center at 4802 East Ave in West Palm Beach for adults 18 and older. Programs run in the morning, with an evening IOP after work, and if you can’t drive yourself, free transportation to and from our center is available."
+  faqTitle="Frequently Asked Questions About Our West Palm Beach Location"
+  faqs={faqs}
+  insurance
+  reviews
+  schema={schema}
+>
+  <!-- 1. Address, Hours and Contact: oversized address panel + tall map, then a Mon–Fri day-card grid -->
+  <section class="section" id="address-hours">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Address, Hours and Contact</h2>
+      <p class="subheading mt-3">One location, open weekday mornings and three evenings</p>
+
+      <div class="mt-10 grid overflow-hidden rounded-[var(--radius-lg)] border border-line lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="relative isolate overflow-hidden bg-teal-deep p-7 text-white sm:p-10">
+          <SunMark variant="rays" ripple={false} class="pointer-events-none absolute -bottom-24 -right-24 -z-10 h-[300px] w-[300px] text-white/10" />
+          <h3 class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-sun">Address</h3>
+          <address class="mt-3 not-italic">
+            <span class="block font-display text-[2.5rem] font-extrabold leading-[1.05] text-white sm:text-6xl">{SITE.address.street}</span>
+            <span class="mt-2 block text-xl text-white/90 sm:text-2xl">{SITE.address.city}, {SITE.address.region} {SITE.address.postal}</span>
+          </address>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href={directions} target="_blank" rel="noopener" class="btn-sun">Get directions <Icon name="arrow" /></a>
+            <a href={placeUrl} target="_blank" rel="noopener" class="btn-ghost-light">View on Google Maps</a>
+          </div>
+
+          <h3 class="mt-10 border-t border-white/20 pt-7 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-sun">Contact</h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <a href={SITE.phoneHref} class="inline-flex items-center gap-3 font-sans text-2xl font-extrabold text-white hover:text-sun sm:text-[1.75rem]">
+                <Icon name="phone" class="h-6 w-6 shrink-0 text-sun" />{SITE.phone}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${SITE.email}`} class="inline-flex items-center gap-3 break-all text-lg font-bold text-white/90 hover:text-white hover:underline">
+                <Icon name="mail" class="h-5 w-5 shrink-0 text-sun" />{SITE.email}
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="min-h-[320px] bg-mist">
+          <iframe
+            src={SITE.mapsEmbed}
+            title={`Map to Sunview Wellness, ${addr}`}
+            class="block h-[320px] w-full lg:h-full"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="mt-14">
+        <h3 class="text-2xl">Program Hours, Monday to Friday</h3>
+        <p class="mt-2 max-w-[64ch]">PHP meets every weekday morning. Day IOP and OP use the same morning hours on the days you choose, and evening IOP meets three nights a week.</p>
+        <ol class="mt-6 grid gap-3 lg:grid-cols-5">
+          {days.map((day) => (
+            <li class="grid grid-cols-[4.5rem_1fr] overflow-hidden rounded-[var(--radius-card)] border border-line lg:grid-cols-1">
+              <p class="flex items-center justify-center bg-mist font-sans text-lg font-extrabold text-teal lg:py-3">
+                <span class="lg:hidden" aria-hidden="true">{day.short}</span><span class="sr-only lg:not-sr-only">{day.d}</span>
+              </p>
+              <div class="grid sm:grid-cols-2 lg:grid-cols-1">
+                <div class="border-b border-line p-4 sm:border-b-0 sm:border-r lg:border-b lg:border-r-0">
+                  <p class="flex items-center gap-2 font-sans text-sm font-extrabold text-charcoal"><Icon name="clock" class="h-4 w-4 text-teal-light" />9 AM – 1 PM</p>
+                  <p class="mt-1 text-sm">PHP · Day IOP · OP</p>
+                </div>
+                {day.eve ? (
+                  <div class="bg-teal p-4 text-white">
+                    <p class="flex items-center gap-2 font-sans text-sm font-extrabold"><Icon name="clock" class="h-4 w-4 text-sun" />6 – 9 PM</p>
+                    <p class="mt-1 text-sm text-white/90">Evening IOP</p>
+                  </div>
+                ) : (
+                  <div class="p-4">
+                    <p class="font-sans text-sm font-extrabold text-muted">Evening</p>
+                    <p class="mt-1 text-sm text-muted">No evening group</p>
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Transport: cream band with a door-to-door route strip -->
+  <section class="section bg-cream">
+    <div class="container-x">
+      <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+        <div>
+          <h2 class="text-3xl sm:text-[2.1875rem]">Free Transportation to and From Our West Palm Beach Center</h2>
+          <p class="subheading mt-3">No car shouldn’t mean no treatment</p>
+        </div>
+        <p class="text-lg lg:pb-1">If you can’t drive yourself, we offer free transportation to and from our center, through Uber Health. Taking the ride off your plate makes it easier to show up for every group, and showing up consistently is a big part of how treatment works.</p>
+      </div>
+
+      <ol class="relative mt-12 grid gap-6 md:grid-cols-3">
+        <span class="absolute bottom-8 left-[27px] top-8 border-l-2 border-dashed border-gold md:bottom-auto md:left-[16%] md:right-[16%] md:top-[27px] md:border-l-0 md:border-t-2" aria-hidden="true"></span>
+        {[
+          { icon: 'phone', t: 'Tell admissions you need a ride', d: 'Mention it on your first call, or any time during treatment.' },
+          { icon: 'car', t: 'We book your free ride', d: `From your home to ${SITE.address.street}, through Uber Health, at no cost to you.` },
+          { icon: 'home', t: 'A ride home after programming', d: 'Morning programs end at 1 PM and evening IOP at 9 PM.' },
+        ].map((s) => (
+          <li class="relative flex gap-5 md:flex-col md:items-center md:text-center">
+            <span class="relative z-10 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-teal ring-2 ring-gold"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <div class="md:mt-5">
+              <h3 class="text-xl">{s.t}</h3>
+              <p class="mt-1.5">{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-12 flex flex-wrap gap-3 md:justify-center">
+        <a href={SITE.phoneHref} class="btn-teal"><Icon name="phone" /> Ask about a ride</a>
+        <a href="/admissions/what-to-expect/" class="btn-ghost bg-white">What to expect in treatment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Programs at this location: stacked ledger rows (code · name + hours · summary · link) -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">Programs at This Location</h2>
+        <p class="subheading mt-3">Every level of care we offer, under one roof</p>
+      </div>
+      <ul class="mt-10 border-t-2 border-teal">
+        {programs.map((p) => (
+          <li class="grid gap-3 border-b border-line py-7 md:grid-cols-[7rem_1fr_auto] md:items-center md:gap-8">
+            <p class="font-display text-5xl font-extrabold leading-none text-teal" aria-hidden="true">{p.code}</p>
+            <div>
+              <h3 class="text-xl sm:text-2xl">{p.name}</h3>
+              <p class="mt-1 flex items-start gap-2 text-sm font-bold text-charcoal"><Icon name="clock" class="mt-0.5 h-4 w-4 shrink-0 text-teal-light" />{p.when}</p>
+              <p class="mt-2 max-w-[70ch]">{p.text}</p>
+            </div>
+            <a href={p.href} class="inline-flex items-center gap-2 font-extrabold text-teal hover:text-teal-light md:max-w-[15rem] md:justify-end md:text-right">
+              {p.name} <Icon name="arrow" class="h-4 w-4 shrink-0" />
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6">Not sure which fits? Our Clinical Director reviews your pre-screening and recommends a level of care. <a href="/programs/" class={link}>Compare outpatient levels of care</a>.</p>
+    </div>
+  </section>
+
+  <!-- 4. Accreditation and licensing: framed "certificate" panel on mist -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Accreditation and Licensing</h2>
+        <p class="subheading mt-3">Accredited, licensed and here since 2021</p>
+        <p class="mt-5 max-w-[56ch] text-lg">Sunview Wellness opened in West Palm Beach in 2021, and you may know us by our former name, Sunview Medical Center. Today we’re a Joint Commission accredited outpatient center. <a href="/about/" class={link}>About Sunview Wellness</a>.</p>
+      </div>
+      <div class="rounded-[var(--radius-lg)] bg-white p-2 ring-1 ring-line">
+        <div class="rounded-[calc(var(--radius-lg)-6px)] border-2 border-gold/60 p-6 sm:p-9">
+          <div class="flex items-center gap-5 border-b border-line pb-6">
+            <img src={seal.logo} alt="The Joint Commission accreditation seal" width={seal.w} height={seal.h} loading="lazy" class="h-20 w-20 shrink-0 sm:h-24 sm:w-24" />
+            <div>
+              <p class="font-sans text-lg font-extrabold text-charcoal">Accredited by The Joint Commission</p>
+              <a href={JC_ID} target="_blank" rel="noopener" class={`${link} text-[15px]`}>Verify our Joint Commission accreditation</a>
+              <p class="mt-1 font-sans text-sm text-muted">ID: <span class="font-extrabold text-charcoal">{JC_ID}</span></p>
+            </div>
+          </div>
+          <dl class="grid gap-x-8 gap-y-5 pt-6 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">State license</dt>
+              <dd class="mt-1 font-bold text-charcoal">Florida Department of Children and Families (DCF), license <span class="rounded-[4px] border border-dashed border-line bg-mist px-1.5 font-sans">{DCF_LICENSE}</span></dd>
+            </div>
+            <div>
+              <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">Founded</dt>
+              <dd class="mt-1 font-display text-3xl font-extrabold text-teal">2021</dd>
+            </div>
+            <div>
+              <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted">Formerly</dt>
+              <dd class="mt-1 font-bold text-charcoal">Sunview Medical Center</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Who we serve: 2×2 statement tiles beside a short scope note -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Who We Serve in West Palm Beach</h2>
+        <p class="subheading mt-3">Adults 18 and older, in English and Spanish</p>
+        <p class="mt-5 max-w-[58ch] text-lg">We treat <a href="/what-we-treat/substance-use/" class={link}>substance use disorders</a> and <a href="/what-we-treat/dual-diagnosis/" class={link}>co-occurring mental health conditions</a> together. Many people come to us stepping down from detox or residential care; others start from home.</p>
+        <p class="mt-4 max-w-[58ch]">We’re outpatient only. If you need detox or 24-hour care first, we’ll help you find it and plan Sunview as your next step. <a href="/admissions/" class={link}>How admissions works</a>.</p>
+        <a href="/our-team/" class="btn-ghost mt-8">Meet our treatment team</a>
+      </div>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        <li class="rounded-[var(--radius-card)] bg-teal p-6 text-white">
+          <Icon name="users" class="h-7 w-7 text-sun" />
+          <p class="mt-4 font-display text-2xl font-extrabold">Adults 18 and older</p>
+          <p class="mt-2 text-white/90">Every program at this location is for adults.</p>
+        </li>
+        <li class="rounded-[var(--radius-card)] border border-line p-6">
+          <Icon name="message" class="h-7 w-7 text-teal" />
+          <p class="mt-4 font-display text-2xl font-extrabold text-charcoal">English and Spanish</p>
+          <p class="mt-2">Care in English and Spanish, including a bilingual primary therapist.</p>
+        </li>
+        <li class="rounded-[var(--radius-card)] border border-line p-6">
+          <Icon name="heart" class="h-7 w-7 text-teal" />
+          <p class="mt-4 font-display text-2xl font-extrabold text-charcoal">LGBTQ+ friendly</p>
+          <p class="mt-2">Our clinical staff includes specialists in LGBTQ+ care and identity-related stress.</p>
+        </li>
+        <li class="rounded-[var(--radius-card)] bg-cream p-6">
+          <Icon name="briefcase" class="h-7 w-7 text-teal" />
+          <p class="mt-4 font-display text-2xl font-extrabold text-charcoal">Day or evening</p>
+          <p class="mt-2">Mornings end at 1 PM and evening IOP starts at 6 PM, so many people keep working.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</ServicePage>

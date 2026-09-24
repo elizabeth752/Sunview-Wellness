@@ -1,0 +1,68 @@
+---
+// Insurance logos as an infinite marquee (client request 2026-09-22): logos stand alone (no tiles),
+// grayscale at rest; hovering the strip pauses it and the hovered logo shows its real colors.
+// The list is rendered twice so the loop is seamless; the copy is hidden from assistive tech.
+// Reduced motion: no animation, logos wrap and center instead.
+import { INSURANCE } from '../data/site.js';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<div class:list={['sv-marquee', cls]} aria-label="Accepted insurance">
+  <ul class="sv-marquee-track">
+    {[0, 1].map((copy) =>
+      INSURANCE.map((c) => (
+        <li aria-hidden={copy === 1 ? 'true' : undefined}>
+          <img src={c.logo} alt={copy === 0 ? c.name : ''} loading="lazy" style={`width:${c.w ?? 140}px`} />
+        </li>
+      )),
+    )}
+  </ul>
+</div>
+
+<style>
+  .sv-marquee {
+    overflow: hidden;
+    /* soft fade at both edges so logos slide in and out */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .sv-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 94px;
+    width: max-content;
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    animation: sv-marquee 40s linear infinite;
+  }
+  .sv-marquee:hover .sv-marquee-track,
+  .sv-marquee:focus-within .sv-marquee-track {
+    animation-play-state: paused;
+  }
+  .sv-marquee-track li { flex: none; }
+  .sv-marquee-track img {
+    display: block;
+    height: auto;
+    max-height: 64px;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.65;
+    transition: filter 0.25s ease, opacity 0.25s ease;
+  }
+  .sv-marquee-track li:hover img {
+    filter: none;
+    opacity: 1;
+  }
+  /* The track holds two identical copies, so moving by half its width loops seamlessly (the gap is
+     added back so the seam between copies matches the gap between logos). */
+  @keyframes sv-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 47px)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sv-marquee { -webkit-mask-image: none; mask-image: none; }
+    .sv-marquee-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; row-gap: 24px; }
+    .sv-marquee-track li[aria-hidden='true'] { display: none; }
+  }
+</style>

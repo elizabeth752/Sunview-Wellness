@@ -16,3 +16,6 @@ npm-debug.log*
 
 # macOS
 .DS_Store
+
+# client source material (internal business data; repo is public). Lives in ~/Downloads/SunView/
+docs/content/client-wiki-*.txt

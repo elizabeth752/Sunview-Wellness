@@ -1,0 +1,167 @@
+---
+// /admissions/for-families/: Admissions-Content-Briefs.md §E. Sources in
+// docs/content/admissions-sources-faq-expect-families.md. Rotation: Reviews. No reviewed-by byline.
+// Structure varies on purpose (client, 2026-09-23): quote wall, can/can't columns, vertical steps,
+// cream band with conversation starters, short link block, teal support band.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+
+// Q23, verbatim family phrases
+const wall = [
+  'I don’t know how to help my daughter anymore.',
+  'I’ve tried everything.',
+  'What am I supposed to do?',
+  'I’m afraid something is going to happen to him.',
+  'Is my loved one going to be okay?',
+  'How am I supposed to act around them?',
+  'How do I know if this level of care is enough?',
+  'What happens if they leave treatment?',
+];
+
+const can = [
+  'Tell them, calmly and specifically, what you’ve seen and why you’re worried',
+  'Set boundaries that protect you and the rest of the family',
+  'Call us to understand the options before you talk to them',
+  'Take care of your own health and support',
+];
+const cant = [
+  'Make someone ready before they are',
+  'Carry their recovery for them',
+  'Fix a pattern that took years to form in one conversation',
+  'Undo the past by rescuing them from every consequence',
+];
+
+const steps = [
+  { title: 'Consent comes first', text: 'Your loved one decides whether and how family is involved. We review the releases they sign and their comfort level.' },
+  { title: 'A first call in week one', text: 'With consent, their therapist contacts a family member during the first week to introduce themselves and hear what you’ve seen.' },
+  { title: 'Updates on a timeline that fits', text: 'Depending on clinical needs, that can mean weekly calls or email updates.' },
+  { title: 'Family sessions', text: 'Family sessions, often every two weeks or monthly, when they’re clinically appropriate.' },
+];
+
+// REVIEW 8.5: plain-language passage pending Elizabeth review (the three conversation starters)
+const starters = [
+  '“I love you, and I’m worried. Can we talk about what’s been going on?”',
+  '“You don’t have to decide anything today. Would you be willing to hear about one option?”',
+  '“I called a program to ask questions. Would you want to hear what they said?”',
+];
+
+const faqs = [
+  { q: 'Can I call on behalf of someone else?', a: 'Yes. Many calls come from family members. We’ll listen, answer your questions and help you think through next steps, even if your loved one isn’t ready to call yet.' },
+  { q: 'Will you tell me how they’re doing?', a: 'Only with their written consent. Once they sign a release, their therapist can keep you updated and involve you in family sessions when appropriate.' },
+  { q: 'Should I set boundaries?', a: 'Often, yes. Setting boundaries is not abandoning someone. It can protect you and stop patterns that keep the problem going. <a href="/therapies/family-therapy/">Family therapy</a> can help you figure out which ones.' },
+  { q: 'What if they refuse treatment?', a: 'Ambivalence is common and doesn’t mean they don’t want help. Keep the door open, take care of yourself, and call us: we can talk with you first.' },
+  { q: 'Can I attend sessions?', a: 'When your loved one consents and it’s clinically appropriate, yes. Family sessions are typically every two weeks or monthly.' },
+];
+---
+<ServicePage
+  path="/admissions/for-families/"
+  metaTitle="How to Help a Loved One With Addiction | West Palm Beach"
+  description="Calling for someone you love? What to say, what Sunview does, how families take part in outpatient treatment in West Palm Beach, and where to start."
+  crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'For Families', href: '/admissions/for-families/' }]}
+  h1="Help for Families of Someone Struggling With Addiction in West Palm Beach"
+  subheading="“I’ve tried everything.” You’re not alone, and you don’t have to have the answers."
+  lead="If you’re calling for someone you love, start here: what families tell us, what you can and can’t control, how families are involved in treatment, and how to reach us even if your loved one isn’t ready."
+  faqTitle="Frequently Asked Questions From Families"
+  faqs={faqs}
+  reviews
+>
+  <!-- 1. Quote wall -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">What Families Tell Us When They Call</h2>
+        <p class="mt-5 text-lg">Families often reach out frustrated, exhausted or scared, and sometimes carrying a lot of guilt. If any of these sound like you, you’re in the right place.</p>
+      </div>
+      <ul class="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-4">
+        {wall.map((w, i) => (
+          <li class:list={['mb-5 break-inside-avoid rounded-[var(--radius-card)] p-6 font-display text-xl leading-snug text-charcoal', i % 3 === 0 ? 'bg-cream' : i % 3 === 1 ? 'bg-mist' : 'border border-line bg-white', i % 2 ? 'sm:rotate-[0.6deg]' : 'sm:-rotate-[0.6deg]']}>
+            “{w}”
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. Can / can't -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">What You Can and Can’t Control</h2>
+      <p class="subheading mt-3">Setting boundaries is not abandoning them</p>
+      <div class="mt-10 grid gap-0 overflow-hidden rounded-[var(--radius-lg)] md:grid-cols-2">
+        <div class="bg-white p-7 sm:p-9">
+          <h3 class="text-xl text-teal">You can</h3>
+          <ul class="mt-4 space-y-3">{can.map((c) => <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />{c}</li>)}</ul>
+        </div>
+        <div class="bg-teal p-7 text-white sm:p-9">
+          <h3 class="text-xl text-white">You can’t</h3>
+          <ul class="mt-4 space-y-3">{cant.map((c) => <li class="flex items-start gap-3"><span class="mt-2.5 h-0.5 w-3 shrink-0 bg-sun" aria-hidden="true"></span>{c}</li>)}</ul>
+        </div>
+      </div>
+      <p class="mt-8 max-w-4xl text-lg">Many families wonder whether they’ve enabled the problem, or whether saying no means giving up. Families are systems: everyone plays a role, often without realizing it. Understanding your part isn’t about blame. It’s how patterns start to change.</p>
+    </div>
+  </section>
+
+  <!-- 3. Involvement steps -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">How Families Are Involved at Sunview</h2>
+        <p class="mt-5 text-lg">We believe in family recovery. Substance use and mental health affect the whole family, and you often see patterns that aren’t obvious in treatment.</p>
+        <a href="/therapies/family-therapy/" class="btn-teal mt-8">Family therapy at Sunview <Icon name="arrow" /></a>
+      </div>
+      <ol class="space-y-3">
+        {steps.map((s, i) => (
+          <li class="flex gap-4 rounded-[var(--radius-card)] border border-line p-5">
+            <span class="font-sans text-2xl font-extrabold text-teal" aria-hidden="true">{i + 1}</span>
+            <div>
+              <h3 class="text-lg">{s.title}</h3>
+              <p class="mt-1 text-[15px]">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. Not ready -->
+  <section class="section bg-cream">
+    <div class="container-x">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">When Your Loved One Isn’t Ready</h2>
+        <p class="mt-5 text-lg">“I know I have a problem, but I don’t think it’s that bad.” Ambivalence is common. It doesn’t always mean they don’t want help; sometimes they’re scared of what changing will require. A few ways to open the door:</p>
+      </div>
+      <!-- REVIEW 8.5: plain-language passage pending Elizabeth review -->
+      <ul class="mt-8 grid gap-4 lg:grid-cols-3">
+        {starters.map((s) => <li class="rounded-[var(--radius-card)] bg-white p-6 text-lg italic text-charcoal">{s}</li>)}
+      </ul>
+      <p class="mt-8 flex items-start gap-3 text-lg"><Icon name="phone" class="mt-1 h-5 w-5 shrink-0 text-teal" /><span>You can call us first. We’ll talk with you, not at them, and help you plan the conversation. <a href="/admissions/" class="font-bold text-teal underline decoration-2 underline-offset-4">Talk to admissions</a>.</span></p>
+    </div>
+  </section>
+
+  <!-- 5. Day to day -->
+  <section class="section">
+    <div class="container-x grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">What Treatment Looks Like Day to Day</h2>
+        <p class="mt-5 text-lg">Your loved one lives at home and comes to Sunview for group therapy, a weekly individual session and psychiatric care, in the mornings or in the evening. Many keep working. Free transportation is available.</p>
+        <p class="mt-4 text-lg">We treat substance use and mental health together: see <a href="/what-we-treat/substance-use/" class="font-bold text-teal underline decoration-2 underline-offset-4">substance use disorder treatment</a> and <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal underline decoration-2 underline-offset-4">dual diagnosis treatment</a>.</p>
+      </div>
+      <div class="flex flex-col gap-3">
+        <a href="/admissions/what-to-expect/" class="flex items-center justify-between rounded-[var(--radius-card)] border border-line px-5 py-4 font-bold text-charcoal hover:border-teal hover:text-teal">What to expect in treatment <Icon name="arrow" class="h-4 w-4 text-teal" /></a>
+        <a href="/programs/" class="flex items-center justify-between rounded-[var(--radius-card)] border border-line px-5 py-4 font-bold text-charcoal hover:border-teal hover:text-teal">Compare levels of care <Icon name="arrow" class="h-4 w-4 text-teal" /></a>
+        <a href="/admissions/insurance/" class="flex items-center justify-between rounded-[var(--radius-card)] border border-line px-5 py-4 font-bold text-charcoal hover:border-teal hover:text-teal">Insurance and payment <Icon name="arrow" class="h-4 w-4 text-teal" /></a>
+        <a href="/admissions/faq/" class="flex items-center justify-between rounded-[var(--radius-card)] border border-line px-5 py-4 font-bold text-charcoal hover:border-teal hover:text-teal">Admissions FAQ <Icon name="arrow" class="h-4 w-4 text-teal" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Own support -->
+  <section class="section bg-teal text-white">
+    <div class="container-x max-w-4xl text-center">
+      <Icon name="heart" class="mx-auto h-9 w-9 text-sun" />
+      <h2 class="mt-4 text-3xl text-white sm:text-[2.1875rem]">Your Own Support Matters Too</h2>
+      <p class="mt-5 text-lg text-white/90">Recovery is not only an individual process. You’ve been carrying a lot, and you deserve support whether or not your loved one is ready. Taking care of yourself isn’t selfish. It’s part of how families heal.</p>
+      <a href="/admissions/" class="btn-sun mt-8">Talk to admissions <Icon name="arrow" /></a>
+    </div>
+  </section>
+</ServicePage>

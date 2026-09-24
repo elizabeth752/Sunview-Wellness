@@ -1,0 +1,59 @@
+---
+// Programs pages (Programs-Content-Briefs.md, 2026-09-22): ServicePage with the Programs rotation
+// (Insurance + Map, Reviews on the hub only), the "other programs" block and a MedicalTherapy schema.
+import ServicePage from './ServicePage.astro';
+import ProgramLinks from '../components/ProgramLinks.astro';
+import { programSchema } from '../lib/programSchema.js';
+
+interface Faq { q: string; a: string }
+interface Props {
+  path: string;
+  metaTitle: string;
+  description: string;
+  crumb: string; // breadcrumb name for this page
+  h1: string;
+  subheading: string;
+  lead: string;
+  therapy: { name: string; description: string };
+  faqTitle: string;
+  faqs: Faq[];
+  reviews?: boolean;
+  otherProgramsTitle?: string;
+  linksClass?: string; // background of the "other programs" block, to keep alternating with the body above it
+}
+const {
+  path, metaTitle, description, crumb, h1, subheading, lead, therapy, faqTitle, faqs,
+  reviews = false,
+  otherProgramsTitle = 'Other Outpatient Programs at Sunview',
+  linksClass = 'bg-mist',
+} = Astro.props;
+const isHub = path === '/programs/';
+const crumbs = isHub ? [{ name: 'Programs', href: '/programs/' }] : [{ name: 'Programs', href: '/programs/' }, { name: crumb, href: path }];
+---
+<ServicePage
+  path={path}
+  metaTitle={metaTitle}
+  description={description}
+  crumbs={crumbs}
+  h1={h1}
+  subheading={subheading}
+  lead={lead}
+  faqTitle={faqTitle}
+  faqs={faqs}
+  insurance
+  reviews={reviews}
+  map
+  schema={programSchema({ path, title: metaTitle, description, therapy, faqs })}
+>
+  <slot />
+  {!isHub && (
+    <section slot="links" class:list={['section', linksClass]}>
+      <div class="container-x">
+        <span class="eyebrow">Levels of care</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{otherProgramsTitle}</h2>
+        <p class="subheading mt-3">One team at every level, so moving between them doesn’t mean starting over.</p>
+        <ProgramLinks current={path} class="mt-8" />
+      </div>
+    </section>
+  )}
+</ServicePage>

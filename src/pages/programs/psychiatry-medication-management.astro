@@ -1,0 +1,140 @@
+---
+// /programs/psychiatry-medication-management/: Programs-Content-Briefs.md §4. Sources in
+// docs/content/programs-sources.md. Must not read as a standalone psychiatry service (PPC: misdirected
+// "psychiatry" calls): the H1 area and first paragraph tie it to PHP/IOP/OP enrollment.
+import ProgramPage from '../../layouts/ProgramPage.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import Icon from '../../components/Icon.astro';
+
+const how = [
+  { icon: 'calendar', title: 'Scheduled for you', text: 'We coordinate and book your psychiatric appointments. You don’t chase a referral or sit on hold with a separate office.' },
+  { icon: 'lock', title: 'A private office on site', text: 'Appointments happen virtually from a private office at Sunview, set up so you can talk with your provider confidentially.' },
+  { icon: 'pill', title: 'Prescriptions to your pharmacy', text: 'Your provider sends prescriptions to the pharmacy you choose, which we keep on file.' },
+];
+
+const coordinate = [
+  { label: 'Suboxone (buprenorphine)', text: 'Welcome when a qualified outside provider prescribes and manages it. If you already have one, we keep care connected with them. If you don’t, we refer you to one.' },
+  { label: 'Vivitrol and naltrexone', text: 'Same approach: anti-craving medications are supported, prescribed and managed by an outside provider, with Sunview coordinating.' },
+  { label: 'Long-acting injectables', text: 'Injectable psychiatric medications are given and monitored by an outside provider who can administer them properly. We coordinate with them.' },
+  { label: 'Methadone', text: 'We don’t admit people on methadone maintenance. If you’re coming off methadone, you may need medical stabilization first, and we’ll help you find the right program before Sunview.' },
+];
+
+const faqs = [
+  { q: 'Do you have a psychiatrist on staff?', a: 'Psychiatric care at Sunview is provided through our partner, Telemed Clinix: physicians, nurse practitioners and physician assistants who understand addiction and dual diagnosis. It’s integrated into your program, and we schedule the appointments for you.' },
+  { q: 'Can I keep my current medications?', a: 'Often, yes. Your provider reviews what you take, how well it’s working and whether anything needs to change. We don’t switch medications just because you’re starting a program.' },
+  { q: 'Can I stay on Suboxone or Vivitrol?', a: 'Yes. Sunview is abstinence-based, but not medication-free. Suboxone, Vivitrol and naltrexone are welcome when a qualified outside provider prescribes and manages them, and we coordinate with that provider or refer you to one.' },
+  { q: 'What if I’m on methadone?', a: 'We don’t admit people who are on methadone maintenance. If you’re tapering off methadone, medically supervised stabilization usually comes first. <a href="/admissions/">Talk to admissions</a> and we’ll help you find the right next step.' },
+  { q: 'Can I keep seeing the same provider after treatment?', a: 'Yes. You can continue with your Telemed Clinix provider after you finish at Sunview, so your psychiatric care doesn’t stop when the program does.' },
+];
+---
+<ProgramPage
+  path="/programs/psychiatry-medication-management/"
+  metaTitle="Medication Management & Psychiatric Care | West Palm Beach"
+  description="Psychiatric evaluation and medication management, integrated into PHP, IOP and OP through our Telemed Clinix partnership. Continuity after discharge."
+  crumb="Psychiatric Care & Medication Management"
+  h1="Psychiatric Care and Medication Management in West Palm Beach"
+  subheading="Included in treatment at Sunview, not a separate appointment you have to chase."
+  lead="For people enrolled in our PHP, IOP or Outpatient Program, psychiatric evaluation and medication management are built into treatment through our partnership with Telemed Clinix."
+  therapy={{
+    name: 'Psychiatric care and medication management',
+    description: 'Psychiatric evaluation and medication management integrated into Sunview’s PHP, IOP and outpatient programs through Telemed Clinix, with the option to continue with the same provider after discharge.',
+  }}
+  faqTitle="Frequently Asked Questions About Medication at Sunview"
+  faqs={faqs}
+  otherProgramsTitle="Outpatient Programs That Include Psychiatric Care"
+  linksClass=""
+>
+  <!-- 1. Built in -->
+  <section class="section">
+    <div class="container-x">
+      <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <span class="eyebrow">How it works</span>
+          <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Psychiatry Built Into Your Treatment Program</h2>
+          <p class="subheading mt-3">One plan, one team, one place to show up</p>
+          <div class="prose-sv mt-6">
+            <p><strong>Psychiatric care at Sunview is available to people enrolled in our <a href="/programs/php/">Partial Hospitalization Program</a>, <a href="/programs/iop/">Intensive Outpatient Program</a> or <a href="/programs/outpatient/">Outpatient Program</a>.</strong> It isn’t a standalone psychiatry practice. It’s part of your treatment.</p>
+            <p>Care is provided through Telemed Clinix, our psychiatric partner. Their physicians, nurse practitioners and physician assistants understand the complexities of addiction and <a href="/what-we-treat/dual-diagnosis/">dual diagnosis</a>, so your medication decisions are made with your whole picture in view, not just a symptom list.</p>
+          </div>
+        </div>
+        <div class="grid content-start gap-4">
+          {how.map((h) => (
+            <div class="card flex gap-4">
+              <Icon name={h.icon} class="mt-1 h-6 w-6 shrink-0 text-teal" />
+              <div>
+                <h3 class="text-lg">{h.title}</h3>
+                <p class="mt-1">{h.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 + 3. During and after treatment -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-6 lg:grid-cols-2">
+      <article class="card !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Medication Management During Treatment</h2>
+        <p class="mt-4">It starts with understanding, not assumptions. Your provider completes a psychiatric evaluation, reviews what you’re already taking, looks at how well it’s working, and makes adjustments only when they’re clinically indicated.</p>
+        <p class="mt-3">We don’t change medications just because you’re entering a program. Your plan stays individual, and your therapist and provider work from the same understanding of what you’re going through.</p>
+      </article>
+      <article class="card !p-8">
+        <Icon name="refresh" class="h-8 w-8 text-teal" />
+        <h2 class="mt-4 text-2xl sm:text-[1.75rem]">Continuing With the Same Provider After Discharge</h2>
+        <p class="mt-4">This is what makes our model different. When you finish PHP, IOP or OP, you can keep working with the same Telemed Clinix provider. You don’t have to start your story over with a stranger.</p>
+        <p class="mt-3">We value that continuity because the weeks after a program ends are when steady support matters most.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 4. MAT coordination -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <span class="eyebrow">Medication-assisted treatment</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Suboxone, Vivitrol and Other Medications: How We Coordinate</h2>
+        <p class="subheading mt-3">Abstinence-based doesn’t mean medication-free</p>
+        <p class="mt-5 text-lg">Sunview is an abstinence-based program: no marijuana, stimulants, opioids or benzodiazepines while you’re in treatment. At the same time, we support medications that help recovery, including anti-craving medications, when a qualified provider prescribes and manages them.</p>
+        <p class="mt-4 text-lg">A prescription or a medical card doesn’t settle the question on its own. During pre-screening we look at what you take, how much, how often and for how long, so we can recommend a level of care that’s safe for you.</p>
+        <p class="mt-4 text-lg">Read more about our <a href="/what-we-treat/substance-use/" class="font-bold text-teal underline decoration-2 underline-offset-4">substance use treatment</a>.</p>
+      </div>
+      <div>
+        <dl class="divide-y divide-line rounded-[var(--radius-card)] border border-line">
+          {coordinate.map((c) => (
+            <div class="grid gap-1 p-6 sm:grid-cols-[0.75fr_1.25fr] sm:gap-6">
+              <dt class="font-extrabold">{c.label}</dt>
+              <dd>{c.text}</dd>
+            </div>
+          ))}
+        </dl>
+        <ScopeNote class="mt-5" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Medication plus therapy -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">The bigger picture</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Why Medication Is One Part of the Work</h2>
+        <p class="subheading mt-3">Medication steadies you. Therapy helps you change.</p>
+        <p class="mt-5 text-lg">Medication can be an important tool for stabilization and recovery. But our goal isn’t only to manage prescriptions. It’s to understand how your psychiatric symptoms, substance use, relationships and daily functioning affect each other.</p>
+        <p class="mt-4 text-lg">That’s why psychiatric care sits inside a full program: group therapy, a weekly individual session and family involvement when it helps. The therapeutic work builds the insight, coping skills and new habits that last longer than any dose.</p>
+      </div>
+      <div class="card !p-8">
+        <h3 class="text-xl">Where psychiatric care fits</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Integrated into every level of care</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Alongside <a href="/therapies/group-therapy/" class="font-bold text-teal underline decoration-2 underline-offset-4">group therapy</a> and individual sessions</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Coordinated with your therapist and your treatment plan</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Available after discharge with the same provider</li>
+        </ul>
+        <a href="/programs/" class="btn-teal mt-7">Compare levels of care <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+</ProgramPage>

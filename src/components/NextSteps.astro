@@ -1,0 +1,39 @@
+---
+// Closing body section required on every What We Treat page (brief): which level of care usually fits,
+// the positive scope line, and links to /programs/, /admissions/, psychiatry, sibling pages and the parent.
+import Icon from './Icon.astro';
+import ScopeNote from './ScopeNote.astro';
+interface Link { label: string; href: string }
+interface Props {
+  title: string; // H2
+  subtitle?: string;
+  level: string; // which level of care usually fits (HTML allowed)
+  related: Link[]; // parent category first, then siblings
+  class?: string;
+}
+const { title, subtitle, level, related, class: cls = 'section bg-mist' } = Astro.props;
+---
+<section class={cls}>
+  <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+    <div>
+      <span class="eyebrow">Level of care</span>
+      <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{title}</h2>
+      {subtitle && <p class="subheading mt-3">{subtitle}</p>}
+      <div class="mt-5 space-y-4 text-lg [&_a]:font-bold [&_a]:text-teal [&_a]:underline [&_a]:decoration-2 [&_a]:underline-offset-4" set:html={level} />
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/admissions/" class="btn-teal">Talk to admissions <Icon name="arrow" /></a>
+        <a href="/programs/" class="btn-ghost">Compare levels of care</a>
+      </div>
+      <p class="mt-6"><a href="/programs/psychiatry-medication-management/" class="inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a></p>
+    </div>
+    <div>
+      <ScopeNote />
+      <nav aria-label="Related pages" class="card mt-5 !p-6">
+        <p class="font-extrabold text-charcoal">Related pages</p>
+        <ul class="mt-3 space-y-2">
+          {related.map((r) => <li><a href={r.href} class="inline-flex items-center gap-2 text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4 shrink-0" />{r.label}</a></li>)}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>

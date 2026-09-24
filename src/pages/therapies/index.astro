@@ -1,0 +1,214 @@
+---
+// /therapies/ hub: Therapies-Content-Briefs.md §A. Sources in docs/content/therapies-sources-hub-group.md.
+// Rotation: Reviews only. Reviewed by Dana (byline in the hero). Body structure is deliberately different
+// from the Programs / What We Treat pages: split + pull quote, full-bleed iceberg band, bento grid,
+// week strip, staircase, matrix table.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import { THERAPIES_HUB, THERAPIES, therapyBySlug } from '../../data/therapies.js';
+
+const bento = [
+  { slug: 'group-therapy', size: 'lg:col-span-2 lg:row-span-2', tone: 'bg-teal text-white', icon: 'users' },
+  { slug: 'inner-child-therapy', size: 'lg:col-span-2', tone: 'bg-cream', icon: 'heart' },
+  { slug: 'internal-family-systems', size: '', tone: 'bg-white', icon: 'layers' },
+  { slug: 'family-therapy', size: '', tone: 'bg-white', icon: 'home' },
+  { slug: 'cbt', size: 'lg:col-span-2', tone: 'bg-mist', icon: 'brain' },
+  { slug: 'dbt', size: 'lg:col-span-2', tone: 'bg-mist', icon: 'compass' },
+].map((b) => ({ ...b, t: therapyBySlug(b.slug) }));
+
+const layers = [
+  { label: 'What brought you here', note: 'Cravings, low mood, anxiety, conflict', w: 'w-[38%]', tone: 'bg-white text-teal' },
+  { label: 'The patterns underneath', note: 'How you cope, what sets you off', w: 'w-[56%]', tone: 'bg-white/25 text-white' },
+  { label: 'Relationships and family systems', note: 'The roles you learned and still play', w: 'w-[74%]', tone: 'bg-white/15 text-white' },
+  { label: 'Past experiences', note: 'What happened, and what it taught you', w: 'w-[92%]', tone: 'bg-white/10 text-white' },
+];
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+
+const stages = [
+  { n: '01', title: 'Stabilization', text: 'Structure, safety and coping skills first, so the work can happen at all.', offset: 'lg:mt-24' },
+  { n: '02', title: 'Insight', text: 'From “how do I get through this?” to “why do I respond this way?”', offset: 'lg:mt-12' },
+  { n: '03', title: 'Integration', text: 'I understand why I do this, I can see it happening, and I have a choice.', offset: '' },
+];
+
+const matrix = [
+  { slug: 'group-therapy', note: 'The core of every program day' },
+  { slug: 'inner-child-therapy', note: 'Individual sessions and group topics' },
+  { slug: 'internal-family-systems', note: 'Built into group topics and individual work' },
+  { slug: 'cbt', note: 'Skills in group and individual sessions' },
+  { slug: 'dbt', note: 'Skills in group and individual sessions' },
+  { slug: 'family-therapy', note: 'When clinically appropriate and you agree', partial: true },
+].map((m) => ({ ...m, t: therapyBySlug(m.slug) }));
+
+const faqs = [
+  { q: 'Do I choose my therapy?', a: 'You don’t pick from a menu. Every program combines group, individual and family work, and your therapist draws on the approaches that fit you. You’re always part of those decisions, and your treatment plan is reviewed with you every month.' },
+  { q: 'Is therapy individual or group?', a: 'Both. Most of your time is in one continuous group, and you also meet one-on-one with your primary therapist every week for 45 to 60 minutes. <a href="/therapies/group-therapy/">How group therapy works</a>.' },
+  { q: 'Do you offer therapy without a program?', a: 'No. Our therapy happens within PHP, IOP and OP. If you’re looking for weekly private therapy only, call us anyway and we’ll point you to the right place.' },
+  { q: 'What is IFS?', a: 'Internal Family Systems is a way of understanding the different parts of yourself, including the ones that protect you in ways that no longer help. It’s part of our group topics and individual sessions. <a href="/therapies/internal-family-systems/">Internal Family Systems (IFS)</a>.' },
+  { q: 'Is family therapy required?', a: 'No. Families are involved when it’s clinically appropriate and you agree. Nobody is pressured into it. <a href="/therapies/family-therapy/">Family therapy at Sunview</a>.' },
+];
+---
+<ServicePage
+  path="/therapies/"
+  metaTitle="Therapy Approaches at Sunview Wellness | West Palm Beach"
+  description="IFS, inner child therapy, CBT, DBT, family and group therapy, used together in outpatient addiction and dual diagnosis treatment in West Palm Beach."
+  crumbs={[THERAPIES_HUB]}
+  h1="Therapy Approaches for Addiction and Mental Health in West Palm Beach"
+  subheading="From stabilization to insight to integration."
+  lead="Group, individual and family therapy that looks beneath the presenting symptom, built into our outpatient programs for adults with substance use and co-occurring mental health conditions."
+  faqTitle="Frequently Asked Questions About Therapy at Sunview"
+  faqs={faqs}
+  reviews
+  about={{ '@type': 'MedicalTherapy', name: 'Addiction and dual diagnosis therapy' }}
+>
+  <!-- 1. Split: prose + pull quote -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">How Therapy Works at Sunview</h2>
+        <div class="prose-sv mt-6">
+          <p>There’s no single method here that everyone gets. Our team shares a common foundation, including Internal Family Systems, CBT, DBT and trauma-informed care, and each clinician brings their own strengths and specialties to it.</p>
+          <p>All of it happens inside our <a href="/programs/">outpatient programs</a>: PHP, IOP and OP. We don’t offer standalone private therapy. If you’re looking for weekly private therapy only, we’ll point you to the right place.</p>
+          <p>Many people we work with live with substance use and a mental health condition at once, so the therapy treats both together. See <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
+        </div>
+      </div>
+      <figure class="relative border-l-4 border-gold pl-8">
+        <blockquote class="font-display text-2xl leading-snug text-charcoal sm:text-[1.9rem]">
+          “Our goal is not to keep people in treatment indefinitely, but to help them develop the insight, skills, and internal resources they need to build a meaningful life in recovery outside of treatment.”
+        </blockquote>
+        <figcaption class="mt-5 text-sm"><strong class="text-charcoal">Sunview’s Clinical Director</strong></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2. Full-bleed teal band: iceberg -->
+  <section class="section overflow-hidden bg-teal text-white">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Going Beneath the Presenting Symptom</h2>
+        <p class="mt-5 text-lg text-white/90">What brings someone to treatment is usually the tip of the iceberg. Underneath are the patterns, relationships and experiences that keep it going.</p>
+        <p class="mt-4 text-lg text-white/90">Coping skills and relapse prevention matter, and we teach them. But without exploring where a trigger began, a skill can end up as a band-aid over a bullet hole. So we go deeper, at a pace that’s safe for you.</p>
+      </div>
+      <div aria-label="The layers beneath a presenting symptom" role="img" class="relative">
+        <div class="flex flex-col items-center gap-2">
+          {layers.map((l, i) => (
+            <>
+              <div class:list={['rounded-[14px] px-4 py-3 text-center', l.w, l.tone]}>
+                <p class="font-extrabold">{l.label}</p>
+                <p class:list={['text-xs', i === 0 ? 'text-muted' : 'text-white/80']}>{l.note}</p>
+              </div>
+              {i === 0 && <div class="my-1 h-px w-full bg-gradient-to-r from-transparent via-sun to-transparent" aria-hidden="true"></div>}
+            </>
+          ))}
+        </div>
+        <p class="mt-3 text-center text-xs uppercase tracking-[0.12em] text-white/70">Above the line: what you see · Below: what we explore</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Bento grid -->
+  <section class="section">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">The Approaches We Use</h2>
+      <p class="mt-4 max-w-3xl text-lg">Six approaches, used together rather than one at a time.</p>
+      <div class="mt-10 grid auto-rows-[minmax(150px,auto)] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {bento.map((b) => (
+          <a href={b.t.href} class:list={['group flex flex-col rounded-[var(--radius-lg)] border border-line p-6 transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-soft)]', b.size, b.tone]}>
+            <Icon name={b.icon} class:list={['h-7 w-7', b.tone.includes('text-white') ? 'text-sun' : 'text-teal']} />
+            <h3 class:list={['mt-4', b.size.includes('row-span-2') ? 'text-3xl' : 'text-xl', b.tone.includes('text-white') && 'text-white']}>{b.t.name}</h3>
+            <p class:list={['mt-2', b.tone.includes('text-white') ? 'text-white/90' : '']}>{b.t.line}</p>
+            <span class:list={['mt-auto inline-flex items-center gap-1.5 pt-4 font-bold', b.tone.includes('text-white') ? 'text-white' : 'text-teal']}>{b.t.label} <Icon name="arrow" class="h-4 w-4" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Week strip -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="max-w-4xl text-3xl sm:text-[2.1875rem]">Group, Individual and Family: How Sessions Fit Together</h2>
+      <p class="mt-4 max-w-3xl text-lg">A sample week in PHP. In IOP, the group mornings (or evenings) fall on three days instead of five.</p>
+      <div class="mt-10 overflow-x-auto pb-2">
+        <div class="grid min-w-[640px] grid-cols-5 gap-3">
+          {days.map((d, i) => (
+            <div class="flex flex-col gap-2">
+              <p class="text-center font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-muted">{d}</p>
+              <div class="rounded-[12px] bg-teal px-3 py-4 text-white">
+                <p class="text-xs text-white/80">9 AM – 1 PM</p>
+                <p class="font-extrabold">Group</p>
+                <p class="text-xs text-white/80">Same facilitator</p>
+              </div>
+              {i === 1 && <div class="rounded-[12px] border-2 border-teal bg-white px-3 py-3"><p class="text-xs text-muted">45–60 min</p><p class="font-extrabold text-charcoal">Individual session</p></div>}
+              {i === 3 && <div class="rounded-[12px] border-2 border-dashed border-gold bg-white px-3 py-3"><p class="text-xs text-muted">Week one</p><p class="font-extrabold text-charcoal">Family contact</p></div>}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="mt-8 grid gap-6 text-[15px] md:grid-cols-3">
+        <p><strong class="text-charcoal">Group.</strong> One facilitator for the whole morning, so the work goes deeper instead of restarting every hour.</p>
+        <p><strong class="text-charcoal">Individual.</strong> A weekly session with your primary therapist, plus check-ins when needed.</p>
+        <p><strong class="text-charcoal">Family.</strong> With your consent, a loved one hears from your therapist in week one; sessions follow on your timeline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Staircase -->
+  <section class="section">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">From Insight to Action</h2>
+      <p class="mt-4 max-w-3xl text-lg">Early on, the work is about getting steady. Later, it’s about understanding, and then choosing differently in real life.</p>
+      <ol class="mt-10 grid gap-5 lg:grid-cols-3 lg:items-start">
+        {stages.map((s, i) => (
+          <li class:list={['rounded-[var(--radius-lg)] p-7', s.offset, i === 2 ? 'bg-teal text-white' : i === 1 ? 'bg-teal-light/15' : 'bg-mist']}>
+            <span class:list={['font-display text-5xl font-extrabold leading-none', i === 2 ? 'text-sun' : 'text-teal']}>{s.n}</span>
+            <h3 class:list={['mt-3 text-2xl', i === 2 && 'text-white']}>{s.title}</h3>
+            <p class:list={['mt-2', i === 2 && 'text-white/90']}>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. Matrix -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Which Therapies Are Part of Your Level of Care</h2>
+      <p class="mt-4 max-w-3xl text-lg">The same approaches run through every level. What changes is how many days a week you’re in treatment. <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Compare PHP, IOP and OP</a>.</p>
+      <div class="mt-8 overflow-x-auto rounded-[var(--radius-card)] border border-line bg-white">
+        <table class="w-full text-left text-[14px] sm:text-[15px]">
+          <caption class="sr-only">Therapies included at each level of care</caption>
+          <thead>
+            <tr class="border-b border-line bg-white">
+              <th scope="col" class="px-5 py-4 font-extrabold text-charcoal">Therapy</th>
+              {['PHP', 'IOP', 'OP'].map((c) => <th scope="col" class="px-2 py-4 text-center font-extrabold text-charcoal sm:px-4">{c}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {matrix.map((m) => (
+              <tr class="border-b border-line last:border-0">
+                <th scope="row" class="px-4 py-4 font-normal sm:px-5">
+                  <a href={m.t.href} class="font-bold text-teal hover:text-teal-light">{m.t.name}</a>
+                  <span class="block text-xs text-muted">{m.note}</span>
+                </th>
+                {[0, 1, 2].map(() => (
+                  <td class="px-2 py-4 text-center sm:px-4">
+                    {m.partial
+                      ? <span class="text-xs font-bold text-muted">As appropriate</span>
+                      : <><Icon name="check-circle" class="inline h-5 w-5 text-teal" /><span class="sr-only">Included</span></>}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-8 text-[15px]">
+        Next steps: <a href="/admissions/" class="font-bold text-teal underline decoration-2 underline-offset-4">Talk to admissions</a>
+        · <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Outpatient programs</a>
+        · <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal underline decoration-2 underline-offset-4">Dual diagnosis treatment</a>
+        · <a href="/what-we-treat/" class="font-bold text-teal underline decoration-2 underline-offset-4">Conditions we treat</a>
+      </p>
+    </div>
+  </section>
+</ServicePage>

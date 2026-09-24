@@ -1,0 +1,222 @@
+---
+// /our-team/{slug}/: About-Team-Content-Briefs.md §B, one template for all 11 person pages.
+// Data: src/data/team.js. Sources and open questions: docs/content/about-team-sources-team.md.
+// Hero has no form (brief exception): H1 = full name, subheading = title, initials portrait on the right.
+// Body: bio + "Role at Sunview" beside a sticky credentials card at desktop (stacks on mobile).
+// Frank also gets "In Vivo Treatment™ and Clinical Architecture™". "Articles by {First}" appears only when
+// src/data/posts.js has posts whose author is this person. No rotation sections, no reviewed-by byline.
+// Schema: BreadcrumbList (Base) + ProfilePage with a Person mainEntity.
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE, initials } from '../../data/site.js';
+import { PEOPLE, TEAM_GROUPS, peopleInGroup, personHref } from '../../data/team.js';
+import { sortedPosts, formatDate } from '../../data/posts.js';
+
+export function getStaticPaths() {
+  return PEOPLE.map((person) => ({ params: { slug: person.slug }, props: { person } }));
+}
+
+const { person: p } = Astro.props;
+const path = personHref(p);
+const url = new URL(path, SITE.url).href;
+const group = TEAM_GROUPS.find((g) => g.id === p.group)!;
+const colleagues = peopleInGroup(p.group).filter((x) => x.slug !== p.slug);
+const articles = sortedPosts.filter((post) => post.author?.name === p.name);
+const crumbs = [{ name: 'Our Team', href: '/our-team/' }, { name: p.name, href: path }];
+
+const nameWithCreds = p.creds ? `${p.name}, ${p.creds}` : p.name;
+// <title> ≤60 / description ≤155 (answer 9.1): metaRole and metaDescription in team.js override when too long.
+const metaTitle = `${p.name}, ${p.metaRole ?? p.title} | Sunview Wellness`;
+const description = p.metaDescription ?? (p.bioPending
+  ? `${nameWithCreds}, ${p.title} at Sunview Wellness, an outpatient addiction and mental health treatment center in West Palm Beach.`
+  : `${nameWithCreds}, ${p.title} at Sunview Wellness in West Palm Beach. ${p.specialty}`);
+
+const personNode: Record<string, unknown> = {
+  '@type': 'Person',
+  '@id': `${url}#person`,
+  name: p.name,
+  jobTitle: p.title,
+  url,
+  worksFor: { '@id': `${SITE.url}/#organization` },
+};
+if (p.creds) personNode.honorificSuffix = p.creds;
+if (p.photo) personNode.image = new URL(p.photo, SITE.url).href;
+if (p.linkedin) personNode.sameAs = [p.linkedin];
+if (p.languages) personNode.knowsLanguage = p.languages;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${url}#webpage`,
+    url,
+    name: metaTitle,
+    description,
+    publisher: { '@id': `${SITE.url}/#organization` },
+    mainEntity: personNode,
+  },
+];
+
+// In Vivo loop, verbatim from Frank's article (src/data/posts.js, in-vivo-treatment-…)
+const loop = ['Learn', 'Apply', 'Experience', 'Process', 'Adjust', 'Apply again'];
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema}>
+  <PageHero
+    title={p.name}
+    subheading={p.title}
+    crumbs={crumbs}
+    secondary={{ label: 'Meet the whole team', href: '/our-team/' }}
+    ripple={false}
+    compact
+  >
+    {p.creds && <p class="mt-3 font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-white/85">{p.creds}</p>}
+    <Fragment slot="aside">
+      <div class="mx-auto w-full max-w-[320px] lg:ml-auto lg:mr-0">
+        <div class="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[var(--radius-lg)] bg-mist ring-4 ring-white/15">
+          {p.photo
+            ? <img src={p.photo} alt={`${p.name}, ${p.title} at Sunview Wellness`} class="absolute inset-0 h-full w-full object-cover" />
+            : <span class="grid h-36 w-36 place-items-center rounded-full border-2 border-gold font-display text-6xl font-bold text-teal" role="img" aria-label={`Photo of ${p.name} coming soon`}>{initials(p.name)}</span>}
+        </div>
+      </div>
+    </Fragment>
+  </PageHero>
+
+  <!-- Bio + role beside the credentials card -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1fr_340px] lg:gap-x-16 lg:gap-y-14">
+      <!-- DOM order About → Credentials → Role (brief order, and the mobile stacking order); at desktop the
+           credentials card sits in the right column across both rows. -->
+      <div class="min-w-0 lg:col-start-1 lg:row-start-1">
+        <h2 class="text-3xl sm:text-[2.1875rem]">About {p.first}</h2>
+        {p.bioPending && (
+          <p class="mt-4"><mark class="rounded-[4px] bg-error px-1.5 py-0.5 font-sans text-xs font-extrabold uppercase text-white" title="The Client Wiki has only a one-line bio and this person isn't on the live site. A fuller bio is requested (answer 3.5).">[Wiki bio pending]</mark></p>
+        )}
+        <div class="prose-sv mt-6 max-w-[68ch] text-lg">
+          {p.bio.map((para: string) => <p>{para}</p>)}
+        </div>
+        {p.highlight && (
+          <p class="mt-8 max-w-[52ch] border-l-4 border-gold pl-5 font-display text-xl italic leading-snug text-teal sm:text-2xl">{p.highlight}</p>
+        )}
+
+      </div>
+
+      <aside class="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start" aria-labelledby="credentials-title">
+        <div class="rounded-[var(--radius-card)] border border-line bg-white p-6 sm:p-7">
+          {p.credentials.length > 0 ? (
+            <>
+              <h2 id="credentials-title" class="text-2xl">Credentials</h2>
+              <ul class="mt-5 space-y-3">
+                {p.credentials.map((c: { abbr: string; label?: string }) => (
+                  <li class="flex items-start gap-3">
+                    <span class="mt-0.5 inline-flex min-w-[3.25rem] justify-center rounded-full bg-mist px-2 py-0.5 font-sans text-xs font-extrabold text-teal">{c.abbr}</span>
+                    {c.label && <span class="text-[15px] leading-snug">{c.label}</span>}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <h2 id="credentials-title" class="text-2xl">{p.experience ? 'Experience' : 'At Sunview'}</h2>
+          )}
+          {p.experience && (
+            <ul class="mt-4 space-y-2 text-[15px]">
+              {p.experience.map((e: string) => <li class="flex items-start gap-2"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{e}</li>)}
+            </ul>
+          )}
+          {p.education.length > 0 && (
+            <>
+              <h3 class="mt-6 border-t border-line pt-5 text-base">Education</h3>
+              <ul class="mt-3 space-y-2 text-[15px]">
+                {p.education.map((e: string) => <li class="flex items-start gap-2"><Icon name="award" class="mt-0.5 h-4 w-4 shrink-0 text-gold" />{e}</li>)}
+              </ul>
+            </>
+          )}
+          {p.languages && (
+            <p class="mt-5 border-t border-line pt-5 text-[15px]"><span class="font-bold">Languages:</span> {p.languages.join(' and ')}</p>
+          )}
+          <dl class="mt-6 space-y-1 border-t border-line pt-5 text-[15px]">
+            <div><dt class="inline font-bold">Role: </dt><dd class="inline">{p.title}</dd></div>
+            <div><dt class="inline font-bold">Team: </dt><dd class="inline">{group.title}</dd></div>
+          </dl>
+          {p.linkedin && (
+            <a href={p.linkedin} class="mt-5 inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light" rel="noopener" target="_blank">
+              <Icon name="linkedin" class="h-5 w-5" />{p.first} on LinkedIn
+            </a>
+          )}
+        </div>
+
+        {colleagues.length > 0 && (
+          <div class="mt-6 px-1">
+            <p class="text-sm font-extrabold uppercase tracking-[0.08em] text-muted">Also on this team</p>
+            <ul class="mt-3 space-y-2">
+              {colleagues.map((c) => (
+                <li><a href={personHref(c)} class="inline-flex items-center gap-2 font-bold text-charcoal hover:text-teal"><span class="grid h-8 w-8 place-items-center rounded-full bg-mist text-xs font-extrabold text-teal" aria-hidden="true">{initials(c.name)}</span>{c.name}</a></li>
+              ))}
+            </ul>
+            <a href="/our-team/" class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-teal hover:text-teal-light"><Icon name="arrow-left" class="h-4 w-4" />Our treatment team</a>
+          </div>
+        )}
+      </aside>
+
+      <div class="min-w-0 lg:col-start-1 lg:row-start-2">
+        <h2 class="text-3xl sm:text-[2.1875rem]">Role at Sunview</h2>
+        <div class="prose-sv mt-6 max-w-[68ch]">
+          {p.role.map((para: string) => <p set:html={para} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {p.inVivo && (
+    <section class="section bg-mist" aria-labelledby="invivo-title">
+      <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div>
+          <h2 id="invivo-title" class="text-3xl sm:text-[2.1875rem]">In Vivo Treatment™ and Clinical Architecture™</h2>
+          <div class="prose-sv mt-6">
+            <p>Frank is the creator of In Vivo Treatment™ and Clinical Architecture™. Both grew out of one question that has shaped his career: can I stay sober while actually living my life?</p>
+            <p><em>In vivo</em> essentially means “within the living environment.” The idea is that recovery skills shouldn’t just exist on paper. At some point, people have to practice them where their life actually happens, then bring what happened back into treatment and work through it.</p>
+            <p>Clinical Architecture™ is how Frank builds treatment environments that foster accountability, connection, structure and sustainable recovery. Two of its ideas, Clinical Excellence and Recovery Culture, shape how Sunview thinks about the treatment environment: clinical excellence gives treatment its substance, and recovery culture gives that treatment somewhere to live.</p>
+            <p>Read more about <a href="/about/our-approach/">Sunview’s clinical approach and outcomes</a>, or Frank’s own article, <a href="/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/">In Vivo Treatment™ at Sunview Wellness: Recovery Has to Work in the Real World</a>.</p>
+          </div>
+        </div>
+        <figure class="rounded-[var(--radius-lg)] bg-white p-7 sm:p-9">
+          <ol class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+            {loop.map((step, i) => (
+              <li class:list={['flex items-center gap-3 rounded-[var(--radius-card)] p-4', i === loop.length - 1 ? 'bg-sun/30' : 'bg-mist']}>
+                <span class="font-sans text-sm font-extrabold text-teal" aria-hidden="true">{i + 1}</span>
+                <span class="font-bold text-charcoal">{step}</span>
+              </li>
+            ))}
+          </ol>
+          <figcaption class="mt-5 text-[15px]">The In Vivo feedback loop: people live life, apply their skills, bring the experience back to the program and process what happened.</figcaption>
+        </figure>
+      </div>
+    </section>
+  )}
+
+  {articles.length > 0 && (
+    <section class:list={['section', p.inVivo ? 'bg-white' : 'bg-mist']} aria-labelledby="articles-title">
+      <div class="container-x">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <h2 id="articles-title" class="text-3xl sm:text-[2.1875rem]">Articles by {p.first}</h2>
+          <a href="/blog/" class={link}>All articles and podcasts</a>
+        </div>
+        <ul class="mt-8 divide-y divide-line border-y border-line">
+          {articles.slice(0, 6).map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}/`} class="group grid gap-1 py-5 sm:grid-cols-[160px_1fr_auto] sm:items-center sm:gap-6">
+                <span class="text-sm text-muted">{formatDate(post.date)}{post.type === 'video' ? ' · Video' : ''}</span>
+                <span class="font-display text-lg font-bold text-charcoal group-hover:text-teal">{post.title}</span>
+                <Icon name="arrow" class="hidden h-5 w-5 text-teal sm:block" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <CtaBand title="Start with a conversation" />
+</Base>

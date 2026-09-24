@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import MobileCallBar from '../components/MobileCallBar.astro';
 import { SITE } from '../data/site.js';
+import { GBP_URL } from '../data/reviews.js';
 
 interface Crumb { name: string; href: string }
 interface Props {
@@ -14,6 +15,7 @@ interface Props {
   type?: 'website' | 'article';
   breadcrumbs?: Crumb[];
   schema?: Record<string, unknown>[];
+  orgExtra?: Record<string, unknown>; // merged into the MedicalOrganization node (e.g. aggregateRating on Home)
 }
 
 const {
@@ -24,6 +26,7 @@ const {
   type = 'website',
   breadcrumbs = [],
   schema = [],
+  orgExtra = {},
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
@@ -36,6 +39,7 @@ const clinic = {
   '@type': 'MedicalOrganization',
   '@id': `${SITE.url}/#organization`,
   name: SITE.name,
+  alternateName: 'Sunview Medical Center', // former name (answer 1.3, confirmed by Elizabeth)
   url: `${SITE.url}/`,
   telephone: SITE.phone,
   address: {
@@ -46,7 +50,9 @@ const clinic = {
     postalCode: SITE.address.postal,
     addressCountry: SITE.address.country,
   },
-  sameAs: Object.values(SITE.social),
+  foundingDate: SITE.foundingYear,
+  sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.linkedin, SITE.social.x, GBP_URL],
+  ...orgExtra,
 };
 
 const crumbs =
@@ -83,8 +89,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
     <meta name="theme-color" content="#126e6e" />
 
+    <!-- Favicons: the logo's sun-and-wave mark (cut from the master file; strokes thickened for tab sizes) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={SITE.name} />

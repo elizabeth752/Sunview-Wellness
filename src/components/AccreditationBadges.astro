@@ -1,26 +1,27 @@
 ---
-// Row of accreditation logos: under the hero buttons (onDark) and in the footer (light).
+// Row of accreditation logos (light by default; onDark for teal grounds). `compact` = the trust strip size.
 import { ACCREDITATIONS } from '../data/site.js';
-interface Props { onDark?: boolean; class?: string }
-const { onDark = false, class: cls = '' } = Astro.props;
+interface Props { onDark?: boolean; compact?: boolean; class?: string }
+const { onDark = false, compact = false, class: cls = '' } = Astro.props;
 // Joint Commission 56px · NAATP 51px · SAMHSA 40px (wordmark only) · Action Alliance 46px
-const heights: Record<string, string> = {
-  'National Association of Addiction Treatment Providers': 'h-[51px]',
-  SAMHSA: 'h-10',
-  'National Action Alliance for Suicide Prevention': 'h-[46px]',
-};
+const heights: Record<string, string> = compact
+  ? { 'National Association of Addiction Treatment Providers': 'h-[41px]', SAMHSA: 'h-8', 'National Action Alliance for Suicide Prevention': 'h-[37px]' }
+  : { 'National Association of Addiction Treatment Providers': 'h-[51px]', SAMHSA: 'h-10', 'National Action Alliance for Suicide Prevention': 'h-[46px]' };
+const jcHeight = compact ? 'h-[45px]' : 'h-14';
 ---
 <ul class:list={['flex flex-wrap items-center gap-x-8 gap-y-4', cls]} aria-label="Accreditations and memberships">
   {ACCREDITATIONS.map((a) => (
     <li>
+      <a href={a.url} target="_blank" rel="noopener" class="block" aria-label={`${a.name} (verification)`}>
       <img
         src={onDark ? a.logoOnDark : a.logo}
         alt={a.name}
         width={a.w}
         height={a.h}
         loading="lazy"
-        class:list={['block w-auto', heights[a.name] ?? 'h-14']}
+        class:list={['block w-auto', heights[a.name] ?? jcHeight]}
       />
+      </a>
     </li>
   ))}
 </ul>

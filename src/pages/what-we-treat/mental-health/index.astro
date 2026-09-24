@@ -1,0 +1,143 @@
+---
+// /what-we-treat/mental-health/: What-We-Treat-Content-Briefs.md §C. Sources in
+// docs/content/what-we-treat-sources.md. Rotation: Insurance + Reviews. Reviewed by Dana (clinical).
+// Co-occurring framing everywhere: Sunview treats these conditions alongside substance use.
+import ServicePage from '../../../layouts/ServicePage.astro';
+import ConditionCards from '../../../components/ConditionCards.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, MENTAL_PAGES } from '../../../data/treat.js';
+
+const therapies = [
+  { name: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/', text: 'Part of our group topics and individual sessions: getting to know the parts of you that protect, cope and sometimes reach for a substance.' },
+  { name: 'Inner child therapy', href: '/therapies/inner-child-therapy/', text: 'How past experiences and relationships shape how you think, feel and react today.' },
+  { name: 'Cognitive Behavioral Therapy (CBT)', href: '/therapies/cbt/', text: 'Recognizing the thought patterns that feed anxiety, low mood and use, and practicing new ones.' },
+  { name: 'Dialectical Behavior Therapy (DBT)', href: '/therapies/dbt/', text: 'Skills for emotional regulation, distress tolerance and relationships.' },
+];
+
+const faqs = [
+  { q: 'Do you treat mental health without substance use?', a: 'Our programs are built for people living with substance use and mental health conditions together. If mental health is your only concern, call us anyway: we’ll listen and help you find the right kind of care.' },
+  { q: 'Is there a psychiatrist?', a: 'Psychiatric care is provided through our partner, Telemed Clinix: physicians, nurse practitioners and physician assistants who understand dual diagnosis. It’s part of your program, and we schedule it for you.' },
+  { q: 'Can I keep my medications?', a: 'Often, yes. Your provider reviews what you take and makes changes only when they’re clinically indicated. We don’t switch medications just because you’re starting a program.' },
+  { q: 'Which conditions do you see most?', a: 'Personality disorders, anxiety and depressive disorders, and trauma-related disorders, usually alongside alcohol or cocaine use. Many people are living with more than one.' },
+  { q: 'What if my symptoms get worse?', a: 'We watch for that throughout treatment. If symptoms significantly worsen or safety becomes a concern, we’ll help you move to a higher level of care for stabilization, and plan your return when you’re ready.' },
+];
+---
+<ServicePage
+  path="/what-we-treat/mental-health/"
+  metaTitle="Co-Occurring Mental Health Treatment | West Palm Beach"
+  description="Depression, anxiety, trauma, bipolar and personality disorders treated alongside substance use in PHP, IOP and OP in West Palm Beach, psychiatry included."
+  crumbs={[WWT, { name: CATEGORIES.mental.name, href: CATEGORIES.mental.href }]}
+  h1="Co-Occurring Mental Health Treatment in West Palm Beach"
+  subheading="Mental health and substance use, treated together by one team."
+  lead="Depression, anxiety, trauma and other mental health conditions rarely show up alone. In our outpatient programs, we treat them alongside substance use, with therapy and psychiatric care in one plan."
+  faqTitle="Frequently Asked Questions About Co-Occurring Mental Health Treatment"
+  faqs={faqs}
+  insurance
+  reviews
+>
+  <!-- Conditions -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Conditions</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Mental Health Conditions We Treat Alongside Substance Use</h2>
+        <p class="subheading mt-3">One plan for both, not two separate treatments</p>
+        <p class="mt-5 text-lg">Sunview treats mental health conditions alongside substance use, within our <a href="/programs/php/" class="font-bold text-teal underline decoration-2 underline-offset-4">PHP</a>, <a href="/programs/iop/" class="font-bold text-teal underline decoration-2 underline-offset-4">IOP</a> and <a href="/programs/outpatient/" class="font-bold text-teal underline decoration-2 underline-offset-4">OP</a> programs. The conditions we see most often are personality disorders, anxiety and depressive disorders, and trauma-related disorders. Many people are living with more than one.</p>
+      </div>
+      <ConditionCards group="mental" class="mt-10" />
+    </div>
+  </section>
+
+  <!-- Why together -->
+  <section class="section bg-mist">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Integrated care</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Why We Treat Mental Health and Substance Use Together</h2>
+        <p class="subheading mt-3">Each one can keep the other going</p>
+        <p class="mt-5 text-lg">Substance use often starts as a way of coping with emotional pain. Over time, continued use can deepen depression, anxiety or trauma symptoms, which makes the pull to use stronger. The two become one cycle.</p>
+        <p class="mt-4 text-lg">Treating each one separately can miss that connection. We look at how your mental health, substance use, relationships and ways of coping feed each other, so you can start interrupting the cycle. <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal underline decoration-2 underline-offset-4">Dual diagnosis treatment</a> explains how this works in practice.</p>
+      </div>
+      <ol class="grid gap-3" aria-label="The cycle between mental health and substance use">
+        {['Emotional distress', 'Using to cope', 'Symptoms get worse', 'Stronger pull to use'].map((s, i) => (
+          <li class="card flex items-center gap-4 !py-4">
+            <span class="font-sans text-2xl font-extrabold text-teal" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="font-bold text-charcoal">{s}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Psychiatry -->
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">Psychiatric care</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Psychiatric Care and Medication Management Included</h2>
+        <p class="subheading mt-3">Part of your program, not a separate appointment to chase</p>
+        <p class="mt-5 text-lg">Psychiatric evaluation and medication management are provided through Telemed Clinix, our psychiatric partner. Appointments happen virtually from a private office at Sunview, and we schedule them for you. Prescriptions go to the pharmacy you choose.</p>
+        <p class="mt-4 text-lg">When you finish treatment, you can keep the same provider, so your psychiatric care doesn’t stop when the program does.</p>
+      </div>
+      <div class="card self-start !p-8">
+        <Icon name="pill" class="h-8 w-8 text-teal" />
+        <h3 class="mt-4 text-xl">What to expect</h3>
+        <ul class="mt-4 space-y-3">
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />A psychiatric evaluation and a review of what you already take</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Changes only when clinically indicated</li>
+          <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />Symptoms tracked with the PHQ-9 and GAD-7</li>
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Therapies -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Therapies</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Therapies We Use for Co-Occurring Conditions</h2>
+        <p class="subheading mt-3">A shared foundation, shaped to you</p>
+        <p class="mt-5 text-lg">Every clinician on our team is trauma-informed. We use evidence-based approaches, and we also look beneath the surface symptoms to the patterns and experiences underneath them. Each therapist brings their own specialty within that shared foundation.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {therapies.map((t) => (
+          <a href={t.href} class="card group flex flex-col transition hover:border-teal">
+            <h3 class="text-lg group-hover:text-teal">{t.name}</h3>
+            <p class="mt-2 text-[15px]">{t.text}</p>
+            <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Higher level of care -->
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <span class="eyebrow">Safety first</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">When a Higher Level of Care Is Needed</h2>
+        <p class="subheading mt-3">Treating the whole person includes knowing when to refer</p>
+      </div>
+      <div class="space-y-4 text-lg">
+        <p>We watch how you’re doing throughout treatment. If psychiatric symptoms significantly worsen, if you’re not able to take part safely, or if there’s a risk of harm to yourself or others, we’ll help you get to a more intensive level of care for stabilization.</p>
+        <p>The same goes for concerns like an eating disorder that becomes the main issue: we’ll connect you with a specialized program. That isn’t the end of your work with us. It’s getting you the right support first.</p>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    title="Which Level of Care Fits for Co-Occurring Conditions"
+    subtitle="Our Clinical Director helps you decide"
+    level={`<p>Every level treats mental health and substance use together. The <a href="/programs/php/">Partial Hospitalization Program</a> gives the most daily support; the <a href="/programs/iop/">Intensive Outpatient Program</a> fits around work, day or evening; the <a href="/programs/outpatient/">Outpatient Program</a> keeps the work going once life is steadier.</p>`}
+    related={[
+      { label: 'All conditions we treat', href: '/what-we-treat/' },
+      { label: 'Substance use disorder treatment', href: CATEGORIES.substance.href },
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      ...MENTAL_PAGES.map((p) => ({ label: p.label, href: p.href })),
+    ]}
+  />
+</ServicePage>

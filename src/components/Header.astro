@@ -21,18 +21,34 @@ const isActive = (item: Item) =>
     <nav aria-label="Main" class="hidden xl:block">
       <ul class="flex items-center gap-0.5">
         {NAV.map((item) => (
-          <li class="group relative">
-            <a
-              href={item.href}
-              class:list={[
-                'inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-bold hover:bg-mist hover:text-teal',
-                isActive(item) ? 'text-teal' : 'text-charcoal',
-              ]}
-              aria-current={item.href === path ? 'page' : undefined}
-            >
-              {item.label}
-              {('children' in item || 'mega' in item) && <Icon name="chevron" class="h-4 w-4 transition group-hover:rotate-180" />}
-            </a>
+          <li class="group relative" data-mega-root={'mega' in item ? '' : undefined}>
+            {'mega' in item && item.mega ? (
+              <button
+                type="button"
+                class:list={[
+                  'inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-bold hover:bg-mist hover:text-teal',
+                  isActive(item) ? 'text-teal' : 'text-charcoal',
+                ]}
+                aria-expanded="false"
+                aria-controls="mega-panel"
+                data-mega-toggle
+              >
+                {item.label}
+                <Icon name="chevron" class="h-4 w-4 transition group-data-[open]:rotate-180" />
+              </button>
+            ) : (
+              <a
+                href={item.href}
+                class:list={[
+                  'inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-bold hover:bg-mist hover:text-teal',
+                  isActive(item) ? 'text-teal' : 'text-charcoal',
+                ]}
+                aria-current={item.href === path ? 'page' : undefined}
+              >
+                {item.label}
+                {'children' in item && <Icon name="chevron" class="h-4 w-4 transition group-hover:rotate-180" />}
+              </a>
+            )}
 
             {'children' in item && item.children && (
               <div class="invisible absolute left-0 top-full w-72 translate-y-1 pt-2 opacity-0 transition group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
@@ -49,20 +65,27 @@ const isActive = (item: Item) =>
               </div>
             )}
 
+            {/* Width capped to the viewport so it never overflows at 1024–1280 */}
             {'mega' in item && item.mega && (
-              <div class="invisible absolute left-1/2 top-full w-[720px] -translate-x-1/2 translate-y-1 pt-2 opacity-0 transition group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-                <div class="grid grid-cols-3 gap-6 rounded-[var(--radius-card)] border border-line bg-white p-6">
-                  {item.mega.map((col) => (
-                    <div>
-                      <a href={col.href} class="inline-flex items-center gap-1 border-b-2 border-gold pb-1 font-display text-lg font-bold text-charcoal hover:text-teal">{col.label}</a>
-                      {col.note && <p class="mt-3 text-sm text-muted">{col.note}</p>}
-                      {col.items.length > 0 && (
-                        <ul class="mt-3 space-y-1">
-                          {col.items.map((i) => <li><a href={i.href} class="block rounded-[var(--radius-sm)] px-2 py-1.5 text-charcoal hover:bg-mist hover:text-teal">{i.label}</a></li>)}
-                        </ul>
-                      )}
-                    </div>
-                  ))}
+              <div id="mega-panel" class="invisible absolute left-1/2 top-full w-[min(760px,calc(100vw-2rem))] -translate-x-1/2 translate-y-1 pt-2 opacity-0 transition group-data-[open]:visible group-data-[open]:translate-y-0 group-data-[open]:opacity-100">
+                <div class="rounded-[var(--radius-card)] border border-line bg-white p-6">
+                  <div class="grid grid-cols-3 gap-6">
+                    {item.mega.map((col) => (
+                      <div>
+                        <a href={col.href} class="inline-flex items-center gap-1 border-b-2 border-gold pb-1 font-display text-lg font-bold text-charcoal hover:text-teal">{col.label}</a>
+                        {col.note && <p class="mt-3 text-sm text-muted">{col.note}</p>}
+                        {col.items.length > 0 && (
+                          <ul class="mt-3 space-y-1">
+                            {col.items.map((i) => <li><a href={i.href} class="block rounded-[var(--radius-sm)] px-2 py-1.5 text-charcoal hover:bg-mist hover:text-teal">{i.label}</a></li>)}
+                          </ul>
+                        )}
+                        {col.cta && <a href={col.cta.href} class="mt-3 inline-flex items-center gap-1.5 px-2 font-bold text-teal hover:text-teal-light">{col.cta.label} <Icon name="arrow" class="h-4 w-4" /></a>}
+                      </div>
+                    ))}
+                  </div>
+                  {item.all && (
+                    <a href={item.all.href} class="mt-5 flex items-center gap-1.5 border-t border-line pt-4 font-bold text-teal hover:text-teal-light">{item.all.label} <Icon name="arrow" class="h-4 w-4" /></a>
+                  )}
                 </div>
               </div>
             )}
@@ -109,13 +132,20 @@ const isActive = (item: Item) =>
                 {item.label}
                 <Icon name="chevron" class="h-5 w-5 transition group-open:rotate-180" />
               </summary>
-              <div class="mb-2 space-y-4 pl-3">
+              <div class="mb-2 space-y-1 pl-3">
                 {item.mega.map((col) => (
-                  <div>
-                    <a href={col.href} class="block px-3 py-1 font-bold text-teal">{col.label}</a>
-                    <ul>{col.items.map((i) => <li><a href={i.href} class="block rounded-[var(--radius-sm)] px-3 py-1.5 hover:bg-mist">{i.label}</a></li>)}</ul>
-                  </div>
+                  <details class="group/sub">
+                    <summary class="flex cursor-pointer list-none items-center justify-between px-3 py-2 font-bold text-teal">
+                      {col.label}
+                      <Icon name="chevron" class="h-4 w-4 transition group-open/sub:rotate-180" />
+                    </summary>
+                    <ul class="pb-2 pl-3">
+                      <li><a href={col.href} class="block rounded-[var(--radius-sm)] px-3 py-1.5 font-bold hover:bg-mist">{col.cta ? col.cta.label : `${col.label} overview`}</a></li>
+                      {col.items.map((i) => <li><a href={i.href} class="block rounded-[var(--radius-sm)] px-3 py-1.5 hover:bg-mist">{i.label}</a></li>)}
+                    </ul>
+                  </details>
                 ))}
+                {item.all && <a href={item.all.href} class="block px-3 py-2 font-bold text-charcoal hover:text-teal">{item.all.label}</a>}
               </div>
             </details>
           ) : (
@@ -140,4 +170,24 @@ const isActive = (item: Item) =>
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') setOpen(false);
   });
+
+  // Desktop megamenu, driven only by JS (not :hover/:focus-within, so Esc really closes it): opens on hover
+  // and on click; closes on Esc (focus returns to the button), outside click, or focus leaving the menu.
+  const megaRoot = document.querySelector<HTMLElement>('[data-mega-root]');
+  const megaBtn = megaRoot?.querySelector<HTMLButtonElement>('[data-mega-toggle]');
+  if (megaRoot && megaBtn) {
+    let pinned = false; // opened by click: stays open until Esc, outside click or a second click
+    const show = (open: boolean) => {
+      megaRoot.toggleAttribute('data-open', open);
+      megaBtn.setAttribute('aria-expanded', String(open));
+    };
+    megaBtn.addEventListener('click', () => { pinned = !pinned; show(pinned); });
+    megaRoot.addEventListener('mouseenter', () => show(true));
+    megaRoot.addEventListener('mouseleave', () => { if (!pinned) show(false); });
+    megaRoot.addEventListener('focusout', (e) => { if (!megaRoot.contains(e.relatedTarget as Node)) { pinned = false; show(false); } });
+    document.addEventListener('click', (e) => { if (!megaRoot.contains(e.target as Node)) { pinned = false; show(false); } });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && megaRoot.hasAttribute('data-open')) { pinned = false; show(false); megaBtn.focus(); }
+    });
+  }
 </script>

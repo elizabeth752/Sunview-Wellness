@@ -1,0 +1,412 @@
+---
+// /for-professionals/: Professionals-Location-Content-Briefs.md §A. Sentence-to-source map, deviations and
+// open questions: docs/content/professionals-sources.md.
+// Composed from Base + shared components (not ServicePage) because the page needs the referral variant of
+// LeadForm and its own CTA (Send a referral · Call). One referral form: hero on desktop, before the CTA below lg;
+// every "#refer" link scrolls to whichever one is visible.
+// Rotation (brief): Insurance + Map. No reviews, no reviewed-by byline.
+// Schema: BreadcrumbList (Base) + WebPage and FAQPage (pageSchema) referencing #organization (Base).
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import LeadForm from '../components/LeadForm.astro';
+import InsuranceSection from '../components/InsuranceSection.astro';
+import MapSection from '../components/MapSection.astro';
+import FaqList from '../components/FaqList.astro';
+import SourceFlag from '../components/SourceFlag.astro';
+import SunMark from '../components/SunMark.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, initials } from '../data/site.js';
+import { pageSchema } from '../lib/programSchema.js';
+
+const path = '/for-professionals/';
+const metaTitle = 'Refer a Patient | For Professionals | Sunview Wellness';
+// Answer 4.1 (2026-09-24): no "same-day"; "fast response" until the client states an SLA (see notes).
+const description =
+  'Refer a patient to outpatient PHP, IOP or OP in West Palm Beach. Fast response, free benefits check, step-down from detox and residential.';
+const crumbs = [{ name: 'For Professionals', href: path }];
+
+// 1. Fit (Q3, Q5, Q6, Q16, Q17; adults 18+ per the live site)
+const fit = [
+  { k: 'Age', v: 'Adults, 18 and older.' },
+  { k: 'Stability', v: 'Medically and psychiatrically stable enough to take part in programming safely and meaningfully.' },
+  { k: 'Coming from', v: 'Stepping down from detox, residential or another higher level of care, or entering directly from the community.' },
+  { k: 'Diagnoses', v: 'Substance use disorders, with co-occurring mental health conditions welcome and treated together.' },
+  { k: 'Medications', v: 'Abstinence-based, not medication-free: naltrexone and buprenorphine/Suboxone are supported when a qualified outside provider prescribes and manages them.' },
+  { k: 'Readiness', v: 'Motivated to make real changes in how they live, not only to stop using.' },
+];
+
+// 2. Different level of care first (Q2, Q3, Q5, Q19): presentation → where we route.
+const first = [
+  { when: 'Risk of significant withdrawal, such as consistent, extended use of benzodiazepines or opioids', route: 'Medically supervised detox, and often residential care, before Sunview' },
+  { when: 'Needs medical stabilization or round-the-clock monitoring right now', route: 'A higher level of care first' },
+  { when: 'Currently maintained on methadone', route: 'Generally not admitted; detox and medical stabilization first' },
+  { when: 'An eating disorder, gambling or sex and love addiction as the primary clinical issue', route: 'A program that specializes in that condition' },
+  { when: 'Acute psychiatric instability, disorientation or imminent risk of harm to self or others', route: 'A more appropriate level of care for stabilization' },
+];
+
+// 3. Levels of care (Q7; OP per the live homepage; weekly hours from src/data/site.js PROGRAMS)
+const levels = [
+  { name: 'Partial Hospitalization (PHP)', href: '/programs/php/', days: 'Monday to Friday', hours: '9 AM to 1 PM', weekly: '20 hours', fit: 'Step-down from detox or residential; the most structure while living at home' },
+  { name: 'Day IOP', href: '/programs/iop/', days: '3 days a week, set around the patient’s schedule', hours: '9 AM to 1 PM', weekly: '12 hours', fit: 'Clinical depth with part of the week free' },
+  { name: 'Evening IOP', href: '/programs/iop/', days: 'Monday, Wednesday and Thursday', hours: '6 PM to 9 PM', weekly: '9 hours', fit: 'Patients who work or study during the day' },
+  { name: 'Outpatient (OP)', href: '/programs/outpatient/', days: '1 weekday', hours: '9 AM to 1 PM', weekly: '4 hours', fit: 'Step-down after PHP or IOP, and longer-term support' },
+];
+
+// 5. Clinical model (Q1, Q2, Q7, Q9, Q10, Q12, Q13, Q22)
+const model = [
+  { k: 'Group', v: 'One continuous group from 9 AM to 1 PM, with breaks, led by the same facilitator all day, so the work goes deeper instead of switching topics every hour.', href: '/therapies/group-therapy/', a: 'Group therapy at Sunview' },
+  { k: 'Individual', v: 'A weekly individual session with a primary therapist, typically 45 to 60 minutes, with extra sessions or check-ins when there’s a clinical need.' },
+  { k: 'Psychiatry', v: 'Psychiatric evaluation and medication management through Telemed Clinix, seen virtually from a private office on site. Patients can keep the same provider after discharge.', href: '/programs/psychiatry-medication-management/', a: 'Psychiatry and medication management' },
+  { k: 'MAT', v: 'Suboxone, Vivitrol and naltrexone stay with a qualified outside prescriber. We coordinate continuity with the current prescriber, or refer to one.' },
+  { k: 'Family', v: 'With the patient’s consent, the primary therapist makes a first family contact within the first week of programming.', href: '/therapies/family-therapy/', a: 'Family therapy' },
+  { k: 'Measures', v: 'Progress tracked with the Brief Addiction Monitor (BAM), PHQ-9 and GAD-7, with monthly treatment plan reviews.' },
+];
+const modalities = [
+  { name: 'IFS', href: '/therapies/internal-family-systems/' },
+  { name: 'CBT', href: '/therapies/cbt/' },
+  { name: 'DBT', href: '/therapies/dbt/' },
+];
+
+// 7. Leadership: titles per the brief; one line each from the live About page (docs/content/live-about-us-2026-09-23.txt).
+const leaders = [
+  {
+    name: 'Scott Belovicz',
+    title: 'Director of Business Development',
+    creds: '',
+    href: '/our-team/scott-belovicz/',
+    bio: 'Scott brings more than 14 years of experience across the private and nonprofit sectors in substance use and mental health treatment.',
+  },
+  {
+    name: 'Dana Martin',
+    title: 'Clinical Director',
+    creds: 'Ph.D., LMFT, MCAP, QS',
+    href: '/our-team/dana-martin/',
+    bio: 'Dana holds a Ph.D. in Couple and Family Therapy and an MS in Marriage and Family Therapy from Nova Southeastern University, and reviews every pre-screening to recommend the level of care.',
+  },
+];
+
+// FAQ (brief: 5 questions). `flag` = visible review marker, kept out of the schema text.
+const flagHtml = (note: string) =>
+  `<mark class="ml-1 inline-block rounded-[4px] bg-error px-1 align-middle font-sans text-[10px] font-extrabold uppercase not-italic leading-4 tracking-normal !text-white !no-underline" title="${note}">[SOURCE?]</mark>`;
+const faqs = [
+  {
+    q: 'How fast do you respond to referrals?',
+    a: `Send the form on this page or call admissions directly at ${SITE.phone}. Our Clinical Director reviews each patient’s pre-screening and recommends the level of care, and once benefits are verified, patients can often be enrolled within 24 hours.`,
+  },
+  {
+    q: 'Do you accept patients still on Suboxone?',
+    a: 'Yes. Sunview is abstinence-based, but that doesn’t mean medication-free. We support buprenorphine/Suboxone and naltrexone when a qualified outside provider prescribes and manages them; our psychiatric partner, Telemed Clinix, doesn’t prescribe MAT. If the patient doesn’t have a prescriber, we can refer to one. We generally don’t admit patients who are maintained on methadone.',
+  },
+  {
+    q: 'Do you take Medicaid referrals?',
+    a: 'Yes. Along with commercial plans, we work with Florida Medicaid plans including Sunshine Health, AmeriHealth Caritas Florida, Molina Healthcare and Community Care Plan. Our admissions team checks the patient’s benefits for free. <a href="/admissions/insurance/">Insurance and payment</a>.',
+  },
+  {
+    q: 'Can a patient start in IOP directly?',
+    a: 'Yes, when IOP is the right fit. Patients come to us from a higher level of care or directly from the community. Our Clinical Director recommends PHP, IOP or OP from the pre-screening, using ASAM criteria and clinical judgment.',
+  },
+  {
+    q: 'Do you provide progress updates?',
+    a: 'With the patient’s signed release, we confirm admission and coordinate care.',
+    flag: 'To confirm with the client: what feedback referral partners receive, and how, with consent.',
+  },
+];
+const visibleFaqs = faqs.map((f) => ({ q: f.q, a: f.flag ? `${f.a}${flagHtml(f.flag)}` : f.a }));
+
+const schema = pageSchema({ path, title: metaTitle, description, faqs });
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema}>
+  <PageHero
+    title="Refer a Patient to Outpatient Treatment in West Palm Beach"
+    subheading="Step-down PHP, IOP and OP for adults, with the continuity your patients need after detox or residential care."
+    lead="Most of the people in our programs come to us from a higher level of care. Send a referral or call admissions: our Clinical Director reviews each pre-screening and recommends PHP, IOP or OP, and we check benefits for free."
+    crumbs={crumbs}
+    cta={{ label: 'Send a referral', href: '#refer' }}
+    secondary={{ label: `Call ${SITE.phone}`, href: SITE.phoneHref }}
+  >
+    <Fragment slot="aside">
+      <!-- Desktop only; below lg the same form renders right before the CTA section -->
+      <div class="hidden scroll-mt-28 lg:block" data-form-anchor><LeadForm variant="referral" formId="for-professionals-hero" /></div>
+    </Fragment>
+  </PageHero>
+
+  <!-- 1–2. Fit / not yet: a two-column ledger split by a rule (not /admissions/' cards) -->
+  <section class="section">
+    <div class="container-x">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-0">
+        <div class="lg:pr-12">
+          <span class="eyebrow">Admission criteria</span>
+          <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Who Is a Good Fit for Sunview</h2>
+          <p class="mt-4 text-lg">Sunview is an outpatient program. These are the patients who tend to do well here.</p>
+          <dl class="mt-8 border-t border-line">
+            {fit.map((f) => (
+              <div class="grid gap-1 border-b border-line py-4 sm:grid-cols-[130px_1fr] sm:gap-6">
+                <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">{f.k}</dt>
+                <dd>{f.v}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="mt-6 text-[15px]">We treat <a href="/what-we-treat/substance-use/" class={link}>substance use disorders</a> and <a href="/what-we-treat/dual-diagnosis/" class={link}>co-occurring mental health conditions</a> as one picture. Marijuana, stimulants, opioids and benzodiazepines aren’t permitted during programming.</p>
+        </div>
+
+        <div class="lg:border-l lg:border-line lg:pl-12">
+          <span class="eyebrow">Routing</span>
+          <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Who Needs a Different Level of Care First</h2>
+          <p class="mt-4 text-lg">If a patient isn’t ready for outpatient care yet, we identify that during the pre-screening and refer to a more appropriate level of care. Sunview can be the next step afterward.</p>
+          <ul class="mt-8 space-y-3">
+            {first.map((r) => (
+              <li class="rounded-[var(--radius-card)] bg-mist p-4 sm:p-5">
+                <p class="font-bold text-charcoal">{r.when}</p>
+                <p class="mt-1.5 flex items-start gap-2 text-[15px] text-teal"><Icon name="arrow" class="mt-1 h-4 w-4 shrink-0" />{r.route}</p>
+              </li>
+            ))}
+          </ul>
+          <p class="mt-6 text-[15px]">For patients on long-acting injectable psychiatric medication, administration and monitoring are coordinated through an appropriate outside provider.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Levels of care: a real data table (cards below md) -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">Programs</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Levels of Care and Schedules</h2>
+        <p class="mt-4 text-lg">Three outpatient levels of care, with day and evening options. Patients go home every night.</p>
+      </div>
+      <div class="mt-8 overflow-hidden rounded-[var(--radius-card)] border border-line bg-white">
+        <table class="sv-levels w-full text-left text-[15px]">
+          <caption class="sr-only">Sunview levels of care, days, hours and weekly hours</caption>
+          <thead class="hidden bg-teal text-white md:table-header-group">
+            <tr>
+              <th scope="col" class="px-5 py-3.5 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em]">Level of care</th>
+              <th scope="col" class="px-5 py-3.5 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em]">Days</th>
+              <th scope="col" class="px-5 py-3.5 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em]">Hours</th>
+              <th scope="col" class="whitespace-nowrap px-5 py-3.5 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em]">Per week</th>
+              <th scope="col" class="px-5 py-3.5 font-sans text-[13px] font-extrabold uppercase tracking-[0.08em]">Typical fit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {levels.map((l) => (
+              <tr class="block border-b border-line p-5 last:border-b-0 md:table-row md:p-0">
+                <th scope="row" class="block pb-2 md:table-cell md:px-5 md:py-4 md:align-top">
+                  <a href={l.href} class="font-sans font-extrabold text-teal hover:text-teal-light hover:underline">{l.name}</a>
+                </th>
+                <td data-label="Days" class="block py-0.5 md:table-cell md:px-5 md:py-4 md:align-top">{l.days}</td>
+                <td data-label="Hours" class="block py-0.5 md:table-cell md:whitespace-nowrap md:px-5 md:py-4 md:align-top">{l.hours}</td>
+                <td data-label="Per week" class="block py-0.5 md:table-cell md:whitespace-nowrap md:px-5 md:py-4 md:align-top">{l.weekly}</td>
+                <td data-label="Typical fit" class="block py-0.5 text-muted md:table-cell md:px-5 md:py-4 md:align-top">{l.fit}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <p class="flex items-start gap-3 rounded-[var(--radius-card)] border border-line bg-white p-5">
+          <Icon name="car" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+          <span><strong class="text-charcoal">Free transportation</strong> to and from our center, through Uber Health, for patients who can’t drive themselves.</span>
+        </p>
+        <p class="flex items-start gap-3 rounded-[var(--radius-card)] border border-line bg-white p-5">
+          <Icon name="pill" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />
+          <span><strong class="text-charcoal">Psychiatry that continues.</strong> <a href="/programs/psychiatry-medication-management/" class={link}>Psychiatric care and medication management</a> through Telemed Clinix while patients are in treatment, and after discharge if they choose.</span>
+        </p>
+      </div>
+      <a href="/programs/" class="btn-ghost mt-8 bg-white">Compare levels of care</a>
+    </div>
+  </section>
+
+  <!-- 4. Referral process: segmented track with numerals (not /admissions/' circles) -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">Referral process</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How the Referral Process Works</h2>
+        <p class="mt-4 text-lg">Four steps from your first contact to the patient’s first day.</p>
+      </div>
+      <ol class="mt-12 grid lg:grid-cols-4">
+        <li class="sv-step">
+          <span class="sv-step-num" aria-hidden="true">01</span>
+          <h3 class="text-xl">Send the form or call</h3>
+          <p class="mt-2">Use the referral form on this page, or call admissions directly at <a href={SITE.phoneHref} class:list={[link, 'whitespace-nowrap']}>{SITE.phone}</a>.</p>
+        </li>
+        <li class="sv-step">
+          <span class="sv-step-num" aria-hidden="true">02</span>
+          <h3 class="text-xl">Pre-screening review by the Clinical Director</h3>
+          <p class="mt-2">The patient completes a pre-screening: reasons for seeking treatment, substance use and mental health history, living situation, previous treatment and current symptoms. Our Clinical Director reviews it and recommends the level of care, informed by ASAM criteria and clinical judgment.</p>
+        </li>
+        <li class="sv-step">
+          <span class="sv-step-num" aria-hidden="true">03</span>
+          <h3 class="text-xl">Free benefits verification</h3>
+          <p class="mt-2">Our admissions team checks the patient’s insurance at no cost: whether we’re in network, which level of care is covered and whether pre-authorization is needed.</p>
+        </li>
+        <li class="sv-step">
+          <span class="sv-step-num" aria-hidden="true">04</span>
+          <h3 class="text-xl">Admission and warm handoff</h3>
+          <p class="mt-2">Once the pre-screening is done and benefits are verified, patients can often be enrolled within 24 hours. With the patient’s signed release, we confirm admission and coordinate care.<SourceFlag note="Answer 4.2 (E): confirm what referral partners receive, and how, with the patient's consent." /></p>
+        </li>
+      </ol>
+      <div class="mt-12 flex flex-wrap gap-3">
+        <a href="#refer" class="btn-teal">Send a referral <Icon name="arrow" /></a>
+        <a href="/admissions/what-to-expect/" class="btn-ghost">What patients can expect</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Clinical model: dark band, spec-sheet grid -->
+  <section class="section relative isolate overflow-hidden bg-teal-deep text-white">
+    <SunMark variant="rays" ripple={false} class="pointer-events-none absolute -bottom-40 -left-40 -z-10 h-[420px] w-[420px] text-white/[0.06]" />
+    <div class="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <span class="eyebrow eyebrow-light">Clinical model</span>
+        <h2 class="mt-3 text-3xl text-white sm:text-[2.1875rem]">Clinical Model Your Patients Continue Into</h2>
+        <p class="mt-4 text-lg text-white/90">Our work looks beneath the presenting symptom, at relationships, family patterns and past experiences, while building practical recovery skills. Evidence-based approaches give it a shared foundation.</p>
+        <p class="mt-6 flex flex-wrap items-center gap-2 text-[15px] text-white/85">
+          <span>Shared approaches:</span>
+          {modalities.map((m) => <a href={m.href} class="rounded-full border border-white/35 px-3 py-1 font-bold text-white hover:bg-white/10">{m.name}</a>)}
+          <span>and trauma-informed care.</span>
+        </p>
+        <p class="mt-4 text-[15px] text-white/85">Gender-specific group days run twice a month.</p>
+        <a href="/about/our-approach/" class="btn-ghost-light mt-8">Our clinical approach and outcomes</a>
+      </div>
+      <dl class="grid gap-px overflow-hidden rounded-[var(--radius-card)] bg-white/15 sm:grid-cols-2">
+        {model.map((m) => (
+          <div class="bg-teal-deep p-6">
+            <dt class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-sun">{m.k}</dt>
+            <dd class="mt-2 text-white/90">
+              {m.v}
+              {m.href && <a href={m.href} class="mt-2 block text-[15px] font-bold text-white underline decoration-white/40 underline-offset-4 hover:decoration-white">{m.a}</a>}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- 6. Insurance (shared marquee: commercial logos first, then Medicaid plans) -->
+  <InsuranceSection title="Insurance We Work With" subtitle="Commercial and Florida Medicaid plans, with a free benefits check" />
+
+  <!-- 7. Leadership: initials placeholders until headshots arrive -->
+  <section class="section bg-cream">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">Who you’ll work with</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Meet Our Outreach and Clinical Leadership</h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {leaders.map((p) => (
+          <article class="flex flex-col gap-5 rounded-[var(--radius-card)] border border-line bg-white p-6 sm:flex-row sm:p-7">
+            <span class="inline-flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-mist font-display text-2xl font-extrabold text-teal ring-2 ring-gold/60" aria-hidden="true">{initials(p.name)}</span>
+            <div>
+              <h3 class="text-xl">{p.name}</h3>
+              <p class="mt-0.5 font-bold text-teal">{p.title}</p>
+              {p.creds && <p class="text-sm text-muted">{p.creds}</p>}
+              <p class="mt-3">{p.bio}</p>
+              <a href={p.href} class:list={[link, 'mt-3 inline-block text-[15px]']}>{p.name}’s profile</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Map (address, hours) -->
+  <MapSection subtitle="Free transportation for patients who can’t drive themselves." />
+
+  <!-- FAQ -->
+  <section class="section bg-mist">
+    <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <div>
+        <span class="eyebrow">FAQ</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Frequently Asked Questions About Referrals</h2>
+        <a href="/admissions/faq/" class="btn-ghost mt-8">All admissions FAQs</a>
+      </div>
+      <FaqList faqs={visibleFaqs} />
+    </div>
+  </section>
+
+  <!-- Referral form below lg (in the hero on desktop) -->
+  <section id="refer" class="section scroll-mt-20 bg-teal lg:hidden" data-form-anchor>
+    <div class="container-x max-w-2xl"><LeadForm variant="referral" formId="for-professionals-mobile" /></div>
+  </section>
+
+  <!-- CTA: same cream band language as CtaBand, with the brief's two actions -->
+  <section class="bg-cream pb-14 pt-14 sm:pt-20">
+    <div class="container-x grid items-end gap-10 lg:grid-cols-[1.3fr_1fr]">
+      <div>
+        <SunMark variant="sun" class="h-10 w-auto text-gold" />
+        <p class="mt-4 max-w-[22ch] font-display text-3xl font-extrabold leading-tight text-charcoal sm:text-[2.5rem]">Refer a patient to Sunview</p>
+        <p class="mt-4 max-w-[58ch] text-lg">Send the referral form or call admissions directly. Benefits checks are free, and free transportation is available for patients who can’t drive.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Call admissions</span>
+        <a href={SITE.phoneHref} class="mt-1 block font-sans text-3xl font-extrabold text-teal hover:text-teal-light sm:text-[2.25rem]">{SITE.phone}</a>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#refer" class="btn-sun">Send a referral <Icon name="arrow" /></a>
+          <a href={SITE.phoneHref} class="btn-ghost">Call {SITE.phone}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Referral steps: one continuous segmented rule (horizontal at lg, vertical below), open numerals */
+  .sv-step {
+    position: relative;
+    border-left: 2px solid var(--color-line);
+    padding: 0 0 2.5rem 1.75rem;
+  }
+  .sv-step:last-child { padding-bottom: 0; }
+  .sv-step::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 0.45rem;
+    width: 12px;
+    height: 12px;
+    transform: rotate(45deg);
+    background: var(--color-gold);
+  }
+  .sv-step-num {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-display, serif);
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--color-teal);
+  }
+  @media (min-width: 64rem) {
+    .sv-step {
+      border-left: 0;
+      border-top: 2px solid var(--color-line);
+      padding: 2rem 2rem 0 0;
+    }
+    .sv-step:first-child { border-top-color: var(--color-teal); }
+    .sv-step::before { left: 0; top: -7px; }
+  }
+  /* Table rows become labelled cards below md */
+  @media (max-width: 47.99rem) {
+    .sv-levels td[data-label]::before {
+      content: attr(data-label) ": ";
+      font-weight: 800;
+      color: var(--color-charcoal);
+    }
+  }
+</style>
+
+<script>
+  // "#refer" links scroll to whichever referral form is visible (hero on desktop, pre-CTA below lg).
+  document.addEventListener('click', (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href="#refer"]');
+    if (!a) return;
+    const target = [...document.querySelectorAll<HTMLElement>('[data-form-anchor]')].find((el) => el.offsetParent !== null);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.querySelector<HTMLInputElement>('input:not([type="hidden"])')?.focus({ preventScroll: true });
+  });
+</script>

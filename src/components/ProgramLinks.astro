@@ -1,0 +1,28 @@
+---
+// "Other levels of care" block for the program pages: links to the sibling programs and the hub
+// (Programs briefs, interlinks). Anchors are the destination's name.
+import Icon from './Icon.astro';
+interface Props { current: string; class?: string }
+const { current, class: cls = '' } = Astro.props;
+
+const programs = [
+  { href: '/programs/php/', name: 'Partial Hospitalization Program', note: 'Mon–Fri, 9am–1pm · 20 hours a week' },
+  { href: '/programs/iop/', name: 'Intensive Outpatient Program', note: 'Day or evening · 3 days a week' },
+  { href: '/programs/outpatient/', name: 'Outpatient Program', note: 'One weekday morning · 4 hours a week' },
+  { href: '/programs/psychiatry-medication-management/', name: 'Psychiatric Care and Medication Management', note: 'Part of every level of care' },
+].filter((p) => p.href !== current);
+---
+<div class:list={['grid gap-4 sm:grid-cols-2 lg:grid-cols-4', cls]}>
+  {programs.map((p) => (
+    <a href={p.href} class="card group flex flex-col transition hover:border-teal">
+      <span class="font-sans text-lg font-extrabold leading-snug text-charcoal group-hover:text-teal">{p.name}</span>
+      <span class="mt-1 text-sm text-muted">{p.note}</span>
+      <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+    </a>
+  ))}
+  <a href="/programs/" class="card group flex flex-col bg-mist transition hover:border-teal">
+    <span class="font-sans text-lg font-extrabold leading-snug text-charcoal group-hover:text-teal">Compare outpatient levels of care</span>
+    <span class="mt-1 text-sm text-muted">PHP, IOP and OP side by side</span>
+    <span class="mt-auto pt-4"><Icon name="arrow" class="h-4 w-4 text-teal" /></span>
+  </a>
+</div>

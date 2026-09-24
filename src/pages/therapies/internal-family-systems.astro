@@ -1,0 +1,124 @@
+---
+// /therapies/internal-family-systems/: Therapies-Content-Briefs.md §E. Sources in
+// docs/content/therapies-sources-ifs-cbt-dbt.md. Rotation: Reviews only. Reviewed by Dana.
+// Structure (varied on purpose, see feedback on page variety): parts diagram → two-lane split →
+// teal statement band → short split → big-type statement → related row.
+import ServicePage from '../../layouts/ServicePage.astro';
+import IfsParts from '../../components/therapies/IfsParts.astro';
+import Icon from '../../components/Icon.astro';
+import { THERAPIES_HUB, therapyBySlug } from '../../data/therapies.js';
+
+const self = therapyBySlug('internal-family-systems');
+const related = self.related.map(therapyBySlug);
+
+const faqs = [
+  { q: 'Is IFS a formal program here?', a: 'IFS isn’t a separate program you sign up for. It’s a shared part of our clinical model: it’s built into group topics across PHP, IOP and OP, and therapists use it in individual sessions when it fits.' },
+  { q: 'Is IFS for trauma?', a: 'It can be part of trauma work, because it helps you understand parts of you that formed to protect you. Every clinician on our team is trauma-informed, and deeper work happens at a pace that’s safe for you. <a href="/what-we-treat/mental-health/trauma-ptsd/">Trauma and PTSD treatment</a>.' },
+  { q: 'Will I do IFS in group?', a: 'Yes. IFS concepts come up naturally in group topics, so you’ll hear the language and practice it with others. Individual sessions can take it further when your therapist thinks it will help.' },
+  { q: 'How is IFS different from CBT?', a: 'CBT focuses on thoughts and behaviors and on practical skills to change them. IFS looks at the parts of you behind those thoughts and behaviors and what each is trying to do for you. We use both. <a href="/therapies/cbt/">Cognitive behavioral therapy (CBT)</a>.' },
+  { q: 'Do I need to know IFS before starting?', a: 'No. You don’t need any background. Your therapist and group facilitator introduce the ideas in plain language as you go.' },
+];
+---
+<ServicePage
+  path="/therapies/internal-family-systems/"
+  metaTitle="Internal Family Systems (IFS) Therapy in West Palm Beach"
+  description="IFS therapy for addiction and dual diagnosis in West Palm Beach, integrated into group topics and individual sessions across PHP, IOP and OP."
+  crumbs={[THERAPIES_HUB, { name: 'Internal Family Systems (IFS)', href: self.href }]}
+  h1="Internal Family Systems Therapy in West Palm Beach"
+  subheading="A shared foundation across our program, and a lens every clinician brings to the room."
+  lead="Internal Family Systems (IFS) helps you understand the different parts of yourself, including the one that reaches for a substance. At Sunview it’s woven into group topics and individual sessions for adults in outpatient addiction and dual diagnosis treatment."
+  faqTitle="Frequently Asked Questions About IFS Therapy"
+  faqs={faqs}
+  reviews
+  about={{ '@type': 'MedicalTherapy', name: 'Internal Family Systems (IFS) therapy' }}
+>
+  <!-- 1. Parts diagram + prose -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">What Internal Family Systems Is</h2>
+        <p class="subheading mt-3">You are more than the part that’s struggling</p>
+        <div class="prose-sv mt-6">
+          <p>Internal Family Systems is a way of understanding the mind as made up of different parts. One part may push you to keep everything under control. Another may carry old hurt. Another may reach for relief when feelings get too big. Each part developed for a reason, often to protect you.</p>
+          <p>Underneath the parts is what IFS calls the Self: the calm, curious, compassionate center of who you are. The goal isn’t to get rid of any part. It’s to understand what each one is trying to do, so you can lead from the Self instead of reacting from the part that’s loudest.</p>
+          <p>At Sunview, IFS is used within our <a href="/programs/">PHP, IOP and OP programs</a>, not as standalone private therapy. If you’re looking for weekly private therapy only, we’ll point you to the right place.</p>
+        </div>
+      </div>
+      <IfsParts />
+    </div>
+  </section>
+
+  <!-- 2. Two-lane: group / individual -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">How IFS Is Integrated at Sunview</h2>
+        <p class="mt-5 text-lg">IFS is one of the shared approaches that gives our programming a common foundation. Because the whole team uses it, the language stays consistent from group to individual sessions, so you don’t have to translate between therapists.</p>
+      </div>
+      <div class="mt-10 grid gap-8 md:grid-cols-[1fr_auto_1fr]">
+        <div>
+          <p class="flex items-center gap-3 font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-teal"><Icon name="users" class="h-5 w-5" />In group topics</p>
+          <p class="mt-4 text-lg">IFS is naturally integrated into our group topics. You hear how others describe their parts, notice your own, and practice responding with curiosity instead of judgment, with the same facilitator for the whole session.</p>
+          <a href="/therapies/group-therapy/" class="mt-4 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Group therapy at Sunview <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+        <div class="hidden w-px bg-gold/60 md:block" aria-hidden="true"></div>
+        <div class="border-t border-gold/60 pt-8 md:border-0 md:pt-0">
+          <p class="flex items-center gap-3 font-sans text-sm font-extrabold uppercase tracking-[0.08em] text-teal"><Icon name="message" class="h-5 w-5" />In individual sessions</p>
+          <p class="mt-4 text-lg">Your primary therapist brings IFS concepts into your weekly one-on-one session when it’s clinically appropriate, going further with the parts that came up in group or at home that week.</p>
+          <a href="/admissions/what-to-expect/" class="mt-4 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">What to expect in treatment <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Teal statement band -->
+  <section class="section bg-teal text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Parts That Protect: IFS and Substance Use</h2>
+        <p class="mt-6 font-display text-2xl italic leading-snug text-white sm:text-[1.9rem]">Using often started as a part of you doing its best to protect you, or to meet a need nobody else was meeting.</p>
+      </div>
+      <div class="space-y-4 text-lg text-white/90">
+        <p>That doesn’t make the substance harmless. It makes the pattern understandable. When you can see what a part is protecting you from, you can find other ways to meet that need.</p>
+        <p>This work usually deepens as you get steadier in treatment, once you feel safe enough to look underneath. It’s central to how we approach <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-white underline decoration-2 underline-offset-4">dual diagnosis treatment</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Short split: IFS + inner child -->
+  <section class="section">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <h2 class="text-3xl sm:text-[2.1875rem]">IFS and Inner Child Work</h2>
+      <div>
+        <p class="text-lg">Inner child work focuses on the younger parts of you that may still carry feelings from childhood, like feeling rejected, unsafe or not good enough. IFS gives that work a shared language: those younger parts are parts too, and they can be understood and cared for.</p>
+        <p class="mt-4 text-lg">In practice, that can mean noticing the younger part that still expects rejection, and responding to it with the validation, safety and boundaries it didn’t get back then. It’s work we do at a pace that feels safe for you.</p>
+        <a href="/therapies/inner-child-therapy/" class="btn-ghost mt-6">Inner child therapy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Big-type statement -->
+  <section class="section bg-cream">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">Why We Do Not Take a One-Size-Fits-All Approach</h2>
+      <p class="mt-8 max-w-4xl font-display text-3xl font-extrabold leading-tight text-teal sm:text-[2.6rem]">Every person is different. So is every clinician.</p>
+      <div class="mt-8 grid max-w-5xl gap-6 text-lg md:grid-cols-3">
+        <p>We don’t require our team to work from one single model, and we don’t apply one model to everyone.</p>
+        <p>Each clinician brings their own strengths and specialties, while IFS, CBT, DBT and trauma-informed care give everyone a shared foundation.</p>
+        <p>That mix lets us fit the approach to you, not the other way around. Your therapist chooses what helps, and explains why.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related row -->
+  <nav aria-label="Related pages" class="border-t border-line py-8">
+    <div class="container-x flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
+      <span class="font-extrabold text-charcoal">Keep exploring:</span>
+      <a href="/therapies/" class="font-bold text-teal hover:underline">All therapy approaches</a>
+      {related.map((r) => <a href={r.href} class="font-bold text-teal hover:underline">{r.label}</a>)}
+      <a href="/programs/" class="font-bold text-teal hover:underline">Outpatient levels of care</a>
+      <a href="/what-we-treat/mental-health/personality-disorders/" class="font-bold text-teal hover:underline">Personality disorder treatment</a>
+      <a href="/admissions/" class="btn-teal ml-auto">Talk to admissions <Icon name="arrow" /></a>
+    </div>
+  </nav>
+</ServicePage>

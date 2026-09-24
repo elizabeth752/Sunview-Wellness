@@ -1,0 +1,175 @@
+---
+// /admissions/faq/: Admissions-Content-Briefs.md §C (full FAQ set). Sources in
+// docs/content/admissions-sources-faq-expect-families.md. Rotation: none. No reviewed-by byline.
+// The layout's FAQ section is off (faqSection=false); every question is passed as `faqs` so the
+// FAQPage schema carries the full set. The live "average length of stay" answer is deliberately dropped.
+import ServicePage from '../../layouts/ServicePage.astro';
+import FaqList from '../../components/FaqList.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../data/site.js';
+
+const groups = [
+  {
+    id: 'getting-started',
+    title: 'Getting Started',
+    faqs: [
+      { q: 'Where do I start?', a: 'Call us or send the short coverage form. You don’t need to know which program you need or have the right words. <a href="/admissions/">See how admissions works</a>.' },
+      { q: 'What happens when I call?', a: 'We listen first. The first conversation is about understanding what’s happening and what you need, not convincing you of anything. Then we check your insurance for free and set up a short pre-screening.' },
+      { q: 'How soon can I start?', a: 'Once your pre-screening is done and your benefits are verified, we can often have you enrolled within 24 hours. <a href="/admissions/">Start here</a>.' },
+      { q: 'Do I need a diagnosis or referral?', a: 'No. Many people come to us without either. Your pre-screening and psychiatric evaluation help clarify what’s going on.' },
+      // (site, verbatim; em dash replaced with a colon)
+      { q: 'Can I continue seeing my current doctor or therapist?', a: 'Absolutely. Our team works hand-in-hand with providers you’re already seeing. You’re not saying goodbye to anyone: you’re building a bigger, more supportive team around your care.' },
+    ],
+  },
+  {
+    id: 'choosing-a-program',
+    title: 'Choosing a Program',
+    faqs: [
+      // (site, verbatim)
+      { q: 'What programs does Sunview Wellness offer?', a: 'We offer three levels of outpatient care: Partial Hospitalization Program (PHP), Intensive Outpatient Program (IOP), and Outpatient Program (OP). All programs include group therapy, with individual and family therapy as clinically recommended. <a href="/programs/">Compare levels of care</a>.' },
+      { q: 'What is the difference between PHP and IOP?', a: 'Intensity. PHP meets every weekday morning, about 20 hours a week. IOP meets three days a week, day or evening, 9 to 12 hours. Both include group therapy, a weekly individual session and psychiatric care. <a href="/programs/php/">Partial Hospitalization Program</a>.' },
+      { q: 'Can I start in OP without PHP or IOP?', a: 'Yes, if your pre-screening supports it. Our Clinical Director recommends the level that fits you. <a href="/programs/outpatient/">Outpatient Program</a>.' },
+      { q: 'How do you decide my level of care?', a: 'Our Clinical Director reviews your pre-screening and recommends a level using ASAM criteria and clinical judgment: your symptoms, length of sobriety, treatment history and home environment.' },
+      { q: 'Can I move between levels?', a: 'Yes. Most people step down as they progress, and you can step back up if you need more support, with the same team the whole time.' },
+      // (site, verbatim)
+      { q: 'What are the IOP hours?', a: 'Daytime IOP: 3 days per week, 9:00 AM – 1:00 PM. Evening IOP: Monday, Wednesday, and Thursday, 6:00 PM – 9:00 PM. <a href="/programs/iop/">Intensive Outpatient Program</a>.' },
+      // (site, verbatim; em dash replaced with a colon)
+      { q: 'What is the PHP schedule?', a: 'Our Partial Hospitalization Program runs Monday through Friday, 9:00 AM to 1:00 PM: 4 hours of intensive treatment, 5 days per week.' },
+    ],
+  },
+  {
+    id: 'what-sunview-is-and-isnt',
+    title: 'What Sunview Is and Isn’t',
+    faqs: [
+      { q: 'Do you offer detox?', a: 'No. Sunview is outpatient only. If stopping could cause dangerous withdrawal, you’ll need medically supervised detox first. We’ll help you find it and plan Sunview as your next step.' },
+      { q: 'Is there housing or residential treatment?', a: 'No. All three programs are outpatient, and you sleep at home. If you need 24-hour care first, we’ll refer you to residential treatment and plan your step down to us.' },
+      { q: 'Can I see a psychiatrist without joining a program?', a: 'Psychiatric care through Telemed Clinix is part of our PHP, IOP and OP programs, not a standalone service. If that’s all you need, call us and we’ll point you in the right direction. <a href="/programs/psychiatry-medication-management/">Psychiatric care and medication management</a>.' },
+      { q: 'Do you offer individual therapy on its own?', a: 'Individual therapy is part of every program, not offered as weekly private therapy by itself. If that’s what you’re looking for, we’ll help you find the right place.' },
+      { q: 'What if I’m on methadone?', a: 'We don’t admit people on methadone maintenance. If you’re coming off methadone, medical stabilization usually comes first. We’ll help you find the right next step.' },
+    ],
+  },
+  {
+    id: 'insurance-and-cost',
+    title: 'Insurance and Cost',
+    faqs: [
+      // (site, reordered: commercial first; em dash replaced)
+      { q: 'Do you accept insurance?', a: 'Yes. We accept most major commercial plans, such as Aetna, Florida Blue, Cigna and UnitedHealthcare, and Florida Medicaid plans too. Don’t see your plan? Reach out: it’s very likely we can get your treatment covered. <a href="/admissions/insurance/">Insurance and payment</a>.' },
+      { q: 'Does Medicaid cover treatment?', a: 'Yes. We accept Florida Medicaid plans, including Sunshine Health, AmeriHealth Caritas, Molina Healthcare and Community Care Plan. We confirm your coverage before you start.' },
+      { q: 'What is a VOB?', a: 'A verification of benefits. We contact your insurance to confirm that we’re in network and which level of care is covered, and whether pre-authorization is needed. It’s free and comes before any commitment.' },
+      // [to confirm] self-pay availability and terms
+      { q: 'Do you offer self-pay?', a: 'Ask us. Our admissions team can walk you through payment options if you don’t have insurance or your plan doesn’t cover treatment.' },
+      { q: 'What if I lose coverage during treatment?', a: 'Tell us as soon as you know. We’ll look at your options with you so treatment doesn’t have to stop abruptly. <a href="/admissions/insurance/">How insurance works here</a>.' },
+    ],
+  },
+  {
+    id: 'daily-life',
+    title: 'Daily Life in Treatment',
+    faqs: [
+      { q: 'Can I keep working?', a: 'Many people do. PHP ends at 1 PM, day IOP meets three mornings a week, and evening IOP meets after work. <a href="/admissions/what-to-expect/">What a day looks like</a>.' },
+      { q: 'Is there an evening program?', a: 'Yes. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, with the same clinical content as day IOP. <a href="/programs/iop/">Intensive Outpatient Program</a>.' },
+      // (site, verbatim)
+      { q: 'Is transportation provided?', a: 'Yes. If you can’t drive yourself, we offer free transportation to and from our center for your program days, through Uber Health. Ask about it when you call admissions.' },
+      { q: 'Is there drug testing?', a: 'Yes. Random drug testing is part of how we support your recovery and keep the group safe for everyone.' },
+      // [to confirm] phone policy during group
+      { q: 'Can I use my phone?', a: 'Ask us about the current policy. Groups work best when everyone is present, and we’ll explain what to expect before your first day.' },
+      // (site)
+      { q: 'Where are you located?', a: '4802 East Ave, West Palm Beach, FL 33407. Free transportation is available if you can’t drive yourself.' },
+    ],
+  },
+  {
+    id: 'medication',
+    title: 'Medication',
+    faqs: [
+      { q: 'Can I keep my current medications?', a: 'Often, yes. Your Telemed Clinix provider reviews what you take and makes changes only when they’re clinically indicated. <a href="/programs/psychiatry-medication-management/">Psychiatric care and medication management</a>.' },
+      { q: 'Can I stay on Suboxone or Vivitrol?', a: 'Yes. Sunview is abstinence-based, but not medication-free. Suboxone, Vivitrol and naltrexone are welcome when a qualified outside provider prescribes and manages them. <a href="/what-we-treat/substance-use/opioids/">Opioid addiction treatment</a>.' },
+      { q: 'Can I take Adderall?', a: 'Stimulants, including prescribed ones like Adderall, aren’t used during the program. A prescription doesn’t decide fit on its own; your provider will talk through options. <a href="/what-we-treat/mental-health/adhd/">ADHD and addiction treatment</a>.' },
+      { q: 'What about benzodiazepines?', a: 'Benzodiazepines aren’t used during the program. If you’ve taken them regularly for a long time, medically supervised detox usually comes first. <a href="/what-we-treat/substance-use/benzodiazepines/">Benzodiazepine addiction treatment</a>.' },
+      // (site, co-occurring framing; em dash replaced)
+      { q: 'Do you treat substance use and mental health together?', a: 'Yes. We specialize in dual diagnosis: treating substance use disorders and co-occurring mental health conditions at the same time. We partner with Telemed Clinix for psychiatric evaluation and medication management. <a href="/what-we-treat/dual-diagnosis/">Dual diagnosis treatment</a>.' },
+    ],
+  },
+  {
+    id: 'family-and-after',
+    title: 'Family and Life After Treatment',
+    faqs: [
+      { q: 'Will you involve my family?', a: 'With your consent, your therapist contacts a loved one during your first week. After that, involvement follows your pace. <a href="/therapies/family-therapy/">Family therapy</a>.' },
+      { q: 'What if I don’t want family involved?', a: 'That’s your choice. Nobody is pressured into it. Your therapist may gently explore what’s behind the hesitation, when you’re ready.' },
+      { q: 'What happens when I finish?', a: 'We plan your next steps with you before discharge, and our team reaches out afterward to see how you’re doing.' },
+      { q: 'Can I keep seeing the psychiatric provider afterward?', a: 'Yes. You can continue with your Telemed Clinix provider after you finish at Sunview.' },
+      { q: 'What if I relapse?', a: 'Call us. Recovery isn’t linear, and a setback isn’t the end of your progress. We’ll help you figure out what happened and whether you need more support.' },
+    ],
+  },
+];
+
+const allFaqs = groups.flatMap((g) => g.faqs);
+---
+<ServicePage
+  path="/admissions/faq/"
+  metaTitle="FAQs: Outpatient Rehab in West Palm Beach | Sunview Wellness"
+  description="Answers to what people ask before they call: programs, hours, insurance, medication, family involvement, transportation and what Sunview doesn't offer."
+  crumbs={[{ name: 'Admissions', href: '/admissions/' }, { name: 'FAQ', href: '/admissions/faq/' }]}
+  h1="Frequently Asked Questions About Outpatient Treatment in West Palm Beach"
+  subheading="Got questions? We have answers."
+  lead="Programs, hours, insurance, medication, family involvement and what Sunview does and doesn’t offer. If your question isn’t here, call us: a real person will answer it."
+  faqTitle="Frequently Asked Questions"
+  faqs={allFaqs}
+  faqSection={false}
+  mobileForm={false}
+>
+  <section class="section">
+    <div class="container-x">
+      <!-- Preserved from the live /faq/ "About Sunview Wellness" paragraph -->
+      <p class="max-w-4xl text-lg"><strong class="text-charcoal">About Sunview Wellness:</strong> We are an outpatient program offering PHP, IOP and OP for substance use disorder and dual diagnosis. Services include individual, family and group counseling, plus referral to our partner psychiatric provider for evaluation and medication management. <a href="/programs/" class="font-bold text-teal underline decoration-2 underline-offset-4">Compare our programs</a>.</p>
+
+      <!-- Mobile: horizontal scrollable chips -->
+      <nav aria-label="FAQ topics" class="-mx-4 mt-8 overflow-x-auto px-4 lg:hidden">
+        <ul class="flex w-max gap-2 pb-2">
+          {groups.map((g) => (
+            <li><a href={`#${g.id}`} class="inline-block whitespace-nowrap rounded-full border border-line bg-white px-4 py-2 text-sm font-bold text-charcoal hover:border-teal hover:text-teal">{g.title}</a></li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="mt-8 grid gap-10 lg:mt-12 lg:grid-cols-[240px_1fr] lg:gap-14">
+        <!-- Desktop: sticky jump-to nav -->
+        <nav aria-label="FAQ topics" class="hidden lg:block">
+          <div class="sticky top-28 rounded-[var(--radius-card)] bg-mist p-5">
+            <p class="text-xs font-extrabold uppercase tracking-[0.08em] text-muted">Jump to</p>
+            <ol class="mt-3 space-y-1">
+              {groups.map((g, i) => (
+                <li><a href={`#${g.id}`} class="flex gap-2 rounded-[var(--radius-sm)] px-2 py-1.5 text-[15px] font-bold text-charcoal hover:bg-white hover:text-teal"><span class="text-teal">{String(i + 1).padStart(2, '0')}</span>{g.title}</a></li>
+              ))}
+            </ol>
+          </div>
+        </nav>
+
+        <div class="space-y-14">
+          {groups.map((g) => (
+            <section id={g.id} class="scroll-mt-28" aria-labelledby={`${g.id}-h`}>
+              <h2 id={`${g.id}-h`} class="text-2xl sm:text-[1.75rem]">{g.title}</h2>
+              <div class="mt-5"><FaqList faqs={g.faqs} id={`faq-${g.id}`} /></div>
+            </section>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing block with the form (brief: "Still have questions?") -->
+  <section class="section bg-teal text-white">
+    <div class="container-x grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">Still have questions?</h2>
+        <p class="mt-4 text-lg text-white/90">Our team is here to help you find the right program and navigate your insurance. Send the form or call, and a real person will get back to you.</p>
+        <a href={SITE.phoneHref} class="mt-6 inline-flex items-center gap-3 font-sans text-2xl font-extrabold text-white hover:text-sun"><Icon name="phone" class="h-6 w-6" />Call {SITE.phone}</a>
+        <p class="mt-6 text-white/90">
+          <a href="/admissions/insurance/" class="font-bold text-white underline decoration-2 underline-offset-4">Insurance and payment</a> ·
+          <a href="/admissions/what-to-expect/" class="font-bold text-white underline decoration-2 underline-offset-4">What to expect</a> ·
+          <a href="/admissions/for-families/" class="font-bold text-white underline decoration-2 underline-offset-4">For families</a>
+        </p>
+      </div>
+      <div data-form-anchor class="scroll-mt-28"><LeadForm formId="admissions-faq-closing" dark /></div>
+    </div>
+  </section>
+</ServicePage>

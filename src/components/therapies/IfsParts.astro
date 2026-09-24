@@ -1,0 +1,27 @@
+---
+// IFS "parts" diagram for /therapies/internal-family-systems/: a central Self with the parts around it,
+// labeled in plain language. Decorative explanation only (general IFS description, no clinical claims).
+const parts = [
+  { label: 'The part that protects', pos: 'left-1/2 top-0 -translate-x-1/2' },
+  { label: 'The part that gets overwhelmed', pos: 'right-0 top-1/2 -translate-y-1/2' },
+  { label: 'The part that reaches for relief', pos: 'left-1/2 bottom-0 -translate-x-1/2' },
+  { label: 'The part that stays in control', pos: 'left-0 top-1/2 -translate-y-1/2' },
+];
+---
+<figure class="mx-auto w-full max-w-[420px]" aria-label="Diagram: the Self at the center, with different parts around it">
+  <div class="relative aspect-square">
+    <!-- orbit -->
+    <div class="absolute inset-[16%] rounded-full border-2 border-dashed border-teal-light/50"></div>
+    <!-- Self -->
+    <div class="absolute left-1/2 top-1/2 flex h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-teal text-center text-white shadow-[0_0_0_10px_rgba(31,158,158,0.15)]">
+      <span class="font-display text-xl font-extrabold sm:text-2xl">Self</span>
+      <span class="mt-0.5 px-2 text-[11px] leading-tight text-white/85 sm:text-xs">calm, curious, compassionate</span>
+    </div>
+    {parts.map((p) => (
+      <div class:list={['absolute flex h-[30%] w-[30%] items-center justify-center rounded-full border border-line bg-white p-2 text-center text-[11px] font-bold leading-tight text-charcoal shadow-[var(--shadow-soft)] sm:text-[13px]', p.pos]}>
+        {p.label}
+      </div>
+    ))}
+  </div>
+  <figcaption class="mt-4 text-center text-sm text-muted">Every part has a reason. The work starts with getting to know them.</figcaption>
+</figure>

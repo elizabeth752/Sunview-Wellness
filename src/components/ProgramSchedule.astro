@@ -1,0 +1,79 @@
+---
+// Weekly schedule chart for the program pages (Programs briefs: "reuse the Home weekly schedule chart"),
+// same cell language as the Home location block. The page's own program is in full color; the others are
+// muted. Every row names its hours in words, so flexible rows (pick your days) never read as "no hours".
+// Hours: Q7 (PHP, Day IOP, Evening IOP); OP one weekday 9am–1pm (live homepage).
+interface Props {
+  highlight?: string[] | 'all'; // row codes: PHP · DAY-IOP · EVE-IOP · OP
+  title: string;
+  subtitle?: string;
+  intro?: string;
+  class?: string;
+}
+const { highlight = 'all', title, subtitle, intro, class: cls = 'section bg-mist' } = Astro.props;
+
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+// on = runs 9am–1pm · pick = choose your days, 9am–1pm · eve = runs 6–9pm · off = no session
+const rows = [
+  { code: 'PHP', name: 'PHP', when: '9am–1pm, every weekday', cells: ['on', 'on', 'on', 'on', 'on'] },
+  { code: 'DAY-IOP', name: 'Day IOP', when: '9am–1pm, any 3 days', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
+  { code: 'EVE-IOP', name: 'Evening IOP', when: '6–9pm, Mon · Wed · Thu', cells: ['eve', 'off', 'eve', 'eve', 'off'] },
+  { code: 'OP', name: 'OP', when: '9am–1pm, any 1 day', cells: ['pick', 'pick', 'pick', 'pick', 'pick'] },
+];
+const isOn = (code: string) => highlight === 'all' || highlight.includes(code);
+const cellClass: Record<string, string> = { on: 'bg-teal', pick: 'sv-pick', eve: 'bg-teal-deep', off: 'bg-white border border-line' };
+const cellLabel: Record<string, string> = {
+  on: 'Runs 9am to 1pm',
+  pick: 'Available to choose, 9am to 1pm',
+  eve: 'Runs 6pm to 9pm',
+  off: 'No session',
+};
+---
+<section class={cls}>
+  <div class="container-x">
+    <div class="max-w-5xl">
+      <span class="eyebrow">Weekly schedule</span>
+      <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{title}</h2>
+      {subtitle && <p class="subheading mt-3">{subtitle}</p>}
+      {intro && <p class="mt-5 text-lg">{intro}</p>}
+    </div>
+
+    <div class="mt-8 rounded-[var(--radius-card)] border border-line bg-white p-4 sm:p-6">
+      <table class="w-full table-fixed border-separate border-spacing-1.5 text-[13px] sm:text-sm">
+        <colgroup><col class="w-[112px] sm:w-[220px]" />{days.map(() => <col />)}</colgroup>
+        <caption class="sr-only">Program schedule, Monday to Friday</caption>
+        <thead>
+          <tr>
+            <td></td>
+            {days.map((d) => <th scope="col" class="text-center font-extrabold text-muted">{d}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr class:list={[!isOn(r.code) && 'sv-muted']}>
+              <th scope="row" class="py-1 pr-2 text-left align-middle">
+                <span class="block font-extrabold text-charcoal">{r.name}</span>
+                <span class="block text-xs font-normal leading-snug text-muted">{r.when}</span>
+              </th>
+              {r.cells.map((c) => (
+                <td class="p-0 align-middle"><span class:list={['block h-[28px] rounded-[6px]', cellClass[c]]} title={cellLabel[c]}><span class="sr-only">{cellLabel[c]}</span></span></td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-1.5 text-xs text-muted">
+        <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal"></span>Runs 9am–1pm</li>
+        <li class="inline-flex items-center gap-1.5"><span class="sv-pick inline-block h-2.5 w-3.5 rounded-[3px]"></span>Pick your days, 9am–1pm</li>
+        <li class="inline-flex items-center gap-1.5"><span class="inline-block h-2.5 w-3.5 rounded-[3px] bg-teal-deep"></span>Runs 6–9pm</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sv-pick { background: repeating-linear-gradient(135deg, var(--color-teal-light) 0 6px, color-mix(in srgb, var(--color-teal-light) 55%, white) 6px 12px); }
+  /* Other programs stay visible for comparison but step back */
+  .sv-muted td > span { opacity: 0.22; filter: grayscale(1); }
+  .sv-muted th span { opacity: 0.55; }
+</style>

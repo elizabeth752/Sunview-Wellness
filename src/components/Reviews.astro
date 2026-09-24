@@ -1,8 +1,8 @@
 ---
 // Google reviews carousel (approved design, 2026-09-22): white section, centered H2, Google Reviews
-// wordmark, then a carousel showing 3.1 cards on desktop / 2.1 on tablet / 1.1 on mobile, arrows on
+// wordmark + 5 stars, then a carousel showing 4.1 cards on desktop / 2.1 on tablet / 1.1 on mobile, arrows on
 // the sides, and "Read our reviews on Google" below. Cards mirror Google's review UI.
-// Text is verbatim, 5 stars only, first name + last initial; each card caps text at 6 lines and the
+// Text is verbatim, 5 stars only, first name + last initial; each card caps text at 5 lines and the
 // rest scrolls inside the card (touch/wheel/keyboard) or opens with "More". No reviewer photos,
 // no AggregateRating schema. Data: src/data/reviews.js.
 import '@fontsource/roboto/400.css';
@@ -20,6 +20,11 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
     <div class="text-center">
       <h2 id={`${id}-title`} class="text-3xl sm:text-[2.1875rem]">{title}</h2>
       <img src="/images/badges/google-reviews.svg" alt="Google Reviews" width="93" height="33" class="mx-auto mt-5 h-12 w-auto" />
+      <p class="mt-2 flex justify-center gap-1 text-[#fbbc04]" aria-label="5-star reviews">
+        {Array.from({ length: 5 }).map(() => (
+          <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
+        ))}
+      </p>
     </div>
 
     <div class="sv-reviews relative mt-10" data-carousel>
@@ -66,14 +71,15 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
 </section>
 
 <style is:global>
-  /* 1.1 cards on mobile, 2.1 on tablet, 3.1 on desktop; swipe with scroll-snap */
+  /* 1.1 cards on mobile, 2.1 on tablet, 3.1 on small laptops, 4.1 on desktop; swipe with scroll-snap */
   .sv-rv-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 2px 12px; scrollbar-width: none; overscroll-behavior-x: contain; list-style: none; margin: 0; }
   .sv-rv-track::-webkit-scrollbar { display: none; }
   .sv-rv-card { scroll-snap-align: start; flex: 0 0 calc((100% - 16px) / 1.1); }
   @media (min-width: 768px) { .sv-rv-card { flex-basis: calc((100% - 2 * 16px) / 2.1); } }
   @media (min-width: 1024px) { .sv-rv-card { flex-basis: calc((100% - 3 * 16px) / 3.1); } }
-  /* 6-line text box: the rest scrolls inside the card, or opens with "More" */
-  .sv-rv-text { font-size: 14px; line-height: 1.5; max-height: calc(1.5em * 6); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-right: 6px; scrollbar-width: thin; }
+  @media (min-width: 1280px) { .sv-rv-card { flex-basis: calc((100% - 4 * 16px) / 4.1); } }
+  /* 5-line text box: the rest scrolls inside the card, or opens with "More" */
+  .sv-rv-text { font-size: 14px; line-height: 1.4; max-height: calc(1.4em * 5); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-right: 6px; scrollbar-width: thin; }
   .sv-rv-text.is-long { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); }
   .sv-rv-text.at-end, .sv-rv-text.expanded { -webkit-mask-image: none; mask-image: none; }
   .sv-rv-text.expanded { max-height: none; overflow: visible; }

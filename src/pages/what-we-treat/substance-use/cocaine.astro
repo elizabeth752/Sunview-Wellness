@@ -1,0 +1,125 @@
+---
+// /what-we-treat/substance-use/cocaine/: What-We-Treat-Content-Briefs.md §F. Sources in
+// docs/content/what-we-treat-sources-substance.md. Rotation: Reviews only. Reviewed by Frank.
+// No medically dangerous withdrawal claims for cocaine (brief), so there is no "When Detox Comes First"
+// section; detox is mentioned only for other substances used alongside it.
+import ServicePage from '../../../layouts/ServicePage.astro';
+import NextSteps from '../../../components/NextSteps.astro';
+import Icon from '../../../components/Icon.astro';
+import { WWT, CATEGORIES, SUBSTANCE_PAGES } from '../../../data/treat.js';
+import { conditionAbout } from '../../../lib/programSchema.js';
+
+const path = '/what-we-treat/substance-use/cocaine/';
+
+const signs = [
+  'You use more, or more often, than you planned',
+  'Cravings take over your thinking, especially around money, stress or certain people',
+  'Using turns into binges, followed by crashes that leave you drained or low',
+  'Money, work or relationships are slipping, and you keep using anyway',
+  'You hide how much you use, or feel on edge when you’re not using',
+  'You’ve promised yourself you’d stop, more than once',
+];
+
+const how = [
+  { icon: 'compass', title: 'Understanding the craving', text: 'A craving is a signal, not a command. We look at when it shows up, what it’s tied to, and what it’s been trying to solve, then build skills to ride it out.' },
+  { icon: 'refresh', title: 'Practice in real life', text: 'You go home every night. When a trigger hits at work or with family, you bring it back to group the next day, and we slow it down together and try a different response.' },
+  { icon: 'shield', title: 'Random drug testing', text: 'Testing is part of how we support your recovery and keep the group a safe place for everyone in it.' },
+  { icon: 'users', title: 'One group, one facilitator', text: 'The same clinician leads your group for the whole session, so trust builds and the work goes deeper.' },
+  { icon: 'message', title: 'Carefrontation', text: 'Honest feedback, given with care. Group members learn to name patterns without shaming anyone, and to hear hard things without shutting down.' },
+  { icon: 'layers', title: 'The patterns underneath', text: 'Psychodynamic work and Internal Family Systems look at what sits beneath the use, so change lasts longer than willpower does.' },
+];
+
+const faqs = [
+  { q: 'Do I need detox before cocaine treatment?', a: 'Your pre-screening decides where to start. If you also use alcohol, opioids or benzodiazepines, medically supervised detox may need to come first for those. Our Clinical Director looks at your whole picture and recommends the right level of care.' },
+  { q: 'Do you drug test?', a: 'Yes. Random drug testing is part of every program, as part of our ongoing monitoring and recovery support.' },
+  { q: 'Can I keep working during treatment?', a: 'Yes. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, and day programs end at 1 PM. <a href="/programs/iop/">See the Intensive Outpatient Program</a>.' },
+  { q: 'What if I’ve relapsed before?', a: 'You’re not starting from zero. Recovery isn’t linear, and we use hard moments as part of the work: what happened, what you needed, and how to handle the next one differently.' },
+  { q: 'Does insurance cover cocaine addiction treatment?', a: 'Most plans cover outpatient treatment, including Medicaid plans. We check your benefits for free before you start. <a href="/admissions/insurance/">See accepted insurance and payment options</a>.' },
+];
+---
+<ServicePage
+  path={path}
+  metaTitle="Cocaine & Crack Addiction Treatment in West Palm Beach"
+  description="Outpatient treatment for cocaine and crack cocaine addiction in West Palm Beach. Structured PHP, IOP and OP with therapy that goes beneath the craving."
+  crumbs={[WWT, { name: CATEGORIES.substance.name, href: CATEGORIES.substance.href }, { name: 'Cocaine & Crack Addiction Treatment', href: path }]}
+  h1="Cocaine and Crack Addiction Treatment in West Palm Beach"
+  subheading="Beneath the craving is a pattern. That’s where the work happens."
+  lead="Structured outpatient treatment for adults using cocaine or crack cocaine. Group and individual therapy that looks past the craving to what drives it, practiced in the life you go home to every night."
+  faqTitle="Frequently Asked Questions About Cocaine Addiction Treatment"
+  faqs={faqs}
+  reviews
+  about={conditionAbout('Cocaine use disorder')}
+>
+  <!-- Signs -->
+  <section class="section">
+    <div class="container-x grid items-start gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Recognizing it</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Signs Cocaine Use Has Become a Problem</h2>
+        <p class="subheading mt-3">When “just this once” keeps coming back</p>
+        <p class="mt-5 text-lg">Cocaine and crack can take hold quickly, and the pull often shows up as craving more than anything else. If you recognize yourself in some of these signs, it’s worth a conversation. You don’t need a plan or the right words to call.</p>
+      </div>
+      <div class="card !p-7">
+        <h3 class="text-xl">Some common signs</h3>
+        <ul class="mt-4 space-y-3">
+          {signs.map((s) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{s}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we treat -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-5xl">
+        <span class="eyebrow">Treatment</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">How Sunview Treats Cocaine Addiction</h2>
+        <p class="subheading mt-3">Skills for the craving, insight for the pattern</p>
+        <p class="mt-5 text-lg">Crack cocaine is one of the two substances we see most often at Sunview. Treatment happens in PHP, IOP or OP, so you keep living your life while you learn to handle it differently. You also meet one-on-one with your primary therapist every week for 45 to 60 minutes, and free transportation to and from our center is available if you can’t drive yourself.</p>
+      </div>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {how.map((h) => (
+          <div class="card">
+            <Icon name={h.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{h.title}</h3>
+            <p class="mt-2">{h.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Co-occurring -->
+  <section class="section">
+    <div class="container-x grid items-start gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">The whole picture</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Cocaine and Co-Occurring Mental Health</h2>
+        <p class="subheading mt-3">Treated together, by one team</p>
+        <p class="mt-5 text-lg">Many people we work with are living with more than one thing at once: anxiety, depression, trauma or a personality disorder alongside substance use. Using can start as a way to cope with emotional pain, then make that pain worse. We treat the cycle between them, with psychiatric care through Telemed Clinix included.</p>
+        <p class="mt-4 text-lg">If you’re also drinking heavily or using opioids or benzodiazepines, tell us during pre-screening. Medically supervised detox may need to come first for those, and we’ll help you plan the path back to us.</p>
+      </div>
+      <div class="card !p-7">
+        <h3 class="text-xl">Keep reading</h3>
+        <ul class="mt-4 space-y-3">
+          <li><a href="/what-we-treat/dual-diagnosis/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Dual diagnosis treatment</a></li>
+          <li><a href="/what-we-treat/mental-health/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Co-occurring mental health treatment</a></li>
+          <li><a href="/what-we-treat/mental-health/trauma-ptsd/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Trauma and PTSD treatment</a></li>
+          <li><a href="/what-we-treat/mental-health/personality-disorders/" class="inline-flex items-center gap-2 font-bold text-teal hover:text-teal-light"><Icon name="arrow" class="h-4 w-4" />Personality disorder and addiction treatment</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <NextSteps
+    title="Which Level of Care Fits"
+    subtitle="Where most people start with cocaine"
+    level={`<p>If you need daily structure to break the cycle, the <a href="/programs/php/">Partial Hospitalization Program</a> meets every weekday morning. The <a href="/programs/iop/">Intensive Outpatient Program</a> meets three days a week, day or evening, so you can keep working. The <a href="/programs/outpatient/">Outpatient Program</a> keeps one morning a week in place as life gets steadier. Our Clinical Director recommends the level that fits you.</p>`}
+    related={[
+      { label: CATEGORIES.substance.label, href: CATEGORIES.substance.href },
+      ...SUBSTANCE_PAGES.filter((p) => p.href !== path).map((p) => ({ label: p.label, href: p.href })),
+      { label: 'Dual diagnosis treatment', href: CATEGORIES.dual.href },
+      { label: 'All conditions we treat', href: WWT.href },
+    ]}
+  />
+</ServicePage>

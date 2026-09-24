@@ -1,0 +1,144 @@
+---
+// /therapies/cbt/: Therapies-Content-Briefs.md §F. Sources in docs/content/therapies-sources-ifs-cbt-dbt.md.
+// Rotation: Reviews only. Reviewed by Dana.
+// Structure (varied on purpose): cycle diagram → two-column comparison → group/individual tabs →
+// two condition tiles → loop on cream → NextSteps.
+import ServicePage from '../../layouts/ServicePage.astro';
+import CbtTriangle from '../../components/therapies/CbtTriangle.astro';
+import CbtTabs from '../../components/therapies/CbtTabs.astro';
+import CbtLoop from '../../components/therapies/CbtLoop.astro';
+import NextSteps from '../../components/NextSteps.astro';
+import Icon from '../../components/Icon.astro';
+import { THERAPIES_HUB, therapyBySlug } from '../../data/therapies.js';
+
+const self = therapyBySlug('cbt');
+const related = self.related.map(therapyBySlug);
+
+const gives = [
+  'Noticing the thought that shows up right before a craving',
+  'Naming the triggers: people, places, feelings, times of day',
+  'Practical coping skills and a relapse prevention plan',
+  'New responses you can practice until they feel natural',
+];
+const adds = [
+  'Where the trigger first came from, and what it meant then',
+  'The relationships and history that keep the pattern going',
+  'The part of you the old response was protecting',
+  'Insight that makes the new skills stick over time',
+];
+
+const faqs = [
+  { q: 'Is CBT the main therapy at Sunview?', a: 'CBT is one of several approaches we use, alongside IFS, DBT, inner child and psychodynamic work, and trauma-informed care. We don’t take a one-size-fits-all approach. <a href="/therapies/">All therapy approaches</a>.' },
+  { q: 'How is CBT different from DBT?', a: 'CBT focuses on changing the thoughts and behaviors that feed a problem. DBT adds skills for staying with intense emotions and distress without acting on them. Many people use both. <a href="/therapies/dbt/">Dialectical behavior therapy (DBT)</a>.' },
+  { q: 'Is CBT enough for addiction?', a: 'Coping skills and relapse prevention matter, and we teach them. But on their own, without looking at where triggers began, they’re hard to sustain. That’s why we pair CBT with deeper work.' },
+  // REVIEW 8.5: plain-language passage pending Elizabeth review (CBT "homework" FAQ)
+  { q: 'Will I get homework?', a: 'You may be asked to try a skill between sessions or notice a pattern during the week and bring it back to group. What that looks like depends on your therapist and your plan.' },
+  { q: 'Does CBT help with cravings?', a: 'It helps you notice the thoughts and situations that come before a craving and practice a different response. We work on cravings together with the patterns underneath them.' },
+];
+---
+<ServicePage
+  path="/therapies/cbt/"
+  metaTitle="CBT for Addiction and Mental Health in West Palm Beach"
+  description="Cognitive behavioral therapy in outpatient addiction and dual diagnosis treatment in West Palm Beach, paired with deeper work on where the patterns began."
+  crumbs={[THERAPIES_HUB, { name: 'Cognitive Behavioral Therapy (CBT)', href: self.href }]}
+  h1="Cognitive Behavioral Therapy in West Palm Beach"
+  subheading="Recognize the thought, change the response, and understand where it came from."
+  lead="Cognitive behavioral therapy (CBT) gives you practical tools to catch the thoughts and triggers behind substance use, anxiety and low mood. At Sunview we pair it with deeper work, so the change lasts."
+  faqTitle="Frequently Asked Questions About CBT"
+  faqs={faqs}
+  reviews
+  about={{ '@type': 'MedicalTherapy', name: 'Cognitive behavioral therapy (CBT)' }}
+>
+  <!-- 1. Cycle diagram + prose -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+      <CbtTriangle />
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">What CBT Is and What It Helps With</h2>
+        <p class="subheading mt-3">Thoughts, feelings and actions keep feeding each other</p>
+        <div class="prose-sv mt-6">
+          <p>CBT is built on a simple idea: the way you think about a situation shapes how you feel, and how you feel shapes what you do. A thought like “I can’t cope” can turn into panic, and panic into reaching for a drink or a drug. That behavior then seems to prove the thought right.</p>
+          <p>CBT helps you recognize harmful thought patterns and triggers, test them, and practice new responses. It’s a core part of relapse prevention and of treating anxiety and depression.</p>
+          <p>At Sunview, CBT is used within our <a href="/programs/">PHP, IOP and OP programs</a>, not as standalone private therapy. If you’re looking for weekly private therapy only, we’ll point you to the right place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Comparison -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <h2 class="text-3xl sm:text-[2.1875rem]">CBT Paired With Deeper Work</h2>
+        <p class="mt-5 text-lg">Skills alone, without looking at where a trigger started, can become a band-aid over a bullet hole. They help for a while, then stop holding. So at Sunview, CBT always travels with the question underneath: why does this trigger have so much power?</p>
+      </div>
+      <div class="mt-10 grid overflow-hidden rounded-[var(--radius-lg)] ring-1 ring-line md:grid-cols-2">
+        <div class="bg-white p-7 sm:p-9">
+          <h3 class="text-xl">What CBT gives you</h3>
+          <ul class="mt-5 space-y-3">
+            {gives.map((g) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{g}</li>)}
+          </ul>
+        </div>
+        <div class="bg-teal p-7 text-white sm:p-9">
+          <h3 class="text-xl text-white">What the deeper work adds</h3>
+          <ul class="mt-5 space-y-3 text-white/90">
+            {adds.map((a) => <li class="flex items-start gap-3"><Icon name="layers" class="mt-1 h-4 w-4 shrink-0 text-sun" />{a}</li>)}
+          </ul>
+          <a href="/therapies/inner-child-therapy/" class="mt-6 inline-flex items-center gap-2 font-bold text-white underline decoration-2 underline-offset-4">Inner child therapy <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Tabs -->
+  <section class="section">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">CBT in Group and Individual Sessions</h2>
+      <p class="mt-5 max-w-4xl text-lg">You’ll meet CBT in two places: in group, where skills get practiced with others, and in your weekly session with your primary therapist, where they get fitted to your life.</p>
+      <CbtTabs />
+    </div>
+  </section>
+
+  <!-- 4. Condition tiles -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <h2 class="text-3xl sm:text-[2.1875rem]">CBT for Co-Occurring Anxiety and Depression</h2>
+      <p class="mt-5 max-w-4xl text-lg">Anxiety and depression are among the conditions we see most often alongside substance use. CBT gives you concrete ways to work with anxious and hopeless thinking, while the rest of your treatment looks at what keeps it going. It’s part of our <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal underline decoration-2 underline-offset-4">dual diagnosis treatment</a>.</p>
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        <a href="/what-we-treat/mental-health/anxiety/" class="group flex items-center justify-between gap-6 rounded-[var(--radius-lg)] bg-white p-7 ring-1 ring-line transition hover:ring-teal">
+          <span><span class="block font-display text-2xl font-extrabold text-charcoal group-hover:text-teal">Anxiety and addiction treatment</span><span class="mt-1 block text-muted">Worry, panic and the pull to calm it with a substance</span></span>
+          <Icon name="arrow" class="h-6 w-6 shrink-0 text-teal" />
+        </a>
+        <a href="/what-we-treat/mental-health/depression/" class="group flex items-center justify-between gap-6 rounded-[var(--radius-lg)] bg-white p-7 ring-1 ring-line transition hover:ring-teal">
+          <span><span class="block font-display text-2xl font-extrabold text-charcoal group-hover:text-teal">Depression and addiction treatment</span><span class="mt-1 block text-muted">Low mood, low energy and using to feel something else</span></span>
+          <Icon name="arrow" class="h-6 w-6 shrink-0 text-teal" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Loop on cream -->
+  <section class="section bg-cream">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">Relapse Prevention in Real Life</h2>
+        <p class="subheading mt-3">Skills get tested at home, not in the room</p>
+        <p class="mt-5 text-lg">Because you go home every day, you get to try what you learned right away. Then you come back and say, “I tried it, but this happened with my spouse,” or “I got triggered at work.” We slow that moment down, find the pattern and adjust the plan.</p>
+        <p class="mt-4 text-lg">That loop is what we call In Vivo Treatment™: recovery practiced in real life, with support close by while you practice.</p>
+      </div>
+      <CbtLoop />
+    </div>
+  </section>
+
+  <NextSteps
+    class="section"
+    title="Where CBT Fits in Your Treatment"
+    subtitle="Part of every level of care"
+    level={`<p>CBT is part of our <a href="/programs/php/">Partial Hospitalization Program</a>, <a href="/programs/iop/">Intensive Outpatient Program</a> and <a href="/programs/outpatient/">Outpatient Program</a>, alongside the other approaches our team uses. Our Clinical Director recommends the level that fits you.</p>`}
+    related={[
+      { label: 'All therapy approaches', href: '/therapies/' },
+      ...related.map((r) => ({ label: r.label, href: r.href })),
+      { label: 'Dual diagnosis treatment', href: '/what-we-treat/dual-diagnosis/' },
+    ]}
+  />
+</ServicePage>

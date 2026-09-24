@@ -1,0 +1,199 @@
+---
+// /admissions/: Admissions-Content-Briefs.md §A. Sources in docs/content/admissions-sources-main-insurance.md.
+// One coverage form only (hero on desktop, pre-CTA on mobile); every section CTA is #get-started, which
+// ServicePage scrolls to the visible form. No reviewed-by byline on Admissions pages (brief decision).
+// Rotation: Insurance + Reviews + Map.
+import ServicePage from '../../layouts/ServicePage.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../data/site.js';
+
+const ask = [
+  'What’s going on, in your own words',
+  'Your substance use and mental health history',
+  'Where you’re living and who’s around you',
+  'Any treatment you’ve had before',
+  'Your insurance carrier and member ID',
+];
+
+// Process steps: timing and wording written from the live site and standard outpatient practice.
+// [to confirm] with the client (brief decision, Elizabeth item 12).
+const steps = [
+  { title: 'Call or send the form', text: 'Talk to our admissions team, or leave your details and we’ll call you back. No commitment, and no right words needed.' },
+  { title: 'Free insurance verification', text: 'We check your benefits before anything else, so you know where you stand before you commit.' },
+  { title: 'Pre-screening with the Clinical Director', text: 'A short pre-screening, reviewed by our Clinical Director, who recommends PHP, IOP or OP using ASAM criteria and clinical judgment.' },
+  { title: 'Intake and your first day', text: 'Once your benefits are verified and the pre-screening is done, we can often have you enrolled within 24 hours.' },
+];
+
+const fit = [
+  'You’re an adult, 18 or older',
+  'You’re medically and psychiatrically steady enough to take part',
+  'You’re stepping down from detox or residential care, or starting from home',
+  'You have a safe place to live and sleep every night',
+];
+
+const first = [
+  'Stopping a substance could cause dangerous withdrawal: detox comes first',
+  'You need round-the-clock care right now: residential treatment comes first',
+  'You need housing along with treatment',
+  'You’re maintained on methadone',
+];
+
+const faqs = [
+  { q: 'How soon can I start?', a: 'Once your pre-screening is done and your benefits are verified, we can often have you enrolled within 24 hours.' },
+  { q: 'Do I need a referral or a diagnosis?', a: 'No. You can call us directly. Your pre-screening and, if you need it, a psychiatric evaluation help clarify what’s going on. <a href="/admissions/faq/">More admissions questions</a>.' },
+  { q: 'What does the insurance check involve?', a: 'We contact your plan to confirm whether we’re in network, which level of care is covered and whether pre-authorization is needed. It’s free and doesn’t commit you to anything. <a href="/admissions/insurance/">Insurance and payment</a>.' },
+  { q: 'Can I stay with my current doctor or therapist?', a: 'Absolutely. Our team works hand-in-hand with providers you’re already seeing. You’re not saying goodbye to anyone: you’re building a bigger, more supportive team around your care.' },
+  { q: 'What if I’m not ready to commit?', a: 'That’s okay. Calling doesn’t sign you up for anything. We’ll listen, answer your questions and give you an honest picture, and you decide what happens next.' },
+];
+
+const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
+---
+<ServicePage
+  path="/admissions/"
+  metaTitle="Outpatient Rehab Admissions in West Palm Beach | Sunview"
+  description="Start outpatient treatment in West Palm Beach with one call, a free insurance check and a Clinical Director pre-screening. Often enrolled within 24 hours."
+  crumbs={[{ name: 'Admissions', href: '/admissions/' }]}
+  h1="Admissions for Outpatient Treatment in West Palm Beach"
+  subheading="Reaching out is the hardest part. We'll listen first."
+  lead="Starting outpatient treatment takes one conversation. We check your insurance for free, our Clinical Director reviews your pre-screening, and you can often be enrolled within 24 hours."
+  faqTitle="Frequently Asked Questions About Admissions"
+  faqs={faqs}
+  insurance
+  reviews
+  map
+  helpHref="#get-started"
+>
+  <!-- 1. What happens when you call: prose + tall call card -->
+  <section class="section">
+    <div class="container-x grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        <span class="eyebrow">The first conversation</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">What Happens When You Call</h2>
+        <p class="subheading mt-3">We listen before we recommend anything</p>
+        <div class="prose-sv mt-6">
+          <p>Most people don’t call with a plan. They call because something isn’t working anymore, and they don’t know exactly what they need. That’s enough to start.</p>
+          <p>The first conversation isn’t about convincing you of anything. It’s about slowing down, listening, and understanding what’s actually happening. You’ll talk with a member of our admissions team who can answer questions about <a href="/programs/">our programs</a>, your insurance and what the next few days could look like.</p>
+          <p>Asking for help can feel vulnerable. We know that, and we’ll treat it that way.</p>
+        </div>
+      </div>
+      <aside class="rounded-[var(--radius-lg)] border border-line bg-mist p-7 sm:p-9">
+        <p class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">Call admissions</p>
+        <a href={SITE.phoneHref} class="mt-2 flex items-center gap-3 font-sans text-3xl font-extrabold text-teal hover:text-teal-light sm:text-[2.25rem]">
+          <Icon name="phone" class="h-7 w-7 shrink-0" />{SITE.phone}
+        </a>
+        <p class="mt-6 font-extrabold text-charcoal">What we’ll ask about</p>
+        <ul class="mt-3 space-y-2.5">
+          {ask.map((a) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{a}</li>)}
+        </ul>
+        <a href="#get-started" class="btn-sun mt-7">Get help now <Icon name="arrow" /></a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 2. Process: horizontal connector at lg, vertical on mobile -->
+  <section class="section bg-mist">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">How it works</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">The Admissions Process, Step by Step</h2>
+        <p class="subheading mt-3">Four steps, and we walk you through each one</p>
+      </div>
+      <ol class="relative mt-12 grid gap-8 lg:grid-cols-4 lg:gap-6">
+        <span class="absolute bottom-6 left-[23px] top-6 w-0.5 bg-teal/25 lg:bottom-auto lg:left-[12%] lg:right-[12%] lg:top-[23px] lg:h-0.5 lg:w-auto" aria-hidden="true"></span>
+        {steps.map((s, i) => (
+          <li class="relative flex gap-5 lg:flex-col lg:items-center lg:gap-0 lg:text-center">
+            <span class="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-teal font-sans text-lg font-extrabold text-white ring-8 ring-mist">{i + 1}</span>
+            <div class="lg:mt-5">
+              <h3 class="text-xl">{s.title}</h3>
+              <p class="mt-2">{s.text}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-12 flex flex-wrap gap-3 lg:justify-center">
+        <a href="#get-started" class="btn-teal">Start with step one <Icon name="arrow" /></a>
+        <a href="/admissions/what-to-expect/" class="btn-ghost">What to expect in treatment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Not sure: big centered typography -->
+  <section class="section">
+    <div class="container-x mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl sm:text-[2.1875rem]">If You're Not Sure You Need Treatment</h2>
+      <p class="mt-8 font-display text-3xl italic leading-snug text-teal sm:text-[2.5rem]">“I know I have a problem, but I don’t think it’s that bad.”</p>
+      <p class="mt-3 text-sm text-muted">Something we hear on first calls</p>
+      <p class="mx-auto mt-8 max-w-[62ch] text-lg">Feeling unsure is normal. It doesn’t mean you don’t want help. Sometimes it means you’re scared of what changing will require. Calling doesn’t commit you to anything. We’ll give you an honest clinical picture, with no pressure, and you decide what comes next.</p>
+      <a href="#get-started" class="btn-teal mt-8">Talk it through with us <Icon name="arrow" /></a>
+    </div>
+  </section>
+
+  <!-- 4. Calling for someone you love: cream band -->
+  <section class="bg-cream py-12 sm:py-16">
+    <div class="container-x grid items-center gap-8 lg:grid-cols-[1.3fr_0.7fr]">
+      <div>
+        <h2 class="text-3xl sm:text-[2.1875rem]">If You're Calling for Someone You Love</h2>
+        <p class="mt-4 max-w-[64ch] text-lg">“I’ve tried everything.” “I’m afraid something is going to happen to him.” If that sounds like you, you can call us first, before your loved one is ready. We’ll help you understand the options and how to start the conversation.</p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:justify-end">
+        <a href="/admissions/for-families/" class="btn-teal">Support for families <Icon name="arrow" /></a>
+        <a href="/therapies/family-therapy/" class="btn-ghost bg-white">Family therapy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Fit: contrasting columns -->
+  <section class="section">
+    <div class="container-x">
+      <div class="max-w-4xl">
+        <span class="eyebrow">Honest about scope</span>
+        <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Who Sunview Is Right For, and Who Needs Something First</h2>
+        <p class="subheading mt-3">If you need something else first, we’ll help you get there.</p>
+      </div>
+      <div class="mt-10 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-[var(--radius-lg)] border-t-4 border-teal bg-mist p-7">
+          <p class="font-sans text-lg font-extrabold text-charcoal">A good fit if…</p>
+          <ul class="mt-4 space-y-3">
+            {fit.map((f) => <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />{f}</li>)}
+          </ul>
+          <p class="mt-5 text-[15px]">We treat <a href="/what-we-treat/substance-use/" class={link}>substance use disorders</a> and <a href="/what-we-treat/dual-diagnosis/" class={link}>co-occurring mental health conditions</a> together.</p>
+        </div>
+        <div class="rounded-[var(--radius-lg)] border-t-4 border-gold bg-white p-7 ring-1 ring-line">
+          <p class="font-sans text-lg font-extrabold text-charcoal">Something first if…</p>
+          <ul class="mt-4 space-y-3">
+            {first.map((f) => <li class="flex items-start gap-3"><Icon name="compass" class="mt-0.5 h-5 w-5 shrink-0 text-gold" />{f}</li>)}
+          </ul>
+          <p class="mt-5 text-[15px]">Then we’ll help you find the right place, and plan Sunview as your next step.</p>
+        </div>
+      </div>
+      <ScopeNote class="mt-6" />
+    </div>
+  </section>
+
+  <!-- 6. Transportation and scheduling: teal band with inline facts -->
+  <section class="section bg-teal text-white">
+    <div class="container-x">
+      <h2 class="text-3xl text-white sm:text-[2.1875rem]">Free Transportation and Scheduling Around Your Life</h2>
+      <p class="mt-4 max-w-[64ch] text-lg text-white/90">Treatment works better when getting there isn’t the obstacle. Keep your job, sleep in your own bed, and pick the schedule that fits.</p>
+      <dl class="mt-10 grid gap-8 border-t border-white/25 pt-8 md:grid-cols-3">
+        <div>
+          <dt class="flex items-center gap-2 font-sans text-lg font-extrabold text-white"><Icon name="car" class="h-6 w-6 text-sun" />Free transportation</dt>
+          <dd class="mt-2 text-white/85">If you can’t drive yourself, we offer free transportation to and from our center, through Uber Health.</dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 font-sans text-lg font-extrabold text-white"><Icon name="clock" class="h-6 w-6 text-sun" />Day or evening</dt>
+          <dd class="mt-2 text-white/85">Mornings from 9 AM to 1 PM, or evening IOP Monday, Wednesday and Thursday from 6 to 9 PM.</dd>
+        </div>
+        <div>
+          <dt class="flex items-center gap-2 font-sans text-lg font-extrabold text-white"><Icon name="calendar" class="h-6 w-6 text-sun" />Three levels</dt>
+          <dd class="mt-2 text-white/85">PHP five mornings a week, IOP three days a week, OP one weekday of your choice.</dd>
+        </div>
+      </dl>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#get-started" class="btn-sun">Get help now <Icon name="arrow" /></a>
+        <a href="/programs/" class="btn-ghost-light">Compare levels of care</a>
+      </div>
+    </div>
+  </section>
+</ServicePage>

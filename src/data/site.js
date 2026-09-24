@@ -21,11 +21,13 @@ export const SITE = {
   mapsEmbed:
     'https://www.google.com/maps?q=4802+East+Ave,+West+Palm+Beach,+FL+33407&output=embed',
   social: {
+    facebook: 'https://www.facebook.com/sunviewwellness',
     instagram: 'https://www.instagram.com/sunviewwellness/',
     linkedin: 'https://www.linkedin.com/in/sunview-wellness-4b15b3242/',
     x: 'https://twitter.com/MedicalSunview',
     youtube: 'https://www.youtube.com/@frankgalimidi',
   },
+  foundingYear: '2021', // Home review round 2 (schema foundingDate)
   gtmId: 'GTM-NCTDLZMC', // container from the client (same as the live WordPress site)
   ctmAccount: '362771', // CallTrackingMetrics account; its number-swap script loads through GTM
 };
@@ -44,9 +46,11 @@ export const NAV = [
       { label: 'Compare levels of care', href: '/programs/', note: 'Which one fits you' },
     ],
   },
+  // Megamenu per What-We-Treat-Content-Briefs.md (2026-09-22): the only megamenu; opens on hover and click.
   {
     label: 'What We Treat',
     href: '/what-we-treat/',
+    all: { label: 'All conditions we treat', href: '/what-we-treat/' },
     mega: [
       {
         label: 'Substance use',
@@ -59,7 +63,7 @@ export const NAV = [
         ],
       },
       {
-        label: 'Mental health',
+        label: 'Co-occurring mental health',
         href: '/what-we-treat/mental-health/',
         items: [
           { label: 'Depression', href: '/what-we-treat/mental-health/depression/' },
@@ -73,7 +77,8 @@ export const NAV = [
       {
         label: 'Dual diagnosis',
         href: '/what-we-treat/dual-diagnosis/',
-        note: 'Substance use and mental health treated together, as one connected picture.',
+        note: 'When substance use and mental health feed each other.',
+        cta: { label: 'Dual diagnosis treatment', href: '/what-we-treat/dual-diagnosis/' },
         items: [],
       },
     ],
@@ -83,10 +88,9 @@ export const NAV = [
     href: '/therapies/',
     children: [
       { label: 'Internal Family Systems (IFS)', href: '/therapies/internal-family-systems/' },
-      { label: 'Psychodynamic & inner child work', href: '/therapies/psychodynamic-therapy/' },
+      { label: 'Inner child therapy', href: '/therapies/inner-child-therapy/' },
       { label: 'CBT', href: '/therapies/cbt/' },
       { label: 'DBT', href: '/therapies/dbt/' },
-      { label: 'Psychodrama', href: '/therapies/psychodrama/' },
       { label: 'Family therapy', href: '/therapies/family-therapy/' },
       { label: 'Group therapy', href: '/therapies/group-therapy/' },
       { label: 'Our clinical approach', href: '/about/our-approach/' },
@@ -101,6 +105,7 @@ export const NAV = [
       { label: 'What to expect', href: '/admissions/what-to-expect/' },
       { label: 'For families', href: '/admissions/for-families/' },
       { label: 'FAQ', href: '/admissions/faq/' },
+      { label: 'For professionals', href: '/for-professionals/' }, // answer 9.3: last item; footer link stays
     ],
   },
   {
@@ -113,8 +118,8 @@ export const NAV = [
       { label: 'West Palm Beach location', href: '/locations/west-palm-beach/' },
     ],
   },
-  // Blog is phase 2 (/blog/ replaces /media/ per the final sitemap); until then it points at the media hub.
-  { label: 'Blog', href: '/media/' },
+  // /blog/ replaced /media/ (final sitemap); /media/* 301s to /blog/*.
+  { label: 'Blog', href: '/blog/' },
 ];
 
 // Schedules confirmed in the questionnaire (Q7) and the live FAQ.
@@ -167,21 +172,25 @@ export const MENTAL_HEALTH = [
   { name: 'ADHD', blurb: 'Psychiatric evaluation through Telemed Clinix, with therapy that accounts for attention and impulsivity.' },
 ];
 
-// Insurance logos from the live site. Two were mislabeled there: the "United Healthcare" file was
-// actually Humana (now humana.webp; Humana is in-network per the Client Wiki 2026-09-22) and the "Molina" file was UnitedHealthcare.
-// There is no Molina logo yet, so Molina appears in text lists only until the client sends one.
-// Order per Client Wiki (2026-09-22): never lead with Medicaid. Commercial first, then Medicaid plans.
+// Accepted insurance logos (Home insurance section and anywhere logos are shown), in the Client Wiki's
+// order (2026-09-22): commercial payers first, never lead with Medicaid. Sources: vector SVGs from
+// Regain-hope-site (Aetna, Cigna, UnitedHealthcare, Humana), Wikimedia Commons (Molina), and the live
+// sunviewwellness.com (the rest). Note: the live site mislabeled two files (its "United Healthcare"
+// was Humana and its "Molina" was UnitedHealthcare).
+// `w` = display width (px): balanced by aspect ratio so logos read the same size, then fine-tuned by the
+// client (2026-09-22: AmeriHealth +50, Florida Blue +30, Molina −20, UnitedHealthcare −20, Oscar −20).
 export const INSURANCE = [
-  { name: 'Aetna', logo: '/images/logos/aetna.webp' },
-  { name: 'Florida Blue', logo: '/images/logos/florida-blue.webp' },
-  { name: 'Cigna', logo: '/images/logos/cigna.webp' },
-  { name: 'UnitedHealthcare', logo: '/images/logos/unitedhealthcare.webp' },
-  { name: 'Oscar', logo: '/images/logos/oscar.webp' },
-  { name: 'Ambetter', logo: '/images/logos/ambetter.webp' },
-  { name: 'Humana', logo: '/images/logos/humana.webp' },
-  { name: 'Sunshine Health', logo: '/images/logos/sunshine-health.webp' },
-  { name: 'AmeriHealth Caritas Florida', logo: '/images/logos/amerihealth-caritas.webp' },
-  { name: 'Community Care Plan', logo: '/images/logos/community-care-plan.webp' },
+  { name: 'Aetna', logo: '/images/logos/insurance/aetna.svg', w: 171 },
+  { name: 'Florida Blue', logo: '/images/logos/insurance/florida-blue.webp?v=2', w: 230 },
+  { name: 'Cigna', logo: '/images/logos/insurance/cigna.svg', w: 102 },
+  { name: 'UnitedHealthcare', logo: '/images/logos/insurance/unitedhealthcare.svg', w: 111 },
+  { name: 'Oscar', logo: '/images/logos/insurance/oscar.webp?v=2', w: 134 },
+  { name: 'Ambetter', logo: '/images/logos/insurance/ambetter.webp?v=2', w: 140 },
+  { name: 'Humana', logo: '/images/logos/insurance/humana.svg', w: 169 },
+  { name: 'Sunshine Health', logo: '/images/logos/insurance/sunshine-health.webp?v=2', w: 132 },
+  { name: 'AmeriHealth Caritas Florida', logo: '/images/logos/insurance/amerihealth-caritas.webp?v=2', w: 172 },
+  { name: 'Molina Healthcare', logo: '/images/logos/insurance/molina.svg', w: 114 },
+  { name: 'Community Care Plan', logo: '/images/logos/insurance/community-care-plan.webp?v=2', w: 137 },
 ];
 
 export const CARRIERS = [
@@ -205,10 +214,10 @@ export const CARRIERS = [
 // National Action Alliance for Suicide Prevention: from the live sunviewwellness.com homepage
 // (300px raster; ask the client for a vector if it needs to render larger).
 export const ACCREDITATIONS = [
-  { name: 'The Joint Commission', logo: '/images/accreditations/joint-commission.webp', logoOnDark: '/images/accreditations/joint-commission.webp', w: 240, h: 240 },
-  { name: 'National Action Alliance for Suicide Prevention', logo: '/images/accreditations/action-alliance.webp', logoOnDark: '/images/accreditations/action-alliance-white.webp', w: 196, h: 92 },
-  { name: 'SAMHSA', logo: '/images/accreditations/samhsa.svg', logoOnDark: '/images/accreditations/samhsa-white.svg', w: 83, h: 28 },
-  { name: 'National Association of Addiction Treatment Providers', logo: '/images/accreditations/naatp.svg', logoOnDark: '/images/accreditations/naatp-white.svg', w: 159, h: 50 },
+  { name: 'The Joint Commission', url: '{{SEAL_URL_JOINT_COMMISSION}}', logo: '/images/accreditations/joint-commission.webp', logoOnDark: '/images/accreditations/joint-commission.webp', w: 240, h: 240 },
+  { name: 'National Action Alliance for Suicide Prevention', url: '{{SEAL_URL_ACTION_ALLIANCE}}', logo: '/images/accreditations/action-alliance.webp', logoOnDark: '/images/accreditations/action-alliance-white.webp', w: 196, h: 92 },
+  { name: 'SAMHSA', url: '{{SEAL_URL_SAMHSA}}', logo: '/images/accreditations/samhsa.svg', logoOnDark: '/images/accreditations/samhsa-white.svg', w: 83, h: 28 },
+  { name: 'National Association of Addiction Treatment Providers', url: '{{SEAL_URL_NAATP}}', logo: '/images/accreditations/naatp.svg', logoOnDark: '/images/accreditations/naatp-white.svg', w: 159, h: 50 },
 ];
 
 // Bios condensed from sunviewwellness.com/about-us/. No headshots exist yet, so cards show initials.
@@ -303,3 +312,26 @@ export const initials = (name) =>
     .slice(0, 2)
     .join('')
     .toUpperCase();
+
+// Program pages (Programs-Content-Briefs.md, 2026-09-22): every program page ends its body with a visible
+// reviewed-by block and carries `reviewedBy` in the page schema. No headshot exists yet (the live site has
+// none), so the block shows initials until the client sends one: set `photo` then.
+export const REVIEWERS = {
+  frank: {
+    name: 'Frank Galimidi',
+    creds: 'CASAC, CAP, CRADC, ICADC, NCAC II, SAP',
+    role: 'Chief Executive Officer',
+    href: '/our-team/frank-galimidi/',
+    photo: null,
+  },
+  // Clinical pages (mental health, trauma, dual diagnosis) per What-We-Treat-Content-Briefs.md
+  dana: {
+    name: 'Dana Martin',
+    creds: 'Ph.D., LMFT, MCAP, QS',
+    role: 'Clinical Director',
+    href: '/our-team/dana-martin/',
+    photo: null,
+  },
+};
+export const REVIEWER = REVIEWERS.frank;
+export const LAST_REVIEWED = '2026-09-22';
