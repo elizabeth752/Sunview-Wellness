@@ -266,9 +266,10 @@ export const PEOPLE = [
 
   // ── Admissions and Outreach ────────────────────────────────────────────────────
   {
-    // Spelled with a K (user, 2026-09-25). /our-team/carissa/ 301s here (vercel.json).
-    slug: 'karissa',
-    name: 'Karissa',
+    // Karissa Delaney: K spelling and surname confirmed (user + status call, 2026-09-25).
+    // /our-team/carissa/ and /our-team/karissa/ 301 here (vercel.json).
+    slug: 'karissa-delaney',
+    name: 'Karissa Delaney',
     first: 'Karissa',
     creds: '',
     title: 'Office Manager / Admissions',
