@@ -262,11 +262,10 @@ export const PEOPLE = [
 
   // ── Admissions and Outreach ────────────────────────────────────────────────────
   {
-    // Surname unconfirmed (3.1 = E): the Wiki spells "Carissa"; the live site says "Karissa Delaney".
-    // [confirm surname with Elizabeth] then rename the slug to carissa-{surname} (and add a redirect).
-    slug: 'carissa',
-    name: 'Carissa',
-    first: 'Carissa',
+    // Spelled with a K (user, 2026-09-25). /our-team/carissa/ 301s here (vercel.json).
+    slug: 'karissa',
+    name: 'Karissa',
+    first: 'Karissa',
     creds: '',
     title: 'Office Manager / Admissions',
     group: 'admissions',
@@ -274,11 +273,11 @@ export const PEOPLE = [
     credentials: [],
     education: [],
     bio: [
-      'Carissa serves as Office Manager at Sunview Wellness, overseeing daily operations and supporting both staff and the people in treatment throughout the recovery process. She manages office operations, scheduling, communication and administrative coordination.',
-      'Known for being dependable, organized and compassionate, Carissa is passionate about creating a welcoming environment for individuals seeking treatment and recovery.',
+      'Karissa serves as Office Manager at Sunview Wellness, overseeing daily operations and supporting both staff and the people in treatment throughout the recovery process. She manages office operations, scheduling, communication and administrative coordination.',
+      'Known for being dependable, organized and compassionate, Karissa is passionate about creating a welcoming environment for individuals seeking treatment and recovery.',
     ],
     role: [
-      'Carissa handles most admissions and incoming calls at Sunview. Her role spans the office and admissions: scheduling, communication and the administrative coordination that keeps each person’s treatment running smoothly. If you’re thinking about starting, <a href="/admissions/">here’s how admissions works</a>.',
+      'Karissa handles most admissions and incoming calls at Sunview. Her role spans the office and admissions: scheduling, communication and the administrative coordination that keeps each person’s treatment running smoothly. If you’re thinking about starting, <a href="/admissions/">here’s how admissions works</a>.',
     ],
     photo: null,
     linkedin: null,

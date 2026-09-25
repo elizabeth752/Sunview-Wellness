@@ -24,6 +24,7 @@
     { "source": "/php-iop-west-palm-beach/", "destination": "/programs/iop/", "statusCode": 301 },
     { "source": "/outpatient-rehab-west-palm-beach/", "destination": "/programs/outpatient/", "statusCode": 301 },
     { "source": "/about-us/", "destination": "/our-team/", "statusCode": 301 },
+    { "source": "/our-team/carissa/", "destination": "/our-team/karissa/", "statusCode": 301 },
     { "source": "/our-approach/", "destination": "/about/our-approach/", "statusCode": 301 },
 
     { "source": "/media/", "destination": "/blog/", "statusCode": 301 },
