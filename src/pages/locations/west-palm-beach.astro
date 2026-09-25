@@ -5,12 +5,14 @@
 // shared MapSection is off to avoid a second map). "Getting Here" is omitted: parking and transit are
 // unverified (brief: write only what's verifiable, otherwise omit).
 // Schema: the site's ONLY LocalBusiness node, a MedicalClinic (#clinic) whose parentOrganization is Base's
-// MedicalOrganization (#organization), + FAQPage. BreadcrumbList comes from Base.
+// MedicalOrganization (#organization), a WebPage about it, + FAQPage. BreadcrumbList comes from Base. No geo
+// (no verified coordinates) and no rating markup.
 import ServicePage from '../../layouts/ServicePage.astro';
 import Icon from '../../components/Icon.astro';
 import SunMark from '../../components/SunMark.astro';
 import { SITE, ACCREDITATIONS } from '../../data/site.js';
-import { GBP_URL, GBP_RATING } from '../../data/reviews.js';
+import { GBP_URL } from '../../data/reviews.js';
+import { pageSchema } from '../../lib/programSchema.js';
 
 const path = '/locations/west-palm-beach/';
 const url = new URL(path, SITE.url).href;
@@ -82,9 +84,7 @@ const faqs = [
   { q: 'Do you serve people outside West Palm Beach?', a: 'Yes. We serve people across Palm Beach County, and free door-to-door transportation applies wherever you live in the county.' },
 ];
 
-const strip = (html: string) => html.replace(/<[^>]+>/g, '');
 const clinic = {
-  '@context': 'https://schema.org',
   '@type': 'MedicalClinic',
   '@id': `${url}#clinic`,
   name: SITE.name,
@@ -111,17 +111,12 @@ const clinic = {
     // Evening IOP
     { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Wednesday', 'Thursday'], opens: '18:00', closes: '21:00' },
   ],
+  // Visible in the "Do you serve people outside West Palm Beach?" FAQ. No rating markup (third-party GBP rating).
+  areaServed: { '@type': 'AdministrativeArea', name: 'Palm Beach County, Florida' },
   sameAs: [SITE.mapsUrl, GBP_URL, SITE.social.facebook, SITE.social.instagram, SITE.social.linkedin, SITE.social.x],
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: GBP_RATING.average, reviewCount: GBP_RATING.count, bestRating: 5 },
 };
-const schema = [
-  clinic,
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.plain ?? strip(f.a) } })),
-  },
-];
+// WebPage about the clinic + the clinic node + FAQPage (pageSchema; `plain` answers are the schema text).
+const schema = [...pageSchema({ path, title: metaTitle, description, faqs, extra: { about: { '@id': `${url}#clinic` } } }), clinic];
 
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---

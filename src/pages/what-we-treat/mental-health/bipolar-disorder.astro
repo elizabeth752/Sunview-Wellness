@@ -29,10 +29,11 @@ const faqs = [
   { q: 'I receive a long-acting injectable. Can I still attend?', a: 'Injectable psychiatric medications are given and monitored by an outside provider who can administer them properly. We coordinate with that provider while you’re in treatment with us.' },
   { q: 'Do you treat bipolar disorder without substance use?', a: 'We treat bipolar disorder when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for bipolar disorder care on its own, we’ll help you find the right fit.' },
   { q: 'What if my symptoms get worse during treatment?', a: 'We watch for changes throughout treatment. If psychiatric symptoms significantly worsen, or you can’t take part safely, we help you reach a more intensive level of care for stabilization and plan your return.' },
-  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.', schema: false }, // visible; marked up on /anxiety/ only (FAQ schema dedupe)
 ];
 ---
 <ServicePage
+  pageType="MedicalWebPage"
   path={path}
   metaTitle="Bipolar Disorder and Addiction Treatment in West Palm Beach"
   description="Bipolar disorder treated alongside substance use in West Palm Beach. Outpatient care with psychiatric medication management through Telemed Clinix."

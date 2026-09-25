@@ -5,6 +5,7 @@ import ServicePage from '../../layouts/ServicePage.astro';
 import NextSteps from '../../components/NextSteps.astro';
 import Icon from '../../components/Icon.astro';
 import { WWT, CATEGORIES } from '../../data/treat.js';
+import { conditionAbout } from '../../lib/programSchema.js';
 
 const integrated = [
   { icon: 'users', title: 'One team', text: 'Your therapist, group facilitator and psychiatric provider work from the same understanding of you.' },
@@ -27,6 +28,7 @@ const faqs = [
 ];
 ---
 <ServicePage
+  pageType="MedicalWebPage"
   path="/what-we-treat/dual-diagnosis/"
   metaTitle="Dual Diagnosis Treatment in West Palm Beach | Sunview"
   description="Integrated dual diagnosis treatment in West Palm Beach: substance use and mental health treated as one picture in PHP, IOP and OP, psychiatry included."
@@ -36,6 +38,7 @@ const faqs = [
   lead="Integrated outpatient treatment for adults living with substance use and a mental health condition at the same time, in PHP, IOP and OP, with psychiatric care built in."
   faqTitle="Frequently Asked Questions About Dual Diagnosis"
   faqs={faqs}
+  about={conditionAbout('Dual diagnosis')}
   insurance
   reviews
 >

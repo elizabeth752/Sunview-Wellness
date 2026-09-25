@@ -24,12 +24,14 @@ const url = new URL(path, SITE.url).href;
 
 const schema = [
   {
-    '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     '@id': `${url}#webpage`,
     url,
     name: metaTitle,
     description,
+    isPartOf: { '@id': `${SITE.url}/#website` },
+    breadcrumb: { '@id': `${url}#breadcrumb` },
+    inLanguage: 'en-US',
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntity: {
       '@type': 'ItemList',

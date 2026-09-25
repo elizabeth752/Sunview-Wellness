@@ -4,9 +4,10 @@
 // Bio prose: the Wiki bios plus the live About page (docs/content/live-about-us-2026-09-23.txt), lightly
 // rewritten (third person, no em dashes, no "client"). Program facts in `role`: the Clinical Director
 // questionnaire (Q#). Sentence-by-sentence sources: docs/content/about-team-sources-team.md.
-// Nothing here may come from LinkedIn until Jhonatan provides the URLs.
+// LinkedIn: Jhonatan supplied the URLs on 2026-09-25 and authorized LinkedIn photos (Walter, Frank, Dana).
 //
 // photo: null → branded initials placeholder on mist ({{PHOTO}}). Set a path when headshots arrive.
+// photo / photoSm: 600px and 200px WebP in public/images/team/; originals + sources in assets/team/.
 // linkedin: null → no LinkedIn link and no schema sameAs ({{LINKEDIN_URL}}). Set the URL to show it.
 // publish: false → no real bio yet (Decisions 2026-09-24, placeholder policy). The person page is NOT built
 // (QA batch 12, item 17) and the person is left out of the /our-team/ grid,
@@ -65,8 +66,9 @@ export const PEOPLE = [
       'Frank leads Sunview Wellness as Chief Executive Officer, setting the strategy and the standard of care for the whole program. He is the creator of In Vivo Treatment™ and Clinical Architecture™, the two ideas behind how Sunview’s outpatient programs are built.',
     ],
     inVivo: true, // extra H2 "In Vivo Treatment™ and Clinical Architecture™" (brief §B)
-    photo: null,
-    linkedin: null,
+    photo: '/images/team/frank-galimidi.webp',
+    photoSm: '/images/team/frank-galimidi-200.webp',
+    linkedin: 'https://www.linkedin.com/in/frank-galimidi-casac-cap-cradc-ncacii-icadc-sap-8669054/',
   },
   {
     slug: 'dana-martin',
@@ -99,8 +101,9 @@ export const PEOPLE = [
       'Her systems perspective runs through the program’s design: space to explore relationships, family dynamics, past experiences and coping patterns, not only symptoms, and an emphasis on <a href="/therapies/family-therapy/">family involvement</a> when it’s clinically appropriate.',
       'Dana also leads the clinical team and asks clinicians to think systemically, with questions like “What is this behavior communicating?” and “What function does this pattern serve?”, so the team understands why an intervention is used, not only which one.',
     ],
-    photo: null,
-    linkedin: null,
+    photo: '/images/team/dana-martin.webp',
+    photoSm: '/images/team/dana-martin-200.webp',
+    linkedin: 'https://www.linkedin.com/in/dana-martin-ph-d-lmft-mcap-qs-316aa0380/',
   },
 
   // ── Therapists ─────────────────────────────────────────────────────────────────
@@ -133,7 +136,7 @@ export const PEOPLE = [
       'His experience with co-occurring conditions fits the way Sunview treats <a href="/what-we-treat/dual-diagnosis/">dual diagnosis</a>: looking at how substance use and mental health influence each other rather than treating each on its own.',
     ],
     photo: null,
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/gabriel-pe%C3%B1a-ed-s-lmhc-qs-04b737103/',
   },
   {
     slug: 'tyler-shoens',
@@ -175,7 +178,7 @@ export const PEOPLE = [
     ],
     role: PRIMARY_THERAPIST_ROLE,
     photo: null,
-    linkedin: null,
+    linkedin: 'https://www.linkedin.com/in/maria-c-nowak/',
   },
   {
     slug: 'jillian-john',
@@ -237,8 +240,9 @@ export const PEOPLE = [
       'Walter Bierschenk holds a master’s degree in Clinical Mental Health Counseling from Nova Southeastern University. He combines psychoeducation and evidence-based treatments to guide the people he works with toward improved coping strategies and resiliency.',
     ],
     role: GROUP_LEADER_ROLE,
-    photo: null,
-    linkedin: null,
+    photo: '/images/team/walter-bierschenk.webp',
+    photoSm: '/images/team/walter-bierschenk-200.webp',
+    linkedin: 'https://www.linkedin.com/in/walter-bierschenk-lmhc-emdr-nerpsc-10b81291/',
   },
   {
     slug: 'jose-toledo',

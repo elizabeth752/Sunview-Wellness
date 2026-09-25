@@ -314,7 +314,8 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   {/* FAQ */}
   <section class="section bg-mist">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
+      {/* Heading column stays beside the answers while the accordion scrolls (desktop only) */}
+      <div class="lg:sticky lg:top-[100px] lg:self-start">
         <span class="eyebrow">FAQ</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Frequently Asked Questions About Referrals</h2>
         <a href="/admissions/faq/" class="btn-ghost mt-8">All admissions FAQs</a>

@@ -1,11 +1,11 @@
 ---
 // Programs pages (Programs-Content-Briefs.md, 2026-09-22): ServicePage with the Programs rotation
-// (Insurance + Map, Reviews on the hub only), the "other programs" block and a MedicalTherapy schema.
+// (Insurance + Map, Reviews on the hub only), the "other programs" block and a MedicalWebPage about a MedicalTherapy.
 import ServicePage from './ServicePage.astro';
 import ProgramLinks from '../components/ProgramLinks.astro';
 import { programSchema } from '../lib/programSchema.js';
 
-interface Faq { q: string; a: string }
+interface Faq { q: string; a: string; schema?: boolean }
 interface Props {
   path: string;
   metaTitle: string;
@@ -43,7 +43,7 @@ const crumbs = isHub ? [{ name: 'Programs', href: '/programs/' }] : [{ name: 'Pr
   insurance
   reviews={reviews}
   map
-  schema={programSchema({ path, title: metaTitle, description, therapy, faqs })}
+  schema={programSchema({ path, title: metaTitle, description, therapy, faqs, pageType: 'MedicalWebPage' })}
 >
   <slot />
   {!isHub && (

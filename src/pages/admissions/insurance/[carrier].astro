@@ -62,12 +62,15 @@ const programs = [
   { code: 'OP', name: 'Outpatient Program', href: '/programs/outpatient/', text: 'One weekday morning to keep the work going as life gets steadier.' },
 ];
 
+// "Out of network" and "How long does verification take?" repeat on every carrier page: they stay visible
+// everywhere but are marked up on the first published carrier only (FAQ schema dedupe; not on the hub).
+const firstCarrier = PUBLISHED_PAYERS[0].slug === p.slug;
 const faqs = [
   { q: net.faqQ, a: net.faqA },
   { q: 'Do I need pre-authorization?', a: `Some ${A} plans require approval before PHP or IOP starts, and some don’t. If yours does, our team requests it for you and keeps you updated.` },
-  { q: 'What if my plan is out of network?', a: `Ask us. We’ll check your out-of-network benefits and walk you through your options. <a href="/admissions/insurance/">See insurance and payment options</a>.` },
+  { q: 'What if my plan is out of network?', a: `Ask us. We’ll check your out-of-network benefits and walk you through your options. <a href="/admissions/insurance/">See insurance and payment options</a>.`, schema: firstCarrier },
   { q: `Does ${A} cover IOP?`, a: `Intensive outpatient treatment is a recognized level of care, and ${A} plans generally cover it when it’s medically necessary. The details depend on your plan. <a href="/programs/iop/">Learn about the Intensive Outpatient Program</a>.` },
-  { q: 'How long does verification take?', a: 'We start as soon as we have your details, and once your benefits are verified and your pre-screening is done, we can often have you enrolled within 24 hours. <a href="/admissions/">How admissions works</a>.' },
+  { q: 'How long does verification take?', a: 'We start as soon as we have your details, and once your benefits are verified and your pre-screening is done, we can often have you enrolled within 24 hours. <a href="/admissions/">How admissions works</a>.', schema: firstCarrier },
 ];
 ---
 <ServicePage

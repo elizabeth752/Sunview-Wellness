@@ -235,9 +235,9 @@ export const initials = (name) =>
     .join('')
     .toUpperCase();
 
-// Program pages (Programs-Content-Briefs.md, 2026-09-22): every program page ends its body with a visible
-// reviewed-by block and carries `reviewedBy` in the page schema. No headshot exists yet (the live site has
-// none), so the block shows initials until the client sends one: set `photo` then.
+// Reviewed-by byline (ReviewedBy.astro) in the hero of Programs, Therapies and What We Treat pages. Visible
+// only: it is not in the page schema (no `reviewedBy`). With `photo: null` the byline shows initials: set
+// `photo` to show a headshot.
 export const REVIEWERS = {
   frank: {
     name: 'Frank Galimidi',

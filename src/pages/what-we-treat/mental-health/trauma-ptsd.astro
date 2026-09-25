@@ -37,10 +37,11 @@ const faqs = [
   { q: 'Do you offer EMDR?', a: 'We don’t offer EMDR as a designated service. EMDR-informed techniques may be used in individual sessions when clinically appropriate. Our main approaches include IFS, inner child work, psychodynamic therapy and DBT.' },
   { q: 'Do you treat PTSD without substance use?', a: 'We treat PTSD when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for PTSD care on its own, we’ll help you find the right fit.' },
   { q: 'What if difficult memories become overwhelming?', a: 'Your team adjusts the pace. We also monitor your mental health throughout treatment, and if symptoms significantly worsen or your safety becomes a concern, we help you reach a more intensive level of care.' },
-  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.', schema: false }, // visible; marked up on /anxiety/ only (FAQ schema dedupe)
 ];
 ---
 <ServicePage
+  pageType="MedicalWebPage"
   path={path}
   metaTitle="Trauma and PTSD Treatment in West Palm Beach | Sunview"
   description="Trauma-informed treatment for PTSD alongside substance use in West Palm Beach. Outpatient PHP, IOP and OP with psychodynamic, IFS and DBT-based care."

@@ -9,7 +9,7 @@
 // Podcasts: lazy YouTube facade first (poster = YouTube thumbnail, 16:9, loads only on click), then the body.
 // Author = reference into src/data/team.js (postAuthor). Feature graphic = og:image (scripts/generate-post-graphics.mjs).
 import Base from '../../layouts/Base.astro';
-import PageHero from '../../components/PageHero.astro';
+import BlogBanner from '../../components/blog/BlogBanner.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
 import Avatar from '../../components/Avatar.astro';
@@ -68,9 +68,9 @@ const reviewPool = REVIEWS.filter((r) => r.featured && r.text.length <= 450);
 const review = reviewPool[index % reviewPool.length];
 
 const schemaNode: Record<string, unknown> = {
-  '@context': 'https://schema.org',
   '@type': 'BlogPosting',
   '@id': `${url}#article`,
+  isPartOf: { '@id': `${SITE.url}/blog/#blog` },
   headline: post.title,
   description: post.metaDescription ?? post.dek,
   image: new URL(ogImage, SITE.url).href,
@@ -78,7 +78,7 @@ const schemaNode: Record<string, unknown> = {
   dateModified: postUpdated(post),
   author: { '@type': 'Person', '@id': `${authorUrl}#person`, name: author.name, url: authorUrl, jobTitle: author.title },
   publisher: { '@id': `${SITE.url}/#organization` },
-  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  mainEntityOfPage: { '@id': `${url}#webpage` },
   articleSection: post.category,
   inLanguage: 'en-US',
 };
@@ -95,6 +95,19 @@ if (post.type === 'video') {
   };
 }
 const crumbs = [{ name: 'Blog', href: '/blog/' }, { name: post.title, href: postUrl(post) }];
+// The page node the BlogPosting is the main entity of (Base adds the organization, WebSite and #breadcrumb).
+// The Blog node (#blog) is described in full on /blog/; here it's a stub so isPartOf resolves in this graph.
+const blogNode = { '@type': 'Blog', '@id': `${SITE.url}/blog/#blog`, url: `${SITE.url}/blog/`, name: 'Sunview Wellness Blog' };
+const pageNode = {
+  '@type': 'WebPage',
+  '@id': `${url}#webpage`,
+  url,
+  name: metaTitle,
+  description: post.metaDescription ?? post.dek,
+  isPartOf: { '@id': `${SITE.url}/#website` },
+  breadcrumb: { '@id': `${url}#breadcrumb` },
+  inLanguage: 'en-US',
+};
 const label = 'text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted';
 const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
 ---
@@ -104,54 +117,43 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
   image={ogImage}
   type="article"
   breadcrumbs={crumbs}
-  schema={[schemaNode]}
+  schema={[pageNode, schemaNode, blogNode]}
 >
-  {/* H1 kept to the article column's width at ≥1024px (QA batch 11 item 10) */}
-  <div class="sv-post-hero">
-  <PageHero title={post.title} crumbs={crumbs} actions={false} banner>
-    <Fragment slot="below">
-      <div class="mt-8 grid gap-6 border-t border-white/20 pt-7 lg:mt-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-[30px] lg:pt-9">
-        {/* Compact byline (QA batch 11 item 6): 65px photo, name + credentials + role on one line, 2-line bio, Read more.
-            Below 1024px: photo + name + role only (SOP §2). */}
-        <div class="flex items-center gap-4 lg:items-start">
-          <Avatar person={author} class="h-[65px] w-[65px]" text="text-xl" />
-          <div class="min-w-0">
-            <p class="leading-snug">
-              <a href={author.href} class="font-display text-lg font-bold text-white hover:underline">{author.name}</a><span class="hidden text-sm font-bold text-white/80 lg:inline">, {author.creds}</span>
-              <span class="text-[15px] text-white/85"><span aria-hidden="true"> · </span>{author.role}</span>
-            </p>
-            <p class="mt-1.5 hidden max-w-[70ch] text-[15px] leading-relaxed text-white/85 lg:line-clamp-2">{bylineBio}</p>
-            <a href={author.href} class="mt-1.5 hidden items-center gap-1 text-sm font-extrabold text-white underline decoration-gold decoration-2 underline-offset-4 hover:decoration-white lg:inline-flex" aria-label={`Read more about ${author.name}`}>Read more <span aria-hidden="true">→</span></a>
-          </div>
-        </div>
-        {/* Category · date · share */}
-        <div class="flex flex-col gap-4 lg:border-l lg:border-white/20 lg:pl-8">
-          <dl class="flex flex-wrap gap-x-10 gap-y-3">
-            <div>
-              <dt class="text-[13px] font-extrabold uppercase tracking-[0.08em] text-white/70">Category</dt>
-              <dd class="mt-1 inline-flex items-center gap-2 font-bold text-white">
-                <span class="h-2.5 w-2.5 rounded-full" style={`background:${categoryColor(post.category).accent}`} aria-hidden="true"></span>{post.category}
-              </dd>
-            </div>
-            <div>
-              <dt class="text-[13px] font-extrabold uppercase tracking-[0.08em] text-white/70">Published</dt>
-              <dd class="mt-1 font-bold text-white"><time datetime={post.date}>{formatDate(post.date)}</time></dd>
-            </div>
-          </dl>
-          <ShareLinks url={url} title={post.title} tone="dark" />
+  {/* Minimal banner (modeled on Breathe's post banner, Sunview ground + fonts): breadcrumb, H1 at the article
+      column's width, then one compact row: byline left, category · date · Share on right. No form. */}
+  <BlogBanner title={post.title} crumbs={crumbs}>
+    <div class="mt-6 flex flex-col gap-4 lg:mt-7 lg:flex-row lg:items-start lg:justify-between lg:gap-8 xl:gap-12">
+      {/* Compact byline (SOP §2): 65px photo, name + credentials · role on one line, 2-line bio at 14px, Read more.
+          Below 1024px: photo + name + role only. */}
+      <div class="flex min-w-0 items-center gap-4 lg:flex-1 lg:items-start xl:max-w-[calc(100%-370px)]">
+        <Avatar person={author} class="h-[65px] w-[65px]" text="text-xl" />
+        <div class="min-w-0">
+          <p class="text-[15px] leading-snug text-white/85 lg:text-sm xl:text-[15px]">
+            <a href={author.href} class="font-bold text-white hover:underline">{author.name}</a><span class="hidden font-bold text-white lg:inline">, {author.creds}</span><span aria-hidden="true"> · </span><span class="whitespace-nowrap">{author.role}</span>
+          </p>
+          <p class="mt-1 hidden text-sm leading-[1.55] text-white/80 lg:line-clamp-2">{bylineBio}</p>
+          <a href={author.href} class="mt-1 hidden items-center gap-1 text-[13px] font-extrabold text-gold hover:text-white hover:underline lg:inline-flex" aria-label={`Read more about ${author.name}`}>Read more <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      {/* One-line origin note (not a source): "Originally published on LinkedIn" · "Watch on YouTube" · "Watch the clip" */}
-      {post.note && (
-        <p class="mt-6 text-[15px] leading-relaxed text-white/85">
-          <Icon name={post.type === 'article' ? 'linkedin' : post.type === 'video' ? 'youtube' : 'play'} class="mr-1.5 inline-block h-4 w-4 -translate-y-px align-middle text-gold" />
-          {post.note.text && <>{post.note.text}<span aria-hidden="true"> · </span></>}
-          <a href={post.note.url} target="_blank" rel="noopener" class="whitespace-nowrap font-extrabold text-white underline decoration-gold decoration-2 underline-offset-4 hover:decoration-white">{post.note.linkText}<Icon name="external" class="ml-1 inline-block h-3.5 w-3.5 align-middle" /><span class="sr-only"> (opens in a new tab)</span></a>
+      {/* Category · date, then Share on (right-aligned at ≥1024px) */}
+      <div class="flex shrink-0 flex-col gap-3 lg:items-end">
+        <p class="flex flex-wrap items-center gap-x-2 text-sm font-bold text-white/90">
+          <span class="inline-flex items-center gap-2"><span class="h-2.5 w-2.5 rounded-full" style={`background:${categoryColor(post.category).accent}`} aria-hidden="true"></span><span class="sr-only">Category: </span>{post.category}</span>
+          <span aria-hidden="true" class="text-white/60">·</span>
+          <span><span class="sr-only">Published </span><time datetime={post.date}>{formatDate(post.date)}</time></span>
         </p>
-      )}
-    </Fragment>
-  </PageHero>
-  </div>
+        <ShareLinks url={url} title={post.title} tone="dark" class="sv-banner-share" />
+      </div>
+    </div>
+    {/* One-line origin note (not a source): "Originally published on LinkedIn" · "Watch on YouTube" · "Watch the clip" */}
+    {post.note && (
+      <p class="mt-5 text-sm leading-relaxed text-white/85">
+        <Icon name={post.type === 'article' ? 'linkedin' : post.type === 'video' ? 'youtube' : 'play'} class="mr-1.5 inline-block h-4 w-4 -translate-y-px align-middle text-gold" />
+        {post.note.text && <>{post.note.text}<span aria-hidden="true"> · </span></>}
+        <a href={post.note.url} target="_blank" rel="noopener" class="whitespace-nowrap font-extrabold text-white underline decoration-gold decoration-2 underline-offset-4 hover:decoration-white">{post.note.linkText}<Icon name="external" class="ml-1 inline-block h-3.5 w-3.5 align-middle" /><span class="sr-only"> (opens in a new tab)</span></a>
+      </p>
+    )}
+  </BlogBanner>
 
   {/* <1024px: table of contents drawer trigger (closed by default) */}
   {hasToc && (
@@ -191,7 +193,7 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
             )}
             <ShareLinks url={url} title={post.title} />
             <aside class="flex flex-col gap-5 rounded-[var(--radius-card)] bg-cream p-6 sm:flex-row sm:p-8 lg:hidden" aria-label="About the author" data-author-card>
-              <Avatar person={author} class="h-20 w-20" text="text-2xl" />
+              <Avatar person={author} class="h-[65px] w-[65px]" text="text-xl" />
               <div class="min-w-0">
                 <span class={label}>About the author</span>
                 <p class="mt-1 font-display text-xl font-bold text-charcoal"><a href={author.href} class="hover:text-teal">{author.name}</a><span class="font-sans text-sm font-bold text-muted">, {author.creds}</span></p>
@@ -218,7 +220,7 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
       </div>
 
       {/* ≥1024px: sticky sidebar */}
-      <aside class="sv-sidebar hidden lg:sticky lg:top-[100px] lg:block" aria-label="Article tools">
+      <aside class="sv-sidebar hidden lg:sticky lg:block" aria-label="Article tools" data-sidebar>
         <div class="space-y-5">
           {hasToc && (
             <nav class={cardCls} aria-labelledby="toc-title">
@@ -261,10 +263,8 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
 <style>
   .sv-article > :global(:first-child) { margin-top: 0; }
   .sv-article { max-width: 72ch; }
-  /* H1 = article column width at ≥1024px (container − 340px sidebar − 30px gap) */
-  @media (min-width: 1024px) {
-    .sv-post-hero :global(.sv-hero .max-w-3xl) { max-width: calc(100% - 370px); }
-  }
+  /* Banner share icons: 36px, a notch smaller than the end-of-article row */
+  .sv-banner-share :global(a) { width: 36px; height: 36px; }
   /* Labels inside the body: "Summary by the Sunview Wellness team" · "From the episode description…" */
   .sv-article :global(.sv-src-label) {
     margin-top: 0.5rem; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
@@ -280,9 +280,11 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
   .sv-related li::marker { color: var(--color-gold); }
   .sv-related a { font-weight: 700; line-height: 1.35; color: var(--color-charcoal); }
   .sv-related a:hover { color: var(--color-teal); text-decoration: underline; }
-  /* Sticky sidebar: stays 100px from the top (84px header + 16px); scrolls inside itself when taller than the viewport */
+  /* Sticky sidebar, no inner scroll: `top` is 100px (84px header + 16px) when the sidebar fits the viewport; when it
+     is taller, the script below sets a negative `top` so it scrolls with the page and sticks by its bottom edge
+     (16px above the viewport bottom). Every block, down to Related articles, is always reachable. */
   @media (min-width: 1024px) {
-    .sv-sidebar { max-height: calc(100vh - 116px); overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; border-radius: 12px; }
+    .sv-sidebar { top: var(--sv-sidebar-top, 100px); }
   }
 </style>
 
@@ -300,4 +302,14 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
     });
   });
   // Table of contents behavior lives in components/toc (TocList + TocDrawer).
+
+  // Sidebar "sticky by its bottom": top = min(100px, viewport − sidebar height − 16px). Short sidebar → normal sticky
+  // at 100px; tall sidebar → negative top, so it scrolls with the page until its last block is in view, then sticks.
+  const sidebar = document.querySelector<HTMLElement>('[data-sidebar]');
+  if (sidebar) {
+    const fit = () => sidebar.style.setProperty('--sv-sidebar-top', `${Math.min(100, innerHeight - sidebar.offsetHeight - 16)}px`);
+    fit();
+    addEventListener('resize', fit, { passive: true });
+    new ResizeObserver(fit).observe(sidebar);
+  }
 </script>

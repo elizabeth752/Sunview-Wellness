@@ -92,8 +92,11 @@ const year = new Date().getFullYear();
   {/* 1px divider: green → gold → green (client request 2026-09-22) */}
   <div class="h-px bg-linear-to-r from-teal-deep via-gold to-teal-deep" aria-hidden="true"></div>
   <div class="bg-teal-deep">
-    <div class="container-x py-[15px] text-sm text-white">
-      <p>© {year} Sunview Wellness <span class="mx-1.5 text-white/50" aria-hidden="true">·</span> <a href="/privacy-policy/" class="hover:text-white/80">Privacy Policy</a> <span class="mx-1.5 text-white/50" aria-hidden="true">·</span> Powered by <a href="https://elev8.io" target="_blank" rel="noopener" class="font-bold hover:text-white/80">elev8.io</a></p>
+    {/* 15px top / 25px bottom (+10px, client request 2026-09-25); "Powered by" sits at the right end from md up,
+         stacked under the © line on mobile. The mobile call bar is cleared by the footer's pb-24. */}
+    <div class="container-x flex flex-col gap-1.5 pb-[25px] pt-[15px] text-sm text-white md:flex-row md:items-center md:justify-between md:gap-6">
+      <p>© {year} Sunview Wellness <span class="mx-1.5 text-white/50" aria-hidden="true">·</span> <a href="/privacy-policy/" class="hover:text-white/80">Privacy Policy</a></p>
+      <p>Powered by <a href="https://elev8.io" target="_blank" rel="noopener" class="font-bold hover:text-white/80">elev8.io</a></p>
     </div>
   </div>
 </footer>

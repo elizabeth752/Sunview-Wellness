@@ -3,19 +3,41 @@
 // infinite grayscale marquee (client request 2026-09-22).
 import Icon from './Icon.astro';
 import InsuranceMarquee from './InsuranceMarquee.astro';
-interface Props { title?: string; subtitle?: string }
+// `overlap` (Home only, client request 2026-09-25): the section opens "When you first reach out". A brand teal
+// band continues from the hero and the insurance content sits on it as a white card that straddles the band
+// and the white section below. Default (every other page) is unchanged: a plain white section.
+interface Props { title?: string; subtitle?: string; overlap?: boolean }
 const {
   title = 'Insurance Accepted for Outpatient Rehab in Florida',
   subtitle = 'In network with virtually every carrier, including Medicaid.',
+  overlap = false,
 } = Astro.props;
 ---
-<section class="section">
-  <div class="container-x text-center">
-    <h2 class="text-3xl sm:text-[2.1875rem]">{title}</h2>
-    <p class="subheading mt-3">{subtitle}</p>
-  </div>
-  <InsuranceMarquee class="mt-10" />
-  <div class="container-x mt-10 text-center">
-    <a href="/admissions/insurance/" class="btn-teal">Verify my insurance <Icon name="arrow" /></a>
-  </div>
-</section>
+{overlap ? (
+  <section class="relative">
+    <div class="absolute inset-x-0 top-0 h-[150px] bg-teal sm:h-[190px]" aria-hidden="true"></div>
+    <div class="container-x relative">
+      <div class="overflow-hidden rounded-[var(--radius-card)] border border-line bg-white py-10 sm:py-14">
+        <div class="px-6 text-center">
+          <h2 class="text-3xl sm:text-[2.1875rem]">{title}</h2>
+          <p class="subheading mt-3">{subtitle}</p>
+        </div>
+        <InsuranceMarquee class="mt-10" />
+        <div class="mt-10 px-6 text-center">
+          <a href="/admissions/insurance/" class="btn-teal">Verify my insurance <Icon name="arrow" /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+) : (
+  <section class="section">
+    <div class="container-x text-center">
+      <h2 class="text-3xl sm:text-[2.1875rem]">{title}</h2>
+      <p class="subheading mt-3">{subtitle}</p>
+    </div>
+    <InsuranceMarquee class="mt-10" />
+    <div class="container-x mt-10 text-center">
+      <a href="/admissions/insurance/" class="btn-teal">Verify my insurance <Icon name="arrow" /></a>
+    </div>
+  </section>
+)}

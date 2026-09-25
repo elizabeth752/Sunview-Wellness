@@ -11,7 +11,9 @@ Elev8 standard for rehab and behavioral-health sites. Applies to any client and 
 - **Cards** are one shared component used on the blog page, the post's related/latest blocks and the person page.
 - **Phone numbers** through the site's single phone variable (call-tracking swap). Never hardcoded.
 - **Headings:** one H1 per page; H2/H3 in order; labels and eyebrows as `<span>`; card titles are not headings inside the card (use a styled `<p>` or the link) unless the section's heading hierarchy allows H3.
-- **Images:** feature images are generated brand graphics, not photos and not stock. Person photos are real headshots or the branded initials placeholder (kept ready in case the client decides to launch with placeholders).
+- **Images:** feature images are generated brand graphics, not photos and not stock. Person photos are real headshots or the branded initials placeholder (kept ready in case the client decides to launch with placeholders). Author/person avatar size in bylines, author rows and mini-cards: 65px.
+- **Hero trust elements:** no bullet lists or checklists in or under the hero. Accreditation logos go in one row under the hero buttons (white, except seals whose brand requires original colors, e.g. Joint Commission). No separate trust strip unless the client asks for it explicitly.
+- **Public copy only:** bios and pages never include internal notes from the client's wiki (succession plans, who covers for whom, difficult cases, HR remarks). Scope disclaimers belong on service pages, not in a person's bio.
 
 ---
 
@@ -37,15 +39,16 @@ Elev8 standard for rehab and behavioral-health sites. Applies to any client and 
 
 ## 2. Post template (`/blog/{slug}/`)
 
-**Banner** (same as Home, no form): breadcrumb, H1. Below the H1, two blocks side by side:
-- Left: author photo, name (with credentials), role (e.g. Therapist, CEO), bio excerpt of max 3 lines, `Read more →` to the person page.
-- Right: category, publication date, `Share on` (Facebook, X, LinkedIn, WhatsApp; share the canonical URL).
-- **Mobile/tablet:** the author block collapses to photo + name + role in one line; date and category stay; share icons stay.
+**Banner** (same as Home, no form): breadcrumb, H1. The H1 uses the content column width (about 70–75% of the container), never half the screen, so most titles fit in 2 lines; 3 lines only for very long titles. Below the H1, one compact row (max ~120px tall on desktop), two blocks side by side:
+- Left, author block, subtle: avatar 65px (the standard author photo size everywhere: byline, blog author row, mini-card) · name with credentials and role on one line (e.g. `Shoshana Katz, LMFT · Therapist`, 14–16px) · bio excerpt max 2 lines at 14px · inline `Read more →` to the person page. Never a full paragraph, never a large photo, never a card with its own background: it is a byline, not a section.
+- Right: category, publication date, `Share on` (Facebook, X, LinkedIn, WhatsApp; share the canonical URL), small icons on one line.
+- **Mobile/tablet:** the author block collapses to avatar + name + role in one line; date and category stay; share icons stay.
 
 **Body layout** (desktop ≥1024px)
 - Two columns inside the max-width: article + sticky sidebar, ~30px gap. Section background: a light brand tint. Article container and every sidebar card: white.
-- **Article column:** the content (H2/H3, paragraphs, lists, images, quotes). At the end, in this order: `Sources` (H3 or styled label; numbered or bulleted list of verified links, `rel="nofollow noopener"` to external domains) · `Share on` again · author mini-card (photo, name, role, first ≈5 lines of bio, `Read more →`) · `Latest articles`: 3 most recent posts (excluding the current one) using the shared card.
-- **Sidebar (sticky):** 1) Table of contents built from the article's H2s only, rendered as a list with bullets; smooth scroll; the target heading must land below the sticky header (use `scroll-margin-top` = header height + 16px); active item highlighted on scroll. 2) Mini CTA: short line + call button. 3) Insurance carousel: shows 1.3 logos (one full, the next partially visible), infinite loop, automatic, smooth, pauses on hover, links to the insurance page. 4) One Google review (verbatim, name/initial, stars, link to reviews). 5) Related articles: 1–3 cards, same category first, then latest.
+- **Article column:** the content (H2/H3, paragraphs, lists, images, quotes). At the end, in this order: `Sources` (H3 or styled label; numbered or bulleted list of verified external links, `rel="nofollow noopener"`; omit the block if the article has no real sources, never pad it) · `Share on` again · author mini-card (photo 65px, name, role, first ≈5 lines of bio, `Read more →`) **shown on tablet/mobile only**; on desktop the banner byline is enough.
+- **Below the two columns, full width:** `Latest articles`, 3 most recent posts (excluding the current one) using the shared card. This section sits outside the article/sidebar grid so the cards use the whole container; the sidebar ends where the article ends and never runs alongside the cards.
+- **Sidebar (sticky):** 1) Table of contents built from the article's H2s only, rendered as a list with bullets; smooth scroll; the target heading must land below the sticky header (use `scroll-margin-top` = header height + 16px); active item highlighted on scroll. 2) Mini CTA: short line + call button. 3) Insurance carousel: shows 1.3 logos (one full, the next partially visible), infinite loop, automatic, smooth, pauses on hover, links to the insurance page. 4) One Google review (verbatim, name/initial, stars, link to reviews). 5) Related articles: a plain list of 3 titles (no thumbnails), same category first, then latest.
 - **Tablet and mobile (<1024px):** no sidebar. Below the banner, a `Table of contents` tab/button opens a popup/drawer with the same H2 list; closed by default, never auto-opens. The mini CTA becomes the sticky bottom call bar the site already uses. Insurance carousel, review and related articles render after the article, before the CTA, in that order.
 - **Floating button:** a small fixed `Article tools` button (opens the same drawer: ToC + call) is allowed on mobile if the site uses it.
 
@@ -78,7 +81,7 @@ Grid of person cards (photo, name + credentials, role); each card links to the p
 ## 5. QA checklist before release
 - Banner matches Home on the three templates; no form; breadcrumb only above the H1.
 - Blog: authors row filters and links; category tabs auto-generate from data; filters combine; URL never changes; first row 2 cards, then 3; no dates on cards; every post present in the HTML.
-- Post: sidebar sticky at 1024+; ToC only H2s, bullets, correct scroll offset under the header, active state; insurance carousel loops smoothly at 1.3 visible; review verbatim; related excludes current post; Sources present; share twice; author mini-card at the end; 3 latest posts.
+- Post: H1 in 2 lines at content-column width; byline compact (65px avatar); sidebar sticky at 1024+; ToC only H2s, bullets, correct scroll offset under the header, active state; insurance carousel loops smoothly at 1.3 visible; review verbatim; related list excludes current post; Sources real or omitted; share twice; author mini-card visible on mobile/tablet only; 3 latest posts full width below the two columns.
 - Mobile/tablet: no sidebar; ToC tab/popup closed by default; author simplified in banner; floating tools button if used; sticky call bar.
 - Person: no other people listed; articles block only for authors; carousel/grid creates no URLs; placeholder photo ready; noindex when bio missing.
 - Widths: nothing exceeds the header container except allowed full-bleed elements.

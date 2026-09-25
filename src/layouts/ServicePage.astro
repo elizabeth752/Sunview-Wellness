@@ -3,8 +3,9 @@
 // hero (breadcrumb above the H1, accreditation logos under the buttons, coverage form) → page body (default slot) → optional "links" slot →
 // rotation sections chosen per page group (Insurance / Reviews / Map) → FAQ →
 // coverage form below lg → CTA.
-// Schema: MedicalOrganization (Base) + BreadcrumbList (Base) + WebPage (+ optional `about`)
-// + FAQPage.
+// Schema (one @graph, Base): MedicalOrganization + WebSite + BreadcrumbList, then this page's WebPage
+// (`pageType`: WebPage, MedicalWebPage, CollectionPage, AboutPage or FAQPage; + optional `about`) + FAQPage.
+// FAQ items with `schema: false` stay visible but are left out of the markup (cross-page dedupe).
 import Base from './Base.astro';
 import PageHero from '../components/PageHero.astro';
 import LeadForm from '../components/LeadForm.astro';
@@ -15,7 +16,7 @@ import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { pageSchema } from '../lib/programSchema.js';
 
-interface Faq { q: string; a: string }
+interface Faq { q: string; a: string; plain?: string; schema?: boolean }
 interface Crumb { name: string; href: string }
 interface Props {
   path: string;
@@ -35,6 +36,7 @@ interface Props {
   helpHref?: string; // target of the hero/CTA "Get help now" ('#get-started' scrolls to the form)
   schema?: Record<string, unknown>[]; // overrides the default page schema (e.g. programs' MedicalTherapy)
   about?: Record<string, unknown>; // schema `about` node (e.g. MedicalCondition)
+  pageType?: string; // schema type of the page node (default WebPage)
   ctaTitle?: string; // overrides the CTA band's tagline when the page already uses it (e.g. /about/'s subheading)
   noindex?: boolean; // robots noindex for pages that must build but not be indexed
 }
@@ -48,6 +50,7 @@ const {
   helpHref = '/admissions/',
   schema,
   about,
+  pageType = 'WebPage',
   ctaTitle,
   noindex = false,
 } = Astro.props;
@@ -58,7 +61,7 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
   description={description}
   breadcrumbs={crumbs}
   noindex={noindex}
-  schema={schema ?? pageSchema({ path, title: metaTitle, description, about, faqs })}
+  schema={schema ?? pageSchema({ path, title: metaTitle, description, about, faqs, pageType, breadcrumb: crumbs.length > 0 })}
 >
   <PageHero trust title={h1} subheading={subheading} lead={lead} crumbs={crumbs} cta={{ label: 'Get help now', href: helpHref }}>
     <Fragment slot="aside">
@@ -76,7 +79,8 @@ const formId = `page-${path.split('/').filter(Boolean).join('-') || 'home'}`;
 
   {faqSection && <section class="section bg-mist">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
+      {/* Heading column stays beside the answers while the accordion scrolls (desktop only) */}
+      <div class="lg:sticky lg:top-[100px] lg:self-start">
         <span class="eyebrow">FAQ</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">{faqTitle}</h2>
         <p class="subheading mt-3">Straight answers before you call</p>

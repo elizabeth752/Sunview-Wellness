@@ -35,11 +35,12 @@ const faqs = [
   { q: 'Do you treat depression without substance use?', a: 'We treat depression when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for depression care on its own, we’ll help you find the right fit.' },
   { q: 'Can I keep taking my antidepressant?', a: 'Often, yes. Your Telemed Clinix provider reviews what you take, how well it’s working and whether anything needs to change. We don’t switch medications just because you start a program.' },
   { q: 'How will I know treatment is helping?', a: 'We track depressive symptoms with the PHQ-9 during treatment, and your therapist reviews your treatment plan and goals with you every month.' },
-  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.', schema: false }, // visible; marked up on /anxiety/ only (FAQ schema dedupe)
   { q: 'What if my depression gets worse during treatment?', a: 'We watch for changes in your mental health and functioning. If symptoms significantly worsen or your safety becomes a concern, we help you reach a more intensive level of care for stabilization.' },
 ];
 ---
 <ServicePage
+  pageType="MedicalWebPage"
   path={path}
   metaTitle="Depression and Addiction Treatment in West Palm Beach"
   description="Depression treated alongside substance use in West Palm Beach. Outpatient PHP, IOP and OP with therapy and psychiatric medication management."

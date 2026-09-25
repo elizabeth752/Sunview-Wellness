@@ -16,7 +16,8 @@ import Reviews from '../components/Reviews.astro';
 import MapSection from '../components/MapSection.astro';
 import LatestArticles from '../components/LatestArticles.astro';
 import InsuranceSection from '../components/InsuranceSection.astro';
-import { GBP_RATING } from '../data/reviews.js';
+import { SITE } from '../data/site.js';
+import { pageSchema } from '../lib/programSchema.js';
 
 
 const week = [
@@ -91,16 +92,20 @@ const faqs = [
   { q: 'How soon can I start?', a: 'Once your pre-screening is done and your benefits are verified, we can often have you enrolled within 24 hours. <a href="/admissions/">Start here</a>.' },
 ];
 
+// Schema: WebPage about the organization + FAQPage from the visible questions (Base adds the organization,
+// WebSite and no breadcrumb on Home). No rating markup: Google ratings are third-party
+// reviews, and self-serving review markup breaks Google's review-snippet rules.
+const metaTitle = 'Drug & Alcohol Rehab in West Palm Beach | Sunview Wellness';
+const description = 'Outpatient drug, alcohol and mental health treatment in West Palm Beach. PHP, IOP and OP for adults. Joint Commission accredited. Free insurance check.';
+const schema = pageSchema({
+  path: '/', title: metaTitle, description, faqs, breadcrumb: false,
+  extra: { about: { '@id': `${SITE.url}/#organization` } },
+});
 ---
 <Base
-  orgExtra={{ aggregateRating: { '@type': 'AggregateRating', ratingValue: GBP_RATING.average, reviewCount: GBP_RATING.count, bestRating: 5 } }}
-  title="Drug & Alcohol Rehab in West Palm Beach | Sunview Wellness"
-  description="Outpatient drug, alcohol and mental health treatment in West Palm Beach. PHP, IOP and OP for adults. Joint Commission accredited. Free insurance check."
-  schema={[{
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') } })),
-  }]}
+  title={metaTitle}
+  description={description}
+  schema={schema}
 >
   <PageHero
     trust
@@ -114,6 +119,11 @@ const faqs = [
     </Fragment>
   </PageHero>
 
+
+  {/* "When you first reach out" opens on a brand teal band (continuing the hero) with the insurance section on it
+       as a white card that straddles into the white section below (client request 2026-09-25; insurance moved up
+       from after Reviews). */}
+  <InsuranceSection overlap />
 
   {/* Name the fear before the program: the first call as a conversation (design "B", approved 2026-09-22).
        Visitor bubbles are verbatim Q23 phrases; the teal bubble is Sunview's reply. */}
@@ -297,9 +307,6 @@ const faqs = [
 
   <Reviews />
 
-  {/* Insurance after Reviews (QA batch 1, item 10): white, centered, logos alone in an infinite grayscale marquee */}
-  <InsuranceSection />
-
   <MapSection />
 
   <LatestArticles />
@@ -307,7 +314,8 @@ const faqs = [
   {/* FAQ */}
   <section class="section bg-mist">
     <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
+      {/* Intro stays in view beside the accordion from lg up (client request 2026-09-25); 100px clears the 84px header */}
+      <div class="lg:sticky lg:top-[100px] lg:self-start">
         <span class="eyebrow">FAQ</span>
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Frequently Asked Questions About Outpatient Rehab</h2>
         <p class="subheading mt-3">Questions people ask us first</p>

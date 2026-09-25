@@ -5,14 +5,14 @@
 // mirror Google's review UI: name, then the star rating (no relative date, QA batch 1 item 3).
 // Text is verbatim, 5 stars only, first name + last initial; each card caps text at 5 lines and the
 // rest scrolls inside the card (touch/wheel/keyboard) or opens with "More". No reviewer photos,
-// no AggregateRating schema. Data: src/data/reviews.js.
+// no review or rating schema anywhere on the site. Data: src/data/reviews.js.
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import { reviewsByDate, GBP_URL } from '../data/reviews.js';
 // `limit` (QA batch 2, item 12): category and program pages (ServicePage) show 6 of the 11 reviews, a window
 // that starts at an index derived from the page path, so each page gets a stable, different set (same set on
-// every build). Home and Our Team pass no limit and show all 11. No schema here, so nothing to keep in sync;
-// the AggregateRating on Home/Locations uses the Google profile totals (GBP_RATING), not what's on screen.
+// every build). Home and Our Team pass no limit and show all 11. No schema here, and no AggregateRating on any
+// page: Google reviews are third-party, and self-serving rating markup breaks Google's review-snippet rules.
 interface Props { title?: string; id?: string; limit?: number; seed?: string }
 const { title = 'What People Say About Sunview Wellness', id = 'reviews', limit, seed = Astro.url.pathname } = Astro.props;
 const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);

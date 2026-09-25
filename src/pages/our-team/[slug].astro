@@ -8,7 +8,7 @@
 // src/data/posts.js has posts whose author is this person (shared PostCard; ≤3 → grid, >3 → carousel with arrows,
 // no URL changes). No links to other staff anywhere on a person page (SOP §3): the team archive is where everyone
 // is listed. No rotation sections, no reviewed-by byline.
-// Schema: BreadcrumbList (Base) + ProfilePage with a Person mainEntity.
+// Schema: BreadcrumbList (Base) + ProfilePage with a Person mainEntity (bio, photo, LinkedIn, visible credentials).
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -44,19 +44,31 @@ const personNode: Record<string, unknown> = {
   url,
   worksFor: { '@id': `${SITE.url}/#organization` },
 };
+// description = the first visible bio paragraph; hasCredential = the credentials and education shown in the card.
+if (p.bio?.length) personNode.description = p.bio[0];
 if (p.creds) personNode.honorificSuffix = p.creds;
+const credentialNodes = [
+  ...p.credentials.map((c: { abbr: string; label?: string }) => ({
+    '@type': 'EducationalOccupationalCredential',
+    name: c.label ? `${c.label} (${c.abbr})` : c.abbr,
+  })),
+  ...p.education.map((e: string) => ({ '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: e })),
+];
+if (credentialNodes.length) personNode.hasCredential = credentialNodes;
 if (p.photo) personNode.image = new URL(p.photo, SITE.url).href;
 if (p.linkedin) personNode.sameAs = [p.linkedin];
 if (p.languages) personNode.knowsLanguage = p.languages;
 
 const schema = [
   {
-    '@context': 'https://schema.org',
     '@type': 'ProfilePage',
     '@id': `${url}#webpage`,
     url,
     name: metaTitle,
     description,
+    isPartOf: { '@id': `${SITE.url}/#website` },
+    breadcrumb: { '@id': `${url}#breadcrumb` },
+    inLanguage: 'en-US',
     publisher: { '@id': `${SITE.url}/#organization` },
     mainEntity: personNode,
   },

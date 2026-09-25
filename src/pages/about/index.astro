@@ -8,6 +8,7 @@ import Icon from '../../components/Icon.astro';
 import SunMark from '../../components/SunMark.astro';
 import { SITE, ACCREDITATIONS, initials } from '../../data/site.js';
 import { PUBLISHED_PEOPLE } from '../../data/team.js';
+import { pageSchema } from '../../lib/programSchema.js';
 
 const path = '/about/';
 const metaTitle = 'About Sunview Wellness | Outpatient Rehab in West Palm Beach';
@@ -84,27 +85,9 @@ const faqs = [
   { q: 'Where are you located?', a: `${addr}. Free door-to-door transportation is available if you can’t drive yourself.` },
 ];
 
-const url = new URL(path, SITE.url).href;
+// AboutPage about the organization (a reference to Base's #organization, no duplicate org node) + FAQPage.
 const org = { '@id': `${SITE.url}/#organization` };
-const strip = (html: string) => html.replace(/<[^>]+>/g, '');
-const schema = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    '@id': `${url}#webpage`,
-    url,
-    name: metaTitle,
-    description,
-    about: org,
-    mainEntity: org,
-    publisher: org,
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: strip(f.a) } })),
-  },
-];
+const schema = pageSchema({ path, title: metaTitle, description, faqs, pageType: 'AboutPage', extra: { about: org, mainEntity: org } });
 
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---

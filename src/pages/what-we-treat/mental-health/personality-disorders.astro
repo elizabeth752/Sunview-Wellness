@@ -36,10 +36,11 @@ const faqs = [
   { q: 'Will I be treated as a label?', a: 'No. We approach people with curiosity rather than judgment. Instead of asking what’s wrong with you, we want to understand what happened to you and what patterns you’ve been living within.' },
   { q: 'Is group therapy right for me if relationships are hard?', a: 'Group is often where the most useful work happens. The same facilitator leads the whole session, and our carefrontation culture teaches honest feedback without shame, so you can practice new ways of relating with support.' },
   { q: 'Do you treat personality disorders without substance use?', a: 'We treat personality disorders when they come with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for personality disorder care on its own, we’ll help you find the right fit.' },
-  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.', schema: false }, // visible; marked up on /anxiety/ only (FAQ schema dedupe)
 ];
 ---
 <ServicePage
+  pageType="MedicalWebPage"
   path={path}
   metaTitle="Personality Disorder & Addiction Treatment | West Palm Beach"
   description="Personality disorders treated alongside substance use in West Palm Beach. DBT, IFS and psychodynamic work in outpatient PHP, IOP and OP."

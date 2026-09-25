@@ -36,10 +36,11 @@ const faqs = [
   { q: 'I have a prescription. Doesn’t that settle it?', a: 'A prescription doesn’t by itself determine whether outpatient care fits. During pre-screening we look at what you take, how much, how often and for how long, so we can recommend a level of care that’s safe for you.' },
   { q: 'Do I need an ADHD diagnosis to start?', a: 'No. You don’t need a diagnosis to call us. Your pre-screening and assessment help us understand the full picture, and psychiatric evaluation happens through Telemed Clinix as part of the program.' },
   { q: 'Do you treat ADHD without substance use?', a: 'We treat ADHD when it comes with substance use, in our PHP, IOP and OP programs, with therapy and psychiatric care in one plan. If you’re looking for ADHD care on its own, we’ll help you find the right fit.' },
-  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.' },
+  { q: 'Which program should I start in?', a: 'Our Clinical Director reviews your pre-screening and recommends a level of care using ASAM criteria and clinical judgment. <a href="/programs/">Compare PHP, IOP and OP</a>.', schema: false }, // visible; marked up on /anxiety/ only (FAQ schema dedupe)
 ];
 ---
 <ServicePage
+  pageType="MedicalWebPage"
   path={path}
   metaTitle="ADHD and Addiction Treatment in West Palm Beach | Sunview"
   description="ADHD treated alongside substance use in West Palm Beach: structure and skills, with psychiatric care and no stimulant medications during the program."
