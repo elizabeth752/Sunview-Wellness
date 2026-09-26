@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="stitle sdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="stitle">Xanax side effects at a prescribed dose, versus placebo</title>
+  <desc id="sdesc">From FDA panic-disorder trials, roughly 1,400 patients on Xanax versus 1,200 on placebo. Drowsiness: 76.8% Xanax versus 42.7% placebo. Fatigue and tiredness: 48.6% versus 42.3%. Impaired coordination: 40.1% versus 17.9%. Memory impairment: 33.1% versus 22.1%. Cognitive disorder: 28.8% versus 20.5%. Slurred speech: 23.3% versus 6.3%. Table view: Side effect, Xanax percent, Placebo percent — Drowsiness 76.8 42.7; Fatigue and tiredness 48.6 42.3; Impaired coordination 40.1 17.9; Memory impairment 33.1 22.1; Cognitive disorder 28.8 20.5; Slurred speech 23.3 6.3.</desc>
+  <rect width="1200" height="620" fill="#FFFFFF"/>
+  <text x="56" y="50" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Side effects at a prescribed dose</text>
+  <text x="56" y="76" font-size="15" fill="#6B6C6C">Panic-disorder trials: ~1,400 patients on Xanax vs. ~1,200 on placebo</text>
+
+  <!-- legend -->
+  <g transform="translate(56,100)" font-size="14" font-weight="700">
+    <rect x="0" y="-12" width="18" height="18" rx="3" fill="#1F9E9E"/>
+    <text x="26" y="2" fill="#545555">Xanax</text>
+    <rect x="110" y="-12" width="18" height="18" rx="3" fill="#CF9034"/>
+    <text x="136" y="2" fill="#545555">Placebo</text>
+  </g>
+
+  <!-- gridlines at 0,20,40,60,80 -->
+  <g stroke="#EDF2F2" stroke-width="1">
+    <line x1="340" y1="132" x2="340" y2="546"/>
+    <line x1="540" y1="132" x2="540" y2="546"/>
+    <line x1="740" y1="132" x2="740" y2="546"/>
+    <line x1="940" y1="132" x2="940" y2="546"/>
+    <line x1="1140" y1="132" x2="1140" y2="546"/>
+  </g>
+  <g font-size="12" fill="#6B6C6C">
+    <text x="340" y="566" text-anchor="middle">0%</text>
+    <text x="540" y="566" text-anchor="middle">20%</text>
+    <text x="740" y="566" text-anchor="middle">40%</text>
+    <text x="940" y="566" text-anchor="middle">60%</text>
+    <text x="1140" y="566" text-anchor="middle">80%</text>
+  </g>
+
+  <!-- rows: category label at left, two bars. row height 70, starting y=140 -->
+  <g font-size="14">
+    <!-- Drowsiness -->
+    <text x="322" y="160" text-anchor="end" font-weight="800" fill="#545555">Drowsiness</text>
+    <rect x="340" y="146" width="768" height="20" rx="4" fill="#1F9E9E"/>
+    <text x="1116" y="161" fill="#545555" font-weight="800" font-size="13">76.8%</text>
+    <rect x="340" y="170" width="427" height="20" rx="4" fill="#CF9034"/>
+    <text x="775" y="185" fill="#545555" font-weight="800" font-size="13">42.7%</text>
+
+    <!-- Fatigue -->
+    <text x="322" y="230" text-anchor="end" font-weight="800" fill="#545555">Fatigue &amp; tiredness</text>
+    <rect x="340" y="216" width="486" height="20" rx="4" fill="#1F9E9E"/>
+    <text x="834" y="231" fill="#545555" font-weight="800" font-size="13">48.6%</text>
+    <rect x="340" y="240" width="423" height="20" rx="4" fill="#CF9034"/>
+    <text x="771" y="255" fill="#545555" font-weight="800" font-size="13">42.3%</text>
+
+    <!-- Impaired coordination -->
+    <text x="322" y="300" text-anchor="end" font-weight="800" fill="#545555">Impaired coordination</text>
+    <rect x="340" y="286" width="401" height="20" rx="4" fill="#1F9E9E"/>
+    <text x="749" y="301" fill="#545555" font-weight="800" font-size="13">40.1%</text>
+    <rect x="340" y="310" width="179" height="20" rx="4" fill="#CF9034"/>
+    <text x="527" y="325" fill="#545555" font-weight="800" font-size="13">17.9%</text>
+
+    <!-- Memory impairment -->
+    <text x="322" y="370" text-anchor="end" font-weight="800" fill="#545555">Memory impairment</text>
+    <rect x="340" y="356" width="331" height="20" rx="4" fill="#1F9E9E"/>
+    <text x="679" y="371" fill="#545555" font-weight="800" font-size="13">33.1%</text>
+    <rect x="340" y="380" width="221" height="20" rx="4" fill="#CF9034"/>
+    <text x="569" y="395" fill="#545555" font-weight="800" font-size="13">22.1%</text>
+
+    <!-- Cognitive disorder -->
+    <text x="322" y="440" text-anchor="end" font-weight="800" fill="#545555">Cognitive disorder</text>
+    <rect x="340" y="426" width="288" height="20" rx="4" fill="#1F9E9E"/>
+    <text x="636" y="441" fill="#545555" font-weight="800" font-size="13">28.8%</text>
+    <rect x="340" y="450" width="205" height="20" rx="4" fill="#CF9034"/>
+    <text x="553" y="465" fill="#545555" font-weight="800" font-size="13">20.5%</text>
+
+    <!-- Slurred speech -->
+    <text x="322" y="510" text-anchor="end" font-weight="800" fill="#545555">Slurred speech</text>
+    <rect x="340" y="496" width="233" height="20" rx="4" fill="#1F9E9E"/>
+    <text x="581" y="511" fill="#545555" font-weight="800" font-size="13">23.3%</text>
+    <rect x="340" y="520" width="63" height="20" rx="4" fill="#CF9034"/>
+    <text x="411" y="535" fill="#545555" font-weight="800" font-size="13">6.3%</text>
+  </g>
+
+  <text x="56" y="596" font-size="13" fill="#6B6C6C" font-style="italic">Source: FDA prescribing information, XANAX (Alprazolam) Tablets, 2021</text>
+</svg>

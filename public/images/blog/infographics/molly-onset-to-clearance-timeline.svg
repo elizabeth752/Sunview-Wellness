@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="ttitle tdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="ttitle">Molly's timeline: onset to clearance</title>
+  <desc id="tdesc">Effects begin 20 to 60 minutes after swallowing a dose. Blood concentration peaks around 2 hours. Subjective effects last an average of about 3 hours. The elimination half-life is roughly 8 hours. Near-complete clearance takes about 40 hours, so from the time felt effects fade until full clearance, a person may still be affected even though the high is over.</desc>
+  <rect width="1200" height="480" fill="#FDF6E3"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">What molly's timeline actually looks like</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">The felt high fades hours before the drug is fully cleared from the body</text>
+
+  <!-- "still affected" bracket annotation, spanning felt-effects-fade (x=470) through clearance (x=1080), well clear of the point labels below -->
+  <text x="775" y="116" text-anchor="middle" font-size="13" font-weight="800" fill="#126E6E">MAY STILL BE AFFECTED AFTER THE HIGH FADES</text>
+  <path d="M470 124 v12 h610 v-12" fill="none" stroke="#126E6E" stroke-width="2" opacity="0.6"/>
+
+  <!-- point title + value labels, comfortably above the connector lines -->
+  <g font-size="13">
+    <text x="130" y="160" text-anchor="middle" font-weight="800" fill="#545555" font-size="15">Onset</text>
+    <text x="130" y="182" text-anchor="middle" fill="#545555">20–60 min</text>
+
+    <text x="330" y="160" text-anchor="middle" font-weight="800" fill="#545555" font-size="15">Peak</text>
+    <text x="330" y="182" text-anchor="middle" fill="#545555">~2 hours</text>
+
+    <text x="470" y="160" text-anchor="middle" font-weight="800" fill="#545555" font-size="15">Felt effects fade</text>
+    <text x="470" y="182" text-anchor="middle" fill="#545555">~3 hours average</text>
+
+    <text x="700" y="160" text-anchor="middle" font-weight="800" fill="#545555" font-size="15">Half-life</text>
+    <text x="700" y="182" text-anchor="middle" fill="#545555">~8 hours</text>
+
+    <text x="1080" y="160" text-anchor="middle" font-weight="800" fill="#545555" font-size="15">Near-complete clearance</text>
+    <text x="1080" y="182" text-anchor="middle" fill="#545555">~40 hours</text>
+  </g>
+
+  <!-- axis -->
+  <line x1="70" y1="340" x2="1140" y2="340" stroke="#D9E6E6" stroke-width="3"/>
+
+  <!-- shaded "still affected" band, from felt-effects-fade to clearance -->
+  <rect x="470" y="324" width="610" height="32" rx="16" fill="#126E6E" opacity="0.12"/>
+
+  <!-- connector lines + points -->
+  <line x1="130" y1="200" x2="130" y2="330" stroke="#CF9034" stroke-width="2"/>
+  <circle cx="130" cy="340" r="10" fill="#CF9034"/>
+
+  <line x1="330" y1="200" x2="330" y2="330" stroke="#CF9034" stroke-width="2"/>
+  <circle cx="330" cy="340" r="10" fill="#CF9034"/>
+
+  <line x1="470" y1="200" x2="470" y2="330" stroke="#126E6E" stroke-width="2"/>
+  <circle cx="470" cy="340" r="10" fill="#126E6E"/>
+
+  <line x1="700" y1="200" x2="700" y2="330" stroke="#126E6E" stroke-width="2"/>
+  <circle cx="700" cy="340" r="10" fill="#126E6E"/>
+
+  <line x1="1080" y1="200" x2="1080" y2="330" stroke="#126E6E" stroke-width="2"/>
+  <circle cx="1080" cy="340" r="10" fill="#126E6E"/>
+
+  <!-- sub-labels below the axis -->
+  <g font-size="12" fill="#3E4444">
+    <text x="130" y="376" text-anchor="middle">Swallowed dose</text>
+    <text x="330" y="376" text-anchor="middle">Blood concentration highest</text>
+    <text x="470" y="376" text-anchor="middle">Subjective high ends</text>
+    <text x="700" y="376" text-anchor="middle">Half the dose remains</text>
+    <text x="1080" y="376" text-anchor="middle">Body finishes processing the dose</text>
+  </g>
+
+  <text x="56" y="424" font-size="14" fill="#3E4444" font-weight="700">Two capsules from the same bag can differ — which is why a dose that was fine last time can still cause a medical emergency this time.</text>
+  <text x="56" y="452" font-size="13" fill="#6B6C6C" font-style="italic">Source: Figurasin et al., 2024, StatPearls; NIDA, 2024</text>
+</svg>

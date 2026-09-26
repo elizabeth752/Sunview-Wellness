@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="etitle edesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="etitle">Four medical emergencies linked to MDMA</title>
+  <desc id="edesc">Overheating: MDMA interferes with temperature regulation; combined with exertion in a hot, crowded setting, core temperature can climb past 105 degrees Fahrenheit, leading to muscle breakdown, kidney and liver failure, brain swelling and death. Dangerously low sodium: MDMA increases antidiuretic hormone release, causing fluid retention; combined with drinking large amounts of water, sodium can fall far enough to cause seizures, brain swelling and coma. Serotonin syndrome: combining MDMA with SSRIs, other antidepressants or additional serotonergic drugs raises the risk of a potentially life-threatening reaction. Cardiovascular strain: rapid heart rate, high blood pressure and arrhythmias are common in acute toxicity, and risk rises sharply when an unknown stimulant adulterant is stacked on top. If someone is confused, extremely hot, vomiting, having a seizure, or unresponsive, call 911. Poison Control: 1-800-222-1222.</desc>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="30" font-weight="700" fill="#545555">The risks that send people to the emergency room</text>
+  <text x="56" y="80" font-size="15" fill="#6B6C6C">Deaths involving MDMA are uncommon, but these medical emergencies escalate quickly</text>
+
+  <!-- 2x2 grid, card 552x180, gap 40 -->
+  <g>
+    <g transform="translate(48,112)">
+      <rect width="552" height="180" rx="14" fill="#F0FAFA" stroke="#D9E6E6"/>
+      <rect x="0" y="0" width="6" height="180" rx="3" fill="#B3261E"/>
+      <circle cx="56" cy="52" r="24" fill="#126E6E"/>
+      <path d="M56 36c8 8 8 16 4 22-3 4-9 4-8-2 2 4-4 8-6 2-2-6 2-14 10-22z" fill="#F5C518"/>
+      <text x="96" y="46" font-weight="800" fill="#545555" font-size="18">Overheating</text>
+      <text x="24" y="90" fill="#3E4444" font-size="14">
+        <tspan x="24" dy="0">MDMA interferes with the body's ability to</tspan>
+        <tspan x="24" dy="20">regulate temperature. In a hot, crowded room,</tspan>
+        <tspan x="24" dy="20">core temperature can climb past 105°F —</tspan>
+        <tspan x="24" dy="20">leading to organ failure and brain swelling.</tspan>
+      </text>
+    </g>
+    <g transform="translate(624,112)">
+      <rect width="552" height="180" rx="14" fill="#F0FAFA" stroke="#D9E6E6"/>
+      <rect x="0" y="0" width="6" height="180" rx="3" fill="#B3261E"/>
+      <circle cx="56" cy="52" r="24" fill="#126E6E"/>
+      <path d="M56 34c9 10 14 18 14 26a14 14 0 1 1-28 0c0-8 5-16 14-26z" fill="none" stroke="#F5C518" stroke-width="3"/>
+      <text x="96" y="46" font-weight="800" fill="#545555" font-size="18">Dangerously low sodium</text>
+      <text x="24" y="90" fill="#3E4444" font-size="14">
+        <tspan x="24" dy="0">MDMA raises antidiuretic hormone, causing</tspan>
+        <tspan x="24" dy="20">fluid retention. Combined with drinking a lot</tspan>
+        <tspan x="24" dy="20">of water, sodium can fall low enough to cause</tspan>
+        <tspan x="24" dy="20">seizures, brain swelling and coma.</tspan>
+      </text>
+    </g>
+    <g transform="translate(48,320)">
+      <rect width="552" height="180" rx="14" fill="#F0FAFA" stroke="#D9E6E6"/>
+      <rect x="0" y="0" width="6" height="180" rx="3" fill="#B3261E"/>
+      <circle cx="56" cy="52" r="24" fill="#126E6E"/>
+      <path d="M44 40 q12 -16 24 0 q-6 10 -12 6 q-6 4 -12 -6z" fill="#F5C518"/>
+      <text x="96" y="46" font-weight="800" fill="#545555" font-size="18">Serotonin syndrome</text>
+      <text x="24" y="90" fill="#3E4444" font-size="14">
+        <tspan x="24" dy="0">Combining MDMA with SSRIs, other</tspan>
+        <tspan x="24" dy="20">antidepressants, or other serotonergic drugs</tspan>
+        <tspan x="24" dy="20">raises the risk of a potentially</tspan>
+        <tspan x="24" dy="20">life-threatening reaction.</tspan>
+      </text>
+    </g>
+    <g transform="translate(624,320)">
+      <rect width="552" height="180" rx="14" fill="#F0FAFA" stroke="#D9E6E6"/>
+      <rect x="0" y="0" width="6" height="180" rx="3" fill="#B3261E"/>
+      <circle cx="56" cy="52" r="24" fill="#126E6E"/>
+      <path d="M40 52 q6 -14 12 0 q6 -22 12 0 q6 -14 12 0" fill="none" stroke="#F5C518" stroke-width="3" stroke-linecap="round"/>
+      <text x="96" y="46" font-weight="800" fill="#545555" font-size="18">Cardiovascular strain</text>
+      <text x="24" y="90" fill="#3E4444" font-size="14">
+        <tspan x="24" dy="0">Rapid heart rate, high blood pressure and</tspan>
+        <tspan x="24" dy="20">arrhythmias are common in acute toxicity —</tspan>
+        <tspan x="24" dy="20">and risk climbs sharply when an unknown</tspan>
+        <tspan x="24" dy="20">stimulant adulterant is stacked on top.</tspan>
+      </text>
+    </g>
+  </g>
+
+  <rect x="48" y="516" width="1104" height="0" fill="none"/>
+  <g transform="translate(48,512)">
+    <rect width="1104" height="0" fill="none"/>
+  </g>
+  <rect x="48" y="512" width="1104" height="36" rx="10" fill="#126E6E"/>
+  <text x="72" y="535" font-size="15" font-weight="800" fill="#FFFFFF">If someone is confused, extremely hot, vomiting, seizing, or unresponsive — call 911. Poison Control: 1-800-222-1222.</text>
+</svg>

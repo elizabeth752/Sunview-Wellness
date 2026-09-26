@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="xtitle xdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="xtitle">Signs that require emergency care</title>
+  <desc id="xdesc">An isolated benzodiazepine overdose typically presents as central nervous system depression with normal vital signs; respiratory depression is the effect requiring immediate intervention. Watch for: sedation so heavy the person cannot be roused; slow, shallow or irregular breathing; blue or gray lips, fingertips or skin; confusion, disorientation or inability to speak clearly; loss of coordination, diminished reflexes or unresponsiveness. Call 911 and report every substance involved, including alcohol, because that information changes the treatment.</desc>
+  <rect width="1200" height="460" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Signs that require emergency care</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Respiratory depression is the effect that needs immediate intervention</text>
+
+  <g font-size="15">
+    <!-- 5 rows, alternating tint -->
+    <g transform="translate(56,104)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#B3261E"/>
+      <path d="M30 20v10M30 34h.01" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Sedation so heavy the person cannot be roused</text>
+    </g>
+    <g transform="translate(56,168)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#B3261E"/>
+      <path d="M30 20v10M30 34h.01" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Slow, shallow, or irregular breathing</text>
+    </g>
+    <g transform="translate(56,232)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#B3261E"/>
+      <path d="M30 20v10M30 34h.01" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Blue or gray lips, fingertips, or skin</text>
+    </g>
+    <g transform="translate(56,296)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#B3261E"/>
+      <path d="M30 20v10M30 34h.01" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Confusion, disorientation, or inability to speak clearly</text>
+    </g>
+    <g transform="translate(56,360)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#B3261E"/>
+      <path d="M30 20v10M30 34h.01" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Loss of coordination, diminished reflexes, or unresponsiveness</text>
+    </g>
+  </g>
+
+</svg>
