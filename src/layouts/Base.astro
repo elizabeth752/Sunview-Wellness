@@ -135,6 +135,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <link rel="preload" href={nunitoWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={playfairWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    {/* CallTrackingMetrics' account host (the DNI script GTM loads): PSI's network tree put it on the critical path */}
+    <link rel="preconnect" href="https://362771.tctm.co" />
     {/* No other tag scripts here: CallTrackingMetrics (DNI) and analytics load through GTM. */}
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

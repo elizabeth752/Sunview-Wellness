@@ -11,7 +11,9 @@ export default defineConfig({
   site: 'https://sunviewwellness.com',
   adapter: vercel(),
   trailingSlash: 'always', // every URL on the current WordPress site ends in "/"; keep them identical
-  build: { format: 'directory' },
+  // inlineStylesheets 'always' (CWV round 2): the one site-wide stylesheet (~15KB gzipped) goes inline in every
+  // page, so first paint no longer waits on a separate render-blocking CSS request. Measured in Lighthouse mobile.
+  build: { format: 'directory', inlineStylesheets: 'always' },
   vite: {
     plugins: [tailwindcss()],
   },

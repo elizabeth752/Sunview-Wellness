@@ -11,10 +11,20 @@ const onDark = onDarkProp || hero;
 const heights: Record<string, string> = hero
   ? { 'The Joint Commission': 'h-10 sm:h-14', 'National Association of Addiction Treatment Providers': 'h-8 sm:h-11', SAMHSA: 'h-6 sm:h-8', 'National Action Alliance for Suicide Prevention': 'h-8 sm:h-10' }
   : { 'The Joint Commission': 'h-14', 'National Association of Addiction Treatment Providers': 'h-[51px]', SAMHSA: 'h-10', 'National Action Alliance for Suicide Prevention': 'h-[46px]' };
+// The resized copies round to whole pixels, so `aspect-ratio` pins every variant to the original's exact shape.
+// `sizes` for the srcset variants: rendered width = CSS height (the classes above) x the logo's aspect ratio.
+const px: Record<string, [number, number]> = hero
+  ? { 'The Joint Commission': [40, 56], 'National Association of Addiction Treatment Providers': [32, 44], SAMHSA: [24, 32], 'National Action Alliance for Suicide Prevention': [32, 40] }
+  : { 'The Joint Commission': [56, 56], 'National Association of Addiction Treatment Providers': [51, 51], SAMHSA: [40, 40], 'National Action Alliance for Suicide Prevention': [46, 46] };
+const sizes = (a: { name: string; w: number; h: number }) => {
+  const [base, sm] = px[a.name].map((h) => Math.ceil((h * a.w) / a.h));
+  return base === sm ? `${base}px` : `(min-width: 640px) ${sm}px, ${base}px`;
+};
 ---
 <ul class:list={['flex flex-wrap items-center', hero ? 'gap-x-4 gap-y-4 sm:gap-x-8' : 'gap-x-8 gap-y-4', cls]} aria-label="Accreditations and memberships">
   {ACCREDITATIONS.map((a) => {
-    const img = <img src={onDark ? a.logoOnDark : a.logo} alt={a.name} width={a.w} height={a.h} loading={hero ? 'eager' : 'lazy'} class:list={['block w-auto', heights[a.name]]} />;
+    const srcset = onDark ? a.srcsetOnDark ?? a.srcset : a.srcset;
+    const img = <img src={onDark ? a.logoOnDark : a.logo} srcset={srcset} sizes={srcset ? sizes(a) : undefined} alt={a.name} width={a.w} height={a.h} style={srcset ? `aspect-ratio:${a.w}/${a.h}` : undefined} loading={hero ? 'eager' : 'lazy'} class:list={['block w-auto', heights[a.name]]} />;
     return (
       <li>
         {a.url ? <a href={a.url} target="_blank" rel="noopener" class="block" aria-label={`${a.name} (verification)`}>{img}</a> : img}

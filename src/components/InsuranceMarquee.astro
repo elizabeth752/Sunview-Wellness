@@ -12,7 +12,7 @@ const { class: cls = '' } = Astro.props;
     {[0, 1].map((copy) =>
       INSURANCE.map((c) => (
         <li aria-hidden={copy === 1 ? 'true' : undefined}>
-          <img src={c.logo} alt={copy === 0 ? c.name : ''} loading="lazy" style={`width:${c.w ?? 140}px`} />
+          <img src={c.logo} alt={copy === 0 ? c.name : ''} width={c.iw} height={c.ih} loading="lazy" style={`width:${c.w ?? 140}px`} />
         </li>
       )),
     )}

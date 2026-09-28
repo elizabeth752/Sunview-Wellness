@@ -44,7 +44,7 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
       <ul id={`${id}-track`} class="sv-rv-track" aria-label="Google reviews">
         {reviews.map((r, i) => (
           <li class="sv-rv-card">
-            <article class="flex h-full flex-col gap-2.5 sv-rv-box rounded-[12px] border border-[#dadce0] bg-white p-[18px] font-[Roboto,Arial,sans-serif] text-[#202124]" aria-label={`Review by ${r.author}`}>
+            <article class="flex h-full flex-col gap-2.5 sv-rv-box rounded-[12px] border border-[#dadce0] bg-white p-[18px] text-[#202124]" aria-label={`Review by ${r.author}`}>
               <div class="flex items-center gap-3">
                 <span class="grid h-10 w-10 flex-none place-items-center rounded-full text-lg font-medium text-white" style={`background:${color(r.author)}`} aria-hidden="true">{r.author.charAt(0)}</span>
                 <div>
@@ -88,7 +88,10 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
   @media (min-width: 768px) { .sv-rv-card { flex-basis: calc((100% - 2 * 16px) / 2.1); } }
   @media (min-width: 1024px) { .sv-rv-card { flex-basis: calc((100% - 3 * 16px) / 3.1); } }
   @media (min-width: 1280px) { .sv-rv-card { flex-basis: calc((100% - 4 * 16px) / 4.1); } }
-  .sv-rv-box { box-shadow: -5px 6px 14px -4px rgba(60, 64, 67, .18); }
+  .sv-rv-box { box-shadow: -5px 6px 14px -4px rgba(60, 64, 67, .18); font-family: Arial, sans-serif; }
+  /* Roboto only once the carousel is near the viewport (CWV round 2): browsers fetch a web font only when some
+     rendered text uses it, so the two Roboto files no longer compete with the hero on the critical path. */
+  .sv-reviews.sv-rv-fonts .sv-rv-box { font-family: Roboto, Arial, sans-serif; }
   /* 5-line text box: the rest scrolls inside the card, or opens with "More" */
   .sv-rv-text { font-size: 14px; line-height: 1.4; max-height: calc(1.4em * 5); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding-right: 6px; scrollbar-width: thin; }
   .sv-rv-text.is-long { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 1.6em), transparent); }
@@ -101,24 +104,37 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
 </style>
 
 <script>
+  // Layout reads are batched before the writes (CWV round 2: the old per-card loop read scrollHeight right after
+  // toggling a class on the previous card, forcing a reflow per card), and nothing is measured at parse time: the
+  // first measure runs after the first frame, and again once Roboto (switched on when the carousel nears the
+  // viewport) has loaded.
   document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
     const track = root.querySelector<HTMLElement>('.sv-rv-track')!;
     const arrows = root.querySelectorAll<HTMLButtonElement>('.sv-rv-arrow');
+    const texts = [...root.querySelectorAll<HTMLElement>('.sv-rv-text')];
+    const mores = texts.map((t) => root.querySelector<HTMLButtonElement>(`.sv-rv-more[aria-controls="${t.id}"]`)!);
     const step = () => (track.firstElementChild?.getBoundingClientRect().width ?? 320) + 16;
     const sync = () => {
-      arrows[0].disabled = track.scrollLeft <= 2;
-      arrows[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+      const { scrollLeft, clientWidth, scrollWidth } = track;
+      arrows[0].disabled = scrollLeft <= 2;
+      arrows[1].disabled = scrollLeft + clientWidth >= scrollWidth - 2;
+    };
+    // Read every card's overflow first, then write the classes and "More" buttons
+    const measure = () => {
+      const long = texts.map((t) => !t.classList.contains('expanded') && t.scrollHeight > t.clientHeight + 2);
+      sync();
+      texts.forEach((t, i) => {
+        if (t.classList.contains('expanded')) return;
+        t.classList.toggle('is-long', long[i]);
+        mores[i].hidden = !long[i];
+      });
     };
     arrows.forEach((b) => b.addEventListener('click', () => track.scrollBy({ left: step() * Number(b.dataset.dir), behavior: 'smooth' })));
     track.addEventListener('scroll', sync, { passive: true });
     window.addEventListener('resize', sync);
-    sync();
 
-    root.querySelectorAll<HTMLElement>('.sv-rv-text').forEach((t) => {
-      const more = root.querySelector<HTMLButtonElement>(`.sv-rv-more[aria-controls="${t.id}"]`)!;
-      const long = t.scrollHeight > t.clientHeight + 2;
-      t.classList.toggle('is-long', long);
-      more.hidden = !long;
+    texts.forEach((t, i) => {
+      const more = mores[i];
       t.addEventListener('scroll', () => t.classList.toggle('at-end', t.scrollTop + t.clientHeight >= t.scrollHeight - 2), { passive: true });
       more.addEventListener('click', () => {
         const open = t.classList.toggle('expanded');
@@ -126,5 +142,19 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
         more.setAttribute('aria-expanded', String(open));
       });
     });
+
+    // rAF + setTimeout = right after the next frame's layout, so the reads find a clean layout and force none
+    const later = () => requestAnimationFrame(() => setTimeout(measure));
+    later(); // first pass at load (fallback font), so "More" is in place long before the reviews are reached
+    const start = () => {
+      root.classList.add('sv-rv-fonts');
+      document.fonts?.load('14px Roboto').then(later, later);
+    };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) { io.disconnect(); start(); }
+      }, { rootMargin: '800px 0px' });
+      io.observe(root);
+    } else start();
   });
 </script>

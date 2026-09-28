@@ -62,7 +62,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           const tile = (
             <>
               <span class="flex h-24 items-center justify-center rounded-[var(--radius-card)] border border-line bg-white px-4 transition group-hover:border-teal">
-                <img src={c.logo} alt="" loading="lazy" class="h-auto max-h-12 w-auto max-w-[80%] object-contain" />
+                <img src={c.logo} alt="" width={c.iw} height={c.ih} loading="lazy" class="h-auto max-h-12 w-auto max-w-[80%] object-contain" />
               </span>
               <span class:list={['mt-2 block text-center text-[15px] font-bold', href ? 'text-teal group-hover:underline' : 'text-charcoal']}>{c.name}{href && <Icon name="arrow" class="ml-1 inline h-3.5 w-3.5" />}</span>
             </>
@@ -83,7 +83,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
       <ul class="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {medicaid.map((c) => (
           <li class="flex flex-col items-center rounded-[var(--radius-card)] bg-white p-3 text-center">
-            <img src={c.logo} alt="" loading="lazy" class="h-10 w-auto max-w-full object-contain" />
+            <img src={c.logo} alt="" width={c.iw} height={c.ih} loading="lazy" class="h-10 w-auto max-w-full object-contain" />
             <span class="mt-2 text-sm font-bold text-charcoal">{c.name}</span>
           </li>
         ))}

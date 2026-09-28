@@ -352,7 +352,8 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
   const sidebar = document.querySelector<HTMLElement>('[data-sidebar]');
   if (sidebar) {
     const fit = () => sidebar.style.setProperty('--sv-sidebar-top', `${Math.min(100, innerHeight - sidebar.offsetHeight - 16)}px`);
-    fit();
+    // No synchronous fit() at load (it forced a layout while the page was still parsing, CWV round 2): the
+    // ResizeObserver fires once on observe, after layout and before paint, so the first frame is already right.
     addEventListener('resize', fit, { passive: true });
     new ResizeObserver(fit).observe(sidebar);
   }

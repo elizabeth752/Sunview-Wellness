@@ -182,18 +182,20 @@ export const MENTAL_HEALTH = [
 // was Humana and its "Molina" was UnitedHealthcare).
 // `w` = display width (px): balanced by aspect ratio so logos read the same size, then fine-tuned by the
 // client (2026-09-22: AmeriHealth +50, Florida Blue +30, Molina −20, UnitedHealthcare −20, Oscar −20).
+// iw/ih: each logo file's intrinsic size (raster pixels, or the SVG viewBox rounded), for the <img> width/height
+// attributes (CWV round 2: reserves the box before the file loads). `w` stays the display width the marquee uses.
 export const INSURANCE = [
-  { name: 'Aetna', logo: '/images/logos/insurance/aetna.svg', w: 171 },
-  { name: 'Florida Blue', logo: '/images/logos/insurance/florida-blue.webp?v=2', w: 230 },
-  { name: 'Cigna', logo: '/images/logos/insurance/cigna.svg', w: 102 },
-  { name: 'UnitedHealthcare', logo: '/images/logos/insurance/unitedhealthcare.svg', w: 111 },
-  { name: 'Oscar', logo: '/images/logos/insurance/oscar.webp?v=2', w: 134 },
-  { name: 'Ambetter', logo: '/images/logos/insurance/ambetter.webp?v=2', w: 140 },
-  { name: 'Humana', logo: '/images/logos/insurance/humana.svg', w: 169 },
-  { name: 'Sunshine Health', logo: '/images/logos/insurance/sunshine-health.webp?v=2', w: 132 },
-  { name: 'AmeriHealth Caritas Florida', logo: '/images/logos/insurance/amerihealth-caritas.webp?v=2', w: 172 },
-  { name: 'Molina Healthcare', logo: '/images/logos/insurance/molina.svg', w: 114 },
-  { name: 'Community Care Plan', logo: '/images/logos/insurance/community-care-plan.webp?v=2', w: 137 },
+  { name: 'Aetna', logo: '/images/logos/insurance/aetna.svg', w: 171, iw: 336, ih: 65 },
+  { name: 'Florida Blue', logo: '/images/logos/insurance/florida-blue.webp?v=2', w: 230, iw: 278, ih: 36 },
+  { name: 'Cigna', logo: '/images/logos/insurance/cigna.svg', w: 102, iw: 241, ih: 128 },
+  { name: 'UnitedHealthcare', logo: '/images/logos/insurance/unitedhealthcare.svg', w: 111, iw: 377, ih: 118 },
+  { name: 'Oscar', logo: '/images/logos/insurance/oscar.webp?v=2', w: 134, iw: 300, ih: 68 },
+  { name: 'Ambetter', logo: '/images/logos/insurance/ambetter.webp?v=2', w: 140, iw: 288, ih: 82 },
+  { name: 'Humana', logo: '/images/logos/insurance/humana.svg', w: 169, iw: 497, ih: 97 },
+  { name: 'Sunshine Health', logo: '/images/logos/insurance/sunshine-health.webp?v=2', w: 132, iw: 197, ih: 61 },
+  { name: 'AmeriHealth Caritas Florida', logo: '/images/logos/insurance/amerihealth-caritas.webp?v=2', w: 172, iw: 289, ih: 107 },
+  { name: 'Molina Healthcare', logo: '/images/logos/insurance/molina.svg', w: 114, iw: 118, ih: 36 },
+  { name: 'Community Care Plan', logo: '/images/logos/insurance/community-care-plan.webp?v=2', w: 137, iw: 294, ih: 84 },
 ];
 
 export const CARRIERS = [
@@ -216,13 +218,21 @@ export const CARRIERS = [
 // works on both. Sources: breathe-website (Joint Commission, NAATP), Regain-hope-site (SAMHSA).
 // National Action Alliance for Suicide Prevention: from the live sunviewwellness.com homepage
 // (300px raster; ask the client for a vector if it needs to render larger).
+// srcset/srcsetOnDark (CWV round 2): smaller copies of the raster seals, for the 40-56px hero row (the originals
+// stay; `srcsetOnDark` falls back to `srcset` when absent). NAATP: the old .svg files only wrapped a 531x167 PNG,
+// so the seal is served as that PNG in WebP (originals kept). SAMHSA is a true vector: no variants.
 // url: verification link for the seal. null = no link yet: every component renders the seal as a plain image
 // (Decisions 2026-09-24, placeholder policy). Set the URL to make it a link.
 export const ACCREDITATIONS = [
-  { name: 'The Joint Commission', url: null, logo: '/images/accreditations/joint-commission.webp', logoOnDark: '/images/accreditations/joint-commission.webp', w: 240, h: 240 },
-  { name: 'National Action Alliance for Suicide Prevention', url: null, logo: '/images/accreditations/action-alliance.webp', logoOnDark: '/images/accreditations/action-alliance-white.webp', w: 196, h: 92 },
+  { name: 'The Joint Commission', url: null, logo: '/images/accreditations/joint-commission.webp', logoOnDark: '/images/accreditations/joint-commission.webp', w: 240, h: 240,
+    srcset: '/images/accreditations/joint-commission-80.webp 80w, /images/accreditations/joint-commission-120.webp 120w, /images/accreditations/joint-commission.webp 240w' },
+  { name: 'National Action Alliance for Suicide Prevention', url: null, logo: '/images/accreditations/action-alliance.webp', logoOnDark: '/images/accreditations/action-alliance-white.webp', w: 196, h: 92,
+    srcset: '/images/accreditations/action-alliance-140.webp 140w, /images/accreditations/action-alliance.webp 196w',
+    srcsetOnDark: '/images/accreditations/action-alliance-white-140.webp 140w, /images/accreditations/action-alliance-white.webp 196w' },
   { name: 'SAMHSA', url: null, logo: '/images/accreditations/samhsa.svg', logoOnDark: '/images/accreditations/samhsa-white.svg', w: 83, h: 28 },
-  { name: 'National Association of Addiction Treatment Providers', url: null, logo: '/images/accreditations/naatp.svg', logoOnDark: '/images/accreditations/naatp-white.svg', w: 159, h: 50 },
+  { name: 'National Association of Addiction Treatment Providers', url: null, logo: '/images/accreditations/naatp-531.webp', logoOnDark: '/images/accreditations/naatp-white-531.webp', w: 159, h: 50,
+    srcset: '/images/accreditations/naatp-220.webp 220w, /images/accreditations/naatp-531.webp 531w',
+    srcsetOnDark: '/images/accreditations/naatp-white-220.webp 220w, /images/accreditations/naatp-white-531.webp 531w' },
 ];
 
 // The team roster lives in src/data/team.js (Wiki names and titles). The old TEAM list condensed from the live
