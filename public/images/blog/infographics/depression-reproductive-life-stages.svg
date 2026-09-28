@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">Depression tied to reproductive stages</title>
+  <desc id="gdesc">A horizontal timeline of three treatable, hormone-linked depression types across a woman's reproductive years. Premenstrual dysphoric disorder, in the weeks before menstruation, with depressed mood, anger or irritability, and physical pain. Perinatal depression, during pregnancy or after childbirth, beyond typical baby blues. Perimenopausal depression, during the transition to menopause, with persistent irritability, anxiety, or loss of enjoyment beyond ordinary mood swings.</desc>
+  <rect width="1200" height="420" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Depression tied to reproductive stages</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">All three are treatable, not something to just push through</text>
+
+  <!-- timeline spine -->
+  <line x1="100" y1="220" x2="1100" y2="220" stroke="#D9E6E6" stroke-width="3"/>
+  <circle cx="220" cy="220" r="8" fill="#1F9E9E"/>
+  <circle cx="600" cy="220" r="8" fill="#CF9034"/>
+  <circle cx="980" cy="220" r="8" fill="#126E6E"/>
+
+  <!-- PMDD card -->
+  <g transform="translate(100,240)">
+    <rect width="240" height="150" rx="14" fill="#F0FAFA"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#1F9E9E"/>
+    <text x="20" y="30" font-size="16" font-weight="800" fill="#126E6E">PMDD</text>
+    <text x="20" y="50" font-size="12" fill="#6B6C6C">Weeks before menstruation</text>
+    <text x="20" y="78" font-size="13" fill="#3E4444">
+      <tspan x="20" dy="0">Depressed mood, anger</tspan>
+      <tspan x="20" dy="18">or irritability, appetite</tspan>
+      <tspan x="20" dy="18">changes, physical pain</tspan>
+    </text>
+  </g>
+
+  <!-- Perinatal card -->
+  <g transform="translate(480,240)">
+    <rect width="240" height="150" rx="14" fill="#FDF6E3"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#CF9034"/>
+    <text x="20" y="30" font-size="16" font-weight="800" fill="#126E6E">Perinatal</text>
+    <text x="20" y="50" font-size="12" fill="#6B6C6C">Pregnancy or after childbirth</text>
+    <text x="20" y="78" font-size="13" fill="#3E4444">
+      <tspan x="20" dy="0">Beyond typical "baby</tspan>
+      <tspan x="20" dy="18">blues" — sadness, anxiety,</tspan>
+      <tspan x="20" dy="18">fatigue that interferes</tspan>
+    </text>
+  </g>
+
+  <!-- Perimenopausal card -->
+  <g transform="translate(860,240)">
+    <rect width="240" height="150" rx="14" fill="#F0FAFA"/>
+    <rect x="0" y="0" width="6" height="150" rx="3" fill="#126E6E"/>
+    <text x="20" y="30" font-size="16" font-weight="800" fill="#126E6E">Perimenopausal</text>
+    <text x="20" y="50" font-size="12" fill="#6B6C6C">Transition to menopause</text>
+    <text x="20" y="78" font-size="13" fill="#3E4444">
+      <tspan x="20" dy="0">Persistent irritability,</tspan>
+      <tspan x="20" dy="18">anxiety, or loss of</tspan>
+      <tspan x="20" dy="18">enjoyment, not just mood swings</tspan>
+    </text>
+  </g>
+</svg>

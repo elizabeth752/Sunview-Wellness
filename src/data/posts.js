@@ -33,6 +33,8 @@ export const CATEGORY_COLORS = {
   Podcasts: { token: 'charcoal', bg: '#545555', ink: '#FFFFFF', accent: '#F5C518', dot: '#545555' },
   // teal-light ground: distinct from the darker "Clinical Approach" teal card at a glance
   'Substance Use': { token: 'teal-light', bg: '#1F9E9E', ink: '#FFFFFF', accent: '#F5C518', dot: '#1F9E9E' },
+  // mist ground: the site's other light section tint (distinct from Extended Care's warm cream)
+  'Mental Health': { token: 'mist', bg: '#F0FAFA', ink: '#545555', accent: '#126E6E', dot: '#126E6E' },
 };
 const FALLBACK_COLOR = CATEGORY_COLORS['Clinical Approach'];
 export const categoryColor = (c) => CATEGORY_COLORS[c] ?? FALLBACK_COLOR;
@@ -749,6 +751,215 @@ export const posts = [
       { label: 'Liu, S., et al. (2021, August 27). Trends in Nonfatal and Fatal Overdoses Involving Benzodiazepines — 38 States and the District of Columbia, 2019–2020. MMWR Morbidity and Mortality Weekly Report, 70(34), 1136–1141.', url: 'https://www.cdc.gov/mmwr/volumes/70/wr/mm7034a2.htm' },
       { label: 'National Institute on Drug Abuse. (2024). Benzodiazepines and Opioids. Research Topics. National Institute on Drug Abuse.', url: 'https://nida.nih.gov/research-topics/opioids/benzodiazepines-opioids' },
       { label: 'Ehlers, D., et al. (2024, January 5). Notes from the Field: Seizures, Hyperthermia, and Myocardial Injury in Three Young Adults Who Consumed Bromazolam Disguised as Alprazolam — Chicago, Illinois, February 2023. MMWR Morbidity and Mortality Weekly Report, 72(52–53), 1392–1393. Centers for Disease Control and Prevention.', url: 'https://www.cdc.gov/mmwr/volumes/72/wr/mm725253a5.htm' },
+    ],
+  },
+  {
+    slug: 'is-alcohol-a-depressant',
+    type: 'article',
+    title: 'Is Alcohol a Depressant? Why Drinking to Feel Better Makes Your Mood Worse',
+    seoTitle: 'Is Alcohol a Depressant? Why It Backfires', // <title> only (≤60, answer 9.1)
+    dek: "Alcohol calms the brain in the moment, then the rebound the next day can leave you more anxious than before you drank. Here is the science behind hangxiety and what breaks the loop.",
+    metaDescription: 'Alcohol raises GABA and suppresses glutamate, which is why the calm fades into next-day anxiety. Learn why alcohol is a depressant and what helps.',
+    date: '2026-09-28',
+    author: 'dana-martin', // slug in src/data/team.js — prescribed as the article's clinical author
+    category: 'Substance Use',
+    // Dana Martin's clinical article, verbatim structure and claims; docx citation markers ([1]…[6]) converted to
+    // the site's (Author, Year) in-text style. One citation swapped: the docx cited the AUD demographics page for
+    // the "28M with AUD, 2M treated" stat, but that page only carries the 28M figure — the treatment figure lives
+    // on NIAAA's separate "Alcohol Treatment in the United States" page, so the Sources entry points there instead.
+    // One claim rewritten after fetch-verifying PMC12695015: the docx's "diminishing returns" framing (payoff
+    // shrinking over repeated use) isn't what that paper measured; it's a single-session lab finding about
+    // perceived vs. actual relief, so the paragraph now reflects that instead. Hyperlinks moved to Sources only;
+    // interlinks added to existing site pages (the docx's own /dual-diagnosis/ link 404s — real path is
+    // /what-we-treat/dual-diagnosis/). Phone pulled from SITE, never hardcoded.
+    body: `
+<p>Alcohol is a depressant. It slows down the brain and spinal cord by increasing gamma-aminobutyric acid (GABA), the chemical that calms nerve cells, and suppressing glutamate, the chemical that fires them up (Canver &amp; Gomez, 2024). Here is what alcohol does to your mood, why the calming effect wears off so quickly, and what changes when drinking and <a href="/what-we-treat/mental-health/depression/">depression</a> are treated together.</p>
+
+<h2>Hangxiety: Why Anxiety Gets Worse After Drinking</h2>
+<p>This is the part most people experience without knowing what to call it. When you drink regularly, your brain stays balanced by making extra glutamate and reducing its own GABA. Take the alcohol away, and you are left with too little GABA and too much glutamate at once. This overstimulated state is withdrawal (Canver &amp; Gomez, 2024).</p>
+<figure><img src="/images/blog/infographics/alcohol-gaba-glutamate-cycle.svg" width="1200" height="560" loading="lazy" alt="Four-step loop: you drink and GABA rises while glutamate is suppressed, the brain compensates by raising glutamate and lowering GABA with regular drinking, the alcohol clears but the compensation hasn't reversed, and hangxiety hits from too little GABA and too much glutamate at once." /></figure>
+<p>You do not have to be physically dependent on alcohol for this to happen. Anxiety can show up after a single heavy night of drinking, even in someone with no anxiety disorder. It builds between drinking episodes and peaks during withdrawal (National Institute on Alcohol Abuse and Alcoholism [NIAAA], 2025a).</p>
+<p>Among people who are sensitive to hangovers, about 30% report depression symptoms and 18% report anxiety symptoms while hungover, and people who already run higher on both are the most vulnerable (Kim et al., 2023). The people most likely to drink for relief are the people most likely to pay for it the next day.</p>
+<p>Sleep makes it worse. Even moderate amounts of alcohol can disrupt sleep and reduce REM sleep, and it can take 30 days or more without drinking for sleep patterns to recover (NIAAA, 2025a). You can fall asleep fast and still wake up exhausted, which lowers your tolerance for anxiety before the day even starts.</p>
+
+<h2>Does Alcohol Cause Depression?</h2>
+<p>Being a depressant and causing depression are two different claims. Mental health conditions can lead to alcohol use disorder (AUD), partly because people drink to cope. Drinking can also lead to mental health conditions, especially when it starts in adolescence or continues for years. The two can also share genetic and environmental risk factors, including trauma and difficult childhood experiences (NIAAA, 2025a).</p>
+<figure><img src="/images/blog/infographics/alcohol-depression-bidirectional.svg" width="1200" height="480" loading="lazy" alt="Two stat cards: among people with major depression, 27 to 40 percent have alcohol use disorder at some point and up to 22 percent had it in a given year; among people dependent on alcohol, 15 to 33 percent also experience major depression. Curved arrows show each condition can lead to the other." /></figure>
+<p>Among people with major depression, 27% to 40% have AUD at some point in their lives, and up to 22% had it in a given year (NIAAA, 2025a). Among people dependent on alcohol, an estimated 15% to 33% also experience major depression (Winkler &amp; Grahame, 2025).</p>
+<p>Alcohol does not push everyone who drinks into depression. Heavy alcohol use can worsen depressive symptoms, though, and when both are present they can reinforce each other, raising the risk of relapse and worse outcomes overall (NIAAA, 2025a).</p>
+
+<h2>Is Alcohol a Depressant or a Stimulant?</h2>
+<p>Alcohol is called a depressant because of its overall effect on your nervous system, not because of how you feel during the first hour after drinking. How much you drink shapes what you notice: smaller amounts can feel stimulating, while larger amounts feel sedating (Canver &amp; Gomez, 2024).</p>
+<h3>Why the First Drink Feels Like a Lift</h3>
+<p>The GABA boost is what you may feel in that first hour: lowered inhibitions, a buzz or a sense of relaxation, and eventually drowsiness (Canver &amp; Gomez, 2024). If you are already experiencing depression or anxiety, the relief can feel real, which makes the behavior easy to repeat. The problem is duration. Relief may last a few hours; the lingering effects can last much longer.</p>
+
+<h2>How to Stop Anxiety After Drinking Alcohol</h2>
+<p>Nothing speeds up the rebound except time. A few things can keep it from getting worse.</p>
+<ul>
+  <li><strong>Drink water and eat a real meal.</strong> Being dehydrated and running on an empty stomach makes you shaky and lightheaded, which feels a lot like anxiety.</li>
+  <li><strong>Do not drink again to fix it.</strong> A morning drink increases GABA and delays the crash until later in the day. That is how occasional drinking turns into daily drinking.</li>
+  <li><strong>Skip as-needed sedatives.</strong> For people who drink heavily, benzodiazepines taken as needed for anxiety, mood, or sleep carry real misuse and overdose risk and are specifically discouraged. Talk with a doctor first (NIAAA, 2025a).</li>
+  <li><strong>Move.</strong> Light physical activity burns off the physical restlessness the rebound creates.</li>
+  <li><strong>Protect the next night of sleep.</strong> One good night of sleep does more for your mood than anything you try during the hangover.</li>
+  <li><strong>Write down what happened.</strong> Track how much, how often, and what triggered the drinking.</li>
+</ul>
+<p>If the anxiety keeps coming back and the drinking continues anyway, the question becomes less about managing a hangover and more about why the drinking continues when you already know the consequences.</p>
+
+<h2>Drinking to Cope With Depression</h2>
+<p>Alcohol is easy to access, and people commonly use it to manage anxiety. In the short term, it may seem to help. Over time, though, heavy drinking and repeated withdrawal can worsen both anxiety symptoms and the drinking pattern itself (NIAAA, 2025a).</p>
+<p>Research on drinking motives adds a layer here. People often say they drink to change how they feel, but in the moment, their reported relief does not line up with any measurable improvement in mood; people high in drinking-to-cope motives feel better after a drink even when their actual emotional state has not changed (Echeverri et al., 2025). That belief is often enough to keep the habit going, whether or not the alcohol is doing what it is credited for.</p>
+<p><a href="/what-we-treat/dual-diagnosis/">Dual diagnosis treatment</a> is built specifically for the cases where drinking is the main way you cope with a mood or <a href="/what-we-treat/mental-health/anxiety/">anxiety</a> condition. An assessment looks at both alcohol use and mental health symptoms and how they are intertwined.</p>
+
+<h2>Alcohol-Induced Depression Versus Depression on Its Own</h2>
+<p>Low mood is common during alcohol withdrawal, and by most accounts it improves after 2 to 4 weeks without alcohol (Winkler &amp; Grahame, 2025). If the symptoms are still there after a month, it may be a sign of underlying depression that warrants individualized treatment.</p>
+<figure><img src="/images/blog/infographics/alcohol-induced-vs-standalone-depression.svg" width="1200" height="420" loading="lazy" alt="Timeline from the last drink: withdrawal-related low mood is common through about week 4, marked in teal. Mood symptoms that are still present past week 4, marked in gold, point toward depression on its own rather than withdrawal." /></figure>
+<p>In treatment, a clinician builds a timeline with questions including:</p>
+<ul>
+  <li>How old were you when the mood symptoms started, and when did the regular drinking start?</li>
+  <li>What is the longest stretch you have gone without drinking, and were the mood symptoms present then?</li>
+  <li>Is there a family history of mood disorders, alcohol problems, or psychiatric hospitalization?</li>
+</ul>
+<p>Depression scores and alcohol scores tend to fluctuate together, which is why relevant care tracks both (NIAAA, 2025a).</p>
+
+<h2>Why Treating Both at Once Changes the Outcome</h2>
+<p>Stopping drinking can improve a co-occurring mental health condition on its own. Treating the mental health symptoms alone is usually not enough to reduce drinking. Treating both together is more effective for recovery than treating either one in isolation (NIAAA, 2025a).</p>
+<p>Getting care is the bottleneck: of the 28 million people aged 12 and older with an alcohol use disorder in the past year, only about 2 million received any treatment for it (NIAAA, 2025b). Outpatient care exists partly to close that gap, because it allows people to receive care while continuing to live at home and maintain work, school, and other responsibilities.</p>
+
+<h2>How Sunview Wellness Treats Alcohol Use and Co-Occurring Depression</h2>
+<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens inside a real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical treatment. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attending treatment stays realistic.</p>
+<p>Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder program</a> treats the drinking and the mood condition underneath it together, not as two separate referrals.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Alcohol is a depressant because it increases GABA and suppresses glutamate. That is separate from whether it causes depression.</li>
+  <li>Drinking and depression feed each other. Among people with major depression, 27% to 40% have an alcohol use disorder at some point.</li>
+  <li>Hangxiety is a rebound state caused by too little GABA and too much glutamate after alcohol wears off, and it can follow a single heavy night.</li>
+  <li>Mood symptoms that clear within 2 to 4 weeks without drinking suggest alcohol-induced depression. Symptoms that persist beyond that point point to depression on its own.</li>
+  <li>Stopping drinking may improve a co-occurring mental health condition, but treating that condition alone rarely reduces the drinking.</li>
+</ul>
+
+<h2>Outpatient Drug and Alcohol Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient drug and alcohol rehab in West Palm Beach, serving adults 18 and older. Our programs treat substance use disorders involving benzodiazepines, alcohol, opioids, stimulants, and polysubstance patterns, alongside the anxiety, depression, and trauma that so often exist underneath the substance use.</p>
+<p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> to reach the shame, inadequacy, and fear underneath substance use.</p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2025a). Mental Health Issues: Alcohol Use Disorder and Common Co-occurring Conditions. The Healthcare Professional’s Core Resource on Alcohol. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/health-professionals-communities/core-resource-on-alcohol/mental-health-issues-alcohol-use-disorder-and-common-co-occurring-conditions' },
+      { label: 'Canver, B., & Gomez, K. (2024). Alcohol Withdrawal Syndrome. StatPearls. StatPearls Publishing.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK441882/' },
+      { label: 'Winkler, M., & Grahame, N. J. (2025). Species Differences in Comorbid Alcohol Use Disorder and Major Depressive Disorder: A Narrative Review. Alcohol, Clinical and Experimental Research, 49(4), 712–724.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12012872/' },
+      { label: 'Kim, D., et al. (2023). Depression, Anxiety, and Stress Among Hangover-Sensitive and Hangover-Resistant Drinkers. Journal of Clinical Medicine, 12(8), Article 2766.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10145060/' },
+      { label: 'Echeverri, D., et al. (2025). Drinking Motives and Alcohol’s Acute Effects in a Social Laboratory Setting. Psychology of Addictive Behaviors. Advance online publication.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12695015/' },
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2025b). Alcohol Treatment in the United States. Alcohol Facts and Statistics. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/alcohols-effects-health/alcohol-topics/alcohol-facts-and-statistics/alcohol-treatment-united-states' },
+    ],
+  },
+  {
+    slug: 'signs-of-depression-in-women-that-get-missed',
+    type: 'article',
+    title: 'Signs of Depression in Women That Get Missed, Including the Ones That Look Like Coping',
+    seoTitle: 'Signs of Depression in Women That Get Missed', // <title> only (≤60, answer 9.1)
+    dek: 'Depression in women does not always look like sadness. It can show up as irritability, exhaustion, physical pain with no clear cause, or a drinking habit that quietly grows.',
+    metaDescription: 'Depression in women often looks like irritability, exhaustion, or drinking to cope, not sadness. Learn the signs that get missed and what to do next.',
+    date: '2026-09-28',
+    author: 'dana-martin', // slug in src/data/team.js — prescribed as the article's clinical author
+    category: 'Mental Health',
+    // Dana Martin's clinical article, verbatim structure and claims; docx citation markers ([1]…[7]) converted to
+    // the site's (Author, Year) in-text style. One factual error in the docx's own Key Takeaways line was corrected:
+    // it wrote "persistent depressive disorder (PMDD)" — PMDD is premenstrual dysphoric disorder, a different,
+    // separate condition the article discusses on its own further down. The correct abbreviation, used correctly
+    // everywhere else in the docx, is PDD; fixed here rather than propagated. The age-group stat was also tightened
+    // to match the source exactly after fetch-verifying PMC12538442: women 18–45 had 10% greater odds of the
+    // "Demoralized" symptom pattern than women in other age groups — not the broadest "highest odds" phrasing the
+    // docx implied. Hyperlinks moved to Sources only; interlinks added to existing site pages. Phone pulled from
+    // SITE, never hardcoded.
+    body: `
+<p>Depression does not always look like sadness. Some women never feel sad at all (National Institute of Mental Health [NIMH], 2023a). Instead it may show up as irritability, loss of interest, exhaustion, physical aches with no clear cause, or turning to alcohol as a way to cope. About 10% of adult women in the U.S. experience a major depressive episode in a given year, and roughly 4 in 10 adults who experience one receive no treatment for it (NIMH, 2023b). Here are the signs that get missed most often, and what to do about them.</p>
+
+<h2>Why the Signs of Depression in Women Get Missed</h2>
+<p>Depression does not look the same in everyone. Some women experience many symptoms at once, while others have only a few (NIMH, 2023a). A woman with three quieter symptoms may still be experiencing depression, even if there is nothing obvious to point to when someone asks if she is okay.</p>
+<figure><img src="/images/blog/infographics/depression-hidden-signs-hub.svg" width="1200" height="700" loading="lazy" alt="Four signs of depression that get mistaken for something else: irritability instead of sadness, exhaustion sleep doesn't fix, pain with no clear cause, and increasing drinking to cope, quietly." /></figure>
+<p>Symptom patterns help explain why some cases are easier to miss. In a 2025 study, women had 22% greater odds than men of showing a pattern centered on hopelessness, feeling like a failure, and low energy, rather than the more restless, anxious pattern more common in men (Weiss et al., 2025). This pattern is quiet. It may not disrupt a household or prompt someone to seek immediate help.</p>
+
+<h2>Symptoms of Depression in Women: A Checklist</h2>
+<p>Talk to a health care provider if you have experienced any of the following most of the day, nearly every day, for at least two weeks (NIMH, 2023a):</p>
+<ul>
+  <li>Anxiety or irritability</li>
+  <li>Feelings of hopelessness, worthlessness, or helplessness</li>
+  <li>Loss of interest or pleasure in hobbies and activities you once enjoyed</li>
+  <li>Fatigue, lack of energy, or feeling slowed down</li>
+  <li>Difficulty concentrating, remembering, or making decisions</li>
+  <li>Changes in sleep or appetite, in either direction</li>
+  <li>Physical aches or pains without a clear physical cause</li>
+  <li>Thoughts of death or suicide</li>
+</ul>
+<p>If you are struggling or having thoughts of suicide, call or text the 988 Suicide and Crisis Lifeline at 988. In life-threatening situations, call 911 (NIMH, 2023a).</p>
+
+<h2>Hidden Signs of Depression That Look Like Something Else</h2>
+<h3>Irritability Instead of Sadness</h3>
+<p>Anxiety and irritability sit at the top of the official symptom list and can be more noticeable than sadness (NIMH, 2023a). A short fuse over small things, snapping at people you care about, or feeling constantly overwhelmed are all recognized signs. They get explained away as stress or a personality trait, which is why they go dismissed for years.</p>
+<h3>Exhaustion That Sleep Does Not Fix</h3>
+<p>Low energy and fatigue are among the most common symptoms of depression, and they are easy to blame on something else: a demanding job, small children, or another health issue like a thyroid problem. The difference is that rest does not repair these symptoms. A full night of sleep, a weekend off, or a vacation may not change much.</p>
+<h3>Pain With No Clear Cause</h3>
+<p>Headaches, cramps, digestive problems, and body aches that have no clear physical explanation are recognized symptoms of depression (NIMH, 2023a). Many women see a string of providers for the pain, get normal results, and leave without anyone asking about mood. Clean workups are a reason to have the mood conversation, not to drop it.</p>
+<h3>When Drinking Starts to Increase</h3>
+<p>This is the sign that brings the most women to treatment, and it is rarely described as a depression symptom. It grows slowly enough that no single night looks like a problem. Alcohol is often used to cope with psychological distress, and providers screen women for alcohol misuse less often than men (NIAAA, 2024). The drinking increases while the depression underneath remains unnamed.</p>
+
+<h2>What Does "High-Functioning Depression" Mean?</h2>
+<p>"High-functioning depression" is not a clinical diagnosis. The closest formal match is <a href="/what-we-treat/mental-health/depression/">persistent depressive disorder (PDD)</a>. It involves depressed mood most of the day, more days than not, for at least two years, plus at least two of the following (Patel et al., 2024):</p>
+<ul>
+  <li>Poor appetite or overeating</li>
+  <li>Insomnia or sleeping too much</li>
+  <li>Low energy</li>
+  <li>Low self-esteem</li>
+  <li>Poor concentration</li>
+  <li>Hopelessness</li>
+</ul>
+<p>PDD is often overlooked, and the impairment it causes can be as severe as major depression. It also raises the risk of developing a <a href="/what-we-treat/dual-diagnosis/">substance use disorder</a> (Patel et al., 2024). "High-functioning depression" is often overlooked because responsibilities are still taken care of: deadlines are met, the children get where they need to go, and nothing looks like an emergency. Despite all that, functioning is not the same as being well.</p>
+<figure><img src="/images/blog/infographics/depression-symptom-patterns-compare.svg" width="1200" height="480" loading="lazy" alt="Comparison of two depression symptom patterns: women more often show a demoralized pattern of hopelessness, feeling like a failure, and low energy, with 22 percent greater odds than men. Men more often show an anxious arousal pattern of restlessness, trouble relaxing, and feeling on edge." /></figure>
+
+<h2>Life Stages When Depression Symptoms in Women Are More Likely</h2>
+<p>Some forms of depression are associated with reproductive stages, and they are treatable (NIMH, 2023a).</p>
+<figure><img src="/images/blog/infographics/depression-reproductive-life-stages.svg" width="1200" height="420" loading="lazy" alt="Three treatable, hormone-linked depression types across a woman's reproductive years: premenstrual dysphoric disorder in the weeks before menstruation, perinatal depression during pregnancy or after childbirth, and perimenopausal depression during the transition to menopause." /></figure>
+<ul>
+  <li><strong>Premenstrual dysphoric disorder (PMDD)</strong> is a severe form of premenstrual syndrome that occurs in the weeks before menstruation. Symptoms can include depressed mood, anger or irritability, appetite changes, and physical pain.</li>
+  <li><strong>Perinatal depression</strong> can occur during pregnancy or after childbirth. It goes beyond the temporary "baby blues," and may involve sadness, anxiety, and fatigue intense enough to interfere with caring for yourself or others.</li>
+  <li><strong>Perimenopausal depression</strong> can occur during the transition to menopause. Mood swings and disrupted sleep are common during this stage, but persistent irritability, anxiety, or loss of enjoyment may be signs of depression.</li>
+</ul>
+
+<h2>When Drinking Is the Reason You Finally Call</h2>
+<p>For some women, concerns about alcohol and substance use prompt them to seek help before they recognize or address underlying mood symptoms. Women can develop alcohol-related problems sooner and at lower levels of alcohol consumption than men, and they are less likely to receive treatment for <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder (AUD)</a> (NIAAA, 2025a).</p>
+<p>Mental health conditions and alcohol use disorder can occur together. Some people use alcohol to cope with emotional distress, while alcohol use can also worsen mental health symptoms, creating a cycle that can be difficult to break (NIAAA, 2025b).</p>
+<p>Abstinence may improve a co-occurring mental health condition on its own, but treating the mental health symptoms alone is not enough to resolve the drinking problem. <a href="/what-we-treat/dual-diagnosis/">Dual diagnosis treatment</a> includes an assessment that looks at both mental health and substance use histories, rather than focusing only on the one concern that led you to seek help (NIAAA, 2025b).</p>
+
+<h2>How Sunview Wellness Treats Depression in Women</h2>
+<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens within your everyday life through our <a href="/programs/php/">partial hospitalization</a>, <a href="/programs/iop/">intensive outpatient</a>, and <a href="/programs/outpatient/">outpatient</a> programs. You can continue working, studying, and living at home while receiving care.</p>
+<p>Our clinical team screens for both mood symptoms and alcohol use at intake, not just the concern that prompted the call, and treats <a href="/what-we-treat/mental-health/anxiety/">anxiety</a>, depression, and substance use together when they occur together.</p>
+<p>We're in network with most major insurance carriers, and we accept Medicaid. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a> at no cost and schedule an assessment.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Anxiety and irritability sit at the top of the depression symptom list. Sadness is only one symptom, and some women never feel it at all.</li>
+  <li>Women had 22% greater odds than men of a symptom pattern centered on hopelessness and low energy rather than visible agitation, and this pattern showed up more in women ages 18 to 45 than in women in other age groups.</li>
+  <li>"High-functioning depression" is not a diagnosis. Its closest match, persistent depressive disorder (PDD), lasts at least two years and increases the risk of a substance use disorder.</li>
+  <li>Providers are less likely to screen women for alcohol misuse than men, so a drinking pattern that grew out of coping often goes unmentioned.</li>
+  <li>Stopping alcohol use may improve a co-occurring mental health condition, but treating that condition alone rarely resolves the drinking problem.</li>
+</ul>
+
+<h2>Outpatient Depression and Addiction Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient program in West Palm Beach, serving adults 18 and older. Depression, anxiety, and trauma are treated alongside substance use here, in the same program and by the same team.</p>
+<p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> to reach the shame, inadequacy, and fear underneath substance use.</p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'National Institute of Mental Health. (2023a). Depression in Women: 4 Things to Know. Brochures and Fact Sheets, No. 23-MH-4779. National Institute of Mental Health.', url: 'https://www.nimh.nih.gov/health/publications/depression-in-women' },
+      { label: 'National Institute of Mental Health. (2023b). Major Depression. Mental Health Information: Statistics. National Institute of Mental Health.', url: 'https://www.nimh.nih.gov/health/statistics/major-depression' },
+      { label: 'Patel, R. K., et al. (2024). Persistent Depressive Disorder. StatPearls. StatPearls Publishing.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK541052/' },
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2025a). Women and Alcohol. Brochures and Fact Sheets. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/publications/brochures-and-fact-sheets/women-and-alcohol' },
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2025b). Mental Health Issues: Alcohol Use Disorder and Common Co-occurring Conditions. The Healthcare Professional’s Core Resource on Alcohol. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/health-professionals-communities/core-resource-on-alcohol/mental-health-issues-alcohol-use-disorder-and-common-co-occurring-conditions' },
+      { label: 'Weiss, K., et al. (2025). Gender Differences in Symptom Profiles of Individuals Being Treated for Mood Disorders. Journal of Mood and Anxiety Disorders, 12, Article 100152.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12538442/' },
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2024). Advancing Research on Women’s Health. NIAAA Strategic Plan Fiscal Years 2024–2028. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/about-niaaa/strategic-plan-fiscal-years-2024-2028/cross-cutting-research-themes/advancing-research-womens-health' },
     ],
   },
 ];

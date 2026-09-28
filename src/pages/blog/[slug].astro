@@ -108,6 +108,50 @@ const pageNode = {
   breadcrumb: { '@id': `${url}#breadcrumb` },
   inLanguage: 'en-US',
 };
+
+// FAQPage, auto-derived — same rule as programSchema.js's FAQPage nodes elsewhere on the site, and the
+// Hopewell/Virtue blog schema standard this post template now matches: any H2 that reads as a question
+// becomes a Question node, and the *first* <p> that follows it is the Answer, verbatim — never new copy
+// written just for schema. Migrated/plain posts with no question-style H2 simply get no FAQPage node.
+const strip = (html: string) => html.replace(/<[^>]+>/g, '').trim();
+const faqQuestions: { name: string; text: string }[] = [];
+body.replace(/<h2[^>]*>([\s\S]*?)<\/h2>([\s\S]*?)(?=<h2|$)/g, (_m: string, heading: string, rest: string) => {
+  const question = strip(heading);
+  const firstP = rest.match(/<p>([\s\S]*?)<\/p>/);
+  if (question.endsWith('?') && firstP) faqQuestions.push({ name: question, text: strip(firstP[1]) });
+  return '';
+});
+const faqNode = faqQuestions.length
+  ? {
+      '@type': 'FAQPage',
+      '@id': `${url}#faq`,
+      isPartOf: { '@id': `${url}#webpage` },
+      mainEntity: faqQuestions.map((f) => ({ '@type': 'Question', name: f.name, acceptedAnswer: { '@type': 'Answer', text: f.text } })),
+    }
+  : null;
+
+// ImageObject, one per in-article infographic — same standard: every captioned graphic in the body gets its
+// own node (contentUrl, caption from the alt text, credit, license), not just the post's own OG image.
+const imageNodes = Array.from(body.matchAll(/<img[^>]*>/g))
+  .map((m) => m[0])
+  .map((tag) => ({ src: tag.match(/src="([^"]+)"/)?.[1], alt: tag.match(/alt="([^"]*)"/)?.[1] }))
+  .filter((img): img is { src: string; alt: string } => Boolean(img.src && img.alt))
+  .map((img) => {
+    const imgUrl = new URL(img.src, SITE.url).href;
+    return {
+      '@type': 'ImageObject',
+      '@id': `${imgUrl}#image`,
+      contentUrl: imgUrl,
+      url: imgUrl,
+      name: img.alt,
+      caption: img.alt,
+      creditText: SITE.name,
+      creator: { '@id': `${SITE.url}/#organization` },
+      license: url,
+      acquireLicensePage: `${SITE.url}/admissions/`,
+    };
+  });
+
 const label = 'text-[13px] font-extrabold uppercase tracking-[0.08em] text-muted';
 const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
 ---
@@ -117,7 +161,7 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
   image={ogImage}
   type="article"
   breadcrumbs={crumbs}
-  schema={[pageNode, schemaNode, blogNode]}
+  schema={[pageNode, schemaNode, blogNode, ...(faqNode ? [faqNode] : []), ...imageNodes]}
 >
   {/* Minimal banner (modeled on Breathe's post banner, Sunview ground + fonts): breadcrumb, H1 at the article
       column's width, then one compact row: byline left, category · date · Share on right. No form. */}

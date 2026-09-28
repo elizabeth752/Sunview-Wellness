@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">Drinking and depression run in both directions</title>
+  <desc id="gdesc">Two stat cards showing the two-way relationship between alcohol use disorder and major depression. Among people with major depression, 27 to 40 percent have alcohol use disorder at some point in their lives, and up to 22 percent in a given year. Among people dependent on alcohol, an estimated 15 to 33 percent also experience major depression. Two curved arrows connect the cards to show that each condition can lead to the other, sharing genetic and environmental risk factors including trauma.</desc>
+  <rect width="1200" height="480" fill="#F0FAFA"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Drinking and depression run in both directions</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Two different questions, two different numbers, one intertwined problem</text>
+
+  <!-- left stat card -->
+  <g transform="translate(80,120)">
+    <rect width="440" height="270" rx="18" fill="#FFFFFF" stroke="#D9E6E6"/>
+    <rect x="0" y="0" width="440" height="8" rx="4" fill="#126E6E"/>
+    <text x="28" y="52" font-size="15" font-weight="800" fill="#126E6E" letter-spacing="0.03em">DEPRESSION → ALCOHOL</text>
+    <text x="28" y="128" font-size="56" font-weight="800" fill="#545555">27–40%</text>
+    <text x="28" y="158" font-size="14" fill="#3E4444">of people with major depression have</text>
+    <text x="28" y="178" font-size="14" fill="#3E4444">alcohol use disorder at some point</text>
+    <text x="28" y="212" font-size="30" font-weight="800" fill="#CF9034">up to 22%</text>
+    <text x="28" y="236" font-size="14" fill="#3E4444">had it within a given year</text>
+  </g>
+
+  <!-- right stat card -->
+  <g transform="translate(680,120)">
+    <rect width="440" height="270" rx="18" fill="#FFFFFF" stroke="#D9E6E6"/>
+    <rect x="0" y="0" width="440" height="8" rx="4" fill="#1F9E9E"/>
+    <text x="28" y="52" font-size="15" font-weight="800" fill="#1F9E9E" letter-spacing="0.03em">ALCOHOL → DEPRESSION</text>
+    <text x="28" y="128" font-size="56" font-weight="800" fill="#545555">15–33%</text>
+    <text x="28" y="158" font-size="14" fill="#3E4444">of people dependent on alcohol also</text>
+    <text x="28" y="178" font-size="14" fill="#3E4444">experience major depression</text>
+  </g>
+
+  <!-- connecting curved arrows -->
+  <path d="M 520 200 C 580 150, 620 150, 675 190" stroke="#CF9034" stroke-width="3" fill="none" marker-end="url(#a1)"/>
+  <path d="M 680 300 C 620 350, 580 350, 522 310" stroke="#CF9034" stroke-width="3" fill="none" marker-end="url(#a1)"/>
+  <text x="600" y="150" text-anchor="middle" font-size="12" font-weight="700" fill="#B87A1F">can lead to</text>
+  <text x="600" y="362" text-anchor="middle" font-size="12" font-weight="700" fill="#B87A1F">can lead to</text>
+
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#CF9034"/>
+    </marker>
+  </defs>
+
+  <text x="56" y="440" font-size="14" font-weight="700" fill="#3E4444">Shared risk factors, including trauma and adverse childhood experiences, help explain the overlap.</text>
+</svg>

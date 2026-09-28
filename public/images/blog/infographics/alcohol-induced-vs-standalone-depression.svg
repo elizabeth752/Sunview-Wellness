@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">Where the two-to-four-week line falls</title>
+  <desc id="gdesc">A four-week timeline starting the day drinking stops. Low mood during withdrawal is common and by most accounts improves between two and four weeks without alcohol, shown as a teal band. Past four weeks, if mood symptoms are still present, that points toward depression on its own rather than alcohol withdrawal, shown as a gold band continuing past the four-week mark.</desc>
+  <rect width="1200" height="420" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Where the two-to-four-week line falls</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Low mood after you stop drinking is common. What matters is whether it lifts.</text>
+
+  <!-- axis -->
+  <line x1="100" y1="230" x2="1100" y2="230" stroke="#D9E6E6" stroke-width="2"/>
+
+  <!-- teal band: withdrawal, weeks 0-4 -->
+  <rect x="100" y="200" width="400" height="60" rx="10" fill="#126E6E"/>
+  <text x="300" y="235" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Withdrawal-related low mood</text>
+
+  <!-- gold band: persists past week 4 -->
+  <rect x="500" y="200" width="600" height="60" rx="10" fill="#CF9034"/>
+  <text x="800" y="235" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Points to depression on its own</text>
+
+  <!-- week ticks -->
+  <g font-size="13" fill="#6B6C6C">
+    <line x1="100" y1="270" x2="100" y2="280" stroke="#B7C4C4"/>
+    <text x="100" y="300" text-anchor="middle">Day 0</text>
+    <text x="100" y="318" text-anchor="middle" font-size="11">(last drink)</text>
+
+    <line x1="300" y1="270" x2="300" y2="280" stroke="#B7C4C4"/>
+    <text x="300" y="300" text-anchor="middle">Week 2</text>
+
+    <line x1="500" y1="270" x2="500" y2="280" stroke="#B7C4C4"/>
+    <text x="500" y="300" text-anchor="middle" font-weight="800" fill="#3E4444">Week 4</text>
+
+    <line x1="800" y1="270" x2="800" y2="280" stroke="#B7C4C4"/>
+    <text x="800" y="300" text-anchor="middle">Week 8+</text>
+  </g>
+
+  <!-- marker at the decision line -->
+  <line x1="500" y1="170" x2="500" y2="270" stroke="#545555" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="500" y="160" text-anchor="middle" font-size="13" font-weight="800" fill="#545555">Still there? Ask why.</text>
+
+  <text x="56" y="380" font-size="14" font-weight="700" fill="#3E4444">Symptoms that clear by week 4 look like withdrawal. Symptoms that don't warrant an individualized assessment.</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">The rebound cycle behind hangxiety</title>
+  <desc id="gdesc">A four-step loop. Step one, you drink: alcohol raises GABA, the brain's calming chemical, and suppresses glutamate, the chemical that fires nerve cells up. Step two, with regular drinking, the brain compensates by making extra glutamate and reducing its own GABA to stay balanced. Step three, the alcohol clears from your body, but the compensation does not reverse right away. Step four, you are left with too little GABA and too much glutamate at once, an overstimulated rebound state that shows up as anxiety, often worse the next day. The cycle then repeats if a drink is used to quiet the rebound.</desc>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">The rebound cycle behind hangxiety</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">What happens between the first drink and the anxious morning after</text>
+
+  <!-- four stage nodes arranged in a loop -->
+  <!-- Stage 1: top-left -->
+  <g>
+    <circle cx="260" cy="200" r="86" fill="#126E6E"/>
+    <text x="260" y="178" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800" letter-spacing="0.06em">STEP 1</text>
+    <text x="260" y="202" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">You drink</text>
+    <text x="260" y="224" text-anchor="middle" fill="#EAF6F6" font-size="12">
+      <tspan x="260" dy="0">GABA rises,</tspan>
+      <tspan x="260" dy="16">glutamate is suppressed</tspan>
+    </text>
+  </g>
+
+  <!-- Stage 2: top-right -->
+  <g>
+    <circle cx="700" cy="160" r="86" fill="#1F9E9E"/>
+    <text x="700" y="138" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800" letter-spacing="0.06em">STEP 2</text>
+    <text x="700" y="162" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Brain compensates</text>
+    <text x="700" y="184" text-anchor="middle" fill="#EAF6F6" font-size="12">
+      <tspan x="700" dy="0">Regular drinking raises</tspan>
+      <tspan x="700" dy="16">glutamate, lowers GABA</tspan>
+    </text>
+  </g>
+
+  <!-- Stage 3: bottom-right -->
+  <g>
+    <circle cx="940" cy="400" r="86" fill="#CF9034"/>
+    <text x="940" y="378" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800" letter-spacing="0.06em">STEP 3</text>
+    <text x="940" y="402" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Alcohol clears</text>
+    <text x="940" y="424" text-anchor="middle" fill="#FCEEDA" font-size="12">
+      <tspan x="940" dy="0">The compensation</tspan>
+      <tspan x="940" dy="16">does not reverse yet</tspan>
+    </text>
+  </g>
+
+  <!-- Stage 4: bottom-left -->
+  <g>
+    <circle cx="440" cy="440" r="86" fill="#545555"/>
+    <text x="440" y="410" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800" letter-spacing="0.06em">STEP 4</text>
+    <text x="440" y="434" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Hangxiety hits</text>
+    <text x="440" y="456" text-anchor="middle" fill="#E4E4E4" font-size="12">
+      <tspan x="440" dy="0">Too little GABA, too much</tspan>
+      <tspan x="440" dy="16">glutamate at once</tspan>
+    </text>
+  </g>
+
+  <!-- connecting loop arrows -->
+  <path d="M 336 165 C 440 110, 560 100, 618 120" stroke="#B7C4C4" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 770 220 C 850 270, 900 310, 918 322" stroke="#B7C4C4" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 870 440 C 720 480, 600 480, 522 460" stroke="#B7C4C4" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <path d="M 400 360 C 340 320, 300 280, 280 262" stroke="#B7C4C4" stroke-width="3" fill="none" marker-end="url(#arrow)" stroke-dasharray="2 6"/>
+  <text x="330" y="330" font-size="12" font-style="italic" fill="#8A8B8B">repeats if the rebound is drunk away</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B7C4C4"/>
+    </marker>
+  </defs>
+
+  <text x="56" y="530" font-size="14" font-weight="700" fill="#3E4444">This overstimulated rebound is called withdrawal, and it can follow a single heavy night, not only heavy drinkers.</text>
+</svg>

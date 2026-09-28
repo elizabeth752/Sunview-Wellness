@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">Four signs that get mistaken for something else</title>
+  <desc id="gdesc">A radial diagram with a center circle reading depression in women, and four surrounding petals: irritability, often explained away as stress or personality; exhaustion that sleep does not fix; physical pain with no clear cause, such as headaches or digestive problems; and increasing drinking used to cope, which is rarely recognized as a depression symptom.</desc>
+  <rect width="1200" height="700" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Four signs that get mistaken for something else</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Each one has an easy, wrong explanation</text>
+
+  <!-- center hub -->
+  <circle cx="600" cy="390" r="98" fill="#126E6E"/>
+  <text x="600" y="380" text-anchor="middle" fill="#FFFFFF" font-size="17" font-weight="800">Depression</text>
+  <text x="600" y="404" text-anchor="middle" fill="#EAF6F6" font-size="14">in women</text>
+
+  <!-- connecting spokes -->
+  <line x1="600" y1="292" x2="600" y2="212" stroke="#D9E6E6" stroke-width="3"/>
+  <line x1="698" y1="390" x2="900" y2="390" stroke="#D9E6E6" stroke-width="3"/>
+  <line x1="600" y1="488" x2="600" y2="568" stroke="#D9E6E6" stroke-width="3"/>
+  <line x1="502" y1="390" x2="300" y2="390" stroke="#D9E6E6" stroke-width="3"/>
+
+  <!-- petal: top, irritability -->
+  <g transform="translate(600,140)">
+    <circle r="72" fill="#1F9E9E"/>
+    <text x="0" y="-8" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Irritability</text>
+    <text x="0" y="14" text-anchor="middle" fill="#EAF6F6" font-size="12">instead of sadness</text>
+  </g>
+
+  <!-- petal: right, exhaustion -->
+  <g transform="translate(1000,390)">
+    <circle r="72" fill="#CF9034"/>
+    <text x="0" y="-8" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Exhaustion</text>
+    <text x="0" y="14" text-anchor="middle" fill="#FCEEDA" font-size="12">sleep doesn't fix</text>
+  </g>
+
+  <!-- petal: bottom, pain -->
+  <g transform="translate(600,640)">
+    <circle r="72" fill="#545555"/>
+    <text x="0" y="-8" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Pain</text>
+    <text x="0" y="14" text-anchor="middle" fill="#E4E4E4" font-size="12">with no clear cause</text>
+  </g>
+
+  <!-- petal: left, drinking -->
+  <g transform="translate(200,390)">
+    <circle r="72" fill="#126E6E"/>
+    <text x="0" y="-8" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Drinking</text>
+    <text x="0" y="14" text-anchor="middle" fill="#EAF6F6" font-size="12">to cope, quietly</text>
+  </g>
+</svg>

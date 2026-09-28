@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">Two symptom patterns, one diagnosis</title>
+  <desc id="gdesc">A two-column comparison. Women more often show a demoralized pattern: hopelessness, feeling like a failure, and low energy. Women had 22 percent greater odds than men of this pattern, and women ages 18 to 45 showed it more than women in other age groups. Men more often show an anxious, restless pattern: trouble relaxing and feeling on edge. Both patterns are depression; only one looks like the textbook description.</desc>
+  <rect width="1200" height="480" fill="#F0FAFA"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Two symptom patterns, one diagnosis</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Only one of these looks like the textbook description of depression</text>
+
+  <!-- left column: women -->
+  <g transform="translate(80,120)">
+    <rect width="470" height="310" rx="18" fill="#126E6E"/>
+    <text x="28" y="44" font-size="13" font-weight="800" fill="#B9DEDE" letter-spacing="0.08em">MORE COMMON IN WOMEN</text>
+    <text x="28" y="80" font-size="22" font-weight="800" fill="#FFFFFF">"Demoralized" pattern</text>
+    <text x="28" y="118" font-size="34" font-weight="800" fill="#F5C518">22% greater odds</text>
+    <text x="28" y="142" font-size="13" fill="#DCEFEF">than men of this pattern</text>
+    <g font-size="14" fill="#FFFFFF">
+      <circle cx="34" cy="182" r="4" fill="#F5C518"/>
+      <text x="50" y="187">Hopelessness</text>
+      <circle cx="34" cy="212" r="4" fill="#F5C518"/>
+      <text x="50" y="217">Feeling like a failure</text>
+      <circle cx="34" cy="242" r="4" fill="#F5C518"/>
+      <text x="50" y="247">Low energy</text>
+    </g>
+    <text x="28" y="285" font-size="13" fill="#DCEFEF">Women ages 18–45 showed this pattern</text>
+    <text x="28" y="304" font-size="13" fill="#DCEFEF">more than women in other age groups.</text>
+  </g>
+
+  <!-- right column: men -->
+  <g transform="translate(650,120)">
+    <rect width="470" height="310" rx="18" fill="#FFFFFF" stroke="#D9E6E6"/>
+    <text x="28" y="44" font-size="13" font-weight="800" fill="#8A8B8B" letter-spacing="0.08em">MORE COMMON IN MEN</text>
+    <text x="28" y="80" font-size="22" font-weight="800" fill="#545555">"Anxious arousal" pattern</text>
+    <g font-size="14" fill="#3E4444">
+      <circle cx="34" cy="130" r="4" fill="#CF9034"/>
+      <text x="50" y="135">Restlessness</text>
+      <circle cx="34" cy="160" r="4" fill="#CF9034"/>
+      <text x="50" y="165">Trouble relaxing</text>
+      <circle cx="34" cy="190" r="4" fill="#CF9034"/>
+      <text x="50" y="195">Feeling on edge</text>
+    </g>
+    <text x="28" y="250" font-size="13" fill="#6B6C6C">More visible, more often prompting</text>
+    <text x="28" y="269" font-size="13" fill="#6B6C6C">someone to ask "are you okay?"</text>
+  </g>
+
+  <text x="56" y="450" font-size="14" font-weight="700" fill="#3E4444">The quieter pattern is still depression — it just doesn't look like the version people expect.</text>
+</svg>
