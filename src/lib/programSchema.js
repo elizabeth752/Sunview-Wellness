@@ -18,13 +18,14 @@ const faqQuestions = (faqs = []) =>
     .filter((f) => f.schema !== false)
     .map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.plain ?? strip(f.a) } }));
 
-// Give an inline MedicalTherapy / MedicalCondition `about` node a stable @id (therapies also get the provider).
+// Give an inline MedicalTherapy / MedicalCondition `about` node a stable @id. No `provider` on MedicalTherapy:
+// schema.org doesn't define it for that type (validator warning); the page's `publisher` already names Sunview.
 function linkAbout(about, url) {
   if (!about || (about['@id'] && Object.keys(about).length === 1)) return about; // plain reference
   const node = { ...about };
   if (node['@type'] === 'MedicalTherapy') {
     node['@id'] ??= `${url}#therapy`;
-    node.provider ??= ORG;
+    delete node.provider;
   } else if (node['@type'] === 'MedicalCondition') {
     node['@id'] ??= `${url}#condition`;
   }
