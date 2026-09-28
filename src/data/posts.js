@@ -465,6 +465,7 @@ export const posts = [
     slug: 'beyond-good-enough-redefining-community-based-care',
     type: 'article',
     title: 'Beyond Good Enough: Redefining Community-Based Care',
+    seoTitle: 'Beyond Good Enough: Community-Based Care | Sunview', // <title> differs from the H1 (SEMrush duplicate H1/title)
     dek: 'Why “good enough” care is no longer acceptable.',
     metaDescription: 'Frank Galimidi on why community-based outpatient care must be intensive, skilled and transformative, not merely adequate. Read the full article.', // meta only (dek too short, answer 9.1)
     date: '2026-06-02',
