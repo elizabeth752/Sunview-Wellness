@@ -245,6 +245,30 @@ export const PEOPLE = [
     linkedin: 'https://www.linkedin.com/in/walter-bierschenk-lmhc-emdr-nerpsc-10b81291/',
   },
   {
+    // Added 2026-09-28 (user): title "Group Leader"; bio supplied by the client. Spelled "Grazel" as in her
+    // bio and the old site's team page (the request message wrote "Graziel").
+    slug: 'mia-grazel',
+    metaDescription: 'Mia Grazel, Group Leader at Sunview Wellness in West Palm Beach, facilitating groups on life skills, boundaries, emotional regulation, CBT and DBT.', // meta only (≤155)
+    name: 'Mia Grazel',
+    first: 'Mia',
+    creds: '',
+    title: 'Group Leader',
+    group: 'facilitators',
+    specialty: 'Groups on family dynamics, life skills, boundaries, emotional regulation, CBT, DBT and coping skills.',
+    credentials: [],
+    education: [
+      'B.S. in Psychology, Florida Atlantic University',
+      'M.S. in Forensic Psychology, Nova Southeastern University (in progress)',
+    ],
+    bio: [
+      'Mia Grazel is a Group Leader at Sunview Wellness, where she facilitates groups across many areas, including family dynamics, life skills, boundaries, emotional regulation, goal setting, CBT, DBT and coping skills.',
+      'She earned her Bachelor of Science in Psychology from Florida Atlantic University and is pursuing a Master of Science in Forensic Psychology at Nova Southeastern University, with plans to continue on to a doctorate in clinical psychology specializing in forensic psychology. Mia values a safe and supportive space for the people in her groups, along with teamwork, collaboration, leadership, empathy and connection.',
+    ],
+    role: GROUP_LEADER_ROLE,
+    photo: null,
+    linkedin: null,
+  },
+  {
     slug: 'jose-toledo',
     name: 'Jose Toledo',
     first: 'Jose',
