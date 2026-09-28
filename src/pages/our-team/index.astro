@@ -3,7 +3,7 @@
 // docs/content/about-team-sources-team.md. Rotation: Reviews. No reviewed-by byline (brief decision).
 // Structure varies on purpose (client, 2026-09-23) and differs from the old /about-us/ card grid:
 // leadership as two wide profile features, therapists and group leaders as portrait tiles (therapists in a
-// four-up grid on mist, group leaders beside the section intro), admissions on a teal band. Every person uses
+// four-up grid on mist, group leaders in a three-up row under the section intro), admissions on a teal band. Every person uses
 // the same TeamCard markup (QA 8 #16); only the variant's layout differs, and "How Our Team Works Together" as
 // three pillars around a pull quote.
 import Base from '../../layouts/Base.astro';
@@ -122,16 +122,16 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  {/* 3. Group leaders + medical oversight: intro beside a two-up tile grid */}
+  {/* 3. Group leaders + medical oversight: H2 and intro on top, the three tiles in one row below (user, 2026-09-28) */}
   <section id="facilitators" class="section scroll-mt-24" aria-labelledby="facilitators-title">
-    <div class="container-x grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <div>
+    <div class="container-x">
+      <div class="max-w-3xl">
         <h2 id="facilitators-title" class="text-3xl sm:text-[2.1875rem]">{groupTitle('facilitators')}</h2>
         <p class="mt-4 text-lg">Day programming runs as one continuous group from 9 AM to 1 PM, led by the same facilitator for the whole morning, so the group can go deeper instead of switching leaders every hour.</p>
         <p class="mt-4">Psychiatric evaluation and medication management are provided through Sunview’s partner, Telemed Clinix, and are coordinated as part of treatment.</p>
         <p class="mt-4 flex flex-wrap gap-x-6 gap-y-2"><a href="/therapies/group-therapy/" class={link}>Group therapy at Sunview</a><a href="/programs/psychiatry-medication-management/" class={link}>Psychiatry and medication management</a></p>
       </div>
-      <ul class="grid gap-x-6 gap-y-10 self-start sm:grid-cols-2">
+      <ul class="mt-12 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
         {facilitators.map((p) => <TeamCard person={p} variant="tile" tone="mist" />)}
       </ul>
     </div>
