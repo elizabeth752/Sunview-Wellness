@@ -6,8 +6,9 @@
 // Text is verbatim, 5 stars only, first name + last initial; each card caps text at 5 lines and the
 // rest scrolls inside the card (touch/wheel/keyboard) or opens with "More". No reviewer photos,
 // no review or rating schema anywhere on the site. Data: src/data/reviews.js.
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
+// Latin subset only (English reviews): the full imports pulled every subset's @font-face into a render-blocking CSS file.
+import '@fontsource/roboto/latin-400.css';
+import '@fontsource/roboto/latin-500.css';
 import { reviewsByDate, GBP_URL } from '../data/reviews.js';
 // `limit` (QA batch 2, item 12): category and program pages (ServicePage) show 6 of the 11 reviews, a window
 // that starts at an index derived from the page path, so each page gets a stable, different set (same set on
@@ -29,7 +30,7 @@ const color = (s: string) => COLORS[s.charCodeAt(0) % COLORS.length];
     <div class="text-center">
       <h2 id={`${id}-title`} class="text-3xl sm:text-[2.1875rem]">{title}</h2>
       <img src="/images/badges/google-reviews.svg" alt="Google Reviews" width="93" height="33" class="mx-auto mt-5 h-12 w-auto" />
-      <p class="mt-2 flex justify-center gap-1 text-[#fbbc04]" aria-label="5-star reviews">
+      <p class="mt-2 flex justify-center gap-1 text-[#fbbc04]" role="img" aria-label="5-star reviews">
         {Array.from({ length: 5 }).map(() => (
           <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path fill="currentColor" d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /></svg>
         ))}

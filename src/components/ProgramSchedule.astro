@@ -77,5 +77,6 @@ const cellLabel: Record<string, string> = {
   .sv-pick { background: repeating-linear-gradient(135deg, var(--color-teal-light) 0 6px, color-mix(in srgb, var(--color-teal-light) 55%, white) 6px 12px); }
   /* Other programs stay visible for comparison but step back */
   .sv-muted td > span { opacity: 0.22; filter: grayscale(1); }
-  .sv-muted th span { opacity: 0.55; }
+  /* Muted ink instead of opacity 0.55 (#a1a2a2 = 2.55:1, fails WCAG AA); --color-muted is 5.3:1 on white */
+  .sv-muted th span { color: var(--color-muted); }
 </style>

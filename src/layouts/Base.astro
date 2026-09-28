@@ -5,6 +5,10 @@ import Footer from '../components/Footer.astro';
 import MobileCallBar from '../components/MobileCallBar.astro';
 import { SITE } from '../data/site.js';
 import { GBP_URL } from '../data/reviews.js';
+// Above-the-fold fonts (body Nunito + H1 Playfair, latin subset), preloaded so they don't wait for the CSS to be
+// parsed. Same Vite-hashed files the @font-face rules in global.css point to.
+import nunitoWoff2 from '@fontsource-variable/nunito/files/nunito-latin-wght-normal.woff2?url';
+import playfairWoff2 from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
 
 interface Crumb { name: string; href: string }
 interface Props {
@@ -128,6 +132,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <link rel="preload" href={nunitoWoff2} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={playfairWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
     {/* No other tag scripts here: CallTrackingMetrics (DNI) and analytics load through GTM. */}
 

@@ -92,7 +92,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
       <div class="mx-auto w-full max-w-[300px] lg:ml-auto lg:mr-0">
         <div class="relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[var(--radius-lg)] bg-mist ring-4 ring-white/15">
           {p.photo
-            ? <img src={p.photo} alt={`${p.name}, ${p.title} at Sunview Wellness`} class="absolute inset-0 h-full w-full object-cover" />
+            ? <img src={p.photo} alt={`${p.name}, ${p.title} at Sunview Wellness`} width="600" height="600" fetchpriority="high" class="absolute inset-0 h-full w-full object-cover" />
             : <span class="grid h-36 w-36 place-items-center rounded-full border-2 border-gold font-display text-6xl font-bold text-teal" role="img" aria-label={`Photo of ${p.name} coming soon`}>{initials(p.name)}</span>}
         </div>
       </div>
