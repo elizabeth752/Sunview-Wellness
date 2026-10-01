@@ -141,20 +141,28 @@ export const PEOPLE = [
   {
     slug: 'tyler-shoens',
     metaRole: 'Registered Intern Therapist', // <title> only (≤60, answer 9.1)
-    metaDescription: 'Tyler Shoens, MSW, RCSWI, Primary Therapist at Sunview Wellness, an outpatient addiction and mental health treatment center in West Palm Beach.', // meta only (≤155, answer 9.1)
+    metaDescription: 'Tyler Shoens, MSW, RCSWI, Primary Therapist at Sunview Wellness in West Palm Beach. Inner Child Work and rebuilding identity in recovery.', // meta only (≤155, answer 9.1)
     name: 'Tyler Shoens',
     first: 'Tyler',
     creds: 'MSW, RCSWI',
     title: 'Primary Therapist (Registered Intern)',
     group: 'therapists',
-    specialty: null,
-    publish: false, // Wiki bio is one line (used below); Tyler isn't on the live site. Fuller bio requested (3.5)
+    specialty: 'Inner Child Work, identity in recovery and the patterns behind addiction.',
+    // Published 2026-10-01. Bio: Tyler's own text, sent by Frank 2026-09-30 ("Tyler Shoens bio"), rewritten in
+    // the third person to house style (no em dashes, no "client") and shortened; every claim is his. "Human,
+    // Father" from his signature line is left out.
     credentials: [
       { abbr: 'MSW', label: 'Master of Social Work' },
       { abbr: 'RCSWI', label: 'Registered Clinical Social Worker Intern' },
     ],
-    education: [],
-    bio: ['Tyler Shoens is a full-time member of the clinical staff at Sunview Wellness and a registered intern working toward licensure.'],
+    education: ['Master of Social Work, Florida Atlantic University'],
+    bio: [
+      'Tyler Shoens holds a Master of Social Work from Florida Atlantic University and is a Registered Clinical Social Worker Intern pursuing advanced clinical licensure. He has spent most of his career in addiction and behavioral health, and he believes people deserve to be treated like people: not diagnoses, not case numbers and not the worst thing they have ever done.',
+      'Tyler has a particular interest in Inner Child Work, helping people explore how childhood experiences, unmet emotional needs, attachment, family dynamics, shame and old survival strategies still shape the way they think, feel and relate to others today. For him, this work isn’t about blaming parents or reliving the past. It’s about recognizing the younger parts of ourselves that may still carry fear, shame, anger or loneliness, and learning to give ourselves the safety, boundaries and compassion we may not have received when we needed them most.',
+      'He sees this as especially important in recovery, because addiction often becomes a way of coping with pain a person never learned to process. Instead of only asking “How do I stop doing this?”, Tyler helps people ask “What is happening inside of me that makes me need this in the first place?”',
+      'Tyler’s therapy is compassionate without becoming comfortable. He meets people where they are, and he also challenges them when they are making excuses, repeating old patterns, avoiding difficult emotions or selling themselves short. He draws from CBT, DBT, Motivational Interviewing, Acceptance and Commitment Therapy, Solution-Focused Brief Therapy, family systems, trauma-informed care, psychodynamic approaches and Inner Child Work, adapting each to the person rather than fitting the person to a model.',
+      'He is especially passionate about helping people rebuild their identity in recovery, so they discover they are more than their diagnosis, their past or the version of themselves they had to become to survive. As he often reminds the people he works with, treatment is a bridge, not a destination.',
+    ],
     role: PRIMARY_THERAPIST_ROLE,
     photo: null,
     linkedin: null,
