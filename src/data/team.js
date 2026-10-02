@@ -46,13 +46,14 @@ export const PEOPLE = [
     title: 'Chief Executive Officer',
     group: 'leadership',
     specialty: 'More than 23 years in addiction treatment and behavioral healthcare leadership.',
+    // Labels: Frank's own list, email "Website" 2026-09-25 ("what all the acronyms mean").
     credentials: [
-      { abbr: 'CASAC' },
-      { abbr: 'CAP' },
-      { abbr: 'CRADC' },
-      { abbr: 'NCAC II' },
-      { abbr: 'ICADC' },
-      { abbr: 'SAP', label: 'Qualified Substance Abuse Professional' },
+      { abbr: 'CASAC', label: 'Credentialed Alcoholism and Substance Abuse Counselor (New York)' },
+      { abbr: 'CAP', label: 'Certified Addiction Professional (Florida)' },
+      { abbr: 'CRADC', label: 'Certified Reciprocal Alcohol and Drug Counselor (Illinois)' },
+      { abbr: 'NCAC II', label: 'National Certified Addiction Counselor, Level II' },
+      { abbr: 'ICADC', label: 'International Certified Alcohol and Drug Counselor' },
+      { abbr: 'SAP', label: 'Substance Abuse Professional, qualified under U.S. Department of Transportation (DOT) regulations' },
     ],
     education: [],
     bio: [
