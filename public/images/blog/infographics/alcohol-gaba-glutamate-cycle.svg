@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
   <title id="gtitle">The rebound cycle behind hangxiety</title>
   <desc id="gdesc">A four-step loop. Step one, you drink: alcohol raises GABA, the brain's calming chemical, and suppresses glutamate, the chemical that fires nerve cells up. Step two, with regular drinking, the brain compensates by making extra glutamate and reducing its own GABA to stay balanced. Step three, the alcohol clears from your body, but the compensation does not reverse right away. Step four, you are left with too little GABA and too much glutamate at once, an overstimulated rebound state that shows up as anxiety, often worse the next day. The cycle then repeats if a drink is used to quiet the rebound.</desc>
-  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <rect width="1200" height="600" fill="#FFFFFF"/>
   <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">The rebound cycle behind hangxiety</text>
   <text x="56" y="78" font-size="15" fill="#6B6C6C">What happens between the first drink and the anxious morning after</text>
 
@@ -63,5 +63,5 @@
     </marker>
   </defs>
 
-  <text x="56" y="530" font-size="14" font-weight="700" fill="#3E4444">This overstimulated rebound is called withdrawal, and it can follow a single heavy night, not only heavy drinkers.</text>
+  <text x="56" y="570" font-size="14" font-weight="700" fill="#3E4444">This overstimulated rebound is called withdrawal, and it can follow a single heavy night, not only heavy drinkers.</text>
 </svg>
