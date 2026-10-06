@@ -36,8 +36,7 @@ const ogImage = image.startsWith('http') ? image : new URL(image, SITE.url).href
 
 // Structured data: ONE ld+json script per page, a single @graph of linked nodes (only what's visible on the page).
 // MedicalOrganization with only what's visible site-wide (header/footer): name, logo, address, telephone
-// ({{PHONE}}, injected by GTM/CTM), email, url and the social profiles in the footer. The YouTube channel is
-// Frank's personal channel, so it's not in the organization's sameAs. No rating markup (Google review-snippet
+// ({{PHONE}}, injected by GTM/CTM), email, url and the social profiles in the footer. No rating markup (Google review-snippet
 // rules: GBP ratings are third-party and not shown as a rating on the page).
 const clinic = {
   '@type': 'MedicalOrganization',
@@ -65,7 +64,7 @@ const clinic = {
     addressCountry: SITE.address.country,
   },
   foundingDate: SITE.foundingYear,
-  sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.linkedin, SITE.social.x, GBP_URL],
+  sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.linkedin, SITE.social.x, SITE.social.youtube, SITE.social.bluesky, SITE.social.pinterest, GBP_URL],
 };
 
 const website = {

@@ -71,11 +71,13 @@ const year = new Date().getFullYear();
             <span>Mon–Fri 9am–1pm<br />Evening IOP Mon, Wed, Thu 6–9pm</span>
           </li>
         </ul>
-        <div class="mt-6 flex gap-2">
+        <div class="mt-6 flex flex-wrap gap-2">
           <a href={SITE.social.instagram} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="instagram" label="Instagram" /></a>
           <a href={SITE.social.linkedin} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="linkedin" label="LinkedIn" /></a>
           <a href={SITE.social.youtube} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="youtube" label="YouTube" /></a>
           <a href={SITE.social.x} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="xsocial" label="X (Twitter)" /></a>
+          <a href={SITE.social.bluesky} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="bluesky" label="Bluesky" /></a>
+          <a href={SITE.social.pinterest} target="_blank" rel="noopener" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/40 hover:bg-white/10"><Icon name="pinterest" label="Pinterest" /></a>
         </div>
       </div>
       {cols.map((c) => (

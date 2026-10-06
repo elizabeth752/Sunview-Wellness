@@ -25,7 +25,9 @@ export const SITE = {
     instagram: 'https://www.instagram.com/sunviewwellness/',
     linkedin: 'https://www.linkedin.com/in/sunview-wellness-4b15b3242/',
     x: 'https://twitter.com/MedicalSunview',
-    youtube: 'https://www.youtube.com/@frankgalimidi',
+    youtube: 'https://www.youtube.com/@sunviewwellness',
+    bluesky: 'https://bsky.app/profile/sunviewwellness.bsky.social',
+    pinterest: 'https://www.pinterest.com/sunviewwellness/',
   },
   foundingYear: '2021', // Home review round 2 (schema foundingDate)
   gtmId: 'GTM-NCTDLZMC', // container from the client (same as the live WordPress site)
