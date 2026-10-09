@@ -963,6 +963,100 @@ export const posts = [
       { label: 'National Institute on Alcohol Abuse and Alcoholism. (2024). Advancing Research on Women’s Health. NIAAA Strategic Plan Fiscal Years 2024–2028. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/about-niaaa/strategic-plan-fiscal-years-2024-2028/cross-cutting-research-themes/advancing-research-womens-health' },
     ],
   },
+  {
+    slug: 'thca-vs-thc',
+    type: 'article',
+    title: 'THCA vs THC: Why Legal THCA Flower Gets You Just as High',
+    dek: 'THCA flower is sold as hemp, but heat converts it into THC, the compound in marijuana that produces a high, along with the same risks for anxiety, paranoia, and cannabis use disorder.',
+    metaDescription: 'THCA flower is sold as hemp, but heat converts it into THC. Learn how THCA compares to THC, its side effects, and what Florida and federal law say.',
+    date: '2026-10-08',
+    author: 'dana-martin', // slug in src/data/team.js — prescribed as the article's clinical author
+    category: 'Substance Use',
+    // Dana Martin's clinical article, verbatim structure and claims; docx citation markers ([1]…[6]) converted to
+    // the site's (Author, Year) in-text style; the three CDC citations (mental health, lung health, cannabis use
+    // disorder) given 2024a/b/c to disambiguate, matching the NIMH/NIAAA a/b convention used elsewhere. The docx's
+    // "a 2025 federal law will include THCA" line was fetch-verified and tightened: the law (Public Law 119-37)
+    // was signed November 2025, not merely proposed, and a later continuing-appropriations act delayed its
+    // effective date to December 11, 2026 — both now stated explicitly rather than left as "will." The docx's
+    // closing warning-signs bullet named the 988 Suicide and Crisis Lifeline; omitted per the client's standing
+    // no-crisis-line rule (Answers-Content-Questions-2026-09-24.md, 8.1) and replaced with the site's existing
+    // emergency-care phrasing (matches xanax-side-effects' "Call 911" pattern). Hyperlinks moved to Sources only;
+    // interlinks added to existing site pages (no dedicated cannabis child page exists yet, so interlinks point to
+    // the substance-use hub). Phone pulled from SITE, never hardcoded.
+    body: `
+<p>THCA flower is sold in smoke shops and online as hemp, often with a lab report showing less than 0.3% delta-9 THC. THCA (tetrahydrocannabinolic acid) is the natural, raw form of THC (tetrahydrocannabinol) that the cannabis plant actually produces, and heat converts it into delta-9 THC, the compound in marijuana that causes a high (Wang et al., 2016).</p>
+<p>This article covers how THCA compares to THC, whether THCA flower gets you high, its side effects, how Florida and federal law treat it, and what it means for someone who is already struggling with cannabis use.</p>
+
+<h2>Is THCA the Same as THC?</h2>
+<p>THCA and THC are closely related, but they are not the same compound. The cannabis plant primarily produces THCA, while THC itself is present only in small amounts in the raw plant. Exposing THCA to heat or light triggers a reaction called decarboxylation, which converts it into THC (Wang et al., 2016).</p>
+<p>In practice, the difference is small for anyone who smokes, vapes, or cooks cannabis flower, since each of those methods triggers the same conversion. That is also why forensic labs commonly measure THCA and delta-9 THC together as total THC when reporting a sample's cannabinoid content (Wang et al., 2016).</p>
+
+<h2>What Is THCA?</h2>
+<p>THCA is one of the main natural compounds in cannabis. Hemp and marijuana come from the same plant, <em>Cannabis sativa</em>, and the law distinguishes between them by cannabinoid content rather than how the plant looks (Congressional Research Service [CRS], 2026).</p>
+
+<h2>What Is THCA Flower?</h2>
+<p>THCA flower is dried cannabis bud sold as hemp. Since 2018, federal law has defined hemp by its delta-9 THC concentration: no more than 0.3% on a dry weight basis (CRS, 2026). A flower can carry a large amount of THCA and still test under that limit, because the test does not count THCA, even though the same flower can produce far more THC once it is heated.</p>
+
+<h2>Does THCA Get You High?</h2>
+<p>THCA flower can get you high. Smoking, vaping, or cooking it converts THCA into THC, so the effects can match those of marijuana with a comparable amount of THC (Wang et al., 2016).</p>
+<figure><img src="/images/blog/infographics/thca-to-thc-decarboxylation.svg" width="1200" height="460" loading="lazy" alt="Three-step diagram: THCA is the raw, non-intoxicating compound the cannabis plant produces, heat applied through smoking, vaping, or cooking triggers decarboxylation, and the result is delta-9 THC, the psychoactive compound that produces the high." /></figure>
+<p>Potency is a factor with any cannabis product, not just THCA flower. In research samples tracked over time, the average delta-9 THC concentration nearly doubled, from 9% in 2008 to 17% in 2017, and higher concentrations carry stronger effects on the brain (CDC, 2024c).</p>
+
+<h2>What Are the Side Effects of THCA?</h2>
+<p>The side effects of THCA flower are the side effects of THC, because that is what it becomes once it is heated. They include disorientation; anxiety and paranoia; psychosis, which involves losing touch with reality and may include hallucinations; a higher risk of long-lasting mental health conditions, including schizophrenia, especially in people who start using at a young age and use frequently; and depression, social anxiety, and suicidal thoughts (CDC, 2024a).</p>
+<figure><img src="/images/blog/infographics/thca-thc-side-effects.svg" width="1200" height="460" loading="lazy" alt="List of THCA and THC side effects: disorientation, anxiety and paranoia, psychosis involving loss of touch with reality, a higher risk of long-lasting conditions including schizophrenia, and depression, social anxiety, and suicidal thoughts." /></figure>
+
+<h3>Cannabis Use Disorder</h3>
+<p>Cannabis use disorder (CUD) is a pattern of cannabis use in which a person is unable to stop using it even when it causes health and social problems. About 3 in 10 people who use cannabis have CUD, and the risk is higher for people who begin using at a younger age (CDC, 2024c). Signs include cravings, using more than intended, trying and failing to quit, and needing more cannabis to get the same high (CDC, 2024c).</p>
+
+<h2>Is THCA Safe to Smoke?</h2>
+<p>Smoking THCA flower carries the same lung risks as smoking marijuana. Inhaling cannabis smoke can injure lung tissue and may contribute to inflammation, scarring, and damage to the small blood vessels within the lungs.</p>
+<p>Cannabis smoke contains many of the same toxins, irritants, and cancer-causing chemicals as tobacco smoke, and smoking it can increase the risk of bronchitis, cough, and mucus production. These symptoms generally improve after a person stops smoking cannabis (CDC, 2024b).</p>
+
+<h2>Is THCA Legal in Florida?</h2>
+<p>Hemp-derived products meant to be eaten or inhaled cannot be sold in Florida to anyone under 21 (Florida Legislature, 2026).</p>
+<p>Federal law currently tests a hemp product only for how much delta-9 THC it contains, capped at 0.3%. THCA is not part of that test, which is why cannabis flower high in THCA can still be sold as hemp. That is changing: a federal law signed in November 2025, Public Law 119-37, redefines hemp around a total THC limit that counts THCA together with delta-9 THC, still capped at 0.3%. The change is currently set to take effect December 11, 2026 (CRS, 2026). Once it does, most high-THCA flower will no longer meet the federal definition of hemp.</p>
+<figure><img src="/images/blog/infographics/thca-federal-hemp-test-change.svg" width="1200" height="420" loading="lazy" alt="Timeline showing the federal hemp test changing: today the test counts delta-9 THC only, so THCA flower can pass at 0.3 percent, and starting December 11, 2026, under Public Law 119-37, the test counts total THC, combining THCA and delta-9 THC, at the same 0.3 percent limit." /></figure>
+
+<h2>What THCA Means for Someone Already Struggling With Cannabis</h2>
+<p>For someone trying to control their cannabis use, THCA flower is not a lower-risk alternative. It can deliver the same THC-related effects as marijuana, and because it is sold as hemp, it can be easier to buy. Someone trying to cut back on marijuana may switch to THCA flower believing it is a safer or legal option, when in practice they are using the same drug and carry the same risk of CUD.</p>
+<p>If you find THCA flower among a family member's belongings, the hemp label is not a reason to assume it is harmless. These steps can help:</p>
+<ul>
+  <li><strong>Start the conversation when things are calm.</strong> Ask how often they use it and what it does for them, and listen before you respond.</li>
+  <li><strong>Look for signs of a pattern.</strong> Using more than planned, failed attempts to cut back, cravings, or giving up activities they once enjoyed can point toward cannabis use disorder (CDC, 2024c).</li>
+  <li><strong>Ask for a professional assessment.</strong> A primary care provider or an <a href="/admissions/what-to-expect/">addiction treatment program</a> can evaluate cannabis use together with the <a href="/what-we-treat/mental-health/anxiety/">mood and anxiety</a> conditions that often go with it.</li>
+  <li><strong>Know the urgent warning signs.</strong> Signs of psychosis, such as paranoia or not knowing what is real, and any talk of suicide need immediate attention. Call 911 or go to the nearest emergency room.</li>
+</ul>
+
+<h2>How Sunview Wellness Treats Cannabis Use Disorder</h2>
+<p>At Sunview Wellness, we treat <em>in vivo</em>, which means care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
+<p>Our <a href="/what-we-treat/substance-use/">substance use treatment program</a> addresses cannabis use disorder together with the <a href="/what-we-treat/dual-diagnosis/">anxiety, depression, and trauma</a> that so often sit underneath it, in the same program and by the same team.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Heat converts THCA into THC, so smoked or vaped THCA flower can produce effects similar to marijuana.</li>
+  <li>THCA is natural, not synthetic, but once it converts to THC it carries the same risks as marijuana.</li>
+  <li>Side effects can include anxiety, paranoia, and psychosis, and about 3 in 10 people who use cannabis have cannabis use disorder.</li>
+  <li>Smoked cannabis can harm lung tissue and raise the risk of bronchitis and cough.</li>
+  <li>Federal law currently tests hemp only for delta-9 THC. Once a 2025 law takes effect on December 11, 2026, the test will count total THC, and most THCA flower will no longer qualify as hemp.</li>
+</ul>
+
+<h2>Outpatient Drug and Alcohol Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient drug rehab in West Palm Beach serving adults 18 and older. Our programs treat substance use disorders involving cannabis, alcohol, opioids, stimulants, and polysubstance patterns, alongside the anxiety, depression, and trauma that so often exist underneath the substance use.</p>
+<p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> as an integrative modality to address the shame, inadequacy, and fear underneath substance use.</p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'Wang, M., et al. (2016). Decarboxylation Study of Acidic Cannabinoids: A Novel Approach Using Ultra-High-Performance Supercritical Fluid Chromatography/Photodiode Array-Mass Spectrometry. Cannabis and Cannabinoid Research, 1(1), 262–271.', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC5549281/' },
+      { label: 'Congressional Research Service. (2026). Changes to the Statutory Definition of Hemp and Implications for Agricultural Policy. In Focus, No. IF13136. Congressional Research Service.', url: 'https://www.congress.gov/crs-product/IF13136' },
+      { label: 'Centers for Disease Control and Prevention. (2024a). Cannabis and Mental Health. Cannabis and Public Health. Centers for Disease Control and Prevention.', url: 'https://www.cdc.gov/cannabis/health-effects/mental-health.html' },
+      { label: 'Centers for Disease Control and Prevention. (2024b). Cannabis and Lung Health. Cannabis and Public Health. Centers for Disease Control and Prevention.', url: 'https://www.cdc.gov/cannabis/health-effects/lung-health.html' },
+      { label: 'Centers for Disease Control and Prevention. (2024c). Understanding Your Risk for Cannabis Use Disorder. Cannabis and Public Health. Centers for Disease Control and Prevention.', url: 'https://www.cdc.gov/cannabis/health-effects/cannabis-use-disorder.html' },
+      { label: 'The Florida Legislature. (2026). Section 581.217, State Hemp Program. The 2026 Florida Statutes. The Florida Legislature.', url: 'https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0581/Sections/0581.217.html' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));

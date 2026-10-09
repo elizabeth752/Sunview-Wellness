@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="stitle sdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="stitle">THCA flower carries the same side effects as THC</title>
+  <desc id="sdesc">Because heat converts THCA into THC, THCA flower carries the same side effects as marijuana: disorientation; anxiety and paranoia; psychosis, which involves losing touch with reality and may include hallucinations; a higher risk of long-lasting mental health conditions, including schizophrenia, especially in people who start using at a young age and use frequently; and depression, social anxiety, and suicidal thoughts.</desc>
+  <rect width="1200" height="460" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Same plant, same side effects</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Once THCA converts to THC, it carries the same risks as marijuana</text>
+
+  <g font-size="15">
+    <g transform="translate(56,104)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <text x="30" y="33" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800">1</text>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Disorientation</text>
+    </g>
+    <g transform="translate(56,168)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <text x="30" y="33" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800">2</text>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Anxiety and paranoia</text>
+    </g>
+    <g transform="translate(56,232)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <text x="30" y="33" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800">3</text>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Psychosis: losing touch with reality, sometimes with hallucinations</text>
+    </g>
+    <g transform="translate(56,296)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#CF9034"/>
+      <text x="30" y="33" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800">4</text>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Higher risk of long-lasting conditions, including schizophrenia</text>
+    </g>
+    <g transform="translate(56,360)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#CF9034"/>
+      <text x="30" y="33" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="800">5</text>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Depression, social anxiety, and suicidal thoughts</text>
+    </g>
+  </g>
+
+  <text x="56" y="438" font-size="13" fill="#6B6C6C">Risk 4 and 5 rise especially in people who start using at a young age and use frequently.</text>
+</svg>

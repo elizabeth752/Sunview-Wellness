@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="dtitle ddesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="dtitle">Heat is the only difference between THCA and THC</title>
+  <desc id="ddesc">The cannabis plant primarily produces THCA, a natural compound that is not intoxicating on its own. Smoking, vaping, or cooking applies heat, which triggers a chemical reaction called decarboxylation. That reaction converts THCA into delta-9 THC, the compound in marijuana that produces a high.</desc>
+  <rect width="1200" height="460" fill="#F0FAFA"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Heat is the only difference</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">THCA is natural and not intoxicating on its own. Heat is what converts it into THC.</text>
+
+  <!-- node 1: THCA -->
+  <g transform="translate(190,250)">
+    <circle r="88" fill="#126E6E"/>
+    <text x="0" y="-10" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="800">THCA</text>
+    <text x="0" y="14" text-anchor="middle" fill="#EAF6F6" font-size="13">raw, non-intoxicating</text>
+    <text x="0" y="32" text-anchor="middle" fill="#EAF6F6" font-size="13">what the plant produces</text>
+  </g>
+
+  <!-- arrow 1 -->
+  <path d="M286 250 H 470" stroke="#CF9034" stroke-width="4" fill="none"/>
+  <path d="M470 250 l-16 -10 v20 z" fill="#CF9034"/>
+
+  <!-- node 2: heat / decarboxylation -->
+  <g transform="translate(600,250)">
+    <rect x="-130" y="-66" width="260" height="132" rx="16" fill="#FFFFFF" stroke="#D9E6E6"/>
+    <circle cx="0" cy="-26" r="16" fill="#CF9034"/>
+    <path d="M0 -36 c5 6 9 11 9 17 a9 9 0 1 1 -18 0 c0 -3 1 -6 3 -8 c1 3 3 4 4 2 c-1 -4 0 -8 2 -11 z" fill="#FFFFFF"/>
+    <text x="0" y="4" text-anchor="middle" fill="#545555" font-size="15" font-weight="800">Heat applied</text>
+    <text x="0" y="26" text-anchor="middle" fill="#3E4444" font-size="13">smoking, vaping,</text>
+    <text x="0" y="44" text-anchor="middle" fill="#3E4444" font-size="13">or cooking</text>
+  </g>
+
+  <!-- arrow 2 -->
+  <path d="M730 250 H 914" stroke="#CF9034" stroke-width="4" fill="none"/>
+  <path d="M914 250 l-16 -10 v20 z" fill="#CF9034"/>
+
+  <!-- node 3: THC -->
+  <g transform="translate(1030,250)">
+    <circle r="88" fill="#1F9E9E"/>
+    <text x="0" y="-10" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="800">THC</text>
+    <text x="0" y="14" text-anchor="middle" fill="#EAF6F6" font-size="13">psychoactive</text>
+    <text x="0" y="32" text-anchor="middle" fill="#EAF6F6" font-size="13">produces the high</text>
+  </g>
+
+  <text x="56" y="420" font-size="14" font-weight="700" fill="#3E4444">Smoking, vaping, or cooking THCA flower all trigger this same conversion.</text>
+</svg>
