@@ -1,0 +1,281 @@
+---
+// /programs/evening-iop/: dedicated Evening IOP page (2026-10-15). Keyword cluster (Semrush US): evening iop 590,
+// evening intensive outpatient program 260, evening iop programs near me 210, evening iop near me 170, evening iop programs 90,
+// night iop 50, "can i do iop in the evenings" 30. Local anchor: iop west palm beach 320.
+// Facts only from docs/content/programs-sources.md (Q7: Mon/Wed/Thu 6 to 9 PM, same clinical content as day IOP) and the
+// IOP page. Not claimed here because unconfirmed for evenings: transportation times, gender-specific Thursdays,
+// individual session hours. No length-of-stay figures, no payer names, no start-time promises (compliance).
+import ProgramPage from '../../layouts/ProgramPage.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import Icon from '../../components/Icon.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
+
+const path = '/programs/evening-iop/';
+
+const toc = [
+  { id: 'what', text: 'What evening IOP is' },
+  { id: 'schedule', text: 'The weekly schedule' },
+  { id: 'working', text: 'Keep working' },
+  { id: 'evening', text: 'An evening in group' },
+  { id: 'includes', text: 'What it includes' },
+  { id: 'privacy', text: 'Privacy' },
+  { id: 'fit', text: 'Who it fits' },
+  { id: 'start', text: 'How to start' },
+];
+
+const week = [
+  { day: 'Mon', on: true },
+  { day: 'Tue', on: false },
+  { day: 'Wed', on: true },
+  { day: 'Thu', on: true },
+  { day: 'Fri', on: false },
+  { day: 'Sat', on: false },
+  { day: 'Sun', on: false },
+];
+
+const life = [
+  { icon: 'briefcase', title: 'Your job', text: 'Group starts at 6 PM, after most workdays end. You don’t need to explain a string of missed afternoons.' },
+  { icon: 'home', title: 'Your home', text: 'You sleep in your own bed every night. Sunview is outpatient care, so there is no stay to arrange.' },
+  { icon: 'users', title: 'Your family', text: 'Tuesday, Friday and the weekend stay free for the people and plans that matter to you.' },
+  { icon: 'refresh', title: 'Your real life, in treatment', text: 'What happens at work and at home during the day becomes the material you work on in group that night.' },
+];
+
+const steps = [
+  { n: '1', title: 'You arrive after work', text: 'Come straight from your job. If getting here is hard, ask us about our free door-to-door transportation.' },
+  { n: '2', title: 'One group, one facilitator', text: 'The same clinician leads the whole three hours, with breaks. Trust builds faster when the room stays the same.' },
+  { n: '3', title: 'Your day comes into the room', text: 'A tense meeting, a craving on the drive home, a hard talk with your partner. We slow it down and practice a different response.' },
+  { n: '4', title: 'You go home at 9 PM', text: 'You leave with something to try tomorrow, at work and at home, and you bring back what happened.' },
+];
+
+const includes = [
+  'Group therapy Monday, Wednesday and Thursday, 6 to 9 PM, about 9 hours a week',
+  'A weekly individual session with your primary therapist, 45 to 60 minutes',
+  'Psychiatric evaluation and medication management through Telemed Clinix, scheduled for you',
+  'Treatment for substance use and co-occurring anxiety, depression and trauma together',
+  'Random drug testing as part of your recovery support',
+  'Family involvement, with your consent, at a pace that fits you',
+];
+
+const approaches = ['Internal Family Systems (IFS)', 'CBT', 'DBT', 'Psychodrama', 'Inner child work'];
+
+const fits = [
+  'You work, study or care for family during the day',
+  'You’re medically stable and not in active withdrawal',
+  'You need more than a weekly therapy appointment',
+  'You live at home and can get to West Palm Beach three evenings a week',
+  'You’re stepping down from PHP, residential treatment or detox and going back to work',
+];
+
+const start = [
+  { icon: 'shield', title: 'Free insurance check', text: 'We check your benefits before anything else, so you know where you stand before you commit.' },
+  { icon: 'list', title: 'A short pre-screening', text: 'Our Clinical Director reviews it and recommends your level of care using ASAM criteria and clinical judgment.' },
+  { icon: 'calendar', title: 'Your first evening', text: 'We confirm your start date and walk you through what Monday, Wednesday and Thursday nights look like.' },
+];
+
+const faqs = [
+  { q: 'Can I do IOP in the evenings?', a: 'Yes. Sunview’s evening intensive outpatient program meets Monday, Wednesday and Thursday from 6 to 9 PM in West Palm Beach, so you can keep your workday. <a href="/admissions/">Talk to admissions</a> to see if it fits.' },
+  { q: 'Is evening IOP the same as day IOP?', a: 'Yes. The clinical content is the same: one continuous group with the same facilitator, a weekly individual session and access to psychiatric care. Only the hours change. <a href="/programs/iop/">See day and evening IOP</a>.', schema: false },
+  { q: 'How many hours a week is evening IOP?', a: 'About 9 hours of group a week: three evenings, 6 to 9 PM. Your weekly individual session with your primary therapist is on top of that.' },
+  { q: 'Will my employer know I’m in treatment?', a: 'Your treatment records are protected by federal privacy law for substance use and mental health care, and we share information only with your written consent, except where the law requires it. If you have questions about time off or paperwork for work, ask us on the first call.' },
+  { q: 'Does insurance cover evening IOP?', a: 'Most plans cover intensive outpatient treatment, and evening IOP is covered the same way as day IOP. We check your benefits for free before you start. <a href="/admissions/insurance/">See insurance and payment options</a>.' },
+  { q: 'What if I need more support than evening IOP?', a: 'Our Clinical Director may recommend the <a href="/programs/php/">Partial Hospitalization Program</a> first, and you can step down to evening IOP from there. If detox or residential care needs to come first, we’ll help you get there and plan Sunview as your next step.' },
+];
+---
+<ProgramPage
+  path={path}
+  metaTitle="Evening IOP in West Palm Beach | Sunview Wellness"
+  description="Evening IOP in West Palm Beach: group therapy Monday, Wednesday and Thursday, 6 to 9 PM, for adults who need treatment and need to keep working."
+  crumb="Evening IOP"
+  h1="Evening IOP in West Palm Beach"
+  subheading="Treatment three evenings a week, after your workday ends."
+  lead="An evening intensive outpatient program for adults with substance use and co-occurring mental health conditions. Group therapy Monday, Wednesday and Thursday from 6 to 9 PM, a weekly session with your own therapist and psychiatric care when you need it. You keep your job and go home every night."
+  therapy={{
+    name: 'Evening Intensive Outpatient Program (Evening IOP)',
+    description: 'Evening intensive outpatient treatment for substance use and co-occurring mental health conditions: group therapy Monday, Wednesday and Thursday from 6 to 9 PM, weekly individual therapy and integrated psychiatric care.',
+  }}
+  faqTitle="Frequently Asked Questions About Evening IOP"
+  faqs={faqs}
+>
+  {/* 1. Intro with sticky mini-TOC (same pattern as /therapies/inner-child-therapy/) */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
+        </div>
+      </nav>
+      <div class="max-w-[70ch]">
+        <span class="eyebrow">The program</span>
+        <h2 id="what" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">What Evening IOP Is: Intensive Outpatient Treatment After Work</h2>
+        <div class="prose-sv mt-6">
+          <p>Evening IOP is Sunview’s intensive outpatient program on an after-work schedule. You come to group therapy three evenings a week, Monday, Wednesday and Thursday from 6 to 9 PM, meet one-on-one with your primary therapist every week, and see a psychiatric provider when medication is part of your care.</p>
+          <p>It is built for adults who know they need real treatment for alcohol, drugs or both, and who also have a job, a family and a home they intend to keep showing up for. It also works as a step down for people going back to work after <a href="/programs/php/">PHP</a> or residential treatment.</p>
+          <p>The clinical work is the same as our <a href="/programs/iop/">day intensive outpatient program</a>. Substance use and co-occurring conditions like anxiety, depression and trauma are treated together, as one connected picture. Only the hours change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. Week strip */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">Schedule</span>
+      <h2 id="schedule" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Evening Intensive Outpatient Program Schedule: Monday, Wednesday and Thursday, 6 to 9 PM</h2>
+      <p class="subheading mt-3">Three evenings in group, four evenings that stay yours</p>
+      <ol class="mt-10 grid grid-cols-7 gap-2 sm:gap-4" aria-label="Evening IOP weekly schedule">
+        {week.map((d) => (
+          <li class:list={['flex flex-col items-center rounded-[var(--radius-card)] px-1 py-4 text-center sm:py-6', d.on ? 'bg-teal-deep text-white' : 'border border-line bg-white text-muted']}>
+            <span class="text-sm font-extrabold uppercase tracking-[0.06em] sm:text-base">{d.day}</span>
+            {d.on ? (
+              <>
+                <Icon name="clock" class="mt-3 h-5 w-5 text-gold sm:h-6 sm:w-6" />
+                <span class="mt-2 text-xs font-bold sm:text-sm">6 to 9 PM</span>
+                <span class="sr-only">Evening IOP group</span>
+              </>
+            ) : (
+              <span class="mt-3 text-xs sm:text-sm">Free</span>
+            )}
+          </li>
+        ))}
+      </ol>
+      <div class="prose-sv mt-10 max-w-3xl">
+        <p>That is about 9 hours of group a week. Your weekly individual session with your primary therapist is set up with you on top of group, and psychiatric appointments through Telemed Clinix are scheduled for you.</p>
+        <p>Need more hours, or mornings instead? <a href="/programs/iop/">Day IOP</a> meets three mornings a week, 9 AM to 1 PM, and the <a href="/programs/php/">Partial Hospitalization Program</a> meets every weekday morning. <a href="/programs/">Compare all three levels of care</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Keep working: icon cards */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Work and life</span>
+      <h2 id="working" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Keep Working While You Get Treatment</h2>
+      <p class="subheading mt-3">Your days stay yours, and your evenings do the work</p>
+      <p class="mt-5 max-w-3xl text-lg">Sunview was built on a simple idea: recovery is practiced where you actually live. That is the heart of our <a href="/about/our-approach/" class="font-bold text-teal underline decoration-2 underline-offset-4">In Vivo Treatment™ approach</a>. Evening IOP puts it into your week. You go to work, you come to group, and you go home.</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {life.map((l) => (
+          <div class="card">
+            <Icon name={l.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{l.title}</h3>
+            <p class="mt-2">{l.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 4. Stepper: an evening in group */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">Inside the room</span>
+      <h2 id="evening" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">What a Night in Group Looks Like at Sunview</h2>
+      <p class="subheading mt-3">Less lecture, more real conversation</p>
+      <ol class="relative mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <span class="absolute left-0 right-0 top-6 hidden h-0.5 bg-teal/25 lg:block" aria-hidden="true"></span>
+        {steps.map((s) => (
+          <li class="relative">
+            <span class="relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal font-sans text-lg font-extrabold text-white ring-8 ring-mist">{s.n}</span>
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2 max-w-[36ch]">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="prose-sv mt-12 max-w-3xl">
+        <p>Group at Sunview runs on carefrontation: honest feedback, given with care. People learn to point out patterns and blind spots without shaming anyone, and to hear hard things without shutting down. Topics draw on the same therapies we use across every program.</p>
+      </div>
+      <div class="mt-6 flex flex-wrap items-center gap-2">
+        <p id="evening-approaches" class="mr-2 font-bold text-charcoal">Therapies used in evening group:</p>{' '}
+        <ul aria-labelledby="evening-approaches" class="flex flex-wrap gap-2">
+          {approaches.map((a) => <><li class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-bold text-teal">{a}</li>{' '}</>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* 5. Includes */}
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">What you get</span>
+        <h2 id="includes" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">What the Evening Intensive Outpatient Program Includes</h2>
+        <p class="subheading mt-3">Full clinical care, on an after-work schedule</p>
+        <div class="prose-sv mt-6">
+          <p>Evening IOP is not a support group or a lighter version of treatment. It is the same intensive outpatient level of care as our day program, with a licensed clinical team, a treatment plan you review with your therapist every month and psychiatric care when you need it.</p>
+          <p>When you are ready for less, you step down with the same team, so moving to the next stage doesn’t mean starting over with strangers. Read about our <a href="/what-we-treat/substance-use/">substance use treatment</a> and <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
+        </div>
+      </div>
+      <aside class="card self-start !p-7">
+        <h3 class="text-xl">Evening IOP includes</h3>
+        <ul class="mt-4 space-y-3">
+          {includes.map((i) => <li class="flex items-start gap-3"><Icon name="check-circle" class="mt-0.5 h-5 w-5 shrink-0 text-teal" />{i}</li>)}
+        </ul>
+        <a href="/programs/psychiatry-medication-management/" class="mt-6 inline-flex items-center gap-2 font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light">Psychiatric care and medication management <Icon name="arrow" class="h-4 w-4" /></a>
+      </aside>
+    </div>
+  </section>
+
+  {/* 6. Privacy band */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 id="privacy" tabindex="-1" class="max-w-3xl toc-target text-3xl text-white sm:text-[2.1875rem]">Privacy and Discretion in Evening Outpatient Treatment</h2>
+        <p class="mt-5 max-w-2xl text-lg text-white/85">Getting help shouldn’t cost you your reputation at work. Your treatment records are protected by federal privacy law for substance use and mental health care, and we share information only with your written consent, except where the law requires it.</p>
+      </div>
+      <ul class="grid gap-4">
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="lock" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Records shared only with your written consent</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="clock" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Treatment after hours, so your workday doesn’t change</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="home" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Home every night, with no stay to explain</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {/* 7. Fit and scope */}
+  <section class="section bg-mist">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Is it right for you?</span>
+        <h2 id="fit" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Who Evening IOP Is Right For</h2>
+        <p class="subheading mt-3">We recommend the level that sets you up to succeed</p>
+        <p class="mt-5 text-lg">Every admission starts with a short pre-screening. Our Clinical Director reviews it and recommends your level of care using ASAM criteria and clinical judgment, looking at your symptoms, length of sobriety, treatment history and home environment.</p>
+        <p class="mt-4 text-lg">If you’ve been taking opioids or benzodiazepines regularly for a long time, medically supervised detox comes first. That’s about your safety, and we’ll help you plan the path back to evening IOP.</p>
+      </div>
+      <div>
+        <div class="card !p-7">
+          <h3 class="text-xl">Evening IOP tends to fit if</h3>
+          <ul class="mt-4 space-y-3">
+            {fits.map((f) => <li class="flex items-start gap-3"><Icon name="check" class="mt-1 h-4 w-4 shrink-0 text-teal" />{f}</li>)}
+          </ul>
+        </div>
+        <ScopeNote class="mt-5" />
+      </div>
+    </div>
+  </section>
+
+  {/* 8. How to start */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Admissions</span>
+      <h2 id="start" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">How to Start Evening IOP in West Palm Beach</h2>
+      <p class="subheading mt-3">One call starts it. You don’t need a referral.</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {start.map((s, i) => (
+          <div class="card">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gold font-extrabold text-charcoal">{i + 1}</span>
+              <Icon name={s.icon} class="h-6 w-6 text-teal" />
+            </div>
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2">{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="prose-sv mt-10 max-w-3xl">
+        <p>Sunview is at 4802 East Ave in West Palm Beach, and evening IOP serves adults across Palm Beach County who can get here three evenings a week. Free door-to-door transportation is available for people who can’t drive themselves; ask admissions how it works for evening group.</p>
+      </div>
+      <a href="/admissions/" class="btn-teal mt-8">Start your pre-screening <Icon name="arrow" /></a>
+    </div>
+  </section>
+</ProgramPage>
