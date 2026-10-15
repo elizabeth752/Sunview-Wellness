@@ -1,0 +1,195 @@
+---
+// /who-we-treat/college-students/ (2026-10-15). Keyword cluster (Semrush US, 2026-10-15): collegiate recovery program
+// 320 (KD 35), college drinking 210 (47), binge drinking in college 140 (41), IOP for young adults 110 (24),
+// substance abuse in college students 50 (41). Low national volume; the page exists for the audience Frank and the
+// team named on the 2026-10-15 status call ("rehab after school"), and to pair with the evening IOP campaigns.
+// Not a track: students join Sunview's regular groups. No school names (implies relationships we can't confirm).
+// No academic-accommodation or leave representations: those go to the school's student services office.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
+import { WHO, AUDIENCE_PAGES } from '../../data/whoWeTreat.js';
+
+const path = '/who-we-treat/college-students/';
+
+const toc = [
+  { id: 'students', text: 'Treatment for students' },
+  { id: 'schedule', text: 'Around your classes' },
+  { id: 'college-drinking', text: 'College drinking' },
+  { id: 'campus', text: 'Campus support' },
+  { id: 'semester', text: 'Your semester' },
+  { id: 'start', text: 'How to start' },
+];
+
+// Example week only (labeled on the page). Class blocks are illustrative; evening IOP times are real.
+const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+const grid = {
+  Morning: { Mon: 'class', Tue: 'class', Wed: 'class', Thu: 'class', Fri: 'class' },
+  Afternoon: { Mon: 'study', Tue: 'class', Wed: 'study', Thu: 'class', Fri: 'free' },
+  Evening: { Mon: 'iop', Tue: 'free', Wed: 'iop', Thu: 'iop', Fri: 'free' },
+};
+const cellLabel = { class: 'Class', study: 'Study or work', free: 'Free', iop: 'Evening IOP, 6 to 9 PM' };
+const cellCls = { class: 'bg-white border border-line text-charcoal', study: 'bg-white border border-line text-muted', free: 'bg-mist text-muted', iop: 'bg-teal-deep text-white' };
+
+const signs = [
+  { icon: 'sparkle', title: 'Drinking that runs the week', text: 'Thursday through Saturday became Tuesday through Sunday, and mornings are written off.' },
+  { icon: 'list', title: 'Grades slipping', text: 'Missed classes, late assignments and a GPA that tells a story you haven’t told anyone.' },
+  { icon: 'pill', title: 'Study drugs and party drugs', text: 'Adderall to keep up, molly or cocaine on the weekend, Xanax to come down.' },
+  { icon: 'brain', title: 'Anxiety or low mood', text: 'Using to get through social situations, to sleep, or to stop thinking about everything.' },
+];
+
+const faqs = [
+  { q: 'Can I go to rehab and stay in college?', a: 'For many students, yes. Outpatient treatment lets you keep living where you live and keep going to class. Sunview’s evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM. <a href="/programs/evening-iop/">See evening IOP</a>.' },
+  { q: 'What is a collegiate recovery program?', a: 'A collegiate recovery program is a campus-based community that supports students in recovery with peer support, events and sober spaces. It isn’t clinical treatment. Many students use both: treatment at a program like Sunview and support on campus.' },
+  { q: 'Is binge drinking in college a sign of a problem?', a: 'Binge drinking is common in college, which is part of why it’s easy to miss when it becomes a pattern. Drinking more than you planned, missing class because of it, blackouts and failed attempts to cut back are worth taking seriously. A clinical assessment can tell you where you stand.' },
+  { q: 'Will my school or my parents find out?', a: 'Your treatment records are protected by federal privacy law for substance use and mental health care, and we share information only with your written consent, except where the law requires it. You decide who is involved.' },
+  { q: 'Can I take time off from school for treatment?', a: 'Leave and academic accommodations depend on your school’s policies, so start with your school’s student services or disability services office. If you have questions about paperwork for school, ask us on the first call.' },
+  { q: 'Does insurance cover treatment for college students?', a: 'Most plans cover outpatient treatment, including coverage through a parent’s plan. We check your benefits for free before you start. <a href="/admissions/insurance/">See insurance and payment</a>.' },
+];
+
+const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
+---
+<ServicePage
+  path={path}
+  pageType="MedicalWebPage"
+  metaTitle="Rehab for College Students in West Palm Beach | Sunview Wellness"
+  description="Outpatient treatment for college students in West Palm Beach: evening IOP after class, day IOP and PHP for drinking, drug use, anxiety and depression."
+  crumbs={[WHO, { name: 'College Students', href: path }]}
+  h1="Rehab for College Students in West Palm Beach"
+  subheading="Treatment you can schedule around your classes."
+  lead="Outpatient treatment for college and university students 18 and over who are struggling with drinking, drug use, anxiety or depression. Evening IOP after class, day options when you need more support, your own therapist and psychiatric care, all while you keep your place in school."
+  faqTitle="Frequently Asked Questions About Rehab for College Students"
+  faqs={faqs}
+  insurance
+>
+  {/* 1. Intro + TOC */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
+        </div>
+      </nav>
+      <div class="max-w-[70ch]">
+        <span class="eyebrow">For students 18 and up</span>
+        <h2 id="students" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Outpatient Treatment for College Students Who Want to Stay in School</h2>
+        <div class="prose-sv mt-6">
+          <p>College is full of reasons to put this off. Everyone drinks. Everyone is stressed. It will settle down after midterms, after finals, after this semester. And meanwhile the grades, the sleep and the relationships keep paying for it.</p>
+          <p>Outpatient treatment means you don’t have to choose between getting help and staying in school. You keep living where you live, keep going to class, and come to group therapy at set times during the week. At Sunview, <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM, and <a href="/programs/iop/">day IOP</a> meets three mornings a week if your schedule leaves room for it.</p>
+          <p>You join the same licensed clinical groups as other adults at Sunview, with one facilitator for the whole session, a weekly session with your own therapist, and psychiatric care through Telemed Clinix when medication is part of the plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. Schedule grid */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">An example week</span>
+      <h2 id="schedule" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">How Evening IOP Fits Around a College Class Schedule</h2>
+      <p class="subheading mt-3">Classes in the day, group three evenings a week</p>
+      <figure class="card mt-10 overflow-x-auto !p-5 sm:!p-7">
+        <figcaption class="font-bold text-charcoal">One example student week (class times vary; evening IOP times are fixed)</figcaption>
+        <table class="mt-5 w-full min-w-[560px] border-separate border-spacing-1.5 text-sm">
+          <thead><tr><th class="w-24"></th>{days.map((d) => <th class="pb-1 text-center font-extrabold uppercase tracking-[0.06em] text-muted">{d}</th>)}</tr></thead>
+          <tbody>
+            {Object.entries(grid).map(([part, row]) => (
+              <tr>
+                <th scope="row" class="pr-2 text-left font-bold text-charcoal">{part}</th>
+                {days.map((d) => <td class:list={['rounded-[10px] px-2 py-3 text-center font-bold', cellCls[row[d]]]}>{cellLabel[row[d]]}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </figure>
+      <p class="mt-6 max-w-3xl text-lg">If your pre-screening points to more support, the <a href="/programs/php/" class="font-bold text-teal hover:text-teal-light">Partial Hospitalization Program</a> meets weekday mornings from 9 AM to 1 PM. Some students take a lighter semester for that stretch and step down to evening IOP after.</p>
+    </div>
+  </section>
+
+  {/* 3. College drinking */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">When it stops being normal</span>
+      <h2 id="college-drinking" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">College Drinking, Binge Drinking and Substance Use in College Students</h2>
+      <p class="subheading mt-3">Common doesn’t mean harmless</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {signs.map((s) => (
+          <div class="card">
+            <Icon name={s.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2">{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="prose-sv mt-12 max-w-3xl">
+        <p>Binge drinking is so common in college that it’s easy to miss the point where it turns into something else. The same is true for study drugs and party drugs. If you’re using more than you planned, missing class because of it, or not able to cut back when you try, that’s worth a conversation with someone clinical.</p>
+        <p>Many students are also dealing with <a href="/what-we-treat/mental-health/anxiety/">anxiety</a>, <a href="/what-we-treat/mental-health/depression/">depression</a> or <a href="/what-we-treat/mental-health/adhd/">ADHD</a>, and use alcohol or drugs to manage it. At Sunview we treat both together as <a href="/what-we-treat/dual-diagnosis/">dual diagnosis</a>. Our articles on <a href="/blog/is-alcohol-a-depressant/">whether alcohol is a depressant</a> and <a href="/blog/what-is-molly-mdma/">what is actually in molly</a> are a good place to start reading.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* 4. Campus support */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 id="campus" tabindex="-1" class="toc-target text-3xl text-white sm:text-[2.1875rem]">Treatment and Collegiate Recovery Programs Work Best Together</h2>
+        <p class="mt-5 text-lg text-white/85">A collegiate recovery program is a campus community for students in recovery: peers, sober events and a place to belong. It isn’t clinical treatment, and treatment isn’t a social life. Students who use both get the structure of treatment and the community of campus recovery.</p>
+        <p class="mt-4 text-lg text-white/85">If you already see a counselor or doctor at school, our team works hand in hand with the providers you’re seeing, with your written consent, instead of asking you to start over.</p>
+      </div>
+      <ul class="grid gap-4">
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="users" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Clinical group therapy and your own therapist at Sunview</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="heart" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Peer community and sober spaces on campus</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="lock" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Information shared only with your written consent</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {/* 5. Semester path */}
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Planning ahead</span>
+        <h2 id="semester" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Getting Through the Semester in Recovery</h2>
+        <p class="subheading mt-3">Midterms, finals and breaks are part of the plan</p>
+        <div class="prose-sv mt-6">
+          <p>Treatment at Sunview runs on what we call In Vivo Treatment™: you practice recovery in the life you’re actually living. For a student that means exam stress, roommates, parties and breaks come into group and get worked through, not avoided.</p>
+          <p>Leave and academic accommodations depend on your school’s policies, so your school’s student services or disability services office is the place to ask. If you have questions about paperwork for school, ask us on the first call. Because you’re an adult, you decide whether your parents are involved, and we contact family only with your written consent.</p>
+        </div>
+      </div>
+      <ol class="card self-center !p-7" aria-label="A semester in outpatient treatment">
+        {[
+          { t: 'First weeks', d: 'Pre-screening, a recommended level of care and your first group.' },
+          { t: 'Midterms', d: 'Stress, sleep and cravings become what you work on in group.' },
+          { t: 'Finals', d: 'A plan for the hardest weeks, made with your therapist in advance.' },
+          { t: 'Breaks', d: 'Step down, keep going, or plan for being home, decided with your team.' },
+        ].map((s, i) => (
+          <li class="flex items-start gap-4 py-3"><span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-extrabold text-charcoal">{i + 1}</span><span class="pt-1"><strong class="text-charcoal">{s.t}.</strong> {s.d}</span></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* 6. Start */}
+  <section class="section bg-mist">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Admissions</span>
+        <h2 id="start" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">How College Students Start Treatment at Sunview</h2>
+        <p class="subheading mt-3">Call between classes. You don’t need a referral.</p>
+        <p class="mt-5 text-lg">We check your insurance for free, including coverage through a parent’s plan, run a short pre-screening, and our Clinical Director recommends a level of care. Free door-to-door transportation is available if you don’t have a car.</p>
+        <a href="/admissions/" class="btn-teal mt-8">Start your pre-screening <Icon name="arrow" /></a>
+      </div>
+      <div class="self-center"><ScopeNote /></div>
+    </div>
+    <div class="container-x mt-14 border-t border-line pt-8">
+      <p class="font-bold text-charcoal">More people we treat</p>
+      <ul class="mt-4 flex flex-wrap gap-3">
+        {others.map((o) => <>{' '}<li><a href={o.href} class="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-white px-4 py-2 text-sm font-bold text-teal hover:border-teal">{o.label} <Icon name="arrow" class="h-3.5 w-3.5" /></a></li>{' '}</>)}
+      </ul>
+    </div>
+  </section>
+</ServicePage>

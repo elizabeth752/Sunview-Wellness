@@ -1,0 +1,210 @@
+---
+// /who-we-treat/failure-to-launch/ (2026-10-15). Keyword cluster (Semrush US, 2026-10-15):
+// failure to launch syndrome 1,900 (KD 48), failure to launch treatment 210 (10), failure to launch programs for
+// young adults 170 (13), failure to launch program 140 (12), what is failure to launch 110 (28),
+// failure to launch symptoms 70 (9), failure to launch young adults 110 (17). ("failure to launch" alone, 40,500, is
+// mostly the film, so it isn't the H1 target.)
+// Sources: "I = Sick" definition from /about/our-approach/ (CEO notes in the Client Wiki); status call 2026-10-15:
+// Frank said years of work with failure to launch clients shaped "I = Addict"/"I = Sick", and he offered to write
+// an article for this page. ADD FRANK'S CONTENT HERE when it arrives (section "Frank" below is the slot).
+// Scope: Sunview treats adults 18+ when substance use is part of the picture, in its regular PHP, IOP and OP groups.
+// It is not a residential life-skills or "launch" program, and the page never claims a dedicated track.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
+import { WHO, AUDIENCE_PAGES } from '../../data/whoWeTreat.js';
+
+const path = '/who-we-treat/failure-to-launch/';
+
+const toc = [
+  { id: 'what-is', text: 'What it is' },
+  { id: 'symptoms', text: 'Signs to look for' },
+  { id: 'cycle', text: 'The cycle' },
+  { id: 'i-sick', text: 'Beyond the sick role' },
+  { id: 'treatment', text: 'How treatment helps' },
+  { id: 'parents', text: 'For parents' },
+  { id: 'start', text: 'How to start' },
+];
+
+const symptoms = [
+  { icon: 'home', title: 'Living at home with no plan to leave', text: 'Months turn into years, and conversations about moving out or getting a job end in an argument or silence.' },
+  { icon: 'clock', title: 'Days without structure', text: 'Sleeping late, up all night, gaming or scrolling, and no routine that leads anywhere.' },
+  { icon: 'refresh', title: 'Starts that don’t stick', text: 'Classes dropped, jobs that last a few weeks, plans that sound good on Sunday and are gone by Wednesday.' },
+  { icon: 'sparkle', title: 'Drinking or using to get through it', text: 'Cannabis every day, alcohol at night, pills to sleep or to feel something.' },
+  { icon: 'brain', title: 'Anxiety and avoidance', text: 'Interviews, phone calls and new people feel impossible, so they get avoided, and avoiding them makes the next one harder.' },
+  { icon: 'users', title: 'Parents doing the adulting', text: 'Rent, bills, appointments and excuses are handled by mom and dad, and everyone is exhausted.' },
+];
+
+const cycle = ['Pressure to grow up', 'Anxiety and shame', 'Using to feel better', 'Avoiding the next step', 'More pressure and more shame'];
+
+const parentSteps = [
+  { n: '1', title: 'Call us yourself', text: 'You can ask questions and understand the options before your adult child agrees to anything.' },
+  { n: '2', title: 'Plan the conversation', text: 'We’ll talk through how to bring it up, what to say, and what you’re prepared to change at home.' },
+  { n: '3', title: 'Your adult child calls', text: 'Treatment is their decision. A short pre-screening and our Clinical Director’s recommendation come next.' },
+  { n: '4', title: 'You stay involved', text: 'With their written consent, we contact family in the first week and include you at a pace that works.' },
+];
+
+const faqs = [
+  { q: 'What is failure to launch?', a: 'Failure to launch describes young adults who struggle to make the move into independent adult life: working, studying, paying their own way and living on their own. It isn’t a formal diagnosis. It often comes with anxiety, depression, low confidence and, for many, substance use.' },
+  { q: 'What are the symptoms of failure to launch syndrome?', a: 'Common signs include living at home with no plan to leave, little daily structure, repeated false starts with school or work, avoiding responsibilities, relying on parents for basic needs, and using alcohol or drugs to cope.' },
+  { q: 'Is there a failure to launch treatment program at Sunview?', a: 'Sunview treats young adults whose stuckness comes with substance use, often alongside anxiety or depression, in our regular PHP, IOP and OP groups. The treatment plan focuses on structure, independence and the fears that keep someone stuck. We don’t run a separate residential life-skills program.' },
+  { q: 'Are failure to launch programs residential?', a: 'Many programs that use the name are residential life-skills programs. Sunview is outpatient care: your adult child lives at home or in their own place and comes to treatment at set times during the week, which keeps the work tied to real life.' },
+  { q: 'What can parents do about failure to launch?', a: 'Start by getting support for yourself and a clear picture of the options. Small, consistent expectations at home help more than ultimatums. If substance use is involved, call us and we’ll talk through how to bring up treatment. <a href="/admissions/for-families/">Help for families</a>.' },
+  { q: 'Can I make my adult child go to treatment?', a: 'Adults make their own treatment decisions. You can call us, learn the options and decide what you’ll change at home, and that often changes the conversation. We share information with you once your adult child gives written consent.' },
+];
+
+const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
+---
+<ServicePage
+  path={path}
+  pageType="MedicalWebPage"
+  metaTitle="Failure to Launch Treatment for Young Adults | Sunview Wellness"
+  description="Failure to launch and substance use in young adults: signs, how the cycle works, and outpatient treatment in West Palm Beach that builds independence."
+  crumbs={[WHO, { name: 'Failure to Launch', href: path }]}
+  h1="Failure to Launch Treatment for Young Adults in West Palm Beach"
+  subheading="When an adult child is stuck, and substances are part of why."
+  lead="Outpatient treatment for young adults whose move into independent life has stalled, often with anxiety, depression and drinking or drug use in the mix. Structured group therapy, their own therapist and psychiatric care, while they keep living at home and practice building a life outside it."
+  faqTitle="Frequently Asked Questions About Failure to Launch"
+  faqs={faqs}
+>
+  {/* 1. Intro + TOC */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
+        </div>
+      </nav>
+      <div class="max-w-[70ch]">
+        <span class="eyebrow">Understanding it</span>
+        <h2 id="what-is" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">What Is Failure to Launch Syndrome?</h2>
+        <div class="prose-sv mt-6">
+          <p>Failure to launch is the name people use when a young adult can’t seem to make the move into independent life. They may be 20, 25 or older, living with their parents, not working or studying in any steady way, and stuck in a routine that goes nowhere. It isn’t a formal diagnosis, and it isn’t laziness.</p>
+          <p>Underneath it there is usually something real: anxiety that makes every next step feel impossible, depression that drains motivation, low confidence after a few failures, and very often alcohol or drugs that make the stuckness more bearable. Over time the substance use and the stuckness feed each other.</p>
+          <p>Sunview treats young adults when substance use is part of that picture. Treatment is outpatient, so the work happens in the same life they’re trying to change, not somewhere away from it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. Symptoms */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">What families notice</span>
+      <h2 id="symptoms" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Failure to Launch Symptoms in Young Adults</h2>
+      <p class="subheading mt-3">Six signs parents describe on the phone</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {symptoms.map((s) => (
+          <div class="card">
+            <Icon name={s.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Cycle graphic */}
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div>
+        <span class="eyebrow">Why it gets stuck</span>
+        <h2 id="cycle" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">How Failure to Launch and Substance Use Feed Each Other</h2>
+        <p class="subheading mt-3">A loop, not a character flaw</p>
+        <p class="mt-5 text-lg">The pressure to grow up brings anxiety and shame. Drinking or using takes the edge off. The next step gets avoided, the pressure grows, and the loop runs again. Treatment works on every point of the loop at once, which is why substance use and mental health are treated together at Sunview as <a href="/what-we-treat/dual-diagnosis/" class="font-bold text-teal hover:text-teal-light">dual diagnosis</a>.</p>
+      </div>
+      <figure class="card !p-7" aria-labelledby="cycle-cap">
+        <figcaption id="cycle-cap" class="font-bold text-charcoal">The failure to launch cycle</figcaption>
+        <ol class="mt-6 space-y-3">
+          {cycle.map((c, i) => (
+            <li class="flex items-center gap-4">
+              <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-teal font-extrabold text-white">{i + 1}</span>
+              <span class="flex-1 rounded-[var(--radius-card)] bg-mist px-4 py-3 font-bold text-charcoal">{c}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-5 flex items-center gap-2 text-sm font-bold text-teal"><Icon name="refresh" class="h-4 w-4" /> and back to step 1</p>
+      </figure>
+    </div>
+  </section>
+
+  {/* 4. I = Sick band */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 id="i-sick" tabindex="-1" class="toc-target text-3xl text-white sm:text-[2.1875rem]">Moving Beyond the Sick Role: Sunview’s Approach to Failure to Launch</h2>
+        <p class="mt-5 text-lg text-white/85">Our CEO, Frank Galimidi, has spent years working with young adults caught in this pattern. Part of what he learned is captured in an idea we call “I = Sick”: the fear of functioning as a healthy adult once the sick role is removed.</p>
+        <p class="mt-4 text-lg text-white/85">For a young adult who has been “the one with the problem” for years, getting better can be frightening, because it comes with expectations. Treatment at Sunview addresses that fear directly and helps people redefine themselves beyond the diagnosis.</p>
+        <a href="/about/our-approach/" class="btn-sun mt-8">Our clinical approach <Icon name="arrow" /></a>
+      </div>
+      <blockquote class="rounded-[var(--radius-lg)] bg-white/10 p-8">
+        <Icon name="sparkle" class="h-7 w-7 text-gold" />
+        <p class="mt-4 font-display text-2xl leading-snug text-white">“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed.</p>
+        <footer class="mt-4 text-sm font-bold text-white/70">From Sunview’s clinical approach</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  {/* 5. Treatment */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Outpatient care</span>
+      <h2 id="treatment" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Failure to Launch Programs for Young Adults: How Outpatient Treatment Helps</h2>
+      <p class="subheading mt-3">Structure first, then independence, practiced in real life</p>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="card"><Icon name="calendar" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Structure that holds</h3><p class="mt-2">Group starts at set times several days a week. Showing up is the first skill, and it gets practiced from day one.</p></div>
+        <div class="card"><Icon name="users" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">A room of adults</h3><p class="mt-2">Young adults join the same groups as everyone else, with people a few steps ahead who are honest about the road.</p></div>
+        <div class="card"><Icon name="compass" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Practice outside the room</h3><p class="mt-2">With In Vivo Treatment™, the job application or the hard phone call becomes the assignment, and group is where it gets processed.</p></div>
+      </div>
+      <div class="prose-sv mt-12 max-w-3xl">
+        <p>Many programs that call themselves “failure to launch programs” are residential life-skills programs. Sunview is outpatient addiction and mental health treatment. Your adult child keeps living at home or in their own place and comes to <a href="/programs/php/">PHP</a> or <a href="/programs/iop/">IOP</a> at set times, with a primary therapist every week and psychiatric care through Telemed Clinix when it’s needed.</p>
+        <p>Therapy draws on <a href="/therapies/internal-family-systems/">Internal Family Systems</a>, <a href="/therapies/cbt/">CBT</a>, <a href="/therapies/dbt/">DBT</a> and <a href="/therapies/inner-child-therapy/">inner child work</a>, and <a href="/therapies/family-therapy/">family therapy</a> is part of the plan when it’s clinically recommended. As things improve, people step down from PHP to IOP to OP with the same team.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* 6. Parents */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">For parents</span>
+      <h2 id="parents" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">What Parents Can Do When an Adult Child Won’t Launch</h2>
+      <p class="subheading mt-3">You can call before they’re ready</p>
+      <ol class="relative mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <span class="absolute left-0 right-0 top-6 hidden h-0.5 bg-teal/25 lg:block" aria-hidden="true"></span>
+        {parentSteps.map((s) => (
+          <li class="relative">
+            <span class="relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal font-sans text-lg font-extrabold text-white ring-8 ring-mist">{s.n}</span>
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2 max-w-[36ch]">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="mt-10 max-w-3xl text-lg">Our Clinical Director, <a href="/our-team/dana-martin/" class="font-bold text-teal hover:text-teal-light">Dana Martin</a>, is a couple and family therapist, and Sunview’s clinical model looks at the whole family system. For more, read our guide <a href="/admissions/for-families/" class="font-bold text-teal hover:text-teal-light">for families</a> and our page on <a href="/who-we-treat/young-adults/" class="font-bold text-teal hover:text-teal-light">rehab for young adults</a>.</p>
+    </div>
+  </section>
+
+  {/* 7. Start */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Admissions</span>
+        <h2 id="start" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Call Sunview About Failure to Launch Treatment</h2>
+        <p class="subheading mt-3">Parents can call first. Treatment starts when your adult child is ready.</p>
+        <p class="mt-5 text-lg">We check insurance for free, run a short pre-screening, and our Clinical Director recommends a level of care using ASAM criteria and clinical judgment. Programs are for adults 18 and over, and free door-to-door transportation is available.</p>
+        <a href="/admissions/" class="btn-teal mt-8">Talk to admissions <Icon name="arrow" /></a>
+      </div>
+      <div class="self-center"><ScopeNote /></div>
+    </div>
+    <div class="container-x mt-14 border-t border-line pt-8">
+      <p class="font-bold text-charcoal">More people we treat</p>
+      <ul class="mt-4 flex flex-wrap gap-3">
+        {others.map((o) => <>{' '}<li><a href={o.href} class="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-white px-4 py-2 text-sm font-bold text-teal hover:border-teal">{o.label} <Icon name="arrow" class="h-3.5 w-3.5" /></a></li>{' '}</>)}
+      </ul>
+    </div>
+  </section>
+</ServicePage>

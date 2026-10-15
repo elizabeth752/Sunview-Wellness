@@ -1,0 +1,185 @@
+---
+// /who-we-treat/young-adults/ (2026-10-15). Keyword cluster (Semrush US, 2026-10-15): rehab for young adults 880 (KD 40),
+// young adult rehab 320 (37), young adult drug rehab 170 (42), young adult addiction treatment 140 (34),
+// IOP for young adults 110 (24). Failure to launch has its own page (/who-we-treat/failure-to-launch/).
+// Facts: programs-sources.md (adults 18+, schedules, family contact in week one with consent, abstinence-based incl.
+// no marijuana, Telemed Clinix), team.js (Dana Martin: couple and family therapist, systems-based model).
+// Not a track: young adults join the same PHP, IOP and OP groups (status call 2026-10-15).
+// Outside statistics deliberately left out: SAMHSA blocks automated access, so figures couldn't be verified.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
+import { WHO, AUDIENCE_PAGES } from '../../data/whoWeTreat.js';
+
+const path = '/who-we-treat/young-adults/';
+
+const toc = [
+  { id: 'young-adult-rehab', text: 'Young adult rehab' },
+  { id: 'what-we-see', text: 'What we see most' },
+  { id: 'which-program', text: 'Which program fits' },
+  { id: 'family', text: 'Parents and family' },
+  { id: 'independence', text: 'Building independence' },
+  { id: 'start', text: 'How to start' },
+];
+
+const see = [
+  { icon: 'sparkle', title: 'Alcohol and weekend use that stopped being weekends', text: 'What started at parties now shows up on a Tuesday, and the hangovers are costing classes or shifts.' },
+  { icon: 'pill', title: 'Pills, powders and pressed tablets', text: 'Molly, Xanax, cocaine and pills bought from someone, with no way to know what is actually in them.' },
+  { icon: 'refresh', title: 'Daily cannabis', text: 'Smoking to sleep, to eat, to stop thinking. Sunview is abstinence-based, and cannabis is part of that.' },
+  { icon: 'brain', title: 'Anxiety and depression underneath', text: 'Many young adults are using to manage how they feel. We treat both together as dual diagnosis.' },
+  { icon: 'compass', title: 'Feeling stuck', text: 'Not working, not in school, not sure what comes next. Read about <a href="/who-we-treat/failure-to-launch/" class="font-bold text-teal hover:text-teal-light">failure to launch</a>.' },
+  { icon: 'heart', title: 'Trauma and identity', text: 'Hard experiences, family conflict and questions about who you are that substances made quieter for a while.' },
+];
+
+const fit = [
+  { who: 'In school or working full time', prog: 'Evening IOP', when: 'Monday, Wednesday, Thursday, 6 to 9 PM', href: '/programs/evening-iop/' },
+  { who: 'Class or work schedule you can plan around', prog: 'Day IOP', when: 'Three mornings a week, 9 AM to 1 PM', href: '/programs/iop/' },
+  { who: 'Between things, or leaving detox or residential', prog: 'PHP', when: 'Monday to Friday, 9 AM to 1 PM', href: '/programs/php/' },
+  { who: 'Stepping down after IOP', prog: 'OP', when: 'One morning a week', href: '/programs/outpatient/' },
+];
+
+const faqs = [
+  { q: 'What age is considered a young adult in treatment?', a: 'Generally people in their late teens through their twenties. Sunview’s programs are for adults 18 and over, so young adults join our regular PHP, IOP and OP groups with a treatment plan built for where they are in life.' },
+  { q: 'Do you have a separate young adult program?', a: 'Young adults join the same licensed clinical groups as everyone else at Sunview. What we build around each person is the plan: the schedule, the therapist, family involvement and the goals.' },
+  { q: 'Is there an IOP for young adults who are in school?', a: 'Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, and day IOP meets three mornings a week, so most class schedules can be worked around. <a href="/who-we-treat/college-students/">Treatment for college students</a>.' },
+  { q: 'Can my parents be involved?', a: 'Yes, with your consent. Because you’re an adult, we share information only with your written permission. With it, we reach out to family in the first week and include them at a pace that fits you. <a href="/therapies/family-therapy/">Family therapy at Sunview</a>.' },
+  { q: 'I’m a parent. Can I call for my adult child?', a: 'Yes. You can call to ask questions and understand the options, and we’ll talk through how to bring it up. Treatment itself is your adult child’s decision. <a href="/admissions/for-families/">Help for families</a>.' },
+  { q: 'Does Sunview provide housing for young adults?', a: 'Sunview is outpatient care, so you live at home or in your own place during treatment. If housing or residential care needs to come first, we’ll help you find it and plan Sunview as your next step.' },
+];
+
+const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
+---
+<ServicePage
+  path={path}
+  pageType="MedicalWebPage"
+  metaTitle="Rehab for Young Adults in West Palm Beach | Sunview Wellness"
+  description="Outpatient rehab for young adults 18+ in West Palm Beach: PHP, day IOP and evening IOP for substance use, anxiety and depression, with family involvement."
+  crumbs={[WHO, { name: 'Young Adults', href: path }]}
+  h1="Rehab for Young Adults in West Palm Beach"
+  subheading="Outpatient treatment for adults 18 and up who are still figuring out the life they want."
+  lead="Young adult addiction treatment that keeps school, work and growing independence in the picture. Group therapy in PHP, day IOP or evening IOP, your own therapist, psychiatric care, and family involvement when you want it."
+  faqTitle="Frequently Asked Questions About Young Adult Rehab"
+  faqs={faqs}
+  insurance
+>
+  {/* 1. Intro + TOC */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
+        </div>
+      </nav>
+      <div class="max-w-[70ch]">
+        <span class="eyebrow">Ages 18 and up</span>
+        <h2 id="young-adult-rehab" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Young Adult Rehab That Doesn’t Put Your Life on Hold</h2>
+        <div class="prose-sv mt-6">
+          <p>Your late teens and twenties are when life is supposed to start: school, first real jobs, your own place, relationships that matter. When alcohol or drugs get tangled up in all of that, it can feel like the only options are to keep going or to drop everything for treatment.</p>
+          <p>Outpatient treatment is the third option. At Sunview you live at home or in your own place, keep the parts of your life that are working, and come to group therapy at set times during the week. You meet one-on-one with your primary therapist every week, and if medication is part of your care, psychiatric appointments through Telemed Clinix are scheduled for you.</p>
+          <p>There’s no separate young adult track. You join the same licensed clinical groups as everyone else, which means you sit with adults at different stages of life and recovery. For a lot of young adults, that turns out to be one of the most useful parts: people a few steps ahead who are honest about how they got there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. What we see */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">What brings young adults in</span>
+      <h2 id="what-we-see" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Young Adult Drug Rehab and Alcohol Treatment for What We See Most</h2>
+      <p class="subheading mt-3">Substance use is rarely the only thing going on</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {see.map((s) => (
+          <div class="card">
+            <Icon name={s.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2" set:html={s.text} />
+          </div>
+        ))}
+      </div>
+      <div class="prose-sv mt-12 max-w-3xl">
+        <p>Want to read first? Our articles on <a href="/blog/what-is-molly-mdma/">what is actually in molly</a>, <a href="/blog/thca-vs-thc/">THCA vs THC</a> and <a href="/blog/xanax-side-effects/">Xanax side effects</a> answer questions young adults ask us often. When anxiety or depression is part of the picture, we treat it alongside substance use as <a href="/what-we-treat/dual-diagnosis/">dual diagnosis</a>, and we treat <a href="/what-we-treat/mental-health/adhd/">ADHD</a> alongside substance use as well.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Which program: comparison table as cards */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Matching the schedule to your life</span>
+      <h2 id="which-program" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">IOP for Young Adults, PHP or Evening IOP: Which Program Fits</h2>
+      <p class="subheading mt-3">Our Clinical Director recommends the level. The schedule follows your life.</p>
+      <div class="mt-10 overflow-hidden rounded-[var(--radius-lg)] border border-line">
+        {fit.map((f, i) => (
+          <div class:list={['grid gap-2 p-5 sm:grid-cols-[1.2fr_0.6fr_1fr] sm:items-center sm:gap-6 sm:p-6', i % 2 === 0 ? 'bg-white' : 'bg-mist']}>
+            <p class="font-bold text-charcoal">{f.who}</p>
+            <a href={f.href} class="inline-flex items-center gap-2 font-extrabold text-teal hover:text-teal-light">{f.prog} <Icon name="arrow" class="h-4 w-4" /></a>
+            <p class="flex items-center gap-2 text-muted"><Icon name="clock" class="h-4 w-4 shrink-0 text-gold" />{f.when}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-6 max-w-3xl text-lg">These are common starting points, not rules. After a short pre-screening, our Clinical Director recommends the level of care using ASAM criteria and clinical judgment, and you step down with the same team as you get stronger.</p>
+    </div>
+  </section>
+
+  {/* 4. Family */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 id="family" tabindex="-1" class="toc-target text-3xl text-white sm:text-[2.1875rem]">How Parents and Family Can Be Part of Young Adult Treatment</h2>
+        <p class="mt-5 text-lg text-white/85">At 18 you’re an adult, and your treatment is your decision. That also means we share information only with your written consent. With it, we reach out to your family in the first week and bring them in at a pace that works for you.</p>
+        <p class="mt-4 text-lg text-white/85">Our Clinical Director, <a href="/our-team/dana-martin/" class="font-bold text-gold hover:text-white">Dana Martin</a>, is a couple and family therapist, and Sunview’s clinical model looks at the whole system around a person, not just the person in the chair.</p>
+        <a href="/admissions/for-families/" class="btn-sun mt-8">Help for families <Icon name="arrow" /></a>
+      </div>
+      <ul class="grid gap-4">
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="lock" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Information shared only with your written consent</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="users" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Family contact in the first week, when you agree to it</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="heart" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span><a href="/therapies/family-therapy/" class="font-bold text-white hover:text-gold">Family sessions</a> as clinically recommended</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {/* 5. Independence */}
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Beyond stopping</span>
+        <h2 id="independence" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Young Adult Addiction Treatment That Builds Independence</h2>
+        <p class="subheading mt-3">Getting sober and staying sober are different jobs</p>
+        <div class="prose-sv mt-6">
+          <p>Stopping is the first step. The longer work is learning to run your own life without the thing that was doing the heavy lifting: handling stress, conflict, boredom and disappointment, keeping commitments, and asking for help before it gets bad.</p>
+          <p>That work happens in group, where the real week gets brought into the room, and with your therapist, using approaches like <a href="/therapies/cbt/">CBT</a>, <a href="/therapies/dbt/">DBT</a> and <a href="/therapies/internal-family-systems/">Internal Family Systems</a>. Our CEO, Frank Galimidi, writes about the difference in <a href="/blog/getting-sober-vs-staying-sober/">getting sober vs staying sober</a>.</p>
+        </div>
+      </div>
+      <ol class="card self-center !p-7" aria-label="How young adults usually move through care">
+        {['Stabilize: build structure and stop using', 'Understand: what the use was doing for you', 'Practice: new responses in your real week', 'Step down: less treatment, same team'].map((t, i) => (
+          <li class="flex items-start gap-4 py-3"><span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gold font-extrabold text-charcoal">{i + 1}</span><span class="pt-1.5 font-bold text-charcoal">{t}</span></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* 6. Start */}
+  <section class="section bg-mist">
+    <div class="container-x grid gap-10 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Admissions</span>
+        <h2 id="start" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">How to Start Rehab for Young Adults at Sunview</h2>
+        <p class="subheading mt-3">Call yourself, or call with a parent on the line</p>
+        <p class="mt-5 text-lg">We check your insurance for free, including coverage through a parent’s plan, run a short pre-screening, and our Clinical Director recommends a level of care. Free door-to-door transportation is available if you don’t have a car.</p>
+        <a href="/admissions/" class="btn-teal mt-8">Start your pre-screening <Icon name="arrow" /></a>
+      </div>
+      <div class="self-center"><ScopeNote /></div>
+    </div>
+    <div class="container-x mt-14 border-t border-line pt-8">
+      <p class="font-bold text-charcoal">More people we treat</p>
+      <ul class="mt-4 flex flex-wrap gap-3">
+        {others.map((o) => <>{' '}<li><a href={o.href} class="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-white px-4 py-2 text-sm font-bold text-teal hover:border-teal">{o.label} <Icon name="arrow" class="h-3.5 w-3.5" /></a></li>{' '}</>)}
+      </ul>
+    </div>
+  </section>
+</ServicePage>

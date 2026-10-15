@@ -26,7 +26,7 @@ const isActive = (item: Item) =>
               <button
                 type="button"
                 class:list={[
-                  'inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-bold hover:bg-mist hover:text-teal',
+                  'inline-flex items-center gap-1 whitespace-nowrap rounded-full px-1.5 py-2 text-[14px] font-bold hover:bg-mist hover:text-teal 2xl:px-3 2xl:text-[15px]',
                   isActive(item) ? 'text-teal' : 'text-charcoal',
                 ]}
                 aria-expanded="false"
@@ -40,7 +40,7 @@ const isActive = (item: Item) =>
               <a
                 href={item.href}
                 class:list={[
-                  'inline-flex items-center gap-1 rounded-full px-3 py-2 text-[15px] font-bold hover:bg-mist hover:text-teal',
+                  'inline-flex items-center gap-1 whitespace-nowrap rounded-full px-1.5 py-2 text-[14px] font-bold hover:bg-mist hover:text-teal 2xl:px-3 2xl:text-[15px]',
                   isActive(item) ? 'text-teal' : 'text-charcoal',
                 ]}
                 aria-current={item.href === path ? 'page' : undefined}

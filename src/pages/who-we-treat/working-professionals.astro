@@ -1,0 +1,226 @@
+---
+// /who-we-treat/working-professionals/ (2026-10-15). Keyword cluster (Semrush US, 2026-10-15):
+// functioning alcoholic 3,600 (KD 32), high functioning alcoholic 2,900 (44), executive rehab 1,300 (27),
+// rehab for professionals 880 (28), FMLA for rehab 390 (11), high functioning addict 170 (18),
+// signs of a high functioning alcoholic 170 (1), executive addiction treatment 90 (35), does FMLA cover rehab 110 (10).
+// Local anchors: IOP West Palm Beach 320, evening IOP 590.
+// Facts: programs-sources.md (schedules, weekly individual session, Telemed Clinix, consent), team.js (Frank's SAP).
+// Status call 2026-10-15: Frank says the evening group leaders were picked for people with careers; NOT a track.
+// COMPLIANCE: no FMLA or employment-law representations (answers point to HR, a lawyer, and "ask us"); privacy
+// is described generally, never as a guarantee that an employer can't find out. No length of stay, no payer names.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
+import { WHO, AUDIENCE_PAGES } from '../../data/whoWeTreat.js';
+
+const path = '/who-we-treat/working-professionals/';
+
+const toc = [
+  { id: 'rehab-while-working', text: 'Rehab while working' },
+  { id: 'your-week', text: 'Your week, with treatment' },
+  { id: 'high-functioning', text: 'High-functioning signs' },
+  { id: 'executive', text: 'Executives and owners' },
+  { id: 'privacy', text: 'Privacy' },
+  { id: 'time-off', text: 'Time off and paperwork' },
+  { id: 'start', text: 'How to start' },
+];
+
+// Illustration of one 168-hour week. Work and sleep are typical assumptions, labeled as such on the chart.
+const week = [
+  { label: 'Sleep', h: 56, cls: 'bg-line' },
+  { label: 'Work', h: 45, cls: 'bg-charcoal/70' },
+  { label: 'Evening IOP', h: 9, cls: 'bg-gold' },
+  { label: 'Everything else', h: 58, cls: 'bg-teal/25' },
+];
+
+const signs = [
+  { icon: 'briefcase', title: 'Work is still fine', text: 'Deadlines get met, reviews are good, and that becomes the proof that nothing is wrong.' },
+  { icon: 'clock', title: 'Drinking is scheduled', text: 'You plan around it: the drink after work, the bottle that has to be in the house, the event you leave early to keep going at home.' },
+  { icon: 'refresh', title: 'You’ve tried to cut back', text: 'Rules about weekdays, only beer, never before 5. They hold for a while, and then they don’t.' },
+  { icon: 'heart', title: 'Home is paying for it', text: 'Your partner or kids see a different person at night than your colleagues see during the day.' },
+  { icon: 'brain', title: 'Mornings are harder', text: 'Anxiety, poor sleep and the 3 AM wake-up that has quietly become normal.' },
+  { icon: 'lock', title: 'You keep it compartmentalized', text: 'Different stories for different people, and a lot of energy spent keeping them straight.' },
+];
+
+const steps = [
+  { n: '1', title: 'A confidential call', text: 'Tell us what has been happening and what your work schedule looks like. We check your insurance for free.' },
+  { n: '2', title: 'A short pre-screening', text: 'Our Clinical Director reviews it and recommends a level of care using ASAM criteria and clinical judgment.' },
+  { n: '3', title: 'A schedule that works', text: 'Evening IOP if your days are fixed, day IOP or PHP if you can step back from work for a while.' },
+  { n: '4', title: 'Your first group', text: 'You meet your group and your primary therapist, and treatment starts working on the week you are actually living.' },
+];
+
+const faqs = [
+  { q: 'Can I go to rehab and keep my job?', a: 'For many people, yes. Outpatient treatment is designed for it. Sunview’s evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM, so a standard workday stays the same. <a href="/programs/evening-iop/">See evening IOP</a>.' },
+  { q: 'What are the signs of a high-functioning alcoholic?', a: 'Common signs include drinking more than intended, failed attempts to cut back, needing alcohol to unwind or sleep, hiding how much you drink, and strain at home while work still looks fine. A clinical assessment, not a checklist, decides whether it’s an alcohol use disorder. <a href="/what-we-treat/substance-use/alcohol/">Alcohol use disorder treatment</a>.' },
+  { q: 'Is a functioning alcoholic still an alcoholic?', a: 'Doing well at work doesn’t rule out an alcohol use disorder. The diagnosis is based on the pattern of use and its effects on your health, relationships and control, not on job performance.' },
+  { q: 'Does FMLA cover rehab?', a: 'Medical leave rules depend on federal and state law, your employer and your situation, so we don’t make promises about them. Your HR department or an employment attorney can tell you what applies to you. If you have questions about time off or paperwork for work, ask us on the first call.' },
+  { q: 'Will my employer find out I’m in treatment?', a: 'Your treatment records are protected by federal privacy law for substance use and mental health care, and we share information only with your written consent, except where the law requires it.' },
+  { q: 'Is there an executive rehab program?', a: 'Sunview doesn’t run a separate executive track. Executives, business owners and professionals join the same licensed clinical groups as everyone else, with a schedule and treatment plan built around their responsibilities.' },
+];
+
+const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
+---
+<ServicePage
+  path={path}
+  pageType="MedicalWebPage"
+  metaTitle="Rehab for Working Professionals in West Palm Beach | Sunview"
+  description="Outpatient rehab for working professionals in West Palm Beach. Evening IOP after work, day options, and treatment for high-functioning alcohol and drug use."
+  crumbs={[WHO, { name: 'Working Professionals', href: path }]}
+  h1="Rehab for Working Professionals in West Palm Beach"
+  subheading="Get real treatment without walking away from your job."
+  lead="Outpatient addiction treatment for adults who are still working, still showing up and still holding it together on the outside. Evening IOP starts at 6 PM, three nights a week, with your own therapist and psychiatric care when you need it."
+  faqTitle="Frequently Asked Questions About Rehab for Working Professionals"
+  faqs={faqs}
+  insurance
+>
+  {/* 1. Intro + TOC */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
+        </div>
+      </nav>
+      <div class="max-w-[70ch]">
+        <span class="eyebrow">For people with a job to keep</span>
+        <h2 id="rehab-while-working" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Outpatient Rehab While Working: Treatment That Fits Around Your Job</h2>
+        <div class="prose-sv mt-6">
+          <p>Most people who reach out to Sunview aren’t in a crisis that stops their life. They’re still going to work. The bills are paid, the calendar is full, and from the outside things look fine. That is often exactly why it has gone on so long: there was never a moment when everything fell apart enough to make stopping feel possible.</p>
+          <p>Outpatient treatment is built for that situation. You don’t check in anywhere or explain a month away. You keep your job and your home, and you come to treatment at set times during the week. At Sunview that can mean <a href="/programs/evening-iop/">evening IOP</a> three nights a week after work, <a href="/programs/iop/">day IOP</a> three mornings a week, or the <a href="/programs/php/">Partial Hospitalization Program</a> if you’re able to step back from work for a stretch and need more support.</p>
+          <p>The clinical care is the same whatever the hours. You join one continuous group led by the same licensed facilitator, you meet your primary therapist one-on-one every week, and psychiatric care through Telemed Clinix is scheduled for you when medication is part of the plan. Substance use and the anxiety, depression or burnout that often sits underneath it are treated together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. Week chart */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">The math of a week</span>
+      <h2 id="your-week" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">How Evening IOP Fits Into a Full-Time Work Week</h2>
+      <p class="subheading mt-3">Nine hours out of 168</p>
+      <figure class="card mt-10 !p-7">
+        <figcaption class="font-bold text-charcoal">One example week for someone working full time</figcaption>
+        <div class="mt-5 flex h-10 w-full overflow-hidden rounded-full" aria-hidden="true">
+          {week.map((w) => <div class={w.cls} style={`width:${(w.h / 168) * 100}%`}></div>)}
+        </div>
+        <ul class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {week.map((w) => (
+            <li class="flex items-center gap-3"><span class:list={['h-4 w-4 shrink-0 rounded', w.cls]} aria-hidden="true"></span><span><strong class="text-charcoal">{w.label}</strong>: about {w.h} hours</span></li>
+          ))}
+        </ul>
+        <p class="mt-5 text-sm text-muted">Work and sleep hours are typical examples, not requirements. Evening IOP is about 9 hours of group a week, plus a weekly individual session.</p>
+      </figure>
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="card"><Icon name="clock" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Monday, Wednesday, Thursday</h3><p class="mt-2">Group meets from 6 to 9 PM. Tuesday, Friday and the weekend stay yours.</p></div>
+        <div class="card"><Icon name="users" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">The same room every night</h3><p class="mt-2">One group and one facilitator for the whole evening, so trust builds instead of resetting.</p></div>
+        <div class="card"><Icon name="refresh" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Your day becomes the work</h3><p class="mt-2">The tense meeting, the drink you almost had at the client dinner. You bring it in and practice a different response.</p></div>
+      </div>
+    </div>
+  </section>
+
+  {/* 3. High-functioning */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">When it still looks fine</span>
+      <h2 id="high-functioning" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Signs of a High-Functioning Alcoholic or High-Functioning Addict</h2>
+      <p class="subheading mt-3">Doing well at work doesn’t mean it’s under control</p>
+      <p class="mt-5 max-w-3xl text-lg">“Functioning alcoholic” isn’t a diagnosis, but the people who search for it usually recognize something. The pattern is the same with alcohol, cocaine, pills or a mix. A few of the signs we hear about most often:</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {signs.map((s) => (
+          <div class="card">
+            <Icon name={s.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2">{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="prose-sv mt-12 max-w-3xl">
+        <p>None of these on its own means you have a substance use disorder, and only a clinical assessment can tell you that. But if several of them sound familiar, being good at your job isn’t a reason to keep waiting. People who are still working often do well in outpatient care, because they have structure, routines and something to protect.</p>
+        <p>Read more about how we treat <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder</a>, <a href="/what-we-treat/substance-use/cocaine/">cocaine use</a> and <a href="/what-we-treat/mental-health/anxiety/">anxiety</a> alongside it.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* 4. Executives (pull quote band) */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 id="executive" tabindex="-1" class="toc-target text-3xl text-white sm:text-[2.1875rem]">Executive Addiction Treatment Without Stepping Away From Your Business</h2>
+        <p class="mt-5 text-lg text-white/85">Executives and business owners often believe they can’t be gone, so they don’t go anywhere. Outpatient care removes that choice. You keep leading, and you do the work in the evenings or in the mornings you can protect.</p>
+        <p class="mt-4 text-lg text-white/85">Sunview doesn’t run a separate executive track. You join the same licensed clinical groups as everyone else, which tends to be part of what helps: in group, nobody reports to you.</p>
+        <p class="mt-4 text-lg text-white/85">Our CEO, <a href="/our-team/frank-galimidi/" class="font-bold text-gold hover:text-white">Frank Galimidi</a>, has spent more than 23 years in addiction treatment leadership and is a qualified Substance Abuse Professional (SAP) under U.S. Department of Transportation regulations.</p>
+      </div>
+      <blockquote class="rounded-[var(--radius-lg)] bg-white/10 p-8">
+        <Icon name="sparkle" class="h-7 w-7 text-gold" />
+        <p class="mt-4 font-display text-2xl leading-snug text-white">Recovery is practiced where you actually live: at work, at home, and in the room on group nights.</p>
+        <footer class="mt-4 text-sm font-bold text-white/70">The idea behind In Vivo Treatment™</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  {/* 5. Privacy */}
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-2">
+      <div>
+        <span class="eyebrow">Discretion</span>
+        <h2 id="privacy" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Privacy and Confidentiality in Treatment for Professionals</h2>
+        <p class="subheading mt-3">Getting help shouldn’t cost you your reputation</p>
+        <p class="mt-5 text-lg">Your treatment records are protected by federal privacy law for substance use and mental health care. We share information only with your written consent, except where the law requires it.</p>
+        <p class="mt-4 text-lg">Evening IOP happens after hours, so there is no string of missed afternoons to explain. If you’re worried about running into someone you know, tell us on the first call and we’ll talk through it.</p>
+      </div>
+      <ul class="grid gap-4 self-center">
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-mist p-5"><Icon name="lock" class="mt-0.5 h-6 w-6 shrink-0 text-teal" /><span>Records shared only with your written consent</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-mist p-5"><Icon name="clock" class="mt-0.5 h-6 w-6 shrink-0 text-teal" /><span>Treatment after the workday, Monday, Wednesday and Thursday</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-mist p-5"><Icon name="home" class="mt-0.5 h-6 w-6 shrink-0 text-teal" /><span>Home every night, with no stay to explain</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-mist p-5"><Icon name="pill" class="mt-0.5 h-6 w-6 shrink-0 text-teal" /><span>Psychiatric appointments in a private office on site</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {/* 6. Time off */}
+  <section class="section bg-mist">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">Work logistics</span>
+        <h2 id="time-off" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">FMLA for Rehab, Time Off and Paperwork for Work</h2>
+        <p class="subheading mt-3">Questions people ask before they call</p>
+        <div class="prose-sv mt-6">
+          <p>Many people assume getting treatment means taking leave. With evening IOP, most don’t need to change their workday at all. If your pre-screening points to more support, like PHP in the mornings, you may want time away from work for a while.</p>
+          <p>Medical leave, including FMLA, depends on federal and state law, your employer and your role, so we don’t make promises about it. Your HR department or an employment attorney can tell you what applies to you. If you have questions about time off or paperwork for work, ask us on the first call.</p>
+        </div>
+      </div>
+      <div class="self-start"><ScopeNote /></div>
+    </div>
+  </section>
+
+  {/* 7. Steps */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Admissions</span>
+      <h2 id="start" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">How to Start Outpatient Treatment as a Working Professional</h2>
+      <p class="subheading mt-3">One call starts it. You don’t need a referral.</p>
+      <ol class="relative mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        <span class="absolute left-0 right-0 top-6 hidden h-0.5 bg-teal/25 lg:block" aria-hidden="true"></span>
+        {steps.map((s) => (
+          <li class="relative">
+            <span class="relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal font-sans text-lg font-extrabold text-white ring-8 ring-white">{s.n}</span>
+            <h3 class="mt-4 text-xl">{s.title}</h3>
+            <p class="mt-2 max-w-[36ch]">{s.text}</p>
+          </li>
+        ))}
+      </ol>
+      <a href="/admissions/" class="btn-teal mt-10">Start your pre-screening <Icon name="arrow" /></a>
+      <div class="mt-14 border-t border-line pt-8">
+        <p class="font-bold text-charcoal">More people we treat</p>
+        <ul class="mt-4 flex flex-wrap gap-3">
+          {others.map((o) => <>{' '}<li><a href={o.href} class="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-white px-4 py-2 text-sm font-bold text-teal hover:border-teal">{o.label} <Icon name="arrow" class="h-3.5 w-3.5" /></a></li>{' '}</>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+</ServicePage>

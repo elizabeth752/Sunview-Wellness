@@ -54,6 +54,7 @@ export const NAV = [
     children: [
       { label: 'Partial Hospitalization (PHP)', href: '/programs/php/' },
       { label: 'Intensive Outpatient (IOP)', href: '/programs/iop/' },
+      { label: 'Evening IOP', href: '/programs/evening-iop/' },
       { label: 'Outpatient Program (OP)', href: '/programs/outpatient/' },
       { label: 'Psychiatry & Medication', href: '/programs/psychiatry-medication-management/' },
       { label: 'Compare levels of care', href: '/programs/' },
@@ -94,6 +95,19 @@ export const NAV = [
         cta: { label: 'Dual diagnosis treatment', href: '/what-we-treat/dual-diagnosis/' },
         items: [],
       },
+    ],
+  },
+  // Who We Treat section (2026-10-15): audiences welcomed into the regular groups, never tracks.
+  {
+    label: 'Who We Treat',
+    href: '/who-we-treat/',
+    children: [
+      { label: 'Working professionals', href: '/who-we-treat/working-professionals/' },
+      { label: 'Young adults', href: '/who-we-treat/young-adults/' },
+      { label: 'Failure to launch', href: '/who-we-treat/failure-to-launch/' },
+      { label: 'College students', href: '/who-we-treat/college-students/' },
+      { label: 'First responders', href: '/who-we-treat/first-responders/' },
+      { label: 'Everyone we treat', href: '/who-we-treat/' },
     ],
   },
   {

@@ -1,0 +1,180 @@
+---
+// /who-we-treat/first-responders/ (2026-10-15). Keyword cluster (Semrush US, 2026-10-15): first responder addiction
+// treatment 480 (KD 33), firefighter rehab 110 (18), rehab for first responders 90 (40), first responder rehab 70 (25).
+// ⚠️ SCOPE: Dana Martin (2026-09-08) said Sunview runs no specialized tracks, first responders named. On the
+// 2026-10-15 status call Frank approved audience pages "as long as we don't say we have a specific track" and said
+// Sunview's leadership has worked with first responders and people with careers for years. So: a welcome, never a
+// track, group, curriculum or "first responder program". Walter's fire-service background is NOT used (not in the Wiki).
+// Facts: programs-sources.md (day IOP days chosen around the person's schedule; all clinicians trauma-informed, Q18;
+// substance use with co-occurring PTSD treated together). No fitness-for-duty, licensing or employment promises.
+import ServicePage from '../../layouts/ServicePage.astro';
+import Icon from '../../components/Icon.astro';
+import ScopeNote from '../../components/ScopeNote.astro';
+import TocList from '../../components/toc/TocList.astro';
+import TocDrawer from '../../components/toc/TocDrawer.astro';
+import { WHO, AUDIENCE_PAGES } from '../../data/whoWeTreat.js';
+
+const path = '/who-we-treat/first-responders/';
+
+const toc = [
+  { id: 'first-responders', text: 'Treatment for first responders' },
+  { id: 'what-it-carries', text: 'What the job carries' },
+  { id: 'shifts', text: 'Around your shifts' },
+  { id: 'trauma', text: 'Trauma and substance use' },
+  { id: 'confidential', text: 'Confidentiality' },
+  { id: 'start', text: 'How to start' },
+];
+
+const roles = ['Firefighters', 'Police officers', 'Paramedics and EMTs', 'Dispatchers', 'Corrections officers'];
+
+const carries = [
+  { icon: 'brain', title: 'Calls that don’t leave', text: 'The scenes you can’t un-see, replayed at 3 AM or when something small brings them back.' },
+  { icon: 'clock', title: 'Shifts that break sleep', text: 'Rotating schedules and 24-hour shifts, and the drink or the pill that became how you come down.' },
+  { icon: 'shield', title: 'A culture of handling it', text: 'You’re the one people call for help, which makes asking for it feel like a contradiction.' },
+  { icon: 'heart', title: 'Home paying the price', text: 'Irritability, distance and drinking that the people at home notice before anyone at work does.' },
+];
+
+// Example two-week rotation (illustration only). Day IOP days are chosen around the person's schedule (Q7).
+const rotation = ['shift', 'shift', 'off', 'off', 'shift', 'off', 'off', 'shift', 'shift', 'off', 'off', 'shift', 'off', 'off'];
+const iopDays = new Set([2, 5, 9, 12]);
+
+const faqs = [
+  { q: 'Is there a first responder rehab program at Sunview?', a: 'Sunview doesn’t run a separate first responder track. First responders join the same licensed clinical groups as everyone else, with a schedule and treatment plan built around their shifts, and every clinician on our team is trauma-informed.' },
+  { q: 'Can I do outpatient treatment with a rotating shift schedule?', a: 'Often, yes. Day IOP meets three mornings a week, and the days are chosen around your schedule. Evening IOP meets Monday, Wednesday and Thursday from 6 to 9 PM. We work out the fit on the first call. <a href="/programs/iop/">See IOP schedules</a>.' },
+  { q: 'Do you treat PTSD and substance use together?', a: 'Yes. When trauma and substance use feed each other, we treat them together, with one team and one plan. <a href="/what-we-treat/mental-health/trauma-ptsd/">Trauma and PTSD treatment</a>.' },
+  { q: 'Will my department find out?', a: 'Your treatment records are protected by federal privacy law for substance use and mental health care, and we share information only with your written consent, except where the law requires it. Questions about duty status or department policy belong with your department, union or an attorney.' },
+  { q: 'Can I use my department’s EAP?', a: 'If your department has an employee assistance program, it can be a good starting point. You can also call Sunview directly, and we check your insurance benefits for free.' },
+  { q: 'Do you treat firefighters, paramedics and dispatchers?', a: 'Yes. Sunview treats adults 18 and over with substance use and co-occurring mental health conditions, including firefighters, police officers, EMTs, paramedics, dispatchers and others in high-pressure public safety work.' },
+];
+
+const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
+---
+<ServicePage
+  path={path}
+  pageType="MedicalWebPage"
+  metaTitle="Addiction Treatment for First Responders | Sunview Wellness"
+  description="Outpatient addiction treatment for first responders in West Palm Beach: trauma-informed care around shift schedules for firefighters, police, EMTs and more."
+  crumbs={[WHO, { name: 'First Responders', href: path }]}
+  h1="First Responder Addiction Treatment in West Palm Beach"
+  subheading="Trauma-informed outpatient care that works around your shifts."
+  lead="Outpatient treatment for firefighters, police officers, paramedics, dispatchers and others who carry the job home with them. Group therapy on a schedule built around your shifts, your own therapist, and substance use and trauma treated together."
+  faqTitle="Frequently Asked Questions About Rehab for First Responders"
+  faqs={faqs}
+  insurance
+>
+  {/* 1. Intro + TOC */}
+  <section class="section">
+    <div class="container-x grid gap-10 lg:grid-cols-[220px_1fr] lg:gap-16">
+      <TocDrawer items={toc} label="On this page" class="lg:hidden" />
+      <nav aria-labelledby="toc-title" class="hidden lg:block">
+        <div class="sticky top-[100px] border-l-2 border-line pl-3">
+          <p id="toc-title" class="pl-2 text-xs font-extrabold uppercase tracking-[0.08em] text-muted">On this page</p>
+          <TocList items={toc} class="mt-3" />
+        </div>
+      </nav>
+      <div class="max-w-[70ch]">
+        <span class="eyebrow">For the people who answer the call</span>
+        <h2 id="first-responders" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Rehab for First Responders Who Need to Keep Working</h2>
+        <div class="prose-sv mt-6">
+          <p>First responders are trained to run toward the worst moments of other people’s lives and then go back to work the next shift. Over years, that leaves a mark. For many, alcohol or pills become the way to come down after a call, to sleep after a night shift, or to stop seeing things that don’t go away on their own.</p>
+          <p>Sunview is outpatient care, which means you can get real treatment without disappearing for a month. You come to group therapy at set times during the week, meet your primary therapist one-on-one every week, and see a psychiatric provider through Telemed Clinix when medication is part of the plan. Substance use and the trauma underneath it are treated together.</p>
+          <p>There’s no separate first responder track. You join the same licensed clinical groups as other adults, and every clinician on our team is trauma-informed. Sunview’s leadership has worked with first responders and people in high-pressure careers for years.</p>
+        </div>
+        <ul class="mt-6 flex flex-wrap gap-2" aria-label="First responders we treat">
+          {roles.map((r) => <>{' '}<li class="rounded-full border border-teal/30 bg-white px-4 py-1.5 text-sm font-bold text-teal">{r}</li>{' '}</>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* 2. What the job carries */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">The weight of the work</span>
+      <h2 id="what-it-carries" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Substance Use in First Responders: What the Job Carries Home</h2>
+      <p class="subheading mt-3">Four patterns we hear about on the first call</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {carries.map((c) => (
+          <div class="card">
+            <Icon name={c.icon} class="h-7 w-7 text-teal" />
+            <h3 class="mt-4 text-xl">{c.title}</h3>
+            <p class="mt-2">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Shift chart */}
+  <section class="section">
+    <div class="container-x">
+      <span class="eyebrow">Scheduling</span>
+      <h2 id="shifts" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Outpatient Treatment Around Rotating and 24-Hour Shifts</h2>
+      <p class="subheading mt-3">Day IOP days are chosen around your schedule</p>
+      <figure class="card mt-10 overflow-x-auto !p-5 sm:!p-7">
+        <figcaption class="font-bold text-charcoal">One example two-week rotation with day IOP on days off</figcaption>
+        <ol class="mt-5 grid min-w-[620px] grid-cols-14 gap-1.5" style="grid-template-columns:repeat(14,minmax(0,1fr))">
+          {rotation.map((d, i) => (
+            <li class="flex flex-col items-center gap-1.5">
+              <span class="text-xs font-extrabold text-muted">Day {i + 1}</span>
+              <span class:list={['flex h-14 w-full items-center justify-center rounded-[10px] text-xs font-bold', d === 'shift' ? 'bg-charcoal/80 text-white' : 'bg-mist text-muted']}>{d === 'shift' ? 'Shift' : 'Off'}</span>
+              <span class:list={['flex h-8 w-full items-center justify-center rounded-[10px] text-[11px] font-bold', iopDays.has(i) ? 'bg-teal-deep text-white' : 'bg-transparent']}>{iopDays.has(i) ? 'IOP' : ''}</span>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-5 text-sm text-muted">Rotation shown is an example. Day IOP meets 9 AM to 1 PM, three days a week, on days that work for you. Evening IOP is Monday, Wednesday and Thursday, 6 to 9 PM.</p>
+      </figure>
+      <p class="mt-6 max-w-3xl text-lg">If your pre-screening points to more support, the <a href="/programs/php/" class="font-bold text-teal hover:text-teal-light">Partial Hospitalization Program</a> meets weekday mornings. We work out what is realistic with your schedule on the first call.</p>
+    </div>
+  </section>
+
+  {/* 4. Trauma band */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 id="trauma" tabindex="-1" class="toc-target text-3xl text-white sm:text-[2.1875rem]">Treating PTSD, Trauma and Substance Use Together</h2>
+        <p class="mt-5 text-lg text-white/85">For first responders, drinking or using is often how the trauma gets managed. Treating one without the other rarely holds. At Sunview, substance use and co-occurring trauma, PTSD, anxiety and depression are treated together, with one team and one plan.</p>
+        <p class="mt-4 text-lg text-white/85">Group gives you a place to say things out loud with other adults who are doing the same work on themselves. Your individual therapist uses approaches like <a href="/therapies/internal-family-systems/" class="font-bold text-gold hover:text-white">Internal Family Systems</a>, <a href="/therapies/cbt/" class="font-bold text-gold hover:text-white">CBT</a> and <a href="/therapies/dbt/" class="font-bold text-gold hover:text-white">DBT</a>.</p>
+        <a href="/what-we-treat/mental-health/trauma-ptsd/" class="btn-sun mt-8">Trauma and PTSD treatment <Icon name="arrow" /></a>
+      </div>
+      <ul class="grid gap-4">
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="shield" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Every clinician on our team is trauma-informed</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="layers" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Substance use and trauma in one treatment plan</span></li>
+        <li class="flex items-start gap-4 rounded-[var(--radius-card)] bg-white/10 p-5"><Icon name="pill" class="mt-0.5 h-6 w-6 shrink-0 text-gold" /><span>Psychiatric care through Telemed Clinix, scheduled for you</span></li>
+      </ul>
+    </div>
+  </section>
+
+  {/* 5. Confidentiality */}
+  <section class="section">
+    <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+      <div>
+        <span class="eyebrow">Discretion</span>
+        <h2 id="confidential" tabindex="-1" class="mt-3 toc-target text-3xl sm:text-[2.1875rem]">Confidential Addiction Treatment for First Responders</h2>
+        <p class="subheading mt-3">You decide who knows</p>
+        <div class="prose-sv mt-6">
+          <p>Your treatment records are protected by federal privacy law for substance use and mental health care, and we share information only with your written consent, except where the law requires it.</p>
+          <p>Questions about duty status, department policy or licensing are specific to your agency, so your department, union or an attorney is the right place for them. If your department has an employee assistance program, it can be a starting point, and you can also call us directly.</p>
+        </div>
+      </div>
+      <div class="self-center"><ScopeNote /></div>
+    </div>
+  </section>
+
+  {/* 6. Start */}
+  <section class="section bg-mist">
+    <div class="container-x">
+      <span class="eyebrow">Admissions</span>
+      <h2 id="start" tabindex="-1" class="mt-3 max-w-3xl toc-target text-3xl sm:text-[2.1875rem]">Call Sunview to Start Treatment Around Your Shifts</h2>
+      <p class="subheading mt-3">One call starts it. You don’t need a referral.</p>
+      <p class="mt-5 max-w-3xl text-lg">Tell us what has been happening and what your rotation looks like. We check your insurance for free, run a short pre-screening, and our Clinical Director recommends a level of care using ASAM criteria and clinical judgment.</p>
+      <a href="/admissions/" class="btn-teal mt-8">Start your pre-screening <Icon name="arrow" /></a>
+      <div class="mt-14 border-t border-line pt-8">
+        <p class="font-bold text-charcoal">More people we treat</p>
+        <ul class="mt-4 flex flex-wrap gap-3">
+          {others.map((o) => <>{' '}<li><a href={o.href} class="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-white px-4 py-2 text-sm font-bold text-teal hover:border-teal">{o.label} <Icon name="arrow" class="h-3.5 w-3.5" /></a></li>{' '}</>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+</ServicePage>
