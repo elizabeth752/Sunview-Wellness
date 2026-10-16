@@ -101,6 +101,8 @@ export const NAV = [
   {
     label: 'Who We Treat',
     href: '/who-we-treat/',
+    // Shown at the top of the dropdown (Elizabeth, 2026-10-15): these are populations we treat, not tracks.
+    note: 'These aren’t separate tracks. Everyone joins the same clinical groups, with a plan built around their life.',
     children: [
       { label: 'Working professionals', href: '/who-we-treat/working-professionals/' },
       { label: 'Young adults', href: '/who-we-treat/young-adults/' },
