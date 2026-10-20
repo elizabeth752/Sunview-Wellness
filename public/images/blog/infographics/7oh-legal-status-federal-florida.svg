@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="gtitle gdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="gtitle">7-OH's legal status: Florida versus federal law</title>
+  <desc id="gdesc">As of October 2026, Florida has already placed concentrated 7-OH in Schedule I under an emergency rule signed June 22, 2026. Federally, 7-OH itself is not yet scheduled; the DEA proposed a Schedule I placement in July 2026 that has not been finalized, though three related compounds were placed in Schedule I effective August 26, 2026. Both approaches exempt natural kratom leaf below a set concentration threshold.</desc>
+  <rect width="1200" height="460" fill="#F0FAFA"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Two different timelines, one target</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Florida has already acted. Federal scheduling of 7-OH itself is still pending.</text>
+
+  <!-- Florida column -->
+  <g transform="translate(130,130)">
+    <rect x="-20" y="-20" width="420" height="280" rx="16" fill="#126E6E"/>
+    <text x="190" y="18" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="800">Florida</text>
+    <text x="190" y="50" text-anchor="middle" fill="#EAF6F6" font-size="14" font-weight="800">Schedule I since June 22, 2026</text>
+    <line x1="0" y1="70" x2="380" y2="70" stroke="#5CC2C2"/>
+    <text x="20" y="100" fill="#EAF6F6" font-size="13">Emergency rule bans concentrated</text>
+    <text x="20" y="122" fill="#EAF6F6" font-size="13">7-OH and related compounds</text>
+    <text x="20" y="154" fill="#EAF6F6" font-size="13">Natural kratom leaf below the</text>
+    <text x="20" y="176" fill="#EAF6F6" font-size="13">set concentration threshold</text>
+    <text x="20" y="198" fill="#EAF6F6" font-size="13">is not covered</text>
+    <text x="20" y="230" fill="#FFFFFF" font-size="13" font-weight="800">Status: in effect now</text>
+  </g>
+
+  <!-- Federal column -->
+  <g transform="translate(650,130)">
+    <rect x="-20" y="-20" width="420" height="280" rx="16" fill="#FFFFFF" stroke="#CF9034" stroke-width="3"/>
+    <text x="190" y="18" text-anchor="middle" fill="#545555" font-size="18" font-weight="800">Federal</text>
+    <text x="190" y="50" text-anchor="middle" fill="#9B6A1E" font-size="14" font-weight="800">Proposed July 2026, not final</text>
+    <line x1="0" y1="70" x2="380" y2="70" stroke="#E7D3AE"/>
+    <text x="20" y="100" fill="#3E4444" font-size="13">DEA proposed Schedule I for</text>
+    <text x="20" y="122" fill="#3E4444" font-size="13">7-OH above a set threshold</text>
+    <text x="20" y="154" fill="#3E4444" font-size="13">3 related compounds already</text>
+    <text x="20" y="176" fill="#3E4444" font-size="13">Schedule I since Aug. 26, 2026</text>
+    <text x="20" y="198" fill="#3E4444" font-size="13">Natural kratom leaf excluded</text>
+    <text x="20" y="230" fill="#CF9034" font-size="13" font-weight="800">Status: comment period, pending</text>
+  </g>
+
+  <text x="56" y="432" font-size="14" font-weight="700" fill="#3E4444">Federal scheduling of 7-OH itself can still change before it is finalized.</text>
+</svg>
