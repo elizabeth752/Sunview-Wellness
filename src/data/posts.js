@@ -1057,6 +1057,120 @@ export const posts = [
       { label: 'The Florida Legislature. (2026). Section 581.217, State Hemp Program. The 2026 Florida Statutes. The Florida Legislature.', url: 'https://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0500-0599/0581/Sections/0581.217.html' },
     ],
   },
+  {
+    slug: 'what-is-7-oh',
+    type: 'article',
+    title: 'What Is 7-OH? The Gas Station Kratom Product That Acts Like an Opioid',
+    dek: '7-OH is sold as kratom in gas stations and vape shops, but the FDA describes it as a potent opioid. Here is what it is, how long it lasts, and where it stands under Florida and federal law.',
+    metaDescription: '7-OH is sold as kratom in gas stations and vape shops, but the FDA calls it a potent opioid. Learn its effects, legal status, and how Sunview Wellness can help.',
+    date: '2026-10-20',
+    author: 'dana-martin', // slug in src/data/team.js — prescribed as the article's clinical author, matching precedent
+    category: 'Substance Use',
+    // Docx citation markers ([1]...[6]) converted to inline (Author, Year) style. Fetch-verified every source
+    // against the specific claim it supports before writing this: the docx's [3] (NIDA) citation on the "7-OH is
+    // under 2% of natural kratom's alkaloid content" figure was wrong — NIDA's page never gives a percentage; that
+    // exact figure ("2% of the total alkaloid content," Hossain et al., 2023, cited within the FDA report) is in
+    // the FDA/Reissig document, so it's cited to (Reissig et al., 2025) here instead. The "82.2% of products are
+    // chewable tablets/shots/gummies" stat is also only in the FDA/Reissig document (via Hill et al., 2025), not
+    // in the FDA consumer guide, so it's cited there alone rather than to both as the docx had it. Confirmed real
+    // and correctly matched: the naloxone-reverses-breathing claim (NIDA's own page states this), the "500% more
+    // 7-OH than natural" figure (independently supported in both the FDA/Reissig technical report, which found
+    // 109-509% higher than expected, and the FDA consumer guide, which rounds it to "500%"), and the DEA timeline
+    // (CRS LSB11457: 7-OH itself proposed for Schedule I in July 2026 and still not finalized — comment period
+    // extended to September 10, 2026 — while three related compounds, mitragynine pseudoindoxyl, MGM-15, and
+    // MGM-16, were finalized in Schedule I effective August 26, 2026; natural kratom leaf below a 0.05% 7-OH
+    // threshold is excluded from both the federal proposal and Florida's rule). Pharmacokinetics tightened from the
+    // docx's rounded "2 to 5 hours" to the source's actual range (half-life 1.7-5.67 hours depending on the study,
+    // rounded here to "roughly 2 to 6 hours"). The docx's closing "free door-to-door transportation" line is
+    // changed to "free transportation" (no staff pick-up implication, no radius stated) per the client's standing
+    // rule (Answers-Content-Questions-2026-09-24.md §6.1), and the insurance line matches the site's established
+    // phrasing instead of the docx's "we accept Medicaid." Phone pulled from SITE, never hardcoded. Interlinks
+    // point to the existing /what-we-treat/substance-use/opioids/ page and the PHP/IOP/OP program pages, framed
+    // (per that page's own standard) as the step after medically supervised detox, not detox itself.
+    body: `
+<p>7-OH is sold as tablets, gummies, and shots in gas stations, vape shops, and online across Florida, often labeled as kratom or a natural supplement. The U.S. Food and Drug Administration (FDA) describes 7-OH as a potent opioid that acts on the same brain receptors as morphine and can cause dependence, withdrawal, and slowed breathing (Reissig et al., 2025).</p>
+<p>This article explains what 7-OH is, how it differs from kratom leaf, its effects, how long it lasts, its legal status, and what to do if you or a family member are using it.</p>
+
+<h2>What Is 7-OH (7-Hydroxymitragynine)?</h2>
+<p>7-OH, short for 7-hydroxymitragynine, is a compound that occurs naturally in the kratom plant, where it makes up less than 2% of the plant’s total alkaloid content (Reissig et al., 2025). The body also converts small amounts of kratom’s main alkaloid, mitragynine, into 7-OH on its own (NIDA, 2026).</p>
+<p>Concentrated 7-OH products sold in stores are different. Because so little 7-OH occurs naturally, direct extraction from the plant would not be economical, so federal health officials say the much higher amounts found in these products are likely made by chemically converting other kratom compounds in a lab (Reissig et al., 2025). They are sold under street names including “7-Hydroxy,” “7-OHMG,” and simply “7” (FDA, 2025).</p>
+
+<h2>Is 7-OH an Opioid?</h2>
+<p>Yes, 7-OH is an opioid. It activates the same mu-opioid receptors in the brain that morphine, oxycodone, and fentanyl do, regardless of what the product’s label says (Reissig et al., 2025).</p>
+<p>Mu-opioid receptors are where opioids attach in the brain and body to relieve pain and produce euphoria. In laboratory and animal studies, 7-OH has shown greater binding affinity and potency at these receptors than morphine, and it produces respiratory depression, physical dependence, and withdrawal symptoms characteristic of classical opioids. In rodent studies, naloxone, a medication used to reverse opioid overdose, reversed 7-OH’s effects on breathing (Reissig et al., 2025; NIDA, 2026).</p>
+<figure><img src="/images/blog/infographics/7oh-mu-opioid-receptor.svg" width="1200" height="460" loading="lazy" alt="Diagram showing 7-OH binding the mu-opioid receptor, the same receptor targeted by morphine, oxycodone, and fentanyl, producing euphoria, sedation, respiratory depression, and physical dependence, effects reversed by naloxone in lab studies." /></figure>
+
+<h2>Kratom vs. 7-OH: What Is the Difference?</h2>
+<p>Kratom leaf and concentrated 7-OH come from the same plant, but they are not interchangeable. Kratom leaves and mitragynine generally do not appear to cause the slowed breathing seen in a life-threatening opioid overdose, largely because the body converts mitragynine to 7-OH slowly. Concentrated products skip that slow conversion and deliver 7-OH directly (NIDA, 2026).</p>
+<p>Labels do not always make this clear. Products marketed as “enhanced” or “spiked” kratom can look like natural leaf but have been found to contain as much as 500% more 7-OH than would be expected naturally, a finding reported independently by both FDA’s technical review and its consumer guide (Reissig et al., 2025; FDA, 2025). A product sold as kratom can end up acting closer to a prescription opioid than to kratom leaf.</p>
+
+<h2>What Are the Effects of 7-OH?</h2>
+<p>Based on poison center data, toxicology testing, and user reports, federal health officials describe these effects of 7-OH (FDA, 2025):</p>
+<ul>
+  <li><strong>Euphoria</strong>, or an opioid-like “high”</li>
+  <li><strong>Sedation and drowsiness</strong></li>
+  <li><strong>Respiratory depression</strong>, meaning breathing becomes slow or shallow</li>
+  <li><strong>Physical dependence</strong>, meaning the body adapts and may need the substance to function normally</li>
+  <li><strong>Withdrawal symptoms</strong> similar to those of other opioids when use stops</li>
+</ul>
+<p>Florida health officials have also linked concentrated 7-OH products to seizures (Florida Attorney General, 2026).</p>
+
+<h2>How Long Does 7-OH Last?</h2>
+<p>In human studies, 7-OH blood levels peaked about one to two hours after a dose, and its half-life, the time it takes for the amount in the blood to drop by half, ranged from roughly two to six hours depending on the study, getting longer at higher doses (Reissig et al., 2025). Research on concentrated 7-OH products specifically is still limited, and how long the effects last in practice may depend on the product, the amount taken, how often it is used, and individual health factors (NIDA, 2026).</p>
+<figure><img src="/images/blog/infographics/7oh-blood-level-timeline.svg" width="1200" height="420" loading="lazy" alt="Timeline showing 7-OH blood levels peaking about one to two hours after a dose, then declining with a half-life of roughly two to six hours, with the half-life increasing at higher doses." /></figure>
+
+<h2>7-OH’s Legal Status: Federal and Florida</h2>
+<p>Federally, 7-OH is not yet scheduled. In July 2026, the Drug Enforcement Administration (DEA) proposed temporarily placing 7-OH above a set concentration threshold into Schedule I, the same category as heroin, and extended the public comment period to September 10, 2026. That proposal has not been finalized. The DEA did finalize Schedule I status for three related kratom-derived compounds, mitragynine pseudoindoxyl, MGM-15, and MGM-16, effective August 26, 2026. Both the pending federal proposal and the compounds already scheduled exclude the kratom plant itself below a set 7-OH concentration threshold (CRS, 2026).</p>
+<p>Florida has moved faster. In an emergency rule signed June 22, 2026, the state placed concentrated 7-OH and related compounds in Schedule I, enabling felony-level enforcement against manufacturers and sellers, and state health officials linked the products to addiction, overdose, and seizures (Florida Attorney General, 2026).</p>
+<figure><img src="/images/blog/infographics/7oh-legal-status-federal-florida.svg" width="1200" height="460" loading="lazy" alt="Comparison showing Florida has placed concentrated 7-OH in Schedule I since June 22, 2026, while federal scheduling of 7-OH itself remains proposed and not finalized as of October 2026, with three related compounds already in Schedule I since August 26, 2026, and natural kratom leaf excluded from both." /></figure>
+
+<h2>What to Do If a Family Member Is Using 7-OH</h2>
+<ul>
+  <li><strong>Talk to a doctor before stopping.</strong> Because 7-OH can cause physical dependence, stopping suddenly may lead to opioid-like withdrawal symptoms (Reissig et al., 2025). A doctor can help plan next steps.</li>
+  <li><strong>Ask about a full assessment.</strong> There are no treatments approved specifically for kratom-related withdrawal, and research is ongoing (NIDA, 2026). A treatment provider can review the person’s history and recommend a level of care.</li>
+  <li><strong>Start with a calm conversation.</strong> Many 7-OH products are marketed as kratom (FDA, 2025), so the person using them may not know they are taking an opioid. Focusing on what the product actually is, rather than assumptions about why it is being used, can make it easier to talk about help.</li>
+  <li><strong>Know who to call.</strong> If someone is unresponsive, call 911. For questions about a possible reaction, the FDA directs people to the <a href="https://poisonhelp.hrsa.gov" rel="nofollow noopener">Poison Help Line</a> at 1-800-222-1222.</li>
+</ul>
+
+<h2>Is 7-OH Safe Because It Is Sold in Stores?</h2>
+<p>No. Being sold in a store does not mean a product has been reviewed for safety. The FDA states that kratom, mitragynine, and 7-OH are not lawful as dietary supplements or food ingredients, and there are no FDA-approved drugs that contain them (Reissig et al., 2025).</p>
+
+<h2>Can 7-OH Help With Opioid Withdrawal or Pain?</h2>
+<p>No. The FDA states that kratom-related products, including 7-OH, are not safe or approved treatments for opioid withdrawal, chronic pain, depression, or anxiety (FDA, 2025).</p>
+<p>If 7-OH is being used for any of these reasons, a doctor can discuss alternative approved options, including treatment for the <a href="/what-we-treat/dual-diagnosis/">anxiety or depression</a> it may be masking.</p>
+
+<h2>Can You Overdose on 7-OH?</h2>
+<p>Yes. 7-OH can cause respiratory depression, and at higher doses, breathing can slow enough that the brain and body do not get enough oxygen (Reissig et al., 2025). Families have reported dependence, withdrawal, overdose, and death involving 7-OH products (FDA, 2025).</p>
+
+<h2>How Sunview Wellness Treats Opioid Use, Including 7-OH</h2>
+<p>At Sunview Wellness, we treat <em>in vivo</em>, which means care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
+<p>Whether opioid use started with a prescription or a store-bought product sold as kratom, our <a href="/what-we-treat/substance-use/opioids/">opioid treatment program</a> usually begins after medically supervised detox, with coordination with an outside MAT prescriber when that applies, and it addresses the anxiety, depression, and trauma that so often sit underneath the use.</p>
+<p>We’re in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>7-OH (7-hydroxymitragynine) is an opioid. It activates the same brain receptors as morphine and oxycodone, even when it is sold as kratom.</li>
+  <li>Natural kratom leaf contains only small amounts of 7-OH. Concentrated products are likely made in a lab and can have much stronger opioid effects.</li>
+  <li>Effects can include euphoria, sedation, respiratory depression, physical dependence, and withdrawal, and officials have linked concentrated products to seizures.</li>
+  <li>As of October 2026, 7-OH itself is not yet federally scheduled, though three related compounds already are. Concentrated 7-OH is already a Schedule I substance in Florida.</li>
+  <li>Stopping 7-OH suddenly may cause withdrawal, so it is best to talk to a doctor first.</li>
+</ul>
+
+<h2>Outpatient Opioid and 7-OH Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient drug rehab in West Palm Beach serving adults 18 and older. Our programs treat substance use disorders involving opioids, alcohol, stimulants, and polysubstance patterns, alongside the anxiety, depression, and trauma that so often exist underneath the substance use.</p>
+<p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> as an integrative modality to address the shame, inadequacy, and fear underneath substance use. We also offer free transportation to treatment.</p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'Office of the Attorney General of Florida. (2026, June 22). Attorney General James Uthmeier Signs Emergency Rule Immediately Scheduling Dangerous 7-OH and Related Compounds as Schedule I Controlled Substances. News Releases. Office of the Attorney General, State of Florida.', url: 'https://www.myfloridalegal.com/newsrelease/attorney-general-james-uthmeier-signs-emergency-rule-immediately-scheduling-dangerous-7' },
+      { label: 'Reissig, C. J., et al. (2025). 7-Hydroxymitragynine (7-OH): An Assessment of the Scientific Data and Toxicological Concerns Around an Emerging Opioid Threat. FDA Center for Drug Evaluation and Research. U.S. Food and Drug Administration.', url: 'https://www.fda.gov/media/187899/download' },
+      { label: 'National Institute on Drug Abuse. (2026). Kratom. Research Topics. National Institute on Drug Abuse.', url: 'https://nida.nih.gov/research-topics/kratom' },
+      { label: 'U.S. Food and Drug Administration. (2025). Preventing the Next Wave of the Opioid Epidemic: What You Need to Know About 7-OH. Consumer Guide. U.S. Food and Drug Administration.', url: 'https://www.fda.gov/media/187913/download' },
+      { label: 'Congressional Research Service. (2026, October 6). Temporary Control of 7-Hydroxymitragynine (7-OH) and Other Kratom-Related Substances Under the Controlled Substances Act. Legal Sidebar, No. LSB11457. Library of Congress.', url: 'https://www.congress.gov/crs-product/LSB11457' },
+      { label: 'U.S. Food and Drug Administration. (2026, July 13). Hiding in Plain Sight: 7-OH Products. Public Health Focus. U.S. Food and Drug Administration.', url: 'https://www.fda.gov/news-events/public-health-focus/hiding-plain-sight-7-oh-products' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));

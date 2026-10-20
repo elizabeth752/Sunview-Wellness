@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="mtitle mdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="mtitle">7-OH binds the same opioid receptor as morphine and fentanyl</title>
+  <desc id="mdesc">7-OH attaches to mu-opioid receptors in the brain, the same receptors that morphine, oxycodone, and fentanyl bind to. In lab and animal studies this activation produced euphoria, sedation, respiratory depression, and physical dependence, and naloxone reversed the effect on breathing.</desc>
+  <rect width="1200" height="460" fill="#F0FAFA"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">One receptor, the same opioid effects</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">7-OH activates mu-opioid receptors regardless of what the label says.</text>
+
+  <!-- node 1: 7-OH -->
+  <g transform="translate(175,250)">
+    <circle r="82" fill="#126E6E"/>
+    <text x="0" y="-8" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="800">7-OH</text>
+    <text x="0" y="16" text-anchor="middle" fill="#EAF6F6" font-size="13">sold as kratom</text>
+    <text x="0" y="34" text-anchor="middle" fill="#EAF6F6" font-size="13">or a supplement</text>
+  </g>
+
+  <!-- arrow 1 -->
+  <path d="M261 250 H 430" stroke="#CF9034" stroke-width="4" fill="none"/>
+  <path d="M430 250 l-16 -10 v20 z" fill="#CF9034"/>
+
+  <!-- node 2: receptor (hexagon lock) shared by other opioids -->
+  <g transform="translate(600,250)">
+    <polygon points="0,-78 68,-39 68,39 0,78 -68,39 -68,-39" fill="#FFFFFF" stroke="#CF9034" stroke-width="3"/>
+    <text x="0" y="-18" text-anchor="middle" fill="#545555" font-size="14" font-weight="800">Mu-opioid</text>
+    <text x="0" y="2" text-anchor="middle" fill="#545555" font-size="14" font-weight="800">receptor</text>
+    <text x="0" y="28" text-anchor="middle" fill="#6B6C6C" font-size="11.5">also bound by morphine,</text>
+    <text x="0" y="44" text-anchor="middle" fill="#6B6C6C" font-size="11.5">oxycodone, fentanyl</text>
+  </g>
+
+  <!-- arrow 2 -->
+  <path d="M700 250 H 876" stroke="#CF9034" stroke-width="4" fill="none"/>
+  <path d="M876 250 l-16 -10 v20 z" fill="#CF9034"/>
+
+  <!-- node 3: effects box -->
+  <g transform="translate(1030,250)">
+    <rect x="-150" y="-108" width="300" height="216" rx="16" fill="#1F9E9E"/>
+    <text x="0" y="-78" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="800">Opioid-like effects</text>
+    <text x="-130" y="-48" fill="#EAF6F6" font-size="13">• Euphoria, sedation</text>
+    <text x="-130" y="-24" fill="#EAF6F6" font-size="13">• Respiratory depression</text>
+    <text x="-130" y="0" fill="#EAF6F6" font-size="13">• Physical dependence</text>
+    <text x="-130" y="24" fill="#EAF6F6" font-size="13">• Withdrawal on stopping</text>
+    <line x1="-130" y1="40" x2="130" y2="40" stroke="#5CC2C2"/>
+    <text x="-130" y="62" fill="#FFFFFF" font-size="12" font-weight="800">Reversed by naloxone</text>
+    <text x="-130" y="80" fill="#EAF6F6" font-size="11.5">in lab studies</text>
+  </g>
+
+  <text x="56" y="420" font-size="14" font-weight="700" fill="#3E4444">7-OH shows greater potency at this receptor than morphine in laboratory studies.</text>
+</svg>
