@@ -6,9 +6,13 @@ export const SITE = {
   name: 'Sunview Wellness',
   url: 'https://sunviewwellness.com',
   // Site number (client, 2026-10-26; was (561) 269-3175). CTM's number-swap script (t.js) replaces it with
-  // the tracking number for each visitor's source, so it's the only number that appears in the code.
+  // the tracking number for each visitor's source. This is the number in visible copy and links.
   phone: '(561) 786-1913',
   phoneHref: 'tel:5617861913',
+  // Google Business Profile static number. Schema only. CTM swaps the target above, so schema
+  // has to use this listing number or Google reads a tracking number. Confirmed against the
+  // Business Profile listing and the Joint Commission record, 2026-10-26.
+  gbpPhone: '(561) 710-2000',
   email: 'info@sunviewwellness.com',
   address: {
     street: '4802 East Ave',

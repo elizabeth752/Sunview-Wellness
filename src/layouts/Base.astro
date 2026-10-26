@@ -35,9 +35,10 @@ const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = image.startsWith('http') ? image : new URL(image, SITE.url).href;
 
 // Structured data: ONE ld+json script per page, a single @graph of linked nodes (only what's visible on the page).
-// MedicalOrganization with only what's visible site-wide (header/footer): name, logo, address, telephone
-// ({{PHONE}}, injected by GTM/CTM), email, url and the social profiles in the footer. No rating markup (Google review-snippet
-// rules: GBP ratings are third-party and not shown as a rating on the page).
+// MedicalOrganization with only what's visible site-wide (header/footer): name, logo, address, email,
+// url and the social profiles in the footer. Telephone is the Google Business Profile static number,
+// not the CTM target: the swap script rewrites the target, and schema has to stay the listing number.
+// No rating markup (Google review-snippet rules: GBP ratings are third-party and not shown as a rating on the page).
 const clinic = {
   '@type': 'MedicalOrganization',
   '@id': `${SITE.url}/#organization`,
@@ -53,7 +54,7 @@ const clinic = {
     caption: SITE.name,
   },
   image: `${SITE.url}/images/brand/og-default.jpg`,
-  telephone: SITE.phone,
+  telephone: SITE.gbpPhone,
   email: SITE.email,
   address: {
     '@type': 'PostalAddress',
