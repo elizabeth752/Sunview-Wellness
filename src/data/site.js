@@ -5,10 +5,10 @@
 export const SITE = {
   name: 'Sunview Wellness',
   url: 'https://sunviewwellness.com',
-  // CTM "Target Number SEO" (client, 2026-09-22). CTM's number-swap script (t.js) replaces it with
+  // Site number (client, 2026-10-26; was (561) 269-3175). CTM's number-swap script (t.js) replaces it with
   // the tracking number for each visitor's source, so it's the only number that appears in the code.
-  phone: '(561) 269-3175',
-  phoneHref: 'tel:5612693175',
+  phone: '(561) 786-1913',
+  phoneHref: 'tel:5617861913',
   email: 'info@sunviewwellness.com',
   address: {
     street: '4802 East Ave',
