@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="ftitle fdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="ftitle">Signs that may point to alcohol use disorder</title>
+  <desc id="fdesc">Seven signs from the NIAAA's 11 criteria for alcohol use disorder: drinking more, or for longer, than intended; wanting to cut down or stop without success; strong cravings for alcohol; giving up or reducing meaningful activities; continuing to drink despite trouble with family, mood, or memory; needing more alcohol to feel the same effect, known as tolerance; and withdrawal symptoms as alcohol wears off, such as trouble sleeping, shakiness, restlessness, nausea, sweating, or a racing heart. Work-related problems are only one of the eleven criteria, so a steady job does not rule any of this out.</desc>
+  <rect width="1200" height="600" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Signs that may point to AUD</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">A steady job isn't on this list — it's only one of 11 criteria</text>
+
+  <g font-size="15">
+    <g transform="translate(56,104)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Drinking more, or for longer, than intended</text>
+    </g>
+    <g transform="translate(56,166)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Wanting to cut down or stop, trying and not succeeding</text>
+    </g>
+    <g transform="translate(56,228)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Strong cravings for alcohol</text>
+    </g>
+    <g transform="translate(56,290)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Giving up or reducing meaningful activities</text>
+    </g>
+    <g transform="translate(56,352)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Continuing despite trouble with family, mood, or memory</text>
+    </g>
+    <g transform="translate(56,414)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Needing more alcohol to feel the same effect (tolerance)</text>
+    </g>
+    <g transform="translate(56,476)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Withdrawal symptoms as alcohol wears off</text>
+    </g>
+  </g>
+
+  <text x="56" y="562" font-size="13" fill="#6B6C6C" font-style="italic">2 to 3 signs: mild AUD · 4 to 5: moderate · 6 or more: severe (NIAAA, 2025)</text>
+</svg>

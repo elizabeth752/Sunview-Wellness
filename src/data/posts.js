@@ -1171,6 +1171,99 @@ export const posts = [
       { label: 'U.S. Food and Drug Administration. (2026, July 13). Hiding in Plain Sight: 7-OH Products. Public Health Focus. U.S. Food and Drug Administration.', url: 'https://www.fda.gov/news-events/public-health-focus/hiding-plain-sight-7-oh-products' },
     ],
   },
+  {
+    slug: 'what-is-a-functional-alcoholic',
+    type: 'article',
+    title: "What Is a Functional Alcoholic? When the Job Is Fine but the Drinking Isn't",
+    seoTitle: 'What Is a Functional Alcoholic? Signs of AUD', // <title> only (≤60, answer 9.1)
+    dek: "A steady job doesn't mean drinking is under control. The signs of alcohol use disorder, what counts as heavy drinking, and how to raise it with someone you love.",
+    metaDescription: "A steady job doesn't rule out alcohol use disorder. Learn the signs of a \"functional alcoholic,\" how much drinking counts as heavy, and how to help.",
+    date: '2026-10-27',
+    author: 'tyler-shoens', // slug in src/data/team.js — named as the article's author in the docx brief
+    category: 'Substance Use',
+    // Tyler Shoens' clinical article, verbatim structure and claims; docx citation markers ([1]…[6]) converted to
+    // the site's (Author, Year) in-text style (matches is-alcohol-a-depressant/what-is-molly-mdma), hyperlinks
+    // moved to the Sources list only. All 6 NIAAA citations fetch-verified against their exact claims (28M/AUD and
+    // <1-in-10-treated stats, the 11-criteria mild/moderate/severe cutoffs, the 8/week and 15/week heavy-drinking
+    // thresholds, the body-system effects including the 5-15% breast cancer figure, and the two Alcohol Treatment
+    // Navigator pages on talking to a loved one and levels of care) — no mismatches found. The docx's own interlink
+    // (sunviewwellness.com/outpatient-rehab-west-palm-beach/) 301-redirects to /programs/outpatient/ on this site,
+    // so it's linked directly instead; its phone line doesn't match SITE and is replaced throughout. The MAT mention
+    // is phrased as coordination with an outside prescriber (/programs/psychiatry-medication-management/), not
+    // in-house administration, matching that page's own framing. The docx's mid-article "Verify Insurance
+    // Coverage"/"Speak With Admissions" callout is folded into the closing "How Sunview Wellness Treats" section,
+    // where every other post's insurance/admissions CTA lives, rather than left as a one-off mid-body block.
+    body: `
+<p>A steady job does not always mean drinking is under control. "Functional alcoholic" is an informal term for a person who drinks heavily while maintaining work, financial, and family responsibilities. It is not a medical diagnosis, and health care providers use the term alcohol use disorder (AUD) instead. In 2024, about 28 million people in the U.S. had AUD, and fewer than 1 in 10 of them received treatment (National Institute on Alcohol Abuse and Alcoholism [NIAAA], 2026a).</p>
+<p>Holiday parties and family gatherings can make heavy drinking harder to recognize, and drinking every night can add up without any single occasion looking excessive. Here is what "functional alcoholism" is, its signs, what daily drinking does to the body, how to approach a loved one, and how treatment can fit around work.</p>
+
+<h2>What Is a "Functional Alcoholic"?</h2>
+<p>A "functional alcoholic," sometimes called a "high-functioning alcoholic," is someone whose drinking may meet the criteria for AUD even though their life looks stable, including their ability to maintain or excel at work. A person with AUD has difficulty controlling or stopping their drinking despite negative effects on their health, work, or relationships (NIAAA, 2025a).</p>
+<p>AUD is classified as mild, moderate, or severe based on how many of 11 criteria a person has shown within a 12-month period: 2 to 3 criteria indicates mild AUD, 4 to 5 indicates moderate, and 6 or more indicates severe (NIAAA, 2025a).</p>
+<p>Work-related problems are only one of the 11 criteria (NIAAA, 2025a). Someone may meet several of the others while still performing well at their job, so a strong work record alone doesn't rule out a drinking problem.</p>
+
+<h2>Why Does "Functional Alcoholism" Often Go Unnoticed?</h2>
+<p>Drinking is socially accepted at many work and family events, especially during the holidays. Over time, a person may also develop alcohol tolerance, meaning their usual number of drinks has less effect than it once did (NIAAA, 2025a). As a result, someone may drink more than those around them without appearing intoxicated.</p>
+
+<h2>Signs of a "Functional Alcoholic"</h2>
+<p>Several of the 11 AUD criteria have nothing to do with work performance (NIAAA, 2025a):</p>
+<figure><img src="/images/blog/infographics/functional-alcoholic-signs-checklist.svg" width="1200" height="600" loading="lazy" alt="Seven signs that may point to alcohol use disorder: drinking more, or for longer, than intended; wanting to cut down or stop without success; strong cravings for alcohol; giving up or reducing meaningful activities; continuing despite trouble with family, mood, or memory; needing more alcohol to feel the same effect (tolerance); and withdrawal symptoms as alcohol wears off. 2 to 3 signs indicates mild AUD, 4 to 5 moderate, 6 or more severe." /></figure>
+<p>Any of these may be a reason for concern. People with severe AUD need medical help to stop drinking safely, because withdrawal after a long period of heavy drinking can be life-threatening (NIAAA, 2025a). Anyone who plans to stop should talk with a doctor first.</p>
+
+<h2>How Much Drinking Is Considered Heavy?</h2>
+<p>NIAAA defines heavy drinking as 4 or more drinks on any day or 8 or more drinks per week for women, and 5 or more drinks on any day or 15 or more drinks per week for men (NIAAA, 2026b).</p>
+<figure><img src="/images/blog/infographics/functional-alcoholic-heavy-drinking-scale.svg" width="1200" height="560" loading="lazy" alt="Scale from 0 to 16 drinks per week. Women reach the heavy-drinking threshold at 8 drinks per week; men reach it at 15. Two standard drinks every night adds up to 14 drinks a week, shown with a reference line: above the threshold for women and just under it for men, even though no single night looks excessive." /></figure>
+<p>Drinking every night can reach these levels even when no single occasion seems excessive. Two standard drinks a night adds up to 14 drinks a week, above the heavy-drinking level for women and approaching it for men (NIAAA, 2026b).</p>
+
+<h2>What Happens When You Drink Alcohol Every Day?</h2>
+<p>Alcohol can affect nearly every part of the body (NIAAA, 2025b).</p>
+<figure><img src="/images/blog/infographics/functional-alcoholic-body-effects.svg" width="1200" height="600" loading="lazy" alt="Five effects of regular heavy drinking: brain and mood, where alcohol interferes with communication pathways and can change mood and behavior; heart, where misuse can raise blood pressure and weaken the heart muscle over time; liver, where heavy drinking can cause inflammation, scarring, and cirrhosis; immune system, where heavy drinking can weaken the body's ability to fight infections; and cancer risk, where even one daily drink can raise a woman's breast cancer risk by 5% to 15%." /></figure>
+<p>Repeated heavy alcohol use can also cause lasting changes in the brain that contribute to AUD and make relapse more likely during recovery (NIAAA, 2025a).</p>
+
+<h2>Living With a "Functional Alcoholic"</h2>
+<p>For a spouse or partner, a steady paycheck can make concerns about drinking harder to raise. Their loved one may point to their job performance as a sign that nothing is wrong.</p>
+<p>When talking with a loved one about their drinking, these approaches may help (NIAAA Alcohol Treatment Navigator, 2020):</p>
+<ul>
+  <li><strong>Plan what you will say.</strong> Preparing ahead of time can help you stay focused if the conversation becomes emotional.</li>
+  <li><strong>Choose the right time.</strong> Wait until your loved one is sober and the setting is calm. A holiday dinner is probably not the best time.</li>
+  <li><strong>Stay calm and supportive.</strong> A nonjudgmental tone may lead to a more productive conversation.</li>
+  <li><strong>Talk one-on-one.</strong> Your loved one is more likely to listen when they feel supported; a group confrontation can make them feel cornered.</li>
+  <li><strong>Stick to the facts.</strong> AUD is a medical condition, not a lack of willpower, and there are treatments that work.</li>
+</ul>
+<p>If your loved one turns down every option at first, giving them time may help. If your loved one is in crisis, call 911 (NIAAA Alcohol Treatment Navigator, 2020). Take care of yourself too — a <a href="/admissions/for-families/">family support program</a> can help you navigate the impact of a loved one's drinking.</p>
+
+<h2>Treatment for "Functional Alcoholism" While You Keep Working</h2>
+<p>Care for AUD is offered at different levels of intensity, including outpatient care, intensive outpatient or partial hospitalization, and more intensive settings for severe cases (NIAAA Alcohol Treatment Navigator, 2023). A full assessment helps determine which level fits a person's needs, and many outpatient options allow people to keep their regular routines and their privacy (NIAAA Alcohol Treatment Navigator, 2023).</p>
+<p>Treatment often includes talk therapy in one-on-one, group, or family sessions (NIAAA Alcohol Treatment Navigator, 2023). The FDA has also approved three nonaddictive medications to help people stop or reduce drinking (NIAAA, 2025a). A doctor can help decide whether <a href="/programs/psychiatry-medication-management/">medication-assisted treatment</a>, coordinated with an outside prescriber, is a good fit.</p>
+
+<h2>How Sunview Wellness Treats Functional Alcoholism</h2>
+<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens inside a real life. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder program</a> lets people keep working and living at home during care, with no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so attending treatment stays realistic.</p>
+<p>Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>. Our <a href="/programs/evening-iop/">evening IOP</a> meets 3 evenings a week after work, and our outpatient program meets 1 morning a week when a less intensive level of care is the right fit. Spouses and family members can take part in treatment, too.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>"Functional alcoholic" is not a diagnosis. The clinical term is alcohol use disorder, which can be mild, moderate, or severe.</li>
+  <li>Holding down a job does not rule out AUD. Work problems are only 1 of 11 criteria, and a person can meet several others without experiencing trouble at work.</li>
+  <li>Heavy drinking means 8 or more drinks a week for women and 15 or more for men. Two drinks every night adds up to 14 drinks a week.</li>
+  <li>Fewer than 1 in 10 people with AUD received treatment in 2024. Outpatient care can let a person keep working while in treatment.</li>
+</ul>
+
+<h2>Evening and Outpatient Alcohol Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient program in West Palm Beach, serving adults 18 and older. Treatment can be scheduled around the workday, and our programs treat alcohol use disorder alongside the depression, anxiety, and trauma that so often sit underneath the drinking.</p>
+<p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> to address the shame, inadequacy, and fear underneath the drinking.</p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2026a). Alcohol Treatment in the United States. Alcohol Facts and Statistics. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/alcohols-effects-health/alcohol-topics-z/alcohol-facts-and-statistics/alcohol-treatment-united-states' },
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2025a). Understanding Alcohol Use Disorder. Brochures and Fact Sheets. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/publications/brochures-and-fact-sheets/understanding-alcohol-use-disorder' },
+      { label: "National Institute on Alcohol Abuse and Alcoholism. (2026b). Understanding Alcohol Drinking Patterns. Alcohol's Effects on Health. National Institute on Alcohol Abuse and Alcoholism.", url: 'https://www.niaaa.nih.gov/alcohol-health/overview-alcohol-consumption/moderate-binge-drinking' },
+      { label: "National Institute on Alcohol Abuse and Alcoholism. (2025b). Alcohol's Effects on the Body. Alcohol's Effects on Health. National Institute on Alcohol Abuse and Alcoholism.", url: 'https://www.niaaa.nih.gov/alcohols-effects-health/alcohols-effects-body' },
+      { label: 'NIAAA Alcohol Treatment Navigator. (2020). Starting the Conversation. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://alcoholtreatment.niaaa.nih.gov/support-through-the-process/starting-the-conversation' },
+      { label: 'NIAAA Alcohol Treatment Navigator. (2023). What Types of Alcohol Treatment Are Available? National Institute on Alcohol Abuse and Alcoholism.', url: 'https://alcoholtreatment.niaaa.nih.gov/what-to-know/types-of-alcohol-treatment' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));

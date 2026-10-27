@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" role="img" aria-labelledby="htitle hdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="htitle">How much drinking is considered heavy</title>
+  <desc id="hdesc">NIAAA defines heavy drinking as 8 or more drinks per week for women and 15 or more drinks per week for men. Two standard drinks every night adds up to 14 drinks a week, shown on the same 0 to 16 drinks per week scale: 14 drinks a week is above the heavy-drinking line for women and just under it for men, even though no single night looks excessive.</desc>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">How much drinking is "heavy"?</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">NIAAA's weekly thresholds, and where "just two a night" lands</text>
+
+  <!-- scale: x=340 (0 drinks/week) to x=1140 (16 drinks/week), 50px per drink -->
+  <g font-size="13" fill="#6B6C6C">
+    <line x1="340" y1="480" x2="1140" y2="480" stroke="#D9E6E6" stroke-width="2"/>
+    <text x="340" y="504" text-anchor="middle">0</text>
+    <text x="540" y="504" text-anchor="middle">4</text>
+    <text x="740" y="504" text-anchor="middle">8</text>
+    <text x="840" y="504" text-anchor="middle">10</text>
+    <text x="940" y="504" text-anchor="middle">12</text>
+    <text x="1040" y="504" text-anchor="middle">14</text>
+    <text x="1140" y="504" text-anchor="middle">16</text>
+    <text x="740" y="528" text-anchor="middle" font-weight="700" fill="#545555">Drinks per week</text>
+  </g>
+
+  <!-- Women bar: heavy at 8/week -->
+  <g>
+    <text x="340" y="140" font-weight="800" fill="#545555" font-size="16">Women — heavy at 8/week</text>
+    <rect x="340" y="156" width="400" height="34" rx="8" fill="#1F9E9E"/>
+    <text x="752" y="179" font-weight="800" fill="#1F9E9E" font-size="15">8 drinks</text>
+  </g>
+
+  <!-- Men bar: heavy at 15/week -->
+  <g>
+    <text x="340" y="252" font-weight="800" fill="#545555" font-size="16">Men — heavy at 15/week</text>
+    <rect x="340" y="268" width="750" height="34" rx="8" fill="#CF9034"/>
+    <text x="1102" y="291" font-weight="800" fill="#CF9034" font-size="15">15</text>
+  </g>
+
+  <!-- Reference line: 2 drinks every night = 14 drinks/week -->
+  <line x1="1040" y1="112" x2="1040" y2="480" stroke="#B3261E" stroke-width="2.5" stroke-dasharray="7 6"/>
+  <g transform="translate(905,58)">
+    <rect x="0" y="0" width="280" height="48" rx="10" fill="#FDEDEC" stroke="#B3261E"/>
+    <text x="140" y="20" text-anchor="middle" font-weight="800" fill="#B3261E" font-size="14">2 drinks every night</text>
+    <text x="140" y="39" text-anchor="middle" font-weight="800" fill="#B3261E" font-size="14">= 14 drinks a week</text>
+  </g>
+
+  <text x="56" y="536" font-size="13" fill="#6B6C6C" font-style="italic">Source: NIAAA, Understanding Alcohol Drinking Patterns, 2026</text>
+</svg>
