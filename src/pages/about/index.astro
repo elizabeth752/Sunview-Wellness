@@ -71,8 +71,9 @@ const measures = [
   { abbr: 'RSA-R', name: 'Satisfaction survey', text: 'Your feedback on the program, which we review and use to make changes.' },
 ];
 
-// Decorative initials for the published team roster (team.js; people with publish: false stay out).
-const roster = PUBLISHED_PEOPLE.map((p) => initials(p.name));
+// Decorative avatar stack for the published team roster (team.js; people with publish: false stay out):
+// the 200px headshot when there is one, otherwise initials.
+const roster = PUBLISHED_PEOPLE.map((p) => ({ initials: initials(p.name), photo: p.photoSm || p.photo || null }));
 
 const addr = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postal}`;
 const seal = ACCREDITATIONS[0];
@@ -206,7 +207,9 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           <p class="mt-2 font-sans text-lg font-extrabold text-charcoal">years of combined clinical experience</p>
           <ul class="mt-8 flex" aria-hidden="true">
             {roster.map((r, i) => (
-              <li class:list={['-ml-1.5 first:ml-0 h-11 w-11 items-center justify-center rounded-full font-sans text-sm font-extrabold ring-4 ring-white sm:-ml-2 sm:h-14 sm:w-14 sm:text-base', i >= 6 ? 'hidden sm:inline-flex' : 'inline-flex', i % 3 === 0 ? 'bg-teal text-white' : i % 3 === 1 ? 'bg-mist text-teal' : 'bg-cream text-charcoal']}>{r}</li>
+              <li class:list={['-ml-1.5 first:ml-0 h-11 w-11 items-center justify-center overflow-hidden rounded-full font-sans text-sm font-extrabold ring-4 ring-white sm:-ml-2 sm:h-14 sm:w-14 sm:text-base', i >= 6 ? 'hidden sm:inline-flex' : 'inline-flex', i % 3 === 0 ? 'bg-teal text-white' : i % 3 === 1 ? 'bg-mist text-teal' : 'bg-cream text-charcoal']}>
+                {r.photo ? <img src={r.photo} alt="" width="56" height="56" loading="lazy" class="h-full w-full object-cover" /> : r.initials}
+              </li>
             ))}
             <li class="-ml-1.5 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white font-sans text-sm font-extrabold text-teal ring-4 ring-white outline outline-1 outline-line sm:hidden">+{roster.length - 6}</li>
           </ul>

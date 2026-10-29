@@ -4,10 +4,12 @@
 // Bio prose: the Wiki bios plus the live About page (docs/content/live-about-us-2026-09-23.txt), lightly
 // rewritten (third person, no em dashes, no "client"). Program facts in `role`: the Clinical Director
 // questionnaire (Q#). Sentence-by-sentence sources: docs/content/about-team-sources-team.md.
-// LinkedIn: Jhonatan supplied the URLs on 2026-09-25 and authorized LinkedIn photos (Walter, Frank, Dana).
+// LinkedIn: Jhonatan supplied the URLs on 2026-09-25 and authorized LinkedIn photos (Walter). Studio headshots
+// (2026-10-29) for Frank, Dana, Gabriel, Tyler, Maria and Mia.
 //
 // photo: null → branded initials placeholder on mist ({{PHOTO}}). Set a path when headshots arrive.
-// photo / photoSm: 600px and 200px WebP in public/images/team/; originals + sources in assets/team/.
+// photo / photoSm: 600×750 (4:5, or 600×600 for LinkedIn photos) and 200×200 face-crop WebP in public/images/team/;
+// originals + sources in assets/team/.
 // linkedin: null → no LinkedIn link and no schema sameAs ({{LINKEDIN_URL}}). Set the URL to show it.
 // publish: false → no real bio yet (Decisions 2026-09-24, placeholder policy). The person page is NOT built
 // (QA batch 12, item 17) and the person is left out of the /our-team/ grid,
@@ -136,7 +138,8 @@ export const PEOPLE = [
       'As Lead Therapist, Gabriel brings his integrative, trauma-informed approach to Sunview’s outpatient programs. He works within the shared clinical foundation that runs across the program, including <a href="/therapies/internal-family-systems/">Internal Family Systems (IFS)</a>, <a href="/therapies/cbt/">CBT</a> and <a href="/therapies/dbt/">DBT</a>, while drawing on his own areas of expertise.',
       'His experience with co-occurring conditions fits the way Sunview treats <a href="/what-we-treat/dual-diagnosis/">dual diagnosis</a>: looking at how substance use and mental health influence each other rather than treating each on its own.',
     ],
-    photo: null,
+    photo: '/images/team/gabriel-pena.webp',
+    photoSm: '/images/team/gabriel-pena-200.webp',
     linkedin: 'https://www.linkedin.com/in/gabriel-pe%C3%B1a-ed-s-lmhc-qs-04b737103/',
   },
   {
@@ -165,7 +168,8 @@ export const PEOPLE = [
       'He is especially passionate about helping people rebuild their identity in recovery, so they discover they are more than their diagnosis, their past or the version of themselves they had to become to survive. As he often reminds the people he works with, treatment is a bridge, not a destination.',
     ],
     role: PRIMARY_THERAPIST_ROLE,
-    photo: null,
+    photo: '/images/team/tyler-shoens.webp',
+    photoSm: '/images/team/tyler-shoens-200.webp',
     linkedin: null,
   },
   {
@@ -186,7 +190,8 @@ export const PEOPLE = [
       'Maria approaches counseling with empathy, cultural sensitivity and deep respect for each person’s unique experiences, values and goals. She is committed to helping people feel understood, supported and empowered to make lasting change.',
     ],
     role: PRIMARY_THERAPIST_ROLE,
-    photo: null,
+    photo: '/images/team/maria-nowak.webp',
+    photoSm: '/images/team/maria-nowak-200.webp',
     linkedin: 'https://www.linkedin.com/in/maria-c-nowak/',
   },
   {
@@ -274,7 +279,8 @@ export const PEOPLE = [
       'She earned her Bachelor of Science in Psychology from Florida Atlantic University and is pursuing a Master of Science in Forensic Psychology at Nova Southeastern University, with plans to continue on to a doctorate in clinical psychology specializing in forensic psychology. Mia values a safe and supportive space for the people in her groups, along with teamwork, collaboration, leadership, empathy and connection.',
     ],
     role: GROUP_LEADER_ROLE,
-    photo: null,
+    photo: '/images/team/mia-grazel.webp',
+    photoSm: '/images/team/mia-grazel-200.webp',
     linkedin: null,
   },
   {
