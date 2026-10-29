@@ -15,6 +15,7 @@ import FaqList from '../components/FaqList.astro';
 import SunMark from '../components/SunMark.astro';
 import Icon from '../components/Icon.astro';
 import { SITE, initials } from '../data/site.js';
+import { personBySlug } from '../data/team.js';
 import { pageSchema } from '../lib/programSchema.js';
 
 const path = '/for-professionals/';
@@ -67,8 +68,10 @@ const modalities = [
 ];
 
 // 7. Leadership: titles per the brief; one line each from the live About page (docs/content/live-about-us-2026-09-23.txt).
+// Headshot: the person's 200px `photoSm` from team.js (initials while it's null).
 const leaders = [
   {
+    slug: 'scott-belovicz',
     name: 'Scott Belovicz',
     title: 'Director of Business Development',
     creds: '',
@@ -76,13 +79,14 @@ const leaders = [
     bio: 'Scott brings more than 14 years of experience across the private and nonprofit sectors in substance use and mental health treatment.',
   },
   {
+    slug: 'dana-martin',
     name: 'Dana Martin',
     title: 'Clinical Director',
     creds: 'Ph.D., LMFT, MCAP, QS',
     href: '/our-team/dana-martin/',
     bio: 'Dana holds a Ph.D. in Couple and Family Therapy and an MS in Marriage and Family Therapy from Nova Southeastern University, and reviews every pre-screening to recommend the level of care.',
   },
-];
+].map((p) => ({ ...p, photo: personBySlug(p.slug)?.photoSm ?? null }));
 
 // FAQ (brief: 5 questions).
 const faqs = [
@@ -284,7 +288,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   {/* 6. Insurance (shared marquee: commercial logos first, then Medicaid plans) */}
   <InsuranceSection title="Insurance We Work With" subtitle="Commercial and Florida Medicaid plans, with a free benefits check" />
 
-  {/* 7. Leadership: initials placeholders until headshots arrive */}
+  {/* 7. Leadership: headshot, or initials until one arrives */}
   <section class="section bg-cream">
     <div class="container-x">
       <div class="max-w-4xl">
@@ -294,7 +298,9 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
       <div class="mt-10 grid gap-6 md:grid-cols-2">
         {leaders.map((p) => (
           <article class="flex flex-col gap-5 rounded-[var(--radius-card)] border border-line bg-white p-6 sm:flex-row sm:p-7">
-            <span class="inline-flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-mist font-display text-2xl font-extrabold text-teal ring-2 ring-gold/60" aria-hidden="true">{initials(p.name)}</span>
+            {p.photo
+              ? <img src={p.photo} alt="" width="80" height="80" loading="lazy" class="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-gold/60" />
+              : <span class="inline-flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-mist font-display text-2xl font-extrabold text-teal ring-2 ring-gold/60" aria-hidden="true">{initials(p.name)}</span>}
             <div>
               <h3 class="text-xl">{p.name}</h3>
               <p class="mt-0.5 font-bold text-teal">{p.title}</p>

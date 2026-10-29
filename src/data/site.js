@@ -264,15 +264,15 @@ export const initials = (name) =>
     .toUpperCase();
 
 // Reviewed-by byline (ReviewedBy.astro) in the hero of Programs, Therapies and What We Treat pages. Visible
-// only: it is not in the page schema (no `reviewedBy`). With `photo: null` the byline shows initials: set
-// `photo` to show a headshot.
+// only: it is not in the page schema (no `reviewedBy`). With `photo: null` the byline shows initials. `photo` is
+// the 200px face crop from public/images/team/ (the same file as `photoSm` in team.js).
 export const REVIEWERS = {
   frank: {
     name: 'Frank Galimidi',
     creds: 'CASAC, CAP, CRADC, ICADC, NCAC II, SAP',
     role: 'Chief Executive Officer',
     href: '/our-team/frank-galimidi/',
-    photo: null,
+    photo: '/images/team/frank-galimidi-200.webp',
   },
   // Clinical pages (mental health, trauma, dual diagnosis) per What-We-Treat-Content-Briefs.md
   dana: {
@@ -280,7 +280,7 @@ export const REVIEWERS = {
     creds: 'Ph.D., LMFT, MCAP, QS',
     role: 'Clinical Director',
     href: '/our-team/dana-martin/',
-    photo: null,
+    photo: '/images/team/dana-martin-200.webp',
   },
 };
 export const REVIEWER = REVIEWERS.frank;

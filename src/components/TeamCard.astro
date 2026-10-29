@@ -15,7 +15,7 @@ const { person: p, variant = 'tile', tone = 'white' } = Astro.props;
 const v = {
   feature: {
     li: 'grid overflow-hidden rounded-[var(--radius-lg)] border border-line sm:grid-cols-[0.8fr_1.2fr]',
-    media: 'relative grid aspect-[4/3] place-items-center bg-mist sm:aspect-auto sm:min-h-[300px]',
+    media: 'relative grid aspect-square place-items-center bg-mist sm:aspect-auto sm:min-h-[300px]',
     initials: 'grid h-32 w-32 place-items-center rounded-full border-2 border-gold font-display text-5xl font-bold text-teal',
     body: 'flex flex-col p-7 sm:p-8',
     name: 'text-2xl',
@@ -39,7 +39,7 @@ const v = {
 <li class={v.li} data-team-card>
   <div class={v.media} aria-hidden="true">
     {p.photo
-      ? <img src={p.photo} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+      ? <img src={p.photo} alt="" class="absolute inset-0 h-full w-full object-cover object-[50%_25%]" loading="lazy" />
       : <span class={v.initials}>{initials(p.name)}</span>}
     {variant === 'tile' && <span class="absolute inset-x-0 bottom-0 h-1 bg-gold"></span>}
   </div>
