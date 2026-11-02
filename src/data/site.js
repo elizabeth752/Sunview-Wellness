@@ -9,6 +9,9 @@ export const SITE = {
   // the tracking number for each visitor's source, so it's the only number that appears in the code.
   phone: '(561) 786-1913',
   phoneHref: 'tel:5617861913',
+  // Schema `telephone` only (ClickUp 1dfm34xy66e, 2026-10-30): the Google Business Profile static number, so
+  // structured data matches the GBP listing. Never shown on the page; CTM's swap script doesn't touch JSON-LD.
+  schemaPhone: '(561) 710-2000',
   email: 'info@sunviewwellness.com',
   address: {
     street: '4802 East Ave',
