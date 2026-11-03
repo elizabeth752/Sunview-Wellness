@@ -27,7 +27,7 @@ const { linkCards = true } = Astro.props;
         <p class="mt-5 text-charcoal"><strong class="text-charcoal">Best for:</strong> {p.bestFor}</p>
         {linkCards && (
           <a href={p.href} class="mt-auto inline-flex items-center gap-2 pt-6 font-extrabold text-teal hover:text-teal-light">
-            {p.name} <Icon name="arrow" class="h-4 w-4" />
+            {p.anchor ?? p.name} <Icon name="arrow" class="h-4 w-4" />
           </a>
         )}
       </div>

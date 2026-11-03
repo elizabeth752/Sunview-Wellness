@@ -149,6 +149,7 @@ export const PROGRAMS = [
   {
     code: 'PHP',
     name: 'Partial Hospitalization Program',
+    anchor: 'PHP in West Palm Beach', // link text: points local searches at the program page
     schedule: 'Mon–Fri · 9 AM – 1 PM',
     hours: '20 hours / week',
     bestFor:
@@ -158,6 +159,7 @@ export const PROGRAMS = [
   {
     code: 'IOP',
     name: 'Intensive Outpatient Program',
+    anchor: 'IOP in West Palm Beach', // link text: points local searches at the program page
     schedule: 'Day: 3 days/week · 9 AM – 1 PM\nEvening: Mon, Wed, Thu · 6 – 9 PM',
     // The evening line links to the Evening IOP section (QA batch 1, item 27)
     scheduleLinks: { Evening: '/programs/iop/#evening-iop' },
