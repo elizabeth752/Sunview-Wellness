@@ -613,6 +613,7 @@ export const posts = [
 
 <h2>Outpatient Drug and Alcohol Treatment in West Palm Beach</h2>
 <p>Sunview Wellness is a Joint Commission accredited outpatient drug rehab in West Palm Beach serving adults 18 and older. Our programs treat substance use disorders involving MDMA, stimulants, alcohol, opioids, and polysubstance patterns, alongside the depression, anxiety, and trauma that so often sit underneath them.</p>
+<p>If you need to keep working or studying, our <a href="/programs/iop/">IOP in West Palm Beach</a> meets three days a week, and <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM.</p>
 <p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> as an integrative modality to address the shame, inadequacy, and fear underneath substance use.</p>
 <p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
 `,
@@ -741,6 +742,7 @@ export const posts = [
 
 <h2>Outpatient Drug and Alcohol Treatment in West Palm Beach</h2>
 <p>Sunview Wellness is a Joint Commission accredited outpatient drug rehab in West Palm Beach serving adults 18 and older. Our programs treat substance use disorders involving benzodiazepines, alcohol, opioids, stimulants, and polysubstance patterns, alongside the anxiety, depression, and trauma that so often exist underneath the substance use.</p>
+<p>Once you’re medically stable, our <a href="/programs/iop/">IOP in West Palm Beach</a> meets three days a week, and <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM, so you can keep working during treatment.</p>
 <p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> as an integrative modality to address the shame, inadequacy, and fear underneath substance use.</p>
 <p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
 `,
@@ -1045,6 +1047,7 @@ export const posts = [
 
 <h2>Outpatient Drug and Alcohol Treatment in West Palm Beach</h2>
 <p>Sunview Wellness is a Joint Commission accredited outpatient drug rehab in West Palm Beach serving adults 18 and older. Our programs treat substance use disorders involving cannabis, alcohol, opioids, stimulants, and polysubstance patterns, alongside the anxiety, depression, and trauma that so often exist underneath the substance use.</p>
+<p>If you need to keep working or studying, our <a href="/programs/iop/">IOP in West Palm Beach</a> meets three days a week, and <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM.</p>
 <p>Our PhD-led clinical team brings more than 50 years of combined experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> as an integrative modality to address the shame, inadequacy, and fear underneath substance use.</p>
 <p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
 `,
