@@ -1,13 +1,13 @@
 ---
 // "Other levels of care" block for the program pages: links to the sibling programs and the hub
-// (Programs briefs, interlinks). Anchors are the destination's name.
+// (Programs briefs, interlinks). PHP and IOP use their local keyword as the anchor; the rest use the destination's name.
 import Icon from './Icon.astro';
 interface Props { current: string; class?: string }
 const { current, class: cls = '' } = Astro.props;
 
 const programs = [
-  { href: '/programs/php/', name: 'Partial Hospitalization Program', note: 'Mon–Fri, 9am–1pm · 20 hours a week' },
-  { href: '/programs/iop/', name: 'Intensive Outpatient Program', note: 'Day or evening · 3 days a week' },
+  { href: '/programs/php/', name: 'PHP in West Palm Beach', note: 'Mon–Fri, 9am–1pm · 20 hours a week' },
+  { href: '/programs/iop/', name: 'IOP in West Palm Beach', note: 'Day or evening · 3 days a week' },
   { href: '/programs/outpatient/', name: 'Outpatient Program', note: 'One weekday morning · 4 hours a week' },
   { href: '/programs/psychiatry-medication-management/', name: 'Psychiatric Care and Medication Management', note: 'Part of every level of care' },
 ].filter((p) => p.href !== current);
