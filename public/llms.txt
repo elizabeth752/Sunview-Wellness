@@ -13,9 +13,9 @@ Key facts:
 ## Programs
 
 - [Outpatient Treatment Programs in West Palm Beach](https://sunviewwellness.com/programs/): Compare PHP, IOP and OP at Sunview Wellness in West Palm Beach. Hours, who each level is for, and how the Clinical Director recommends the right one.
-- [Intensive Outpatient Program in West Palm Beach](https://sunviewwellness.com/programs/iop/): Day or evening intensive outpatient program in West Palm Beach for substance use and co-occurring conditions, 3 days a week, so you can keep your job.
+- [Intensive Outpatient Program (IOP) in West Palm Beach](https://sunviewwellness.com/programs/iop/): IOP in West Palm Beach: day or evening intensive outpatient care for substance use and co-occurring conditions, 3 days a week, so you can keep your job.
 - [Outpatient Program in West Palm Beach](https://sunviewwellness.com/programs/outpatient/): Outpatient program in West Palm Beach: one day a week, 9 AM to 1 PM, any weekday. Ongoing support after PHP or IOP while life gets back to normal.
-- [Partial Hospitalization Program in West Palm Beach](https://sunviewwellness.com/programs/php/): PHP in West Palm Beach: outpatient care Monday to Friday, 9 AM to 1 PM. Sleep at home, free door-to-door transportation. Joint Commission accredited.
+- [Partial Hospitalization Program (PHP) in West Palm Beach](https://sunviewwellness.com/programs/php/): PHP in West Palm Beach: outpatient care Monday to Friday, 9 AM to 1 PM. Sleep at home, free door-to-door transportation. Joint Commission accredited.
 - [Psychiatric Care and Medication Management in West Palm Beach](https://sunviewwellness.com/programs/psychiatry-medication-management/): Psychiatric evaluation and medication management, integrated into PHP, IOP and OP through our Telemed Clinix partnership. Continuity after discharge.
 
 ## What We Treat
@@ -82,5 +82,5 @@ Key facts:
 
 ## Optional
 
-- [Drug and Alcohol Rehab in West Palm Beach](https://sunviewwellness.com/): Outpatient drug, alcohol and mental health treatment in West Palm Beach. PHP, IOP and OP for adults. Joint Commission accredited. Free insurance check.
+- [Drug and Alcohol Rehab in West Palm Beach](https://sunviewwellness.com/): Outpatient drug and alcohol rehab in West Palm Beach for adults, with care for co-occurring mental health. Joint Commission accredited. Free insurance check.
 - [Sitemap](https://sunviewwellness.com/sitemap-index.xml): Full list of indexable pages
