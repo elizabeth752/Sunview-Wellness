@@ -29,6 +29,12 @@ const phases = [
   { title: 'Integration', text: 'You practice new responses at home and at work, then step down to IOP and OP with the same team as your life takes more of the week back.' },
 ];
 
+const local = [
+  { title: 'Free rides across the county', text: 'If you can’t drive yourself, free door-to-door transportation applies wherever you live in Palm Beach County.' },
+  { title: 'Insurance, including Medicaid plans', text: 'Most plans cover PHP, and we check your benefits for free before you start.' },
+  { title: 'English and Spanish', text: 'Individual sessions in English or Spanish with one of our two bilingual therapists. Groups are in English.' },
+];
+
 const faqs = [
   { q: 'Is PHP an inpatient program?', a: 'PHP is our most structured outpatient level. You attend treatment in the morning and sleep at home every night. If you need housing or overnight care first, we’ll help you find it.' },
   { q: 'What are the PHP hours?', a: 'Monday to Friday, 9 AM to 1 PM, about 20 hours of treatment a week. Your individual session and any psychiatric appointments are scheduled around that block.' },
@@ -39,10 +45,10 @@ const faqs = [
 ---
 <ProgramPage
   path="/programs/php/"
-  metaTitle="Partial Hospitalization (PHP) in West Palm Beach | Sunview"
+  metaTitle="PHP in West Palm Beach | Partial Hospitalization | Sunview"
   description="PHP in West Palm Beach: outpatient care Monday to Friday, 9 AM to 1 PM. Sleep at home, free door-to-door transportation. Joint Commission accredited."
   crumb="Partial Hospitalization Program"
-  h1="Partial Hospitalization Program in West Palm Beach"
+  h1="Partial Hospitalization Program (PHP) in West Palm Beach"
   subheading="Full mornings of treatment, five days a week, and your own bed every night."
   lead="Our Partial Hospitalization Program (PHP) is the most structured level of outpatient care at Sunview, for adults with substance use and co-occurring mental health conditions who need daily support while living at home."
   therapy={{
@@ -125,7 +131,7 @@ const faqs = [
         <h2 class="mt-3 text-3xl sm:text-[2.1875rem]">Stabilization, Insight, Integration: How PHP Fits the Continuum</h2>
         <p class="subheading mt-3">PHP → IOP → OP, with the same team</p>
         <p class="mt-5 text-lg">In higher levels of care, you’re protected from everyday stressors. In PHP, you’re back in them: home, family, work.</p>
-        <p class="mt-4 text-lg">As you progress, you step down to our <a href="/programs/iop/" class="font-bold text-teal underline decoration-2 underline-offset-4">Intensive Outpatient Program</a> and then the <a href="/programs/outpatient/" class="font-bold text-teal underline decoration-2 underline-offset-4">Outpatient Program</a>, without changing therapists.</p>
+        <p class="mt-4 text-lg">As you progress, you step down to our <a href="/programs/iop/" class="font-bold text-teal underline decoration-2 underline-offset-4">IOP in West Palm Beach</a> and then the <a href="/programs/outpatient/" class="font-bold text-teal underline decoration-2 underline-offset-4">Outpatient Program</a>, without changing therapists.</p>
       </div>
       <ol class="grid gap-4">
         {phases.map((p, i) => (
@@ -167,7 +173,28 @@ const faqs = [
     </div>
   </section>
 
-  {/* 6. Weekly schedule */}
+  {/* 6. Local section: keeps the page relevant for PHP searches in West Palm Beach. Facts match
+       /locations/west-palm-beach/ and the FAQ below. */}
+  <section class="section bg-teal-deep text-white">
+    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">PHP in West Palm Beach, Close to Home</h2>
+        <p class="mt-5 text-lg text-white/85">Sunview is a Joint Commission accredited outpatient center at 4802 East Ave in West Palm Beach. Our PHP is for adults across Palm Beach County who need daily treatment and want to stay close to home, family and work.</p>
+        <p class="mt-4 text-lg text-white/85">Getting treatment in your own community means the home, the job and the relationships you’re working on are right here. What happens in them comes back to group the next morning.</p>
+        <a href="/locations/west-palm-beach/" class="mt-6 inline-flex items-center gap-2 font-bold text-sun hover:text-white">See our West Palm Beach location <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+      <dl class="grid gap-4">
+        {local.map((l) => (
+          <div class="rounded-[var(--radius-card)] bg-white/10 p-6">
+            <dt class="font-sans text-lg font-extrabold text-white">{l.title}</dt>
+            <dd class="mt-1 text-white/85">{l.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  {/* 7. Weekly schedule */}
   <ProgramSchedule
     highlight={['PHP']}
     title="PHP Schedule in West Palm Beach"
