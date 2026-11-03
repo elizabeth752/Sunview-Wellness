@@ -12,6 +12,7 @@ const levels = [
   {
     code: 'PHP',
     name: 'Partial Hospitalization Program',
+    anchor: 'PHP in West Palm Beach',
     href: '/programs/php/',
     head: 'bg-teal text-white',
     cells: [
@@ -26,6 +27,7 @@ const levels = [
   {
     code: 'IOP',
     name: 'Intensive Outpatient Program',
+    anchor: 'IOP in West Palm Beach',
     href: '/programs/iop/',
     head: 'bg-teal-light text-white',
     cells: [
@@ -77,7 +79,7 @@ const faqs = [
 ---
 <ProgramPage
   path="/programs/"
-  metaTitle="Outpatient Rehab Programs in West Palm Beach: PHP, IOP, OP"
+  metaTitle="Outpatient Rehab Programs in West Palm Beach | Sunview"
   description="Compare PHP, IOP and OP at Sunview Wellness in West Palm Beach. Hours, who each level is for, and how the Clinical Director recommends the right one."
   crumb="Programs"
   h1="Outpatient Treatment Programs in West Palm Beach"
@@ -115,7 +117,7 @@ const faqs = [
               </div>
             ))}
             <div class="border-t border-line px-6 pb-6 pt-4">
-              <a href={l.href} class="inline-flex items-center gap-2 font-extrabold text-teal hover:text-teal-light">{l.name} <Icon name="arrow" class="h-4 w-4" /></a>
+              <a href={l.href} class="inline-flex items-center gap-2 font-extrabold text-teal hover:text-teal-light">{l.anchor ?? l.name} <Icon name="arrow" class="h-4 w-4" /></a>
             </div>
           </article>
         ))}
