@@ -1267,6 +1267,129 @@ export const posts = [
       { label: 'NIAAA Alcohol Treatment Navigator. (2023). What Types of Alcohol Treatment Are Available? National Institute on Alcohol Abuse and Alcoholism.', url: 'https://alcoholtreatment.niaaa.nih.gov/what-to-know/types-of-alcohol-treatment' },
     ],
   },
+  {
+    slug: 'cptsd-symptoms-in-adults',
+    type: 'article',
+    title: 'CPTSD Symptoms: What Complex Trauma Looks Like in Adults',
+    dek: 'CPTSD, or complex post-traumatic stress disorder, includes the symptoms of PTSD plus difficulty managing emotions, persistent feelings of worthlessness, and challenges trusting others. Here is how it differs from PTSD, which symptoms get missed, and how Sunview Wellness can help.',
+    metaDescription: 'CPTSD includes PTSD symptoms plus difficulty managing emotions and trusting others. Learn how it differs from PTSD and how Sunview Wellness can help.', // 151 chars
+    date: '2026-11-02',
+    author: 'dana-martin', // slug in src/data/team.js — prescribed as the article's clinical author, matching precedent
+    category: 'Mental Health',
+    // Docx citation markers [1]-[5] converted to the site's (Author, Year) in-text style. Fetch-verified all 5
+    // sources against the specific claim each supports:
+    // [1] National Center for PTSD's "Complex PTSD" page (ptsd.va.gov/understand/what/complex_ptsd.asp, last
+    //   updated October 2026) confirms the ICD-11 (2022) vs. DSM-5-TR diagnostic split, the four added symptom
+    //   domains (emotion regulation, self-perception, relationships, dissociation), and that any trauma type —
+    //   not only prolonged childhood trauma — can produce CPTSD symptoms.
+    // [2] NIMH's PTSD brochure (23-MH-8124) confirms the four symptom clusters, the one-month duration criterion,
+    //   and trouble remembering key parts of the event as a named diagnostic symptom (not just a general effect).
+    // [3] National Center for PTSD's "Common Reactions After Trauma" page confirms the physical reaction list
+    //   (pounding heart, rapid breathing, shakiness, stomach upset, appetite change, sleep trouble, fatigue,
+    //   headaches) and the relationship reactions (trust, withdrawal, wanting to control everything) verbatim.
+    // [4] Swedo et al. (2023), MMWR 72(26): exact figures confirmed at 63.9% of U.S. adults with at least one ACE
+    //   (brief's "nearly two thirds") and 17.3% with four or more (brief's "approximately 1 in 6"; true ratio is
+    //   closer to 1 in 6 than 1 in 5, so kept as the brief had it, written out as "about 17%, or roughly 1 in 6").
+    // [5] The brief's "Norman et al. 2025. Treatment of Co-Occurring PTSD and Substance Use Disorder in VA" is
+    //   ptsd.va.gov/professional/treat/cooccurring/tx_sud_va.asp (title is actually "...in Veterans Affairs"),
+    //   authored by Sonya Norman, PhD, Terrell Hicks, PhD, Alexandra Klein, PhD, and Jessica Hamblen, PhD, last
+    //   updated Oct. 15, 2025. Confirms 44.6% of people with lifetime PTSD also meet criteria for AUD/SUD (brief's
+    //   "about 45%"), the added medical/legal/financial/social burden, that trauma-focused treatment does not
+    //   require abstinence first, and that integrated treatment of both conditions shows the greatest benefit.
+    //   (A separate, veteran-specific VA patient flyer gives a different, non-matching 27% figure for Veterans in
+    //   VA care already diagnosed with PTSD who also have SUD — not used here, since the brief's claim and this
+    //   article are about the general population, not a VA treatment-seeking sample.)
+    // Compliance: the docx's closing line "we accept Medicaid" is replaced with the site's standard insurance
+    // sentence (admissions team verifies benefits; no blanket "we accept" claim). Phone pulled from SITE, never
+    // hardcoded. No standalone /therapies/psychodrama/ page exists on this site (per src/data/therapies.js,
+    // psychodrama lives inside /therapies/group-therapy/), so that mention links there instead of 404ing.
+    // Interlinks: /what-we-treat/mental-health/trauma-ptsd/ (the site's dedicated trauma/PTSD page), the PHP/IOP/
+    // outpatient program pages, /programs/psychiatry-medication-management/, /therapies/internal-family-systems/,
+    // /therapies/dbt/, /therapies/cbt/, /therapies/group-therapy/, /what-we-treat/dual-diagnosis/, and
+    // /admissions/insurance/.
+    body: `
+<p>CPTSD stands for complex post-traumatic stress disorder. The term describes the effects of prolonged trauma, often beginning in childhood, and involving harm from someone a person trusted. Complex PTSD includes the symptoms of post-traumatic stress disorder (PTSD), along with changes in how a person manages emotions, views themselves, and relates to others (National Center for PTSD, 2026a).</p>
+<p>This article explores CPTSD symptoms in adults, how CPTSD differs from PTSD, symptoms that are easy to miss, and why trauma and substance use so often occur together.</p>
+
+<h2>CPTSD Symptoms in Adults</h2>
+<p>Complex PTSD (CPTSD) includes the core symptoms of PTSD, plus several others (National Center for PTSD, 2026a). The lists below separate the two. Only a mental health professional can determine whether symptoms meet the criteria for either condition (NIMH, 2023).</p>
+
+<h3>Symptoms of Both PTSD and CPTSD</h3>
+<ul>
+  <li><strong>Reliving the event:</strong> Experiencing flashbacks, distressing memories, or nightmares, sometimes with physical reactions such as a racing heart or sweating.</li>
+  <li><strong>Avoidance:</strong> Avoiding people, places, objects, activities, or situations that serve as reminders of the trauma.</li>
+  <li><strong>Anxiety:</strong> Feeling on edge, being easily startled, trouble sleeping, difficulty concentrating, and increased irritability.</li>
+  <li><strong>Negative thoughts and feelings:</strong> Blaming yourself or others, persistent fear, feelings of guilt or shame, and withdrawal from previously enjoyed activities (NIMH, 2023).</li>
+</ul>
+
+<h3>Symptoms That Set CPTSD Apart</h3>
+<ul>
+  <li><strong>Difficulty managing emotions:</strong> Feeling overwhelmed by intense emotions or struggling to regulate emotional responses.</li>
+  <li><strong>Negative self-perception:</strong> Persistent feelings of worthlessness, shame, or failure.</li>
+  <li><strong>Relationship difficulties:</strong> Struggling to trust others, withdrawing from relationships, or feeling emotionally distant.</li>
+  <li><strong>Disconnection or dissociation:</strong> Feeling detached from yourself or your surroundings, or having difficulty staying present (National Center for PTSD, 2026a).</li>
+</ul>
+<p>PTSD is diagnosed when symptoms persist for more than a month and affect daily life, work, and relationships (NIMH, 2023). If you are having thoughts of suicide, call or text the 988 Suicide and Crisis Lifeline at 988. In a life-threatening emergency, call 911.</p>
+<figure><img src="/images/blog/infographics/cptsd-vs-ptsd-symptoms.svg" width="1200" height="480" loading="lazy" alt="Comparison of symptoms shared by PTSD and CPTSD (reliving the event, avoidance, anxiety, negative thoughts and feelings) against the four symptoms that set CPTSD apart: difficulty managing emotions, negative self-perception, relationship difficulties, and dissociation." /></figure>
+
+<h2>CPTSD vs. PTSD: What Is the Difference?</h2>
+<p>PTSD and CPTSD both develop after trauma and share the same core symptoms: reliving the trauma, avoiding reminders of it, and feeling constantly on guard.</p>
+
+<h3>What Is CPTSD?</h3>
+<p>CPTSD is an acronym for complex post-traumatic stress disorder, also sometimes called C-PTSD. "Complex" denotes the recurrent, personal nature of the trauma and the broader array of symptoms that can result from it (National Center for PTSD, 2026a).</p>
+
+<h3>Is CPTSD an Official Diagnosis?</h3>
+<p>Complex PTSD was recognized as a separate diagnosis in the World Health Organization's International Classification of Diseases in 2022 (ICD-11). The American Psychiatric Association's Diagnostic and Statistical Manual of Mental Disorders (DSM-5-TR), commonly used in the United States, does not list CPTSD as a separate diagnosis. Instead, some symptoms associated with CPTSD may be captured under a PTSD diagnosis or other diagnoses (National Center for PTSD, 2026a).</p>
+
+<h3>What Kind of Trauma Leads to CPTSD?</h3>
+<p>CPTSD is often associated with prolonged or repeated trauma, particularly experiences involving interpersonal harm, such as childhood abuse, neglect, or abuse by someone a person depended on. This is not always the case, though. People respond to trauma differently: one person may experience childhood abuse and have few lasting symptoms, while another person may have lasting effects on their well-being and relationships after a single traumatic event (National Center for PTSD, 2026a).</p>
+<p>Difficult childhood experiences are common. In an analysis of U.S. adults, nearly two thirds reported at least one adverse childhood experience, such as abuse, neglect, or exposure to violence before age 18, and about 17%, or roughly 1 in 6, reported four or more (Swedo et al., 2023). These experiences can contribute to health and mental health challenges, but they do not mean someone will develop CPTSD.</p>
+<figure><img src="/images/blog/infographics/cptsd-ace-prevalence.svg" width="1200" height="420" loading="lazy" alt="Nearly two thirds of U.S. adults, 63.9%, report at least one adverse childhood experience, and about 17%, roughly 1 in 6, report four or more, though having ACEs does not mean someone will develop CPTSD." /></figure>
+
+<h2>Trauma Symptoms That Are Easy to Miss</h2>
+<p>Some symptoms of trauma do not look like flashbacks. They may be mistaken for everyday stress, a medical problem, or a personality trait.</p>
+
+<h3>Can Trauma Cause Memory Loss?</h3>
+<p>Trauma can affect memory. Trouble remembering key parts of the traumatic event is a recognized symptom of PTSD (NIMH, 2023). Some people with complex trauma may also experience dissociation, which can make it hard to stay in the present moment because they feel disconnected from themselves and their surroundings, even after the traumatic event (National Center for PTSD, 2026a). If memory gaps or periods of feeling disconnected are affecting your daily life, bring them up with a health care provider.</p>
+
+<h3>What Is a Common Physical Reaction to Trauma?</h3>
+<p>Trauma can affect the body as well as the mind. Common physical reactions include a pounding heart, rapid breathing, and shakiness, along with stomach upset, changes in appetite, difficulty sleeping, and persistent fatigue. Some people get severe headaches when they think about the event, and existing medical problems can get worse (National Center for PTSD, 2026b).</p>
+
+<h3>Why Does Trauma Make Relationships Harder?</h3>
+<p>Because complex trauma often includes being harmed, hurt, or betrayed, it can make it difficult for a person to trust and feel safe with others and have healthy relationships. The person may pull away from relationships, avoid contact, or try to control everything themselves (National Center for PTSD, 2026a, 2026b).</p>
+
+<h2>Trauma and Substance Use: Why People Self-Medicate</h2>
+<p>People with trauma may turn to alcohol or drugs to try to numb the memories and manage the associated thoughts and feelings. Substance use may offer temporary relief from suffering, but it can also create further problems (National Center for PTSD, 2026b).</p>
+<p>PTSD and substance use disorders (SUDs), which involve ongoing problems with alcohol or drug use, often occur together. In a large national study, about 45% of people who had PTSD at some point in their lives also met the criteria for an alcohol or other substance use disorder. On average, people living with both conditions face more medical, legal, financial, and social challenges than people living with either condition alone (Norman et al., 2025).</p>
+<figure><img src="/images/blog/infographics/cptsd-ptsd-sud-cooccurrence.svg" width="1200" height="440" loading="lazy" alt="About 45% of people with lifetime PTSD also meet criteria for an alcohol or other substance use disorder, and integrated treatment that addresses both conditions together shows the greatest benefit, without requiring abstinence first." /></figure>
+
+<h2>Treating Trauma and Substance Use Together</h2>
+<p>Some treatment approaches have required people to stop using substances before beginning trauma-focused therapy. Research suggests that treatment does not always need to wait until a person achieves abstinence. With appropriate clinical support, people experiencing both PTSD and substance use disorders can benefit from trauma-focused treatment, and integrated approaches that address both conditions at the same time show the greatest benefit (Norman et al., 2025).</p>
+<p>At <a href="/what-we-treat/mental-health/trauma-ptsd/">Sunview Wellness, trauma is treated alongside substance use</a>, starting with safety and stability. Therapy may include <a href="/therapies/internal-family-systems/">Internal Family Systems (IFS)</a> to understand protective patterns, <a href="/therapies/dbt/">dialectical behavior therapy (DBT)</a> to build coping skills for managing strong emotions, <a href="/therapies/group-therapy/">psychodrama</a> to work through experiences with guided role-play, and <a href="/therapies/cbt/">cognitive behavioral therapy (CBT)</a> to identify and change unhelpful thoughts.</p>
+<p><a href="/programs/psychiatry-medication-management/">Psychiatric evaluation and medication management</a> are part of every program. If substance use brings you to treatment, mention trauma symptoms during your assessment, even if you have not connected the two. A clinician can then plan care that addresses both, which is the focus of our <a href="/what-we-treat/dual-diagnosis/">dual diagnosis treatment</a>.</p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>CPTSD includes PTSD symptoms along with difficulty managing emotions, feelings of worthlessness, and challenges in relationships.</li>
+  <li>The U.S. diagnostic manual (DSM-5-TR) does not recognize CPTSD as a separate diagnosis from PTSD, while the World Health Organization's ICD-11 does.</li>
+  <li>Trauma can affect memory and emotional well-being, and it can cause physical reactions such as a racing heart, stomach upset, and poor sleep.</li>
+  <li>About 45% of people who have had PTSD also meet the criteria for an alcohol or other substance use disorder.</li>
+  <li>Trauma and substance use can be treated at the same time, starting with safety and stability before deeper trauma work.</li>
+</ul>
+
+<h2>Trauma and Addiction Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient drug and alcohol rehab in West Palm Beach, serving adults 18 and older. We treat trauma and PTSD alongside substance use <em>in vivo</em>, which means you receive care while you continue your daily life through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care. You can keep working and living at home during treatment.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'National Center for PTSD. (2026a). Complex PTSD. PTSD: National Center for PTSD. U.S. Department of Veterans Affairs.', url: 'https://www.ptsd.va.gov/understand/what/complex_ptsd.asp' },
+      { label: 'National Institute of Mental Health. (2023). Post-Traumatic Stress Disorder. Brochures and Fact Sheets, No. 23-MH-8124. National Institute of Mental Health.', url: 'https://www.nimh.nih.gov/health/publications/post-traumatic-stress-disorder-ptsd' },
+      { label: 'National Center for PTSD. (2026b). Common Reactions After Trauma. PTSD: National Center for PTSD. U.S. Department of Veterans Affairs.', url: 'https://www.ptsd.va.gov/understand/isitptsd/common_reactions.asp' },
+      { label: 'Swedo, E. A., Aslam, M. V., Dahlberg, L. L., et al. (2023). Prevalence of Adverse Childhood Experiences Among U.S. Adults — Behavioral Risk Factor Surveillance System, 2011–2020. Morbidity and Mortality Weekly Report, 72(26), 707–715.', url: 'https://www.cdc.gov/mmwr/volumes/72/wr/mm7226a2.htm' },
+      { label: 'Norman, S. B., Hicks, T., Klein, A., & Hamblen, J. (2025). Treatment of Co-Occurring PTSD and Substance Use Disorder in Veterans Affairs. PTSD: National Center for PTSD. U.S. Department of Veterans Affairs.', url: 'https://www.ptsd.va.gov/professional/treat/cooccurring/tx_sud_va.asp' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));

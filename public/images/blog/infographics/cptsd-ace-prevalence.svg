@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="atitle adesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="atitle">How common is childhood trauma?</title>
+  <desc id="adesc">In an analysis of U.S. adults, 63.9 percent, nearly two thirds, reported at least one adverse childhood experience, such as abuse, neglect, or exposure to violence before age 18. About 17.3 percent, roughly 1 in 6, reported four or more. Having adverse childhood experiences does not mean someone will develop CPTSD.</desc>
+  <rect width="1200" height="420" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">How common is childhood trauma?</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Prevalence of adverse childhood experiences (ACEs) among U.S. adults</text>
+
+  <!-- bar 1: at least one ACE -->
+  <g transform="translate(100,130)">
+    <text x="0" y="-14" font-size="14" font-weight="800" fill="#3E4444">At least one ACE</text>
+    <rect x="0" y="0" width="900" height="56" rx="10" fill="#EAF6F6"/>
+    <rect x="0" y="0" width="575" height="56" rx="10" fill="#126E6E"/>
+    <text x="24" y="36" font-size="22" font-weight="800" fill="#FFFFFF">63.9%</text>
+    <text x="920" y="36" font-size="14" fill="#6B6C6C">nearly two thirds</text>
+  </g>
+
+  <!-- bar 2: four or more ACEs -->
+  <g transform="translate(100,230)">
+    <text x="0" y="-14" font-size="14" font-weight="800" fill="#3E4444">Four or more ACEs</text>
+    <rect x="0" y="0" width="900" height="56" rx="10" fill="#FCEEDA"/>
+    <rect x="0" y="0" width="156" height="56" rx="10" fill="#CF9034"/>
+    <text x="24" y="36" font-size="22" font-weight="800" fill="#FFFFFF">17.3%</text>
+    <text x="920" y="36" font-size="14" fill="#6B6C6C">roughly 1 in 6</text>
+  </g>
+
+  <text x="56" y="340" font-size="13" fill="#8A8B8B">Behavioral Risk Factor Surveillance System, 2011–2020 (Swedo et al., 2023)</text>
+  <text x="56" y="382" font-size="14" font-weight="700" fill="#3E4444">Difficult childhood experiences are common — they do not mean someone will develop CPTSD.</text>
+</svg>

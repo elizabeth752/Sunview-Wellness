@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" role="img" aria-labelledby="stitle sdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="stitle">PTSD and substance use often occur together</title>
+  <desc id="sdesc">About 45 percent of people who have had PTSD at some point in their lives also meet the criteria for an alcohol or other substance use disorder. Integrated treatment that addresses both conditions together, without requiring abstinence first, shows the greatest benefit compared with treatment as usual.</desc>
+  <rect width="1200" height="440" fill="#F0FAFA"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">PTSD and substance use often occur together</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">And treating both at the same time works better than treating either alone</text>
+
+  <!-- left: big stat circle -->
+  <g transform="translate(170,230)">
+    <circle r="120" fill="#126E6E"/>
+    <text x="0" y="-8" text-anchor="middle" font-size="48" font-weight="800" fill="#FFFFFF">45%</text>
+    <text x="0" y="26" text-anchor="middle" font-size="14" fill="#DCEFEF">of people with lifetime PTSD</text>
+    <text x="0" y="46" text-anchor="middle" font-size="14" fill="#DCEFEF">also meet criteria for AUD/SUD</text>
+  </g>
+
+  <!-- right: two stacked points -->
+  <g transform="translate(430,140)">
+    <rect width="690" height="100" rx="14" fill="#FFFFFF" stroke="#D9E6E6"/>
+    <circle cx="36" cy="50" r="5" fill="#CF9034"/>
+    <text x="56" y="40" font-size="15" font-weight="800" fill="#3E4444">Greater burden together</text>
+    <text x="56" y="62" font-size="13" fill="#6B6C6C">More medical, legal, financial, and social challenges</text>
+    <text x="56" y="80" font-size="13" fill="#6B6C6C">than either condition causes alone</text>
+  </g>
+  <g transform="translate(430,260)">
+    <rect width="690" height="100" rx="14" fill="#126E6E"/>
+    <circle cx="36" cy="50" r="5" fill="#F5C518"/>
+    <text x="56" y="40" font-size="15" font-weight="800" fill="#FFFFFF">Treatment doesn't require abstinence first</text>
+    <text x="56" y="62" font-size="13" fill="#DCEFEF">Integrated treatment that addresses trauma and</text>
+    <text x="56" y="80" font-size="13" fill="#DCEFEF">substance use together shows the greatest benefit</text>
+  </g>
+
+  <text x="56" y="420" font-size="13" fill="#8A8B8B">Norman, Hicks, Klein &amp; Hamblen, 2025 — PTSD: National Center for PTSD, U.S. Dept. of Veterans Affairs</text>
+</svg>
