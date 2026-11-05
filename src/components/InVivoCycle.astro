@@ -1,0 +1,99 @@
+---
+// The In Vivo Treatment loop drawn as a ring. The art is SVG; every word on it is live HTML text.
+// Teal segments happen in the program, yellow segments happen in the person's life.
+const steps = [
+  { label: 'Learn', lane: 'program' },
+  { label: 'Apply', lane: 'life' },
+  { label: 'Experience', lane: 'life' },
+  { label: 'Process', lane: 'program' },
+  { label: 'Adjust', lane: 'program' },
+  { label: 'Apply again', lane: 'life' },
+];
+
+const C = 260; // center of the 520 x 520 viewBox
+const point = (r: number, deg: number) => {
+  const t = (deg * Math.PI) / 180;
+  return `${(C + r * Math.sin(t)).toFixed(1)} ${(C - r * Math.cos(t)).toFixed(1)}`;
+};
+
+// One arrow-shaped ring segment centered on `deg`: pointed at its leading edge, notched at its trailing edge.
+const segment = (deg: number) => {
+  const outer = 254, inner = 142, mid = 198, tip = 9;
+  const from = deg - 27, to = deg + 25;
+  return `M${point(outer, from)} A${outer} ${outer} 0 0 1 ${point(outer, to)} L${point(mid, to + tip)} L${point(inner, to)} A${inner} ${inner} 0 0 0 ${point(inner, from)} L${point(mid, from + tip)} Z`;
+};
+
+const rays = Array.from({ length: 18 }, (_, i) => i * 20);
+---
+<div class="rounded-[var(--radius-card)] bg-cream p-5 text-charcoal sm:p-7">
+  <div class="iv-ring">
+    <svg viewBox="0 0 520 520" aria-hidden="true">
+      {steps.map((s, i) => (
+        <path d={segment(i * 60)} fill={s.lane === 'program' ? 'var(--color-teal)' : 'var(--color-sun)'} />
+      ))}
+      <circle cx={C} cy={C} r="102" fill="#fff" />
+      {rays.map((deg) => {
+        const [x1, y1] = point(112, deg).split(' ');
+        const [x2, y2] = point(128, deg).split(' ');
+        return <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--color-gold)" stroke-width="3" stroke-linecap="round" />;
+      })}
+    </svg>
+    <ol aria-label="The In Vivo Treatment loop">
+      {steps.map((s, i) => {
+        const t = (i * 60 * Math.PI) / 180;
+        const pos = `left:${(50 + 38.1 * Math.sin(t)).toFixed(1)}%;top:${(50 - 38.1 * Math.cos(t)).toFixed(1)}%`;
+        return <li class:list={[s.lane === 'program' ? 'text-white' : 'text-charcoal']} style={pos}>{s.label}</li>;
+      })}
+    </ol>
+    <p class="iv-mid">The Continuous Growth Cycle</p>
+  </div>
+  <p class="mt-3.5 flex flex-wrap justify-center gap-x-5 gap-y-1.5 text-[15px] font-bold">
+    <span class="inline-flex items-center gap-2"><i class="h-3.5 w-3.5 rounded-full bg-teal"></i>In the program</span>
+    <span class="inline-flex items-center gap-2"><i class="h-3.5 w-3.5 rounded-full bg-sun"></i>In your life</span>
+  </p>
+  <p class="mt-3 text-center text-base [text-wrap:pretty]">Roadblocks aren’t failures. They’re the moments where recovery finally clicks into place.</p>
+</div>
+
+<style>
+  .iv-ring {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1;
+    margin-inline: auto;
+  }
+  .iv-ring svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .iv-ring ol {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .iv-ring li {
+    position: absolute;
+    width: 26%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: clamp(12.5px, 3.4vw, 16px);
+    font-weight: 800;
+    line-height: 1.15;
+  }
+  .iv-mid {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 34%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: clamp(14px, 3.6vw, 18px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-teal);
+  }
+</style>

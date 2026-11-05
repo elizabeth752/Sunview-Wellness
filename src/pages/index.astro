@@ -11,6 +11,7 @@ import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
 import SunMark from '../components/SunMark.astro';
+import InVivoCycle from '../components/InVivoCycle.astro';
 import LeadForm from '../components/LeadForm.astro';
 import Reviews from '../components/Reviews.astro';
 import MapSection from '../components/MapSection.astro';
@@ -196,16 +197,12 @@ const schema = pageSchema({
     <SunMark variant="rays" class="pointer-events-none absolute -left-24 -top-24 h-[480px] w-[480px] -scale-x-100 text-gold/40" />
     <div class="container-x relative grid items-center gap-12 lg:grid-cols-2">
       <div>
-        <span class="eyebrow eyebrow-light">In Vivo Treatment™</span>
-        <h2 class="mt-3 text-3xl text-white sm:text-[2.1875rem]">In Vivo Treatment™: Recovery Practiced in Real Life</h2>
+        <h2 class="text-3xl text-white sm:text-[2.1875rem]">In Vivo Treatment™: Recovery Practiced in Real Life</h2>
         <p class="subheading mt-3 !text-white">You go home at night. What happens there is the work.</p>
         <p class="mt-5 text-lg text-white/90">The argument with your spouse, the Friday night alone, the boss who pushes your buttons. You bring what actually happened back into the room the next morning, and we slow it down together. Recovery gets tested in real life, so that’s where we practice it.</p>
-        <p class="mt-6 font-bold text-white">Learn → apply → experience → process → adjust → apply again</p>
         <a href="/about/our-approach/" class="btn-ghost-light mt-8">Our approach and outcomes <Icon name="arrow" /></a>
       </div>
-      <figure class="overflow-hidden rounded-[var(--radius-card)] bg-white">
-        <img src="/images/media/in-vivo-infographic.webp" width="1200" height="670" loading="lazy" alt="In Vivo Treatment™ infographic: clinical stabilization flows through PHP and IOP into real-world recovery and a learn, apply, process, adjust cycle." class="h-auto w-full" />
-      </figure>
+      <InVivoCycle />
     </div>
   </section>
 
