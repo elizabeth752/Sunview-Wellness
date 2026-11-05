@@ -323,7 +323,8 @@ export const PEOPLE = [
     role: [
       'Karissa handles most admissions and incoming calls at Sunview. Her role spans the office and admissions: scheduling, communication and the administrative coordination that keeps each person’s treatment running smoothly. If you’re thinking about starting, <a href="/admissions/">here’s how admissions works</a>.',
     ],
-    photo: null,
+    photo: '/images/team/karissa-delaney.webp',
+    photoSm: '/images/team/karissa-delaney-200.webp',
     linkedin: null,
   },
   {
