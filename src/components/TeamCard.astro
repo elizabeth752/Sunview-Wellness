@@ -1,7 +1,8 @@
 ---
 // One card markup for every person on /our-team/ (QA 8 #16). Same content structure in every section:
 // photo or initials · name (h3, the link to the bio) · credentials · title · one-line specialty. Each part is its
-// own block element, so extracted text keeps spaces between them. `variant` only changes the layout/visuals:
+// own block element, so extracted text keeps spaces between them. Photos are 4:5 in every variant, matching the
+// source headshots. `variant` only changes the layout/visuals:
 //   feature → wide leadership profile (adds the optional `highlight` line)
 //   tile    → portrait tile (media on white; `tone="mist"` for tiles on a white section)
 //   band    → compact white card on the teal Admissions band
@@ -15,21 +16,21 @@ const { person: p, variant = 'tile', tone = 'white' } = Astro.props;
 const v = {
   feature: {
     li: 'grid overflow-hidden rounded-[var(--radius-lg)] border border-line sm:grid-cols-[0.8fr_1.2fr]',
-    media: 'relative grid aspect-square place-items-center bg-mist sm:aspect-auto sm:min-h-[300px]',
+    media: 'relative grid aspect-[4/5] place-items-center bg-mist sm:aspect-auto sm:min-h-[300px]',
     initials: 'grid h-32 w-32 place-items-center rounded-full border-2 border-gold font-display text-5xl font-bold text-teal',
     body: 'flex flex-col p-7 sm:p-8',
     name: 'text-2xl',
   },
   tile: {
     li: 'group flex flex-col',
-    media: `relative grid aspect-square place-items-center overflow-hidden rounded-[var(--radius-card)] ${tone === 'mist' ? 'bg-mist' : 'bg-white'}`,
+    media: `relative grid aspect-[4/5] place-items-center overflow-hidden rounded-[var(--radius-card)] ${tone === 'mist' ? 'bg-mist' : 'bg-white'}`,
     initials: 'font-display text-6xl font-bold text-teal/80 transition group-hover:scale-105',
     body: 'mt-5',
     name: 'text-xl',
   },
   band: {
     li: 'flex items-start gap-5 rounded-[var(--radius-card)] bg-white p-6 text-charcoal sm:p-7',
-    media: 'relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl bg-mist',
+    media: 'relative grid h-20 w-16 shrink-0 place-items-center overflow-hidden rounded-2xl bg-mist',
     initials: 'font-display text-2xl font-bold text-teal',
     body: 'min-w-0',
     name: 'text-xl',
