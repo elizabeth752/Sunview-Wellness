@@ -347,7 +347,8 @@ export const PEOPLE = [
     role: [
       'As Director of Business Development, Scott is a point of contact for professionals and organizations who want to work with Sunview. <a href="/for-professionals/">Information for referring professionals</a>.',
     ],
-    photo: null,
+    photo: '/images/team/scott-belovicz.webp',
+    photoSm: '/images/team/scott-belovicz-200.webp',
     linkedin: null,
   },
 ];
