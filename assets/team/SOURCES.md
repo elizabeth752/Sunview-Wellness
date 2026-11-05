@@ -1,11 +1,11 @@
 # Team headshot sources
 
 The old WordPress team page (/about-us/, still served at sunviewbh.com) used initials only, and its media
-library had no headshots (checked 2026-09-25). LinkedIn photos are used with Jhonatan's authorization (2026-09-25).
+library had no headshots (checked 2026-09-25). LinkedIn photos were used with Jhonatan's authorization (2026-09-25) until the headshots arrived.
 Studio headshots (white wall, 819×1024) were supplied 2026-10-29. Retouched versions on a matching gray background
-replaced them on 2026-11-05 for Frank, Dana, Gabriel, Tyler, Maria, Mia, Scott and Karissa.
+replaced them on 2026-11-05 for Frank, Dana, Gabriel, Tyler, Maria, Mia, Scott, Karissa and Walter.
 
-Web versions: `{slug}.webp` is the full photo (600×750 for headshots, 600×600 for LinkedIn photos), used on
+Web versions: `{slug}.webp` is the full photo (600×750), used on
 the person page and the /our-team/ cards; `{slug}-200.webp` is a 200×200 face crop for round avatars (bylines,
 reviewed-by, About roster, For Professionals).
 
@@ -19,6 +19,6 @@ reviewed-by, About roster, For Professionals).
 | Mia Grazel | Retouched headshot on gray background, supplied 2026-11-05 | original/mia-grazel.jpg, 1842×2304 | mia-grazel.webp (600×750), mia-grazel-200.webp |
 | Scott Belovicz | Retouched headshot on gray background, supplied 2026-11-05 | original/scott-belovicz.jpg, 1792×2400 | scott-belovicz.webp (600×750), scott-belovicz-200.webp |
 | Karissa Delaney | Retouched headshot on gray background, supplied 2026-11-05 | original/karissa-delaney.jpg, 1792×2400 | karissa-delaney.webp (600×750), karissa-delaney-200.webp |
-| Walter Bierschenk | LinkedIn profile photo, linkedin.com/in/walter-bierschenk-lmhc-emdr-nerpsc-10b81291/ (media.licdn.com profile-displayphoto-crop_800_800) | original/walter-bierschenk.jpg, 800×800 | walter-bierschenk.webp (600×600), walter-bierschenk-200.webp |
+| Walter Bierschenk | Retouched headshot on gray background, supplied 2026-11-05 as a screenshot (rounded top corners filled with the wall color) | original/walter-bierschenk.jpg, 562×702 | walter-bierschenk.webp (600×750), walter-bierschenk-200.webp |
 
 No headshot yet: Jillian John, Matthew Snyder (initials placeholder).
