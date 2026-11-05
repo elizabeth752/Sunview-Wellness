@@ -4,8 +4,8 @@
 // Bio prose: the Wiki bios plus the live About page (docs/content/live-about-us-2026-09-23.txt), lightly
 // rewritten (third person, no em dashes, no "client"). Program facts in `role`: the Clinical Director
 // questionnaire (Q#). Sentence-by-sentence sources: docs/content/about-team-sources-team.md.
-// LinkedIn: Jhonatan supplied the URLs on 2026-09-25 and authorized LinkedIn photos (Walter). Studio headshots
-// (2026-10-29) for Frank, Dana, Gabriel, Tyler, Maria and Mia.
+// LinkedIn: Jhonatan supplied the URLs on 2026-09-25 and authorized LinkedIn photos (Walter). Retouched headshots
+// on gray (2026-11-05) for Frank, Dana, Gabriel, Tyler, Maria, Mia, Scott and Karissa.
 //
 // photo: null → branded initials placeholder on mist ({{PHOTO}}). Set a path when headshots arrive.
 // photo / photoSm: 600×750 (4:5, or 600×600 for LinkedIn photos) and 200×200 face-crop WebP in public/images/team/;
