@@ -272,13 +272,6 @@ export const initials = (name) =>
 // only: it is not in the page schema (no `reviewedBy`). With `photo: null` the byline shows initials. `photo` is
 // the 200px face crop from public/images/team/ (the same file as `photoSm` in team.js).
 export const REVIEWERS = {
-  frank: {
-    name: 'Frank Galimidi',
-    creds: 'CASAC, CAP, CRADC, ICADC, NCAC II, SAP',
-    role: 'Chief Executive Officer',
-    href: '/our-team/frank-galimidi/',
-    photo: '/images/team/frank-galimidi-200.webp',
-  },
   // Clinical pages (mental health, trauma, dual diagnosis) per What-We-Treat-Content-Briefs.md
   dana: {
     name: 'Dana Martin',
@@ -288,5 +281,4 @@ export const REVIEWERS = {
     photo: '/images/team/dana-martin-200.webp',
   },
 };
-export const REVIEWER = REVIEWERS.frank;
 export const LAST_REVIEWED = '2026-09-22';

@@ -4,7 +4,7 @@
 // Person template per docs/content/SOP-Blog-Post-Author-Templates.md §3 (one page per person, authors included).
 // Banner (Home hero look, no form, no buttons): breadcrumb, H1 = name with credentials, role, photo or initials.
 // Body: bio + "Role at Sunview" beside a sticky credentials card at desktop (stacks on mobile).
-// Frank also gets "In Vivo Treatment™ and Clinical Architecture™". "Articles by {First}" appears only when
+// "Articles by {First}" appears only when
 // src/data/posts.js has posts whose author is this person (shared PostCard; ≤3 → grid, >3 → carousel with arrows,
 // no URL changes). No links to other staff anywhere on a person page (SOP §3): the team archive is where everyone
 // is listed. No rotation sections, no reviewed-by byline.
@@ -74,8 +74,6 @@ const schema = [
   },
 ];
 
-// In Vivo loop, verbatim from Frank's article (src/data/posts.js, in-vivo-treatment-…)
-const loop = ['Learn', 'Apply', 'Experience', 'Process', 'Adjust', 'Apply again'];
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---
 <Base title={metaTitle} description={description} breadcrumbs={crumbs} schema={schema}>
@@ -168,35 +166,8 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  {p.inVivo && (
-    <section class="section bg-mist" aria-labelledby="invivo-title">
-      <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-        <div>
-          <h2 id="invivo-title" class="text-3xl sm:text-[2.1875rem]">In Vivo Treatment™ and Clinical Architecture™</h2>
-          <div class="prose-sv mt-6">
-            <p>Frank is the creator of In Vivo Treatment™ and Clinical Architecture™. Both grew out of one question that has shaped his career: can I stay sober while actually living my life?</p>
-            <p><em>In vivo</em> essentially means “within the living environment.” The idea is that recovery skills shouldn’t just exist on paper. At some point, people have to practice them where their life actually happens, then bring what happened back into treatment and work through it.</p>
-            <p>Clinical Architecture™ is how Frank builds treatment environments that foster accountability, connection, structure and sustainable recovery. Two of its ideas, Clinical Excellence and Recovery Culture, shape how Sunview thinks about the treatment environment: clinical excellence gives treatment its substance, and recovery culture gives that treatment somewhere to live.</p>
-            <p>Read more about <a href="/about/our-approach/">Sunview’s clinical approach and outcomes</a>, or Frank’s own article, <a href="/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/">In Vivo Treatment™ at Sunview Wellness: Recovery Has to Work in the Real World</a>.</p>
-          </div>
-        </div>
-        <figure class="rounded-[var(--radius-lg)] bg-white p-7 sm:p-9">
-          <ol class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {loop.map((step, i) => (
-              <li class:list={['flex items-center gap-3 rounded-[var(--radius-card)] p-4', i === loop.length - 1 ? 'bg-sun/30' : 'bg-mist']}>
-                <span class="font-sans text-sm font-extrabold text-teal" aria-hidden="true">{i + 1}</span>
-                <span class="font-bold text-charcoal">{step}</span>
-              </li>
-            ))}
-          </ol>
-          <figcaption class="mt-5 text-[15px]">The In Vivo feedback loop: people live life, apply their skills, bring the experience back to the program and process what happened.</figcaption>
-        </figure>
-      </div>
-    </section>
-  )}
-
   {articles.length > 0 && (
-    <section class:list={['section', p.inVivo ? 'bg-white' : 'bg-mist']} aria-labelledby="articles-title">
+    <section class:list={['section', 'bg-mist']} aria-labelledby="articles-title">
       <div class="container-x">
         <div class="flex flex-wrap items-end justify-between gap-4">
           <h2 id="articles-title" class="text-3xl sm:text-[2.1875rem]">Articles by {p.first}</h2>

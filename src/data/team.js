@@ -5,7 +5,7 @@
 // rewritten (third person, no em dashes, no "client"). Program facts in `role`: the Clinical Director
 // questionnaire (Q#). Sentence-by-sentence sources: docs/content/about-team-sources-team.md.
 // LinkedIn: Jhonatan supplied the URLs on 2026-09-25. Retouched headshots
-// on gray (2026-11-05) for Frank, Dana, Gabriel, Tyler, Maria, Mia, Scott, Karissa and Walter.
+// on gray (2026-11-05) for Dana, Gabriel, Tyler, Maria, Mia, Scott, Karissa and Walter.
 //
 // photo: null → branded initials placeholder on mist ({{PHOTO}}). Set a path when headshots arrive.
 // photo / photoSm: 600×750 (4:5) and 200×200 face-crop WebP in public/images/team/;
@@ -39,40 +39,6 @@ const GROUP_LEADER_ROLE = [
 
 export const PEOPLE = [
   // ── Leadership and Clinical Direction ─────────────────────────────────────────────
-  {
-    slug: 'frank-galimidi',
-    metaDescription: 'Frank Galimidi, CEO of Sunview Wellness in West Palm Beach, with more than 23 years in addiction treatment and behavioral healthcare leadership.', // meta only (≤155, answer 9.1)
-    name: 'Frank Galimidi',
-    first: 'Frank',
-    creds: 'CASAC, CAP, CRADC, NCAC II, ICADC, SAP', // Wiki order
-    title: 'Chief Executive Officer',
-    group: 'leadership',
-    specialty: 'More than 23 years in addiction treatment and behavioral healthcare leadership.',
-    // Labels: Frank's own list, email "Website" 2026-09-25 ("what all the acronyms mean").
-    credentials: [
-      { abbr: 'CASAC', label: 'Credentialed Alcoholism and Substance Abuse Counselor (New York)' },
-      { abbr: 'CAP', label: 'Certified Addiction Professional (Florida)' },
-      { abbr: 'CRADC', label: 'Certified Reciprocal Alcohol and Drug Counselor (Illinois)' },
-      { abbr: 'NCAC II', label: 'National Certified Addiction Counselor, Level II' },
-      { abbr: 'ICADC', label: 'International Certified Alcohol and Drug Counselor' },
-      { abbr: 'SAP', label: 'Substance Abuse Professional, qualified under U.S. Department of Transportation (DOT) regulations' },
-    ],
-    education: [],
-    bio: [
-      'As Chief Executive Officer of Sunview Wellness, Frank Galimidi brings more than 23 years of specialized experience in addiction treatment and behavioral healthcare leadership. His career has been defined by a commitment to raising the standard of care through executive strategy, operational excellence and a deep clinical understanding. Frank holds the CASAC, CAP, CRADC, NCAC II and ICADC credentials and is a qualified Substance Abuse Professional (SAP).',
-      'He has been an executive at both for-profit and nonprofit agencies, and joined Sunview to lead the program. Before Sunview, he was Chief Clinical Officer at Sunset House and Executive Director of the Meadows Counseling Center. Earlier, he ran a nonprofit residential and IOP program for six years.',
-      'His leadership philosophy centers on two ideas: Clinical Architecture™ and moving beyond “I = Sick”, the fear of functioning as a healthy adult once the sick role is removed. Through Clinical Architecture™, Frank builds treatment environments that foster accountability, connection, structure and sustainable recovery, helping people build lives defined not by past struggles but by growth, purpose and long-term wellness.',
-      'Frank is an active contributor to industry discussions through professional publications, podcasts and leadership forums, where he advocates for treatment models that prioritize meaningful transformation over short-term stabilization.',
-    ],
-    highlight: 'Treatment models that prioritize meaningful transformation over short-term stabilization.', // /our-team/ leader card only (not on the person page, it repeats the bio)
-    role: [
-      'Frank leads Sunview Wellness as Chief Executive Officer, setting the strategy and the standard of care for the whole program. He is the creator of In Vivo Treatment™ and Clinical Architecture™, the two ideas behind how Sunview’s outpatient programs are built.',
-    ],
-    inVivo: true, // extra H2 "In Vivo Treatment™ and Clinical Architecture™" (brief §B)
-    photo: '/images/team/frank-galimidi.webp',
-    photoSm: '/images/team/frank-galimidi-200.webp',
-    linkedin: 'https://www.linkedin.com/in/frank-galimidi-casac-cap-cradc-ncacii-icadc-sap-8669054/',
-  },
   {
     slug: 'dana-martin',
     metaDescription: 'Dana Martin, Ph.D., LMFT, MCAP, QS, Clinical Director at Sunview Wellness in West Palm Beach. A couple and family therapist leading a systems-based model.', // meta only (≤155, answer 9.1)
@@ -329,13 +295,13 @@ export const PEOPLE = [
   },
   {
     slug: 'scott-belovicz',
-    metaRole: 'Business Development', // <title> only (≤60, answer 9.1)
+    metaRole: 'Interim CEO', // <title> only (≤60, answer 9.1)
     name: 'Scott Belovicz',
     first: 'Scott',
     creds: '',
-    // Brief/Wiki title wins over the live site ("Director of Clinical Outreach").
-    title: 'Director of Business Development',
-    group: 'admissions',
+    // Interim CEO since Frank Galimidi left (Maria Rojas, ClickUp 1dfm34y15ur, 2026-11-06).
+    title: 'Interim Chief Executive Officer',
+    group: 'leadership',
     specialty: 'More than 14 years in substance use and mental health treatment.',
     credentials: [],
     experience: ['More than 14 years in substance use and mental health treatment, across the private and nonprofit sectors'],
@@ -345,7 +311,7 @@ export const PEOPLE = [
       'Outside of work, Scott enjoys spending time with family and friends, hunting, fishing, cooking and watching football.',
     ],
     role: [
-      'As Director of Business Development, Scott is a point of contact for professionals and organizations who want to work with Sunview. <a href="/for-professionals/">Information for referring professionals</a>.',
+      'As interim Chief Executive Officer, Scott leads Sunview Wellness and remains a point of contact for professionals and organizations who want to work with Sunview. <a href="/for-professionals/">Information for referring professionals</a>.',
     ],
     photo: '/images/team/scott-belovicz.webp',
     photoSm: '/images/team/scott-belovicz-200.webp',
