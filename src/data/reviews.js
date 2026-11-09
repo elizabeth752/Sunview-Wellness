@@ -3,6 +3,8 @@
 // Google's relative date on 2026-09-22; it only orders the cards (the cards show the star rating, not a date,
 // per QA batch 1 item 3). Text is verbatim, including the reviewers' own
 // spelling and punctuation. Don't edit it. Names are first name + last initial per the Home content spec.
+// Exception, 2026-11-09: Frank Galimidi's name was taken out of Julie V. and Henry E. after he left
+// Sunview (ClickUp 1dfm34y15ur). The rest of each review is unchanged.
 // Reviewer profile photos are intentionally NOT reproduced (see README: privacy in a treatment context).
 
 export const GBP_URL = 'https://maps.google.com/?cid=14860219805794154937';
@@ -34,13 +36,13 @@ export const REVIEWS = [
     author: 'Julie V.',
     rating: 5,
     date: '2026-06-22',
-    text: 'Sunview Wellness was the icing on the cake in my mental health journey and recovery and it honestly changed my life for the better..This program was outstanding in the approach they implement to help all of their clients. The important thing is you have to really want the help and do the work to get where you want and need to be. I believe participation in the  group therapy is essential even though it may not be easy at first. Every single person that works at Sunview Wellness is caring and really wants everyone to get well. Laura Contreras was my therapist and she is one of the most caring empathetic individuals I have ever come across. She was truly the right therapist for me. Mia stood out to me ( even though everyone was good) as an excellent group facilitator . Karissa Delaney the office manager was always a welcoming face in the morning. She was always willing to help out with any concerns or questions that I had. I was actually sad when my time came to leave Sunview even though I was ready. I made many friends and enjoyed the interaction with other people that GOT IT with NO JUDGEMENT! And Finally thank you Frank for overseeing and having such a wonderful place for people to come and heal. I’m forever greatful. 😊💕',
+    text: 'Sunview Wellness was the icing on the cake in my mental health journey and recovery and it honestly changed my life for the better..This program was outstanding in the approach they implement to help all of their clients. The important thing is you have to really want the help and do the work to get where you want and need to be. I believe participation in the  group therapy is essential even though it may not be easy at first. Every single person that works at Sunview Wellness is caring and really wants everyone to get well. Laura Contreras was my therapist and she is one of the most caring empathetic individuals I have ever come across. She was truly the right therapist for me. Mia stood out to me ( even though everyone was good) as an excellent group facilitator . Karissa Delaney the office manager was always a welcoming face in the morning. She was always willing to help out with any concerns or questions that I had. I was actually sad when my time came to leave Sunview even though I was ready. I made many friends and enjoyed the interaction with other people that GOT IT with NO JUDGEMENT! And Finally thank you for having such a wonderful place for people to come and heal. I’m forever greatful. 😊💕',
   },
   {
     author: 'Henry E.',
     rating: 5,
     date: '2026-08-22',
-    text: "It was the most rewarding experience I've had in such a long moment of time! The knowledge and expertise of the staff was immeasurable, of high quality and refreshing! A special shout out to Jillian my therapist, Carissa and Frank! This by no means is meant or intended to take from the excellent job done by each individual employee and Sunview. I'm not the type that would just throw around gratitude lightly! Last but not least, I want to give a shout out to all my peers and all participants of Sunview, for their unselfish willingness to surrender and assist the healing and recovery of others! God bless you! Love, Henry Edwards and Tiffany Cunningham!",
+    text: "It was the most rewarding experience I've had in such a long moment of time! The knowledge and expertise of the staff was immeasurable, of high quality and refreshing! A special shout out to Jillian my therapist and Carissa! This by no means is meant or intended to take from the excellent job done by each individual employee and Sunview. I'm not the type that would just throw around gratitude lightly! Last but not least, I want to give a shout out to all my peers and all participants of Sunview, for their unselfish willingness to surrender and assist the healing and recovery of others! God bless you! Love, Henry Edwards and Tiffany Cunningham!",
   },
   {
     author: 'Erica S.',
