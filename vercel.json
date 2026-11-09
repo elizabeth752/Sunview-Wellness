@@ -29,9 +29,26 @@
     { "source": "/our-approach/", "destination": "/about/our-approach/", "statusCode": 301 },
 
     { "source": "/media/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/our-team/frank-galimidi/", "destination": "/our-team/", "statusCode": 301 },
+    { "source": "/blog/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/", "destination": "/about/our-approach/", "statusCode": 301 },
+    { "source": "/media/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/", "destination": "/about/our-approach/", "statusCode": 301 },
+    { "source": "/blog/what-actually-happens-after-rehab/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/what-actually-happens-after-rehab/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/insurance-companies-cut-patients-off-the-moment-they-start-doing-well/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/drugs-and-alcohol-its-worse-than-you-think/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/drugs-and-alcohol-its-worse-than-you-think/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/getting-sober-vs-staying-sober/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/getting-sober-vs-staying-sober/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/recovery-doesnt-happen-in-a-bubble/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/recovery-doesnt-happen-in-a-bubble/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/beyond-good-enough-redefining-community-based-care/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/beyond-good-enough-redefining-community-based-care/", "destination": "/blog/", "statusCode": 301 },
     { "source": "/media/:slug/", "destination": "/blog/:slug/", "statusCode": 301 },
     { "source": "/media-category/:path*/", "destination": "/blog/", "statusCode": 301 },
-    { "source": "/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/", "destination": "/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/", "statusCode": 301 }
+    { "source": "/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/", "destination": "/about/our-approach/", "statusCode": 301 }
   ],
   "headers": [
     {
