@@ -14,12 +14,11 @@ import { pageSchema } from '../../lib/programSchema.js';
 const path = '/about/our-approach/';
 const metaTitle = 'Our Clinical Approach and Outcomes | Sunview Wellness';
 const description = 'In Vivo Treatment™, Clinical Architecture™ and a systems-based model: how Sunview treats addiction and co-occurring conditions and measures progress.';
-const IN_VIVO_URL = '/blog/in-vivo-treatment-at-sunview-wellness-recovery-has-to-work-in-the-real-world/';
 const FEEL_URL = '/blog/what-should-a-treatment-center-feel-like/';
 // "I = Sick": definition from the Client Wiki, Proprietary concepts (CEO notes, 10 Sep 2026; wiki txt lines 218–221).
-// Answer 2.1: the section keeps only those two sentences until Frank confirms (review note below, not shown).
+// Answer 2.1: the section keeps only those two sentences (review note below, not shown).
 // "I = Sick" is the canonical term (Elizabeth, 2026-09-22; QA batch 9). Definition from the CEO notes in the Wiki.
-const I_SICK_TEXT = '“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed. Our CEO, Frank Galimidi, names it as a main driver of repeat admissions, so we address it directly by helping people redefine themselves beyond the diagnosis.';
+const I_SICK_TEXT = '“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed. We see it as a main driver of repeat admissions, so we address it directly by helping people redefine themselves beyond the diagnosis.';
 
 // In Vivo loop (article: Learn → Apply → Experience → Process → Adjust → Apply Again).
 // lane: where the step happens. Program = in the room at Sunview; life = at home, at work, with family.
@@ -90,7 +89,7 @@ const after = [
 
 
 const faqBase = [
-  { q: 'What is In Vivo Treatment?', a: `<em>In vivo</em> means “within the living environment.” Because you live at home during PHP, IOP or OP, you practice recovery skills in real life, bring what happened back to the program, work through it with your team, adjust and try again. <a href="${IN_VIVO_URL}">How In Vivo Treatment™ works in the real world</a>.` },
+  { q: 'What is In Vivo Treatment?', a: `<em>In vivo</em> means “within the living environment.” Because you live at home during PHP, IOP or OP, you practice recovery skills in real life, bring what happened back to the program, work through it with your team, adjust and try again.` },
   { q: 'Is this evidence-based?', a: 'We value evidence-based practices and interventions. The approaches that inform our work include CBT, DBT, Internal Family Systems (IFS) and trauma-informed care. We also look beneath the surface symptoms, and we track progress with the BAM, PHQ-9 and GAD-7.' },
   { q: 'How do you track progress?', a: 'With the Brief Addiction Monitor (BAM), the PHQ-9 and GAD-7 for depression and anxiety, monthly treatment plan reviews with your therapist, and the RSA-R Consumer Satisfaction Survey, which tells us how you experience the program.' },
   { q: 'What does “I = Sick” mean?', a: '' },
@@ -174,7 +173,6 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
             </div>
           </div>
           <p class="mt-6 text-lg">Hitting a roadblock isn’t a treatment failure. It’s often what makes treatment click. The goal isn’t to turn anyone into a professional patient: it’s to help you build a life you can sustain without us.</p>
-          <a href={IN_VIVO_URL} class={`${link} mt-5 inline-flex items-center gap-2`}>How In Vivo Treatment™ works in the real world <Icon name="arrow" class="h-4 w-4" /></a>
         </div>
       </div>
     </div>
@@ -185,7 +183,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
         <h2 class="text-3xl sm:text-[2.1875rem]">Clinical Architecture™</h2>
-        <p class="mt-5 text-lg">Clinical Architecture™ is the framework created by our CEO, Frank Galimidi. Through it, he builds treatment environments that foster accountability, connection, structure and sustainable recovery.</p>
+        <p class="mt-5 text-lg">Clinical Architecture™ is the framework behind how Sunview builds treatment environments that foster accountability, connection, structure and sustainable recovery.</p>
         <p class="mt-4 text-lg">Two of its ideas shape how we think about the treatment environment at Sunview.</p>
         <a href={FEEL_URL} class={`${link} mt-6 inline-flex items-center gap-2`}>What a treatment center should feel like <Icon name="arrow" class="h-4 w-4" /></a>
       </div>
