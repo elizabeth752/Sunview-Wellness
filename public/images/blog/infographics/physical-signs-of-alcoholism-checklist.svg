@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" role="img" aria-labelledby="ptitle pdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="ptitle">Physical signs family members may notice</title>
+  <desc id="pdesc">Seven physical signs that may be noticeable to family members during a heavy drinker's holiday visit: facial flushing or redness; a puffy or swollen face; unexplained bruises; stomach trouble such as nausea, vomiting, or upper abdominal pain; shaky hands, or tremors; changes in appetite, weight, or sleep; and memory problems or less attention to hygiene and appearance. No single sign confirms alcohol use disorder, and each can have other causes.</desc>
+  <rect width="1200" height="600" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Signs family members may notice</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">No single sign confirms AUD — each can have other causes too</text>
+
+  <g font-size="15">
+    <g transform="translate(56,104)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Facial flushing or redness</text>
+    </g>
+    <g transform="translate(56,166)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">A puffy or swollen face</text>
+    </g>
+    <g transform="translate(56,228)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Unexplained bruises</text>
+    </g>
+    <g transform="translate(56,290)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Stomach trouble: nausea, vomiting, or upper abdominal pain</text>
+    </g>
+    <g transform="translate(56,352)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Shaky hands, or tremors</text>
+    </g>
+    <g transform="translate(56,414)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Changes in appetite, weight, or sleep</text>
+    </g>
+    <g transform="translate(56,476)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#1F9E9E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Memory problems or less attention to hygiene and appearance</text>
+    </g>
+  </g>
+
+  <text x="56" y="562" font-size="13" fill="#6B6C6C" font-style="italic">Recurring signs, multiple symptoms, or a noticeable change in habits may warrant a closer look.</text>
+</svg>

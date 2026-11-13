@@ -1387,6 +1387,126 @@ export const posts = [
       { label: 'Norman, S. B., Hicks, T., Klein, A., & Hamblen, J. (2025). Treatment of Co-Occurring PTSD and Substance Use Disorder in Veterans Affairs. PTSD: National Center for PTSD. U.S. Department of Veterans Affairs.', url: 'https://www.ptsd.va.gov/professional/treat/cooccurring/tx_sud_va.asp' },
     ],
   },
+  {
+    slug: 'physical-signs-of-alcoholism',
+    type: 'article',
+    title: 'The Physical Signs of Alcoholism You Might Notice Over the Holidays',
+    seoTitle: 'Physical Signs of Alcoholism: What to Watch For', // <title> only (≤60, answer 9.1)
+    dek: "Facial flushing, stomach trouble, and unexplained bruises can be signs of heavy drinking, but each can have other causes too. Here's what family members might notice over the holidays, which signs need medical care right away, and how to start a caring conversation.",
+    metaDescription: 'Facial flushing, stomach trouble, and unexplained bruises can be signs of heavy drinking. Learn what they may mean and how to help a loved one.',
+    date: '2026-11-13',
+    author: 'dana-martin', // slug in src/data/team.js — named as the article's author in the docx brief
+    category: 'Substance Use',
+    // Docx citation markers [1]-[6] converted to the site's (Author, Year) in-text style. Fetch-verified all 6
+    // sources (via the docx's own hyperlinks, cross-checked against document.xml.rels) against the specific claim
+    // each supports:
+    // [1] NIAAA's "Understanding Alcohol Use Disorder" confirms the AUD definition (impaired ability to stop or
+    //   control drinking despite consequences), the withdrawal symptom list (shakiness, sweating, restlessness,
+    //   nausea, trouble sleeping, racing heart), and that withdrawal is potentially life-threatening after
+    //   prolonged heavy drinking.
+    // [2] MedlinePlus "Skin Blushing/Flushing" lists alcohol as a flushing trigger alongside rosacea, menopause,
+    //   fever, exercise, spicy food, and medications.
+    // [3] MedlinePlus "Alcoholic Liver Disease" confirms spider angiomas, palmar erythema, leg/abdominal fluid
+    //   buildup (edema/ascites), jaundice, GI bleeding (vomiting blood), confusion, fatigue, poor appetite, weight
+    //   loss, nausea, abdominal pain, and easy bruising/bleeding from impaired clotting.
+    // [4] NIAAA "Aging and Alcohol" confirms unexplained bruises and falls as possible signs of an alcohol problem
+    //   in older adults.
+    // [5] MedlinePlus "Gastritis" confirms heavy alcohol drinking as a leading cause and the symptom list (loss of
+    //   appetite, nausea/vomiting, upper abdominal pain; some people have no symptoms).
+    // [6] MedlinePlus "Helping a Loved One With a Drinking Problem" confirms the conversation guidance (sober
+    //   timing, specific facts over guesses, "I" statements, dropping labels, no lectures/threats/pleading/
+    //   bribing, offering to go with them) and support-seeking (Al-Anon, safety for yourself).
+    // Letter suffixes distinguish same-year citations from the same publisher: NIAAA 2025a (Understanding AUD) /
+    // 2025b (Aging and Alcohol); MedlinePlus 2025a (flushing) / 2025b (liver disease) / 2025c (gastritis); the
+    // 2024 "Helping a Loved One" citation needs no suffix since no other MedlinePlus 2024 source is cited here.
+    // Compliance: the docx's closing "we accept Medicaid" blanket claim is replaced with the site's standard
+    // insurance sentence (in network with most major carriers including Florida Medicaid plans; admissions
+    // verifies benefits), matching is-alcohol-a-depressant and what-is-a-functional-alcoholic. The docx's mid-
+    // article "Find Out What Your Loved One's Insurance Covers" CTA is folded into the closing treatment section
+    // rather than left as a one-off mid-body block, same precedent as what-is-a-functional-alcoholic. Phone pulled
+    // from SITE, never the docx's stale (561) 269-3175. The docx's own interlinks (sunviewwellness.com/what-we-
+    // treat/substance-use/alcohol/ and /admissions/for-families/) are kept as-is since both URLs exist on this
+    // site unchanged.
+    // Interlinks: /what-we-treat/substance-use/alcohol/, /programs/php/, /programs/iop/, /programs/outpatient/,
+    // /programs/evening-iop/, /therapies/inner-child-therapy/, /admissions/insurance/, /admissions/,
+    // /admissions/for-families/.
+    body: `
+<p>"Alcoholism" is a common everyday term for what health care providers call alcohol use disorder (AUD). AUD is a medical condition in which a person has trouble controlling or stopping their drinking, even when it leads to problems in their life (NIAAA, 2025a). Some physical signs of heavy drinking, such as facial flushing, stomach trouble, or unexplained bruises, may be noticeable to family members, but the same signs can also have other causes.</p>
+<p>Holiday visits may be the first time in months that relatives see each other, which can make changes in a loved one's health more noticeable. This article covers the physical signs of heavy drinking, other possible explanations, symptoms that need immediate medical attention, and how to start a caring conversation about alcohol use.</p>
+
+<h2>Physical Signs of Alcoholism Family Members May Notice</h2>
+<p>No single physical sign confirms alcohol use disorder, and many of these symptoms can have other causes. However, recurring signs, multiple symptoms, or a noticeable change in a person's drinking habits may warrant a closer look.</p>
+<figure><img src="/images/blog/infographics/physical-signs-of-alcoholism-checklist.svg" width="1200" height="600" loading="lazy" alt="Seven physical signs family members may notice: facial flushing or redness, a puffy or swollen face, unexplained bruises, stomach trouble such as nausea, vomiting, or upper abdominal pain, shaky hands or tremors, changes in appetite, weight, or sleep, and memory problems or less attention to hygiene and appearance. No single sign confirms AUD, and each can have other causes too." /></figure>
+
+<h3>Why Does a Person's Face Turn Red From Drinking?</h3>
+<p>Facial flushing is a sudden reddening of the face, neck, or upper chest caused by increased blood flow. Alcohol is one possible trigger, but other causes include rosacea (a long-term skin condition), menopause, fever, exercise, spicy food, and some medications (MedlinePlus, 2025a). A red face after a few drinks at a holiday gathering is not, on its own, a sign of AUD.</p>
+<p>Long-term heavy alcohol use can also contribute to visible changes in the skin. Small, red, spider-like blood vessels, known as spider angiomas, may appear in people with alcohol-related liver disease. Redness on the palms of the hands, called palmar erythema, can also occur with liver disease. These findings are not exclusive to alcohol-related conditions, but they may warrant medical evaluation, particularly when accompanied by other symptoms (MedlinePlus, 2025b).</p>
+
+<h3>Can Alcohol Cause a Puffy or Swollen Face?</h3>
+<p>Facial puffiness can have many possible causes, including poor sleep and allergies, so it is not a reliable sign of heavy drinking on its own. Swelling in other parts of the body can be a more specific concern. As alcohol-related liver disease progresses, fluid can accumulate in the legs and in the abdomen (MedlinePlus, 2025b). Persistent swelling or an unusually bloated abdomen should be evaluated by a health care provider.</p>
+
+<h3>What Causes Unexplained Bruising in Heavy Drinkers?</h3>
+<p>Alcohol affects balance and coordination, which increases the risk of falls. A person who falls or bumps into objects while drinking may have bruises without remembering how they occurred. NIAAA identifies unexplained bruising and falls as possible signs of alcohol-related problems, particularly among older adults (NIAAA, 2025b).</p>
+<p>Bruising can also be related to liver damage. As alcohol-related liver disease advances, the liver may become less able to produce the proteins needed for normal blood clotting, making a person more likely to bruise or bleed easily (MedlinePlus, 2025b). Because unexplained bruising has many possible causes, a health care provider can help determine what is behind it.</p>
+
+<h2>What Are the Symptoms of Alcoholic Gastritis?</h2>
+<p>Gastritis happens when the lining of the stomach becomes inflamed or swollen, and heavy drinking is one of its most common causes. Some people have no noticeable symptoms, while others may experience loss of appetite, nausea or vomiting, and pain or discomfort in the upper abdomen (MedlinePlus, 2025c).</p>
+<p>Early signs of alcohol-related liver disease can also include fatigue, poor appetite, unexplained weight loss, nausea, and abdominal pain (MedlinePlus, 2025b). Persistent changes in appetite, weight, or digestion should be discussed with a health care provider.</p>
+
+<h2>Can Shaky Hands Be a Sign of Alcohol Withdrawal?</h2>
+<p>Shaky hands, or tremors, can be a sign of alcohol withdrawal. When a person who drinks heavily reduces or stops drinking, withdrawal symptoms can include shakiness, sweating, restlessness, nausea, difficulty sleeping, and a racing heart (NIAAA, 2025a). Relatives staying in the same home over the holidays may notice these signs more easily than during a brief visit.</p>
+
+<h2>What Other Changes Might Family Members Notice?</h2>
+<p>Other changes that may be linked to heavy drinking include unintentional weight loss or a noticeable decrease in appetite, fatigue or low energy, sleeping problems, memory problems or confusion, and less attention to personal hygiene, grooming, or appearance (MedlinePlus, 2025b; NIAAA, 2025b).</p>
+<figure><img src="/images/blog/infographics/physical-signs-of-alcoholism-other-causes.svg" width="1200" height="500" loading="lazy" alt="Five possible signs of heavy drinking paired with common non-alcohol explanations: facial flushing can also come from rosacea, menopause, or spicy food; a puffy face can also come from poor sleep or allergies; unexplained bruising can also come from blood thinners or aging skin; stomach trouble can also come from other digestive conditions or stress; and shaky hands can also come from caffeine, anxiety, or low blood sugar." /></figure>
+
+<h2>When a Physical Sign Needs Medical Care Right Away</h2>
+<p>Some signs need prompt medical attention, whether or not alcohol is involved. Seek immediate medical attention if a loved one has yellowing of the skin or the whites of the eyes (jaundice), is vomiting blood or material that looks like coffee grounds, has black, tarry stools, shows new confusion or trouble thinking clearly, or has a seizure (NIAAA, 2025a; MedlinePlus, 2025b, 2025c).</p>
+<figure><img src="/images/blog/infographics/physical-signs-of-alcoholism-emergency-signs.svg" width="1200" height="460" loading="lazy" alt="Five signs that need medical care right away, whether or not alcohol is involved: yellowing of the skin or the whites of the eyes (jaundice), vomiting blood or material that looks like coffee grounds, black tarry stools, new confusion or trouble thinking clearly, and a seizure." /></figure>
+<p>Alcohol withdrawal can be life-threatening, particularly when someone who has been drinking heavily for a prolonged period suddenly stops. People with severe AUD who are physically dependent on alcohol should seek medical help to stop drinking safely (NIAAA, 2025a). If a loved one is in immediate danger, call 911.</p>
+
+<h2>Can You Tell If Someone Has a Drinking Problem by Looking at Them?</h2>
+<p>Physical signs may raise concerns about someone's drinking, but they cannot confirm a drinking problem, and there is no single feature that marks someone as an "alcoholic." Signs can include regularly drinking more than intended, struggling to cut back or stop, and experiencing problems at work, at home, or in relationships because of alcohol use (MedlinePlus, 2024).</p>
+<p>Only a health care provider can diagnose AUD. For family members, a physical sign is a reason to start a conversation, not proof of a problem.</p>
+
+<h2>How to Start the Conversation About Drinking</h2>
+<p>Raising a concern about a loved one's drinking is not easy. These approaches may help the conversation go more smoothly (MedlinePlus, 2024):</p>
+<ul>
+  <li><strong>Choose a time when they are not drinking.</strong> A calm, private moment may give the conversation a better start than a crowded holiday gathering.</li>
+  <li><strong>Describe what you have seen.</strong> Stick to specific facts, such as bruises you noticed or a change in their appetite, rather than guesses about the cause.</li>
+  <li><strong>Use "I" statements.</strong> Saying "I am worried about your health" keeps the focus on your concern rather than on blame.</li>
+  <li><strong>Leave out labels.</strong> Try not to use words like "alcoholic" during the conversation.</li>
+  <li><strong>Avoid lectures, threats, and guilt.</strong> Pleading or bribing is unlikely to help either.</li>
+  <li><strong>Offer a next step.</strong> Offer to go with your loved one to see a doctor or an addiction counselor.</li>
+</ul>
+
+<h2>What If Your Loved One Is Not Ready to Talk?</h2>
+<p>It may take several conversations before a loved one agrees to get help. You cannot force someone into treatment, but you can keep offering support. Family support groups such as Al-Anon, or a counselor who works with alcohol problems, can help you too. If the relationship ever feels unsafe, seek help for yourself right away (MedlinePlus, 2024). A <a href="/admissions/for-families/">family support program</a> can also help you navigate the impact of a loved one's drinking.</p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Facial redness, spider-like blood vessels, stomach trouble, unexplained bruises, and shaky hands can be signs of heavy drinking, but each can have other, unrelated causes.</li>
+  <li>Heavy drinking is a common cause of gastritis, which can lead to nausea, vomiting, and upper abdominal pain.</li>
+  <li>Yellow skin or eyes, vomiting blood, black stools, confusion, or a seizure need medical care right away.</li>
+  <li>A conversation may go more smoothly when the person is sober and the focus stays on specific facts and their health.</li>
+</ul>
+
+<h2>Outpatient Alcohol Treatment With Family Involvement in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient program, serving adults 18 and older. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol addiction treatment in West Palm Beach</a> is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>, including an <a href="/programs/evening-iop/">evening IOP</a> that meets after work. Free door-to-door transportation is provided, so attending treatment stays realistic alongside a job and family life.</p>
+<p>With your loved one's consent, their therapist can contact a family member during the first week, and families can stay involved at a pace that fits the person in care. Our PhD-led clinical team uses in-depth, systems-focused psychodynamic interventions, including <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a>, to address the shame, inadequacy, and fear that may be underneath the drinking.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a> at no cost and talk you through the options before you approach your loved one.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'National Institute on Alcohol Abuse and Alcoholism. (2025a). Understanding Alcohol Use Disorder. Brochures and Fact Sheets. National Institute on Alcohol Abuse and Alcoholism.', url: 'https://www.niaaa.nih.gov/publications/brochures-and-fact-sheets/understanding-alcohol-use-disorder' },
+      { label: "National Institute on Alcohol Abuse and Alcoholism. (2025b). Aging and Alcohol. Alcohol's Effects on Health. National Institute on Alcohol Abuse and Alcoholism.", url: 'https://www.niaaa.nih.gov/alcohols-effects-health/aging-and-alcohol' },
+      { label: 'MedlinePlus Medical Encyclopedia. (2025a). Skin Blushing/Flushing. National Library of Medicine.', url: 'https://medlineplus.gov/ency/article/003241.htm' },
+      { label: 'MedlinePlus Medical Encyclopedia. (2025b). Alcoholic Liver Disease. National Library of Medicine.', url: 'https://medlineplus.gov/ency/article/000281.htm' },
+      { label: 'MedlinePlus Medical Encyclopedia. (2025c). Gastritis. National Library of Medicine.', url: 'https://medlineplus.gov/ency/article/001150.htm' },
+      { label: 'MedlinePlus Medical Encyclopedia. (2024). Helping a Loved One With a Drinking Problem. National Library of Medicine.', url: 'https://medlineplus.gov/ency/patientinstructions/000815.htm' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
