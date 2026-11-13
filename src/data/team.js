@@ -295,12 +295,12 @@ export const PEOPLE = [
   },
   {
     slug: 'scott-belovicz',
-    metaRole: 'Interim CEO', // <title> only (≤60, answer 9.1)
+    metaRole: 'Executive Director', // <title> only (≤60, answer 9.1)
     name: 'Scott Belovicz',
     first: 'Scott',
     creds: '',
-    // Interim CEO since Frank Galimidi left (Maria Rojas, ClickUp 1dfm34y15ur, 2026-11-06).
-    title: 'Interim Chief Executive Officer',
+    // Took over leadership when Frank Galimidi left (Maria Rojas, ClickUp 1dfm34y15ur, 2026-11-06).
+    title: 'Executive Director',
     group: 'leadership',
     specialty: 'More than 14 years in substance use and mental health treatment.',
     credentials: [],
