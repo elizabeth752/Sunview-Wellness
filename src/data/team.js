@@ -40,6 +40,32 @@ const GROUP_LEADER_ROLE = [
 export const PEOPLE = [
   // ── Leadership and Clinical Direction ─────────────────────────────────────────────
   {
+    slug: 'scott-belovicz',
+    metaRole: 'Executive Director', // <title> only (≤60, answer 9.1)
+    name: 'Scott Belovicz',
+    first: 'Scott',
+    creds: '',
+    // First in Leadership so his card sits on the left, Dana Martin on the right (Scott's request, 2026-11-13).
+    // Took over leadership when Frank Galimidi left (Maria Rojas, ClickUp 1dfm34y15ur, 2026-11-06).
+    title: 'Executive Director',
+    group: 'leadership',
+    specialty: 'More than 14 years in substance use and mental health treatment.',
+    credentials: [],
+    experience: ['More than 14 years in substance use and mental health treatment, across the private and nonprofit sectors'],
+    education: [],
+    bio: [
+      'Scott Belovicz brings more than 14 years of experience across the private and nonprofit sectors in substance use and mental health treatment. Known for his approachable personality, sense of humor and genuine passion for sobriety and recovery, Scott plays an integral role in creating a supportive and welcoming environment for the people in treatment and for staff alike.',
+      'Outside of work, Scott enjoys spending time with family and friends, hunting, fishing, cooking and watching football.',
+    ],
+    role: [
+      // Scott's own wording (email to Elizabeth and Heather, 2026-11-13): no interim tag, no former Business Development duties.
+      'As Executive Director, Scott’s role at Sunview is to oversee the day-to-day operations to ensure a quality and therapeutic experience for all those who walk through the doors.',
+    ],
+    photo: '/images/team/scott-belovicz.webp',
+    photoSm: '/images/team/scott-belovicz-200.webp',
+    linkedin: null,
+  },
+  {
     slug: 'dana-martin',
     metaDescription: 'Dana Martin, Ph.D., LMFT, MCAP, QS, Clinical Director at Sunview Wellness in West Palm Beach. A couple and family therapist leading a systems-based model.', // meta only (≤155, answer 9.1)
     name: 'Dana Martin',
@@ -291,30 +317,6 @@ export const PEOPLE = [
     ],
     photo: '/images/team/karissa-delaney.webp',
     photoSm: '/images/team/karissa-delaney-200.webp',
-    linkedin: null,
-  },
-  {
-    slug: 'scott-belovicz',
-    metaRole: 'Executive Director', // <title> only (≤60, answer 9.1)
-    name: 'Scott Belovicz',
-    first: 'Scott',
-    creds: '',
-    // Took over leadership when Frank Galimidi left (Maria Rojas, ClickUp 1dfm34y15ur, 2026-11-06).
-    title: 'Executive Director',
-    group: 'leadership',
-    specialty: 'More than 14 years in substance use and mental health treatment.',
-    credentials: [],
-    experience: ['More than 14 years in substance use and mental health treatment, across the private and nonprofit sectors'],
-    education: [],
-    bio: [
-      'Scott Belovicz brings more than 14 years of experience across the private and nonprofit sectors in substance use and mental health treatment. Known for his approachable personality, sense of humor and genuine passion for sobriety and recovery, Scott plays an integral role in creating a supportive and welcoming environment for the people in treatment and for staff alike.',
-      'Outside of work, Scott enjoys spending time with family and friends, hunting, fishing, cooking and watching football.',
-    ],
-    role: [
-      'As interim Chief Executive Officer, Scott leads Sunview Wellness and remains a point of contact for professionals and organizations who want to work with Sunview. <a href="/for-professionals/">Information for referring professionals</a>.',
-    ],
-    photo: '/images/team/scott-belovicz.webp',
-    photoSm: '/images/team/scott-belovicz-200.webp',
     linkedin: null,
   },
 ];
