@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="attitle atdesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="attitle">Signs Ativan use may be moving toward dependence</title>
+  <desc id="atdesc">Six signs from the Ativan prescribing information: taking more than prescribed or earlier than scheduled; needing a higher dose to feel the same relief; strong urges to take it or trouble getting through the day without it; wanting to cut back but struggling to control it; continuing despite problems with memory, work, or relationships; and combining it with alcohol or other substances.</desc>
+  <rect width="1200" height="520" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">Signs Ativan use may be moving toward dependence</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Any one of these is worth a conversation with the prescribing doctor</text>
+
+  <g font-size="15">
+    <g transform="translate(56,104)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Taking more than prescribed, or earlier than scheduled</text>
+    </g>
+    <g transform="translate(56,166)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Needing a higher dose to feel the same relief</text>
+    </g>
+    <g transform="translate(56,228)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Strong urges to use it, or trouble getting through the day without it</text>
+    </g>
+    <g transform="translate(56,290)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Wanting to cut back, but struggling to control it</text>
+    </g>
+    <g transform="translate(56,352)">
+      <rect width="1088" height="56" rx="10" fill="#F0FAFA"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Continuing despite problems with memory, work, or relationships</text>
+    </g>
+    <g transform="translate(56,414)">
+      <rect width="1088" height="56" rx="10" fill="#FFFFFF"/>
+      <circle cx="30" cy="28" r="14" fill="#126E6E"/>
+      <path d="M22 28l5 6 10-13" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="60" y="34" font-weight="700" fill="#3E4444">Combining it with alcohol or other substances</text>
+    </g>
+  </g>
+
+  <text x="56" y="492" font-size="13" fill="#6B6C6C" font-style="italic">Talk with the prescribing doctor before changing a dose on your own (FDA, 2023a)</text>
+</svg>
