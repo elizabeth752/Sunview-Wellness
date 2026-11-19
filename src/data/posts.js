@@ -1620,6 +1620,114 @@ export const posts = [
       { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2020c). Chapter 1 — Substance Use Disorder Treatment: Working With Families. TIP 39: Substance Use Disorder Treatment and Family Therapy.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK571084/' },
     ],
   },
+  {
+    slug: 'is-ativan-addictive',
+    type: 'article',
+    title: 'Is Ativan Addictive? How an Anxiety Prescription Turns Into Needing It',
+    seoTitle: 'Is Ativan Addictive? How Dependence Can Develop', // <title> only (≤60, answer 9.1)
+    dek: "Ativan can cause dependence even when taken as prescribed. Learn how it develops, how Ativan compares with Xanax, and why treating the underlying anxiety matters too.",
+    metaDescription: 'Ativan can cause dependence even when taken as prescribed. See how it compares with Xanax and why treating the anxiety underneath matters too.',
+    date: '2026-11-18',
+    author: 'dana-martin', // slug in src/data/team.js — named as the article's author in the docx brief
+    category: 'Substance Use',
+    // Docx citation markers [1]-[6] converted to the site's (Author, Year) in-text style, mapped from the docx's
+    // own hyperlinks. The docx itself cited the Ativan label (2023) and the Xanax label (2023) — two different
+    // FDA 2023 sources, so letter suffixes in Sources-list order: Ativan label = 2023a, Xanax label = 2023b. Two
+    // inline citations in the docx ("[1][4]" and "[4]") had no hyperlink run at all; mapped to the same sources
+    // their numbers point to elsewhere in the docx (FDA 2023a / Ghiasi et al., 2024) rather than left bare. The
+    // Xanax label this docx cites (018276s059lbl.pdf) is a newer revision than the one already cited in the
+    // existing xanax-side-effects post (018276s058lbl.pdf) — kept as the docx supplied it, since it's the more
+    // current label.
+    // Compliance: the docx's closing "we are in network with most major insurance carriers, and we accept
+    // Medicaid" blanket claim is replaced with the site's standard sentence, matching xanax-side-effects and
+    // physical-signs-of-alcoholism. The docx's standalone mid-article "Check Your Insurance Coverage" CTA block
+    // (including its program-levels sentence) is folded into the closing section rather than left as a one-off
+    // mid-body block, same precedent. Phone pulled from SITE, never the docx's stale (561) 269-3175.
+    // Interlinks: /blog/xanax-side-effects/, /what-we-treat/substance-use/benzodiazepines/,
+    // /what-we-treat/mental-health/anxiety/, /programs/php/, /programs/iop/, /programs/outpatient/,
+    // /programs/evening-iop/, /therapies/inner-child-therapy/, /admissions/insurance/, /admissions/.
+    body: `
+<p>Ativan can be addictive. Ativan is the brand name for lorazepam, a benzodiazepine prescribed to treat anxiety. Its label carries a boxed warning, the strongest warning the U.S. Food and Drug Administration (FDA) requires, about the risks of misuse, addiction, and physical dependence (FDA, 2023a). In 2025, about 1.7 million people in the U.S. had a prescription tranquilizer or sedative use disorder, a category that includes benzodiazepines such as lorazepam (SAMHSA, 2026).</p>
+<p>This article explores how dependence can develop even when someone takes Ativan as prescribed, what Ativan is used for, how it compares with Xanax, and why treating the underlying anxiety is an important part of care.</p>
+
+<h2>Is Ativan Addictive?</h2>
+<p>The risks of taking Ativan extend beyond misuse or taking more than prescribed. According to the FDA, physical dependence can develop when benzodiazepines are taken regularly for several days to weeks, even when used as directed. The risk increases with higher daily doses and longer periods of treatment (FDA, 2023a, 2020).</p>
+<p>Lorazepam is classified as a Schedule IV controlled substance. Like other benzodiazepines, it carries high risks of misuse, addiction, and physical dependence. The FDA advises healthcare providers to assess each patient's risk of misuse and addiction before prescribing these medications (FDA, 2023a; Ghiasi et al., 2024).</p>
+
+<h3>What Is the Difference Between Dependence and Addiction?</h3>
+<p>Physical dependence occurs when the body adapts to a medication, causing withdrawal symptoms to appear when a dose is missed, reduced, or stopped. It can occur even when a prescription medication is taken as directed under medical care (FDA, 2023a; SAMHSA, 2026).</p>
+<p>Addiction involves patterns of behavior, including a strong desire to take the drug, difficulty controlling use, and continued use despite harmful consequences. Physical dependence and addiction can overlap. The Ativan prescribing information notes that people even taking benzodiazepines as prescribed may be at risk of misuse, which can lead to addiction (FDA, 2023a).</p>
+
+<h2>How Dependence Builds on a Legitimate Prescription</h2>
+<p>Dependence on Ativan can develop gradually. With continued use, a person may develop tolerance, meaning the same dose provides less relief than it once did. According to the prescribing information, tolerance may develop to the medication's sedative effects, while less tolerance develops to its effects on memory and thinking. As a result, a person may experience less benefit from the same dose while certain side effects continue (FDA, 2023a).</p>
+<p>Anxiety, panic attacks, restlessness, and difficulty sleeping can also occur when a benzodiazepine dose is reduced. These symptoms can make it difficult to tell whether the original anxiety is returning or the body is reacting to lower levels of the medication (FDA, 2023a).</p>
+<p>Signs that Ativan use may be moving toward dependence or misuse include (FDA, 2023a):</p>
+<ul>
+  <li>Taking more than prescribed, or taking doses earlier than scheduled</li>
+  <li>Needing a higher dose to feel the same relief</li>
+  <li>Experiencing strong urges to take it, or difficulty getting through the day without it</li>
+  <li>Wanting to reduce use but having difficulty controlling it</li>
+  <li>Continuing to take it despite problems with memory, work, or relationships</li>
+  <li>Combining it with alcohol or other substances</li>
+</ul>
+<figure><img src="/images/blog/infographics/ativan-dependence-signs-checklist.svg" width="1200" height="520" loading="lazy" alt="Six signs Ativan use may be moving toward dependence: taking more than prescribed or earlier than scheduled; needing a higher dose for the same relief; strong urges to use it or trouble getting through the day without it; wanting to cut back but struggling to control it; continuing despite problems with memory, work, or relationships; and combining it with alcohol or other substances." /></figure>
+<p>Anyone concerned about their Ativan use should talk with their prescribing doctor before changing their dose. Stopping a benzodiazepine suddenly after continued use can cause serious, potentially life-threatening withdrawal symptoms (FDA, 2023a).</p>
+
+<h2>What Is Ativan Used For?</h2>
+<p>The FDA has approved Ativan tablets for managing anxiety disorders and for providing short-term relief of anxiety symptoms, including anxiety associated with depression. Lorazepam is also used clinically for sleep problems related to anxiety, for sedation before surgery, and, as an injection, to treat prolonged seizures (FDA, 2023a; Ghiasi et al., 2024).</p>
+<p>The prescribing information notes that anxiety related to everyday stress generally does not require medication. It also notes that Ativan's effectiveness beyond four months has not been evaluated in systematic clinical studies, so the prescribing doctor should regularly reassess whether the medication is still needed (FDA, 2023a).</p>
+
+<h3>How Long Does Ativan Last?</h3>
+<p>After taking Ativan by mouth, blood levels typically reach their highest point in about two hours. The medication's average half-life, or the time it takes the body to eliminate half of the drug, is approximately 12 hours. Because of its effects on alertness, the prescribing information advises people taking Ativan not to drive or operate dangerous machinery, and warns that it lowers their tolerance for alcohol (FDA, 2023a).</p>
+
+<h3>Ativan vs. Xanax: What Is the Difference?</h3>
+<p>Ativan (lorazepam) and Xanax (alprazolam) are both benzodiazepines. Both act on GABA (gamma-aminobutyric acid), a chemical the brain uses to slow down nerve activity (FDA, 2020). The main differences include:</p>
+<ul>
+  <li><strong>FDA-approved uses:</strong> Xanax is approved for generalized anxiety disorder and panic disorder. Ativan is approved for anxiety disorders and for providing short-term relief of anxiety symptoms (FDA, 2023a, 2023b).</li>
+  <li><strong>How quickly they peak and how long they remain in the body:</strong> Xanax reaches its highest blood concentration about 1 to 2 hours after a dose and has an average half-life of about 11 hours. Ativan reaches its peak in about 2 hours and has an average half-life of about 12 hours (FDA, 2023a, 2023b).</li>
+  <li><strong>How the body processes them:</strong> Lorazepam is processed through a process called glucuronidation and does not rely on the same liver enzyme pathways as many other medications. This may make it a consideration for some people with liver impairment, depending on their overall health and clinical circumstances (Ghiasi et al., 2024).</li>
+</ul>
+<figure><img src="/images/blog/infographics/ativan-vs-xanax-compare.svg" width="1200" height="480" loading="lazy" alt="Ativan vs. Xanax. Ativan (lorazepam): FDA-approved for anxiety disorders and short-term relief, peaks about 2 hours after a dose, average half-life about 12 hours, cleared by glucuronidation. Xanax (alprazolam): FDA-approved for generalized anxiety disorder and panic disorder, peaks about 1 to 2 hours after a dose, average half-life about 11 hours, cleared by the standard liver-enzyme pathway. Both carry FDA boxed warnings for misuse, addiction, and physical dependence." /></figure>
+<p>Both medications carry FDA boxed warnings about misuse, addiction, and physical dependence (FDA, 2023a, 2023b). For more information on alprazolam, see our article on <a href="/blog/xanax-side-effects/">Xanax side effects</a>.</p>
+
+<h2>Ativan Side Effects</h2>
+<p>In a clinical study involving approximately 3,500 people treated for anxiety, the most commonly reported side effect of Ativan was sedation, reported by about 16% of participants. Dizziness, weakness, and unsteadiness were also reported. Sedation and unsteadiness became more common with age (FDA, 2023a).</p>
+<p>Other possible side effects include fatigue, memory problems, confusion, depression, changes in sex drive, and slurred speech. The prescribing information also notes that existing depression may appear or worsen during benzodiazepine use (FDA, 2023a). Anyone who notices changes in mood or memory should tell their prescribing provider.</p>
+
+<h2>Benzodiazepines and Alcohol</h2>
+<p>Alcohol and benzodiazepines both slow down the central nervous system, which controls alertness and breathing. Taking them together can intensify these effects and increase the risk of dangerous sedation and slowed breathing. In cases of overdose, combining alcohol with lorazepam can be life-threatening. Benzodiazepines taken with opioids can also cause profound sedation, slowed breathing, coma, and death (FDA, 2023a; Ghiasi et al., 2024).</p>
+<p>The FDA notes that misuse of benzodiazepines often involves alcohol or other substances, which is linked to more serious outcomes (FDA, 2023a).</p>
+
+<h2>Why the Anxiety Underneath Has to Be Treated Too</h2>
+<p>The National Institute of Mental Health (NIMH) notes that benzodiazepines can reduce anxiety quickly, but some people build tolerance and become dependent on them, so providers may prescribe them only for brief periods (NIMH, 2025). When a benzodiazepine is the only treatment, the anxiety it was prescribed for may still be present.</p>
+<p>Psychotherapy is a central part of anxiety treatment. Cognitive behavioral therapy (CBT) helps people notice and question inaccurate or harmful thoughts and change patterns that increase worry. NIMH describes CBT as the most well-studied form of psychotherapy for generalized anxiety disorder (NIMH, 2025).</p>
+<p>Other medications can also help. Certain antidepressants, known as SSRIs and SNRIs, can treat anxiety symptoms, and buspirone, an anti-anxiety medication, has less potential to be addictive than benzodiazepines. These medications may take several weeks to work (NIMH, 2025). A prescribing doctor can help decide which option may be the best fit.</p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Ativan (lorazepam) can be addictive. Physical dependence can develop within days to weeks, even when it is taken as prescribed.</li>
+  <li>Dependence is the body adapting to the medication. Addiction involves loss of control over use. The two can overlap.</li>
+  <li>Tolerance can reduce Ativan's calming effect over time, while effects on memory and thinking continue.</li>
+  <li>Benzodiazepines can reduce anxiety quickly, but therapy such as CBT can address the anxiety itself.</li>
+</ul>
+
+<h2>Benzodiazepine and Anxiety Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient program in West Palm Beach for adults 18 and older. Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>, including an <a href="/programs/evening-iop/">evening IOP</a> for those who need to keep working during the day.</p>
+<p>Our <a href="/what-we-treat/substance-use/benzodiazepines/">benzodiazepine addiction treatment</a> addresses the medication use and the <a href="/what-we-treat/mental-health/anxiety/">anxiety</a> underneath it at the same time, with one clinical team. A psychiatric provider reviews your medications, and therapy groups teach practical skills for handling anxiety, stress, and poor sleep. Free door-to-door transportation is available if you cannot drive.</p>
+<p>Our PhD-led clinical team brings years of experience and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> to address the fear, shame, and long-held patterns underneath the anxiety.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can review your benefits</a> at no cost and help you schedule an assessment.</p>
+<p><a href="/admissions/"><strong>Talk to Admissions</strong></a></p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'U.S. Food and Drug Administration (FDA). (2023a). Ativan (Lorazepam) Tablets, USP: Prescribing Information. Drugs@FDA. Bausch Health US.', url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/017794s049lbl.pdf' },
+      { label: 'U.S. Food and Drug Administration (FDA). (2020, September 23). FDA Requiring Boxed Warning Updated to Improve Safe Use of Benzodiazepine Drug Class. Drug Safety Communications.', url: 'https://www.fda.gov/drugs/drug-safety-and-availability/fda-requiring-boxed-warning-updated-improve-safe-use-benzodiazepine-drug-class' },
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2026). Key Substance Use and Mental Health Indicators in the United States: Results From the 2025 National Survey on Drug Use and Health. NSDUH Series H-61.', url: 'https://www.samhsa.gov/data/sites/default/files/reports/rpt57150/2025-nsduh-annual-national-html/2025-nsduh-annual-national.htm' },
+      { label: 'Ghiasi, N., et al. (2024). Lorazepam. StatPearls. StatPearls Publishing.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK532890/' },
+      { label: 'U.S. Food and Drug Administration (FDA). (2023b). Xanax (Alprazolam) Tablets, USP: Prescribing Information. Drugs@FDA. Viatris.', url: 'https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/018276s059lbl.pdf' },
+      { label: 'National Institute of Mental Health (NIMH). (2025). Generalized Anxiety Disorder: What You Need to Know. Health Publications.', url: 'https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
