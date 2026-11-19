@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" role="img" aria-labelledby="otitle odesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="otitle">A sign doesn't confirm a drinking problem</title>
+  <desc id="odesc">Five possible signs of heavy drinking, each paired with common non-alcohol explanations: facial flushing can also come from rosacea, menopause, or spicy food; a puffy face can also come from poor sleep or allergies; unexplained bruising can also come from blood thinners or aging skin; stomach trouble can also come from other digestive conditions or stress; and shaky hands can also come from caffeine, anxiety, or low blood sugar.</desc>
+  <rect width="1200" height="500" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">A sign doesn't confirm a drinking problem</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">Each of these can also show up for reasons that have nothing to do with alcohol</text>
+
+  <!-- column headers -->
+  <text x="88" y="112" font-size="13" font-weight="800" fill="#8A8B8B" letter-spacing="0.06em">POSSIBLE SIGN</text>
+  <text x="664" y="112" font-size="13" font-weight="800" fill="#8A8B8B" letter-spacing="0.06em">ALSO COMMON WITH</text>
+  <line x1="640" y1="98" x2="640" y2="462" stroke="#E3ECEC" stroke-width="2"/>
+
+  <g font-size="15">
+    <g transform="translate(56,124)">
+      <rect width="1088" height="60" rx="10" fill="#F0FAFA"/>
+      <text x="32" y="36" font-weight="800" fill="#3E4444">Facial flushing</text>
+      <text x="608" y="36" fill="#545555">Rosacea, menopause, spicy food</text>
+    </g>
+    <g transform="translate(56,192)">
+      <rect width="1088" height="60" rx="10" fill="#FFFFFF"/>
+      <text x="32" y="36" font-weight="800" fill="#3E4444">Puffy or swollen face</text>
+      <text x="608" y="36" fill="#545555">Poor sleep, allergies</text>
+    </g>
+    <g transform="translate(56,260)">
+      <rect width="1088" height="60" rx="10" fill="#F0FAFA"/>
+      <text x="32" y="36" font-weight="800" fill="#3E4444">Unexplained bruising</text>
+      <text x="608" y="36" fill="#545555">Blood thinners, aging skin</text>
+    </g>
+    <g transform="translate(56,328)">
+      <rect width="1088" height="60" rx="10" fill="#FFFFFF"/>
+      <text x="32" y="36" font-weight="800" fill="#3E4444">Stomach trouble</text>
+      <text x="608" y="36" fill="#545555">Other digestive conditions, stress</text>
+    </g>
+    <g transform="translate(56,396)">
+      <rect width="1088" height="60" rx="10" fill="#F0FAFA"/>
+      <text x="32" y="36" font-weight="800" fill="#3E4444">Shaky hands</text>
+      <text x="608" y="36" fill="#545555">Caffeine, anxiety, low blood sugar</text>
+    </g>
+  </g>
+
+  <text x="56" y="486" font-size="13" fill="#6B6C6C" font-style="italic">A physical sign is a reason to start a conversation, not proof of a drinking problem.</text>
+</svg>
