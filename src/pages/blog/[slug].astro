@@ -11,6 +11,7 @@
 import Base from '../../layouts/Base.astro';
 import BlogBanner from '../../components/blog/BlogBanner.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import InlineCta from '../../components/blog/InlineCta.astro';
 import Icon from '../../components/Icon.astro';
 import Avatar from '../../components/Avatar.astro';
 import PostCard from '../../components/PostCard.astro';
@@ -219,7 +220,14 @@ const cardCls = 'rounded-[var(--radius-card)] bg-white p-6';
             </div>
           )}
 
-          <div class="prose-sv sv-article" set:html={body} />
+          {/* In-article CTA before the third H2 (second if there are only two); falls back to after the body. */}
+          {(() => {
+            const at = [...body.matchAll(/<h2[\s>]/g)].map((m) => m.index);
+            const cut = at.length >= 3 ? at[2] : at.length === 2 ? at[1] : -1;
+            return cut > 0
+              ? <><div class="prose-sv sv-article" set:html={body.slice(0, cut)} /><InlineCta /><div class="prose-sv sv-article" set:html={body.slice(cut)} /></>
+              : <><div class="prose-sv sv-article" set:html={body} /><InlineCta /></>;
+          })()}
 
           {/* End of article: Sources · Share on · author mini-card (<1024px) */}
           <div class="mt-12 space-y-8 border-t border-line pt-8">

@@ -1,0 +1,15 @@
+---
+// In-article CTA (2026-11-19): one card mid-post so readers who arrive on an informational article see the
+// next step without scrolling to the end. Placed before the post's third H2 (second if it has only two) by
+// the post template. Copy reuses approved facts only: levels of care, evening IOP, free transport, free VOB.
+import Icon from '../Icon.astro';
+import { SITE } from '../../data/site.js';
+---
+<aside class="my-10 max-w-[72ch] rounded-[var(--radius-card)] border-l-4 border-teal bg-cream p-6 sm:p-8" aria-label="Talk with admissions" data-inline-cta>
+  <p class="font-display text-xl font-bold leading-snug text-charcoal sm:text-2xl">Ready to talk about treatment? You don’t have to put your life on hold.</p>
+  <p class="mt-3 text-[17px] leading-relaxed">Sunview offers <a href="/programs/php/" class="font-bold text-teal hover:text-teal-light">PHP</a>, <a href="/programs/iop/" class="font-bold text-teal hover:text-teal-light">day IOP</a> and <a href="/programs/evening-iop/" class="font-bold text-teal hover:text-teal-light">evening IOP</a> in West Palm Beach, with free door-to-door transportation. We check your insurance for free.</p>
+  <div class="mt-5 flex flex-wrap gap-3">
+    <a href={SITE.phoneHref} class="btn-sun"><Icon name="phone" class="h-4 w-4" />Call {SITE.phone}</a>
+    <a href="/admissions/insurance/" class="btn-ghost">Verify my insurance</a>
+  </div>
+</aside>
