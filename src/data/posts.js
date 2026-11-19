@@ -753,6 +753,7 @@ export const posts = [
 
 <h2>How Sunview Wellness Treats Opioid Use, Including 7-OH</h2>
 <p>At Sunview Wellness, we treat <em>in vivo</em>, which means care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
+<p>If you need to keep working or studying, our <a href="/programs/iop/">IOP in West Palm Beach</a> meets three days a week, and <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM. If you need more structure, our <a href="/programs/php/">partial hospitalization program in West Palm Beach</a> meets every weekday morning.</p>
 <p>Whether opioid use started with a prescription or a store-bought product sold as kratom, our <a href="/what-we-treat/substance-use/opioids/">opioid treatment program</a> usually begins after medically supervised detox, with coordination with an outside MAT prescriber when that applies, and it addresses the anxiety, depression, and trauma that so often sit underneath the use.</p>
 <p>We’re in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
@@ -848,6 +849,7 @@ export const posts = [
 <h2>How Sunview Wellness Treats Functional Alcoholism</h2>
 <p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens inside a real life. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder program</a> lets people keep working and living at home during care, with no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so attending treatment stays realistic.</p>
 <p>Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>. Our <a href="/programs/evening-iop/">evening IOP</a> meets 3 evenings a week after work, and our outpatient program meets 1 morning a week when a less intensive level of care is the right fit. Spouses and family members can take part in treatment, too.</p>
+<p>If you need to keep working or studying, our <a href="/programs/iop/">IOP in West Palm Beach</a> meets three days a week, and <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM. If you need more structure, our <a href="/programs/php/">partial hospitalization program in West Palm Beach</a> meets every weekday morning.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
 
@@ -985,6 +987,7 @@ export const posts = [
 
 <h2>Trauma and Addiction Treatment in West Palm Beach</h2>
 <p>Sunview Wellness is a Joint Commission accredited outpatient drug and alcohol rehab in West Palm Beach, serving adults 18 and older. We treat trauma and PTSD alongside substance use <em>in vivo</em>, which means you receive care while you continue your daily life through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care. You can keep working and living at home during treatment.</p>
+<p>If you need to keep working or studying, our <a href="/programs/iop/">IOP in West Palm Beach</a> meets three days a week, and <a href="/programs/evening-iop/">evening IOP</a> meets Monday, Wednesday and Thursday from 6 to 9 PM. If you need more structure, our <a href="/programs/php/">partial hospitalization program in West Palm Beach</a> meets every weekday morning.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
 `,
