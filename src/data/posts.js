@@ -1116,6 +1116,119 @@ export const posts = [
       { label: 'MedlinePlus Medical Encyclopedia. (2024). Helping a Loved One With a Drinking Problem. National Library of Medicine.', url: 'https://medlineplus.gov/ency/patientinstructions/000815.htm' },
     ],
   },
+  {
+    slug: 'codependent-meaning',
+    type: 'article',
+    title: 'Codependent Meaning: What It Looks Like When You Love Someone Who Drinks or Uses',
+    seoTitle: 'Codependent Meaning: When You Love Someone Who Uses', // <title> only (≤60, answer 9.1)
+    dek: "Covering for a loved one who drinks or uses can feel like helping. Learn the signs of codependency and how enabling differs from support that helps.",
+    metaDescription: 'Covering for a loved one who drinks or uses can feel like helping. Learn the signs of codependency and how enabling differs from helping.',
+    date: '2026-11-18',
+    author: 'tyler-shoens', // slug in src/data/team.js — named as the article's author in the docx brief
+    category: 'Substance Use',
+    // Docx citation markers [1]-[6] converted to the site's (Author, Year) in-text style, mapped from the docx's
+    // own hyperlinks (document.xml.rels), not guessed from the Sources list order. Three SAMHSA TIP 39 chapters
+    // all publish in 2020, so they take letter suffixes in Sources-list order: Ch. 2 "Influence of Substance
+    // Misuse on Families" = 2020a, Ch. 3 "Family Counseling Approaches" = 2020b, Ch. 1 "Working With Families" =
+    // 2020c. The MedlinePlus "Helping a Loved One With a Drinking Problem" page fetch-verified at a 7/5/2026
+    // review date, so it's cited as (MedlinePlus, 2026) here — not the 2024 date the earlier
+    // physical-signs-of-alcoholism post used for the same URL, which is now stale.
+    // Compliance: the docx's closing "we are in network with most major insurance plans, including Medicaid"
+    // blanket claim is replaced with the site's standard sentence (in network with most major carriers including
+    // Florida Medicaid plans; admissions verifies benefits at no cost), matching what-is-a-functional-alcoholic
+    // and physical-signs-of-alcoholism. The docx's standalone mid-article "Verify Your Insurance" CTA block is
+    // folded into the closing section instead of left as a one-off mid-body block, same precedent. Phone pulled
+    // from SITE, never the docx's stale (561) 269-3175.
+    // Interlinks: /blog/what-is-a-functional-alcoholic/, /programs/php/, /programs/iop/, /programs/outpatient/,
+    // /programs/evening-iop/, /therapies/family-therapy/, /therapies/inner-child-therapy/,
+    // /admissions/for-families/, /admissions/insurance/, /admissions/.
+    body: `
+<p>Codependency is a relationship pattern in which a person becomes so focused on another person's problems, often their drinking or drug use, that their own needs, feelings, and well-being take a back seat (MHA, 2026). It is not a formal diagnosis, and the term itself is debated (SAMHSA, 2020a). In 2025, about 45 million people aged 12 or older in the U.S. had a substance use disorder (SUD), the medical term for an alcohol or drug addiction. Its effects often extend beyond the individual, affecting the whole family (SAMHSA, 2020a, 2026).</p>
+<p>This article explores what "codependent" means, how codependency may show up in partners and parents, the difference between enabling and helping, and where family members can find support. Holiday gatherings often bring relatives together for extended periods, making relationship patterns and concerns about a loved one's substance use more noticeable.</p>
+
+<h2>What Does Codependent Mean?</h2>
+<p>The term "codependent" was first used to describe the spouses of people with alcohol use disorder. Its meaning expanded to include relatives of anyone with a behavioral or psychological problem. According to Mental Health America (MHA), codependency often affects a spouse, parent, sibling, friend, or coworker of a person with an alcohol or drug problem (MHA, 2026; SAMHSA, 2020a).</p>
+<p>The pattern often starts with good intentions. A person tries to care for a loved one who is struggling, and over time the caretaking can become compulsive. Repeated rescue attempts may allow the loved one to continue on the same course, while the caretaker loses contact with their own needs and sense of self (MHA, 2026).</p>
+
+<h3>What Is Codependent?</h3>
+<p>"Codependent" is an informal term used to describe people who show this relationship pattern. Common characteristics may include an intense sense of responsibility for others' actions, taking on more than one's share of responsibilities, guilt when asserting their personal needs, and difficulty setting or maintaining boundaries (MHA, 2026).</p>
+
+<h3>Is Codependency a Mental Health Diagnosis?</h3>
+<p>No. The Substance Abuse and Mental Health Services Administration (SAMHSA) notes that the field has not agreed on how to use the term and that little research has focused on the concept. The term has also been criticized for potentially framing caring qualities, such as empathy and self-sacrifice, as problematic (SAMHSA, 2020a). This article uses it to describe a relationship pattern, not to label a person or to identify a mental health diagnosis.</p>
+
+<h2>What Does Codependency Look Like? Signs of a Codependent Relationship</h2>
+<p>Families tend to keep functioning as they always have, even when that means supporting a loved one's substance use. Signs may include (MHA, 2026; SAMHSA, 2020a; MedlinePlus, 2026):</p>
+<ul>
+  <li><strong>Covering for them.</strong> Making excuses to an employer, relatives, or friends for missed work or events.</li>
+  <li><strong>Taking over their responsibilities.</strong> Paying their bills or handling their obligations, which can help them avoid the consequences of their use.</li>
+  <li><strong>Organizing your days around their use.</strong> Checking how much they drank, waiting up for them, or planning events around whether they will be sober.</li>
+  <li><strong>Keeping quiet to avoid conflict.</strong> Avoiding the subject to prevent an argument.</li>
+  <li><strong>Feeling responsible for their choices.</strong> Believing they would get worse without your constant effort, or feeling guilty when you say no.</li>
+  <li><strong>Putting your own health last.</strong> Neglecting your health or pulling away from friends and activities.</li>
+</ul>
+<figure><img src="/images/blog/infographics/codependency-signs-checklist.svg" width="1200" height="520" loading="lazy" alt="Six signs of a codependent relationship: covering for them with employers, relatives, or friends; taking over their responsibilities, like paying their bills; organizing your days around their use; keeping quiet to avoid an argument; feeling responsible for their choices; and putting your own health and friendships last." /></figure>
+<p>Partners of people who misuse substances can also experience anger, anxiety, hopelessness, shame, and isolation (SAMHSA, 2020a).</p>
+
+<h2>Codependency and Addiction</h2>
+<p>SAMHSA describes substance use and family stress as affecting each other. Substance use can lead to conflict and poor communication, and that conflict can affect substance use and the risk of returning to use (SAMHSA, 2020a).</p>
+<p>Most families are doing their best to cope, but some ways of coping can be unhealthy (SAMHSA, 2020a). If your partner keeps up with work while drinking heavily, our article on <a href="/blog/what-is-a-functional-alcoholic/">functional alcoholics</a> covers signs to look for.</p>
+<p>These patterns can continue after a loved one starts recovery, as family members may return to old habits such as blaming or becoming overly responsible for the household (SAMHSA, 2020b).</p>
+
+<h2>The Codependent Parent: When an Adult Child Drinks or Uses</h2>
+<p>SAMHSA gives the example of parents whose adult son misuses prescription opioids. Because they love him, they keep giving him money, let him live at home, and bail him out of jail. These actions keep him from facing the effects of his use, which can make it easier to continue and give him less reason to seek recovery (SAMHSA, 2020a).</p>
+<p>MedlinePlus advises family members not to feel guilty, noting that they did not encourage a loved one's drinking and cannot control it (MedlinePlus, 2026). Family counseling can include parents directly. Behavioral family counseling, for example, brings together a person in treatment and a family member, usually a parent of an adult child, to support recovery and improve communication (SAMHSA, 2020b).</p>
+
+<h2>Enabling vs. Helping</h2>
+<p>Enabling refers to actions that protect a person from the effects of their substance use. SAMHSA describes it as a common, well-intended reaction among family members that can work against recovery. Helping means supporting the person without supporting the substance use (SAMHSA, 2020a). Examples include (MedlinePlus, 2026; SAMHSA, 2020b):</p>
+<ul>
+  <li><strong>Making excuses vs. letting them answer for themselves.</strong> MedlinePlus advises against lying or making excuses for a loved one's drinking.</li>
+  <li><strong>Taking over vs. handing back responsibilities.</strong> Taking on a loved one's obligations can help them avoid consequences.</li>
+  <li><strong>Arguing during use vs. talking when they are sober.</strong> MedlinePlus advises against arguing when a loved one has been drinking and suggests talking when they are not.</li>
+  <li><strong>Blame vs. concern and hope.</strong> Community Reinforcement and Family Training (CRAFT) teaches family members to avoid blaming or shaming, express concern and hope, and recognize any positive change.</li>
+</ul>
+<figure><img src="/images/blog/infographics/codependency-enabling-vs-helping.svg" width="1200" height="480" loading="lazy" alt="Enabling vs. helping. Enabling: making excuses, taking over, arguing during use, and blame. Helping: letting them answer for themselves, handing responsibilities back, talking when they're sober, and concern and hope." /></figure>
+<p>SAMHSA notes that people pressed into treatment through confrontation are more likely to return to use than those encouraged through positive reinforcement (SAMHSA, 2020b).</p>
+
+<h3>Is Setting a Boundary the Same as Giving Up?</h3>
+<p>No. MedlinePlus describes boundaries as limits on your own actions, so that you do not encourage the person's behavior or let it overly affect you (MedlinePlus, 2026). A boundary might mean no longer paying for things that support substance use. It does not mean withdrawing love or concern.</p>
+
+<h2>Support for Family Members, Too</h2>
+<p>MedlinePlus notes that you cannot help a loved one if you do not also take care of yourself (MedlinePlus, 2026; SAMHSA, 2020b). Steps that can help include:</p>
+<ul>
+  <li><strong>Talk with people you trust.</strong> Tell relatives or friends how you feel and what would help.</li>
+  <li><strong>Join a family support group.</strong> Al-Anon is for family and friends of people with alcohol problems, and Nar-Anon is for families of people who use other drugs. These groups help members focus on their own needs.</li>
+  <li><strong>Consider counseling for yourself.</strong> A therapist who works with alcohol problems can help, since drinking affects the entire family.</li>
+</ul>
+<p>Mental Health America (MHA) notes that codependency is often rooted in childhood, so therapy may explore early family experiences and how they connect to current patterns (MHA, 2026). Family counseling can also help each person see how they have adjusted to a loved one's substance use and what they can change (SAMHSA, 2020c).</p>
+
+<h3>Can Family Members Get Help if a Loved One Is Not Ready for Treatment?</h3>
+<p>Yes. CRAFT works with family members to change how they interact with the person who has an SUD, which can encourage that person to enter treatment (SAMHSA, 2020b). Our page for <a href="/admissions/for-families/">families of someone struggling with addiction</a> explains how to start that conversation.</p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Codependency describes a relationship pattern of focusing on another person's problems at the expense of your own needs. It is not a formal diagnosis.</li>
+  <li>Signs can include covering for a loved one, taking over their responsibilities, and putting your own health last.</li>
+  <li>Enabling protects a person from the effects of substance use. Helping supports the person without supporting the use.</li>
+  <li>Family members can benefit from their own support, whether or not their loved one is in treatment.</li>
+</ul>
+
+<h2>Evening IOP and Family Therapy in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient center in West Palm Beach for adults 18 and older. Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>, including an <a href="/programs/evening-iop/">evening IOP</a> that meets three evenings a week, so your loved one can keep working or studying and live at home during treatment.</p>
+<p>With the client's consent and when clinically appropriate, each person's primary therapist contacts a family member during the first week, and corresponding <a href="/therapies/family-therapy/">family therapy</a> sessions help the family recognize patterns of rescuing and enabling, with support for recovery. Free door-to-door transportation is available.</p>
+<p>Our PhD-led clinical team brings together years of experience and training, and works psychodynamically, using <a href="/therapies/inner-child-therapy/">Inner Child Therapy</a> to address the long-held patterns that shape how people cope and relate to the people closest to them.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a> at no cost and answer family members' questions.</p>
+<p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'Mental Health America (MHA). (2026). Co-Dependency. Resources. Mental Health America.', url: 'https://mhanational.org/resources/co-dependency/' },
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2020a). Chapter 2 — Influence of Substance Misuse on Families. TIP 39: Substance Use Disorder Treatment and Family Therapy.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK571087/' },
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2026). Key Substance Use and Mental Health Indicators in the United States: Results From the 2025 National Survey on Drug Use and Health. NSDUH Series H-61.', url: 'https://www.samhsa.gov/data/sites/default/files/reports/rpt57150/2025-nsduh-annual-national-html/2025-nsduh-annual-national.htm' },
+      { label: 'MedlinePlus Medical Encyclopedia. (2026). Helping a Loved One With a Drinking Problem. National Library of Medicine.', url: 'https://medlineplus.gov/ency/patientinstructions/000815.htm' },
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2020b). Chapter 3 — Family Counseling Approaches. TIP 39: Substance Use Disorder Treatment and Family Therapy.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK571088/' },
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2020c). Chapter 1 — Substance Use Disorder Treatment: Working With Families. TIP 39: Substance Use Disorder Treatment and Family Therapy.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK571084/' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
