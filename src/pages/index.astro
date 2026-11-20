@@ -11,7 +11,6 @@ import FaqList from '../components/FaqList.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
 import SunMark from '../components/SunMark.astro';
-import InVivoCycle from '../components/InVivoCycle.astro';
 import LeadForm from '../components/LeadForm.astro';
 import Reviews from '../components/Reviews.astro';
 import MapSection from '../components/MapSection.astro';
@@ -189,20 +188,6 @@ const schema = pageSchema({
           </li>
         ))}
       </ol>
-    </div>
-  </section>
-
-  {/* In vivo */}
-  <section class="section relative overflow-hidden bg-teal text-white">
-    <SunMark variant="rays" class="pointer-events-none absolute -left-24 -top-24 h-[480px] w-[480px] -scale-x-100 text-gold/40" />
-    <div class="container-x relative grid items-center gap-12 lg:grid-cols-2">
-      <div>
-        <h2 class="text-3xl text-white sm:text-[2.1875rem]">In Vivo Treatment™: Recovery Practiced in Real Life</h2>
-        <p class="subheading mt-3 !text-white">You go home at night. What happens there is the work.</p>
-        <p class="mt-5 text-lg text-white/90">The argument with your spouse, the Friday night alone, the boss who pushes your buttons. You bring what actually happened back into the room the next morning, and we slow it down together. Recovery gets tested in real life, so that’s where we practice it.</p>
-        <a href="/about/our-approach/" class="btn-ghost-light mt-8">Our approach and outcomes <Icon name="arrow" /></a>
-      </div>
-      <InVivoCycle />
     </div>
   </section>
 

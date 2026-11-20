@@ -41,77 +41,8 @@ export const categoryColor = (c) => CATEGORY_COLORS[c] ?? FALLBACK_COLOR;
 
 
 export const posts = [
-  {
-    slug: 'what-should-a-treatment-center-feel-like',
-    type: 'article',
-    title: 'What Should a Treatment Center Feel Like?',
-    dek: 'Clinical excellence matters, and so does recovery culture. What to pay attention to when you visit or call a program.',
-    date: '2026-09-22',
-    updated: '2026-11-09',
-    // Reassigned to Scott (interim CEO) on 2026-11-09 when Frank Galimidi left Sunview (ClickUp 1dfm34y15ur).
-    author: 'scott-belovicz', // slug in src/data/team.js
-    category: 'Clinical Approach',
-    // Full text of the official page (sunviewwellness.com/media/…), paragraph by paragraph; it cites nothing (no Sources).
-    body: `
-<p>When people search for addiction treatment, they understandably look at the services first. What levels of care are offered? Does the program accept my insurance? Are there licensed clinicians? What does the schedule look like? Can I continue working or going to school?</p>
-<p>Those are important questions. But there is another question that people considering treatment, and their families, should ask:</p>
-<blockquote>What does it feel like to be there?</blockquote>
-<p>A treatment center is obviously a healthcare environment. Clinical quality, safety, ethical practice, appropriate medical care, and qualified professionals matter enormously. Certain levels of care, particularly detoxification and other medically intensive services, appropriately require a more medical environment.</p>
-<p>But treatment does not have to feel cold, sterile, or institutional to be clinically excellent.</p>
-<p>In fact, for many people recovering from a substance use disorder, the environment surrounding the clinical work can become an important part of the recovery process itself.</p>
-
-<h2>You Should Feel Like a Person, Not a Client Number</h2>
-<p>People often enter treatment during one of the most vulnerable periods of their lives. There may be shame, fear, damaged relationships, uncertainty about the future, and sometimes a genuine question about whether life can ever feel normal again.</p>
-<p>Walking into an unfamiliar treatment center can be intimidating.</p>
-<p>A healthy treatment environment should begin changing that experience.</p>
-<p>People should know your name. Someone should notice when you aren’t there. Your therapist should understand more about you than what appears in your chart. Staff should know when you are having a difficult week.</p>
-<p>There should be room for serious clinical work, but there should also be room to laugh.</p>
-<p>There should be accountability without humiliation. Structure without feeling controlled. Professional boundaries without emotional distance.</p>
-<p>Most importantly, you should gradually feel that you belong there.</p>
-
-<h2>Clinical Excellence and Recovery Culture</h2>
-<p>At Sunview Wellness, two ideas from our <a href="/about/our-approach/">Clinical Architecture™ framework</a> are especially important to how we think about the treatment environment: <strong>Clinical Excellence</strong> and <strong>Recovery Culture</strong>.</p>
-<p>Clinical Excellence means treatment has substance behind it. Therapy should have purpose. Groups should be meaningful. Clinicians should understand addiction and behavioral health. Treatment plans should reflect the individual rather than simply moving everyone through the same experience.</p>
-<p>Recovery Culture addresses something different.</p>
-<p>It asks whether the environment itself supports recovery.</p>
-<p>Do people connect with one another? Is honesty encouraged? Are clients challenged when necessary? Does accountability exist alongside compassion? Can people begin developing healthy relationships? Does recovery feel like something happening throughout the program rather than only during a scheduled therapy hour?</p>
-<p>These two things belong together.</p>
-<p>Clinical excellence gives treatment its substance. Recovery culture gives that treatment somewhere to live.</p>
-
-<h2>Recovery Requires Connection</h2>
-<p>Addiction can be incredibly isolating.</p>
-<p>Over time, relationships may become damaged. Trust can disappear. Social circles can shrink or become centered around substance use. Family members may become exhausted or unsure how to help.</p>
-<p>Treatment cannot repair all of that overnight.</p>
-<p>But it can provide a place where healthier patterns begin.</p>
-<p><a href="/therapies/group-therapy/">Group therapy</a> is important partly because recovery doesn’t happen in isolation. Sitting with other people, telling the truth, hearing experiences that resemble your own, being challenged, supporting someone else, and discovering that people notice when you are struggling can all become part of the work.</p>
-<p>That doesn’t replace good clinical treatment.</p>
-<p>It helps good clinical treatment take hold.</p>
-<p>For families, this matters too. When you are choosing a program for someone you love, you are not simply purchasing a collection of therapy hours. You are placing someone you care about into an environment that may influence how they begin thinking about themselves, their relationships, and their future.</p>
-<p>It is reasonable to ask what that environment is like.</p>
-
-<h2>Treatment Should Prepare You for Life, Not Separate You From It</h2>
-<p>This becomes especially important in community-based care.</p>
-<p>Our clients eventually leave a group or therapy session and return to real life. They go home. They interact with family. They go to work or school. They encounter stress, conflict, responsibilities, cravings, boredom, relationships, and all the other realities that don’t disappear simply because someone entered treatment.</p>
-<p>That means treatment should become a place where people can bring those real experiences back, talk honestly about what happened, learn from them, make adjustments, and try again.</p>
-<p>Over time, the goal isn’t for someone to become exceptionally good at being in treatment.</p>
-<p>The goal is to become increasingly capable of living a healthy life outside of it.</p>
-
-<h2>Pay Attention to How a Place Feels</h2>
-<p>If you are considering treatment for yourself or someone you love, ask about credentials, services, insurance, schedules, and clinical approaches.</p>
-<p>But when you speak with a program, or visit one, pay attention to something less tangible too.</p>
-<ul>
-  <li>How do people speak to you?</li>
-  <li>Do they seem interested in understanding your situation, or simply completing an admission?</li>
-  <li>Do you feel welcomed?</li>
-  <li>Does the environment feel connected?</li>
-  <li>Does the program seem like a community of people doing difficult work together, or simply a place people pass through?</li>
-</ul>
-<p>Those things are difficult to capture on a checklist, but they matter.</p>
-<p>At Sunview Wellness, we believe treatment should be clinically serious without losing its humanity. People should be challenged, supported, known, and connected while developing the skills necessary to carry recovery into everyday life.</p>
-<p>Because great treatment isn’t only about what happens inside a treatment center.</p>
-<p>It’s also about what someone begins to believe is possible when they walk back out the door.</p>
-`,
-  },
+  // 2026-11-19: "What Should a Treatment Center Feel Like?" (Frank Galimidi's article) removed at his request
+  // (Scott, 11/19 status call); its URL 301s to /blog/ in vercel.json. Don't re-add Frank's content.
   {
     slug: 'what-is-molly-mdma',
     type: 'article',
@@ -198,7 +129,7 @@ export const posts = [
 <p>Any of these justify a professional assessment, which reviews substance use history, screens for co-occurring depression, anxiety, and trauma, evaluates medical risk, and produces a recommended level of care.</p>
 
 <h2>How Sunview Wellness Treats Substance Abuse</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens inside a real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical treatment. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attending treatment stays realistic.</p>
+<p>At Sunview Wellness, recovery happens inside a real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical treatment. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attending treatment stays realistic.</p>
 <p>Care is delivered at three levels:</p>
 <ul>
   <li><strong>PHP — <a href="/programs/php/">Partial Hospitalization</a>.</strong> Intensive treatment five days a week. Suited to someone after inpatient discharge or when maximum structure is needed.</li>
@@ -331,7 +262,7 @@ export const posts = [
 <p>The useful next step is a <a href="/admissions/what-to-expect/">clinical assessment</a> rather than a confrontation. An assessment documents the substance use history, screens for the <a href="/what-we-treat/dual-diagnosis/">anxiety, depression, or trauma</a> sitting underneath it, evaluates medical risk, and produces a recommended level of care.</p>
 
 <h2>How Sunview Wellness Treats Benzodiazepine Use</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means treatment is adapted to your real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical care. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attendance stays realistic for someone who is still working.</p>
+<p>At Sunview Wellness, treatment is adapted to your real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical care. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attendance stays realistic for someone who is still working.</p>
 <p>Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>. Our <a href="/what-we-treat/substance-use/benzodiazepines/">benzodiazepine treatment program</a> follows clients well past the standard first month, because dependence built up over weeks or months does not resolve on a 30-day timeline.</p>
 <p>If you or someone in your family have been taking more Xanax than prescribed, or combining it with alcohol or opioids, contact us for an assessment.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team will verify your benefits</a> and explain options before you commit to anything specific.</p>
@@ -435,7 +366,7 @@ export const posts = [
 <p>Getting care is the bottleneck: of the 28 million people aged 12 and older with an alcohol use disorder in the past year, only about 2 million received any treatment for it (NIAAA, 2025b). Outpatient care exists partly to close that gap, because it allows people to receive care while continuing to live at home and maintain work, school, and other responsibilities.</p>
 
 <h2>How Sunview Wellness Treats Alcohol Use and Co-Occurring Depression</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens inside a real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical treatment. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attending treatment stays realistic.</p>
+<p>At Sunview Wellness, recovery happens inside a real life. Clients keep their jobs, stay in school, and sleep at home while receiving clinical treatment. There is no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so that attending treatment stays realistic.</p>
 <p>Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder program</a> treats the drinking and the mood condition underneath it together, not as two separate referrals.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
@@ -542,7 +473,7 @@ export const posts = [
 <p>Abstinence may improve a co-occurring mental health condition on its own, but treating the mental health symptoms alone is not enough to resolve the drinking problem. <a href="/what-we-treat/dual-diagnosis/">Dual diagnosis treatment</a> includes an assessment that looks at both mental health and substance use histories, rather than focusing only on the one concern that led you to seek help (NIAAA, 2025b).</p>
 
 <h2>How Sunview Wellness Treats Depression in Women</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens within your everyday life through our <a href="/programs/php/">partial hospitalization</a>, <a href="/programs/iop/">intensive outpatient</a>, and <a href="/programs/outpatient/">outpatient</a> programs. You can continue working, studying, and living at home while receiving care.</p>
+<p>At Sunview Wellness, recovery happens within your everyday life through our <a href="/programs/php/">partial hospitalization</a>, <a href="/programs/iop/">intensive outpatient</a>, and <a href="/programs/outpatient/">outpatient</a> programs. You can continue working, studying, and living at home while receiving care.</p>
 <p>Our clinical team screens for both mood symptoms and alcohol use at intake, not just the concern that prompted the call, and treats <a href="/what-we-treat/mental-health/anxiety/">anxiety</a>, depression, and substance use together when they occur together.</p>
 <p>We're in network with most major insurance carriers, and we accept Medicaid. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a> at no cost and schedule an assessment.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
@@ -637,7 +568,7 @@ export const posts = [
 </ul>
 
 <h2>How Sunview Wellness Treats Cannabis Use Disorder</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
+<p>At Sunview Wellness, care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
 <p>Our <a href="/what-we-treat/substance-use/">substance use treatment program</a> addresses cannabis use disorder together with the <a href="/what-we-treat/dual-diagnosis/">anxiety, depression, and trauma</a> that so often sit underneath it, in the same program and by the same team.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
@@ -752,7 +683,7 @@ export const posts = [
 <p>Yes. 7-OH can cause respiratory depression, and at higher doses, breathing can slow enough that the brain and body do not get enough oxygen (Reissig et al., 2025). Families have reported dependence, withdrawal, overdose, and death involving 7-OH products (FDA, 2025).</p>
 
 <h2>How Sunview Wellness Treats Opioid Use, Including 7-OH</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
+<p>At Sunview Wellness, care fits into daily life. Clients keep their jobs, stay in school, and live at home while receiving clinical treatment through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care.</p>
 <p>Whether opioid use started with a prescription or a store-bought product sold as kratom, our <a href="/what-we-treat/substance-use/opioids/">opioid treatment program</a> usually begins after medically supervised detox, with coordination with an outside MAT prescriber when that applies, and it addresses the anxiety, depression, and trauma that so often sit underneath the use.</p>
 <p>We’re in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
@@ -846,7 +777,7 @@ export const posts = [
 <p>Treatment often includes talk therapy in one-on-one, group, or family sessions (NIAAA Alcohol Treatment Navigator, 2023). The FDA has also approved three nonaddictive medications to help people stop or reduce drinking (NIAAA, 2025a). A doctor can help decide whether <a href="/programs/psychiatry-medication-management/">medication-assisted treatment</a>, coordinated with an outside prescriber, is a good fit.</p>
 
 <h2>How Sunview Wellness Treats Functional Alcoholism</h2>
-<p>At Sunview Wellness, we treat <em>in vivo</em>, which means recovery happens inside a real life. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder program</a> lets people keep working and living at home during care, with no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so attending treatment stays realistic.</p>
+<p>At Sunview Wellness, recovery happens inside a real life. Our <a href="/what-we-treat/substance-use/alcohol/">alcohol use disorder program</a> lets people keep working and living at home during care, with no sober living funnel and no long-term housing commitment. Door-to-door transportation is provided at no cost so attending treatment stays realistic.</p>
 <p>Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>. Our <a href="/programs/evening-iop/">evening IOP</a> meets 3 evenings a week after work, and our outpatient program meets 1 morning a week when a less intensive level of care is the right fit. Spouses and family members can take part in treatment, too.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><a href="/admissions/"><strong>Speak With Admissions</strong></a></p>
@@ -984,7 +915,7 @@ export const posts = [
 </ul>
 
 <h2>Trauma and Addiction Treatment in West Palm Beach</h2>
-<p>Sunview Wellness is a Joint Commission accredited outpatient drug and alcohol rehab in West Palm Beach, serving adults 18 and older. We treat trauma and PTSD alongside substance use <em>in vivo</em>, which means you receive care while you continue your daily life through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care. You can keep working and living at home during treatment.</p>
+<p>Sunview Wellness is a Joint Commission accredited outpatient drug and alcohol rehab in West Palm Beach, serving adults 18 and older. We treat trauma and PTSD alongside substance use while you continue your daily life through our <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a> levels of care. You can keep working and living at home during treatment.</p>
 <p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can verify your benefits</a>, schedule an assessment, and explain your options.</p>
 <p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
 `,

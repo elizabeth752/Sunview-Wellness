@@ -1,49 +1,18 @@
 ---
 // /about/our-approach/: About-Team-Content-Briefs.md §D. Sources in docs/content/about-team-sources-approach.md.
-// Copy restructured from the old /our-approach/ page (questionnaire Q8–Q15, Q18, Q20–Q22), the In Vivo article
-// and the "What should a treatment center feel like?" article (src/data/posts.js), and Frank's live bio.
+// Copy restructured from the old /our-approach/ page (questionnaire Q8–Q15, Q18, Q20–Q22).
+// 2026-11-19: In Vivo Treatment™, Clinical Architecture™ and "I = Sick" sections removed. They are Frank Galimidi's
+// content and he asked for all of it to come off the site (Scott, 11/19 status call). Don't add them back.
 // Scope (Q18): no formal EMDR service and no art therapy, so neither is mentioned here.
 // No reviewed-by byline (brief: none on About pages). Rotation: Reviews only. Accreditation logos in the hero (ServicePage default).
-// Layout, deliberately unlike /about/ and Home's In Vivo band: two-lane loop diagram, editorial definition
-// block, teal statement band, ascending three-step progression, iceberg figure, supervision questions,
-// measures table, discharge timeline.
+// Layout: ascending three-step progression, iceberg figure, supervision questions, measures table, discharge timeline.
 import ServicePage from '../../layouts/ServicePage.astro';
 import Icon from '../../components/Icon.astro';
 import { pageSchema } from '../../lib/programSchema.js';
 
 const path = '/about/our-approach/';
 const metaTitle = 'Our Clinical Approach and Outcomes | Sunview Wellness';
-const description = 'In Vivo Treatment™, Clinical Architecture™ and a systems-based model: how Sunview treats addiction and co-occurring conditions and measures progress.';
-const FEEL_URL = '/blog/what-should-a-treatment-center-feel-like/';
-// "I = Sick": definition from the Client Wiki, Proprietary concepts (CEO notes, 10 Sep 2026; wiki txt lines 218–221).
-// Answer 2.1: the section keeps only those two sentences (review note below, not shown).
-// "I = Sick" is the canonical term (Elizabeth, 2026-09-22; QA batch 9). Definition from the CEO notes in the Wiki.
-const I_SICK_TEXT = '“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed. We see it as a main driver of repeat admissions, so we address it directly by helping people redefine themselves beyond the diagnosis.';
-
-// In Vivo loop (article: Learn → Apply → Experience → Process → Adjust → Apply Again).
-// lane: where the step happens. Program = in the room at Sunview; life = at home, at work, with family.
-const loop = [
-  { step: 'Learn', lane: 'program', text: 'Skills for triggers, relapse prevention, emotional regulation, boundaries and communication.' },
-  { step: 'Apply', lane: 'life', text: 'You go home, go to work and try those skills where your life actually happens.' },
-  { step: 'Experience', lane: 'life', text: 'The argument with your spouse, the Friday night alone, the rough day at work.' },
-  { step: 'Process', lane: 'program', text: 'You bring what actually happened back to the program and talk it through.' },
-  { step: 'Adjust', lane: 'program', text: 'Together we look at what worked, what didn’t and what to try next.' },
-  { step: 'Apply again', lane: 'life', text: 'Back out with sharper awareness and another chance to practice.' },
-];
-// Desktop placement: [column, row] in a 6 x 2 grid (row 1 = program lane, row 2 = life lane).
-const place = ['lg:col-start-1 lg:row-start-1', 'lg:col-start-2 lg:row-start-2', 'lg:col-start-3 lg:row-start-2', 'lg:col-start-4 lg:row-start-1', 'lg:col-start-5 lg:row-start-1', 'lg:col-start-6 lg:row-start-2'];
-
-const hypothetical = [
-  'What would you do if a craving hit?',
-  'How would you respond if someone crossed a boundary?',
-  'What coping skill would you use if you felt overwhelmed?',
-];
-const real = [
-  'What actually happened when the craving hit yesterday?',
-  'How did it go when you set that boundary with your family?',
-  'How did you handle that rough day at work?',
-  'What did you do when you felt lonely, angry, bored or overwhelmed?',
-];
+const description = 'How Sunview treats addiction and co-occurring conditions in West Palm Beach: care that fits real life, a systems-based model, family involvement and measured progress.';
 
 const stages = [
   {
@@ -89,13 +58,12 @@ const after = [
 
 
 const faqBase = [
-  { q: 'What is In Vivo Treatment?', a: `<em>In vivo</em> means “within the living environment.” Because you live at home during PHP, IOP or OP, you practice recovery skills in real life, bring what happened back to the program, work through it with your team, adjust and try again.` },
+  { q: 'How does living at home help recovery?', a: 'Because you live at home during PHP, IOP or OP, you practice recovery skills in real life, bring what happened back to the program, work through it with your team, adjust and try again.' },
   { q: 'Is this evidence-based?', a: 'We value evidence-based practices and interventions. The approaches that inform our work include CBT, DBT, Internal Family Systems (IFS) and trauma-informed care. We also look beneath the surface symptoms, and we track progress with the BAM, PHQ-9 and GAD-7.' },
   { q: 'How do you track progress?', a: 'With the Brief Addiction Monitor (BAM), the PHQ-9 and GAD-7 for depression and anxiety, monthly treatment plan reviews with your therapist, and the RSA-R Consumer Satisfaction Survey, which tells us how you experience the program.' },
-  { q: 'What does “I = Sick” mean?', a: '' },
   { q: 'What happens after I finish?', a: 'You can keep seeing your Telemed Clinix psychiatric provider after discharge. Our team also reaches out to see how you’re doing and whether you’re still connected to the supports recommended at discharge, like an individual therapist, psychiatric care and recovery meetings. <a href="/programs/psychiatry-medication-management/">Psychiatry and medication management at Sunview</a>.' },
 ];
-const faqs = faqBase.map((f) => (f.a ? f : { ...f, a: I_SICK_TEXT }));
+const faqs = faqBase;
 
 const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hover:text-teal-light';
 ---
@@ -112,108 +80,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
   reviews
   schema={pageSchema({ path, title: metaTitle, description, faqs, pageType: 'AboutPage' })}
 >
-  {/* 1. In Vivo Treatment™: intro + two-lane loop (program / your life), then the "would / did" contrast beside the infographic */}
-  <section class="section">
-    <div class="container-x">
-      <div class="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
-        <div>
-          <h2 class="text-3xl sm:text-[2.1875rem]">In Vivo Treatment™: Recovery Practiced in Real Life</h2>
-          <p class="subheading mt-3">In vivo means “within the living environment.”</p>
-        </div>
-        <div class="prose-sv">
-          <p>Detox and residential care provide safety, stabilization and a break from substances. Eventually, though, everyone in recovery faces the real test: <strong>can I stay sober while actually living my life?</strong> Recovery skills shouldn’t only exist on paper. At some point you have to practice them where your life happens.</p>
-        </div>
-      </div>
-
-      {/* Loop: vertical on mobile, two lanes on desktop */}
-      <div class="relative mt-12">
-        <div class="pointer-events-none absolute inset-0 hidden grid-rows-2 overflow-hidden rounded-[var(--radius-lg)] lg:grid" aria-hidden="true">
-          <div class="border-b border-dashed border-teal/30 bg-mist px-5 pt-4"><span class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-teal">In the program</span></div>
-          <div class="bg-cream px-5 pb-4 pt-4"><span class="font-sans text-[13px] font-extrabold uppercase tracking-[0.08em] text-gold">In your life</span></div>
-        </div>
-        <svg class="pointer-events-none absolute inset-0 hidden h-full w-full lg:block" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
-          <polyline points="50,55 150,145 250,145 350,55 450,55 550,145" fill="none" stroke="var(--color-gold)" stroke-width="2" stroke-dasharray="6 6" vector-effect="non-scaling-stroke" />
-        </svg>
-        <ol class="relative grid gap-4 border-l-2 border-dashed border-gold pl-6 lg:grid-cols-6 lg:grid-rows-[1fr_1fr] lg:gap-0 lg:border-0 lg:px-2 lg:pl-2">
-          {loop.map((s, i) => (
-            <li class:list={['relative lg:flex lg:items-center lg:px-2 lg:py-12', place[i]]}>
-              <span class="absolute -left-[33px] top-5 h-3 w-3 rounded-full bg-gold lg:hidden" aria-hidden="true"></span>
-              <div class:list={['w-full rounded-[var(--radius-card)] border bg-white p-5', s.lane === 'program' ? 'border-teal' : 'border-gold']}>
-                <p class="flex items-center justify-between gap-2">
-                  <span class="font-sans text-sm font-extrabold text-muted">{String(i + 1).padStart(2, '0')}</span>
-                  <span class:list={['rounded-full px-2 py-0.5 text-[11px] font-extrabold uppercase tracking-[0.06em] lg:hidden', s.lane === 'program' ? 'bg-mist text-teal' : 'bg-cream text-charcoal']}>{s.lane === 'program' ? 'In the program' : 'In your life'}</span>
-                </p>
-                <h3 class="mt-1 font-sans text-xl font-extrabold">{s.step}</h3>
-                <p class="mt-2 text-[15px] leading-snug">{s.text}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <p class="mt-5 flex items-center gap-2 text-sm text-muted"><Icon name="refresh" class="h-4 w-4 text-teal" />Then around again. That feedback loop is the heart of In Vivo Treatment™.</p>
-
-      <div class="mt-14 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-        <figure>
-          <img src="/images/media/in-vivo-infographic.webp" width="1200" height="670" loading="lazy" alt="In Vivo Treatment™ infographic: clinical stabilization flows through PHP and IOP into real-world recovery and a learn, apply, process, adjust cycle." class="h-auto w-full rounded-[var(--radius-card)] border border-line" />
-        </figure>
-        <div>
-          <h3 class="text-2xl">From “What Would You Do” to “What Did You Do”</h3>
-          <div class="mt-5 space-y-5">
-            <div>
-              <p class="font-sans text-sm font-extrabold uppercase tracking-[0.06em] text-muted">In a controlled setting</p>
-              <ul class="mt-2 space-y-1.5">
-                {hypothetical.map((q) => <li class="text-muted">{q}</li>)}
-              </ul>
-            </div>
-            <div class="border-l-4 border-teal pl-4">
-              <p class="font-sans text-sm font-extrabold uppercase tracking-[0.06em] text-teal">In outpatient care</p>
-              <ul class="mt-2 space-y-1.5">
-                {real.map((q) => <li class="font-bold text-charcoal">{q}</li>)}
-              </ul>
-            </div>
-          </div>
-          <p class="mt-6 text-lg">Hitting a roadblock isn’t a treatment failure. It’s often what makes treatment click. The goal isn’t to turn anyone into a professional patient: it’s to help you build a life you can sustain without us.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* 2. Clinical Architecture™: editorial definition block, only what the site says */}
-  <section class="section bg-cream">
-    <div class="container-x grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-      <div>
-        <h2 class="text-3xl sm:text-[2.1875rem]">Clinical Architecture™</h2>
-        <p class="mt-5 text-lg">Clinical Architecture™ is the framework behind how Sunview builds treatment environments that foster accountability, connection, structure and sustainable recovery.</p>
-        <p class="mt-4 text-lg">Two of its ideas shape how we think about the treatment environment at Sunview.</p>
-        <a href={FEEL_URL} class={`${link} mt-6 inline-flex items-center gap-2`}>What a treatment center should feel like <Icon name="arrow" class="h-4 w-4" /></a>
-      </div>
-      <div>
-        <dl class="divide-y divide-gold/40 border-y border-gold/40">
-          <div class="grid gap-2 py-6 sm:grid-cols-[180px_1fr] sm:gap-6">
-            <dt class="font-display text-2xl font-bold text-teal">Clinical Excellence</dt>
-            <dd class="text-lg">Treatment has substance behind it. Therapy has purpose, groups are meaningful, clinicians understand addiction and behavioral health, and treatment plans reflect the individual instead of moving everyone through the same experience.</dd>
-          </div>
-          <div class="grid gap-2 py-6 sm:grid-cols-[180px_1fr] sm:gap-6">
-            <dt class="font-display text-2xl font-bold text-teal">Recovery Culture</dt>
-            <dd class="text-lg">Whether the environment itself supports recovery: people connect, honesty is encouraged, accountability exists alongside compassion, and recovery happens throughout the program, not only during a scheduled therapy hour.</dd>
-          </div>
-        </dl>
-        <p class="mt-8 font-display text-2xl italic leading-snug text-charcoal">Clinical excellence gives treatment its substance. Recovery culture gives that treatment somewhere to live.</p>
-      </div>
-    </div>
-  </section>
-
-  {/* 3. I = Sick: teal full-bleed band, H2 + the two sentences from the CEO notes (answer 2.1) */}
-  <section class="section relative overflow-hidden bg-teal text-white">
-    <div class="container-x">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl text-white sm:text-[2.1875rem]">I = Sick: How We Think About Addiction</h2>
-        <p class="mt-6 font-display text-2xl leading-snug text-white sm:text-[1.75rem]">{I_SICK_TEXT}</p>
-      </div>
-    </div>
-  </section>
-
-  {/* 4. Stabilization → Insight → Integration: ascending three-step progression */}
+  {/* 1. Stabilization → Insight → Integration: ascending three-step progression */}
   <section class="section">
     <div class="container-x">
       <div class="max-w-3xl">
@@ -238,7 +105,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  {/* 5. Beneath the presenting symptom: iceberg figure + prose */}
+  {/* 2. Beneath the presenting symptom: iceberg figure + prose */}
   <section class="section bg-mist">
     <div class="container-x grid items-center gap-12 lg:grid-cols-[0.85fr_1.15fr]">
       <figure class="mx-auto w-full max-w-[420px]">
@@ -270,7 +137,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  {/* 6. Family systems: prose + the questions asked in clinical supervision */}
+  {/* 3. Family systems: prose + the questions asked in clinical supervision */}
   <section class="section">
     <div class="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
       <div>
@@ -297,7 +164,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  {/* 7. How we measure progress: measures table (stacks below md) */}
+  {/* 4. How we measure progress: measures table (stacks below md) */}
   <section class="section border-t border-line">
     <div class="container-x">
       <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
@@ -331,7 +198,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
     </div>
   </section>
 
-  {/* 8. Continuity after discharge: horizontal timeline */}
+  {/* 5. Continuity after discharge: horizontal timeline */}
   <section class="section bg-mist">
     <div class="container-x">
       <div class="max-w-3xl">

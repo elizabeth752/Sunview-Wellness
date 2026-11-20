@@ -4,9 +4,8 @@
 // young adults 170 (13), failure to launch program 140 (12), what is failure to launch 110 (28),
 // failure to launch symptoms 70 (9), failure to launch young adults 110 (17). ("failure to launch" alone, 40,500, is
 // mostly the film, so it isn't the H1 target.)
-// Sources: "I = Sick" definition from /about/our-approach/ (CEO notes in the Client Wiki); status call 2026-10-15:
-// the then-CEO said years of work with failure to launch clients shaped "I = Addict"/"I = Sick". He left Sunview in
-// 2026-11 (ClickUp 1dfm34y15ur), so the page names no one for it.
+// 2026-11-19: the "I = Sick" section and In Vivo Treatment™ wording came off. Both are Frank Galimidi's content and
+// he asked for all of it to be removed (Scott, 11/19 status call). Don't add them back.
 // Scope: Sunview treats adults 18+ when substance use is part of the picture, in its regular PHP, IOP and OP groups.
 // It is not a residential life-skills or "launch" program, and the page never claims a dedicated track.
 import ServicePage from '../../layouts/ServicePage.astro';
@@ -22,7 +21,6 @@ const toc = [
   { id: 'what-is', text: 'What it is' },
   { id: 'symptoms', text: 'Signs to look for' },
   { id: 'cycle', text: 'The cycle' },
-  { id: 'i-sick', text: 'Beyond the sick role' },
   { id: 'treatment', text: 'How treatment helps' },
   { id: 'parents', text: 'For parents' },
   { id: 'start', text: 'How to start' },
@@ -133,24 +131,7 @@ const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
     </div>
   </section>
 
-  {/* 4. I = Sick band */}
-  <section class="section bg-teal-deep text-white">
-    <div class="container-x grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-      <div>
-        <h2 id="i-sick" tabindex="-1" class="toc-target text-3xl text-white sm:text-[2.1875rem]">Moving Beyond the Sick Role: Sunview’s Approach to Failure to Launch</h2>
-        <p class="mt-5 text-lg text-white/85">Our team has spent years working with young adults caught in this pattern. Part of what we’ve learned is captured in an idea we call “I = Sick”: the fear of functioning as a healthy adult once the sick role is removed.</p>
-        <p class="mt-4 text-lg text-white/85">For a young adult who has been “the one with the problem” for years, getting better can be frightening, because it comes with expectations. Treatment at Sunview addresses that fear directly and helps people redefine themselves beyond the diagnosis.</p>
-        <a href="/about/our-approach/" class="btn-sun mt-8">Our clinical approach <Icon name="arrow" /></a>
-      </div>
-      <blockquote class="rounded-[var(--radius-lg)] bg-white/10 p-8">
-        <Icon name="sparkle" class="h-7 w-7 text-gold" />
-        <p class="mt-4 font-display text-2xl leading-snug text-white">“I = Sick” is the fear of functioning as a healthy adult once the sick role is removed.</p>
-        <footer class="mt-4 text-sm font-bold text-white/70">From Sunview’s clinical approach</footer>
-      </blockquote>
-    </div>
-  </section>
-
-  {/* 5. Treatment */}
+  {/* 4. Treatment */}
   <section class="section">
     <div class="container-x">
       <span class="eyebrow">Outpatient care</span>
@@ -159,7 +140,7 @@ const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
       <div class="mt-10 grid gap-6 md:grid-cols-3">
         <div class="card"><Icon name="calendar" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Structure that holds</h3><p class="mt-2">Group starts at set times several days a week. Showing up is the first skill, and it gets practiced from day one.</p></div>
         <div class="card"><Icon name="users" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">A room of adults</h3><p class="mt-2">Young adults join the same groups as everyone else, with people a few steps ahead who are honest about the road.</p></div>
-        <div class="card"><Icon name="compass" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Practice outside the room</h3><p class="mt-2">With In Vivo Treatment™, the job application or the hard phone call becomes the assignment, and group is where it gets processed.</p></div>
+        <div class="card"><Icon name="compass" class="h-7 w-7 text-teal" /><h3 class="mt-4 text-xl">Practice outside the room</h3><p class="mt-2">Because you live at home, the job application or the hard phone call becomes the assignment, and group is where it gets processed.</p></div>
       </div>
       <div class="prose-sv mt-12 max-w-3xl">
         <p>Many programs that call themselves “failure to launch programs” are residential life-skills programs. Sunview is outpatient addiction and mental health treatment. Your adult child keeps living at home or in their own place and comes to <a href="/programs/php/">PHP</a> or <a href="/programs/iop/">IOP</a> at set times, with a primary therapist every week and psychiatric care through Telemed Clinix when it’s needed.</p>
@@ -168,7 +149,7 @@ const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
     </div>
   </section>
 
-  {/* 6. Parents */}
+  {/* 5. Parents */}
   <section class="section bg-mist">
     <div class="container-x">
       <span class="eyebrow">For parents</span>
@@ -188,7 +169,7 @@ const others = AUDIENCE_PAGES.filter((p) => p.href !== path);
     </div>
   </section>
 
-  {/* 7. Start */}
+  {/* 6. Start */}
   <section class="section">
     <div class="container-x grid gap-10 lg:grid-cols-2">
       <div>
