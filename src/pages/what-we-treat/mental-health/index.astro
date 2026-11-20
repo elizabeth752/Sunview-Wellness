@@ -63,7 +63,7 @@ const faqs = [
       <ol class="grid gap-3" aria-label="The cycle between mental health and substance use">
         {['Emotional distress', 'Using to cope', 'Symptoms get worse', 'Stronger pull to use'].map((s, i) => (
           <><li class="card flex items-center gap-4 !py-4">
-            {/* Number and label in separate elements with a real space between them (same as the OP In Vivo steps);
+            {/* Number and label in separate elements with a real space between them (same as the OP practice steps);
                  the <ol> already announces the position, so the visual number is hidden from screen readers */}
             <span class="font-sans text-2xl font-extrabold text-teal" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>{' '}<span class="font-bold text-charcoal">{s}</span>
           </li>{' '}</>

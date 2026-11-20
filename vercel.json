@@ -29,6 +29,8 @@
     { "source": "/our-approach/", "destination": "/about/our-approach/", "statusCode": 301 },
 
     { "source": "/media/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/blog/what-should-a-treatment-center-feel-like/", "destination": "/blog/", "statusCode": 301 },
+    { "source": "/media/what-should-a-treatment-center-feel-like/", "destination": "/blog/", "statusCode": 301 },
     { "source": "/our-team/frank-galimidi/", "destination": "/our-team/", "statusCode": 301 },
     { "source": "/blog/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/", "destination": "/blog/", "statusCode": 301 },
     { "source": "/media/recovery-centered-podcast-with-tim-roberto-why-addiction-treatment-cant-end-at-28-days/", "destination": "/blog/", "statusCode": 301 },
