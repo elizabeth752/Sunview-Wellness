@@ -10,6 +10,7 @@
 import ServicePage from '../../layouts/ServicePage.astro';
 import Icon from '../../components/Icon.astro';
 import SunMark from '../../components/SunMark.astro';
+import MapEmbed from '../../components/MapEmbed.astro';
 import { SITE, ACCREDITATIONS } from '../../data/site.js';
 import { GBP_URL } from '../../data/reviews.js';
 import { pageSchema } from '../../lib/programSchema.js';
@@ -170,13 +171,7 @@ const link = 'font-bold text-teal underline decoration-2 underline-offset-4 hove
           </ul>
         </div>
         <div class="min-h-[320px] bg-mist">
-          <iframe
-            src={SITE.mapsEmbed}
-            title={`Map to Sunview Wellness, ${addr}`}
-            class="block h-[320px] w-full lg:h-full"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+          <MapEmbed title={`Map to Sunview Wellness, ${addr}`} class="h-[320px] w-full lg:h-full" />
         </div>
       </div>
 

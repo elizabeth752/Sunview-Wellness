@@ -99,7 +99,17 @@ const year = new Date().getFullYear();
     {/* 15px top / 25px bottom (+10px, client request 2026-09-25); "Powered by" sits at the right end from md up,
          stacked under the © line on mobile. The mobile call bar is cleared by the footer's pb-24. */}
     <div class="container-x flex flex-col gap-1.5 pb-[25px] pt-[15px] text-sm text-white md:flex-row md:items-center md:justify-between md:gap-6">
-      <p>© {year} Sunview Wellness <span class="mx-1.5 text-white/50" aria-hidden="true">·</span> <a href="/privacy-policy/" class="hover:text-white/80">Privacy Policy</a></p>
+      <p class="flex flex-wrap gap-x-1.5 gap-y-1">
+        <span>© {year} Sunview Wellness</span>
+        <span class="text-white/50" aria-hidden="true">·</span>
+        <a href="/privacy-policy/" class="hover:text-white/80">Privacy Policy</a>
+        <span class="text-white/50" aria-hidden="true">·</span>
+        <a href="/privacy-policy/#hipaa-notice" class="hover:text-white/80">Notice of Privacy Practices</a>
+        <span class="text-white/50" aria-hidden="true">·</span>
+        <button type="button" class="cc-link hover:text-white/80" data-cookie-prefs>Cookie Preferences</button>
+        <span class="text-white/50" aria-hidden="true">·</span>
+        <button type="button" class="cc-link hover:text-white/80" data-cookie-dns>Do Not Sell or Share My Personal Information</button>
+      </p>
       <p>Powered by <a href="https://elev8.io" target="_blank" rel="noopener" class="font-bold hover:text-white/80">elev8.io</a></p>
     </div>
   </div>

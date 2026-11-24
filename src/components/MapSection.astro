@@ -4,6 +4,7 @@
 // PHP Mon–Fri 9am–1pm · Day IOP any 3 weekdays 9am–1pm · Evening IOP Mon/Wed/Thu 6–9pm ·
 // OP any 1 weekday 9am–1pm (Client Wiki 2026-09-22). Service area + languages from the same Wiki update.
 import Icon from './Icon.astro';
+import MapEmbed from './MapEmbed.astro';
 import { SITE } from '../data/site.js';
 interface Props { title?: string; subtitle?: string; showPageLink?: boolean; showSchedule?: boolean }
 const {
@@ -89,13 +90,7 @@ const cellLabel: Record<string, string> = { on: 'Runs, 9am to 1pm', pick: 'Pick 
 
     <div>
       <div class="overflow-hidden rounded-[var(--radius-lg)] border border-line">
-        <iframe
-          src={SITE.mapsEmbed}
-          title={`Map to Sunview Wellness, ${addr}`}
-          class="block h-[300px] w-full sm:h-[360px]"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+        <MapEmbed title={`Map to Sunview Wellness, ${addr}`} class="h-[300px] w-full sm:h-[360px]" />
       </div>
       <a href={SITE.phoneHref} class="mt-5 inline-flex items-center gap-3 text-lg font-extrabold text-teal hover:text-teal-light">
         <Icon name="phone" class="h-5 w-5" />{SITE.phone}

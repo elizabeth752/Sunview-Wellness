@@ -147,7 +147,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     let status = '';
     try { status = String((JSON.parse(text) as { status?: unknown }).status ?? ''); } catch {}
     if (!res.ok || status === 'error') {
-      console.error('[lead] CTM rejected lead', res.status, text.slice(0, 300));
+      // Status only: CTM's response body can echo lead details, and the site must not log them.
+      console.error('[lead] CTM rejected lead', res.status);
       return json(502, { ok: false, error: 'We couldn’t send your request.' });
     }
   } catch (err) {
