@@ -1,0 +1,24 @@
+---
+// Google Maps embed, click-to-load (privacy standard: Functional category). The iframe carries data-consent-src,
+// not src, so the browser makes no request to Google until the visitor accepts Functional cookies or presses
+// "Show map". CookieConsent.astro moves the URL into src and hides the placeholder.
+import { SITE } from '../data/site.js';
+
+interface Props { title: string; class?: string }
+const { title, class: className = '' } = Astro.props;
+---
+<div class:list={['relative', className]}>
+  <iframe
+    data-consent-src={SITE.mapsEmbed}
+    title={title}
+    class="absolute inset-0 block h-full w-full"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+  <div data-consent-placeholder class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-mist p-6 text-center">
+    <p class="max-w-[36ch] text-[15px] leading-relaxed text-charcoal">
+      The map is provided by Google, which may set its own cookies. It loads when you choose to show it.
+    </p>
+    <button type="button" data-consent-load class="btn-teal">Show map</button>
+  </div>
+</div>
