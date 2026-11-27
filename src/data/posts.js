@@ -1268,6 +1268,126 @@ export const posts = [
       { label: 'National Institute of Mental Health (NIMH). (2025). Generalized Anxiety Disorder: What You Need to Know. Health Publications.', url: 'https://www.nimh.nih.gov/health/publications/generalized-anxiety-disorder-gad' },
     ],
   },
+  {
+    slug: 'is-weed-addictive',
+    type: 'article',
+    title: 'Is Weed Addictive? How to Tell When Daily Smoking Has Become a Problem',
+    seoTitle: 'Is Weed Addictive? Signs of Cannabis Use Disorder', // <title> only (≤60, answer 9.1)
+    dek: "Daily cannabis use can develop into a diagnosable disorder. See the clinical signs of cannabis use disorder, what a weed hangover may signal, and how outpatient care can fit around work.",
+    metaDescription: "Daily weed use can lead to cannabis use disorder. See the clinical signs, what withdrawal looks like, and how outpatient care fits around work.",
+    date: '2026-11-27',
+    author: 'dana-martin', // slug in src/data/team.js — named as the article's author in the docx brief
+    category: 'Substance Use',
+    // Docx citation markers [1]-[5] converted to the site's (Author, Year) in-text style, mapped from the docx's
+    // own hyperlinks. The docx cites SAMHSA twice (the NSDUH 2025 results report and the separate "Find Support"
+    // page), so letter suffixes in Sources-list order: NSDUH report = 2026a, Find Support page = 2026b.
+    // Compliance: the docx's "We are in network with most major insurance plans, including Medicaid" sentence is
+    // replaced with the site's standard sentence, matching is-ativan-addictive and what-is-a-functional-alcoholic.
+    // The docx's standalone mid-article "Verify Your Insurance" CTA block is folded into the closing section
+    // rather than left as a one-off mid-body block, same precedent. Phone pulled from SITE, never the docx's
+    // stale (561) 269-3175.
+    // No dedicated /what-we-treat/substance-use/cannabis/ page exists yet, so the general cannabis-use-disorder
+    // mention links to /what-we-treat/substance-use/ instead of a condition-specific page.
+    // Interlinks: /blog/thca-vs-thc/, /what-we-treat/substance-use/, /admissions/for-families/, /therapies/cbt/,
+    // /programs/php/, /programs/iop/, /programs/outpatient/, /programs/evening-iop/, /admissions/insurance/,
+    // /admissions/.
+    body: `
+<p>Cannabis, also called weed or marijuana, can be addictive. The medical term for this is cannabis use disorder (CUD), and in 2025, about 19 million people in the U.S. aged 12 or older had it. Among adults 26 and older, the number with CUD rose from about 10 million in 2021 to about 13 million in 2025 (SAMHSA, 2026a). Cannabis use disorder is diagnosed by symptoms, not by the time of day a person uses, so smoking only after work does not rule it out (NIDA, 2026).</p>
+<p>This article covers how addictive marijuana is, the clinical signs of CUD, weed hangover symptoms, how to talk with a loved one about weed use, and how treatment works.</p>
+
+<h2>Is Weed Addictive?</h2>
+<p>Weed is addictive for some people who use it. Studies estimate that 22% to 30% of people who use cannabis have CUD. A person with CUD is unable to stop using cannabis even when it causes health and social problems in their life (NIDA, 2026; CDC, 2024).</p>
+<p>People in the U.S. increasingly view cannabis as low risk, but it can still cause negative health effects (NIDA, 2026).</p>
+
+<h2>Why Daily Weed Use Raises the Risk</h2>
+<p>How often a person uses cannabis is the strongest predictor of CUD. Daily or almost daily use is associated with developing the disorder, and family history and years of use can also play a role (NIDA, 2026).</p>
+<p>Cannabis products have also become stronger. The potency of THC (tetrahydrocannabinol, the compound in cannabis that causes a high) in illegal cannabis seized by law enforcement rose from about 4% in 1995 to about 16% in 2022, and higher THC levels have been associated with a greater chance of developing CUD (NIDA, 2026). This includes products sold as hemp, such as <a href="/blog/thca-vs-thc/">THCA flower</a>, which converts to THC when smoked.</p>
+
+<h2>Cannabis Use Disorder: The Clinical Signs of Weed Addiction</h2>
+<p>Health care providers diagnose CUD using the <em>Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition</em> (DSM-5). A person may have CUD if they experience two or more of these 11 symptoms within 12 months (NIDA, 2026):</p>
+<ul>
+  <li>Using more cannabis, or for a longer time, than intended</li>
+  <li>Wanting to cut down or stop, or trying to, without success</li>
+  <li>Spending a lot of time getting, using, or recovering from cannabis</li>
+  <li>Strong cravings or urges to use</li>
+  <li>Falling behind on responsibilities at work, school, or home</li>
+  <li>Continuing to use despite problems in relationships</li>
+  <li>Giving up hobbies or time with family and friends to use</li>
+  <li>Using in situations where someone could get hurt, such as before driving</li>
+  <li>Continuing to use despite physical or mental health problems</li>
+  <li>Needing more cannabis to get the same effect (tolerance)</li>
+  <li>Withdrawal symptoms after cutting back or stopping</li>
+</ul>
+<p>CUD is considered mild when two or three symptoms are present, moderate with four or five, and severe with six or more (NIDA, 2026). In 2025, just over half of people with CUD had a mild form (SAMHSA, 2026a).</p>
+<figure><img src="/images/blog/infographics/cannabis-use-disorder-severity-scale.svg" width="1200" height="460" loading="lazy" alt="How many symptoms make cannabis use disorder mild, moderate, or severe. Mild is 2 to 3 symptoms, moderate is 4 to 5 symptoms, severe is 6 or more symptoms, out of 11 possible DSM-5 symptoms within 12 months. In 2025, just over half of people with cannabis use disorder had the mild form." /></figure>
+<p>Since job performance is only one of the criteria, steady work does not rule out CUD. Family members may notice other changes first, such as irritability, low motivation, trouble concentrating, or pulling away from people (Nimmana et al., 2026).</p>
+
+<h2>Weed Hangover Symptoms: What They May Point To</h2>
+<p>"Weed hangover" is an informal term, not a medical diagnosis. People who use cannabis every day may notice low mood, irritability, poor concentration, or low motivation the morning after use. These symptoms can reflect ongoing heavy use or early withdrawal, which can begin within 24 hours of the last use (Nimmana et al., 2026).</p>
+<p>If the first use of the day relieves these symptoms, that pattern may be a sign of withdrawal. Using cannabis to relieve or avoid withdrawal symptoms counts toward the withdrawal criterion for CUD (SAMHSA, 2026a).</p>
+
+<h2>What Happens When Daily Weed Use Stops?</h2>
+<p>A person may have withdrawal symptoms after stopping or sharply cutting back on heavy, long-term cannabis use, even if they do not have CUD. Symptoms may include (NIDA, 2026):</p>
+<ul>
+  <li>Irritability, anger, or aggression</li>
+  <li>Nervousness, anxiety, or restlessness</li>
+  <li>Trouble sleeping or strange dreams</li>
+  <li>Decreased appetite or weight loss</li>
+  <li>Depressed mood</li>
+  <li>Headaches, sweating, stomach pain, or shakiness</li>
+</ul>
+<p>Supportive care is the main treatment for withdrawal, and a doctor can help manage symptoms such as insomnia and changes in mood (Nimmana et al., 2026).</p>
+
+<h2>How to Talk to a Loved One About Daily Weed Use</h2>
+<p>If a loved one uses weed every day, talking with them about it can be a first step toward change. They may respond to concerns by calling cannabis "just weed," but focusing on specific changes you have noticed, rather than debating the drug itself, may lead to a more productive conversation. These approaches from the Substance Abuse and Mental Health Services Administration (SAMHSA) may help (SAMHSA, 2026b):</p>
+<ul>
+  <li><strong>Ask open-ended questions.</strong> Questions that start with "how" or "what" invite more than a yes or no answer, e.g. "What are the not-so-good things about smoking every night?"</li>
+  <li><strong>Point out strengths.</strong> Commenting on what your loved one does well may keep them more open than a list of what they are doing wrong.</li>
+  <li><strong>Show you are listening.</strong> Repeat back what you heard so your loved one feels understood.</li>
+  <li><strong>Conclude with a plan.</strong> Summarize the conversation, ask how you can support them, and ask whether you can check in again.</li>
+</ul>
+<p>It may take many conversations before someone is ready to get help. If your loved one does not want to talk, let them know you will be there when they are ready (SAMHSA, 2026b). Our <a href="/admissions/for-families/">family resources</a> walk through what support can look like before someone is ready for treatment.</p>
+
+<h2>Treatment for Cannabis Use Disorder</h2>
+<p>Most people with CUD are treated in outpatient care. More intensive settings are generally reserved for serious concerns, such as severe withdrawal or psychosis. Behavioral therapies can be effective in treating CUD (NIDA, 2026; Nimmana et al., 2026):</p>
+<ul>
+  <li><strong><a href="/therapies/cbt/">Cognitive behavioral therapy (CBT)</a></strong> helps a person recognize triggers and build coping and problem-solving skills.</li>
+  <li><strong>Motivational enhancement therapy</strong> helps a person build readiness to change and may work best when combined with CBT.</li>
+</ul>
+<p>There are no U.S. Food and Drug Administration (FDA)-approved medications for CUD. CUD often occurs alongside depression, anxiety, or posttraumatic stress disorder (PTSD), and treating these conditions at the same time is recommended (NIDA, 2026; Nimmana et al., 2026).</p>
+
+<h2>Frequently Asked Questions About Weed Addiction</h2>
+<h3>Can you get addicted to weed if you only smoke at night?</h3>
+<p>CUD is diagnosed by symptoms, not by the time of day a person uses. Daily or almost daily use, at any time, is associated with developing the disorder (NIDA, 2026).</p>
+<h3>Does daily weed use always mean cannabis use disorder?</h3>
+<p>Daily use alone does not mean a person has CUD. A diagnosis requires at least two of the 11 symptoms within 12 months, along with significant problems or distress (NIDA, 2026). A professional assessment can clarify where someone stands.</p>
+<h3>How long does weed withdrawal last?</h3>
+<p>Withdrawal symptoms often begin within 24 hours of stopping, peak around day three, and improve over about two weeks (Nimmana et al., 2026).</p>
+
+<h2>Key Takeaways</h2>
+<ul>
+  <li>Cannabis can be addictive. An estimated 22% to 30% of people who use it have cannabis use disorder (CUD).</li>
+  <li>Daily or almost daily use is the strongest predictor of CUD.</li>
+  <li>CUD is diagnosed when a person has two or more of 11 symptoms within 12 months.</li>
+  <li>Behavioral therapies can treat CUD, most often in an outpatient setting.</li>
+</ul>
+
+<h2>Outpatient Cannabis Use Disorder Treatment in West Palm Beach</h2>
+<p>Sunview Wellness is a Joint Commission accredited outpatient program in West Palm Beach for adults 18 and older. Care is delivered at three levels: <a href="/programs/php/">Partial Hospitalization (PHP)</a>, <a href="/programs/iop/">Intensive Outpatient (IOP)</a>, and <a href="/programs/outpatient/">Outpatient Programming (OP)</a>, including an <a href="/programs/evening-iop/">evening IOP</a> for those who need to keep working during the day.</p>
+<p>We treat <a href="/what-we-treat/substance-use/">cannabis use disorder</a> together with the anxiety, depression, and trauma that may come with it. Family members can take part in care.</p>
+<p>Our PhD-led clinical team brings years of combined experience and works psychodynamically, using Inner Child Therapy to address shame, fear, and long-held patterns underneath substance use.</p>
+<p>We're in network with most major insurance carriers, including Florida Medicaid plans. Our <a href="/admissions/insurance/">admissions team can review your benefits</a> at no cost and help you schedule an assessment.</p>
+<p><a href="/admissions/"><strong>Talk to Admissions</strong></a></p>
+<p><strong>Call <a href="${SITE.phoneHref}">${SITE.phone}</a></strong></p>
+`,
+    sources: [
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2026a). Key Substance Use and Mental Health Indicators in the United States: Results From the 2025 National Survey on Drug Use and Health. NSDUH Series H-61.', url: 'https://www.samhsa.gov/data/sites/default/files/reports/rpt57150/2025-nsduh-annual-national-html/2025-nsduh-annual-national.htm' },
+      { label: 'National Institute on Drug Abuse (NIDA). (2026). Cannabis (Marijuana). Research Topics.', url: 'https://nida.nih.gov/research-topics/cannabis-marijuana' },
+      { label: 'Nimmana, S., et al. (2026). Cannabis Use Disorder. StatPearls. StatPearls Publishing.', url: 'https://www.ncbi.nlm.nih.gov/books/NBK538131/' },
+      { label: 'Centers for Disease Control and Prevention (CDC). (2024). Understanding Your Risk for Cannabis Use Disorder. Cannabis and Public Health.', url: 'https://www.cdc.gov/cannabis/health-effects/cannabis-use-disorder.html' },
+      { label: 'Substance Abuse and Mental Health Services Administration (SAMHSA). (2026b). How to Talk to Someone About Help for Mental Health and Substance Use. Find Support.', url: 'https://www.samhsa.gov/find-support/helping-someone/how-to-talk-to-someone-about-help' },
+    ],
+  },
 ];
 
 export const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
