@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" role="img" aria-labelledby="cudtitle cuddesc" font-family="Nunito, 'Segoe UI', Arial, sans-serif">
+  <title id="cudtitle">How many symptoms make cannabis use disorder mild, moderate, or severe?</title>
+  <desc id="cuddesc">DSM-5 diagnoses cannabis use disorder from 11 possible symptoms within 12 months. Mild means 2 to 3 symptoms, moderate means 4 to 5 symptoms, and severe means 6 or more symptoms. In 2025, just over half of people with cannabis use disorder had the mild form.</desc>
+  <rect width="1200" height="460" fill="#FFFFFF"/>
+  <text x="56" y="52" font-family="Georgia, 'Playfair Display', serif" font-size="28" font-weight="700" fill="#545555">How many symptoms make it CUD?</text>
+  <text x="56" y="78" font-size="15" fill="#6B6C6C">DSM-5 counts 11 possible symptoms in 12 months; severity depends on how many apply</text>
+
+  <!-- scale: x=340 (0 symptoms) to x=1140 (11 symptoms), ~72.7px per symptom -->
+  <g font-size="13" fill="#6B6C6C">
+    <line x1="340" y1="396" x2="1140" y2="396" stroke="#D9E6E6" stroke-width="2"/>
+    <text x="340" y="420" text-anchor="middle">0</text>
+    <text x="558" y="420" text-anchor="middle">3</text>
+    <text x="703" y="420" text-anchor="middle">5</text>
+    <text x="1140" y="420" text-anchor="middle">11</text>
+    <text x="740" y="444" text-anchor="middle" font-weight="700" fill="#545555">Symptoms present within 12 months</text>
+  </g>
+
+  <!-- Mild: 2-3 symptoms -->
+  <g>
+    <text x="340" y="130" font-weight="800" fill="#545555" font-size="16">Mild — 2 to 3 symptoms</text>
+    <rect x="340" y="146" width="218" height="34" rx="8" fill="#F0FAFA" stroke="#1F9E9E" stroke-width="1.5"/>
+    <text x="574" y="169" font-weight="800" fill="#1F9E9E" font-size="15">2–3</text>
+  </g>
+
+  <!-- Moderate: 4-5 symptoms -->
+  <g>
+    <text x="340" y="232" font-weight="800" fill="#545555" font-size="16">Moderate — 4 to 5 symptoms</text>
+    <rect x="340" y="248" width="363" height="34" rx="8" fill="#1F9E9E"/>
+    <text x="719" y="271" font-weight="800" fill="#1F9E9E" font-size="15">4–5</text>
+  </g>
+
+  <!-- Severe: 6+ symptoms -->
+  <g>
+    <text x="340" y="334" font-weight="800" fill="#545555" font-size="16">Severe — 6 or more symptoms</text>
+    <rect x="340" y="350" width="800" height="34" rx="8" fill="#126E6E"/>
+    <text x="1108" y="373" text-anchor="end" font-weight="800" fill="#FFFFFF" font-size="15">6+</text>
+  </g>
+
+  <text x="56" y="449" font-size="13" fill="#6B6C6C" font-style="italic">In 2025, just over half of people with CUD had the mild form (SAMHSA, 2026)</text>
+</svg>
